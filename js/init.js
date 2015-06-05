@@ -6,8 +6,8 @@
 
           var listData =  {"name": "Buildings", "image_url": "images/buildings.jpg", "id":"buildings", "class":"buildings", "url":"#/new-project/slice-view/1/building_group/all",
                             "subItems": [
-                                {"name": "Building A", "image_url": "images/singleBuilding.jpg", "hover_imageUrl": "images/buildingA.jpg", "class": "building_A", "id":"building_A",  "url":"#/new-project/slice-view/1/building/A",
-                                    
+                                {"name": "Building A", "image_url": "images/singleBuilding.jpg", "hover_imageUrl": "images/buildingA.jpg", "class": "a-tower", "id":"a-tower",  "url":"#/new-project/slice-view/1/building/A",
+                                    "path": "35 30 42 27 49 40 49 70 45 73 43 68 42 71 39 72 35 63 35 30",
                                     "subItems": [
                                         { "name": "Floor A1 - A5", "image_url": "images/lowerHalf.jpg", "hover_imageUrl": "images/lowerHalf.jpg", "class":"building_A1_A5", "id":"building_A1_A5", "url":"#/new-project/slice-view/1/section/A_lowerHalf",
                                           "subItems": [
@@ -32,7 +32,8 @@
                                     ],
                                     "parent": {"url": "#/new-project/slice-view/1/building_group/all"} 
                                 },  
-                                {"name": "Building B", "image_url": "images/singleBuilding.jpg", "hover_imageUrl": "images/buildingB.jpg", "class": "building_B", "id":"building_B", "url":"#/new-project/slice-view/1/building/B",
+                                {"name": "Building B", "image_url": "images/singleBuilding.jpg", "hover_imageUrl": "images/buildingB.jpg", "class": "a-tower", "id":"a-tower", "url":"#/new-project/slice-view/1/building/B",
+                                    "path": "41 43 45 46 46 44 46 42 48 39 48 39 53 44 55 43 56 45 56 78 53 83 53 86 51 88 51 90 50 91 40 80 40 45 41 43",
                                     "subItems": [
                                         { "name": "Floor B1 - B5", "image_url": "images/lowerHalf.jpg", "hover_imageUrl": "images/lowerHalf.jpg", "class":"building_B1_B5", "id":"building_B1_B5", "url":"#/new-project/slice-view/1/section/B_lowerHalf",
                                           "subItems": [
