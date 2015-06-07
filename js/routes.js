@@ -37,6 +37,7 @@ var initializeRoutes = (function(){
           string += '<div class="img-container" id="img-container"></div>';
           string += '<svg class="svg-container container" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>';
           string += '<div class="tower-menu-container" id="tower-menu-container"></div>';
+          string += '<div class="tower-detail-container container"></div>';
       }
 
       $('.main-container').html(string);
