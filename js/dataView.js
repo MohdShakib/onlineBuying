@@ -117,7 +117,7 @@ var DataView = (function(){
                 var tower = data.subItems[i];
                 code += "<td class='menu-item'><table>";
                 code += "<tr><td class='tower-icon'>";
-                code += "<div class=\"left-panel-button\" data-index=\""+i+"\" data-imageid=\""+ tower.id + "\" data-url=\""+tower.url+"\" >" + tower.name.charAt(0) + "</div></td></tr>";
+                code += "<div class=\"left-panel-button\" data-index=\""+i+"\" data-imageid=\""+ tower.id + "\" data-url=\""+tower.url+"\" >" + tower.name.split(' ')[1] + "</div></td></tr>";
                 code += "<tr><td class='tower-name'>" + tower.name + "</td></tr></table></td>";
             }
             code += "</table>";
@@ -204,8 +204,8 @@ var DataView = (function(){
             towerCode += "</tr></table></td></tr></table></div>";
 
             $(".tower-detail-container").html(towerCode);
-            $('#container-detail').css("left", left+'px');
-            $('#container-detail').css("top", (top-130)+'px');
+            $('#container-detail').css("left", (left+100)+'px');
+            $('#container-detail').css("top", top+'px');
         }
 
 

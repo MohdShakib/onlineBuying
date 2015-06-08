@@ -20,16 +20,17 @@
                                     }],
                                     "subItems": [
                                         {   "name": "Floor A1 - A5", "image_url": "images/lowerHalf.jpg", "hover_imageUrl": "images/lowerHalf.jpg", "class":"building_A1_A5", "id":"building_A1_A5", "url":"#/new-project/slice-view/1/section/A_lowerHalf",
-                                            /*"details": [{
+                                            "path": "34 81 34 58 34 55 43 56 56 57 57 55 62 55 61 73 57 73 57 81 56 81 56 85 55 87 52 87 50 85 48 86 45 86 41 83 38 83 38 81 34 81",
+                                            "details": [{
                                                 "type": "2BHK",
-                                                "available": 15,
-                                                "unavailable": 22
+                                                "available": 5,
+                                                "unavailable": 13
                                             }, {
                                                 "type": "3BHK",
-                                                "available": 18,
-                                                "unavailable": 9
+                                                "available": 8,
+                                                "unavailable": 6
 
-                                            }],*/
+                                            }],
                                             "subItems": [
                                                 { "name": "Floor A1", "id":"building_A1"},
                                                 { "name": "Floor A2", "id":"building_A2"},
@@ -40,15 +41,16 @@
                                             "parent": {"url": "#/new-project/slice-view/1/building/A"}
                                         },
                                         {   "name": "Floor A6 - A10", "image_url": "images/upperHalf.jpg", "hover_imageUrl": "images/upperHalf.jpg", "class":"building_A6_A10", "id":"building_A6_A10", "url":"#/new-project/slice-view/1/section/A_lowerHalf",
-                                            /*"details": [{
+                                            "path": "34 54 34 54 56 55 58 53 61 53 62 24 61 18 62 18 62 16 61 16 60 12 57 12 57 15 54 14 54 13 51 14 46 13 46 14 44 14 44 13 39 13 38 10 37 10 36 15 37 16 37 19 35 18 35 22 33 22 33 26 33 27 33 54 ",
+                                            "details": [{
                                                 "type": "2BHK",
                                                 "available": 10,
-                                                "unavailable": 29
+                                                "unavailable": 9
                                             }, {
                                                 "type": "3BHK",
-                                                "available": 3,
-                                                "unavailable": 19
-                                            }],*/
+                                                "available": 10,
+                                                "unavailable": 3
+                                            }],
                                             "subItems": [
                                                 { "name": "Floor A6", "id":"building_A6"},
                                                 { "name": "Floor A7", "id":"building_A7"},
@@ -73,8 +75,19 @@
                                         "unavailable": 19
                                     }],
                                     "subItems": [
-                                        { "name": "Floor B1 - B5", "image_url": "images/lowerHalf.jpg", "hover_imageUrl": "images/lowerHalf.jpg", "class":"building_B1_B5", "id":"building_B1_B5", "url":"#/new-project/slice-view/1/section/B_lowerHalf",
-                                          "subItems": [
+                                        {   "name": "Floor B1 - B5", "image_url": "images/lowerHalf.jpg", "hover_imageUrl": "images/lowerHalf.jpg", "class":"building_B1_B5", "id":"building_B1_B5", "url":"#/new-project/slice-view/1/section/B_lowerHalf",
+                                            "path": "34 81 34 58 34 55 43 56 56 57 57 55 62 55 61 73 57 73 57 81 56 81 56 85 55 87 52 87 50 85 48 86 45 86 41 83 38 83 38 81 34 81",
+                                            "details": [{
+                                                "type": "2BHK",
+                                                "available": 5,
+                                                "unavailable": 14
+                                            }, {
+                                                "type": "3BHK",
+                                                "available": 1,
+                                                "unavailable": 10
+
+                                            }],
+                                            "subItems": [
                                                 { "name": "Floor B1", "id":"building_B1"},
                                                 { "name": "Floor B2", "id":"building_B2"},
                                                 { "name": "Floor B3", "id":"building_B3"},
@@ -83,8 +96,19 @@
                                             ],
                                             "parent": {"url": "#/new-project/slice-view/1/building/B"} 
                                         },
-                                        { "name": "Floor B6 - B10", "image_url": "images/upperHalf.jpg", "hover_imageUrl": "images/upperHalf.jpg", "class":"building_B6_B10", "id":"building_B6_B10", "url":"#/new-project/slice-view/1/section/B_lowerHalf",
-                                          "subItems": [
+                                        {   "name": "Floor B6 - B10", "image_url": "images/upperHalf.jpg", "hover_imageUrl": "images/upperHalf.jpg", "class":"building_B6_B10", "id":"building_B6_B10", "url":"#/new-project/slice-view/1/section/B_lowerHalf",
+                                            "path": "34 54 34 54 56 55 58 53 61 53 62 24 61 18 62 18 62 16 61 16 60 12 57 12 57 15 54 14 54 13 51 14 46 13 46 14 44 14 44 13 39 13 38 10 37 10 36 15 37 16 37 19 35 18 35 22 33 22 33 26 33 27 33 54 ",
+                                            "details": [{
+                                                "type": "2BHK",
+                                                "available": 5,
+                                                "unavailable": 15
+                                            }, {
+                                                "type": "3BHK",
+                                                "available": 2,
+                                                "unavailable": 9
+
+                                            }],
+                                            "subItems": [
                                                 { "name": "Floor B6", "id":"building_B6"},
                                                 { "name": "Floor B7", "id":"building_B7"},
                                                 { "name": "Floor B8", "id":"building_B8"},
