@@ -4,7 +4,7 @@
 
     document.addEventListener('DOMContentLoaded', function() {
 
-          var listData =  {"name": "Buildings", "image_url": "images/buildings.jpg", "id":"buildings", "class":"buildings", "url":"#/new-project/slice-view/1/building_group/all",
+          var projectData =  {"name": "Buildings", "image_url": "images/buildings.jpg", "id":"buildings", "class":"buildings", "url":"#/new-project/slice-view/1/building_group/all",
                             "subItems": [
                                 {"name": "Building A", "image_url": "images/singleBuilding.jpg", "hover_imageUrl": "images/buildingA.jpg", "class": "a-tower", "id":"a-tower",  "url":"#/new-project/slice-view/1/building/A",
                                     "path": "35 30 42 27 49 40 49 70 45 73 43 68 42 71 39 72 35 63 35 30",
@@ -124,9 +124,11 @@
                           };
         
 
-
+            var model = new DataModel(projectData),
+            view = new DataView(model),
+            controller = new DataController(model, view);
         
-          initializeRoutes(listData);
+            initializeRoutes(projectData, controller);
 
     });
 

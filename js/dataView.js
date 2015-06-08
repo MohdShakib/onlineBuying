@@ -6,25 +6,20 @@
 
 "use strict";
 var DataView = (function(){
+    
+    var containerMap = {
+        'imgContainer': '<div class="img-container" id="img-container"></div>',
+        'overviewImgContainer': '<div class="overview-img-container container" id="overview-img-container" ></div>',
+        'svgContainer': '<svg class="svg-container container" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
+        'towerMenuContainer': '<div class="tower-menu-container" id="tower-menu-container"></div>',
+        'towerDetailContainer': '<div class="tower-detail-container container"></div>'
+    };
+
 
     function DataView(model, elements) {
         this._model = model;
         this._elements = elements;
-
-        this.dataUpdated = new Event(this);
         var _this = this;
-
-       /* this._elements.list_div.on('mouseenter', 'li.liHoverClass', function (e) {
-            $('img').addClass('hidden');
-            var imageid = this.dataset.imageid ? this.dataset.imageid : 'main-image';
-            $('img#'+imageid).removeClass('hidden');
-        });
-
-        this._elements.list_div.on('mouseleave', function (e) {
-            $('img').addClass('hidden');
-            $('img#main-image').removeClass('hidden');
-        });
-        */
 
         // attach model listeners
         this._model.dataUpdated.attach(function () {
@@ -34,45 +29,7 @@ var DataView = (function(){
     }
 
     DataView.prototype = {
-        /*show: function () {
-            this.rebuildView();
-        },
 
-        rebuildView: function () {
-            var list, images,  data, key;
-
-            list = this._elements.list_div;
-            images = this._elements.image_div;
-            list.html('');
-
-            data = this._model.getData();
-            var leftPanel = '<ul>';
-            
-            if(data && data.parent){
-                leftPanel += '<li><a href="'+data.parent.url+'" >Back</a></li>';
-            }
-
-            var image = '<img src="'+data.image_url+'" id="main-image" class="'+data.id+'" width="100%;">';
-
-            for (key in data.subItems) {
-                if (data.subItems.hasOwnProperty(key)) {
-                    var url = data.subItems[key].url ? data.subItems[key].url : 'javascript:void(0)';
-                    var liHoverClass = data.subItems[key].url ? 'liHoverClass' : '';
-                    leftPanel += '<li data-imageid="'+data.subItems[key].id+'"" class="'+liHoverClass+'" ><a href="'+url+'" >'+data.subItems[key].name+'</a></li>';
-                    image += '<img src="'+data.subItems[key].hover_imageUrl+'" id="'+data.subItems[key].class+'" class="hidden" width="100%;">';
-                }
-            }
-            leftPanel += "</ul>";
-
-            images.html(image);
-            list.html(leftPanel)
-
-        },
-        */
-
-        show: function(){
-            this.rebuildView();
-        },
         rebuildView: function(){
             var i, data = this._model.getData();
             var _this   = this;
@@ -82,7 +39,18 @@ var DataView = (function(){
                     this[i](data);
                 }
             }
-            
+        },
+        updateElements: function(elements){
+            this._elements = elements;
+        },
+        buildSkeleton: function(containerList){
+            var key, mainContainerHtml = '';
+            for(key in containerList){
+                if(containerList.hasOwnProperty(key) && containerMap[containerList[key]]){
+                    mainContainerHtml += containerMap[containerList[key]];
+                }
+            }
+            $('.main-container').html(mainContainerHtml);
         },
         imgContainer: function(data) {
             var imgCode = "<img class=\"menu-mapped-image\" id=\"main-image\" width='100%' src=\"" + data.image_url + "\"/>";

@@ -3,27 +3,10 @@
 "use strict";
 var initializeRoutes = (function(){
 
-  var started, model, view, controller;
-  function renderView(data, model_elements){
+  function prepareTemplateSkeleton(type, controller){
 
-    if(!started){
-      started = true;
-    }else{
-      view._elements = model_elements;
-      return;
-    }
-
-    model = new DataModel(data);
-    view = new DataView(model, model_elements);
-    controller = new DataController(model, view);
-    view.show();
-
-  }
-
-  function prepareTemplateSkeleton(type){
-
-      var string = '';
-      var model_elements = {};
+      var containerList = [], elements = {};
+      
       switch(type){
         case 1: 
           break;
@@ -34,26 +17,22 @@ var initializeRoutes = (function(){
         case 4:
           break;
         default: 
-          string += '<div class="img-container" id="img-container"></div>';
-          //string += '<div class="overview-img-container container" id="overview-img-container" ></div>';
-          string += '<svg class="svg-container container" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>';
-          string += '<div class="tower-menu-container" id="tower-menu-container"></div>';
-          string += '<div class="tower-detail-container container"></div>';
+          containerList = ['imgContainer', 'overviewImgContainer', 'svgContainer', 'towerMenuContainer', 'towerDetailContainer'];
+          controller.generateTemplateSkeleton(containerList);
+
+          elements = {
+            'imgContainer': $('#img-container'),
+            //'overviewImgContainer': $('#overview-img-container'),
+            'svgContainer' : $('#svg-container'),
+            'towerMenuContainer': $('#tower-menu-container'),
+          }
       }
 
-      $('.main-container').html(string);
-
-      model_elements = {
-        'imgContainer': $('#img-container'),
-        //'overviewImgContainer': $('#overview-img-container'),
-        'svgContainer' : $('#svg-container'),
-        'towerMenuContainer': $('#tower-menu-container'),
-      }
-      return model_elements;
+      return elements;
   }
 
 
-  function initializeRoutes(data){
+  function initializeRoutes(data, controller){
 
       var routes = {
         '/new-project/slice-view/:projectId':{
@@ -90,11 +69,8 @@ var initializeRoutes = (function(){
                     }
                   }
 
-                  var model_elements = prepareTemplateSkeleton();
-                  renderView(default_data, model_elements);
-                  view.dataUpdated.notify({
-                      data: default_data
-                  });
+                  var elements = prepareTemplateSkeleton(null, controller);
+                  controller.generateTemplate(default_data, elements);
 
                 },
                 before: function(){

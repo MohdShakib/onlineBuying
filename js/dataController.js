@@ -10,16 +10,16 @@ var DataController = (function(){
 	    this._model = model;
 	    this._view = view;
 	    var _this = this;
-	    
-	    this._view.dataUpdated.attach(function (sender, args) {
-	        _this.updateData(args.data);
-	    });
-
+	  
 	}
 
 	DataController.prototype = {
-	    updateData: function(data){
-	        this._model.updateData(data);
+	    generateTemplate: function(data, elements){
+	    	this._view.updateElements(elements);
+	    	this._model.updateData(data);
+	    },
+	    generateTemplateSkeleton: function(containerList){
+	    	this._view.buildSkeleton(containerList);
 	    }
 	};
 
