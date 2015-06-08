@@ -111,6 +111,10 @@ var DataView = (function(){
                 _this.toweMouseLeaveEvent();
             });
         },
+        overviewImgContainer: function(data){
+            var code = "<img src='" + data.image_url + "'/>";
+            this._elements.overviewImgContainer.html(code);
+        },
         towerMenuContainer: function(data) {
             var code = "<table><tr><th colspan='2' class='menu-header'>Towers</th></tr><tr>";
             for (var i in data.subItems) {

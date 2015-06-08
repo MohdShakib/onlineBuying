@@ -35,6 +35,7 @@ var initializeRoutes = (function(){
           break;
         default: 
           string += '<div class="img-container" id="img-container"></div>';
+          //string += '<div class="overview-img-container container" id="overview-img-container" ></div>';
           string += '<svg class="svg-container container" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>';
           string += '<div class="tower-menu-container" id="tower-menu-container"></div>';
           string += '<div class="tower-detail-container container"></div>';
@@ -44,8 +45,9 @@ var initializeRoutes = (function(){
 
       model_elements = {
         'imgContainer': $('#img-container'),
+        //'overviewImgContainer': $('#overview-img-container'),
         'svgContainer' : $('#svg-container'),
-        'towerMenuContainer': $('#tower-menu-container')
+        'towerMenuContainer': $('#tower-menu-container'),
       }
       return model_elements;
   }
