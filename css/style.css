@@ -14,6 +14,10 @@ header {
 	z-index: 100;
 }
 
+.hidden{
+	display: none;
+}
+
 .container {
 	position: absolute;
 	width: 100%;
