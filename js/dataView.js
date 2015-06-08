@@ -133,11 +133,6 @@ var DataView = (function(){
                 _this._svgMouseLeave.notify(); // this refers to element here
             });
         },
-        towerClickEvent: function(element) {
-            var hash =  element.dataset.url ? element.dataset.url : null;
-            if(hash && hash != "undefined")
-                window.location.hash = hash;
-        },
         towerMouseEnterEvent: function(element, data){
             
             var data    = this._model.getData();
