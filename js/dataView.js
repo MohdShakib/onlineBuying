@@ -21,6 +21,13 @@ var DataView = (function(){
         this._elements = elements;
         var _this = this;
 
+        this._menuMouseEnter = new Event(this);
+        this._menuMouseLeave = new Event(this);
+        this._menuClick = new Event(this);
+        this._svgMouseEnter = new Event(this);
+        this._svgMouseLeave = new Event(this);
+        this._svgClick = new Event(this);
+
         // attach model listeners
         this._model.dataUpdated.attach(function () {
             _this.rebuildView();
@@ -61,23 +68,6 @@ var DataView = (function(){
                 }
             }
             this._elements.imgContainer.html(imgCode);
-            this.imgContainerEvents();
-        },
-        imgContainerEvents: function(){
-            var _this = this;
-            var data  = _this._model.getData();
-
-            _this._elements.towerMenuContainer.off('click').on('click', '.left-panel-button', function(event){
-                _this.towerClickEvent(this);
-            });
-
-            _this._elements.towerMenuContainer.off('mouseenter').on('mouseenter', '.left-panel-button', function(event){
-               _this.towerMouseEnterEvent(this, data);
-            });
-
-            _this._elements.towerMenuContainer.off('mouseleave').on('mouseleave', '.left-panel-button', function(event){
-                _this.toweMouseLeaveEvent();
-            });
         },
         overviewImgContainer: function(data){
             var code = "<img src='" + data.image_url + "'/>";
@@ -94,6 +84,25 @@ var DataView = (function(){
             }
             code += "</table>";
             this._elements.towerMenuContainer.html(code);
+            this.towerMenuContainerEvents();
+        },
+        towerMenuContainerEvents: function(){
+            var _this = this;
+
+            _this._elements.towerMenuContainer.off('click').on('click', '.left-panel-button', function(event){
+                // notify controller
+                _this._menuClick.notify(this); // this refers to element here
+            });
+
+            _this._elements.towerMenuContainer.off('mouseenter').on('mouseenter', '.left-panel-button', function(event){
+               // notify controller
+               _this._menuMouseEnter.notify(this); // this refers to element here
+            });
+
+            _this._elements.towerMenuContainer.off('mouseleave').on('mouseleave', '.left-panel-button', function(event){
+                // notify controller
+                _this._menuMouseLeave.notify(); // this refers to element here
+            });
         },
         svgContainer: function(data) {
             var svgCode = "";
@@ -108,18 +117,20 @@ var DataView = (function(){
         },
         svgContainerEvents: function() {
             var _this = this;
-            var data  = _this._model.getData();
 
             _this._elements.svgContainer.off('click').on('click', '.image-svg-path', function(event){
-                _this.towerClickEvent(this);
+                 // notify controller
+                _this._svgClick.notify(this); // this refers to element here
             });
 
             _this._elements.svgContainer.off('mouseenter').on('mouseenter', '.image-svg-path', function(event){
-               _this.towerMouseEnterEvent(this, data);
+                // notify controller
+                _this._svgMouseEnter.notify(this); // this refers to element here
             });
 
             _this._elements.svgContainer.off('mouseleave').on('mouseleave', '.image-svg-path', function(event){
-               _this.toweMouseLeaveEvent();
+                // notify controller
+                _this._svgMouseLeave.notify(); // this refers to element here
             });
         },
         towerClickEvent: function(element) {
@@ -129,6 +140,7 @@ var DataView = (function(){
         },
         towerMouseEnterEvent: function(element, data){
             
+            var data    = this._model.getData();
             var index   = element.dataset.index;
             var toolTipData = data && data.subItems ? data.subItems[index]  : null;
             var imageid = element.dataset.imageid ? element.dataset.imageid : 'main-image';

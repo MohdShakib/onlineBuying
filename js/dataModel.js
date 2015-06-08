@@ -21,9 +21,7 @@
 
         updateData: function(data){
             this._data = data;
-            this.dataUpdated.notify({
-                data: data
-            });
+            this.dataUpdated.notify();
         }
     };
 
