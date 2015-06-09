@@ -6,13 +6,13 @@
 
 "use strict";
 var DataView = (function(){
-    
+    //style="height:500px;"
     var containerMap = {
         'imgContainer': '<div class="img-container" id="img-container"></div>',
-        'overviewImgContainer': '<div class="overview-img-container container" id="overview-img-container" ></div>',
-        'svgContainer': '<svg class="svg-container container" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
+        'overviewImgContainer': '<div  class="overview-img-container" id="overview-img-container" ></div>',
+        'svgContainer': '<svg class="svg-container" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'towerMenuContainer': '<div class="tower-menu-container" id="tower-menu-container"></div>',
-        'towerDetailContainer': '<div class="tower-detail-container container" id="tower-detail-container"></div>'
+        'towerDetailContainer': '<div class="tower-detail-container" id="tower-detail-container"></div>'
     };
 
 

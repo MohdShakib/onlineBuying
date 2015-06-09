@@ -14,13 +14,13 @@ header {
 	z-index: 100;
 }
 
-.hidden{
-	display: none;
+.main-container{
+	width: 100%;
+	position: relative;
 }
 
-.container {
-	position: absolute;
-	width: 100%;
+.hidden{
+	display: none;
 }
 
 /* SVG */
@@ -144,6 +144,7 @@ circle {
 .overview-img-container {
 	position: absolute;
 	z-index: 10;
+	height: 100%
 }
 .overview-img-container img {
 	position: absolute;
