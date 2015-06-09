@@ -25,6 +25,7 @@ var initializeRoutes = (function(){
             //'overviewImgContainer': $('#overview-img-container'),
             'svgContainer' : $('#svg-container'),
             'towerMenuContainer': $('#tower-menu-container'),
+            'towerDetailContainer': $('#tower-detail-container')
           }
       }
 
@@ -53,17 +54,17 @@ var initializeRoutes = (function(){
                     }
                   }else if(viewType == 'section'){
                     switch(viewId){
-                      case 'A_upperHalf':
+                      case 'A_lowerHalf':
                         default_data = data.subItems[0].subItems[0];
                         break;
-                      case 'A_lowerHalf':
+                      case 'A_upperHalf':
                         default_data = data.subItems[0].subItems[1];
                         break;
-                      case 'B_upperHalf':
+                      case 'B_lowerHalf':
                         default_data = data.subItems[1].subItems[0];
                         break;
 
-                      case 'B_lowerHalf':
+                      case 'B_upperHalf':
                         default_data = data.subItems[1].subItems[1];
                         break;
                     }

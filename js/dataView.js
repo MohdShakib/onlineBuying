@@ -12,7 +12,7 @@ var DataView = (function(){
         'overviewImgContainer': '<div class="overview-img-container container" id="overview-img-container" ></div>',
         'svgContainer': '<svg class="svg-container container" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'towerMenuContainer': '<div class="tower-menu-container" id="tower-menu-container"></div>',
-        'towerDetailContainer': '<div class="tower-detail-container container"></div>'
+        'towerDetailContainer': '<div class="tower-detail-container container" id="tower-detail-container"></div>'
     };
 
 
@@ -60,11 +60,11 @@ var DataView = (function(){
             $('.main-container').html(mainContainerHtml);
         },
         imgContainer: function(data) {
-            var imgCode = "<img class=\"menu-mapped-image\" id=\"main-image\" width='100%' src=\"" + data.image_url + "\"/>";
+            var imgCode = "<img class=\""+config.imgContainerClass+"\" id=\"main-image\" width='100%' src=\"" + data.image_url + "\"/>";
             for (var i in data.subItems) {
                 var tower = data.subItems[i];
                 if(tower.hover_imageUrl){
-                    imgCode += "<img class=\"menu-mapped-image hidden\" id=\"" + tower.id + "\" width='100%' src=\"" + tower.hover_imageUrl + "\" />";
+                    imgCode += "<img class=\""+config.imgContainerClass+" hidden\" id=\"" + tower.id + "\" width='100%' src=\"" + tower.hover_imageUrl + "\" />";
                 }
             }
             this._elements.imgContainer.html(imgCode);
@@ -79,7 +79,7 @@ var DataView = (function(){
                 var tower = data.subItems[i];
                 code += "<td class='menu-item'><table>";
                 code += "<tr><td class='tower-icon'>";
-                code += "<div class=\"left-panel-button\" data-index=\""+i+"\" data-imageid=\""+ tower.id + "\" data-url=\""+tower.url+"\" >" + tower.name.split(' ')[1] + "</div></td></tr>";
+                code += "<div class=\""+config.leftPanelButtonClass+"\" data-index=\""+i+"\" data-imageid=\""+ tower.id + "\" data-url=\""+tower.url+"\" >" + tower.name.split(' ')[1] + "</div></td></tr>";
                 code += "<tr><td class='tower-name'>" + tower.name + "</td></tr></table></td>";
             }
             code += "</table>";
@@ -89,17 +89,17 @@ var DataView = (function(){
         towerMenuContainerEvents: function(){
             var _this = this;
 
-            _this._elements.towerMenuContainer.off('click').on('click', '.left-panel-button', function(event){
+            _this._elements.towerMenuContainer.off('click').on('click', '.'+config.leftPanelButtonClass, function(event){
                 // notify controller
                 _this._menuClick.notify(this); // this refers to element here
             });
 
-            _this._elements.towerMenuContainer.off('mouseenter').on('mouseenter', '.left-panel-button', function(event){
+            _this._elements.towerMenuContainer.off('mouseenter').on('mouseenter', '.'+config.leftPanelButtonClass, function(event){
                // notify controller
                _this._menuMouseEnter.notify(this); // this refers to element here
             });
 
-            _this._elements.towerMenuContainer.off('mouseleave').on('mouseleave', '.left-panel-button', function(event){
+            _this._elements.towerMenuContainer.off('mouseleave').on('mouseleave', '.'+config.leftPanelButtonClass, function(event){
                 // notify controller
                 _this._menuMouseLeave.notify(); // this refers to element here
             });
@@ -109,7 +109,7 @@ var DataView = (function(){
             for (var i in data.subItems) {
                 var tower = data.subItems[i];
                 if(tower.path){
-                    svgCode += "<polygon  class=\"image-svg-path\" id=\"" + tower.id + "-path\" data-index=\""+i+"\" data-imageid=\""+ tower.id + "\" data-url=\""+tower.url+"\" points=\"" + tower.path + "\" />";
+                    svgCode += "<polygon  class=\""+config.imgSvgClass+"\" id=\"" + tower.id + "-path\" data-index=\""+i+"\" data-imageid=\""+ tower.id + "\" data-url=\""+tower.url+"\" points=\"" + tower.path + "\" />";
                 }
             }
             this._elements.svgContainer.html(svgCode);
@@ -118,17 +118,17 @@ var DataView = (function(){
         svgContainerEvents: function() {
             var _this = this;
 
-            _this._elements.svgContainer.off('click').on('click', '.image-svg-path', function(event){
+            _this._elements.svgContainer.off('click').on('click', '.'+config.imgSvgClass, function(event){
                  // notify controller
                 _this._svgClick.notify(this); // this refers to element here
             });
 
-            _this._elements.svgContainer.off('mouseenter').on('mouseenter', '.image-svg-path', function(event){
+            _this._elements.svgContainer.off('mouseenter').on('mouseenter', '.'+config.imgSvgClass, function(event){
                 // notify controller
                 _this._svgMouseEnter.notify(this); // this refers to element here
             });
 
-            _this._elements.svgContainer.off('mouseleave').on('mouseleave', '.image-svg-path', function(event){
+            _this._elements.svgContainer.off('mouseleave').on('mouseleave', '.'+config.imgSvgClass, function(event){
                 // notify controller
                 _this._svgMouseLeave.notify(); // this refers to element here
             });
@@ -146,7 +146,7 @@ var DataView = (function(){
                 return;
             }
 
-            $('img.menu-mapped-image').addClass('hidden');
+            $('img.'+config.imgContainerClass).addClass('hidden');
             targetImage.removeClass('hidden');
             if(toolTipData && svgpath){
                 var svgpathClient = svgpath.getBoundingClientRect();
@@ -156,7 +156,7 @@ var DataView = (function(){
         },
         toweMouseLeaveEvent: function(){
             $(".tower-detail-container").html('');
-            $('img.menu-mapped-image').addClass('hidden');
+            $('img.'+config.imgContainerClass).addClass('hidden');
             $('img#main-image').removeClass('hidden');
         },
         showTowerDetailContainer: function(data, left, top) {
@@ -182,9 +182,13 @@ var DataView = (function(){
             }
             towerCode += "</tr></table></td></tr></table></div>";
 
-            $(".tower-detail-container").html(towerCode);
-            $('#container-detail').css("left", (left+100)+'px');
-            $('#container-detail').css("top", top+'px');
+            if(this._elements && this._elements.towerDetailContainer){
+                this._elements.towerDetailContainer.html(towerCode);
+                $('#container-detail').css("left", (left+100)+'px');
+                $('#container-detail').css("top", top+'px');
+            }
+
+            
         }
 
 

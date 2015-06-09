@@ -40,7 +40,7 @@
                                             ],
                                             "parent": {"url": "#/new-project/slice-view/1/building/A"}
                                         },
-                                        {   "name": "Floor A6 - A10", "image_url": "images/upperHalf.jpg", "hover_imageUrl": "images/upperHalf.jpg", "class":"building_A6_A10", "id":"building_A6_A10", "url":"#/new-project/slice-view/1/section/A_lowerHalf",
+                                        {   "name": "Floor A6 - A10", "image_url": "images/upperHalf.jpg", "hover_imageUrl": "images/upperHalf.jpg", "class":"building_A6_A10", "id":"building_A6_A10", "url":"#/new-project/slice-view/1/section/A_upperHalf",
                                             "path": "34 54 34 54 56 55 58 53 61 53 62 24 61 18 62 18 62 16 61 16 60 12 57 12 57 15 54 14 54 13 51 14 46 13 46 14 44 14 44 13 39 13 38 10 37 10 36 15 37 16 37 19 35 18 35 22 33 22 33 26 33 27 33 54 ",
                                             "details": [{
                                                 "type": "2BHK",
@@ -96,7 +96,7 @@
                                             ],
                                             "parent": {"url": "#/new-project/slice-view/1/building/B"} 
                                         },
-                                        {   "name": "Floor B6 - B10", "image_url": "images/upperHalf.jpg", "hover_imageUrl": "images/upperHalf.jpg", "class":"building_B6_B10", "id":"building_B6_B10", "url":"#/new-project/slice-view/1/section/B_lowerHalf",
+                                        {   "name": "Floor B6 - B10", "image_url": "images/upperHalf.jpg", "hover_imageUrl": "images/upperHalf.jpg", "class":"building_B6_B10", "id":"building_B6_B10", "url":"#/new-project/slice-view/1/section/B_upperHalf",
                                             "path": "34 54 34 54 56 55 58 53 61 53 62 24 61 18 62 18 62 16 61 16 60 12 57 12 57 15 54 14 54 13 51 14 46 13 46 14 44 14 44 13 39 13 38 10 37 10 36 15 37 16 37 19 35 18 35 22 33 22 33 26 33 27 33 54 ",
                                             "details": [{
                                                 "type": "2BHK",
