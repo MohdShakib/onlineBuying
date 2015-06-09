@@ -17,7 +17,7 @@ var initializeRoutes = (function(){
         case 4:
           break;
         default: 
-          containerList = ['imgContainer', 'overviewImgContainer', 'svgContainer', 'towerMenuContainer', 'towerDetailContainer'];
+          containerList = ['imgContainer', 'overviewImgContainer', 'svgContainer', 'towerMenuContainer', 'towerDetailContainer', 'amenitiesContainer'];
           controller.generateTemplateSkeleton(containerList);
 
           elements = {
@@ -25,7 +25,8 @@ var initializeRoutes = (function(){
             'overviewImgContainer': $('#overview-img-container'),
             'svgContainer' : $('#svg-container'),
             'towerMenuContainer': $('#tower-menu-container'),
-            'towerDetailContainer': $('#tower-detail-container')
+            'towerDetailContainer': $('#tower-detail-container'),
+            'amenitiesContainer': $('#amenities-container')
           }
       }
 

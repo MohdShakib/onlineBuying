@@ -132,7 +132,18 @@
                                     ],
                                     "parent": {"url": "#/new-project/slice-view/1/building_group/all"} 
                                 }
-                            ]
+                            ],
+                            amenities: [{
+                                image_url: "images/carpark.jpg",
+                                top: 85,
+                                left: 43,
+                                name: "Car Parking"
+                            }, {
+                                image_url: "images/swimmingpool.jpg",
+                                top: 65,
+                                left: 85,
+                                name: "Swimming Pool"
+                            }]
                           };
         
 
