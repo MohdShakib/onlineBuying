@@ -22,7 +22,7 @@ var initializeRoutes = (function(){
 
           elements = {
             'imgContainer': $('#img-container'),
-            //'overviewImgContainer': $('#overview-img-container'),
+            'overviewImgContainer': $('#overview-img-container'),
             'svgContainer' : $('#svg-container'),
             'towerMenuContainer': $('#tower-menu-container'),
             'towerDetailContainer': $('#tower-detail-container')

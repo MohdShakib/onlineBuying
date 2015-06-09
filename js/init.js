@@ -1,8 +1,20 @@
 
 "use strict";
-(function(){
+(function(d, w){
 
-    document.addEventListener('DOMContentLoaded', function() {
+    var imageResolutionHeight   = config.imageResolution.height || 600;
+    var imageResolutionWidth    = config.imageResolution.width || 1320;
+    var imageResolutionRatio    = imageResolutionHeight/imageResolutionWidth;
+    var mainContainerElement    = d.getElementById('main-container');
+    var divWidth                = document.getElementById('main-container').offsetWidth;
+    mainContainerElement.style.height = (imageResolutionRatio * divWidth)+'px';
+
+    w.addEventListener('resize', function(){
+        divWidth = document.getElementById('main-container').offsetWidth; 
+        mainContainerElement.style.height = (imageResolutionRatio * divWidth)+'px';
+    });
+
+    d.addEventListener('DOMContentLoaded', function() {
 
           var projectData =  {"name": "Buildings", "image_url": "images/buildings.jpg", "id":"buildings", "class":"buildings", "url":"#/new-project/slice-view/1/building_group/all",
                             "subItems": [
@@ -132,4 +144,4 @@
 
     });
 
-})();
+})(document, window);
