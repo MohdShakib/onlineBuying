@@ -6,15 +6,15 @@
 
 "use strict";
 var DataView = (function(){
-    //style="height:500px;"
+
     var containerMap = {
         'imgContainer': '<div class="img-container" id="img-container"></div>',
         'overviewImgContainer': '<div  class="overview-img-container" id="overview-img-container" ></div>',
         'svgContainer': '<svg class="svg-container" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'towerMenuContainer': '<div class="tower-menu-container" id="tower-menu-container"></div>',
-        'towerDetailContainer': '<div class="tower-detail-container" id="tower-detail-container"></div>'
+        'towerDetailContainer': '<div class="tower-detail-container" id="tower-detail-container"></div>',
+        'amenitiesContainer': '<div class="amenities-container" id="amenities-container"></div>'
     };
-
 
     function DataView(model, elements) {
         this._model = model;
@@ -186,12 +186,20 @@ var DataView = (function(){
                 this._elements.towerDetailContainer.html(towerCode);
                 $('#container-detail').css("left", (left+100)+'px');
                 $('#container-detail').css("top", top+'px');
+            }            
+        },
+        amenitiesContainer: function(data) {
+            var code="";    
+            for (var i in data.amenities) {
+                var amenity = data.amenities[i];
+                var position = "top:" + amenity.top + "%; left:" + amenity.left + "%;" ;
+                code += "<table class='amenity-detail' style='"+ position +"'>";
+                code += "<tr><td><img src='" + amenity.image_url + "'></td></tr>";
+                code += "<tr><td><span class='name'>" + amenity.name + "</span></td></tr>";
+                code += "</table>";
             }
-
-            
+            this._elements.amenitiesContainer.html(code);
         }
-
-
     };
 
     return DataView;
