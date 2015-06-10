@@ -1,0 +1,193 @@
+body {
+	margin: 0;
+	font-family: verdana;
+	color: #333;
+	background: black;
+}
+header {
+	position: absolute;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	color: #FFF;
+	text-align: center;
+	line-height: 40px;
+	z-index: 100;
+}
+
+.main-container{
+	width: 100%;
+	position: relative;
+}
+
+.hidden{
+	display: none;
+}
+
+/* SVG */
+.svg-container {
+	position: absolute;
+	border: none;
+	z-index: 10000;
+}
+polygon {
+	fill: rgba(0,0,0,0);
+	cursor: pointer;
+	stroke: rgba(255,255,255,0.5);
+	stroke-width: 0.1;
+}
+circle {
+	background: url("../img/bg.jpg");
+	width: 50px;
+  	height: 50px;
+  	border: 1px solid #FFF;
+  	fill: url("../img/bg.jpg");
+  	background: #FF0000;
+}
+
+/* Images */
+.img-container {
+	z-index: 1;
+}
+.img-container img {
+	position: absolute;
+}
+
+/* Tower Details */
+.tower-detail-container {
+	position: absolute;
+	width: 100%;
+	z-index: 1000;
+}
+.tower-detail {
+	position: absolute;
+	border-radius: 5px;
+	overflow: hidden;
+	box-shadow: 3px 3px 2px 2px rgba(0,0,0,0.2);
+}
+.tower-detail table {
+	background: white;
+	border-spacing: 0px;
+}
+.tower-detail .tower-name {
+	background: #DDD;
+	border-bottom: 1px solid #CCC;
+	font-weight: normal;
+	text-align: left;
+	padding: 8px 14px;
+}
+.tower-detail .tower-apt {
+	padding: 8px;
+}
+.tower-detail .tower-apt .apt-type {
+	font-size: 13px;
+	text-align: center;
+}
+.apt-count {
+  	width: 50px;
+  	height: 50px;
+}
+.apt-count div {
+	border: 1px solid;
+	border-radius: 100%;
+	padding: 10px;
+	margin: 3px;
+	text-align: center;
+}
+.apt-available {
+	color: #1E8610;
+	border-color: #1E8610;
+}
+.apt-unavailable {
+	color: #B81C1C;
+	border-color: #B81C1C;
+}
+
+/* Tower Menu */
+.tower-menu-container {
+	position: absolute;
+	z-index: 10000;
+	top: 40px;
+	padding: 10px;
+	background: rgba(0,0,0,0.3);
+}
+.tower-menu-container td, .tower-menu-container th {
+	color: #FFF;
+}
+.menu-header {
+	text-transform: uppercase;
+	font-weight: normal;
+	font-size: 14px;
+}
+.menu-item {
+	padding: 5px;
+}
+.menu-item .tower-icon div {
+	border: 1px solid #FFF;
+	border-radius: 100%;
+	margin: auto;
+	width: 45px;
+	height: 45px;
+	text-align: center;
+	line-height: 45px;
+	cursor: pointer;
+	-webkit-transition: 0.7s;
+    transition: 0.7s;
+}
+.menu-item .tower-icon div:hover {
+	color: #333;
+	background: #FFF;
+}
+.menu-item .tower-name {
+	font-size: 12px;
+	text-align: center;
+}
+
+/* Overview Image */
+.overview-img-container {
+	position: absolute;
+	z-index: 10;
+	height: 100%
+}
+.overview-img-container img {
+	position: absolute;
+	width: 250px;
+	height: 150px;
+	border: 1px solid #FFF;
+	left: 10px;
+	bottom: 10px;
+}
+
+/* Amenities */
+.amenities-container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+.amenities-container .amenity-detail {
+	position: absolute;
+	z-index: 100000;
+}
+.amenities-container .amenity-detail td {
+	text-align: center;
+}
+.amenities-container .amenity-detail img {
+	height: 40px;
+	width: 40px;
+	border-radius: 100%;
+	border: 1px solid #FFF;
+	box-shadow: 0px 0px 3px 2px rgba(0,0,0,0.2);
+	-webkit-transition: 1s;
+    transition: 1s;
+}
+.amenities-container .amenity-detail img:hover {
+	height: 200px;
+	width: 200px;
+}
+.amenities-container .amenity-detail .name {
+	color: #FFF;
+	background: rgba(0,0,0,0.5);
+	padding: 2px 4px;
+	font-size: 12px;
+	text-shadow: 1px 1px 2px #000;
+	border-radius: 3px;
+}
