@@ -1,18 +1,19 @@
 
 "use strict";
 (function(d, w){
+    
+    function resizeMainContainerHeight() {
+        var imageResolutionHeight   = config.imageResolution.height || 600;
+        var imageResolutionWidth    = config.imageResolution.width || 1320;
+        var imageResolutionUnit     = config.imageResolution.unit || 'px';
+        var imageResolutionRatio    = imageResolutionHeight/imageResolutionWidth;
+        var mainContainerElement    = d.getElementById(config.mainContainerId);
+        var divWidth = document.getElementById(config.mainContainerId).offsetWidth;
+        mainContainerElement.style.height = (imageResolutionRatio * divWidth) + imageResolutionUnit;
+    };
 
-    var imageResolutionHeight   = config.imageResolution.height || 600;
-    var imageResolutionWidth    = config.imageResolution.width || 1320;
-    var imageResolutionRatio    = imageResolutionHeight/imageResolutionWidth;
-    var mainContainerElement    = d.getElementById('main-container');
-    var divWidth                = document.getElementById('main-container').offsetWidth;
-    mainContainerElement.style.height = (imageResolutionRatio * divWidth)+'px';
-
-    w.addEventListener('resize', function(){
-        divWidth = document.getElementById('main-container').offsetWidth; 
-        mainContainerElement.style.height = (imageResolutionRatio * divWidth)+'px';
-    });
+    resizeMainContainerHeight();
+    w.addEventListener('resize', resizeMainContainerHeight);
 
     d.addEventListener('DOMContentLoaded', function() {
 
