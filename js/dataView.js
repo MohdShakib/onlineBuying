@@ -50,6 +50,10 @@ var DataView = (function(){
         updateElements: function(elements){
             this._elements = elements;
         },
+        renderInitialData: function(data){
+            document.getElementById(config.projectDetail.titleId).innerHTML = data.title;
+            document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
+        },
         buildSkeleton: function(containerList){
             var key, mainContainerHtml = '';
             for(key in containerList){

@@ -54,7 +54,8 @@ var DataController = (function(){
 	    	this.attachListeners(elements);
 	    	this._model.updateData(data);
 	    },
-	    generateTemplateSkeleton: function(containerList){
+	    generateTemplateSkeleton: function(data, containerList){
+	    	this._view.renderInitialData(data);
 	    	this._view.buildSkeleton(containerList);
 	    }
 	};

@@ -1,6 +1,10 @@
 var config = (function(){
 	
 	var config = {
+		projectDetail: {
+			titleId: "project-title",
+			addressId: "project-address"
+		},
 		mainContainerId : "main-container",
 		imgContainerClass : "menu-mapped-image",
 		leftPanelButtonClass: 'left-panel-button',

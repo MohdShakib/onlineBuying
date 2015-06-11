@@ -1,9 +1,7 @@
-
-
 "use strict";
 var initializeRoutes = (function(){
 
-  function prepareTemplateSkeleton(type, controller){
+  function prepareTemplateSkeleton(type, controller, data){
 
       var containerList = [], elements = {};
       
@@ -18,7 +16,7 @@ var initializeRoutes = (function(){
           break;
         default: 
           containerList = ['imgContainer', 'overviewImgContainer', 'svgContainer', 'towerMenuContainer', 'towerDetailContainer', 'amenitiesContainer'];
-          controller.generateTemplateSkeleton(containerList);
+          controller.generateTemplateSkeleton(data, containerList);
 
           elements = {
             'imgContainer': $('#img-container'),
@@ -34,45 +32,46 @@ var initializeRoutes = (function(){
   }
 
 
-  function initializeRoutes(data, controller){
+  function initializeRoutes(originaldata, controller){
 
       var routes = {
         '/new-project/slice-view/:projectId':{
              '/?(building_group|building|section|floor|flat)/?(all|A_upperHalf|A_lowerHalf|B_upperHalf|B_lowerHalf|A|B)':{ 
                 on: function(projectId, viewType, viewId){
-              
-                  var default_data;
-                  if(viewType == 'building_group'){
-                    default_data = data;
-                  }else if(viewType == 'building'){
+
+                  if (originaldata == null) {
+                    originaldata = getProjectData(projectId);
+                  }
+                  var data = originaldata;
+                  if(viewType == 'building'){
                     switch(viewId){
                       case 'A':
-                        default_data = data.subItems[0];
+                        data = originaldata.subItems[0];
                         break;
                       case 'B':
-                        default_data = data.subItems[1];
+                        data = originaldata.subItems[1];
                         break;
                     }
                   }else if(viewType == 'section'){
                     switch(viewId){
                       case 'A_lowerHalf':
-                        default_data = data.subItems[0].subItems[0];
+                        data = originaldata.subItems[0].subItems[0];
                         break;
                       case 'A_upperHalf':
-                        default_data = data.subItems[0].subItems[1];
+                        data = originaldata.subItems[0].subItems[1];
                         break;
                       case 'B_lowerHalf':
-                        default_data = data.subItems[1].subItems[0];
+                        data = originaldata.subItems[1].subItems[0];
                         break;
 
                       case 'B_upperHalf':
-                        default_data = data.subItems[1].subItems[1];
+                        data = originaldata.subItems[1].subItems[1];
                         break;
                     }
                   }
 
-                  var elements = prepareTemplateSkeleton(null, controller);
-                  controller.generateTemplate(default_data, elements);
+                  var elements = prepareTemplateSkeleton(null, controller, originaldata);
+                  controller.generateTemplate(data, elements);
 
                 },
                 before: function(){
