@@ -78,14 +78,20 @@ var DataView = (function(){
             this._elements.overviewImgContainer.html(code);
         },
         towerMenuContainer: function(data) {
-            var code = "<table><tr><th colspan='2' class='menu-header'>Towers</th></tr><tr>";
+            var code = "<table><tr><th class='menu-header'>|||</th></tr>";
+            code += "<tr><td class='menu-sep'></td></tr>";
+            code += "<tr><td class='menu-items'>";
             for (var i in data.subItems) {
                 var tower = data.subItems[i];
-                code += "<td class='menu-item'><table>";
-                code += "<tr><td class='tower-icon'>";
-                code += "<div class=\""+config.leftPanelButtonClass+"\" data-index=\""+i+"\" data-imageid=\""+ tower.id + "\" data-url=\""+tower.url+"\" >" + tower.name.split(' ')[1] + "</div></td></tr>";
-                code += "<tr><td class='tower-name'>" + tower.name + "</td></tr></table></td>";
+                code += "<div class=\"menu-item " + config.leftPanelButtonClass + 
+                    "\" data-index=\"" + i + 
+                    "\" data-imageid=\"" + tower.id + 
+                    "\" data-url=\"" + tower.url + 
+                    "\">" + tower.name.split(' ')[1] + "</div>";
             }
+            code += "</td></tr>";
+            code += "<tr><td class='menu-sep'></td></tr>";
+            code += "<tr><td class='menu-call'> C </td></tr>";
             code += "</table>";
             this._elements.towerMenuContainer.html(code);
             this.towerMenuContainerEvents();

@@ -6,15 +6,18 @@ body {
 }
 header {
 	position: absolute;
-	width: 100%;
-	background: rgba(0, 0, 0, 0.5);
-	color: #FFF;
-	text-align: center;
-	line-height: 40px;
+	color: #CCC;
+	margin-left: 60px;
+	line-height: 45px;
 	z-index: 100;
+	font-size: 12px;
+}
+header .project-title {
+	font-size: 15px;
+	color: #FFF;
 }
 
-.main-container{
+.main-container {
 	width: 100%;
 	position: relative;
 }
@@ -106,45 +109,45 @@ circle {
 .tower-menu-container {
 	position: absolute;
 	z-index: 10000;
-	top: 40px;
-	padding: 10px;
-	background: rgba(0,0,0,0.3);
+	top: 0px;
+	left: 0px;
+	height: 100%;
 }
-.tower-menu-container td, .tower-menu-container th {
+.tower-menu-container table {
+	border-spacing: 0px;
+    border-collapse: separate;
+    height: 100.1%;   /* Fix as height may not be an integer */
+}
+.tower-menu-container .menu-header, .tower-menu-container .menu-items, .tower-menu-container .menu-call {
 	color: #FFF;
-}
-.menu-header {
-	text-transform: uppercase;
-	font-weight: normal;
-	font-size: 14px;
-}
-.menu-item {
-	padding: 5px;
-}
-.menu-item .tower-icon div {
-	border: 1px solid #FFF;
-	border-radius: 100%;
-	margin: auto;
 	width: 45px;
-	height: 45px;
 	text-align: center;
+	font-weight: normal;
+	background: rgba(0,0,0,0.5);
+}
+.tower-menu-container .menu-header, .tower-menu-container .menu-call {
+	height: 45px;
+	cursor: pointer;
+}
+.tower-menu-container .menu-sep {
+	height: 1px;
+	padding: 0px;
+	background: rgba(255,255,255,0.3);
+}
+.tower-menu-container .menu-items {
+	vertical-align: top;
+}
+.tower-menu-container .menu-item {
+	height: 45px;
+	width: 45px;
 	line-height: 45px;
 	cursor: pointer;
-	-webkit-transition: 0.7s;
-    transition: 0.7s;
-}
-.menu-item .tower-icon div:hover {
-	color: #333;
-	background: #FFF;
-}
-.menu-item .tower-name {
-	font-size: 12px;
-	text-align: center;
 }
 
 /* Overview Image */
 .overview-img-container {
 	position: absolute;
+	right: 0px;
 	z-index: 10;
 	height: 100%
 }
@@ -153,7 +156,7 @@ circle {
 	width: 250px;
 	height: 150px;
 	border: 1px solid #FFF;
-	left: 10px;
+	right: 10px;
 	bottom: 10px;
 }
 
