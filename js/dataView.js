@@ -78,7 +78,7 @@ var DataView = (function(){
             this._elements.overviewImgContainer.html(code);
         },
         towerMenuContainer: function(data) {
-            var code = "<table><tr><th class='menu-header'>|||</th></tr>";
+            var code = "<table><tr><td class='menu-header'>|||</td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'>";
             for (var i in data.subItems) {

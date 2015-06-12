@@ -118,6 +118,9 @@ circle {
     border-collapse: separate;
     height: 100.1%;   /* Fix as height may not be an integer */
 }
+.tower-menu-container table td {
+	padding: 0px;
+}
 .tower-menu-container .menu-header, .tower-menu-container .menu-items, .tower-menu-container .menu-call {
 	color: #FFF;
 	width: 45px;
@@ -142,6 +145,9 @@ circle {
 	width: 45px;
 	line-height: 45px;
 	cursor: pointer;
+}
+.tower-menu-container .menu-item:hover {
+	background: rgba(255,255,255,0.3);
 }
 
 /* Overview Image */
