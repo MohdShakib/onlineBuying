@@ -64,11 +64,11 @@ var DataView = (function(){
             document.getElementById(config.mainContainerId).innerHTML = mainContainerHtml;
         },
         imgContainer: function(data) {
-            var imgCode = "<img class=\""+config.imgContainerClass+"\" id=\"main-image\" width='100%' src=\"" + data.image_url + "\"/>";
+            var imgCode = "<img id=\"main-image\" width='100%' src=\"" + data.image_url + "\"/>";
             for (var i in data.subItems) {
                 var tower = data.subItems[i];
                 if(tower.hover_imageUrl){
-                    imgCode += "<img class=\""+config.imgContainerClass+" hidden\" id=\"" + tower.id + "\" width='100%' src=\"" + tower.hover_imageUrl + "\" />";
+                    imgCode += "<img class=\""+config.imgContainerClass+"\" id=\"" + tower.id + "\" width='100%' src=\"" + tower.hover_imageUrl + "\" />";
                 }
             }
             this._elements.imgContainer.html(imgCode);
@@ -156,8 +156,8 @@ var DataView = (function(){
                 return;
             }
 
-            $('img.'+config.imgContainerClass).addClass('hidden');
-            targetImage.removeClass('hidden');
+            $('img.'+config.imgContainerClass).addClass('fade-image');
+            targetImage.removeClass('fade-image');
             if(toolTipData && svgpath){
                 var svgpathClient = svgpath.getBoundingClientRect();
                 this.showTowerDetailContainer(toolTipData, svgpathClient.left, svgpathClient.top);
@@ -166,8 +166,7 @@ var DataView = (function(){
         },
         toweMouseLeaveEvent: function(){
             $(".tower-detail-container").html('');
-            $('img.'+config.imgContainerClass).addClass('hidden');
-            $('img#main-image').removeClass('hidden');
+            $('img.'+config.imgContainerClass).removeClass('fade-image');
         },
         showTowerDetailContainer: function(data, left, top) {
 

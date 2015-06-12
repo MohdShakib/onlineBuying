@@ -22,8 +22,11 @@ header .project-title {
 	position: relative;
 }
 
-.hidden{
+.hidden {
 	display: none;
+}
+.fade-image {
+	opacity: 0.3;
 }
 
 /* SVG */

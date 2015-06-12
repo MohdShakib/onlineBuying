@@ -10,8 +10,8 @@ var config = (function(){
 		leftPanelButtonClass: 'left-panel-button',
 		imgSvgClass: 'image-svg-path',
 		imageResolution: {
-			height: 720,
-			width: 1280,
+			height: 900,
+			width: 1600,
 			unit: 'px'
 		}
 	};
