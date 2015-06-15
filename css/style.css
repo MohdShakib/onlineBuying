@@ -18,7 +18,7 @@ header .project-title {
 }
 
 .main-container {
-	width: 100%;
+	width: 100
 	position: relative;
 }
 
@@ -39,7 +39,7 @@ polygon {
 	fill: rgba(0,0,0,0);
 	cursor: pointer;
 	stroke: rgba(255,255,255,0.5);
-	stroke-width: 0.1;
+	stroke-width: 0;
 }
 circle {
 	background: url("../img/bg.jpg");
