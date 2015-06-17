@@ -80,16 +80,16 @@ var DataView = (function(){
         towerMenuContainer: function(data) {
             var code = "<table><tr><td class='menu-header'>|||</td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
-            code += "<tr><td class='menu-items'>";
+            code += "<tr><td class='menu-items'><table>";
             for (var i in data.subItems) {
                 var tower = data.subItems[i];
-                code += "<div class=\"menu-item " + config.leftPanelButtonClass + 
+                code += "<tr><td><div class=\"menu-item " + config.leftPanelButtonClass + 
                     "\" data-index=\"" + i + 
                     "\" data-imageid=\"" + tower.id + 
                     "\" data-url=\"" + tower.url + 
-                    "\">" + tower.name.split(' ')[1] + "</div>";
+                    "\">" + tower.name.split(' ')[1] + "</div></td></tr>";
             }
-            code += "</td></tr>";
+            code += "</table></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-call'> C </td></tr>";
             code += "</table>";
@@ -144,7 +144,6 @@ var DataView = (function(){
             });
         },
         towerMouseEnterEvent: function(element, data){
-            
             var data    = this._model.getData();
             var index   = element.dataset.index;
             var toolTipData = data && data.subItems ? data.subItems[index]  : null;
@@ -156,8 +155,8 @@ var DataView = (function(){
                 return;
             }
 
-            $('img.'+config.imgContainerClass).addClass('fade-image');
-            targetImage.removeClass('fade-image');
+            $('img.'+config.imgContainerClass).addClass(config.fadeImageClass);
+            targetImage.removeClass(config.fadeImageClass);
             if(toolTipData && svgpath){
                 var svgpathClient = svgpath.getBoundingClientRect();
                 this.showTowerDetailContainer(toolTipData, svgpathClient.left, svgpathClient.top);
@@ -165,11 +164,10 @@ var DataView = (function(){
 
         },
         toweMouseLeaveEvent: function(){
-            $(".tower-detail-container").html('');
-            $('img.'+config.imgContainerClass).removeClass('fade-image');
+            document.getElementById(config.towerDetailContainerId).innerHTML = '';
+            $('img.'+config.imgContainerClass).removeClass(config.fadeImageClass);
         },
         showTowerDetailContainer: function(data, left, top) {
-
             if(!(data && data.details)){
                 return;
             }
