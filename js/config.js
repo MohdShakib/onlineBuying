@@ -15,7 +15,8 @@ var config = (function(){
 			unit: 'px'
 		},
 		towerDetailContainerId: "tower-detail-container",
-		fadeImageClass: "fade-image" 
+		fadeImageClass: "fade-image",
+		menuItemHoverClass: "menu-item-hover"
 	};
 
 	return config;

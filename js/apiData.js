@@ -211,8 +211,8 @@ var getProjectData = (function() {
                     "unavailable": 22
                 }, {
                     "type": "3BHK",
-                    "available": 18,
-                    "unavailable": 9
+                    "available": 0,
+                    "unavailable": 39
 
                 }],
                 "subItems": [{
@@ -431,13 +431,13 @@ var getProjectData = (function() {
                 "url": "#/new-project/slice-view/1/building/E",
                 "path": "48.31 33.66 48.68 32.11 49.25 32.11 50 28.77 49.81 10.66 49.43 10.66 49.37 7.33 41.5 5.44 39.87 11.66 39.87 15.55 38.87 19.44 40.06 19.55 40.56 29.88 40.87 30.11 40.93 31.77 41.81 31.88 41.93 31.44 48.18 33.55",
                 "details": [{
-                    "type": "2BHK",
+                    "type": "2 BHK",
                     "available": 10,
                     "unavailable": 29
                 }, {
-                    "type": "3BHK",
-                    "available": 3,
-                    "unavailable": 19
+                    "type": "2.5 BHK",
+                    "available": 0,
+                    "unavailable": 30
                 }]
 
             },{

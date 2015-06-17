@@ -83,11 +83,11 @@ var DataView = (function(){
             code += "<tr><td class='menu-items'><table>";
             for (var i in data.subItems) {
                 var tower = data.subItems[i];
-                code += "<tr><td><div class=\"menu-item " + config.leftPanelButtonClass + 
-                    "\" data-index=\"" + i + 
-                    "\" data-imageid=\"" + tower.id + 
-                    "\" data-url=\"" + tower.url + 
-                    "\">" + tower.name.split(' ')[1] + "</div></td></tr>";
+                code += "<tr><td><div class='menu-item " + config.leftPanelButtonClass + 
+                    "' id='" + tower.id + "-menu' data-index='" + i + 
+                    "' data-imageid='" + tower.id + 
+                    "' data-url='" + tower.url + 
+                    "'>" + tower.name.split(' ')[1] + "</div></td></tr>";
             }
             code += "</table></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
@@ -159,41 +159,48 @@ var DataView = (function(){
             targetImage.removeClass(config.fadeImageClass);
             if(toolTipData && svgpath){
                 var svgpathClient = svgpath.getBoundingClientRect();
-                this.showTowerDetailContainer(toolTipData, svgpathClient.left, svgpathClient.top);
+                this.showTowerDetailContainer(toolTipData, (svgpathClient.left+svgpathClient.width/2), svgpathClient.top);
             }
 
+            $('#'+imageid+'-menu').addClass(config.menuItemHoverClass);
         },
         toweMouseLeaveEvent: function(){
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
             $('img.'+config.imgContainerClass).removeClass(config.fadeImageClass);
+            $('.'+config.leftPanelButtonClass).removeClass(config.menuItemHoverClass);
         },
         showTowerDetailContainer: function(data, left, top) {
             if(!(data && data.details)){
                 return;
             }
             var towerCode = "";
-            towerCode += "<div id=\"container-detail\" class='tower-detail'>";
-            towerCode += "<table><tr><th class='tower-name'>" + data.name + "</th></tr>";
-            towerCode += "<tr><td class='tower-apt'><table><tr>";
+            towerCode += "<div id='container-detail' class='tower-detail'>";
+            towerCode += "<div class='tower-name'>" + data.name.split(' ')[1] + "</div>";
+            towerCode += "<table>";
 
             for (var j in data.details) {
                 var aptType = data.details[j];
-                towerCode += "<td colspan='2' class='apt-type'>" + aptType.type + " APTS</td>";
+                var availabilityClass = 'apt-available';
+                var availabilityText = aptType.available + " Av";
+                if (aptType.available == 0) {
+                    availabilityClass = 'apt-unavailable';
+                    availabilityText = 'Sold';
+                }
+                towerCode += "<tr><td width='70px'></td>";
+                towerCode += "<td class='tower-apt apt-type'>" + aptType.type + "</td>";
+                towerCode += "<td class='tower-apt apt-count " + availabilityClass + "'>" + availabilityText + "</td></tr>";
             }
-
-            towerCode += "</tr><tr>";
-            for (var j in data.details) {
-                var aptType = data.details[j];
-                towerCode += "<td class='apt-count apt-available'><div>" + aptType.available + "</div></td>";
-                towerCode += "<td class='apt-count apt-unavailable'><div>" + aptType.unavailable + "</div></td>";
-            }
-            towerCode += "</tr></table></td></tr></table></div>";
+            towerCode += "</table>";
 
             if(this._elements && this._elements.towerDetailContainer){
                 this._elements.towerDetailContainer.html(towerCode);
-                $('#container-detail').css("left", (left+100)+'px');
-                $('#container-detail').css("top", top+'px');
-            }            
+                $('#container-detail').css("left", left+'px');
+                $('#container-detail').css("top", (top+30)+'px');
+            }   
+
+            // animate
+            window.getComputedStyle(document.getElementById('container-detail')).opacity;
+            document.getElementById('container-detail').style.opacity = "1";
         },
         amenitiesContainer: function(data) {
             var code="";    
