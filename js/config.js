@@ -13,7 +13,9 @@ var config = (function(){
 			height: 900,
 			width: 1600,
 			unit: 'px'
-		}
+		},
+		towerDetailContainerId: "tower-detail-container",
+		fadeImageClass: "fade-image" 
 	};
 
 	return config;
