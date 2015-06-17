@@ -56,16 +56,20 @@ var getProjectData = (function() {
         return response;
     }
 
-    var parseData = function(projectDetail){
+    var projectData = {};
 
-        var projectData = {},
-        towers_length = projectDetail.towers ? projectDetail.towers.length : 0,
+    var parseApiData = function(projectDetail){
+
+        if(!(projectDetail && Object.keys(projectDetail).length)){
+            return;
+        }
+
+        var towers_length = projectDetail.towers ? projectDetail.towers.length : 0,
         i = 0, towers = [], tower, listings = {}, listing_length = 0;
 
         projectData.projectId = projectDetail.projectId;
         projectData.name = projectDetail.name;
         projectData.address = projectDetail.address;
-        projectData.amenities = [];
 
         for(i = 0; i < towers_length; i += 1){
             towers[i] = {};
@@ -119,62 +123,69 @@ var getProjectData = (function() {
             };
 
             towers[i].listings = listings;
-
         }
         
         projectData.towers = towers;
     
-        console.log('projectData is: ');
+    }
+
+    var _getAmenityByName = function(apiData, amenity){
+        var i, length, response = {};
+        if(apiData && apiData.images && apiData.images.length){
+            length = apiData.images.length;
+            for(i = 0; i < length; i += 1){
+               if(apiData.images[i] && apiData.images[i].title == amenity && apiData.images[i].imageType.type == 'amenities'){
+                    response.image_url = apiData.images[i].absolutePath;
+                    return response;
+               }
+            }
+        }
+        return response;
+    }
+
+    var parseJsonData = function(jsonDetail, apiData){
+
+        if(!(apiData && jsonDetail && Object.keys(apiData).length && Object.keys(jsonDetail).length)){
+            return;
+        }
+
+        var i, amenity, json_towers_length = jsonDetail.towers.length, amenityData,
+        towers_length = projectData.towers.length;
+        projectData.bg_image = '/zip-file/img/'+jsonDetail.background_image;
+        projectData.amenities = [];
+        for(i = 0; i < towers_length; i += 1){
+            var towerName = projectData.towers[i].towerName;
+            if(towerName && jsonDetail.towers[towerName]){
+                projectData.towers[i].display_order = jsonDetail.towers[towerName].display_order;
+                projectData.towers[i].hover_image   = '/zip-file/img/'+jsonDetail.towers[towerName].hove_image;
+                projectData.towers[i].svg_path      = jsonDetail.towers[towerName].svg_path;
+                projectData.towers[i].rotation_angle = jsonDetail.towers[towerName].rotation_angle;
+            }
+
+        }
+
+        for(amenity in jsonDetail.amenities){
+            if(hasOwnProperty.call(jsonDetail.amenities, amenity)){
+                amenityData = _getAmenityByName(apiData, amenity);
+                projectData.amenities.push({
+                    name: amenity,
+                    image_url: amenityData.image_url,
+                    x: jsonDetail.amenities[amenity].x,
+                    y: jsonDetail.amenities[amenity].y
+                });
+            }
+        }
+
+        console.log('Project Data is: ');
         console.log(projectData);
 
     }
 
+
     function getProjectData(projectId) {
 
         var projectData = null;
-       /* $.ajax({
-            type: "GET",
-            url: 'http://192.168.1.8:8080/app/v4/project-detail/640037?selector={%22fields%22:[%22projectId%22,%22name%22,%22primaryOnline%22,%22towers%22,%22listings%22,%22floor%22,%22bookingAmount%22,%22towerName%22,%22clusterPlans%22,%22id%22,%22flatNumber%22,%22bookingStatusId%22,%22clusterPlanId%22,%22price%22]}',
-            async: false,
-            dataType: 'JSON',           
-            success: function(response) {
-                console.log('success response is: ');
-                console.log(response);   
-                projectData = response.data; 
-                var tower_length = response.data.towers.length;
-                var zipJsonData = '';
-                $.ajax({
-                    type: "GET",
-                    url: 'zip-file/data.json',
-                    async: false,
-                    dataType: 'JSON',           
-                    success: function(response) {
-                        console.log('success response is: ');
-                        console.log(response);   
-                        //zipJsonData  = response;   
-                    },
-                    error: function(jqXHR, textStatus, errorThrown){
-                        console.log('in error 2');
-                        console.log('error occured ' + errorThrown);
-                    },
-                    complete: function() {  
-                        console.log('ajax completed 2!!');
-                    }
-                });     
-
-
-
-            },
-            error: function(jqXHR, textStatus, errorThrown){
-                console.log('in error 1');
-                console.log('error occured 1' + errorThrown);
-            },
-            complete: function() {  
-                console.log('ajax completed 1!!');
-            }
-        });     
-    */
-
+       
         var url1  = "http://192.168.1.8:8080/app/v4/project-detail/640037?selector={%22fields%22:[%22projectId%22,%22images%22,%22imageType%22,%22mediaType%22,%22objectType%22,%22title%22,%22type%22,%22absolutePath%22,%22properties%22,%22projectAmenities%22,%22amenityDisplayName%22,%22verified%22,%22amenityMaster%22,%22amenityId%22,%22towerId%22,%22amenityName%22,%22bedrooms%22,%22bathrooms%22,%22balcony%22,%22name%22,%22primaryOnline%22,%22propertyId%22,%22towers%22,%22listings%22,%22floor%22,%22size%22,%22measure%22,%22bookingAmount%22,%22viewDirections%22,%22viewType%22,%22facingId%22,%22address%22,%22towerName%22,%22clusterPlans%22,%22id%22,%22flatNumber%22,%22bookingStatusId%22,%22clusterPlanId%22,%22price%22]}";
         var url2 = 'zip-file/data.json';
         var apiData, jsonData;
@@ -185,9 +196,11 @@ var getProjectData = (function() {
             apiData = response;
             ajax(url2, params2);
         }};
+
         ajax(url1, params1);
 
-        parseData(apiData);
+        parseApiData(apiData);
+        parseJsonData(jsonData, apiData);
 
         var projectData = {
             "title": "Umang Winter Hills",
