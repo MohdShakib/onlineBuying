@@ -187,30 +187,27 @@ polygon {
 	height: 100%;
 }
 .amenities-container .amenity-detail {
-	position: absolute;
+	position: relative;
 	z-index: 100000;
-}
-.amenities-container .amenity-detail td {
+	background: rgba(0,0,0,0.3);
+	color: #FFF;
+	height: 30px;
+	width: 30px;
+	line-height: 30px;
 	text-align: center;
-}
-.amenities-container .amenity-detail img {
-	height: 40px;
-	width: 40px;
-	border-radius: 100%;
 	border: 1px solid #FFF;
-	box-shadow: 0px 0px 3px 2px rgba(0,0,0,0.2);
-	-webkit-transition: 1s;
-    transition: 1s;
-}
-.amenities-container .amenity-detail img:hover {
-	height: 200px;
-	width: 200px;
+	border-radius: 100%;
+	cursor: pointer;
 }
 .amenities-container .amenity-detail .name {
-	color: #FFF;
+	position: absolute;
+	top: 40px;
+	left: -30px;
+	width: 70px;
+	line-height: normal;
 	background: rgba(0,0,0,0.5);
-	padding: 2px 4px;
+	padding: 5px 10px;
 	font-size: 12px;
 	text-shadow: 1px 1px 2px #000;
-	border-radius: 3px;
+	border-radius: 100px;
 }

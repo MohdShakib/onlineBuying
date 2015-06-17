@@ -207,10 +207,9 @@ var DataView = (function(){
             for (var i in data.amenities) {
                 var amenity = data.amenities[i];
                 var position = "top:" + amenity.top + "%; left:" + amenity.left + "%;" ;
-                code += "<table class='amenity-detail' style='"+ position +"'>";
-                code += "<tr><td><img src='" + amenity.image_url + "'></td></tr>";
-                code += "<tr><td><span class='name'>" + amenity.name + "</span></td></tr>";
-                code += "</table>";
+                code += "<div class='amenity-detail' style='"+ position +"'>+";
+                code += "<div class='name'>" + amenity.name + "</div>";
+                code += "</div>";
             }
             this._elements.amenitiesContainer.html(code);
         }
