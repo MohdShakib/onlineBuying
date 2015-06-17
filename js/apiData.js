@@ -1,12 +1,198 @@
 "use strict";
 var getProjectData = (function() {
 
+    var ajax = function(url, params) {
+        var success_callback    =   typeof(params.success_callback) == 'function' ? params.success_callback : null;
+        var error_callback      =   typeof(params.error_callback) == 'function' ? params.error_callback : null;
+        var complete_callback   =   typeof(params.complete_callback) == 'function' ? params.complete_callback : null;
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            async: false,
+            dataType: 'JSON',           
+            success: function(response) {
+                if(response.statusCode == '2XX') {
+                    if(success_callback == null) {                  
+                        // default error callback handling
+                    } else {
+                        success_callback(response.data, params);
+                    }
+                } else {
+                    if(error_callback == null) {
+                        // default error callback handling
+                    } else {
+                        error_callback(response.data);
+                    }
+                }                       
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                console.log('in error');
+                console.log('error occured ' + errorThrown);
+            },
+            complete: function() {  
+                if(complete_callback != null) {
+                    complete_callback(params);
+                }
+            }
+        });     
+    }
+
+   
+
+    var hasOwnProperty = Object.prototype.hasOwnProperty;
+
+    var _getPropertyById =  function(data, propertyId){
+        var i, length = data.length, response = {};
+
+        if(data && data.length){
+            for(i = 0; i < length; i += 1){
+               if(data[i] && data[i].propertyId == propertyId){
+                    return data[i];
+               }
+            }
+        }
+
+        return response;
+    }
+
+    var parseData = function(projectDetail){
+
+        var projectData = {},
+        towers_length = projectDetail.towers ? projectDetail.towers.length : 0,
+        i = 0, towers = [], tower, listings = {}, listing_length = 0;
+
+        projectData.projectId = projectDetail.projectId;
+        projectData.name = projectDetail.name;
+        projectData.address = projectDetail.address;
+        projectData.amenities = [];
+
+        for(i = 0; i < towers_length; i += 1){
+            towers[i] = {};
+            tower = projectDetail.towers[i];
+            towers[i].towerId = tower.towerId;
+            towers[i].towerName = tower.towerName;
+
+            listing_length = tower.listings ? tower.listings.length : 0;
+            listings = {};
+
+            var unitInfo = {};
+
+            for(var j = 0; j < listing_length; j += 1){
+                var list = tower.listings[j], flatUnit = {};
+                flatUnit.flatId = list.id;
+                flatUnit.floor  = list.floor;
+                flatUnit.availabilityId = list.bookingStatusId;
+                flatUnit.facingId = list.facingId;
+                flatUnit.bookingAmount = list.bookingAmount;
+                flatUnit.price = list.bookingAmount*1000;
+
+                var propertyDetail = _getPropertyById(projectDetail.properties, list.propertyId);
+
+                flatUnit.bedrooms = propertyDetail.bedrooms;
+                flatUnit.size     = propertyDetail.size;
+                flatUnit.measure  = propertyDetail.measure;
+
+                if(flatUnit.bedrooms !== undefined){
+                    var unitTypeIndex = flatUnit.bedrooms+'BHK';
+                    if(flatUnit.availabilityId == 1 && hasOwnProperty.call(unitInfo, unitTypeIndex)){ // 
+                       unitInfo[unitTypeIndex] += 1;
+                    }else if(flatUnit.availabilityId == 1){
+                        unitInfo[unitTypeIndex] = 1;
+                    }else {
+                        unitInfo[unitTypeIndex] = 0;
+                    }
+                }
+
+                listings[list.flatNumber] = flatUnit;
+            }
+
+            towers[i].unitInfo = [];
+
+            for (var k in unitInfo) {
+                if(hasOwnProperty.call(unitInfo, k)){
+                    towers[i].unitInfo.push({
+                        type: k,
+                        available: unitInfo[k]
+                    });
+                }
+            };
+
+            towers[i].listings = listings;
+
+        }
+        
+        projectData.towers = towers;
+    
+        console.log('projectData is: ');
+        console.log(projectData);
+
+    }
+
     function getProjectData(projectId) {
+
+        var projectData = null;
+       /* $.ajax({
+            type: "GET",
+            url: 'http://192.168.1.8:8080/app/v4/project-detail/640037?selector={%22fields%22:[%22projectId%22,%22name%22,%22primaryOnline%22,%22towers%22,%22listings%22,%22floor%22,%22bookingAmount%22,%22towerName%22,%22clusterPlans%22,%22id%22,%22flatNumber%22,%22bookingStatusId%22,%22clusterPlanId%22,%22price%22]}',
+            async: false,
+            dataType: 'JSON',           
+            success: function(response) {
+                console.log('success response is: ');
+                console.log(response);   
+                projectData = response.data; 
+                var tower_length = response.data.towers.length;
+                var zipJsonData = '';
+                $.ajax({
+                    type: "GET",
+                    url: 'zip-file/data.json',
+                    async: false,
+                    dataType: 'JSON',           
+                    success: function(response) {
+                        console.log('success response is: ');
+                        console.log(response);   
+                        //zipJsonData  = response;   
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        console.log('in error 2');
+                        console.log('error occured ' + errorThrown);
+                    },
+                    complete: function() {  
+                        console.log('ajax completed 2!!');
+                    }
+                });     
+
+
+
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                console.log('in error 1');
+                console.log('error occured 1' + errorThrown);
+            },
+            complete: function() {  
+                console.log('ajax completed 1!!');
+            }
+        });     
+    */
+       /* var url1 = 'http://192.168.1.8:8080/app/v4/project-detail/640037?selector={%22fields%22:[%22projectId%22,%22name%22,%22primaryOnline%22,%22towers%22,%22listings%22,%22floor%22,%22bookingAmount%22,%22towerName%22,%22clusterPlans%22,%22id%22,%22flatNumber%22,%22bookingStatusId%22,%22clusterPlanId%22,%22price%22]}';
+        var url1  = "http://192.168.1.8:8080/app/v4/project-detail/640037?selector={%22fields%22:[%22projectId%22,%22images%22,%22imageType%22,%22mediaType%22,%22objectType%22,%22title%22,%22type%22,%22absolutePath%22,%22properties%22,%22projectAmenities%22,%22amenityDisplayName%22,%22verified%22,%22amenityMaster%22,%22amenityId%22,%22towerId%22,%22amenityName%22,%22bedrooms%22,%22bathrooms%22,%22balcony%22,%22name%22,%22primaryOnline%22,%22propertyId%22,%22towers%22,%22listings%22,%22floor%22,%22size%22,%22measure%22,%22bookingAmount%22,%22viewDirections%22,%22viewType%22,%22facingId%22,%22address%22,%22towerName%22,%22clusterPlans%22,%22id%22,%22flatNumber%22,%22bookingStatusId%22,%22clusterPlanId%22,%22price%22]}";
+        var url2 = 'zip-file/data.json';
+        var apiData, jsonData;
+        var params2 = {success_callback: function(response){
+            jsonData = response;
+        }};
+        var params1 = {success_callback: function(response){
+            apiData = response;
+            ajax(url2, params2);
+        }};
+        ajax(url1, params1);*/
+        
+
         var projectData = {
             "title": "Umang Winter Hills",
             "address": "Sector 77, Gurgaon",
             "name": "Buildings",
-            "image_url": "images/buildings.png",
+            "image_url": "images/background.png",
             "id": "buildings",
             "class": "buildings",
             "url": "#/new-project/slice-view/1/building_group/all",
@@ -362,7 +548,7 @@ var getProjectData = (function() {
                 "class": "l-tower",
                 "id": "l-tower",
                 "url": "#/new-project/slice-view/1/building/L",
-                //"path": "70.12 53.22 72.62 50.11 73.5 51.44 74.5 50.66 75.81 53.11 76.5 52.66 76.87 53.55 76.75 56 79.31 60.22 77.12 73.44 74.87 74.88 74.25 73.66 73.12 74.33 68.62 65.44 70.12 53.44",
+                "path": "58.93 85.88 60.18 84.77 60.75 86.11 60.81 85.88 61.06 86.33 61.68 85.77 61.81 84.22 62.25 84.88 63.06 84.22 63.25 81.88 63.68 81.55 65.62 62.44 60.75 52.22 55.5 56.55 55.31 61.22 54.31 62.11 54.87 63.77 54.37 64.44 55.18 66.55 54.87 75.88 55.5 77.44 55.87 77.22 56.5 78.44 56.43 79.66 56.87 80.33 57.31 80.77 57.06 81 58.93 85.77",
                 "details": [{
                     "type": "2BHK",
                     "available": 10,

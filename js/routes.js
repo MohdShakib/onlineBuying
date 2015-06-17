@@ -36,7 +36,7 @@ var initializeRoutes = (function(){
 
       var routes = {
         '/new-project/slice-view/:projectId':{
-             '/?(building_group|building|section|floor|flat)/?(all|A_upperHalf|A_lowerHalf|B_upperHalf|B_lowerHalf|A|B)':{ 
+             '/?(building_group|building|section|floor|flat)/?(all|A_upperHalf|A_lowerHalf|B_upperHalf|B_lowerHalf|[A-Z])':{ 
                 on: function(projectId, viewType, viewId){
 
                   if (originaldata == null) {
@@ -51,6 +51,8 @@ var initializeRoutes = (function(){
                       case 'B':
                         data = originaldata.subItems[1];
                         break;
+                      default:
+                        data = originaldata.subItems[1];
                     }
                   }else if(viewType == 'section'){
                     switch(viewId){
