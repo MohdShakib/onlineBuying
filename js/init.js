@@ -7,11 +7,9 @@
         var imageResolutionWidth    = config.imageResolution.width || 1600;
         var imageResolutionUnit     = config.imageResolution.unit || 'px';
         var imageResolutionRatio    = imageResolutionHeight/imageResolutionWidth;
-        console.log("imageResolutionRatio: " + imageResolutionRatio);
         var mainContainerElement    = d.getElementById(config.mainContainerId);
         var divWidth = document.getElementById(config.mainContainerId).offsetWidth;
         mainContainerElement.style.height = (imageResolutionRatio * divWidth) + imageResolutionUnit;
-        console.log((imageResolutionRatio * divWidth) + imageResolutionUnit);
     };
 
     resizeMainContainerHeight();

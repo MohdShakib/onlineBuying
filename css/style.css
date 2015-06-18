@@ -40,15 +40,7 @@ polygon {
 	fill: rgba(0,0,0,0);
 	cursor: pointer;
 	stroke: rgba(255,255,255,0.5);
-	stroke-width: 0.1;
-}
-circle {
-	background: url("../img/bg.jpg");
-	width: 50px;
-  	height: 50px;
-  	border: 1px solid #FFF;
-  	fill: url("../img/bg.jpg");
-  	background: #FF0000;
+	stroke-width: 0;
 }
 
 /* Images */
@@ -57,6 +49,8 @@ circle {
 }
 .img-container img {
 	position: absolute;
+	-webkit-transition: 0.5s;
+    transition: 0.5s;
 }
 
 /* Tower Details */
@@ -67,46 +61,48 @@ circle {
 }
 .tower-detail {
 	position: absolute;
-	border-radius: 5px;
-	overflow: hidden;
-	box-shadow: 3px 3px 2px 2px rgba(0,0,0,0.2);
+	opacity: 0;
+	border-top: 2px solid #CCC;
+	color: #FFF;
+	font-size: 11px;
+	-webkit-transition: 0.5s;
+    transition: 0.5s;
 }
 .tower-detail table {
-	background: white;
 	border-spacing: 0px;
 }
 .tower-detail .tower-name {
-	background: #DDD;
-	border-bottom: 1px solid #CCC;
-	font-weight: normal;
-	text-align: left;
-	padding: 8px 14px;
+	background: #333;
+	border: 1px solid #CCC;
+	border-radius: 100%;
+	color: #CCC;
+	padding: 5px;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	font-size: 14px;
+	top: -15px;
+	left: -15px;
 }
 .tower-detail .tower-apt {
-	padding: 8px;
+	background: #333;
+	padding: 8px 10px;
+	border-bottom: 1px solid #666;
 }
-.tower-detail .tower-apt .apt-type {
-	font-size: 13px;
-	text-align: center;
+.tower-detail .apt-type {
+	text-align: right;
+	color: #CCC;
 }
-.apt-count {
-  	width: 50px;
-  	height: 50px;
-}
-.apt-count div {
-	border: 1px solid;
-	border-radius: 100%;
-	padding: 10px;
-	margin: 3px;
-	text-align: center;
+.tower-detail .apt-count {
+	text-align: left;
 }
 .apt-available {
-	color: #1E8610;
-	border-color: #1E8610;
+	border-right: 4px solid green;
 }
 .apt-unavailable {
-	color: #B81C1C;
-	border-color: #B81C1C;
+	border-right: 4px solid #B81C1C;
 }
 
 /* Tower Menu */
@@ -149,12 +145,12 @@ circle {
 }
 .tower-menu-container .menu-items table td {
 	position: relative;
-	height: 45px;
+	height: 40px;
 	width: 45px;
 }
 .tower-menu-container .menu-item {
 	position: absolute;
-	line-height: 45px;
+	line-height: 40px;
 	top: 0px;
 	height: 100%;
 	width: 100%;
@@ -162,7 +158,7 @@ circle {
 	-webkit-transition: 0.5s;
     transition: 0.5s;
 }
-.tower-menu-container .menu-item:hover {
+.tower-menu-container .menu-item-hover {
 	width: 100px;
 	background: #333;
   	border-right: 4px green solid;
@@ -191,30 +187,27 @@ circle {
 	height: 100%;
 }
 .amenities-container .amenity-detail {
-	position: absolute;
+	position: relative;
 	z-index: 100000;
-}
-.amenities-container .amenity-detail td {
+	background: rgba(0,0,0,0.3);
+	color: #FFF;
+	height: 30px;
+	width: 30px;
+	line-height: 30px;
 	text-align: center;
-}
-.amenities-container .amenity-detail img {
-	height: 40px;
-	width: 40px;
-	border-radius: 100%;
 	border: 1px solid #FFF;
-	box-shadow: 0px 0px 3px 2px rgba(0,0,0,0.2);
-	-webkit-transition: 1s;
-    transition: 1s;
-}
-.amenities-container .amenity-detail img:hover {
-	height: 200px;
-	width: 200px;
+	border-radius: 100%;
+	cursor: pointer;
 }
 .amenities-container .amenity-detail .name {
-	color: #FFF;
+	position: absolute;
+	top: 40px;
+	left: -30px;
+	width: 70px;
+	line-height: normal;
 	background: rgba(0,0,0,0.5);
-	padding: 2px 4px;
+	padding: 5px 10px;
 	font-size: 12px;
 	text-shadow: 1px 1px 2px #000;
-	border-radius: 3px;
+	border-radius: 100px;
 }
