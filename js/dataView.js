@@ -27,6 +27,8 @@ var DataView = (function(){
         this._svgMouseEnter = new Event(this);
         this._svgMouseLeave = new Event(this);
         this._svgClick = new Event(this);
+        this._amenityClick = new Event(this);
+        this._amenityClose = new Event(this);
 
         // attach model listeners
         this._model.dataUpdated.attach(function () {
@@ -143,7 +145,7 @@ var DataView = (function(){
                 _this._svgMouseLeave.notify(); // this refers to element here
             });
         },
-        towerMouseEnterEvent: function(element, data){
+        towerMouseEnterEvent: function(element){
             var data    = this._model.getData();
             var index   = element.dataset.index;
             var toolTipData = data && data.subItems ? data.subItems[index]  : null;
@@ -207,11 +209,46 @@ var DataView = (function(){
             for (var i in data.amenities) {
                 var amenity = data.amenities[i];
                 var position = "top:" + amenity.top + "%; left:" + amenity.left + "%;" ;
-                code += "<div class='amenity-detail' style='"+ position +"'>+";
+                code += "<div id='" + amenity.id + "' class='" + config.amenityIconClass + "' style='"+ position +"'>+";
                 code += "<div class='name'>" + amenity.name + "</div>";
                 code += "</div>";
             }
             this._elements.amenitiesContainer.html(code);
+            this.amenitiesContainerEvents();
+        },
+        amenitiesContainerEvents: function() {
+            var _this = this;
+            _this._elements.amenitiesContainer.off('click').on('click', '.'+config.amenityIconClass, function(event){
+                 // notify controller
+                _this._amenityClick.notify(this); // this refers to element here
+            });
+        },
+        amenityClickEvent: function(element) {
+            var data    = this._model.getData();
+            var amenityId = element.id;
+            var amenity = null;
+            for (var i in data.amenities) {
+                if (data.amenities[i].id == amenityId) {
+                    amenity = data.amenities[i];
+                }
+            }
+            var code = "<div class='" + config.amenityPopupClass + "'><table><tr>";
+            code += "<td class='amenity-heading'>" + amenity.name;
+            code += "<span class='" + config.amenityPopupCloseClass + "'>X</span></td></tr>";
+            code += "<tr><td class='amenity-image'><img src='" + amenity.image_url + "'></td></tr></table>";
+            this._elements.amenitiesContainer.append(code);
+            this.amenitiesPopupEvents();
+        },
+        amenitiesPopupEvents: function() {
+            var _this = this;
+            _this._elements.amenitiesContainer.off('click').on('click', '.'+config.amenityPopupCloseClass, function(event){
+                 // notify controller
+                _this._amenityClose.notify(this); // this refers to element here
+            });
+        },
+        amenityCloseEvent: function() {
+            $("."+config.amenityPopupClass).remove();
+            this.amenitiesContainerEvents();
         }
     };
 
