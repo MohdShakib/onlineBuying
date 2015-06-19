@@ -40,25 +40,28 @@ var getProjectData = (function() {
 
    
 
-    var hasOwnProperty = Object.prototype.hasOwnProperty;
-
-    var _getPropertyById =  function(data, propertyId){
-        var i, length = data.length, response = {};
-
-        if(data && data.length){
-            for(i = 0; i < length; i += 1){
-               if(data[i] && data[i].propertyId == propertyId){
-                    return data[i];
-               }
-            }
-        }
-
-        return response;
-    }
-
-    var projectData = {};
+    var hasOwnProperty = Object.prototype.hasOwnProperty,
+    projectData = {};
 
     var parseApiData = function(projectDetail){
+
+        var facingMap = {
+            "1" : "East",       "2" : "West",
+            "3" : "North",      "4" : "South",
+            "5" : "NorthEast",  "6" : "SouthEast",
+            "7" : "NorthWest",  "8" : "SouthWest"
+        },
+        _getPropertyById =  function(data, propertyId){
+            var i, length = data.length, response = {};
+            if(data && data.length){
+                for(i = 0; i < length; i += 1){
+                   if(data[i] && data[i].propertyId == propertyId){
+                        return data[i];
+                   }
+                }
+            }
+            return response;
+        };
 
         if(!(projectDetail && Object.keys(projectDetail).length)){
             return;
@@ -84,10 +87,10 @@ var getProjectData = (function() {
 
             for(var j = 0; j < listing_length; j += 1){
                 var list = tower.listings[j], flatUnit = {};
-                flatUnit.flatId = list.id;
+                flatUnit.listingId = list.id;
                 flatUnit.floor  = list.floor;
-                flatUnit.availabilityId = list.bookingStatusId;
-                flatUnit.facingId = list.facingId;
+                flatUnit.isAvailable = (list.bookingStatusId == 1 ? true : false ); // available if bookingStatusId = 1
+                flatUnit.facing = facingMap[list.facingId];
                 flatUnit.bookingAmount = list.bookingAmount;
                 flatUnit.price = list.bookingAmount*1000;
 
@@ -99,9 +102,9 @@ var getProjectData = (function() {
 
                 if(flatUnit.bedrooms !== undefined){
                     var unitTypeIndex = flatUnit.bedrooms+'BHK';
-                    if(flatUnit.availabilityId == 1 && hasOwnProperty.call(unitInfo, unitTypeIndex)){ // 
+                    if(flatUnit.isAvailable && hasOwnProperty.call(unitInfo, unitTypeIndex)){ // 
                        unitInfo[unitTypeIndex] += 1;
-                    }else if(flatUnit.availabilityId == 1){
+                    }else if(flatUnit.isAvailable){
                         unitInfo[unitTypeIndex] = 1;
                     }else {
                         unitInfo[unitTypeIndex] = 0;
@@ -129,21 +132,32 @@ var getProjectData = (function() {
     
     }
 
-    var _getAmenityByName = function(apiData, amenity){
-        var i, length, response = {};
-        if(apiData && apiData.images && apiData.images.length){
-            length = apiData.images.length;
-            for(i = 0; i < length; i += 1){
-               if(apiData.images[i] && apiData.images[i].title == amenity && apiData.images[i].imageType.type == 'amenities'){
-                    response.image_url = apiData.images[i].absolutePath;
-                    return response;
-               }
-            }
-        }
-        return response;
-    }
+    
 
     var parseJsonData = function(jsonDetail, apiData){
+
+        var _getAmenityByName = function(amenity){
+            var i, length, response = {};
+            if(apiData && apiData.images && apiData.images.length){
+                length = apiData.images.length;
+                for(i = 0; i < length; i += 1){
+                   if(apiData.images[i] && apiData.images[i].title == amenity && apiData.images[i].imageType.type == 'amenities'){
+                        response.imageUrl = apiData.images[i].absolutePath;
+                        return response;
+                   }
+                }
+            }
+            return response;
+        },
+        _parseRotationAngle = function(rotationAngle){
+            var key;
+            for(key in rotationAngle) {
+                if(hasOwnProperty.call(rotationAngle, key) && rotationAngle[key].towerImage){
+                    rotationAngle[key].towerImage = '/zip-file/img/'+rotationAngle[key].towerImage;
+                }
+            };
+            return rotationAngle;
+        };
 
         if(!(apiData && jsonDetail && Object.keys(apiData).length && Object.keys(jsonDetail).length)){
             return;
@@ -151,27 +165,29 @@ var getProjectData = (function() {
 
         var i, amenity, json_towers_length = jsonDetail.towers.length, amenityData,
         towers_length = projectData.towers.length;
-        projectData.bg_image = '/zip-file/img/'+jsonDetail.background_image;
+        projectData.bgImage = '/zip-file/img/'+jsonDetail.backgroundImage;
         projectData.amenities = [];
         for(i = 0; i < towers_length; i += 1){
             var towerName = projectData.towers[i].towerName;
             if(towerName && jsonDetail.towers[towerName]){
-                projectData.towers[i].display_order = jsonDetail.towers[towerName].display_order;
-                projectData.towers[i].hover_image   = '/zip-file/img/'+jsonDetail.towers[towerName].hove_image;
-                projectData.towers[i].svg_path      = jsonDetail.towers[towerName].svg_path;
-                projectData.towers[i].rotation_angle = jsonDetail.towers[towerName].rotation_angle;
+                projectData.towers[i].displayOrder = jsonDetail.towers[towerName].displayOrder;
+                projectData.towers[i].hoverImage   = '/zip-file/img/'+jsonDetail.towers[towerName].hoveImage;
+                projectData.towers[i].svgPath      = jsonDetail.towers[towerName].svgPath;
+                projectData.towers[i].rotationAngle = _parseRotationAngle(jsonDetail.towers[towerName].rotationAngle);
             }
 
         }
 
         for(amenity in jsonDetail.amenities){
             if(hasOwnProperty.call(jsonDetail.amenities, amenity)){
-                amenityData = _getAmenityByName(apiData, amenity);
+                amenityData = _getAmenityByName(amenity);
                 projectData.amenities.push({
                     name: amenity,
-                    image_url: amenityData.image_url,
-                    x: jsonDetail.amenities[amenity].x,
-                    y: jsonDetail.amenities[amenity].y
+                    imageUrl: amenityData.imageUrl,
+                    position: {
+                        x: jsonDetail.amenities[amenity].x,
+                        y: jsonDetail.amenities[amenity].y
+                    }
                 });
             }
         }
