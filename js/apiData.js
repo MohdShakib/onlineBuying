@@ -68,17 +68,18 @@ var getProjectData = (function() {
         }
 
         var towers_length = projectDetail.towers ? projectDetail.towers.length : 0,
-        i = 0, towers = [], tower, listings = {}, listing_length = 0;
+        i = 0, towers = {}, tower, listings = {}, listing_length = 0;
 
         projectData.projectId = projectDetail.projectId;
-        projectData.name = projectDetail.name;
+        projectData.projectName = projectDetail.name;
         projectData.address = projectDetail.address;
 
         for(i = 0; i < towers_length; i += 1){
-            towers[i] = {};
+            
             tower = projectDetail.towers[i];
-            towers[i].towerId = tower.towerId;
-            towers[i].towerName = tower.towerName;
+            towers[tower.towerName] = {};
+            towers[tower.towerName].towerId = tower.towerId;
+            towers[tower.towerName].towerName = tower.towerName;
 
             listing_length = tower.listings ? tower.listings.length : 0;
             listings = {};
@@ -87,6 +88,7 @@ var getProjectData = (function() {
 
             for(var j = 0; j < listing_length; j += 1){
                 var list = tower.listings[j], flatUnit = {};
+                flatUnit.listingAddress = list.flatNumber;
                 flatUnit.listingId = list.id;
                 flatUnit.floor  = list.floor;
                 flatUnit.isAvailable = (list.bookingStatusId == 1 ? true : false ); // available if bookingStatusId = 1
@@ -113,19 +115,18 @@ var getProjectData = (function() {
 
                 listings[list.flatNumber] = flatUnit;
             }
-
-            towers[i].unitInfo = [];
+            towers[tower.towerName].unitInfo = [];
 
             for (var k in unitInfo) {
                 if(hasOwnProperty.call(unitInfo, k)){
-                    towers[i].unitInfo.push({
+                    towers[tower.towerName].unitInfo.push({
                         type: k,
                         available: unitInfo[k]
                     });
                 }
             };
 
-            towers[i].listings = listings;
+            towers[tower.towerName].listings = listings;
         }
         
         projectData.towers = towers;
@@ -136,7 +137,8 @@ var getProjectData = (function() {
 
     var parseJsonData = function(jsonDetail, apiData){
 
-        var _getAmenityByName = function(amenity){
+        var zipImagePath = '/zip-file/img/',
+        /*_getAmenityByName = function(amenity){
             var i, length, response = {};
             if(apiData && apiData.images && apiData.images.length){
                 length = apiData.images.length;
@@ -148,7 +150,7 @@ var getProjectData = (function() {
                 }
             }
             return response;
-        },
+        },*/
         _parseRotationAngle = function(rotationAngle){
             var key;
             for(key in rotationAngle) {
@@ -163,32 +165,32 @@ var getProjectData = (function() {
             return;
         }
 
-        var i, amenity, json_towers_length = jsonDetail.towers.length, amenityData,
-        towers_length = projectData.towers.length;
+        var i, amenity, json_towers_length = jsonDetail.towers.length, amenityData/*,
+        towers_length = projectData.towers.length*/;
         projectData.bgImage = '/zip-file/img/'+jsonDetail.backgroundImage;
-        projectData.amenities = [];
-        for(i = 0; i < towers_length; i += 1){
-            var towerName = projectData.towers[i].towerName;
-            if(towerName && jsonDetail.towers[towerName]){
-                projectData.towers[i].displayOrder = jsonDetail.towers[towerName].displayOrder;
-                projectData.towers[i].hoverImage   = '/zip-file/img/'+jsonDetail.towers[towerName].hoveImage;
-                projectData.towers[i].svgPath      = jsonDetail.towers[towerName].svgPath;
-                projectData.towers[i].rotationAngle = _parseRotationAngle(jsonDetail.towers[towerName].rotationAngle);
+        projectData.amenities = {};
+        for(var towerName in projectData.towers){
+            if(hasOwnProperty.call(projectData.towers, towerName)){
+                if(towerName && jsonDetail.towers[towerName]){
+                    projectData.towers[towerName].displayOrder = jsonDetail.towers[towerName].displayOrder;
+                    projectData.towers[towerName].hoverImageUrl = zipImagePath+jsonDetail.towers[towerName].hoveImageName;
+                    projectData.towers[towerName].towerHoverSvg   = jsonDetail.towers[towerName].towerHoverSvg;
+                    projectData.towers[towerName].rotationAngle = _parseRotationAngle(jsonDetail.towers[towerName].rotationAngle);
+                }
             }
 
         }
 
         for(amenity in jsonDetail.amenities){
             if(hasOwnProperty.call(jsonDetail.amenities, amenity)){
-                amenityData = _getAmenityByName(amenity);
-                projectData.amenities.push({
-                    name: amenity,
-                    imageUrl: amenityData.imageUrl,
-                    position: {
-                        x: jsonDetail.amenities[amenity].x,
-                        y: jsonDetail.amenities[amenity].y
-                    }
-                });
+                //amenityData = _getAmenityByName(amenity);
+                var amenityData = jsonDetail.amenities[amenity];
+                projectData.amenities[amenityData.amenityName] = {
+                    amenityName: amenityData.amenityName,
+                    imageUrl: zipImagePath+amenityData.imageName,
+                    amenitySvg : amenityData.amenitySvg
+                    
+                };
             }
         }
 

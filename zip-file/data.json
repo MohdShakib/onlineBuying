@@ -4,30 +4,31 @@
 		"backgroundImage": "background.png", 
 		"amenities": {
 			"Swimming Pool": { 
-				"imageUrl": "image.png", 
-				"x": "15.34",  
-				"y": "25.65"
+				"amenityName": "Swimming Pool",
+				"imageName": "swimmingpool.png",
+				"amenitySvg" : "85 65"
 			},
-			"Club": {
-				"imageUrl": "image.png", 
-				"x": "45.13",
-				"y": "25.65"
+			"Car Parking": {
+				"amenityName": "Car Parking",
+				"imageName": "carpark.png",
+				"amenitySvg" : "43 85"
 			}
 		},
 		"towers": {
 			"Block A":	{ 
-				"hoveImage": "Block_A_hover.png", 
-				"svgPath": "70.12 53.22 72.62 50.11 73.5 51.44 74.5 50.66 75.81 53.11 76.5 52.66 76.87 53.55 76.75 56 79.31 60.22 77.12 73.44 74.87 74.88 74.25 73.66 73.12 74.33 68.62 65.44 70.12 53.44",
+				"towerName" : "Block A",
+				"hoveImageName": "Block_A_hover.png", 
+				"towerHoverSvg": "70.12 53.22 72.62 50.11 73.5 51.44 74.5 50.66 75.81 53.11 76.5 52.66 76.87 53.55 76.75 56 79.31 60.22 77.12 73.44 74.87 74.88 74.25 73.66 73.12 74.33 68.62 65.44 70.12 53.44",
 				"displayOrder": 2,  
 				"rotationAngle": {
 					"0" : {
-						"towerImage": "Block_A_0.jpg",
+						"towerImageName": "Block_A_0.jpg",
 						"listings": {
 							"A3" : {
-									"propertySvgOnTower" : "",
+									"listingSvgOnTower" : "",
 									"floorplanImage" : "",	
 									"clusterImage" : "",	
-									"propertySvgOnCluster" : "",
+									"listingSvgOnCluster" : "",
 									"balconyViews": [
 										{
 											"balconyViewName" :	"",
@@ -39,45 +40,286 @@
 											"balconyViewSvg" : ""
 										}
 									]
-									},
-							"A2" : {"svgPath": "", "propertyName":"propertyName"},
-							"A1" : {"svgPath": "", "propertyName":"propertyName"},
-							"C4" : {"svgPath": "", "propertyName":"propertyName"},
-							"C5" : {"svgPath": "", "propertyName":"propertyName"}
+								},
+							"A2" : {
+									"listingSvgOnTower" : "",
+									"floorplanImage" : "",	
+									"clusterImage" : "",	
+									"listingSvgOnCluster" : "",
+									"balconyViews": [
+										{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										},{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										}
+									]
+								},
+							"A1" : {
+									"listingSvgOnTower" : "",
+									"floorplanImage" : "",	
+									"clusterImage" : "",	
+									"listingSvgOnCluster" : "",
+									"balconyViews": [
+										{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										},{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										}
+									]
+								},
+							"C4" : {
+									"listingSvgOnTower" : "",
+									"floorplanImage" : "",	
+									"clusterImage" : "",	
+									"listingSvgOnCluster" : "",
+									"balconyViews": [
+										{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										},{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										}
+									]
+								},
+							"C5" : {
+									"listingSvgOnTower" : "",
+									"floorplanImage" : "",	
+									"clusterImage" : "",	
+									"listingSvgOnCluster" : "",
+									"balconyViews": [
+										{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										},{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										}
+									]
+								}
 						}
 					},
 					"180" : {
 						"towerImage": "Block_A_180.jpg",
 						"listings": {
-							"A3" : {"svgPath": "", "propertyName":"propertyName"},
-							"A2" : {"svgPath": "", "propertyName":"propertyName"},
-							"A1" : {"svgPath": "", "propertyName":"propertyName"},
-							"C4" : {"svgPath": "", "propertyName":"propertyName"},
-							"C5" : {"svgPath": "", "propertyName":"propertyName"}
+							"A3" : {
+									"listingSvgOnTower" : "",
+									"floorplanImage" : "",	
+									"clusterImage" : "",	
+									"listingSvgOnCluster" : "",
+									"balconyViews": [
+										{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										},{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										}
+									]
+								},
+							"A2" : {
+									"listingSvgOnTower" : "",
+									"floorplanImage" : "",	
+									"clusterImage" : "",	
+									"listingSvgOnCluster" : "",
+									"balconyViews": [
+										{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										},{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										}
+									]
+								},
+							"A1" : {
+									"listingSvgOnTower" : "",
+									"floorplanImage" : "",	
+									"clusterImage" : "",	
+									"listingSvgOnCluster" : "",
+									"balconyViews": [
+										{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										},{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										}
+									]
+								},
+							"C4" : {
+									"listingSvgOnTower" : "",
+									"floorplanImage" : "",	
+									"clusterImage" : "",	
+									"listingSvgOnCluster" : "",
+									"balconyViews": [
+										{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										},{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										}
+									]
+								},
+							"C5" : {
+									"listingSvgOnTower" : "",
+									"floorplanImage" : "",	
+									"clusterImage" : "",	
+									"listingSvgOnCluster" : "",
+									"balconyViews": [
+										{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										},{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										}
+									]
+								}
 						}
 					}
 				}
 
 			},
 			"Block B": {
-				"hoveImage": "Block_B_hover.png",
-				"svgPath": "64.93 36.33 69.18 32.11 73.75 38.77 73.06 45.44 73.93 47.11 73.68 48.77 72.62 50.11 71.37 60.33 68.81 62.88 68.12 62.33 67.43 62.77 63.31 56.66 64.87 36.55", 
+				"towerName" : "Block B",
+				"hoveImageName": "Block_B_hover.png",
+				"towerHoverSvg": "64.93 36.33 69.18 32.11 73.75 38.77 73.06 45.44 73.93 47.11 73.68 48.77 72.62 50.11 71.37 60.33 68.81 62.88 68.12 62.33 67.43 62.77 63.31 56.66 64.87 36.55", 
 				"displayOrder": 1,
 				"rotationAngle": {
 					"0" : {
 						"towerImage": "Block_B_0.jpg",
 						"listings": {
-							"B1" : {"svgPath": "", "propertyName":"propertyName"},
-							"B2" : {"svgPath": "", "propertyName":"propertyName"},
-							"C2" : {"svgPath": "", "propertyName":"propertyName"}
+							"B1" : {
+									"listingSvgOnTower" : "",
+									"floorplanImage" : "",	
+									"clusterImage" : "",	
+									"listingSvgOnCluster" : "",
+									"balconyViews": [
+										{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										},{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										}
+									]
+								},
+							"B2" : {
+									"listingSvgOnTower" : "",
+									"floorplanImage" : "",	
+									"clusterImage" : "",	
+									"listingSvgOnCluster" : "",
+									"balconyViews": [
+										{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										},{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										}
+									]
+								},
+							"C2" : {
+									"listingSvgOnTower" : "",
+									"floorplanImage" : "",	
+									"clusterImage" : "",	
+									"listingSvgOnCluster" : "",
+									"balconyViews": [
+										{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										},{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										}
+									]
+								}
 						}
 					},
 					"180" : {
 						"towerImage": "Block_B_180.jpg",
 						"listings": {
-							"B1" : {"svgPath": "", "propertyName":"propertyName"},
-							"B2" : {"svgPath": "", "propertyName":"propertyName"},
-							"C2" : {"svgPath": "", "propertyName":"propertyName"}
+							"B1" : {
+									"listingSvgOnTower" : "",
+									"floorplanImage" : "",	
+									"clusterImage" : "",	
+									"listingSvgOnCluster" : "",
+									"balconyViews": [
+										{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										},{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										}
+									]
+								},
+							"B2" : {
+									"listingSvgOnTower" : "",
+									"floorplanImage" : "",	
+									"clusterImage" : "",	
+									"listingSvgOnCluster" : "",
+									"balconyViews": [
+										{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										},{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										}
+									]
+								},
+							"C2" : {
+									"listingSvgOnTower" : "",
+									"floorplanImage" : "",	
+									"clusterImage" : "",	
+									"listingSvgOnCluster" : "",
+									"balconyViews": [
+										{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										},{
+											"balconyViewName" :	"",
+											"balconyViewImage" : "",	
+											"balconyViewSvg" : ""
+										}
+									]
+								}
 						}
 					}
 				}
