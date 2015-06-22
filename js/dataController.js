@@ -17,11 +17,12 @@ var DataController = (function(){
             var hash =  element.dataset.url ? element.dataset.url : null;
             if(hash && hash != "undefined")
                 window.location.hash = hash;
+           		return;
         },
 		attachListeners: function(elements){
 			var _this = this;
 
-			if(elements && elements.towerMenuContainer){
+			if(elements && elements.buildingMenuContainer){
 				this._view._menuMouseEnter.attach(function(sender, element){
 					_this._view.towerMouseEnterEvent(element);
 				});	
@@ -35,7 +36,7 @@ var DataController = (function(){
 				});	
 			}
 
-			if(elements && elements.svgContainer){
+			if(elements && elements.buildingSvgContainer){
 				this._view._svgMouseEnter.attach(function(sender, element){
 					_this._view.towerMouseEnterEvent(element);
 				});	

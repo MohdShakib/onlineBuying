@@ -72,6 +72,8 @@ var getProjectData = (function() {
         i = 0, towers = {}, tower;
 
         projectData.projectId = projectDetail.projectId;
+        projectData.projectUrl = '#/new-project/slice-view/'+projectDetail.projectId+'/building_group/all';
+        projectData.baseUrl = '#/new-project/slice-view/'+projectDetail.projectId;
         projectData.projectName = projectDetail.name;
         projectData.address = projectDetail.address;
 
@@ -168,8 +170,8 @@ var getProjectData = (function() {
         _parseRotationAngle = function(rotationAngle){
             var key;
             for(key in rotationAngle) {
-                if(hasOwnProperty.call(rotationAngle, key) && rotationAngle[key].towerImage){
-                    rotationAngle[key].towerImage = zipImagePath+rotationAngle[key].towerImage;
+                if(hasOwnProperty.call(rotationAngle, key) && rotationAngle[key].towerImageName){
+                    rotationAngle[key].towerImageUrl = zipImagePath+rotationAngle[key].towerImageName;
                 }
             };
             return rotationAngle;
@@ -234,7 +236,9 @@ var getProjectData = (function() {
         parseApiData(apiData);
         parseJsonData(jsonData, apiData);
 
-        var projectData = {
+        console.log(projectData);
+
+        /*var projectData = {
             "title": "Umang Winter Hills",
             "address": "Sector 77, Gurgaon",
             "name": "Buildings",
@@ -618,7 +622,7 @@ var getProjectData = (function() {
                 "name": "Swimming Pool",
                 "id": "swimming-pool"
             }]
-        };
+        };*/
         return projectData;
     };
 

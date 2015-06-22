@@ -8,10 +8,11 @@
 var DataView = (function(){
 
     var containerMap = {
-        'imgContainer': '<div class="img-container" id="img-container"></div>',
+        'buildingImgContainer': '<div class="img-container" id="img-container"></div>',
+        'towerImgContainer': '<div class="img-container" id="img-container"></div>',
         'overviewImgContainer': '<div  class="overview-img-container" id="overview-img-container" ></div>',
-        'svgContainer': '<svg class="svg-container" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
-        'towerMenuContainer': '<div class="tower-menu-container" id="tower-menu-container"></div>',
+        'buildingSvgContainer': '<svg class="svg-container" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
+        'buildingMenuContainer': '<div class="tower-menu-container" id="tower-menu-container"></div>',
         'towerDetailContainer': '<div class="tower-detail-container" id="tower-detail-container"></div>',
         'amenitiesContainer': '<div class="amenities-container" id="amenities-container"></div>'
     };
@@ -53,7 +54,7 @@ var DataView = (function(){
             this._elements = elements;
         },
         renderInitialData: function(data){
-            document.getElementById(config.projectDetail.titleId).innerHTML = data.title;
+            document.getElementById(config.projectDetail.titleId).innerHTML = data.projectName;
             document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
         },
         buildSkeleton: function(containerList){
@@ -65,82 +66,83 @@ var DataView = (function(){
             }
             document.getElementById(config.mainContainerId).innerHTML = mainContainerHtml;
         },
-        imgContainer: function(data) {
-            var imgCode = "<img id=\"main-image\" width='100%' src=\"" + data.image_url + "\"/>";
-            for (var i in data.subItems) {
-                var tower = data.subItems[i];
-                if(tower.hover_imageUrl){
-                    imgCode += "<img class=\""+config.imgContainerClass+"\" id=\"" + tower.id + "\" width='100%' src=\"" + tower.hover_imageUrl + "\" />";
+        buildingImgContainer: function(data) {
+            var imgCode = "<img id=\"main-image\" width='100%' src=\"" + data.bgImage + "\"/>";
+            var tower, towerName;
+            for (towerName in data.towers) {
+                tower = data.towers[towerName];
+                if(tower.hoverImageUrl){
+                    imgCode += "<img class=\""+config.imgContainerClass+"\" id=\"" + tower.towerId + "\" width='100%' src=\"" + tower.hoverImageUrl + "\" />";
                 }
             }
-            this._elements.imgContainer.html(imgCode);
+            this._elements.buildingImgContainer.html(imgCode);
         },
-        overviewImgContainer: function(data){
+        /*overviewImgContainer: function(data){
             var code = "<img src='" + data.image_url + "'/>";
             this._elements.overviewImgContainer.html(code);
-        },
-        towerMenuContainer: function(data) {
+        },*/
+        buildingMenuContainer: function(data) {
             var code = "<table><tr><td class='menu-header'>|||</td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><table>";
-            for (var i in data.subItems) {
-                var tower = data.subItems[i];
+            for (var towerName in data.towers) {
+                var tower = data.towers[towerName];
                 code += "<tr><td><div class='menu-item " + config.leftPanelButtonClass + 
-                    "' id='" + tower.id + "-menu' data-index='" + i + 
-                    "' data-imageid='" + tower.id + 
-                    "' data-url='" + tower.url + 
-                    "'>" + tower.name.split(' ')[1] + "</div></td></tr>";
+                    "' id='" + tower.towerId + "-menu' data-index='" + towerName + 
+                    "' data-imageid='" + tower.towerId + 
+                    "' data-url='" + data.baseUrl+"\/building\/"+towerName+
+                    "'>" + tower.towerName.split(' ')[1] + "</div></td></tr>";
             }
             code += "</table></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-call'> C </td></tr>";
             code += "</table>";
-            this._elements.towerMenuContainer.html(code);
-            this.towerMenuContainerEvents();
+            this._elements.buildingMenuContainer.html(code);
+            this.buildingMenuContainerEvents();
         },
-        towerMenuContainerEvents: function(){
+        buildingMenuContainerEvents: function(){
             var _this = this;
 
-            _this._elements.towerMenuContainer.off('click').on('click', '.'+config.leftPanelButtonClass, function(event){
+            _this._elements.buildingMenuContainer.off('click').on('click', '.'+config.leftPanelButtonClass, function(event){
                 // notify controller
                 _this._menuClick.notify(this); // this refers to element here
             });
 
-            _this._elements.towerMenuContainer.off('mouseenter').on('mouseenter', '.'+config.leftPanelButtonClass, function(event){
+            _this._elements.buildingMenuContainer.off('mouseenter').on('mouseenter', '.'+config.leftPanelButtonClass, function(event){
                // notify controller
                _this._menuMouseEnter.notify(this); // this refers to element here
             });
 
-            _this._elements.towerMenuContainer.off('mouseleave').on('mouseleave', '.'+config.leftPanelButtonClass, function(event){
+            _this._elements.buildingMenuContainer.off('mouseleave').on('mouseleave', '.'+config.leftPanelButtonClass, function(event){
                 // notify controller
                 _this._menuMouseLeave.notify(); // this refers to element here
             });
         },
-        svgContainer: function(data) {
-            var svgCode = "";
-            for (var i in data.subItems) {
-                var tower = data.subItems[i];
-                if(tower.path){
-                    svgCode += "<polygon  class=\""+config.imgSvgClass+"\" id=\"" + tower.id + "-path\" data-index=\""+i+"\" data-imageid=\""+ tower.id + "\" data-url=\""+tower.url+"\" points=\"" + tower.path + "\" />";
+        buildingSvgContainer: function(data) {
+            var svgCode = "", towerName, tower;
+            for (towerName in data.towers) {
+                tower = data.towers[towerName];
+                if(tower.towerHoverSvg){
+                    svgCode += "<polygon  class=\""+config.imgSvgClass+"\" id=\"" + tower.towerId + "-path\" data-index=\""+towerName+"\" data-url=\""+data.baseUrl+"\/building\/"+towerName+"\" data-imageid=\""+ tower.towerId + "\"  points=\"" + tower.towerHoverSvg + "\" />";
                 }
             }
-            this._elements.svgContainer.html(svgCode);
-            this.svgContainerEvents();
+            this._elements.buildingSvgContainer.html(svgCode);
+            this.buildingSvgContainerEvents();
         },
-        svgContainerEvents: function() {
+        buildingSvgContainerEvents: function() {
             var _this = this;
 
-            _this._elements.svgContainer.off('click').on('click', '.'+config.imgSvgClass, function(event){
+            _this._elements.buildingSvgContainer.off('click').on('click', '.'+config.imgSvgClass, function(event){
                  // notify controller
                 _this._svgClick.notify(this); // this refers to element here
             });
 
-            _this._elements.svgContainer.off('mouseenter').on('mouseenter', '.'+config.imgSvgClass, function(event){
+            _this._elements.buildingSvgContainer.off('mouseenter').on('mouseenter', '.'+config.imgSvgClass, function(event){
                 // notify controller
                 _this._svgMouseEnter.notify(this); // this refers to element here
             });
 
-            _this._elements.svgContainer.off('mouseleave').on('mouseleave', '.'+config.imgSvgClass, function(event){
+            _this._elements.buildingSvgContainer.off('mouseleave').on('mouseleave', '.'+config.imgSvgClass, function(event){
                 // notify controller
                 _this._svgMouseLeave.notify(); // this refers to element here
             });
@@ -148,7 +150,7 @@ var DataView = (function(){
         towerMouseEnterEvent: function(element){
             var data    = this._model.getData();
             var index   = element.dataset.index;
-            var toolTipData = data && data.subItems ? data.subItems[index]  : null;
+            var toolTipData = data && data.towers ? data.towers[index]  : null;
             var imageid = element.dataset.imageid ? element.dataset.imageid : 'main-image';
             var svgpath = document.getElementById(imageid+'-path');
             var targetImage = $('img#'+imageid);
@@ -172,16 +174,16 @@ var DataView = (function(){
             $('.'+config.leftPanelButtonClass).removeClass(config.menuItemHoverClass);
         },
         showTowerDetailContainer: function(data, left, top) {
-            if(!(data && data.details)){
+            if(!(data && data.unitInfo)){
                 return;
             }
             var towerCode = "";
             towerCode += "<div id='container-detail' class='tower-detail'>";
-            towerCode += "<div class='tower-name'>" + data.name.split(' ')[1] + "</div>";
+            towerCode += "<div class='tower-name'>" + data.towerName.split(' ')[1] + "</div>";
             towerCode += "<table>";
 
-            for (var j in data.details) {
-                var aptType = data.details[j];
+            for (var j in data.unitInfo) {
+                var aptType = data.unitInfo[j];
                 var availabilityClass = 'apt-available';
                 var availabilityText = aptType.available + " Av";
                 if (aptType.available == 0) {
@@ -204,7 +206,13 @@ var DataView = (function(){
             window.getComputedStyle(document.getElementById('container-detail')).opacity;
             document.getElementById('container-detail').style.opacity = "1";
         },
-        amenitiesContainer: function(data) {
+        towerImgContainer: function(data){
+            var currentRotationAngle = '0';
+            var towerImageUrl = data.rotationAngle && data.rotationAngle[currentRotationAngle] ? data.rotationAngle[currentRotationAngle].towerImageUrl : null ;
+            var imgCode = "<img id=\"main-image\" width='100%' src=\"" + towerImageUrl + "\"/>";
+            this._elements.towerImgContainer.html(imgCode);
+        }
+       /* amenitiesContainer: function(data) {
             var code="";    
             for (var i in data.amenities) {
                 var amenity = data.amenities[i];
@@ -249,7 +257,7 @@ var DataView = (function(){
         amenityCloseEvent: function() {
             $("."+config.amenityPopupClass).remove();
             this.amenitiesContainerEvents();
-        }
+        }*/
     };
 
     return DataView;

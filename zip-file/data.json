@@ -112,7 +112,7 @@
 						}
 					},
 					"180" : {
-						"towerImage": "Block_A_180.jpg",
+						"towerImageName": "Block_A_180.jpg",
 						"listings": {
 							"A3" : {
 									"listingSvgOnTower" : "",
@@ -211,7 +211,7 @@
 				"displayOrder": 1,
 				"rotationAngle": {
 					"0" : {
-						"towerImage": "Block_B_0.jpg",
+						"towerImageName": "Block_B_0.jpg",
 						"listings": {
 							"B1" : {
 									"listingSvgOnTower" : "",
@@ -267,7 +267,7 @@
 						}
 					},
 					"180" : {
-						"towerImage": "Block_B_180.jpg",
+						"towerImageName": "Block_B_180.jpg",
 						"listings": {
 							"B1" : {
 									"listingSvgOnTower" : "",
