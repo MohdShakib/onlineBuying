@@ -606,15 +606,17 @@ var getProjectData = (function() {
                 }]
             }],
             "amenities": [{
-                "image_url": "images/carpark.jpg",
+                "image_url": "zip-file/img/carpark.jpg",
                 "top": 85,
                 "left": 43,
-                "name": "Car Parking"
+                "name": "Car Parking",
+                "id": "car-parking"
             }, {
-                "image_url": "images/swimmingpool.jpg",
+                "image_url": "zip-file/img/swimmingpool.jpg",
                 "top": 65,
                 "left": 85,
-                "name": "Swimming Pool"
+                "name": "Swimming Pool",
+                "id": "swimming-pool"
             }]
         };
         return projectData;

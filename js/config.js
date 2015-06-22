@@ -16,7 +16,10 @@ var config = (function(){
 		},
 		towerDetailContainerId: "tower-detail-container",
 		fadeImageClass: "fade-image",
-		menuItemHoverClass: "menu-item-hover"
+		menuItemHoverClass: "menu-item-hover",
+		amenityIconClass: "amenity-icon",
+		amenityPopupClass: "amenity-popup",
+		amenityPopupCloseClass: "amenity-popup-close"
 	};
 
 	return config;

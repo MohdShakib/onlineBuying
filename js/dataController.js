@@ -48,6 +48,16 @@ var DataController = (function(){
 					_this.changeUrl(element);
 				});	
 			}
+
+			if(elements && elements.amenitiesContainer){
+				this._view._amenityClick.attach(function(sender, element){
+					_this._view.amenityClickEvent(element);
+				});	
+
+				this._view._amenityClose.attach(function(sender, element){
+					_this._view.amenityCloseEvent();
+				});	
+			}
 		},
 	    generateTemplate: function(data, elements){
 	    	this._view.updateElements(elements);
