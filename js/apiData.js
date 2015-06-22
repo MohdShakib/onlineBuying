@@ -50,7 +50,7 @@ var getProjectData = (function() {
             "3" : "North",      "4" : "South",
             "5" : "NorthEast",  "6" : "SouthEast",
             "7" : "NorthWest",  "8" : "SouthWest"
-        },
+        }, towerMap = {},
         _getPropertyById =  function(data, propertyId){
             var i, length = data.length, response = {};
             if(data && data.length){
@@ -68,69 +68,83 @@ var getProjectData = (function() {
         }
 
         var towers_length = projectDetail.towers ? projectDetail.towers.length : 0,
-        i = 0, towers = {}, tower, listings = {}, listing_length = 0;
+        listings_length = projectDetail.listings ? projectDetail.listings.length : 0,
+        i = 0, towers = {}, tower;
 
         projectData.projectId = projectDetail.projectId;
         projectData.projectName = projectDetail.name;
         projectData.address = projectDetail.address;
 
+        var towersUnitInfo = {};
         for(i = 0; i < towers_length; i += 1){
             
             tower = projectDetail.towers[i];
             towers[tower.towerName] = {};
+            towerMap[tower.towerId] = tower.towerName;
             towers[tower.towerName].towerId = tower.towerId;
             towers[tower.towerName].towerName = tower.towerName;
+            towers[tower.towerName].listings  = {};
+            
+            towersUnitInfo[tower.towerName] = {};
+            towers[tower.towerName].unitInfo = [];
+        }
+        projectData.towers = towers;
 
-            listing_length = tower.listings ? tower.listings.length : 0;
-            listings = {};
 
-            var unitInfo = {};
 
-            for(var j = 0; j < listing_length; j += 1){
-                var list = tower.listings[j], flatUnit = {};
-                flatUnit.listingAddress = list.flatNumber;
-                flatUnit.listingId = list.id;
-                flatUnit.floor  = list.floor;
-                flatUnit.isAvailable = (list.bookingStatusId == 1 ? true : false ); // available if bookingStatusId = 1
-                flatUnit.facing = facingMap[list.facingId];
-                flatUnit.bookingAmount = list.bookingAmount;
-                flatUnit.price = list.bookingAmount*1000;
+        for(i = 0; i < listings_length; i += 1){
+            var towerId     = projectDetail.listings[i].towerId;
+            var towerName   = towerMap[towerId];
+            var listing     = projectDetail.listings[i],
+            flatUnit = {};
+            flatUnit.listingAddress = listing.flatNumber;
+            flatUnit.listingId = listing.id;
+            flatUnit.floor  = listing.floor;
+            flatUnit.isAvailable = (listing.bookingStatusId == 1 ? true : false ); // available if bookingStatusId = 1
+            flatUnit.facing = facingMap[listing.facingId];
+            flatUnit.bookingAmount = listing.bookingAmount;
+            flatUnit.price = listing.bookingAmount*1000;
 
-                var propertyDetail = _getPropertyById(projectDetail.properties, list.propertyId);
+            var propertyDetail = _getPropertyById(projectDetail.properties, listing.propertyId);
 
-                flatUnit.bedrooms = propertyDetail.bedrooms;
-                flatUnit.size     = propertyDetail.size;
-                flatUnit.measure  = propertyDetail.measure;
+            flatUnit.bedrooms = propertyDetail.bedrooms;
+            flatUnit.size     = propertyDetail.size;
+            flatUnit.measure  = propertyDetail.measure;
+            
+            if(towerName){
+                projectData.towers[towerName].listings[listing.flatNumber] = flatUnit;
+            }
 
-                if(flatUnit.bedrooms !== undefined){
-                    var unitTypeIndex = flatUnit.bedrooms+'BHK';
-                    if(flatUnit.isAvailable && hasOwnProperty.call(unitInfo, unitTypeIndex)){ // 
-                       unitInfo[unitTypeIndex] += 1;
-                    }else if(flatUnit.isAvailable){
-                        unitInfo[unitTypeIndex] = 1;
-                    }else {
-                        unitInfo[unitTypeIndex] = 0;
+            // keep unitInfo in local variable towersUnitInfo
+            if(towersUnitInfo[towerName] && flatUnit.bedrooms){
+                var unitTypeIndex = flatUnit.bedrooms+'BHK';
+                if(flatUnit.isAvailable && hasOwnProperty.call(towersUnitInfo[towerName], unitTypeIndex)){ // 
+                   towersUnitInfo[towerName][unitTypeIndex] += 1;
+                }else if(flatUnit.isAvailable){
+                    towersUnitInfo[towerName][unitTypeIndex] = 1;
+                }else {
+                    towersUnitInfo[towerName][unitTypeIndex] = 0;
+                }
+            }
+
+
+        }
+
+        // calculate unitInfo for each tower
+        for(var towerName in towersUnitInfo){
+            if(hasOwnProperty.call(towersUnitInfo, towerName)){
+                var tower = projectData.towers[towerName];
+                for(var unitBedroom in towersUnitInfo[towerName]){
+                    if(hasOwnProperty.call(towersUnitInfo[towerName], unitBedroom)){
+                        projectData.towers[towerName].unitInfo.push({
+                            'type': unitBedroom,
+                            'available': towersUnitInfo[towerName][unitBedroom] 
+                        });
                     }
                 }
-
-                listings[list.flatNumber] = flatUnit;
             }
-            towers[tower.towerName].unitInfo = [];
-
-            for (var k in unitInfo) {
-                if(hasOwnProperty.call(unitInfo, k)){
-                    towers[tower.towerName].unitInfo.push({
-                        type: k,
-                        available: unitInfo[k]
-                    });
-                }
-            };
-
-            towers[tower.towerName].listings = listings;
         }
         
-        projectData.towers = towers;
-    
     }
 
     
@@ -155,7 +169,7 @@ var getProjectData = (function() {
             var key;
             for(key in rotationAngle) {
                 if(hasOwnProperty.call(rotationAngle, key) && rotationAngle[key].towerImage){
-                    rotationAngle[key].towerImage = '/zip-file/img/'+rotationAngle[key].towerImage;
+                    rotationAngle[key].towerImage = zipImagePath+rotationAngle[key].towerImage;
                 }
             };
             return rotationAngle;
@@ -167,7 +181,7 @@ var getProjectData = (function() {
 
         var i, amenity, json_towers_length = jsonDetail.towers.length, amenityData/*,
         towers_length = projectData.towers.length*/;
-        projectData.bgImage = '/zip-file/img/'+jsonDetail.backgroundImage;
+        projectData.bgImage = zipImagePath+jsonDetail.backgroundImage;
         projectData.amenities = {};
         for(var towerName in projectData.towers){
             if(hasOwnProperty.call(projectData.towers, towerName)){
@@ -194,15 +208,15 @@ var getProjectData = (function() {
             }
         }
 
-        console.log('Project Data is: ');
-        console.log(projectData);
+        /*console.log('Project Data is: ');
+        console.log(projectData);*/
 
     }
 
 
     function getProjectData(projectId) {
 
-        var projectData = null;
+        //var projectData = null;
        
         var url1  = "http://192.168.1.8:8080/app/v4/project-detail/640037?selector={%22fields%22:[%22projectId%22,%22images%22,%22imageType%22,%22mediaType%22,%22objectType%22,%22title%22,%22type%22,%22absolutePath%22,%22properties%22,%22projectAmenities%22,%22amenityDisplayName%22,%22verified%22,%22amenityMaster%22,%22amenityId%22,%22towerId%22,%22amenityName%22,%22bedrooms%22,%22bathrooms%22,%22balcony%22,%22name%22,%22primaryOnline%22,%22propertyId%22,%22towers%22,%22listings%22,%22floor%22,%22size%22,%22measure%22,%22bookingAmount%22,%22viewDirections%22,%22viewType%22,%22facingId%22,%22address%22,%22towerName%22,%22clusterPlans%22,%22id%22,%22flatNumber%22,%22bookingStatusId%22,%22clusterPlanId%22,%22price%22]}";
         var url2 = 'zip-file/data.json';
