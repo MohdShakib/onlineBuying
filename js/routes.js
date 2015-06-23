@@ -33,7 +33,6 @@ var initializeRoutes = (function(){
       return elements;
   }
 
-
   function initializeRoutes(originaldata, controller){
 
       var routes = {
@@ -67,10 +66,8 @@ var initializeRoutes = (function(){
       }
       
       // instantiate the router.
-      var router = Router(routes);
-
-      // a global configuration setting.
-      router.configure({
+      var router = Router(routes)
+      .configure({  // a global configuration setting.
         on: function(projectId, viewType, viewId){
           //console.log(projectId, viewType, viewId);
         },

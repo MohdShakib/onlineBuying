@@ -211,15 +211,19 @@ var DataView = (function(){
             var towerImageUrl = data.rotationAngle && data.rotationAngle[currentRotationAngle] ? data.rotationAngle[currentRotationAngle].towerImageUrl : null ;
             var imgCode = "<img id=\"main-image\" width='100%' src=\"" + towerImageUrl + "\"/>";
             this._elements.towerImgContainer.html(imgCode);
-        }
-       /* amenitiesContainer: function(data) {
+        },
+        amenitiesContainer: function(data) {
             var code="";    
-            for (var i in data.amenities) {
-                var amenity = data.amenities[i];
-                var position = "top:" + amenity.top + "%; left:" + amenity.left + "%;" ;
-                code += "<div id='" + amenity.id + "' class='" + config.amenityIconClass + "' style='"+ position +"'>+";
-                code += "<div class='name'>" + amenity.name + "</div>";
-                code += "</div>";
+            for (var amenityKey in data.amenities) {
+                if(hasOwnProperty.call(data.amenities, amenityKey)){
+                    var amenity = data.amenities[amenityKey];
+                    var point = data.amenities[amenityKey].amenitySvg.split(' ');
+                    var position = "top:" + point[1] + "%; left:" + point[0] + "%;" ;
+                    code += "<div id='" + amenityKey + "' class='" + config.amenityIconClass + "' style='"+ position +"'>+";
+                    code += "<div class='name'>" + amenity.amenityName + "</div>";
+                    code += "</div>";
+                    
+                }
             }
             this._elements.amenitiesContainer.html(code);
             this.amenitiesContainerEvents();
@@ -234,16 +238,16 @@ var DataView = (function(){
         amenityClickEvent: function(element) {
             var data    = this._model.getData();
             var amenityId = element.id;
-            var amenity = null;
-            for (var i in data.amenities) {
-                if (data.amenities[i].id == amenityId) {
-                    amenity = data.amenities[i];
+            var amenity = {};
+            for (var amenityKey in data.amenities) {
+                if (amenityKey == amenityId) {
+                    amenity = data.amenities[amenityKey];
                 }
             }
             var code = "<div class='" + config.amenityPopupClass + "'><table><tr>";
-            code += "<td class='amenity-heading'>" + amenity.name;
+            code += "<td class='amenity-heading'>" + amenity.amenityName;
             code += "<span class='" + config.amenityPopupCloseClass + "'>X</span></td></tr>";
-            code += "<tr><td class='amenity-image'><img src='" + amenity.image_url + "'></td></tr></table>";
+            code += "<tr><td class='amenity-image'><img src='" + amenity.imageUrl + "'></td></tr></table>";
             this._elements.amenitiesContainer.append(code);
             this.amenitiesPopupEvents();
         },
@@ -257,7 +261,7 @@ var DataView = (function(){
         amenityCloseEvent: function() {
             $("."+config.amenityPopupClass).remove();
             this.amenitiesContainerEvents();
-        }*/
+        }
     };
 
     return DataView;

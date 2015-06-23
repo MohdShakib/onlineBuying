@@ -5,12 +5,12 @@
 		"amenities": {
 			"Swimming Pool": { 
 				"amenityName": "Swimming Pool",
-				"imageName": "swimmingpool.png",
+				"imageName": "swimmingpool.jpg",
 				"amenitySvg" : "85 65"
 			},
 			"Car Parking": {
 				"amenityName": "Car Parking",
-				"imageName": "carpark.png",
+				"imageName": "carpark.jpg",
 				"amenitySvg" : "43 85"
 			}
 		},
