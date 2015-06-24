@@ -38,7 +38,8 @@ var getProjectData = (function() {
         });     
     }
 
-    var zipPath = 'zip-file';
+    var zipPath = 'zip-file',
+    zipImagePath = '/'+zipPath+'/img/';
     
     
 
@@ -79,23 +80,91 @@ var getProjectData = (function() {
       return lines;
     }
 
-    getSvgData(zipPath+'/'+config.csv.masterplanScreen).success(function(data){
-        var towers = processCsvDataToArray(data);
-        console.log('towers are: ');
-        console.log(towers);
-    });
+    /*for(amenity in jsonDetail.amenities){
+            if(hasOwnProperty.call(jsonDetail.amenities, amenity)){
+                //amenityData = _getAmenityByName(amenity);
+                var amenityData = jsonDetail.amenities[amenity];
+                projectData.amenities[amenityData.amenityName] = {
+                    amenityName: amenityData.amenityName,
+                    imageUrl: zipImagePath+amenityData.imageName,
+                    amenitySvg : amenityData.amenitySvg
+                    
+                };
+            }
+        }*/
 
-    getSvgData(zipPath+'/'+config.csv.towerselectScreen).success(function(data){
-        var flats = processCsvDataToArray(data);
-        console.log('flats are: ');
-        console.log(flats);
-    });
+    function processCsvDataToObject(allText, keyIdentifier) { //
+      var allTextLines = allText.split(/\r\n|\n/);
+      var headers = allTextLines[0].split(',');
+      var lines = {};
 
-    getSvgData(zipPath+'/'+config.csv.amenitiesHotspots).success(function(data){
-        var amenities = processCsvDataToArray(data);
-        console.log('amenities are: ');
-        console.log(amenities);
-    });
+      for (var i=1; i<allTextLines.length; i++) {
+          var data = allTextLines[i].split(',');
+          if (data.length == headers.length) {
+
+              var tarr = {};
+              for (var j=0; j<headers.length; j++) {
+                  tarr[headers[j]] = data[j];
+              }
+              lines[tarr[keyIdentifier]] = tarr;
+          }
+      }
+      return lines;
+    }
+
+    function useTowersCSVData(towers){
+        for(var towerName in projectData.towers){
+            if(hasOwnProperty.call(projectData.towers, towerName)){
+                if(towerName && towers[towerName]){
+                    projectData.towers[towerName].displayOrder = towers[towerName].displayOrder ? parseInt(towers[towerName].displayOrder, 10) : 0;
+                    projectData.towers[towerName].hoverImageUrl = zipImagePath+towers[towerName].hoverImageName;
+                    projectData.towers[towerName].towerHoverSvg   = towers[towerName].towerHoverSvg;
+                    //projectData.towers[towerName].rotationAngle = _parseRotationAngle(jsonDetail.towers[towerName].rotationAngle);
+                }
+            }
+
+        }
+    }
+
+    function useAmenitiesCSVData(amenities){
+        projectData.amenities = {};
+        for(var amenity in amenities){
+            if(hasOwnProperty.call(amenities, amenity)){
+                var amenityData = amenities[amenity];
+                projectData.amenities[amenityData.amenityName] = {
+                    amenityName: amenityData.amenityName,
+                    imageUrl: zipImagePath+amenityData.imageName,
+                    amenitySvg : amenityData.amenitySvg
+                    
+                };
+            }
+        }
+    }
+
+    function parseAllCSVData(){
+
+        getSvgData(zipPath+'/'+config.csv.masterplanScreen).success(function(data){
+            var towers = processCsvDataToObject(data, 'towerName');
+            if(towers && projectData.towers && Object.keys(projectData.towers).length && Object.keys(towers).length){
+                useTowersCSVData(towers);
+            }
+        });
+
+
+        getSvgData(zipPath+'/'+config.csv.amenitiesHotspots).success(function(data){
+            var amenities = processCsvDataToObject(data, 'amenityName');
+            if(amenities && Object.keys(amenities).length){
+                useAmenitiesCSVData(amenities);
+            }
+        });
+    
+        /*getSvgData(zipPath+'/'+config.csv.towerselectScreen).success(function(data){
+            var flats = processCsvDataToArray(data);
+            console.log('flats are: ');
+            console.log(flats);
+        });*/
+        
+    }
 
     
 
@@ -212,8 +281,8 @@ var getProjectData = (function() {
 
     var parseJsonData = function(jsonDetail, apiData){
 
-        var zipImagePath = '/'+zipPath+'/img/',
-        /*_getAmenityByName = function(amenity){
+        
+        var /*_getAmenityByName = function(amenity){
             var i, length, response = {};
             if(apiData && apiData.images && apiData.images.length){
                 length = apiData.images.length;
@@ -242,8 +311,9 @@ var getProjectData = (function() {
 
         var i, amenity, json_towers_length = jsonDetail.towers.length, amenityData;
         projectData.bgImage = zipImagePath+jsonDetail.backgroundImage;
-        projectData.amenities = {};
-        for(var towerName in projectData.towers){
+        
+
+        /*for(var towerName in projectData.towers){
             if(hasOwnProperty.call(projectData.towers, towerName)){
                 if(towerName && jsonDetail.towers[towerName]){
                     projectData.towers[towerName].displayOrder = jsonDetail.towers[towerName].displayOrder;
@@ -253,8 +323,10 @@ var getProjectData = (function() {
                 }
             }
 
-        }
+        }*/
 
+        /*
+        projectData.amenities = {};
         for(amenity in jsonDetail.amenities){
             if(hasOwnProperty.call(jsonDetail.amenities, amenity)){
                 //amenityData = _getAmenityByName(amenity);
@@ -266,7 +338,7 @@ var getProjectData = (function() {
                     
                 };
             }
-        }
+        }*/
 
     }
 
@@ -287,8 +359,11 @@ var getProjectData = (function() {
         ajax(url1, params1);
 
         parseApiData(apiData);
+        parseAllCSVData();
         parseJsonData(jsonData, apiData);
 
+        console.log('projectData is: ');
+        console.log(projectData);
 
         /*var projectData = {
             "title": "Umang Winter Hills",

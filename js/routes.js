@@ -37,9 +37,8 @@ var initializeRoutes = (function(){
 
       var routes = {
         '/new-project/slice-view/([a-zA-Z0-9-]+)-([0-9]{6})':{
-             '/?(building_group|building|floor|flat)/?(all|(Block B|Block A)|A_upperHalf|A_lowerHalf|B_upperHalf|B_lowerHalf)':{ 
+             '/?(building_group|building|floor|flat)/?(all|(Tower B|Tower A)|A_upperHalf|A_lowerHalf|B_upperHalf|B_lowerHalf)':{ 
                 on: function(projectName, projectId, viewType, viewId){
-
                   if (originaldata == null) {
                     originaldata = getProjectData(projectId);
                   }
@@ -57,7 +56,6 @@ var initializeRoutes = (function(){
 
                 },
                 before: function(){
-                  //console.log('going to enter level 2 before');
                 }
             }
 
