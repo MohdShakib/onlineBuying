@@ -103,12 +103,12 @@ var DataView = (function(){
             var code = "<table><tr><td class='menu-header'>|||</td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><table>";
-            for (var towerName in data.towers) {
-                var tower = data.towers[towerName];
+            for (var towerIdentifier in data.towers) {
+                var tower = data.towers[towerIdentifier];
                 code += "<tr><td><div class='menu-item " + config.leftPanelButtonClass + 
-                    "' id='" + tower.towerId + "-menu' data-index='" + towerName + 
+                    "' id='" + tower.towerId + "-menu' data-index='" + towerIdentifier + 
                     "' data-imageid='" + tower.towerId + 
-                    "' data-url='" + data.baseUrl+"\/building\/"+towerName+
+                    "' data-url='" + data.baseUrl+"/"+towerIdentifier+
                     "'>" + tower.towerName.split(' ')[1] + "</div></td></tr>";
             }
             code += "</table></td></tr>";
@@ -144,7 +144,7 @@ var DataView = (function(){
             for(i = 0; i < tower_length; i++){
                 tower = towers[i];
                 if(tower.towerHoverSvg){
-                    svgCode += "<polygon  class=\""+config.imgSvgClass+"\" id=\"" + tower.towerId + "-path\" data-index=\""+tower.towerIdentifier+"\" data-url=\""+data.baseUrl+"\/building\/"+tower.towerName+"\" data-imageid=\""+ tower.towerId + "\"  points=\"" + tower.towerHoverSvg + "\" />";
+                    svgCode += "<polygon  class=\""+config.imgSvgClass+"\" id=\"" + tower.towerId + "-path\" data-index=\""+tower.towerIdentifier+"\" data-url=\""+data.baseUrl+"/"+tower.towerIdentifier+"\" data-imageid=\""+ tower.towerId + "\"  points=\"" + tower.towerHoverSvg + "\" />";
                 }
             }
 
