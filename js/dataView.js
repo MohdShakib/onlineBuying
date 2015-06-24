@@ -242,7 +242,7 @@ var DataView = (function(){
                     var point = data.amenities[amenityKey].amenitySvg.split(' ');
                     var position = "top:" + point[1] + "%; left:" + point[0] + "%;" ;
                     code += "<div id='" + amenityKey + "' class='" + config.amenityIconClass + "' style='"+ position +"'>+";
-                    code += "<div class='name'>" + amenity.amenityName + "</div>";
+                    code += "<div class='name'><span>" + amenity.amenityName + "</span></div>";
                     code += "</div>";
                     
                 }
