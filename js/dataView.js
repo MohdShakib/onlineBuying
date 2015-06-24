@@ -40,6 +40,21 @@ var DataView = (function(){
 
     DataView.prototype = {
 
+        sortTowersObject: function(towers){
+
+            var towerName, towerValues = [];
+
+            for(towerName in towers){
+                if(hasOwnProperty.call(towers, towerName)){
+                    towerValues.push(towers[towerName]);
+                }
+            }
+
+            return towerValues.sort(function(t1, t2){
+                return t1.displayOrder - t2.displayOrder;
+            });
+
+        },
         rebuildView: function(){
             var i, data = this._model.getData();
             var _this   = this;
@@ -68,9 +83,12 @@ var DataView = (function(){
         },
         buildingImgContainer: function(data) {
             var imgCode = "<img id=\"main-image\" width='100%' src=\"" + data.bgImage + "\"/>";
-            var tower, towerName;
-            for (towerName in data.towers) {
-                tower = data.towers[towerName];
+            var tower, i,
+            towers = this.sortTowersObject(data.towers),
+            tower_length = towers.length;
+
+            for(i = 0; i < tower_length; i++){
+                tower = towers[i];
                 if(tower.hoverImageUrl){
                     imgCode += "<img class=\""+config.imgContainerClass+"\" id=\"" + tower.towerId + "\" width='100%' src=\"" + tower.hoverImageUrl + "\" />";
                 }
@@ -119,13 +137,17 @@ var DataView = (function(){
             });
         },
         buildingSvgContainer: function(data) {
-            var svgCode = "", towerName, tower;
-            for (towerName in data.towers) {
-                tower = data.towers[towerName];
+            var svgCode = "", i, tower,
+            towers = this.sortTowersObject(data.towers),
+            tower_length = towers.length;
+
+            for(i = 0; i < tower_length; i++){
+                tower = towers[i];
                 if(tower.towerHoverSvg){
-                    svgCode += "<polygon  class=\""+config.imgSvgClass+"\" id=\"" + tower.towerId + "-path\" data-index=\""+towerName+"\" data-url=\""+data.baseUrl+"\/building\/"+towerName+"\" data-imageid=\""+ tower.towerId + "\"  points=\"" + tower.towerHoverSvg + "\" />";
+                    svgCode += "<polygon  class=\""+config.imgSvgClass+"\" id=\"" + tower.towerId + "-path\" data-index=\""+tower.towerName+"\" data-url=\""+data.baseUrl+"\/building\/"+tower.towerName+"\" data-imageid=\""+ tower.towerId + "\"  points=\"" + tower.towerHoverSvg + "\" />";
                 }
             }
+
             this._elements.buildingSvgContainer.html(svgCode);
             this.buildingSvgContainerEvents();
         },

@@ -36,9 +36,9 @@ var initializeRoutes = (function(){
   function initializeRoutes(originaldata, controller){
 
       var routes = {
-        '/new-project/slice-view/:projectId':{
+        '/new-project/slice-view/([a-zA-Z0-9-]+)-([0-9]{6})':{
              '/?(building_group|building|floor|flat)/?(all|(Block B|Block A)|A_upperHalf|A_lowerHalf|B_upperHalf|B_lowerHalf)':{ 
-                on: function(projectId, viewType, viewId){
+                on: function(projectName, projectId, viewType, viewId){
 
                   if (originaldata == null) {
                     originaldata = getProjectData(projectId);
@@ -66,8 +66,8 @@ var initializeRoutes = (function(){
       }
       
       // instantiate the router.
-      var router = Router(routes)
-      .configure({  // a global configuration setting.
+      var router = Router(routes);
+      router.configure({  // a global configuration setting.
         on: function(projectId, viewType, viewId){
           //console.log(projectId, viewType, viewId);
         },
@@ -79,6 +79,8 @@ var initializeRoutes = (function(){
         }
 
       });
+
+
 
       router.init();
   }

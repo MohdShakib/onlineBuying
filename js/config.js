@@ -19,7 +19,12 @@ var config = (function(){
 		menuItemHoverClass: "menu-item-hover",
 		amenityIconClass: "amenity-icon",
 		amenityPopupClass: "amenity-popup",
-		amenityPopupCloseClass: "amenity-popup-close"
+		amenityPopupCloseClass: "amenity-popup-close",
+		csv: {
+			masterplanScreen: 'masterplanScreen.csv',
+			towerselectScreen: 'towerselectScreen.csv',
+			amenitiesHotspots: 'amenitiesHotspots.csv'
+		}
 	};
 
 	return config;
