@@ -237,7 +237,7 @@ polygon {
 	position: fixed;
 	top: 50%;
 	left: 50%;
-	margin: -176px 0 0 -254px;
+	margin: -206px 0 0 -304px;
 }
 .amenity-popup .amenity-heading {
 	background-color: rgba(0,0,0,0.7);
@@ -258,7 +258,7 @@ polygon {
 	margin-top: 2px;
 }
 .amenity-popup .amenity-image img {
-	border: 2px rgba(0,0,0,0.3) solid;
-	height: 300px;
-	width: 500px;
+	border: 2px rgba(0,0,0,0.7) solid;
+	height: 360px;
+	width: 600px;
 }
