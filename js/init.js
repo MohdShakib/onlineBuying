@@ -3,8 +3,8 @@
 (function(d, w){
     
     function resizeMainContainerHeight() {
-        var imageResolutionHeight   = config.imageResolution.height || 900;
-        var imageResolutionWidth    = config.imageResolution.width || 1600;
+        var imageResolutionHeight   = config.imageResolution.height;
+        var imageResolutionWidth    = config.imageResolution.width;
         var imageResolutionUnit     = config.imageResolution.unit || 'px';
         var imageResolutionRatio    = imageResolutionHeight/imageResolutionWidth;
         var mainContainerElement    = d.getElementById(config.mainContainerId);

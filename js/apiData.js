@@ -135,12 +135,13 @@ var getProjectData = (function() {
     }
 
     function useTowersCSVData(towers){
-        for(var towerName in projectData.towers){
-            if(hasOwnProperty.call(projectData.towers, towerName)){
-                if(towerName && towers[towerName]){
-                    projectData.towers[towerName].displayOrder = towers[towerName].displayOrder ? parseInt(towers[towerName].displayOrder, 10) : 0;
-                    projectData.towers[towerName].hoverImageUrl = zipImagePath+towers[towerName].hoverImageName;
-                    projectData.towers[towerName].towerHoverSvg   = towers[towerName].towerHoverSvg;
+        for(var towerIdentifier in projectData.towers){
+            if(hasOwnProperty.call(projectData.towers, towerIdentifier)){
+                var towerName = projectData.towers[towerIdentifier].towerName;
+                if(towerIdentifier && towers[towerName]){
+                    projectData.towers[towerIdentifier].displayOrder = towers[towerName].displayOrder ? parseInt(towers[towerName].displayOrder, 10) : 0;
+                    projectData.towers[towerIdentifier].hoverImageUrl = zipImagePath+towers[towerName].hoverImageName;
+                    projectData.towers[towerIdentifier].towerHoverSvg   = towers[towerName].towerHoverSvg;
                 }
             }
 
@@ -220,8 +221,7 @@ var getProjectData = (function() {
         i = 0, towers = {}, tower;
 
         projectData.projectId = projectDetail.projectId;
-        projectData.projectUrl = '#/new-project/slice-view/projectname-'+projectDetail.projectId+'/building_group/all';
-        projectData.baseUrl = '#/new-project/slice-view/projectname-'+projectDetail.projectId;
+        projectData.baseUrl = '#/projectname-'+projectDetail.projectId;
         projectData.projectName = projectDetail.name;
         projectData.address = projectDetail.address;
 
@@ -233,6 +233,7 @@ var getProjectData = (function() {
             towers[towerIdentifier] = {};
             towerMap[tower.towerId] = tower.towerName;
             towers[towerIdentifier].towerId = tower.towerId;
+            towers[towerIdentifier].towerIdentifier = towerIdentifier;
             towers[towerIdentifier].towerName = tower.towerName;
             towers[towerIdentifier].listings  = {};
             towers[towerIdentifier].rotationAngle = {};
@@ -333,9 +334,11 @@ var getProjectData = (function() {
 
     }
 
-
     function getProjectData(projectId) {
-       
+        if(projectData && Object.keys(projectData).length) {
+            return projectData;
+        }
+
         var url1  = "http://192.168.1.8:8080/app/v4/project-detail/"+projectId+"?selector={%22fields%22:[%22projectId%22,%22images%22,%22imageType%22,%22mediaType%22,%22objectType%22,%22title%22,%22type%22,%22absolutePath%22,%22properties%22,%22projectAmenities%22,%22amenityDisplayName%22,%22verified%22,%22amenityMaster%22,%22amenityId%22,%22towerId%22,%22amenityName%22,%22bedrooms%22,%22bathrooms%22,%22balcony%22,%22name%22,%22primaryOnline%22,%22propertyId%22,%22towers%22,%22listings%22,%22floor%22,%22size%22,%22measure%22,%22bookingAmount%22,%22viewDirections%22,%22viewType%22,%22facingId%22,%22address%22,%22towerName%22,%22clusterPlans%22,%22id%22,%22flatNumber%22,%22bookingStatusId%22,%22clusterPlanId%22,%22price%22]}";
         var url2 = zipPath+'/data.json';
         var apiData, jsonData;

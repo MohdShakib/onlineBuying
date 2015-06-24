@@ -144,7 +144,7 @@ var DataView = (function(){
             for(i = 0; i < tower_length; i++){
                 tower = towers[i];
                 if(tower.towerHoverSvg){
-                    svgCode += "<polygon  class=\""+config.imgSvgClass+"\" id=\"" + tower.towerId + "-path\" data-index=\""+tower.towerName+"\" data-url=\""+data.baseUrl+"\/building\/"+tower.towerName+"\" data-imageid=\""+ tower.towerId + "\"  points=\"" + tower.towerHoverSvg + "\" />";
+                    svgCode += "<polygon  class=\""+config.imgSvgClass+"\" id=\"" + tower.towerId + "-path\" data-index=\""+tower.towerIdentifier+"\" data-url=\""+data.baseUrl+"\/building\/"+tower.towerName+"\" data-imageid=\""+ tower.towerId + "\"  points=\"" + tower.towerHoverSvg + "\" />";
                 }
             }
 

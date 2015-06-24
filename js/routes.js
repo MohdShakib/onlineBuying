@@ -1,12 +1,16 @@
 "use strict";
 var initializeRoutes = (function(){
 
+  var PROJECT = "masterPlanView",
+      TOWER = "towerSelectedView",
+      UNIT = "unitInfoView";
+
   function prepareTemplateSkeleton(type, controller, data){
 
       var containerList = [], elements = {};
       
       switch(type){
-        case 'building_group': 
+        case PROJECT: 
           containerList = ['buildingImgContainer', 'buildingSvgContainer', 'buildingMenuContainer', 'towerDetailContainer', 'amenitiesContainer'];
           controller.generateTemplateSkeleton(data, containerList);
           elements = {
@@ -18,7 +22,7 @@ var initializeRoutes = (function(){
             'amenitiesContainer': $('#amenities-container')
           }
           break;
-        case 'building': 
+        case TOWER: 
           containerList = ['towerImgContainer', 'towerSvgContainer'];
           controller.generateTemplateSkeleton(data, containerList);
           elements = {
@@ -26,6 +30,14 @@ var initializeRoutes = (function(){
             'towerSvgContainer' : $('#svg-container')
           }
           break;
+        case UNIT: 
+          containerList = ['towerImgContainer', 'towerSvgContainer'];
+          controller.generateTemplateSkeleton(data, containerList);
+          elements = {
+            'towerImgContainer': $('#img-container'),
+            'towerSvgContainer' : $('#svg-container')
+          }
+          break;  
         default:
           break; 
       }
@@ -36,49 +48,56 @@ var initializeRoutes = (function(){
   function initializeRoutes(originaldata, controller){
 
       var routes = {
-        '/new-project/slice-view/([a-zA-Z0-9-]+)-([0-9]{6})':{
-             '/?(building_group|building|floor|flat)/?(all|(Tower B|Tower A)|A_upperHalf|A_lowerHalf|B_upperHalf|B_lowerHalf)':{ 
-                on: function(projectName, projectId, viewType, viewId){
-                  if (originaldata == null) {
-                    originaldata = getProjectData(projectId);
-                  }
-                  var data = originaldata;
-                  if(viewType == 'building'){
-                      if(originaldata.towers[viewId]){
-                        data = originaldata.towers[viewId];
-                      }else{
-                        data = originaldata.towers[1];
-                      }
-                  }
+        sep: "/",
+        wordSep: "-",
+        projectName: "([a-z0-9-]+)",
+        projectId: "([0-9]{6})",
+        towerName: "([a-z0-9-]+)",
+        unitAddress: "([a-z0-9-]+)"
+      };
 
-                  var elements = prepareTemplateSkeleton(viewType, controller, originaldata);
-                  controller.generateTemplate(data, elements);
+      var projectRoute = routes.sep + routes.projectName + routes.wordSep + routes.projectId;
+      var towerRoute = projectRoute + routes.sep + routes.towerName;
+      var unitRoute = towerRoute + routes.sep + routes.unitAddress;
 
-                },
-                before: function(){
-                }
+      var routes = {};
+      routes[projectRoute] = {
+        on: function(projectName, projectId){
+              originaldata = getProjectData(projectId);
+              var elements = prepareTemplateSkeleton(PROJECT, controller, originaldata);
+              controller.generateTemplate(originaldata, elements);
             }
+      }
 
-        }
+      routes[towerRoute] = {
+        on: function(projectName, projectId, towerName){
+              originaldata = getProjectData(projectId);
+              var elements = prepareTemplateSkeleton(TOWER, controller, originaldata);
+              controller.generateTemplate(originaldata.towers[towerName], elements);
+            }
+      }
 
+      routes[unitRoute] = {
+        on: function(projectName, projectId, towerName, unitAddress){
+              originaldata = getProjectData(projectId);
+              var elements = prepareTemplateSkeleton(UNIT, controller, originaldata);
+              controller.generateTemplate(originaldata.towers[towerName].listings[unitAddress], elements);
+            }
       }
       
-      // instantiate the router.
+      // instantiate the router
       var router = Router(routes);
       router.configure({  // a global configuration setting.
-        on: function(projectId, viewType, viewId){
-          //console.log(projectId, viewType, viewId);
+        on: function(projectName, projectId){
+          //console.log(projectName, projectId);
         },
         notfound: function(){
-          console.log('round not found');
+          console.log('Route not found');
         },
-        before: function(projectId, viewType, viewId){
-          //console.log(projectId, viewType, viewId);
+        before: function(projectName, projectId){
+          //console.log(projectName, projectId);
         }
-
       });
-
-
 
       router.init();
   }
