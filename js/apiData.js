@@ -61,6 +61,14 @@ var getProjectData = (function() {
         });
     }
 
+    function getIdentifier(string){
+        var identifier = '';
+        if(string){
+            identifier = string.toLowerCase().replace(' ', '-');
+        }
+        return identifier;
+    }
+
     function processCsvDataToArray(allText) {
       var allTextLines = allText.split(/\r\n|\n/);
       var headers = allTextLines[0].split(',');
@@ -79,19 +87,6 @@ var getProjectData = (function() {
       }
       return lines;
     }
-
-    /*for(amenity in jsonDetail.amenities){
-            if(hasOwnProperty.call(jsonDetail.amenities, amenity)){
-                //amenityData = _getAmenityByName(amenity);
-                var amenityData = jsonDetail.amenities[amenity];
-                projectData.amenities[amenityData.amenityName] = {
-                    amenityName: amenityData.amenityName,
-                    imageUrl: zipImagePath+amenityData.imageName,
-                    amenitySvg : amenityData.amenitySvg
-                    
-                };
-            }
-        }*/
 
     function processCsvDataToObject(allText, keyIdentifier) { //
       var allTextLines = allText.split(/\r\n|\n/);
@@ -112,6 +107,33 @@ var getProjectData = (function() {
       return lines;
     }
 
+    function useTowerUnitsCSVData(listing){
+        var i, towerIdentifier, unitInfo, tower, unitTowerIdentifier, unitIdentifier, unit;
+        for(var towerIdentifier in projectData.towers){
+            if(hasOwnProperty.call(projectData.towers, towerIdentifier)){
+                for(i = 0; i < listing.length; i++){
+                    unitInfo = listing[i];
+                    unitIdentifier = getIdentifier(unitInfo.unitName);
+                    unitTowerIdentifier = getIdentifier(unitInfo.towerName);
+                    
+                    if(unitTowerIdentifier !== towerIdentifier){ // If listing does not belong to towerIdentifier then skip
+                        continue;
+                    }
+
+                    tower = projectData.towers[unitTowerIdentifier];
+                    
+                    if(tower && tower.rotationAngle[unitInfo.rotationAngle] && unitInfo.rotationAngle){
+                        tower.rotationAngle[unitInfo.rotationAngle][unitIdentifier] = unitInfo;
+                        delete unitInfo.rotationAngle;
+                    }else if(tower && tower.rotationAngle && unitInfo.rotationAngle){
+                        tower.rotationAngle[unitInfo.rotationAngle] = {};
+                        tower.rotationAngle[unitInfo.rotationAngle][unitIdentifier]  = unitInfo;
+                    }
+                }
+            }
+        }
+    }
+
     function useTowersCSVData(towers){
         for(var towerName in projectData.towers){
             if(hasOwnProperty.call(projectData.towers, towerName)){
@@ -119,7 +141,6 @@ var getProjectData = (function() {
                     projectData.towers[towerName].displayOrder = towers[towerName].displayOrder ? parseInt(towers[towerName].displayOrder, 10) : 0;
                     projectData.towers[towerName].hoverImageUrl = zipImagePath+towers[towerName].hoverImageName;
                     projectData.towers[towerName].towerHoverSvg   = towers[towerName].towerHoverSvg;
-                    //projectData.towers[towerName].rotationAngle = _parseRotationAngle(jsonDetail.towers[towerName].rotationAngle);
                 }
             }
 
@@ -158,12 +179,11 @@ var getProjectData = (function() {
             }
         });
     
-        /*getSvgData(zipPath+'/'+config.csv.towerselectScreen).success(function(data){
-            var flats = processCsvDataToArray(data);
-            console.log('flats are: ');
-            console.log(flats);
-        });*/
-        
+        getSvgData(zipPath+'/'+config.csv.towerselectScreen).success(function(data){
+            var listing = processCsvDataToArray(data);
+            useTowerUnitsCSVData(listing); 
+        });
+
     }
 
     
@@ -205,18 +225,19 @@ var getProjectData = (function() {
         projectData.projectName = projectDetail.name;
         projectData.address = projectDetail.address;
 
-        var towersUnitInfo = {};
+        var towersUnitInfo = {}, towerIdentifier;
         for(i = 0; i < towers_length; i += 1){
             
             tower = projectDetail.towers[i];
-            towers[tower.towerName] = {};
+            towerIdentifier = getIdentifier(tower.towerName);
+            towers[towerIdentifier] = {};
             towerMap[tower.towerId] = tower.towerName;
-            towers[tower.towerName].towerId = tower.towerId;
-            towers[tower.towerName].towerName = tower.towerName;
-            towers[tower.towerName].listings  = {};
-            
-            towersUnitInfo[tower.towerName] = {};
-            towers[tower.towerName].unitInfo = [];
+            towers[towerIdentifier].towerId = tower.towerId;
+            towers[towerIdentifier].towerName = tower.towerName;
+            towers[towerIdentifier].listings  = {};
+            towers[towerIdentifier].rotationAngle = {};
+            towersUnitInfo[towerIdentifier] = {};
+            towers[towerIdentifier].unitInfo = [];
         }
 
 
@@ -225,6 +246,7 @@ var getProjectData = (function() {
         for(i = 0; i < listings_length; i += 1){
             var towerId     = projectDetail.listings[i].towerId;
             var towerName   = towerMap[towerId];
+            var towerIdentifier = getIdentifier(towerName);
             var listing     = projectDetail.listings[i],
             flatUnit = {};
             flatUnit.listingAddress = listing.flatNumber;
@@ -241,34 +263,35 @@ var getProjectData = (function() {
             flatUnit.size     = propertyDetail.size;
             flatUnit.measure  = propertyDetail.measure;
             
-            if(towerName){
-                projectData.towers[towerName].listings[listing.flatNumber] = flatUnit;
+            if(towerIdentifier){
+                var unitIdentifier = getIdentifier(listing.flatNumber);
+                projectData.towers[towerIdentifier].listings[unitIdentifier] = flatUnit;
             }
 
             // keep unitInfo in local variable towersUnitInfo
-            if(towersUnitInfo[towerName] && flatUnit.bedrooms){
+            if(towersUnitInfo[towerIdentifier] && flatUnit.bedrooms){
                 var unitTypeIndex = flatUnit.bedrooms+'BHK';
-                if(flatUnit.isAvailable && hasOwnProperty.call(towersUnitInfo[towerName], unitTypeIndex)){ // 
-                   towersUnitInfo[towerName][unitTypeIndex] += 1;
+                if(flatUnit.isAvailable && hasOwnProperty.call(towersUnitInfo[towerIdentifier], unitTypeIndex)){ // 
+                   towersUnitInfo[towerIdentifier][unitTypeIndex] += 1;
                 }else if(flatUnit.isAvailable){
-                    towersUnitInfo[towerName][unitTypeIndex] = 1;
+                    towersUnitInfo[towerIdentifier][unitTypeIndex] = 1;
                 }else {
-                    towersUnitInfo[towerName][unitTypeIndex] = 0;
+                    towersUnitInfo[towerIdentifier][unitTypeIndex] = 0;
                 }
             }
 
 
         }
 
-        // calculate unitInfo for each tower
-        for(var towerName in towersUnitInfo){
-            if(hasOwnProperty.call(towersUnitInfo, towerName)){
-                var tower = projectData.towers[towerName];
-                for(var unitBedroom in towersUnitInfo[towerName]){
-                    if(hasOwnProperty.call(towersUnitInfo[towerName], unitBedroom)){
-                        projectData.towers[towerName].unitInfo.push({
+         // calculate unitInfo for each tower
+        for(var towerIdentifier in towersUnitInfo){
+            if(hasOwnProperty.call(towersUnitInfo, towerIdentifier)){
+                var tower = projectData.towers[towerIdentifier];
+                for(var unitBedroom in towersUnitInfo[towerIdentifier]){
+                    if(hasOwnProperty.call(towersUnitInfo[towerIdentifier], unitBedroom)){
+                        projectData.towers[towerIdentifier].unitInfo.push({
                             'type': unitBedroom,
-                            'available': towersUnitInfo[towerName][unitBedroom] 
+                            'available': towersUnitInfo[towerIdentifier][unitBedroom] 
                         });
                     }
                 }
@@ -282,20 +305,7 @@ var getProjectData = (function() {
     var parseJsonData = function(jsonDetail, apiData){
 
         
-        var /*_getAmenityByName = function(amenity){
-            var i, length, response = {};
-            if(apiData && apiData.images && apiData.images.length){
-                length = apiData.images.length;
-                for(i = 0; i < length; i += 1){
-                   if(apiData.images[i] && apiData.images[i].title == amenity && apiData.images[i].imageType.type == 'amenities'){
-                        response.imageUrl = apiData.images[i].absolutePath;
-                        return response;
-                   }
-                }
-            }
-            return response;
-        },*/
-        _parseRotationAngle = function(rotationAngle){
+        var _parseRotationAngle = function(rotationAngle){
             var key;
             for(key in rotationAngle) {
                 if(hasOwnProperty.call(rotationAngle, key) && rotationAngle[key].towerImageName){
@@ -310,34 +320,15 @@ var getProjectData = (function() {
         }
 
         var i, amenity, json_towers_length = jsonDetail.towers.length, amenityData;
-        projectData.bgImage = zipImagePath+jsonDetail.backgroundImage;
+        projectData.bgImage = zipImagePath+config.backgroundImage;
         
 
-        /*for(var towerName in projectData.towers){
-            if(hasOwnProperty.call(projectData.towers, towerName)){
-                if(towerName && jsonDetail.towers[towerName]){
-                    projectData.towers[towerName].displayOrder = jsonDetail.towers[towerName].displayOrder;
-                    projectData.towers[towerName].hoverImageUrl = zipImagePath+jsonDetail.towers[towerName].hoveImageName;
-                    projectData.towers[towerName].towerHoverSvg   = jsonDetail.towers[towerName].towerHoverSvg;
-                    projectData.towers[towerName].rotationAngle = _parseRotationAngle(jsonDetail.towers[towerName].rotationAngle);
-                }
+        /*for(var towerIdentifier in projectData.towers){
+            if(hasOwnProperty.call(projectData.towers, towerIdentifier)){
+                    var towerName = projectData.towers[towerIdentifier].towerName;
+                    projectData.towers[towerIdentifier].rotationAngle = _parseRotationAngle(jsonDetail.towers[towerName].rotationAngle);
             }
-
-        }*/
-
-        /*
-        projectData.amenities = {};
-        for(amenity in jsonDetail.amenities){
-            if(hasOwnProperty.call(jsonDetail.amenities, amenity)){
-                //amenityData = _getAmenityByName(amenity);
-                var amenityData = jsonDetail.amenities[amenity];
-                projectData.amenities[amenityData.amenityName] = {
-                    amenityName: amenityData.amenityName,
-                    imageUrl: zipImagePath+amenityData.imageName,
-                    amenitySvg : amenityData.amenitySvg
-                    
-                };
-            }
+      
         }*/
 
     }

@@ -1,6 +1,7 @@
 var config = (function(){
 	
 	var config = {
+		backgroundImage: 'masterplan.png',
 		projectDetail: {
 			titleId: "project-title",
 			addressId: "project-address"
