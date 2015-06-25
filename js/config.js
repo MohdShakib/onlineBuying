@@ -26,6 +26,10 @@ var config = (function(){
 			masterplanScreen: 'masterplanScreen.csv',
 			towerselectScreen: 'towerselectScreen.csv',
 			amenitiesHotspots: 'amenitiesHotspots.csv'
+		},
+		availabilityClass: {
+			available: 'apt-available',
+			unavailable: 'apt-unavailable'
 		}
 	};
 

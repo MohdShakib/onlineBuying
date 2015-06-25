@@ -9,7 +9,6 @@ var DataController = (function(){
 	function DataController(model, view) {
 	    this._model = model;
 	    this._view = view;
-	  	
 	}
 
 	DataController.prototype = {
@@ -75,10 +74,10 @@ var DataController = (function(){
 				});	
 			}
 		},
-	    generateTemplate: function(data, elements){
+	    generateTemplate: function(data, rootdata, elements){
 	    	this._view.updateElements(elements);
 	    	this.attachListeners(elements);
-	    	this._model.updateData(data);
+	    	this._model.updateData(data, rootdata);
 	    },
 	    generateTemplateSkeleton: function(data, containerList){
 	    	this._view.renderInitialData(data);

@@ -23,13 +23,14 @@ var initializeRoutes = (function(){
           }
           break;
         case TOWER: 
-          containerList = ['towerImgContainer', 'towerDetailContainer', 'towerRotationButton', 'towerSvgContainer'];
+          containerList = ['towerImgContainer', 'towerDetailContainer', 'towerRotationButton', 'towerSvgContainer', 'towerMenuContainer'];
           controller.generateTemplateSkeleton(data, containerList);
           elements = {
             'towerImgContainer': $('#img-container'),
             'towerSvgContainer' : $('#svg-container'),
             'towerDetailContainer': $('#tower-detail-container'),
-            'towerRotationContainer': $('#tower-rotation-container')
+            'towerRotationContainer': $('#tower-rotation-container'),
+            'towerMenuContainer' : $('#tower-menu-container')
           }
           break;
         case UNIT: 
@@ -47,7 +48,7 @@ var initializeRoutes = (function(){
       return elements;
   }
 
-  function initializeRoutes(originaldata, controller){
+  function initializeRoutes(rootdata, controller){
 
       var routes = {
         sep: "/",
@@ -65,25 +66,25 @@ var initializeRoutes = (function(){
       var routes = {};
       routes[projectRoute] = {
         on: function(projectName, projectId){
-              originaldata = getProjectData(projectId);
-              var elements = prepareTemplateSkeleton(PROJECT, controller, originaldata);
-              controller.generateTemplate(originaldata, elements);
+              rootdata = getProjectData(projectId);
+              var elements = prepareTemplateSkeleton(PROJECT, controller, rootdata);
+              controller.generateTemplate(rootdata, rootdata, elements);
             }
       }
 
       routes[towerRoute] = {
         on: function(projectName, projectId, towerName){
-              originaldata = getProjectData(projectId);
-              var elements = prepareTemplateSkeleton(TOWER, controller, originaldata);
-              controller.generateTemplate(originaldata.towers[towerName], elements);
+              rootdata = getProjectData(projectId);
+              var elements = prepareTemplateSkeleton(TOWER, controller, rootdata);
+              controller.generateTemplate(rootdata.towers[towerName], rootdata, elements);
             }
       }
 
       routes[unitRoute] = {
         on: function(projectName, projectId, towerName, unitAddress){
-              originaldata = getProjectData(projectId);
-              var elements = prepareTemplateSkeleton(UNIT, controller, originaldata);
-              controller.generateTemplate(originaldata.towers[towerName].listings[unitAddress], elements);
+              rootdata = getProjectData(projectId);
+              var elements = prepareTemplateSkeleton(UNIT, controller, rootdata);
+              controller.generateTemplate(rootdata.towers[towerName].listings[unitAddress], rootdata, elements);
             }
       }
       
