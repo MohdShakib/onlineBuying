@@ -23,11 +23,13 @@ var initializeRoutes = (function(){
           }
           break;
         case TOWER: 
-          containerList = ['towerImgContainer', 'towerSvgContainer'];
+          containerList = ['towerImgContainer', 'towerDetailContainer', 'towerRotationButton', 'towerSvgContainer'];
           controller.generateTemplateSkeleton(data, containerList);
           elements = {
             'towerImgContainer': $('#img-container'),
-            'towerSvgContainer' : $('#svg-container')
+            'towerSvgContainer' : $('#svg-container'),
+            'towerDetailContainer': $('#tower-detail-container'),
+            'towerRotationContainer': $('#tower-rotation-container')
           }
           break;
         case UNIT: 

@@ -8,6 +8,7 @@
 
     function DataModel(data) {
         this._data = data;
+        this._currentRotationAngle = 0;
         this.dataUpdated = new Event(this);
     }
 

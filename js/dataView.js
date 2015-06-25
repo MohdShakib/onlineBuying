@@ -15,6 +15,7 @@ var DataView = (function(){
         'towerSvgContainer': '<svg class="svg-container" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'buildingMenuContainer': '<div class="tower-menu-container" id="tower-menu-container"></div>',
         'towerDetailContainer': '<div class="tower-detail-container" id="tower-detail-container"></div>',
+        'towerRotationContainer': '<div class="tower-rotation-container" id="tower-rotation-container"></div>',
         'amenitiesContainer': '<div class="amenities-container" id="amenities-container"></div>'
     };
 
@@ -26,11 +27,15 @@ var DataView = (function(){
         this._menuMouseEnter = new Event(this);
         this._menuMouseLeave = new Event(this);
         this._menuClick = new Event(this);
-        this._svgMouseEnter = new Event(this);
-        this._svgMouseLeave = new Event(this);
-        this._svgClick = new Event(this);
+        this._towerSvgMouseEnter = new Event(this);
+        this._towerSvgMouseLeave = new Event(this);
+        this._towerSvgClick = new Event(this);
         this._amenityClick = new Event(this);
         this._amenityClose = new Event(this);
+
+        this._towerUnitSvgMouseEnter = new Event(this);
+        this._towerUnitSvgMouseLeave = new Event(this);
+        this._towerUnitSvgClick = new Event(this);
 
         // attach model listeners
         this._model.dataUpdated.attach(function () {
@@ -157,17 +162,17 @@ var DataView = (function(){
 
             _this._elements.buildingSvgContainer.off('click').on('click', '.'+config.towerSvgClass, function(event){
                  // notify controller
-                _this._svgClick.notify(this); // this refers to element here
+                _this._towerSvgClick.notify(this); // this refers to element here
             });
 
             _this._elements.buildingSvgContainer.off('mouseenter').on('mouseenter', '.'+config.towerSvgClass, function(event){
                 // notify controller
-                _this._svgMouseEnter.notify(this); // this refers to element here
+                _this._towerSvgMouseEnter.notify(this); // this refers to element here
             });
 
             _this._elements.buildingSvgContainer.off('mouseleave').on('mouseleave', '.'+config.towerSvgClass, function(event){
                 // notify controller
-                _this._svgMouseLeave.notify(); // this refers to element here
+                _this._towerSvgMouseLeave.notify(); // this refers to element here
             });
         },
         towerMouseEnterEvent: function(element){
@@ -201,8 +206,8 @@ var DataView = (function(){
                 return;
             }
             var towerCode = "";
-            towerCode += "<div id='container-detail' class='tower-detail'>";
-            towerCode += "<div class='tower-name'>" + data.towerName.split(' ')[1] + "</div>";
+            towerCode += "<div id='container-detail' class='tooltip-detail'>";
+            towerCode += "<div class='tooltip-title'>" + data.towerName.split(' ')[1] + "</div>";
             towerCode += "<table>";
 
             for (var j in data.unitInfo) {
@@ -214,8 +219,8 @@ var DataView = (function(){
                     availabilityText = 'Sold';
                 }
                 towerCode += "<tr><td width='70px'></td>";
-                towerCode += "<td class='tower-apt apt-type'>" + aptType.type + "</td>";
-                towerCode += "<td class='tower-apt apt-count " + availabilityClass + "'>" + availabilityText + "</td></tr>";
+                towerCode += "<td class='detail-container container-left'>" + aptType.type + "</td>";
+                towerCode += "<td class='detail-container container-right " + availabilityClass + "'>" + availabilityText + "</td></tr>";
             }
             towerCode += "</table>";
 
@@ -230,14 +235,13 @@ var DataView = (function(){
             document.getElementById('container-detail').style.opacity = "1";
         },
         towerImgContainer: function(data){
-            var currentRotationAngle = '0';
+            var currentRotationAngle = this._model._currentRotationAngle;
             var towerImageUrl = data.rotationAngle && data.rotationAngle[currentRotationAngle] ? data.rotationAngle[currentRotationAngle].towerImageUrl : null ;
             var imgCode = "<img id=\"main-image\" width='100%' src=\"" + towerImageUrl + "\"/>";
             this._elements.towerImgContainer.html(imgCode);
         },
         towerSvgContainer: function(data){
-            var currentRotationAngle = '0';
-
+            var currentRotationAngle = this._model._currentRotationAngle;
             var listing = (data && data.rotationAngle[currentRotationAngle] && Object.keys(data.rotationAngle[currentRotationAngle].listing).length) ? data.rotationAngle[currentRotationAngle].listing : null;
 
             if(!listing){
@@ -255,6 +259,79 @@ var DataView = (function(){
             }
 
             this._elements.towerSvgContainer.html(svgCode);
+            this.towerSvgContainerEvents();
+        },
+        towerSvgContainerEvents: function() {
+            var _this = this;
+
+            _this._elements.towerSvgContainer.off('click').on('click', '.'+config.towerUnitSvgClass, function(event){
+                 // notify controller
+                _this._towerUnitSvgClick.notify(this); // this refers to element here
+            });
+
+            _this._elements.towerSvgContainer.off('mouseenter').on('mouseenter', '.'+config.towerUnitSvgClass, function(event){
+                // notify controller
+                _this._towerUnitSvgMouseEnter.notify(this); // this refers to element here
+            });
+
+            _this._elements.towerSvgContainer.off('mouseleave').on('mouseleave', '.'+config.towerUnitSvgClass, function(event){
+                // notify controller
+                _this._towerUnitSvgMouseLeave.notify(); // this refers to element here
+            });
+        },
+        towerUnitMouseEnterEvent: function(element){
+            var data    = this._model.getData();
+            var index   = element.dataset.index;
+            var toolTipData = data && data.listings ? data.listings[index]  : null;
+            if(toolTipData){
+                var svgpathClient = element.getBoundingClientRect();
+                this.showTowerUnitDetailContainer(toolTipData, (svgpathClient.left+svgpathClient.width/2), svgpathClient.top-40);
+            }
+        },
+        towerUnitMouseLeaveEvent: function(){
+            document.getElementById(config.towerDetailContainerId).innerHTML = '';
+        },
+        showTowerUnitDetailContainer: function(unitInfo, left, top) {
+            if(!(unitInfo && Object.keys(unitInfo).length)){
+                return;
+            }
+            var towerCode = "";
+            towerCode += "<div id='container-detail' class='tooltip-detail'>";
+            towerCode += "<div class='tooltip-title'>" + unitInfo.listingAddress.split('-')[1].substring(1) + "</div>";
+            towerCode += "<table>";
+
+            var availabilityClass = 'apt-available';
+           // var availabilityText = unitInfo.size+' '+unitInfo.measure;
+            if (!unitInfo.isAvailable) {
+                availabilityClass = 'apt-unavailable';
+            }
+
+            var details = {
+                'ADDRESSS' : unitInfo.listingAddress,
+                'SIZE' : unitInfo.size+' '+unitInfo.measure,
+                'FLOOR' : unitInfo.floor,
+                'TYPE' : unitInfo.bedrooms+'BHK',
+
+            }
+
+            for(var key in details){
+                towerCode += "<tr><td width='70px'></td>";
+                towerCode += "<td class='detail-container container-left'>"+key+"</td>";
+                towerCode += "<td class='detail-container container-right " + availabilityClass + "'>" + details[key] + "</td></tr>";
+            }
+            
+
+            towerCode += "</table>";
+
+            if(this._elements && this._elements.towerDetailContainer){
+                this._elements.towerDetailContainer.html(towerCode);
+                $('#container-detail').css("left", left+'px');
+                $('#container-detail').css("top", (top+30)+'px');
+            }   
+
+            // animate
+            window.getComputedStyle(document.getElementById('container-detail')).opacity;
+            document.getElementById('container-detail').style.opacity = "1";
         },
         amenitiesContainer: function(data) {
             var code="";    

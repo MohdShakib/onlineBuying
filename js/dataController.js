@@ -37,18 +37,33 @@ var DataController = (function(){
 			}
 
 			if(elements && elements.buildingSvgContainer){
-				this._view._svgMouseEnter.attach(function(sender, element){
+				this._view._towerSvgMouseEnter.attach(function(sender, element){
 					_this._view.towerMouseEnterEvent(element);
 				});	
 
-				this._view._svgMouseLeave.attach(function(sender, element){
+				this._view._towerSvgMouseLeave.attach(function(sender, element){
 					_this._view.toweMouseLeaveEvent();
 				});	
 
-				this._view._svgClick.attach(function(sender, element){
+				this._view._towerSvgClick.attach(function(sender, element){
 					_this.changeUrl(element);
 				});	
 			}
+
+			if(elements && elements.towerSvgContainer){
+				this._view._towerUnitSvgMouseEnter.attach(function(sender, element){
+					_this._view.towerUnitMouseEnterEvent(element);
+				});	
+
+				this._view._towerUnitSvgMouseLeave.attach(function(sender, element){
+					_this._view.towerUnitMouseLeaveEvent();
+				});	
+
+				this._view._towerUnitSvgClick.attach(function(sender, element){
+					_this.changeUrl(element);
+				});	
+			}
+
 
 			if(elements && elements.amenitiesContainer){
 				this._view._amenityClick.attach(function(sender, element){
