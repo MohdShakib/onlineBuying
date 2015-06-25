@@ -16,6 +16,7 @@ var config = (function(){
 			width: 1365,
 			unit: 'px'
 		},
+		selectedTowerImagesClass: 'selected-tower-image',
 		towerDetailContainerId: "tower-detail-container",
 		fadeImageClass: "fade-image",
 		menuItemHoverClass: "menu-item-hover",

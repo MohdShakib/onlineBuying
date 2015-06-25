@@ -95,6 +95,19 @@ polygon {
 	padding: 8px 10px;
 	border-bottom: 1px solid #666;
 }
+.towerunit-detail-container{
+	background: #333;
+	margin-left: 70px;
+}
+.towerunit-detail-container > div{
+	text-align: left;
+	padding: 3px 20px;
+	color: #c3c3c3;
+}
+.towerunit-detail-container > div.towerunit-name {
+	font-size: 13px;
+	color: white;
+}
 .tooltip-detail .container-left {
 	text-align: right;
 	color: #CCC;
@@ -104,6 +117,12 @@ polygon {
 }
 .apt-available {
 	border-right: 4px solid green;
+}
+.apt-available-color{
+	color: green  !important;
+}
+.apt-unavailable-color{
+	color: #B81C1C !important;
 }
 .apt-unavailable {
 	border-right: 4px solid #B81C1C;
@@ -163,6 +182,13 @@ polygon {
 	width: 100px;
 	background: #333;
   	border-right: 4px green solid;
+}
+
+.tower-rotation-container{
+	position: absolute;
+	right: 100px;
+	top: 100px;
+	z-index: 99999;
 }
 
 /* Overview Image */

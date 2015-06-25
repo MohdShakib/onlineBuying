@@ -235,9 +235,14 @@ var DataView = (function(){
             document.getElementById('container-detail').style.opacity = "1";
         },
         towerImgContainer: function(data){
-            var currentRotationAngle = this._model._currentRotationAngle;
-            var towerImageUrl = data.rotationAngle && data.rotationAngle[currentRotationAngle] ? data.rotationAngle[currentRotationAngle].towerImageUrl : null ;
-            var imgCode = "<img id=\"main-image\" width='100%' src=\"" + towerImageUrl + "\"/>";
+            var currentRotationAngle = this._model._currentRotationAngle, towerImageUrl, imageClass, imgCode = '';
+            for(var rotationAngle in data.rotationAngle){
+                if(hasOwnProperty.call(data.rotationAngle, rotationAngle)){
+                    towerImageUrl = data.rotationAngle[rotationAngle].towerImageUrl;
+                    imageClass = (rotationAngle != this._model._currentRotationAngle) ? 'hidden' : '';
+                    imgCode += "<img class='"+imageClass+" "+rotationAngle+" "+config.selectedTowerImagesClass+"' width='100%' src='" + towerImageUrl +"' />";
+                }
+            }
             this._elements.towerImgContainer.html(imgCode);
         },
         towerSvgContainer: function(data){
@@ -298,31 +303,28 @@ var DataView = (function(){
             var towerCode = "";
             towerCode += "<div id='container-detail' class='tooltip-detail'>";
             towerCode += "<div class='tooltip-title'>" + unitInfo.listingAddress.split('-')[1].substring(1) + "</div>";
-            towerCode += "<table>";
 
             var availabilityClass = 'apt-available';
-           // var availabilityText = unitInfo.size+' '+unitInfo.measure;
             if (!unitInfo.isAvailable) {
                 availabilityClass = 'apt-unavailable';
             }
 
             var details = {
-                'ADDRESSS' : unitInfo.listingAddress,
-                'SIZE' : unitInfo.size+' '+unitInfo.measure,
-                'FLOOR' : unitInfo.floor,
-                'TYPE' : unitInfo.bedrooms+'BHK',
-
-            }
-
-            for(var key in details){
-                towerCode += "<tr><td width='70px'></td>";
-                towerCode += "<td class='detail-container container-left'>"+key+"</td>";
-                towerCode += "<td class='detail-container container-right " + availabilityClass + "'>" + details[key] + "</td></tr>";
-            }
-            
-
-            towerCode += "</table>";
-
+                'address' : unitInfo.listingAddress,
+                'size' : unitInfo.size+' '+unitInfo.measure,
+                'floor' : unitInfo.floor ? unitInfo.floor : 'Ground',
+                'color' : unitInfo.isAvailable ? 'apt-available-color' : 'apt-unavailable-color',
+                'availability': unitInfo.isAvailable ? 'Available' : 'Sold',
+                'type' : unitInfo.bedrooms+' BHK'
+            };
+               
+            towerCode += '<div class="towerunit-detail-container '+availabilityClass+'">';
+            towerCode += '<div class="towerunit-name">'+details.address+'</div>';
+            towerCode += '<div>'+details.type+'</div>';
+            towerCode += '<div>'+details.size+'</div>';
+            towerCode += '<div>Floor '+details.floor+'</div>';
+            towerCode += '<div class="'+details.color+'">'+details.availability+'</div>';
+                
             if(this._elements && this._elements.towerDetailContainer){
                 this._elements.towerDetailContainer.html(towerCode);
                 $('#container-detail').css("left", left+'px');
@@ -332,6 +334,33 @@ var DataView = (function(){
             // animate
             window.getComputedStyle(document.getElementById('container-detail')).opacity;
             document.getElementById('container-detail').style.opacity = "1";
+        },
+        rotateTower: function(){
+            var data = this._model.getData(),
+            imageClass = this._model._currentRotationAngle;
+            
+            $('.'+config.selectedTowerImagesClass).fadeOut(1000);
+            $('.'+imageClass).fadeIn(1000);
+
+            // change unit availability svgs
+            this.towerSvgContainer(data);
+        },
+        towerRotationContainer: function(){
+            var _this = this;
+            _this._elements.towerRotationContainer.off('click').on('click','#rotation-button', function(event){
+                _this._elements.towerSvgContainer.html('');
+                if(_this._model._currentRotationAngle == '0'){
+                    _this._model._currentRotationAngle = '180'
+                }else{
+                    _this._model._currentRotationAngle = '0'
+                }
+                _this.rotateTower();
+            });
+
+            var code = '<button id="rotation-button" >Rotate</button>';
+            if(this._elements && this._elements.towerRotationContainer){
+                this._elements.towerRotationContainer.html(code);
+            }
         },
         amenitiesContainer: function(data) {
             var code="";    

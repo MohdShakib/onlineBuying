@@ -23,7 +23,7 @@ var initializeRoutes = (function(){
           }
           break;
         case TOWER: 
-          containerList = ['towerImgContainer', 'towerDetailContainer', 'towerRotationButton', 'towerSvgContainer'];
+          containerList = ['towerImgContainer', 'towerDetailContainer', 'towerRotationContainer', 'towerSvgContainer'];
           controller.generateTemplateSkeleton(data, containerList);
           elements = {
             'towerImgContainer': $('#img-container'),
