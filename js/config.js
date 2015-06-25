@@ -9,7 +9,8 @@ var config = (function(){
 		mainContainerId : "main-container",
 		imgContainerClass : "menu-mapped-image",
 		leftPanelButtonClass: 'left-panel-button',
-		imgSvgClass: 'image-svg-path',
+		towerImgSvgClass: 'tower-svg-path',
+		towerUnitSvgClass: 'tower-unit-svg-path',
 		imageResolution: {
 			height: 630,
 			width: 1365,

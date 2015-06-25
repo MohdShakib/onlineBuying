@@ -12,6 +12,7 @@ var DataView = (function(){
         'towerImgContainer': '<div class="img-container" id="img-container"></div>',
         'overviewImgContainer': '<div  class="overview-img-container" id="overview-img-container" ></div>',
         'buildingSvgContainer': '<svg class="svg-container" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
+        'towerSvgContainer': '<svg class="svg-container" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'buildingMenuContainer': '<div class="tower-menu-container" id="tower-menu-container"></div>',
         'towerDetailContainer': '<div class="tower-detail-container" id="tower-detail-container"></div>',
         'amenitiesContainer': '<div class="amenities-container" id="amenities-container"></div>'
@@ -144,7 +145,7 @@ var DataView = (function(){
             for(i = 0; i < tower_length; i++){
                 tower = towers[i];
                 if(tower.towerHoverSvg){
-                    svgCode += "<polygon  class=\""+config.imgSvgClass+"\" id=\"" + tower.towerId + "-path\" data-index=\""+tower.towerIdentifier+"\" data-url=\""+data.baseUrl+"/"+tower.towerIdentifier+"\" data-imageid=\""+ tower.towerId + "\"  points=\"" + tower.towerHoverSvg + "\" />";
+                    svgCode += "<polygon  class=\""+config.towerSvgClass+"\" id=\"" + tower.towerId + "-path\" data-index=\""+tower.towerIdentifier+"\" data-url=\""+data.baseUrl+"/"+tower.towerIdentifier+"\" data-imageid=\""+ tower.towerId + "\"  points=\"" + tower.towerHoverSvg + "\" />";
                 }
             }
 
@@ -154,17 +155,17 @@ var DataView = (function(){
         buildingSvgContainerEvents: function() {
             var _this = this;
 
-            _this._elements.buildingSvgContainer.off('click').on('click', '.'+config.imgSvgClass, function(event){
+            _this._elements.buildingSvgContainer.off('click').on('click', '.'+config.towerSvgClass, function(event){
                  // notify controller
                 _this._svgClick.notify(this); // this refers to element here
             });
 
-            _this._elements.buildingSvgContainer.off('mouseenter').on('mouseenter', '.'+config.imgSvgClass, function(event){
+            _this._elements.buildingSvgContainer.off('mouseenter').on('mouseenter', '.'+config.towerSvgClass, function(event){
                 // notify controller
                 _this._svgMouseEnter.notify(this); // this refers to element here
             });
 
-            _this._elements.buildingSvgContainer.off('mouseleave').on('mouseleave', '.'+config.imgSvgClass, function(event){
+            _this._elements.buildingSvgContainer.off('mouseleave').on('mouseleave', '.'+config.towerSvgClass, function(event){
                 // notify controller
                 _this._svgMouseLeave.notify(); // this refers to element here
             });
@@ -233,6 +234,27 @@ var DataView = (function(){
             var towerImageUrl = data.rotationAngle && data.rotationAngle[currentRotationAngle] ? data.rotationAngle[currentRotationAngle].towerImageUrl : null ;
             var imgCode = "<img id=\"main-image\" width='100%' src=\"" + towerImageUrl + "\"/>";
             this._elements.towerImgContainer.html(imgCode);
+        },
+        towerSvgContainer: function(data){
+            var currentRotationAngle = '0';
+
+            var listing = (data && data.rotationAngle[currentRotationAngle] && Object.keys(data.rotationAngle[currentRotationAngle].listing).length) ? data.rotationAngle[currentRotationAngle].listing : null;
+
+            if(!listing){
+                return;
+            }
+
+            var svgCode = "", unitIdentifier, unitInfo, svgColor; 
+            
+            for(unitIdentifier in listing){
+                unitInfo = listing[unitIdentifier];
+                if(hasOwnProperty.call(listing, unitIdentifier) && hasOwnProperty.call(listing[unitIdentifier], 'isAvailable') && unitInfo.unitSvgOnTower){
+                    svgColor = listing[unitIdentifier].isAvailable ? 'green' : 'red'; 
+                    svgCode += "<circle  class=\""+config.towerUnitSvgClass+"\" id=\"" + unitInfo.unitName + "-path\" data-index=\""+unitIdentifier+"\"  cx='"+unitInfo.unitSvgOnTower[0]+"' cy='"+unitInfo.unitSvgOnTower[1]+"' r='0.4' fill='"+svgColor+"' />";
+                }
+            }
+
+            this._elements.towerSvgContainer.html(svgCode);
         },
         amenitiesContainer: function(data) {
             var code="";    

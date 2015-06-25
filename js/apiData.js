@@ -121,7 +121,13 @@ var getProjectData = (function() {
                     }
 
                     tower = projectData.towers[unitTowerIdentifier];
+
+                    if(tower.listings[unitIdentifier]){ // get unit availability status
+                        unitInfo.isAvailable = tower.listings[unitIdentifier].isAvailable;
+                    }
                     
+                    var unitSvgOnTower = unitInfo.unitSvgOnTower ? unitInfo.unitSvgOnTower.split(' ') : null; 
+                    unitInfo.unitSvgOnTower = unitSvgOnTower;
                     if(tower && tower.rotationAngle[unitInfo.rotationAngle] && unitInfo.rotationAngle){
                         tower.rotationAngle[unitInfo.rotationAngle].listing[unitIdentifier] = unitInfo;
                         delete unitInfo.rotationAngle;
