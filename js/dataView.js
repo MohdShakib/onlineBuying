@@ -113,7 +113,7 @@ var DataView = (function(){
             code += "<tr><td class='menu-items'><table>";
             for (var towerIdentifier in data.towers) {
                 var tower = data.towers[towerIdentifier];
-                code += "<tr><td><div class='menu-item " + config.leftPanelButtonClass + 
+                code += "<tr><td class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass + 
                     "' id='" + tower.towerId + "-menu' data-index='" + towerIdentifier + 
                     "' data-imageid='" + tower.towerId + 
                     "' data-url='" + data.baseUrl+"/"+towerIdentifier+
@@ -345,7 +345,6 @@ var DataView = (function(){
                     code += "<div id='" + amenityKey + "' class='" + config.amenityIconClass + "' style='"+ position +"'>+";
                     code += "<div class='name'><span>" + amenity.amenityName + "</span></div>";
                     code += "</div>";
-                    
                 }
             }
             this._elements.amenitiesContainer.html(code);
@@ -390,10 +389,28 @@ var DataView = (function(){
             var code = "<table><tr><td class='menu-header menu-icon'><a href='" + url + "'>&lt;--</a></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><table>";
-            code += "<tr><td><div class='menu-item " + config.leftPanelButtonClass + "'> A </div>";
-            code += "<div class='menu-item-options'><table>"; 
-            
-            var bhks = this.getUniqueBHK(data.listings);
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass + "'> A </div>";
+            code += this.getBHKMenuOptions(data);
+            code += "</td></tr>";
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass + "'> B </div>";
+            code += this.getFloorMenuOptions(data);
+            code += "</td></tr>";
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass + "'> C </div>";
+            code += this.getEntranceMenuOptions(data);
+            code += "</td></tr>";
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass + "'> D </div>";
+            code += this.getPriceMenuOptions(data);
+            code += "</td></tr>";
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass + "'> R </div></td></tr>";            
+            code += "</table></td></tr>";
+            code += "<tr><td class='menu-sep'></td></tr>";
+            code += "<tr><td class='menu-call menu-icon'> C </td></tr>";
+            code += "</table>";
+            this._elements.towerMenuContainer.html(code);
+        },
+        getBHKMenuOptions: function(data) {
+            var code = "<div class='menu-item-options'><table>"; 
+            var bhks = this.getBHKAvailability(data.listings);
             for (var bhk in bhks) {
                 var availabilityClass = config.availabilityClass.available;
                 if (bhks[bhk] == 0) {
@@ -401,18 +418,10 @@ var DataView = (function(){
                 }
                 code += "<tr><td class='" + availabilityClass + "'>" + bhk + " BHK</td></tr>";
             }
-            code += "</table></div></td></tr>";
-            code += "<tr><td><div class='menu-item " + config.leftPanelButtonClass + "'> B </div></td></tr>";
-            code += "<tr><td><div class='menu-item " + config.leftPanelButtonClass + "'> C </div></td></tr>";
-            code += "<tr><td><div class='menu-item " + config.leftPanelButtonClass + "'> D </div></td></tr>";
-            code += "<tr><td><div class='menu-item " + config.leftPanelButtonClass + "'> R </div></td></tr>";            
-            code += "</table></td></tr>";
-            code += "<tr><td class='menu-sep'></td></tr>";
-            code += "<tr><td class='menu-call menu-icon'> C </td></tr>";
-            code += "</table>";
-            this._elements.towerMenuContainer.html(code);
+            code += "</table></div>";
+            return code;
         },
-        getUniqueBHK: function(units) {
+        getBHKAvailability: function(units) {
             var bhks = {};
             for (var i in units) {
                 var unit = units[i];
@@ -424,6 +433,90 @@ var DataView = (function(){
                 }
             }
             return bhks;
+        },
+        getFloorMenuOptions: function(data) {
+            var code = "<div class='menu-item-options'><table>"; 
+            var floors = this.getFloorAvailability(data.listings);
+            for (var floorGroup in floors) {
+                var availabilityClass = config.availabilityClass.available;
+                if (floors[floorGroup] == 0) {
+                    availabilityClass = config.availabilityClass.unavailable;
+                }
+                code += "<tr><td class='" + availabilityClass + "'>" + floorGroup + "</td></tr>";
+            }
+            code += "</table></div>";
+            return code;
+        },
+        getFloorAvailability: function(units) {
+            var floors = {};
+            var interval = 3;
+            for (var i in units) {
+                var unit = units[i];
+                var sfloor = Math.floor(unit.floor/interval) * interval;
+                var floorGroup = sfloor + ' - ' + (sfloor + interval - 1);
+                if (floors[floorGroup] == null) {
+                    floors[floorGroup] = 0;
+                }
+                if (unit.isAvailable) {
+                    floors[floorGroup]++;
+                }
+            }
+            return floors;
+        },
+        getEntranceMenuOptions: function(data) {
+            var code = "<div class='menu-item-options'><table>"; 
+            var entrances = this.getEntranceAvailability(data.listings);
+            for (var entrance in entrances) {
+                var availabilityClass = config.availabilityClass.available;
+                if (entrances[entrance] == 0) {
+                    availabilityClass = config.availabilityClass.unavailable;
+                }
+                code += "<tr><td class='" + availabilityClass + "'>" + entrance + "</td></tr>";
+            }
+            code += "</table></div>";
+            return code;
+        },
+        getEntranceAvailability: function(units) {
+            var entrances = {};
+            for (var i in units) {
+                var unit = units[i];
+                if (entrances[unit.facing] == null) {
+                    entrances[unit.facing] = 0;
+                }
+                if (unit.isAvailable) {
+                    entrances[unit.facing]++;
+                }
+            }
+            return entrances;
+        },
+        getPriceMenuOptions: function(data) {
+            var code = "<div class='menu-item-options'><table>"; 
+            var prices = this.getPriceAvailability(data.listings);
+            for (var price in prices) {
+                var availabilityClass = config.availabilityClass.available;
+                if (prices[price] == 0) {
+                    availabilityClass = config.availabilityClass.unavailable;
+                }
+                code += "<tr><td class='" + availabilityClass + "'>" + price + "</td></tr>";
+            }
+            code += "</table></div>";
+            return code;
+        },
+        getPriceAvailability: function(units) {
+            var prices = {};
+            var interval = 5;
+            for (var i in units) {
+                var unit = units[i];
+                var sPrice = Math.floor(unit.price/interval/100000) * interval;
+                var priceGroup = sPrice + ' Lac - ' + (sPrice + interval - 1) + ' Lac';
+                if (prices[priceGroup] == null) {
+                    prices[priceGroup] = 0;
+                }
+                if (unit.isAvailable) {
+                    prices[priceGroup]++;
+                }
+            }
+            return prices;
         }
     };
 

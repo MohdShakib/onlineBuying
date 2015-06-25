@@ -154,7 +154,7 @@ polygon {
 .tower-menu-container .menu-items table {
 	height: auto;
 }
-.tower-menu-container .menu-items table td {
+.tower-menu-container .menu-items .menu-item-container-td {
 	position: relative;
 	height: 40px;
 	width: 45px;
@@ -174,21 +174,27 @@ polygon {
 	background: #333;
   	border-right: 4px green solid;
 }
-.tower-menu-container .menu-items .menu-item-options {
+.tower-menu-container .menu-items .menu-item-container .menu-item-options {
 	position: absolute;
 	height: auto;
-	width: 90px;
+	min-width: 140px;
 	top: 0px;
 	left: 46px;
 	background: rgba(0,0,0,0.5);
+	visibility: hidden;
+}
+.tower-menu-container .menu-items .menu-item-container:hover .menu-item-options {
+	visibility: visible;
 }
 .menu-item-options table {
 	width: 100%;
 }
 .menu-item-options table td {
+	position: relative;
 	font-size: 14px;
 	text-align: left;
 	padding: 0 10px;
+	height: 40px;
 }
 
 /* Overview Image */
