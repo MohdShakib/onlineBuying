@@ -118,16 +118,22 @@ polygon {
 	text-align: left;
 }
 .apt-available {
-	border-right: 4px solid green;
+	border-right: 4px solid limegreen;
 }
 .apt-available-color{
-	color: green  !important;
+	color: limegreen  !important;
+}
+.apt-available-border-color{
+	border-color: limegreen  !important;
+}
+.apt-unavailable-border-color{
+	border-color: crimson  !important;
 }
 .apt-unavailable-color{
-	color: #B81C1C !important;
+	color: crimson !important;
 }
 .apt-unavailable {
-	border-right: 4px solid #B81C1C;
+	border-right: 4px solid crimson;
 }
 
 /* Tower Menu */
@@ -143,22 +149,27 @@ polygon {
     border-collapse: separate;
     height: 100.1%;   /* Fix as height may not be an integer */
 }
+.tower-menu-container .menu-icon, 
+.tower-menu-container .menu-items,
+.menu-item-container .menu-item-options {
+	background: rgba(0,0,0,0.8);
+}
+.tower-menu-container .menu-item-container:hover,
+.tower-menu-container .menu-item:hover,
+.tower-menu-container .menu-icon:hover,
+.menu-item-options .option-item:hover {
+	background: #333;
+}
 .tower-menu-container .menu-icon, .tower-menu-container .menu-items {
 	color: #FFF;
 	width: 45px;
 	text-align: center;
 	font-weight: normal;
-	background: rgba(0,0,0,0.5);
 }
 .tower-menu-container .menu-icon {
 	height: 45px;
 	line-height: 45px;
 	cursor: pointer;
-	-webkit-transition: 0.5s;
-    transition: 0.5s;
-}
-.tower-menu-container .menu-icon:hover {
-	background: rgba(0,0,0,0.7);
 }
 .tower-menu-container .menu-icon a {
 	color: white;
@@ -193,33 +204,47 @@ polygon {
 }
 .tower-menu-container .menu-item-hover {
 	width: 100px;
-	background: #333;
   	border-right: 4px green solid;
+}
+.tower-menu-container .menu-items .menu-item-container {
+	-webkit-transition: 0.5s;
+    transition: 0.5s;
 }
 .tower-menu-container .menu-items .menu-item-container .menu-item-options {
 	position: absolute;
 	height: auto;
-	min-width: 140px;
+	min-width: 110px;
 	top: 0px;
-	left: 46px;
-	background: rgba(0,0,0,0.5);
+	left: 45px;
+	border-left: 1px solid rgba(255,255,255,0.3);
+	opacity: 0;
 	visibility: hidden;
+	-webkit-transition: 0.5s;
+    transition: 0.5s;
 }
 .tower-menu-container .menu-items .menu-item-container:hover .menu-item-options {
+	opacity: 1;
 	visibility: visible;
 }
 .menu-item-options table {
 	width: 100%;
 }
-.menu-item-options table td {
+.menu-item-options .option-item {
 	position: relative;
 	font-size: 14px;
 	text-align: left;
 	padding: 0 10px;
 	height: 40px;
+	cursor: pointer;
+	-webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+.menu-item-options .option-item:hover {
+  	border-right: 4px solid;
 }
 
-.tower-rotation-container{
+/* Tower Rotation */
+.tower-rotation-container {
 	position: absolute;
 	right: 100px;
 	top: 100px;
@@ -275,9 +300,13 @@ polygon {
 	line-height: normal;
 	font-size: 12px;
 	text-shadow: 1px 1px 2px #333;
+	opacity: 0;
 	visibility: hidden;
+	-webkit-transition: 0.5s;
+    transition: 0.5s;
 }
 .amenities-container .amenity-icon:hover .name {
+	opacity: 1;
 	visibility: visible;
 }
 

@@ -227,12 +227,14 @@ var TowerselectedView = (function() {
         getBHKMenuOptions: function(data) {
             var code = "<div class='menu-item-options'><table>";
             var bhks = this.getBHKAvailability(data.listings);
-            for (var bhk in bhks) {
-                var availabilityClass = config.availabilityClass.available;
+            var sortedBhks = Object.keys(bhks).sort();
+            for (var i in sortedBhks) {
+                var bhk = sortedBhks[i];
+                var availabilityClass = "apt-available-border-color";
                 if (bhks[bhk] == 0) {
-                    availabilityClass = config.availabilityClass.unavailable;
+                    availabilityClass = "apt-unavailable-border-color";
                 }
-                code += "<tr><td class='" + availabilityClass + "'>" + bhk + " BHK</td></tr>";
+                code += "<tr><td class='option-item " + availabilityClass + "'>" + bhk + " BHK</td></tr>";
             }
             code += "</table></div>";
             return code;
@@ -253,12 +255,14 @@ var TowerselectedView = (function() {
         getFloorMenuOptions: function(data) {
             var code = "<div class='menu-item-options'><table>";
             var floors = this.getFloorAvailability(data.listings);
-            for (var floorGroup in floors) {
-                var availabilityClass = config.availabilityClass.available;
+            var sortedFloors = Object.keys(floors).sort();
+            for (var i in sortedFloors) {
+                var floorGroup = sortedFloors[i];
+                var availabilityClass = "apt-available-border-color";
                 if (floors[floorGroup] == 0) {
-                    availabilityClass = config.availabilityClass.unavailable;
+                    availabilityClass = "apt-unavailable-border-color";
                 }
-                code += "<tr><td class='" + availabilityClass + "'>" + floorGroup + "</td></tr>";
+                code += "<tr><td class='option-item " + availabilityClass + "'>" + floorGroup + "</td></tr>";
             }
             code += "</table></div>";
             return code;
@@ -282,12 +286,14 @@ var TowerselectedView = (function() {
         getEntranceMenuOptions: function(data) {
             var code = "<div class='menu-item-options'><table>";
             var entrances = this.getEntranceAvailability(data.listings);
-            for (var entrance in entrances) {
-                var availabilityClass = config.availabilityClass.available;
+            var sortedEntrances = Object.keys(entrances).sort();
+            for (var i in sortedEntrances) {
+                var entrance = sortedEntrances[i];
+                var availabilityClass = "apt-available-border-color";
                 if (entrances[entrance] == 0) {
-                    availabilityClass = config.availabilityClass.unavailable;
+                    availabilityClass = "apt-unavailable-border-color";
                 }
-                code += "<tr><td class='" + availabilityClass + "'>" + entrance + "</td></tr>";
+                code += "<tr><td class='option-item " + availabilityClass + "'>" + entrance + "</td></tr>";
             }
             code += "</table></div>";
             return code;
@@ -308,23 +314,25 @@ var TowerselectedView = (function() {
         getPriceMenuOptions: function(data) {
             var code = "<div class='menu-item-options'><table>";
             var prices = this.getPriceAvailability(data.listings);
-            for (var price in prices) {
-                var availabilityClass = config.availabilityClass.available;
+            var sortedPrices = Object.keys(prices).sort();
+            for (var i in sortedPrices) {
+                var price = sortedPrices[i];
+                var availabilityClass = "apt-available-border-color";
                 if (prices[price] == 0) {
-                    availabilityClass = config.availabilityClass.unavailable;
+                    availabilityClass = "apt-unavailable-border-color";
                 }
-                code += "<tr><td class='" + availabilityClass + "'>" + price + "</td></tr>";
+                code += "<tr><td class='option-item " + availabilityClass + "'>" + price + "</td></tr>";
             }
             code += "</table></div>";
             return code;
         },
         getPriceAvailability: function(units) {
             var prices = {};
-            var interval = 5;
+            var interval = 10;
             for (var i in units) {
                 var unit = units[i];
                 var sPrice = Math.floor(unit.price / interval / 100000) * interval;
-                var priceGroup = sPrice + ' Lac - ' + (sPrice + interval - 1) + ' Lac';
+                var priceGroup = sPrice + ' L - ' + (sPrice + interval - 1) + ' L';
                 if (prices[priceGroup] == null) {
                     prices[priceGroup] = 0;
                 }
