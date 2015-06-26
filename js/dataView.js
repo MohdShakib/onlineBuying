@@ -338,12 +338,13 @@ var DataView = (function(){
         rotateTower: function(){
             var data = this._model.getData(),
             imageClass = this._model._currentRotationAngle;
-            
+            var _this = this;
             $('.'+config.selectedTowerImagesClass).fadeOut(1000);
-            $('.'+imageClass).fadeIn(1000);
+            $('.'+imageClass).fadeIn(1000,function(){
+                 // change unit availability svgs
+                _this.towerSvgContainer(data);
+            });
 
-            // change unit availability svgs
-            this.towerSvgContainer(data);
         },
         towerRotationContainer: function(){
             var _this = this;
