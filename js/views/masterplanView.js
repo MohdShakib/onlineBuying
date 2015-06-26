@@ -5,7 +5,7 @@
  */
 
 "use strict";
-var MasterplanView = (function(){
+var MasterplanView = (function() {
 
     var containerMap = {
         'buildingImgContainer': '<div class="img-container" id="img-container"></div>',
@@ -15,96 +15,85 @@ var MasterplanView = (function(){
         'amenitiesContainer': '<div class="amenities-container" id="amenities-container"></div>'
     };
 
-    
+    function getElements() {
+        var elements = {
+            'buildingImgContainer': $('#img-container'),
+            'buildingSvgContainer': $('#svg-container'),
+            'buildingMenuContainer': $('#tower-menu-container'),
+            'towerDetailContainer': $('#tower-detail-container'),
+            'amenitiesContainer': $('#amenities-container')
+        };
+        return elements;
+    }
 
     function MasterplanView(model) {
         this._model = model;
         this._elements = null;
         var _this = this;
 
+        // Menu Events
         this._menuMouseEnter = new Event(this);
         this._menuMouseLeave = new Event(this);
         this._menuClick = new Event(this);
+
+        // Svg Events
         this._towerSvgMouseEnter = new Event(this);
         this._towerSvgMouseLeave = new Event(this);
         this._towerSvgClick = new Event(this);
+
+        // Amenity Events
         this._amenityClick = new Event(this);
         this._amenityClose = new Event(this);
-
-        this._towerUnitSvgMouseEnter = new Event(this);
-        this._towerUnitSvgMouseLeave = new Event(this);
-        this._towerUnitSvgClick = new Event(this);
-
-        // attach model listeners
-        /*this._model.dataUpdated.attach(function () {
-            _this.rebuildView();
-        });*/
-
     }
 
     MasterplanView.prototype = {
-
-        sortTowersObject: function(towers){
-
-            var towerName, towerValues = [];
-
-            for(towerName in towers){
-                if(hasOwnProperty.call(towers, towerName)){
-                    towerValues.push(towers[towerName]);
-                }
-            }
-
-            return towerValues.sort(function(t1, t2){
-                return t1.displayOrder - t2.displayOrder;
-            });
-
-        },
-        rebuildView: function(){
+        buildView: function() {
             var i, data = this._model.getData();
             var rootdata = this._model.getRootdata();
-            var _this   = this;
+            var _this = this;
             this.buildSkeleton(Object.keys(containerMap));
-            this.updateElements();
             this.renderInitialData(data);
-            for(i in this._elements){
-                if(this._elements.hasOwnProperty(i) && this[i]){
+            for (i in this._elements) {
+                if (this._elements.hasOwnProperty(i) && this[i]) {
                     this[i](data, rootdata);
                 }
             }
         },
-        updateElements: function(){
-            this._elements =  {
-            'buildingImgContainer': $('#img-container'),
-            //'overviewImgContainer': $('#overview-img-container'),
-            'buildingSvgContainer' : $('#svg-container'),
-            'buildingMenuContainer': $('#tower-menu-container'),
-            'towerDetailContainer': $('#tower-detail-container'),
-            'amenitiesContainer': $('#amenities-container')
-          };
-        },
-        renderInitialData: function(data){
-            document.getElementById(config.projectDetail.titleId).innerHTML = data.projectName;
-            document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
-        },
-        buildSkeleton: function(containerList){
+        buildSkeleton: function(containerList) {
             var key, mainContainerHtml = '';
-            for(key in containerList){
-                if(containerList.hasOwnProperty(key) && containerMap[containerList[key]]){
+            for (key in containerList) {
+                if (containerList.hasOwnProperty(key) && containerMap[containerList[key]]) {
                     mainContainerHtml += containerMap[containerList[key]];
                 }
             }
             document.getElementById(config.mainContainerId).innerHTML = mainContainerHtml;
+            this._elements = getElements();
+        },
+        renderInitialData: function(data) {
+            document.getElementById(config.projectDetail.titleId).innerHTML = data.projectName;
+            document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
+        },
+        sortTowersObject: function(towers) {
+            var towerName, towerValues = [];
+            for (towerName in towers) {
+                if (hasOwnProperty.call(towers, towerName)) {
+                    towerValues.push(towers[towerName]);
+                }
+            }
+            return towerValues.sort(function(t1, t2) {
+                return t1.displayOrder - t2.displayOrder;
+            });
         },
         buildingImgContainer: function(data, rootdata) {
             var imgCode = "<img id=\"main-image\" width='100%' src=\"" + data.bgImage + "\"/>";
             var tower, i,
-            towers = this.sortTowersObject(data.towers),
-            tower_length = towers.length;
+                towers = this.sortTowersObject(data.towers),
+                tower_length = towers.length;
 
-            for(i = 0; i < tower_length; i++){
+            for (i = 0; i < tower_length; i++) {
                 tower = towers[i];
-                if(tower.hoverImageUrl){
-                    imgCode += "<img class=\""+config.imgContainerClass+"\" id=\"" + tower.towerId + "\" width='100%' src=\"" + tower.hoverImageUrl + "\" />";
+                if (tower.hoverImageUrl) {
+                    imgCode += "<img class=\"" + config.imgContainerClass + "\" id=\"" + tower.towerId + "\" width='100%' src=\"" + tower.hoverImageUrl + "\" />";
                 }
             }
             this._elements.buildingImgContainer.html(imgCode);
@@ -115,10 +104,10 @@ var MasterplanView = (function(){
             code += "<tr><td class='menu-items'><table>";
             for (var towerIdentifier in data.towers) {
                 var tower = data.towers[towerIdentifier];
-                code += "<tr><td class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass + 
-                    "' id='" + tower.towerId + "-menu' data-index='" + towerIdentifier + 
-                    "' data-imageid='" + tower.towerId + 
-                    "' data-url='" + data.baseUrl+"/"+towerIdentifier+
+                code += "<tr><td class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass +
+                    "' id='" + tower.towerId + "-menu' data-index='" + towerIdentifier +
+                    "' data-imageid='" + tower.towerId +
+                    "' data-url='" + data.baseUrl + "/" + towerIdentifier +
                     "'>" + tower.towerName.split(' ')[1] + "</div></td></tr>";
             }
             code += "</table></td></tr>";
@@ -128,33 +117,34 @@ var MasterplanView = (function(){
             this._elements.buildingMenuContainer.html(code);
             this.buildingMenuContainerEvents();
         },
-        buildingMenuContainerEvents: function(){
+        buildingMenuContainerEvents: function() {
             var _this = this;
 
-            _this._elements.buildingMenuContainer.off('click').on('click', '.'+config.leftPanelButtonClass, function(event){
+            _this._elements.buildingMenuContainer.off('click').on('click', '.' + config.leftPanelButtonClass, function(event) {
                 // notify controller
                 _this._menuClick.notify(this); // this refers to element here
             });
 
-            _this._elements.buildingMenuContainer.off('mouseenter').on('mouseenter', '.'+config.leftPanelButtonClass, function(event){
-               // notify controller
-               _this._menuMouseEnter.notify(this); // this refers to element here
+            _this._elements.buildingMenuContainer.off('mouseenter').on('mouseenter', '.' + config.leftPanelButtonClass, function(event) {
+                // notify controller
+                _this._menuMouseEnter.notify(this); // this refers to element here
             });
 
-            _this._elements.buildingMenuContainer.off('mouseleave').on('mouseleave', '.'+config.leftPanelButtonClass, function(event){
+            _this._elements.buildingMenuContainer.off('mouseleave').on('mouseleave', '.' + config.leftPanelButtonClass, function(event) {
                 // notify controller
                 _this._menuMouseLeave.notify(); // this refers to element here
             });
         },
         buildingSvgContainer: function(data, rootdata) {
-            var svgCode = "", i, tower,
-            towers = this.sortTowersObject(data.towers),
-            tower_length = towers.length;
+            var svgCode = "",
+                i, tower,
+                towers = this.sortTowersObject(data.towers),
+                tower_length = towers.length;
 
-            for(i = 0; i < tower_length; i++){
+            for (i = 0; i < tower_length; i++) {
                 tower = towers[i];
-                if(tower.towerHoverSvg){
-                    svgCode += "<polygon  class=\""+config.towerSvgClass+"\" id=\"" + tower.towerId + "-path\" data-index=\""+tower.towerIdentifier+"\" data-url=\""+data.baseUrl+"/"+tower.towerIdentifier+"\" data-imageid=\""+ tower.towerId + "\"  points=\"" + tower.towerHoverSvg + "\" />";
+                if (tower.towerHoverSvg) {
+                    svgCode += "<polygon  class=\"" + config.towerSvgClass + "\" id=\"" + tower.towerId + "-path\" data-index=\"" + tower.towerIdentifier + "\" data-url=\"" + data.baseUrl + "/" + tower.towerIdentifier + "\" data-imageid=\"" + tower.towerId + "\"  points=\"" + tower.towerHoverSvg + "\" />";
                 }
             }
 
@@ -164,49 +154,49 @@ var MasterplanView = (function(){
         buildingSvgContainerEvents: function() {
             var _this = this;
 
-            _this._elements.buildingSvgContainer.off('click').on('click', '.'+config.towerSvgClass, function(event){
-                 // notify controller
+            _this._elements.buildingSvgContainer.off('click').on('click', '.' + config.towerSvgClass, function(event) {
+                // notify controller
                 _this._towerSvgClick.notify(this); // this refers to element here
             });
 
-            _this._elements.buildingSvgContainer.off('mouseenter').on('mouseenter', '.'+config.towerSvgClass, function(event){
+            _this._elements.buildingSvgContainer.off('mouseenter').on('mouseenter', '.' + config.towerSvgClass, function(event) {
                 // notify controller
                 _this._towerSvgMouseEnter.notify(this); // this refers to element here
             });
 
-            _this._elements.buildingSvgContainer.off('mouseleave').on('mouseleave', '.'+config.towerSvgClass, function(event){
+            _this._elements.buildingSvgContainer.off('mouseleave').on('mouseleave', '.' + config.towerSvgClass, function(event) {
                 // notify controller
                 _this._towerSvgMouseLeave.notify(); // this refers to element here
             });
         },
-        towerMouseEnterEvent: function(element){
-            var data    = this._model.getData();
-            var index   = element.dataset.index;
-            var toolTipData = data && data.towers ? data.towers[index]  : null;
+        towerMouseEnterEvent: function(element) {
+            var data = this._model.getData();
+            var index = element.dataset.index;
+            var toolTipData = data && data.towers ? data.towers[index] : null;
             var imageid = element.dataset.imageid ? element.dataset.imageid : 'main-image';
-            var svgpath = document.getElementById(imageid+'-path');
-            var targetImage = $('img#'+imageid);
+            var svgpath = document.getElementById(imageid + '-path');
+            var targetImage = $('img#' + imageid);
 
-            if(!(targetImage && targetImage.length)){
+            if (!(targetImage && targetImage.length)) {
                 return;
             }
 
-            $('img.'+config.imgContainerClass).addClass(config.fadeImageClass);
+            $('img.' + config.imgContainerClass).addClass(config.fadeImageClass);
             targetImage.removeClass(config.fadeImageClass);
-            if(toolTipData && svgpath){
+            if (toolTipData && svgpath) {
                 var svgpathClient = svgpath.getBoundingClientRect();
-                this.showTowerDetailContainer(toolTipData, (svgpathClient.left+svgpathClient.width/2), svgpathClient.top);
+                this.showTowerDetailContainer(toolTipData, (svgpathClient.left + svgpathClient.width / 2), svgpathClient.top);
             }
 
-            $('#'+imageid+'-menu').addClass(config.menuItemHoverClass);
+            $('#' + imageid + '-menu').addClass(config.menuItemHoverClass);
         },
-        toweMouseLeaveEvent: function(){
+        toweMouseLeaveEvent: function() {
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
-            $('img.'+config.imgContainerClass).removeClass(config.fadeImageClass);
-            $('.'+config.leftPanelButtonClass).removeClass(config.menuItemHoverClass);
+            $('img.' + config.imgContainerClass).removeClass(config.fadeImageClass);
+            $('.' + config.leftPanelButtonClass).removeClass(config.menuItemHoverClass);
         },
         showTowerDetailContainer: function(data, left, top) {
-            if(!(data && data.unitInfo)){
+            if (!(data && data.unitInfo)) {
                 return;
             }
             var towerCode = "";
@@ -228,24 +218,24 @@ var MasterplanView = (function(){
             }
             towerCode += "</table>";
 
-            if(this._elements && this._elements.towerDetailContainer){
+            if (this._elements && this._elements.towerDetailContainer) {
                 this._elements.towerDetailContainer.html(towerCode);
-                $('#container-detail').css("left", left+'px');
-                $('#container-detail').css("top", (top+30)+'px');
-            }   
+                $('#container-detail').css("left", left + 'px');
+                $('#container-detail').css("top", (top + 30) + 'px');
+            }
 
             // animate
             window.getComputedStyle(document.getElementById('container-detail')).opacity;
             document.getElementById('container-detail').style.opacity = "1";
         },
         amenitiesContainer: function(data, rootdata) {
-            var code="";    
+            var code = "";
             for (var amenityKey in data.amenities) {
-                if(hasOwnProperty.call(data.amenities, amenityKey)){
+                if (hasOwnProperty.call(data.amenities, amenityKey)) {
                     var amenity = data.amenities[amenityKey];
                     var point = data.amenities[amenityKey].amenitySvg.split(' ');
-                    var position = "top:" + point[1] + "%; left:" + point[0] + "%;" ;
-                    code += "<div id='" + amenityKey + "' class='" + config.amenityIconClass + "' style='"+ position +"'>+";
+                    var position = "top:" + point[1] + "%; left:" + point[0] + "%;";
+                    code += "<div id='" + amenityKey + "' class='" + config.amenityIconClass + "' style='" + position + "'>+";
                     code += "<div class='name'><span>" + amenity.amenityName + "</span></div>";
                     code += "</div>";
                 }
@@ -255,13 +245,13 @@ var MasterplanView = (function(){
         },
         amenitiesContainerEvents: function() {
             var _this = this;
-            _this._elements.amenitiesContainer.off('click').on('click', '.'+config.amenityIconClass, function(event){
-                 // notify controller
+            _this._elements.amenitiesContainer.off('click').on('click', '.' + config.amenityIconClass, function(event) {
+                // notify controller
                 _this._amenityClick.notify(this); // this refers to element here
             });
         },
         amenityClickEvent: function(element) {
-            var data    = this._model.getData();
+            var data = this._model.getData();
             var amenityId = element.id;
             var amenity = {};
             for (var amenityKey in data.amenities) {
@@ -278,13 +268,13 @@ var MasterplanView = (function(){
         },
         amenitiesPopupEvents: function() {
             var _this = this;
-            _this._elements.amenitiesContainer.off('click').on('click', '.'+config.amenityPopupCloseClass, function(event){
-                 // notify controller
+            _this._elements.amenitiesContainer.off('click').on('click', '.' + config.amenityPopupCloseClass, function(event) {
+                // notify controller
                 _this._amenityClose.notify(this); // this refers to element here
             });
         },
         amenityCloseEvent: function() {
-            $("."+config.amenityPopupClass).remove();
+            $("." + config.amenityPopupClass).remove();
             this.amenitiesContainerEvents();
         }
     };
