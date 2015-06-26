@@ -31,6 +31,13 @@ var config = (function(){
 		availabilityClass: {
 			available: 'apt-available',
 			unavailable: 'apt-unavailable'
+		},
+		filters: {
+			bhk: 'bhk-option',
+			floor: 'floor-option',
+			entrance: 'entrance-option',
+			price: 'price-option',
+			selectedClass: 'selected'
 		}
 	};
 

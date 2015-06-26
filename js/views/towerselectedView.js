@@ -28,9 +28,9 @@ var TowerselectedView = (function() {
         return elements;
     }
 
-    function TowerselectedView(model, elements) {
+    function TowerselectedView(model) {
         this._model = model;
-        this._elements = elements;
+        this._elements = null;
         var _this = this;
 
         // Svg Events
@@ -39,6 +39,12 @@ var TowerselectedView = (function() {
         this._towerUnitSvgClick = new Event(this);
 
         this._towerRotateClicked = new Event(this);
+
+        // Filter Events
+        this._bhkFilterOptionClick = new Event(this);
+        this._floorFilterOptionClick = new Event(this);
+        this._entranceFilterOptionClick = new Event(this);
+        this._priceFilterOptionClick = new Event(this);
     }
 
     TowerselectedView.prototype = {
@@ -47,7 +53,7 @@ var TowerselectedView = (function() {
             var rootdata = this._model.getRootdata();
             var _this = this;
             this.buildSkeleton(Object.keys(containerMap));
-            this.renderInitialData(rootdata);
+            this.renderInitialData(data, rootdata);
             for (i in this._elements) {
                 if (this._elements.hasOwnProperty(i) && this[i]) {
                     this[i](data, rootdata);
@@ -64,9 +70,9 @@ var TowerselectedView = (function() {
             document.getElementById(config.mainContainerId).innerHTML = mainContainerHtml;
             this._elements = getElements();
         },
-        renderInitialData: function(data) {
-            document.getElementById(config.projectDetail.titleId).innerHTML = data.projectName;
-            document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
+        renderInitialData: function(data, rootdata) {
+            document.getElementById(config.projectDetail.titleId).innerHTML = rootdata.projectName;
+            document.getElementById(config.projectDetail.addressId).innerHTML = data.towerName;
         },
         overviewImgContainer: function(data, rootdata) {
             var code = "<img src='" + data.image_url + "'/>";
@@ -223,18 +229,53 @@ var TowerselectedView = (function() {
             code += "<tr><td class='menu-call menu-icon'> C </td></tr>";
             code += "</table>";
             this._elements.towerMenuContainer.html(code);
+            this.towerMenuContainerEvents();
+        },
+        towerMenuContainerEvents: function() {
+            var _this = this;
+
+            _this._elements.towerMenuContainer.off('click').on('click', '.' + config.filters.bhk, function(event) {
+                // notify controller
+                _this._bhkFilterOptionClick.notify(this); // this refers to element here
+            });
+
+            _this._elements.towerMenuContainer.on('click', '.' + config.filters.floor, function(event) {
+                // notify controller
+                _this._floorFilterOptionClick.notify(this); // this refers to element here
+            });
+
+            _this._elements.towerMenuContainer.on('click', '.' + config.filters.entrance, function(event) {
+                // notify controller
+                _this._entranceFilterOptionClick.notify(this); // this refers to element here
+            });
+
+            _this._elements.towerMenuContainer.on('click', '.' + config.filters.price, function(event) {
+                // notify controller
+                _this._priceFilterOptionClick.notify(this); // this refers to element here
+            });
+        },
+        toggleFilterOption: function(element) {
+            var index = element.dataset.index;
+            var classList = element.classList;
+            if($.inArray(config.filters.selectedClass, classList) < 0) {
+                $("#"+index).addClass(config.filters.selectedClass);
+            } else {
+                $("#"+index).removeClass(config.filters.selectedClass);
+            }
         },
         getBHKMenuOptions: function(data) {
             var code = "<div class='menu-item-options'><table>";
             var bhks = this.getBHKAvailability(data.listings);
             var sortedBhks = Object.keys(bhks).sort();
             for (var i in sortedBhks) {
-                var bhk = sortedBhks[i];
+                var bhk = sortedBhks[i], 
+                    id = config.filters.bhk + i;
                 var availabilityClass = "apt-available-border-color";
                 if (bhks[bhk] == 0) {
                     availabilityClass = "apt-unavailable-border-color";
                 }
-                code += "<tr><td class='option-item " + availabilityClass + "'>" + bhk + " BHK</td></tr>";
+                code += "<tr><td class='option-item " + config.filters.bhk + " " + availabilityClass + "' ";
+                code += "id='" + id + "' data-index='" + id + "' data-value='" + bhk + "'>" + bhk + " BHK</td></tr>";
             }
             code += "</table></div>";
             return code;
@@ -257,12 +298,14 @@ var TowerselectedView = (function() {
             var floors = this.getFloorAvailability(data.listings);
             var sortedFloors = Object.keys(floors).sort();
             for (var i in sortedFloors) {
-                var floorGroup = sortedFloors[i];
+                var floorGroup = sortedFloors[i], 
+                    id = config.filters.floor + i;
                 var availabilityClass = "apt-available-border-color";
-                if (floors[floorGroup] == 0) {
+                if (floors[floorGroup].availability == 0) {
                     availabilityClass = "apt-unavailable-border-color";
                 }
-                code += "<tr><td class='option-item " + availabilityClass + "'>" + floorGroup + "</td></tr>";
+                code += "<tr><td class='option-item " + config.filters.floor + " " + availabilityClass + "' ";
+                code += "id='" + id + "' data-index='" + id + "' data-svalue='" + floors[floorGroup].sfloor + "' data-evalue='" + floors[floorGroup].efloor + "'>" + floorGroup + "</td></tr>";
             }
             code += "</table></div>";
             return code;
@@ -273,12 +316,17 @@ var TowerselectedView = (function() {
             for (var i in units) {
                 var unit = units[i];
                 var sfloor = Math.floor(unit.floor / interval) * interval;
-                var floorGroup = sfloor + ' - ' + (sfloor + interval - 1);
+                var efloor = sfloor + interval - 1;
+                var floorGroup = sfloor + ' - ' + efloor;
                 if (floors[floorGroup] == null) {
-                    floors[floorGroup] = 0;
+                    floors[floorGroup] = { 
+                        'sfloor': sfloor,
+                        'efloor': efloor,
+                        'availability': 0
+                    };
                 }
                 if (unit.isAvailable) {
-                    floors[floorGroup]++;
+                    floors[floorGroup].availability++;
                 }
             }
             return floors;
@@ -288,12 +336,14 @@ var TowerselectedView = (function() {
             var entrances = this.getEntranceAvailability(data.listings);
             var sortedEntrances = Object.keys(entrances).sort();
             for (var i in sortedEntrances) {
-                var entrance = sortedEntrances[i];
+                var entrance = sortedEntrances[i],
+                    id = config.filters.entrance + i;
                 var availabilityClass = "apt-available-border-color";
                 if (entrances[entrance] == 0) {
                     availabilityClass = "apt-unavailable-border-color";
                 }
-                code += "<tr><td class='option-item " + availabilityClass + "'>" + entrance + "</td></tr>";
+                code += "<tr><td class='option-item " + config.filters.entrance + " " + availabilityClass + "' ";
+                code += "id='" + id + "' data-index='" + id + "' data-value='" + entrance + "'>" + entrance + "</td></tr>";
             }
             code += "</table></div>";
             return code;
@@ -316,12 +366,14 @@ var TowerselectedView = (function() {
             var prices = this.getPriceAvailability(data.listings);
             var sortedPrices = Object.keys(prices).sort();
             for (var i in sortedPrices) {
-                var price = sortedPrices[i];
+                var price = sortedPrices[i],
+                    id = config.filters.price + i;
                 var availabilityClass = "apt-available-border-color";
-                if (prices[price] == 0) {
+                if (prices[price].availability == 0) {
                     availabilityClass = "apt-unavailable-border-color";
                 }
-                code += "<tr><td class='option-item " + availabilityClass + "'>" + price + "</td></tr>";
+                code += "<tr><td class='option-item " + config.filters.price + " " + availabilityClass + "' ";
+                code += "id='" + id + "' data-index='" + id + "' data-svalue='" + prices[price].sprice + "' data-evalue='" + prices[price].eprice + "'>" + price + "</td></tr>";
             }
             code += "</table></div>";
             return code;
@@ -329,15 +381,21 @@ var TowerselectedView = (function() {
         getPriceAvailability: function(units) {
             var prices = {};
             var interval = 10;
+            var denom = 100000;
             for (var i in units) {
                 var unit = units[i];
-                var sPrice = Math.floor(unit.price / interval / 100000) * interval;
-                var priceGroup = sPrice + ' L - ' + (sPrice + interval - 1) + ' L';
+                var sPrice = Math.floor(unit.price / interval / denom) * interval;
+                var ePrice = sPrice + interval - 1;
+                var priceGroup = sPrice + ' L - ' + ePrice + ' L';
                 if (prices[priceGroup] == null) {
-                    prices[priceGroup] = 0;
+                    prices[priceGroup] = { 
+                        'sprice': sPrice * denom,
+                        'eprice': ePrice * denom,
+                        'availability': 0
+                    };
                 }
                 if (unit.isAvailable) {
-                    prices[priceGroup]++;
+                    prices[priceGroup].availability++;
                 }
             }
             return prices;

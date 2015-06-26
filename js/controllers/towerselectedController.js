@@ -37,15 +37,26 @@ var TowerselectedController = (function() {
                 _this.changeUrl(element);
             });
 
-
-            //tower rotation button listener
+            // Tower Rotation
             this._view._towerRotateClicked.attach(function(sender, element) {
                 var currentRotationAngle = _this._model._currentRotationAngle;
                 // change roationangle value
                 _this._model._currentRotationAngle = rotateAngleHash[currentRotationAngle] || '0';
                 _this._view.rotateTower();
+            });
 
-                
+            // Filter Events
+            this._view._bhkFilterOptionClick.attach(function(sender, element) {
+                _this._view.toggleFilterOption(element);
+            });
+            this._view._floorFilterOptionClick.attach(function(sender, element) {
+                _this._view.toggleFilterOption(element);
+            });
+            this._view._entranceFilterOptionClick.attach(function(sender, element) {
+                _this._view.toggleFilterOption(element);
+            });
+            this._view._priceFilterOptionClick.attach(function(sender, element) {
+                _this._view.toggleFilterOption(element);
             });
         },
         generateTemplate: function(data, rootdata, elements) {

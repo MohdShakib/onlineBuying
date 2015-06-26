@@ -156,8 +156,10 @@ polygon {
 }
 .tower-menu-container .menu-item-container:hover,
 .tower-menu-container .menu-item:hover,
+.tower-menu-container .menu-item-hover,
 .tower-menu-container .menu-icon:hover,
-.menu-item-options .option-item:hover {
+.menu-item-options .option-item:hover,
+.menu-item-options .selected {
 	background: #333;
 }
 .tower-menu-container .menu-icon, .tower-menu-container .menu-items {
@@ -241,6 +243,12 @@ polygon {
 }
 .menu-item-options .option-item:hover {
   	border-right: 4px solid;
+}
+.menu-item-options .selected {
+  	border-left: 4px solid;
+}
+.menu-item-options .selected:hover {
+  	border-right: none;
 }
 
 /* Tower Rotation */
