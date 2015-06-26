@@ -37,6 +37,8 @@ var TowerselectedView = (function() {
         this._towerUnitSvgMouseEnter = new Event(this);
         this._towerUnitSvgMouseLeave = new Event(this);
         this._towerUnitSvgClick = new Event(this);
+
+        this._towerRotateClicked = new Event(this);
     }
 
     TowerselectedView.prototype = {
@@ -174,6 +176,7 @@ var TowerselectedView = (function() {
             document.getElementById('container-detail').style.opacity = "1";
         },
         rotateTower: function() {
+            this._elements.towerSvgContainer.html('');
             var data = this._model.getData(),
                 imageClass = this._model._currentRotationAngle;
             var _this = this;
@@ -187,13 +190,9 @@ var TowerselectedView = (function() {
         towerRotationContainer: function() {
             var _this = this;
             _this._elements.towerRotationContainer.off('click').on('click', '#rotation-button', function(event) {
-                _this._elements.towerSvgContainer.html('');
-                if (_this._model._currentRotationAngle == '0') {
-                    _this._model._currentRotationAngle = '180'
-                } else {
-                    _this._model._currentRotationAngle = '0'
-                }
-                _this.rotateTower();
+                // notify controller about rotatebutton click
+                _this._towerRotateClicked.notify();
+
             });
 
             var code = '<button id="rotation-button" >Rotate</button>';

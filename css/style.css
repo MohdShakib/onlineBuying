@@ -46,7 +46,9 @@ polygon {
 	stroke: rgba(255,255,255,0.5);
 	stroke-width: 0;
 }
-
+.no-pointer{
+	cursor: default;
+}
 /* Images */
 .img-container {
 	z-index: 1;

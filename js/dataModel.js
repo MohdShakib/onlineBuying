@@ -8,9 +8,8 @@
 
     function DataModel(data, rootdata) {
         this._data = data;
-        this._currentRotationAngle = 0;
+        this._currentRotationAngle = '0';
         this._rootdata = rootdata;
-        //this.dataUpdated = new Event(this);
     }
 
     DataModel.prototype = {
@@ -31,7 +30,6 @@
         updateData: function(data, rootdata){
             this._data = data;
             this._rootdata = rootdata;
-            //this.dataUpdated.notify();
         }
     };
 

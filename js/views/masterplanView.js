@@ -137,14 +137,16 @@ var MasterplanView = (function() {
         },
         buildingSvgContainer: function(data, rootdata) {
             var svgCode = "",
-                i, tower,
+                i, tower, towerUrl,
                 towers = this.sortTowersObject(data.towers),
                 tower_length = towers.length;
 
             for (i = 0; i < tower_length; i++) {
                 tower = towers[i];
                 if (tower.towerHoverSvg) {
-                    svgCode += "<polygon  class=\"" + config.towerSvgClass + "\" id=\"" + tower.towerId + "-path\" data-index=\"" + tower.towerIdentifier + "\" data-url=\"" + data.baseUrl + "/" + tower.towerIdentifier + "\" data-imageid=\"" + tower.towerId + "\"  points=\"" + tower.towerHoverSvg + "\" />";
+                    towerUrl = tower.isAvailable ? data.baseUrl+"/"+tower.towerIdentifier : 'undefined';
+                    var svgClass = tower.isAvailable ? '' : 'no-pointer'; 
+                    svgCode += "<polygon  class=\"" + config.towerSvgClass + " "+svgClass+ "\" id=\"" + tower.towerId + "-path\" data-index=\"" + tower.towerIdentifier + "\" data-url=\"" + towerUrl+ "\" data-imageid=\"" + tower.towerId + "\"  points=\"" + tower.towerHoverSvg + "\" />";
                 }
             }
 
@@ -204,18 +206,24 @@ var MasterplanView = (function() {
             towerCode += "<div class='tooltip-title'>" + data.towerName.split(' ')[1] + "</div>";
             towerCode += "<table>";
 
-            for (var j in data.unitInfo) {
-                var aptType = data.unitInfo[j];
-                var availabilityClass = config.availabilityClass.available;
-                var availabilityText = aptType.available + " Av";
-                if (aptType.available == 0) {
-                    availabilityClass = config.availabilityClass.unavailable;
-                    availabilityText = 'Sold';
-                }
+            if(!data.isAvailable){
                 towerCode += "<tr><td width='70px'></td>";
-                towerCode += "<td class='detail-container container-left'>" + aptType.type + "</td>";
-                towerCode += "<td class='detail-container container-right " + availabilityClass + "'>" + availabilityText + "</td></tr>";
+                towerCode += "<td colspan='2' class='detail-container container-left "+config.availabilityClass.unavailable+"'>Sold</td>";
+            }else{
+                for (var j in data.unitInfo) {
+                    var aptType = data.unitInfo[j];
+                    var availabilityClass = config.availabilityClass.available;
+                    var availabilityText = aptType.available + " Av";
+                    if (aptType.available == 0) {
+                        availabilityClass = config.availabilityClass.unavailable;
+                        availabilityText = 'Sold';
+                    }
+                    towerCode += "<tr><td width='70px'></td>";
+                    towerCode += "<td class='detail-container container-left'>" + aptType.type + "</td>";
+                    towerCode += "<td class='detail-container container-right " + availabilityClass + "'>" + availabilityText + "</td></tr>";
+                }
             }
+
             towerCode += "</table>";
 
             if (this._elements && this._elements.towerDetailContainer) {
