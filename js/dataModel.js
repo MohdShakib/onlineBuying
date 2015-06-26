@@ -6,9 +6,10 @@
  "use strict";
  var DataModel = (function(){
 
-    function DataModel(data) {
+    function DataModel(data, rootdata) {
         this._data = data;
         this._currentRotationAngle = 0;
+        this._rootdata = rootdata;
         this.dataUpdated = new Event(this);
     }
 
@@ -20,8 +21,16 @@
             return this._data;
         },
 
-        updateData: function(data){
+        getRootdata: function () {
+            if(!this._rootdata){
+                return {};
+            }
+            return this._rootdata;
+        },
+
+        updateData: function(data, rootdata){
             this._data = data;
+            this._rootdata = rootdata;
             this.dataUpdated.notify();
         }
     };

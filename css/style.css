@@ -141,16 +141,27 @@ polygon {
     border-collapse: separate;
     height: 100.1%;   /* Fix as height may not be an integer */
 }
-.tower-menu-container .menu-header, .tower-menu-container .menu-items, .tower-menu-container .menu-call {
+.tower-menu-container .menu-icon, .tower-menu-container .menu-items {
 	color: #FFF;
 	width: 45px;
 	text-align: center;
 	font-weight: normal;
 	background: rgba(0,0,0,0.5);
 }
-.tower-menu-container .menu-header, .tower-menu-container .menu-call {
+.tower-menu-container .menu-icon {
 	height: 45px;
+	line-height: 45px;
 	cursor: pointer;
+	-webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+.tower-menu-container .menu-icon:hover {
+	background: rgba(0,0,0,0.7);
+}
+.tower-menu-container .menu-icon a {
+	color: white;
+	text-decoration: none;
+	display: block;
 }
 .tower-menu-container .menu-sep {
 	height: 1px;
@@ -163,7 +174,7 @@ polygon {
 .tower-menu-container .menu-items table {
 	height: auto;
 }
-.tower-menu-container .menu-items table td {
+.tower-menu-container .menu-items .menu-item-container-td {
 	position: relative;
 	height: 40px;
 	width: 45px;
@@ -182,6 +193,28 @@ polygon {
 	width: 100px;
 	background: #333;
   	border-right: 4px green solid;
+}
+.tower-menu-container .menu-items .menu-item-container .menu-item-options {
+	position: absolute;
+	height: auto;
+	min-width: 140px;
+	top: 0px;
+	left: 46px;
+	background: rgba(0,0,0,0.5);
+	visibility: hidden;
+}
+.tower-menu-container .menu-items .menu-item-container:hover .menu-item-options {
+	visibility: visible;
+}
+.menu-item-options table {
+	width: 100%;
+}
+.menu-item-options table td {
+	position: relative;
+	font-size: 14px;
+	text-align: left;
+	padding: 0 10px;
+	height: 40px;
 }
 
 .tower-rotation-container{
