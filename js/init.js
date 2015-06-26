@@ -16,12 +16,13 @@
     w.addEventListener('resize', resizeMainContainerHeight);
 
     d.addEventListener('DOMContentLoaded', function() {
-            var data = null;
-            var model = new DataModel(data),
+            //var data = null;
+           /* var model = new DataModel(null),
             view = new DataView(model),
             controller = new DataController(model, view);
 
-            initializeRoutes(data, controller);
+            initializeRoutes(controller);*/
+            initializeRoutes();
     });
 
 })(document, window);

@@ -48,7 +48,7 @@ var initializeRoutes = (function(){
       return elements;
   }
 
-  function initializeRoutes(rootdata, controller){
+  function initializeRoutes(){
 
       var routes = {
         sep: "/",
@@ -57,36 +57,45 @@ var initializeRoutes = (function(){
         projectId: "([0-9]{6})",
         towerName: "([a-z0-9-]+)",
         unitAddress: "([a-z0-9-]+)"
-      };
+      }, 
+      rootdata = {};
 
-      var projectRoute = routes.sep + routes.projectName + routes.wordSep + routes.projectId;
-      var towerRoute = projectRoute + routes.sep + routes.towerName;
-      var unitRoute = towerRoute + routes.sep + routes.unitAddress;
+      var projectRoute = routes.sep + routes.projectName + routes.wordSep + routes.projectId,
+      towerRoute = projectRoute + routes.sep + routes.towerName,
+      unitRoute = towerRoute + routes.sep + routes.unitAddress;
 
       var routes = {};
       routes[projectRoute] = {
         on: function(projectName, projectId){
               rootdata = getProjectData(projectId);
-              var elements = prepareTemplateSkeleton(PROJECT, controller, rootdata);
-              controller.generateTemplate(rootdata, rootdata, elements);
+              var model = new DataModel(rootdata, rootdata),
+              view = new MasterplanView(model),
+              controller = new MasterplanController(model, view);
+
+              //var elements = prepareTemplateSkeleton(PROJECT, controller, rootdata);
+              //controller.generateTemplate(rootdata, rootdata, elements);
+              controller.generateTemplate();
             }
       }
 
-      routes[towerRoute] = {
+      /*routes[towerRoute] = {
         on: function(projectName, projectId, towerName){
               rootdata = getProjectData(projectId);
+              var model = new DataModel(rootdata),
+              view = new TowerselectedView(model),
+              controller = new TowerselectedController(model, view);
               var elements = prepareTemplateSkeleton(TOWER, controller, rootdata);
               controller.generateTemplate(rootdata.towers[towerName], rootdata, elements);
             }
-      }
+      }*/
 
-      routes[unitRoute] = {
+     /* routes[unitRoute] = {
         on: function(projectName, projectId, towerName, unitAddress){
               rootdata = getProjectData(projectId);
               var elements = prepareTemplateSkeleton(UNIT, controller, rootdata);
               controller.generateTemplate(rootdata.towers[towerName].listings[unitAddress], rootdata, elements);
             }
-      }
+      }*/
       
       // instantiate the router
       var router = Router(routes);
