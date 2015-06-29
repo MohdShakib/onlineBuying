@@ -11,7 +11,7 @@ var TowerselectedView = (function() {
         'towerImgContainer': '<div class="img-container" id="img-container"></div>',
         //'overviewImgContainer': '<div  class="overview-img-container" id="overview-img-container" ></div>',
         'towerSvgContainer': '<svg class="svg-container" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
-        'towerDetailContainer': '<div class="tower-detail-container" id="tower-detail-container"></div>',
+        'towerDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>',
         'towerRotationContainer': '<div class="tower-rotation-container" id="tower-rotation-container"></div>',
         'towerMenuContainer': '<div class="tower-menu-container" id="tower-menu-container"></div>'
     };
@@ -100,7 +100,7 @@ var TowerselectedView = (function() {
             }
 
             var svgCode = "",
-                unitIdentifier, unitInfo, svgColor,
+                unitIdentifier, unitInfo, svgClass,
                 filteredListingKeys = this._model.getFilteredListings();
 
             for (unitIdentifier in listings) {
@@ -110,8 +110,8 @@ var TowerselectedView = (function() {
                     unitInfo.unitSvgOnTower &&
                     (filteredListingKeys == null || filteredListingKeys.indexOf(unitIdentifier) > -1)
                 ) {
-                    svgColor = listings[unitIdentifier].isAvailable ? 'green' : 'red';
-                    svgCode += "<circle  class=\"" + config.towerUnitSvgClass + "\" id=\"" + unitInfo.unitName + "-path\" data-index=\"" + unitIdentifier + "\"  cx='" + unitInfo.unitSvgOnTower[0] + "' cy='" + unitInfo.unitSvgOnTower[1] + "' r='0.7' fill='" + svgColor + "' />";
+                    svgClass = listings[unitIdentifier].isAvailable ? 'apt-available' : 'apt-unavailable';
+                    svgCode += "<ellipse  class=\"" + config.towerUnitSvgClass + " " + svgClass + "\" id=\"" + unitInfo.unitName + "-path\" data-index=\"" + unitIdentifier + "\"  cx='" + unitInfo.unitSvgOnTower[0] + "' cy='" + unitInfo.unitSvgOnTower[1] + "' ry='1.2' rx='0.55' />";
                 }
             }
 
@@ -142,7 +142,7 @@ var TowerselectedView = (function() {
             var toolTipData = data && data.listings ? data.listings[index] : null;
             if (toolTipData) {
                 var svgpathClient = element.getBoundingClientRect();
-                this.showTowerUnitDetailContainer(toolTipData, (svgpathClient.left + svgpathClient.width / 2), svgpathClient.top - 40);
+                this.showTowerUnitDetailContainer(toolTipData, (svgpathClient.right), (svgpathClient.top + svgpathClient.height / 2));
             }
         },
         towerUnitMouseLeaveEvent: function() {
@@ -154,7 +154,6 @@ var TowerselectedView = (function() {
             }
             var towerCode = "";
             towerCode += "<div id='container-detail' class='tooltip-detail'>";
-            towerCode += "<div class='tooltip-title'>" + unitInfo.listingAddress.split('-')[1].substring(1) + "</div>";
 
             var availabilityClass = 'apt-available';
             if (!unitInfo.isAvailable) {
@@ -180,7 +179,7 @@ var TowerselectedView = (function() {
             if (this._elements && this._elements.towerDetailContainer) {
                 this._elements.towerDetailContainer.html(towerCode);
                 $('#container-detail').css("left", left + 'px');
-                $('#container-detail').css("top", (top + 30) + 'px');
+                $('#container-detail').css("top", top + 'px');
             }
 
             // animate
@@ -217,16 +216,16 @@ var TowerselectedView = (function() {
             var code = "<table><tr><td class='menu-header menu-icon'><a href='" + url + "'>&lt;--</a></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><table>";
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> A </div>";
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> @ </div>";
             code += this.getBHKMenuOptions(data);
             code += "</td></tr>";
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> B </div>";
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> # </div>";
             code += this.getFloorMenuOptions(data);
             code += "</td></tr>";
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> C </div>";
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> $ </div>";
             code += this.getEntranceMenuOptions(data);
             code += "</td></tr>";
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> D </div>";
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> % </div>";
             code += this.getPriceMenuOptions(data);
             code += "</td></tr>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.filters.resetClass + "'> R </div></td></tr>";
