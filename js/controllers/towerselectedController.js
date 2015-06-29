@@ -14,6 +14,13 @@ var TowerselectedController = (function() {
     function TowerselectedController(model, view) {
         this._model = model;
         this._view = view;
+
+        this._filters = {
+            bhk: [],
+            floor: [],
+            entrance: [],
+            price: []
+        };
     }
 
     TowerselectedController.prototype = {
@@ -39,25 +46,99 @@ var TowerselectedController = (function() {
 
             // Tower Rotation
             this._view._towerRotateClicked.attach(function(sender, element) {
-                var currentRotationAngle = _this._model._currentRotationAngle;
-                // change roationangle value
-                _this._model._currentRotationAngle = rotateAngleHash[currentRotationAngle] || '0';
+                var currentRotationAngle = _this._model.getCurrentRotationAngle();
+                var newRotationAngle = rotateAngleHash[currentRotationAngle] || '0';
+
+                // change rotation angle value
+                _this._model.updateCurrentRotationAngle(newRotationAngle);
                 _this._view.rotateTower();
             });
 
             // Filter Events
             this._view._bhkFilterOptionClick.attach(function(sender, element) {
-                _this._view.toggleFilterOption(element);
+                var bhk = element.dataset.value;
+                _this.toggleFilterOption(_this._filters.bhk, bhk, element);
             });
             this._view._floorFilterOptionClick.attach(function(sender, element) {
-                _this._view.toggleFilterOption(element);
+                var floorGroup = element.dataset.svalue + " " + element.dataset.evalue;
+                _this.toggleFilterOption(_this._filters.floor, floorGroup, element);
             });
             this._view._entranceFilterOptionClick.attach(function(sender, element) {
-                _this._view.toggleFilterOption(element);
+                var entrance = element.dataset.value;
+                _this.toggleFilterOption(_this._filters.entrance, entrance, element);
             });
             this._view._priceFilterOptionClick.attach(function(sender, element) {
-                _this._view.toggleFilterOption(element);
+                var priceGroup = element.dataset.svalue + " " + element.dataset.evalue;
+                _this.toggleFilterOption(_this._filters.price, priceGroup, element);
             });
+            this._view._resetFiltersClick.attach(function(sender, element) {
+                _this._filters = {
+                    bhk: [],
+                    floor: [],
+                    entrance: [],
+                    price: []
+                };
+                _this._view.resetFilterOption(element);
+                _this.updateFilteredListings();
+            });
+        },
+        toggleFilterOption: function(filterArray, filterOption, element) {
+            var index = filterArray.indexOf(filterOption);
+            if (index > -1) {
+                filterArray.splice(index, 1);
+            } else {
+                filterArray.push(filterOption);
+            }
+            this._view.toggleFilterOption(element);
+            this.updateFilteredListings();
+        },
+        updateFilteredListings: function() {
+            var listings = this._model.getData().listings,
+                filteredListings = [];
+            for (var id in listings) {
+                var unit = listings[id];
+
+                // BHK Check
+                if (this._filters.bhk != null &&
+                    this._filters.bhk.length != 0 &&
+                    this._filters.bhk.indexOf(unit.bedrooms.toString()) < 0) {
+                    continue;
+                }
+
+                // Entrance Check
+                if (this._filters.entrance != null &&
+                    this._filters.entrance.length != 0 &&
+                    this._filters.entrance.indexOf(unit.facing) < 0) {
+                    continue;
+                }
+
+                // Floor Check
+                var floorGroupInterval = getGroupInterval(unit.floor, config.filters.floorInterval);
+                var sfloor = floorGroupInterval.start,
+                    efloor = floorGroupInterval.end - 1;
+                var floorGroup = sfloor + " " + efloor;
+                if (this._filters.floor != null &&
+                    this._filters.floor.length != 0 &&
+                    this._filters.floor.indexOf(floorGroup) < 0) {
+                    continue;
+                }
+
+                // Price Check
+                var priceGroupInterval = getGroupInterval(unit.price, config.filters.priceInterval);
+                var sprice = priceGroupInterval.start,
+                    eprice = priceGroupInterval.end;
+                var priceGroup = sprice + " " + eprice;
+                if (this._filters.price != null &&
+                    this._filters.price.length != 0 &&
+                    this._filters.price.indexOf(priceGroup) < 0) {
+                    continue;
+                }
+
+                filteredListings.push(id);
+            }
+
+            this._model.updateFilteredListings(filteredListings);
+            this._view.towerSvgContainer(this._model.getData());
         },
         generateTemplate: function(data, rootdata, elements) {
             this.attachListeners();

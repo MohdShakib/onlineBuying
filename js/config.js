@@ -37,7 +37,10 @@ var config = (function(){
 			floor: 'floor-option',
 			entrance: 'entrance-option',
 			price: 'price-option',
-			selectedClass: 'selected'
+			selectedClass: 'selected',
+			resetClass: 'reset-filters',
+			floorInterval: 3,
+			priceInterval: 1000000
 		}
 	};
 

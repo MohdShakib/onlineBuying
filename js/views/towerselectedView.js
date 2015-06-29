@@ -45,6 +45,7 @@ var TowerselectedView = (function() {
         this._floorFilterOptionClick = new Event(this);
         this._entranceFilterOptionClick = new Event(this);
         this._priceFilterOptionClick = new Event(this);
+        this._resetFiltersClick = new Event(this);
     }
 
     TowerselectedView.prototype = {
@@ -79,33 +80,38 @@ var TowerselectedView = (function() {
             this._elements.overviewImgContainer.html(code);
         },
         towerImgContainer: function(data, rootdata) {
-            var currentRotationAngle = this._model._currentRotationAngle,
+            var currentRotationAngle = this._model.getCurrentRotationAngle(),
                 towerImageUrl, imageClass, imgCode = '';
             for (var rotationAngle in data.rotationAngle) {
                 if (hasOwnProperty.call(data.rotationAngle, rotationAngle)) {
                     towerImageUrl = data.rotationAngle[rotationAngle].towerImageUrl;
-                    imageClass = (rotationAngle != this._model._currentRotationAngle) ? 'hidden' : '';
+                    imageClass = (rotationAngle != this._model.getCurrentRotationAngle()) ? 'hidden' : '';
                     imgCode += "<img class='" + imageClass + " " + rotationAngle + " " + config.selectedTowerImagesClass + "' width='100%' src='" + towerImageUrl + "' />";
                 }
             }
             this._elements.towerImgContainer.html(imgCode);
         },
         towerSvgContainer: function(data) {
-            var currentRotationAngle = this._model._currentRotationAngle;
-            var listing = (data && data.rotationAngle[currentRotationAngle] && Object.keys(data.rotationAngle[currentRotationAngle].listing).length) ? data.rotationAngle[currentRotationAngle].listing : null;
+            var currentRotationAngle = this._model.getCurrentRotationAngle();
+            var listings = (data && data.rotationAngle[currentRotationAngle] && Object.keys(data.rotationAngle[currentRotationAngle].listing).length) ? data.rotationAngle[currentRotationAngle].listing : null;
 
-            if (!listing) {
+            if (!listings) {
                 return;
             }
 
             var svgCode = "",
-                unitIdentifier, unitInfo, svgColor;
+                unitIdentifier, unitInfo, svgColor,
+                filteredListingKeys = this._model.getFilteredListings();
 
-            for (unitIdentifier in listing) {
-                unitInfo = listing[unitIdentifier];
-                if (hasOwnProperty.call(listing, unitIdentifier) && hasOwnProperty.call(listing[unitIdentifier], 'isAvailable') && unitInfo.unitSvgOnTower) {
-                    svgColor = listing[unitIdentifier].isAvailable ? 'green' : 'red';
-                    svgCode += "<circle  class=\"" + config.towerUnitSvgClass + "\" id=\"" + unitInfo.unitName + "-path\" data-index=\"" + unitIdentifier + "\"  cx='" + unitInfo.unitSvgOnTower[0] + "' cy='" + unitInfo.unitSvgOnTower[1] + "' r='0.4' fill='" + svgColor + "' />";
+            for (unitIdentifier in listings) {
+                unitInfo = listings[unitIdentifier];
+                if (hasOwnProperty.call(listings, unitIdentifier) &&
+                    hasOwnProperty.call(unitInfo, 'isAvailable') &&
+                    unitInfo.unitSvgOnTower &&
+                    (filteredListingKeys == null || filteredListingKeys.indexOf(unitIdentifier) > -1)
+                ) {
+                    svgColor = listings[unitIdentifier].isAvailable ? 'green' : 'red';
+                    svgCode += "<circle  class=\"" + config.towerUnitSvgClass + "\" id=\"" + unitInfo.unitName + "-path\" data-index=\"" + unitIdentifier + "\"  cx='" + unitInfo.unitSvgOnTower[0] + "' cy='" + unitInfo.unitSvgOnTower[1] + "' r='0.7' fill='" + svgColor + "' />";
                 }
             }
 
@@ -184,7 +190,7 @@ var TowerselectedView = (function() {
         rotateTower: function() {
             this._elements.towerSvgContainer.html('');
             var data = this._model.getData(),
-                imageClass = this._model._currentRotationAngle;
+                imageClass = this._model.getCurrentRotationAngle();
             var _this = this;
             $('.' + config.selectedTowerImagesClass).fadeOut(1000);
             $('.' + imageClass).fadeIn(1000, function() {
@@ -211,19 +217,19 @@ var TowerselectedView = (function() {
             var code = "<table><tr><td class='menu-header menu-icon'><a href='" + url + "'>&lt;--</a></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><table>";
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass + "'> A </div>";
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> A </div>";
             code += this.getBHKMenuOptions(data);
             code += "</td></tr>";
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass + "'> B </div>";
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> B </div>";
             code += this.getFloorMenuOptions(data);
             code += "</td></tr>";
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass + "'> C </div>";
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> C </div>";
             code += this.getEntranceMenuOptions(data);
             code += "</td></tr>";
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass + "'> D </div>";
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> D </div>";
             code += this.getPriceMenuOptions(data);
             code += "</td></tr>";
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass + "'> R </div></td></tr>";
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.filters.resetClass + "'> R </div></td></tr>";
             code += "</table></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-call menu-icon'> C </td></tr>";
@@ -253,22 +259,30 @@ var TowerselectedView = (function() {
                 // notify controller
                 _this._priceFilterOptionClick.notify(this); // this refers to element here
             });
+
+            _this._elements.towerMenuContainer.on('click', '.' + config.filters.resetClass, function(event) {
+                // notify controller
+                _this._resetFiltersClick.notify(this); // this refers to element here
+            });
         },
         toggleFilterOption: function(element) {
             var index = element.dataset.index;
             var classList = element.classList;
-            if($.inArray(config.filters.selectedClass, classList) < 0) {
-                $("#"+index).addClass(config.filters.selectedClass);
+            if ($.inArray(config.filters.selectedClass, classList) < 0) {
+                $('#' + index).addClass(config.filters.selectedClass);
             } else {
-                $("#"+index).removeClass(config.filters.selectedClass);
+                $('#' + index).removeClass(config.filters.selectedClass);
             }
+        },
+        resetFilterOption: function(element) {
+            this._elements.towerMenuContainer.find('*').removeClass(config.filters.selectedClass);
         },
         getBHKMenuOptions: function(data) {
             var code = "<div class='menu-item-options'><table>";
             var bhks = this.getBHKAvailability(data.listings);
             var sortedBhks = Object.keys(bhks).sort();
             for (var i in sortedBhks) {
-                var bhk = sortedBhks[i], 
+                var bhk = sortedBhks[i],
                     id = config.filters.bhk + i;
                 var availabilityClass = "apt-available-border-color";
                 if (bhks[bhk] == 0) {
@@ -298,7 +312,7 @@ var TowerselectedView = (function() {
             var floors = this.getFloorAvailability(data.listings);
             var sortedFloors = Object.keys(floors).sort();
             for (var i in sortedFloors) {
-                var floorGroup = sortedFloors[i], 
+                var floorGroup = sortedFloors[i],
                     id = config.filters.floor + i;
                 var availabilityClass = "apt-available-border-color";
                 if (floors[floorGroup].availability == 0) {
@@ -312,14 +326,14 @@ var TowerselectedView = (function() {
         },
         getFloorAvailability: function(units) {
             var floors = {};
-            var interval = 3;
             for (var i in units) {
                 var unit = units[i];
-                var sfloor = Math.floor(unit.floor / interval) * interval;
-                var efloor = sfloor + interval - 1;
+                var groupInterval = getGroupInterval(unit.floor, config.filters.floorInterval);
+                var sfloor = groupInterval.start;
+                var efloor = groupInterval.end - 1;
                 var floorGroup = sfloor + ' - ' + efloor;
                 if (floors[floorGroup] == null) {
-                    floors[floorGroup] = { 
+                    floors[floorGroup] = {
                         'sfloor': sfloor,
                         'efloor': efloor,
                         'availability': 0
@@ -380,17 +394,18 @@ var TowerselectedView = (function() {
         },
         getPriceAvailability: function(units) {
             var prices = {};
-            var interval = 10;
+            var interval = config.filters.priceInterval;
             var denom = 100000;
             for (var i in units) {
                 var unit = units[i];
-                var sPrice = Math.floor(unit.price / interval / denom) * interval;
-                var ePrice = sPrice + interval - 1;
-                var priceGroup = sPrice + ' L - ' + ePrice + ' L';
+                var groupInterval = getGroupInterval(unit.price, config.filters.priceInterval);
+                var sPrice = groupInterval.start;
+                var ePrice = groupInterval.end;
+                var priceGroup = Number(sPrice/denom) + ' L - ' + Number(ePrice/denom) + ' L';
                 if (prices[priceGroup] == null) {
-                    prices[priceGroup] = { 
-                        'sprice': sPrice * denom,
-                        'eprice': ePrice * denom,
+                    prices[priceGroup] = {
+                        'sprice': sPrice,
+                        'eprice': ePrice,
                         'availability': 0
                     };
                 }
