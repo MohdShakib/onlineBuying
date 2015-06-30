@@ -327,7 +327,7 @@ var TowerselectedView = (function() {
             var floors = {};
             for (var i in units) {
                 var unit = units[i];
-                var groupInterval = getGroupInterval(unit.floor, config.filters.floorInterval);
+                var groupInterval = utils.getGroupInterval(unit.floor, config.filters.floorInterval);
                 var sfloor = groupInterval.start;
                 var efloor = groupInterval.end - 1;
                 var floorGroup = sfloor + ' - ' + efloor;
@@ -397,7 +397,7 @@ var TowerselectedView = (function() {
             var denom = 100000;
             for (var i in units) {
                 var unit = units[i];
-                var groupInterval = getGroupInterval(unit.price, config.filters.priceInterval);
+                var groupInterval = utils.getGroupInterval(unit.price, config.filters.priceInterval);
                 var sPrice = groupInterval.start;
                 var ePrice = groupInterval.end;
                 var priceGroup = Number(sPrice/denom) + ' L - ' + Number(ePrice/denom) + ' L';

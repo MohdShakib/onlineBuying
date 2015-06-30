@@ -1,66 +1,9 @@
 "use strict";
 var getProjectData = (function() {
 
-    var ajax = function(url, params) {
-        var success_callback    =   typeof(params.success_callback) == 'function' ? params.success_callback : null;
-        var error_callback      =   typeof(params.error_callback) == 'function' ? params.error_callback : null;
-        var complete_callback   =   typeof(params.complete_callback) == 'function' ? params.complete_callback : null;
-
-        $.ajax({
-            type: "GET",
-            url: url,
-            async: false,
-            dataType: 'JSON',           
-            success: function(response) {
-                if(response.statusCode == '2XX') {
-                    if(success_callback == null) {                  
-                        // default error callback handling
-                    } else {
-                        success_callback(response.data, params);
-                    }
-                } else {
-                    if(error_callback == null) {
-                        // default error callback handling
-                    } else {
-                        error_callback(response.data);
-                    }
-                }                       
-            },
-            error: function(jqXHR, textStatus, errorThrown){
-                console.log('ajax in error callback');
-                console.log('error occured ' + errorThrown);
-            },
-            complete: function() {  
-                if(complete_callback != null) {
-                    complete_callback(params);
-                }
-            }
-        });     
-    }
-
     var zipPath = 'zip-file',
     zipImagePath = '/'+zipPath+'/img/';
     
-    
-
-    function getSvgData(url){
-
-        return $.ajax({
-            type: "GET",
-            url: url,
-            async: false,
-            dataType: "text",
-            success: function(data) {
-                // register success callback in return promise
-            },
-            error: function(jqXHR, textStatus, errorThrown){
-                console.log('read csv error callback for: '+url);
-                console.log('error occured ' + errorThrown);
-                return false;
-            }
-        });
-    }
-
     function getIdentifier(string){
         var identifier = '';
         if(string){
@@ -172,26 +115,30 @@ var getProjectData = (function() {
     }
 
     function parseAllCSVData(){
-
-        getSvgData(zipPath+'/'+config.csv.masterplanScreen).success(function(data){
+        utils.getSvgData(zipPath+'/'+config.csv.masterplanScreen).success(function(data){
             var towers = processCsvDataToObject(data, 'towerName');
             if(towers && projectData.towers && Object.keys(projectData.towers).length && Object.keys(towers).length){
                 useTowersCSVData(towers);
             }
         });
 
-
-        getSvgData(zipPath+'/'+config.csv.amenitiesHotspots).success(function(data){
+        utils.getSvgData(zipPath+'/'+config.csv.amenitiesHotspots).success(function(data){
             var amenities = processCsvDataToObject(data, 'amenityName');
             if(amenities && Object.keys(amenities).length){
                 useAmenitiesCSVData(amenities);
             }
         });
     
-        getSvgData(zipPath+'/'+config.csv.towerselectScreen).success(function(data){
+        utils.getSvgData(zipPath+'/'+config.csv.towerselectScreen).success(function(data){
             var listing = processCsvDataToArray(data);
             useTowerUnitsCSVData(listing); 
         });
+
+        /*utils.getSvgData(zipPath+'/'+config.csv.unitplanInfo).success(function(data){
+            console.log('unitplanInfo is: ');
+             var data = processCsvDataToArray(data);
+            console.log(data);
+        });*/
 
     }
 
@@ -331,13 +278,12 @@ var getProjectData = (function() {
         }
 
         var apiUrl  = "http://192.168.1.8:8080/app/v4/project-detail/"+projectId+"?selector={%22paging%22:{%22start%22:0,%22rows%22:100},%22fields%22:[%22projectId%22,%22images%22,%22imageType%22,%22mediaType%22,%22objectType%22,%22title%22,%22type%22,%22absolutePath%22,%22properties%22,%22projectAmenities%22,%22amenityDisplayName%22,%22verified%22,%22amenityMaster%22,%22amenityId%22,%22towerId%22,%22amenityName%22,%22bedrooms%22,%22bathrooms%22,%22balcony%22,%22name%22,%22primaryOnline%22,%22propertyId%22,%22towers%22,%22listings%22,%22floor%22,%22size%22,%22measure%22,%22bookingAmount%22,%22viewDirections%22,%22viewType%22,%22facingId%22,%22address%22,%22towerName%22,%22clusterPlans%22,%22id%22,%22flatNumber%22,%22bookingStatusId%22,%22clusterPlanId%22,%22price%22]}";
-        //var apiUrl = 'apiData.json';
         var apiData,
         params = {success_callback: function(response){
             apiData = response;
         }};
 
-        ajax(apiUrl, params);
+        utils.ajax(apiUrl, params);
         parseApiData(apiData);
         parseAllCSVData();
 

@@ -26,7 +26,8 @@ var config = (function(){
 		csv: {
 			masterplanScreen: 'masterplanScreen.csv',
 			towerselectScreen: 'towerselectScreen.csv',
-			amenitiesHotspots: 'amenitiesHotspots.csv'
+			amenitiesHotspots: 'amenitiesHotspots.csv',
+			unitplanInfo: 'unitplanInfo.csv'
 		},
 		availabilityClass: {
 			available: 'apt-available',

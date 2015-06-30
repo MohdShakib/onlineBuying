@@ -113,7 +113,7 @@ var TowerselectedController = (function() {
                 }
 
                 // Floor Check
-                var floorGroupInterval = getGroupInterval(unit.floor, config.filters.floorInterval);
+                var floorGroupInterval = utils.getGroupInterval(unit.floor, config.filters.floorInterval);
                 var sfloor = floorGroupInterval.start,
                     efloor = floorGroupInterval.end - 1;
                 var floorGroup = sfloor + " " + efloor;
@@ -124,7 +124,7 @@ var TowerselectedController = (function() {
                 }
 
                 // Price Check
-                var priceGroupInterval = getGroupInterval(unit.price, config.filters.priceInterval);
+                var priceGroupInterval = utils.getGroupInterval(unit.price, config.filters.priceInterval);
                 var sprice = priceGroupInterval.start,
                     eprice = priceGroupInterval.end;
                 var priceGroup = sprice + " " + eprice;
