@@ -172,6 +172,7 @@ var TowerselectedView = (function() {
                 'floor': unitInfo.floor ? unitInfo.floor : 'Ground',
                 'color': unitInfo.isAvailable ? 'apt-available-color' : 'apt-unavailable-color',
                 'availability': unitInfo.isAvailable ? 'Available' : 'Sold',
+                'price': Math.floor(unitInfo.price/1000)/100 + ' Lacs',
                 'type': unitInfo.bedrooms + ' BHK'
             };
 
@@ -179,6 +180,7 @@ var TowerselectedView = (function() {
             towerCode += '<div class="towerunit-name">' + details.address + '</div>';
             towerCode += '<div>' + details.type + '</div>';
             towerCode += '<div>' + details.size + '</div>';
+            towerCode += '<div>' + details.price + '</div>';
             towerCode += '<div>Floor ' + details.floor + '</div>';
             towerCode += '<div class="' + details.color + '">' + details.availability + '</div>';
 

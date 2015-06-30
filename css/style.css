@@ -33,6 +33,15 @@ table td, table tr {
 .fade-image {
 	opacity: 0.3;
 }
+.no-pointer{
+	cursor: default;
+}
+.shift-left {
+	left: -30% !important;
+}
+.shrink {
+	width: 40% !important;
+}
 
 /* SVG */
 .svg-container {
@@ -60,12 +69,14 @@ ellipse.apt-unavailable {
 	fill: crimson;
 	cursor: default;
 }
-.no-pointer{
-	cursor: default;
-}
+
 /* Images */
 .img-container {
+	position: absolute;
+	width: 100%;
 	z-index: 1;
+	-webkit-transition: 0.5s;
+    transition: 0.5s;
 }
 .img-container img {
 	position: absolute;
@@ -272,13 +283,16 @@ ellipse.apt-unavailable {
 }
 
 /* Tower Rotation */
+.tower-rotation-container {
+	position: absolute;
+	width: 100%;
+}
 .tower-rotation-left-button {
 	position: absolute;
 	left: 100px;
 	top: 100px;
 	z-index: 99999;
 }
-
 .tower-rotation-right-button{
 	position: absolute;
 	right: 100px;
@@ -286,6 +300,7 @@ ellipse.apt-unavailable {
 	z-index: 99999;
 }
 
+/* Selected Unit */
 .selected-unit-container{
 	position: absolute;
 	z-index: 99999999;

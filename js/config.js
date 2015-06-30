@@ -6,26 +6,11 @@ var config = (function(){
 			titleId: "project-title",
 			addressId: "project-address"
 		},
-		mainContainerId : "main-container",
-		imgContainerClass : "menu-mapped-image",
-		leftPanelButtonClass: 'left-panel-button',
-		towerImgSvgClass: 'tower-svg-path',
-		towerUnitSvgClass: 'tower-unit-svg-path',
 		imageResolution: {
 			height: 630,
 			width: 1365,
 			unit: 'px'
 		},
-		selectedTowerImagesClass: 'selected-tower-image',
-		rotationButtonClass: 'rotation-button',
-		filterMenuContainerId: 'filter-menu-container',
-		towerRotationContainerId: 'tower-rotation-container',
-		towerDetailContainerId: "tower-detail-container",
-		fadeImageClass: "fade-image",
-		menuItemHoverClass: "menu-item-hover",
-		amenityIconClass: "amenity-icon",
-		amenityPopupClass: "amenity-popup",
-		amenityPopupCloseClass: "amenity-popup-close",
 		csv: {
 			masterplanScreen: 'masterplanScreen.csv',
 			towerselectScreen: 'towerselectScreen.csv',
@@ -36,6 +21,32 @@ var config = (function(){
 			available: 'apt-available',
 			unavailable: 'apt-unavailable'
 		},
+		mainContainerId : "main-container",
+		towerDetailContainerId: "tower-detail-container",
+
+		leftPanelButtonClass: 'left-panel-button',
+		menuItemHoverClass: "menu-item-hover",
+
+		// Masterplan
+		imgContainerClass : "menu-mapped-image",
+		towerImgSvgClass: 'tower-svg-path',
+		fadeImageClass: "fade-image",
+		amenityIconClass: "amenity-icon",
+		amenityPopupClass: "amenity-popup",
+		amenityPopupCloseClass: "amenity-popup-close",
+
+		// Towerseleted
+		imgContainerId: 'img-container',
+		svgContainerId: 'svg-container',
+		towerRotationContainerId: 'tower-rotation-container',
+		filterMenuContainerId: 'filter-menu-container',
+		
+		towerUnitSvgClass: 'tower-unit-svg-path',
+		selectedTowerImagesClass: 'selected-tower-image',
+		rotationButtonClass: 'rotation-button',
+		shiftLeftClass: 'shift-left',
+		shrinkClass: 'shrink',
+		
 		filters: {
 			bhk: 'bhk-option',
 			floor: 'floor-option',
@@ -46,6 +57,9 @@ var config = (function(){
 			floorInterval: 3,
 			priceInterval: 1000000
 		}
+		
+		// Unitplan
+		
 	};
 
 	return config;

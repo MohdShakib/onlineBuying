@@ -21,14 +21,14 @@ var initializeRoutes = (function() {
             rootdata = {};
 
         var masterplanController, masterplanModel, masterplanView,
-        towerselectedController, towerselectedModel, towerselectedView, 
-        unitplaninfoController, unitplaninfoModel, unitplaninfoView; 
+            towerselectedController, towerselectedModel, towerselectedView,
+            unitplaninfoController, unitplaninfoModel, unitplaninfoView;
 
         function onTowerselectedRoute(projectName, projectId, towerName) {
             rootdata = getProjectData(projectId);
             towerselectedModel = new TowerselectedModel(rootdata.towers[towerName], rootdata),
-            towerselectedView = new TowerselectedView(towerselectedModel),
-            towerselectedController = new TowerselectedController(towerselectedModel, towerselectedView);
+                towerselectedView = new TowerselectedView(towerselectedModel),
+                towerselectedController = new TowerselectedController(towerselectedModel, towerselectedView);
             towerselectedController.generateTemplate();
         }
 
@@ -37,7 +37,7 @@ var initializeRoutes = (function() {
                 rootdata = getProjectData(projectId);
                 masterplanModel = new MasterplanModel(rootdata);
                 masterplanView = new MasterplanView(masterplanModel),
-                masterplanController = new MasterplanController(masterplanModel, masterplanView);
+                    masterplanController = new MasterplanController(masterplanModel, masterplanView);
                 masterplanController.generateTemplate();
             }
         }
@@ -49,16 +49,16 @@ var initializeRoutes = (function() {
         routes[unitRoute] = {
             on: function(projectName, projectId, towerName, towerAngle, unitAddress) {
                 rootdata = getProjectData(projectId);
-                if(!towerselectedController){
-                  onTowerselectedRoute(projectName, projectId, towerName);
+                if (!towerselectedController) {
+                    onTowerselectedRoute(projectName, projectId, towerName);
                 }
 
                 var data = rootdata.towers[towerName].listings[unitAddress],
-                rotationdata = rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress];
+                    rotationdata = rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress];
 
                 unitplaninfoModel = new UnitplaninfoModel(data, rotationdata, rootdata),
-                unitplaninfoView = new UnitplaninfoView(unitplaninfoModel),
-                unitplaninfoController = new UnitplaninfoController(unitplaninfoModel, unitplaninfoView);
+                    unitplaninfoView = new UnitplaninfoView(unitplaninfoModel),
+                    unitplaninfoController = new UnitplaninfoController(unitplaninfoModel, unitplaninfoView);
                 unitplaninfoController.generateTemplate();
             }
         }

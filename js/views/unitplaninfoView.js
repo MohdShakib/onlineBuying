@@ -28,6 +28,10 @@ var UnitplaninfoView = (function() {
     UnitplaninfoView.prototype = {
         buildView: function() {
             $('#'+config.filterMenuContainerId).hide();
+            $('#'+config.imgContainerId).addClass(config.shiftLeftClass);
+            var originalClasses = document.getElementById(config.svgContainerId).className.baseVal;
+            $('#'+config.svgContainerId).attr('class', originalClasses + ' ' + config.shiftLeftClass);
+            $('#'+config.towerRotationContainerId).addClass(config.shrinkClass);
            // return;
             var i, data = this._model.getData(),
             rotationdata = this._model.getRotationdata(),
