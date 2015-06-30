@@ -138,7 +138,7 @@ var TowerselectedController = (function() {
             }
 
             this._model.updateFilteredListings(filteredListings);
-            this._view.towerSvgContainer(this._model.getData());
+            this._view.towerSvgContainer(this._model.getData(), this._model.getRootdata());
         },
         generateTemplate: function(data, rootdata, elements) {
             this.attachListeners();
