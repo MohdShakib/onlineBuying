@@ -200,13 +200,14 @@ var TowerselectedView = (function() {
         },
         towerRotationContainer: function() {
             var _this = this;
-            _this._elements.towerRotationContainer.off('click').on('click', '#rotation-button', function(event) {
+            _this._elements.towerRotationContainer.off('click').on('click', '.'+config.rotationButtonClass, function(event) {
                 // notify controller about rotatebutton click
                 _this._towerRotateClicked.notify();
 
             });
 
-            var code = '<button id="rotation-button" >Rotate</button>';
+            var code = '<button class="'+config.rotationButtonClass+'  tower-rotation-left-button" >Rotate Left</button>';
+                code += '<button class="'+config.rotationButtonClass+' tower-rotation-right-button" >Rotate Right</button>';
             if (this._elements && this._elements.towerRotationContainer) {
                 this._elements.towerRotationContainer.html(code);
             }

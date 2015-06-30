@@ -271,12 +271,20 @@ ellipse.apt-unavailable {
 }
 
 /* Tower Rotation */
-.tower-rotation-container {
+.tower-rotation-left-button {
+	position: absolute;
+	left: 100px;
+	top: 100px;
+	z-index: 99999;
+}
+
+.tower-rotation-right-button{
 	position: absolute;
 	right: 100px;
 	top: 100px;
 	z-index: 99999;
 }
+
 
 /* Overview Image */
 .overview-img-container {

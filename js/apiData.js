@@ -57,6 +57,7 @@ var getProjectData = (function() {
                 for(i = 0; i < listing.length; i++){
                     unitInfo = listing[i];
                     unitIdentifier = getIdentifier(unitInfo.unitName);
+                    unitInfo.unitIdentifier = unitIdentifier;
                     unitTowerIdentifier = getIdentifier(unitInfo.towerName);
                     
                     if(unitTowerIdentifier !== towerIdentifier){ // If listing does not belong to towerIdentifier then skip
@@ -76,7 +77,7 @@ var getProjectData = (function() {
                         delete unitInfo.rotationAngle;
                     }else if(tower && tower.rotationAngle && unitInfo.rotationAngle){
                         tower.rotationAngle[unitInfo.rotationAngle] = {};  
-                        tower.rotationAngle[unitInfo.rotationAngle].towerImageUrl = zipImagePath+'/'+unitInfo.towerImageName;
+                        tower.rotationAngle[unitInfo.rotationAngle].towerImageUrl = zipImagePath+unitInfo.towerImageName;
                         tower.rotationAngle[unitInfo.rotationAngle].listing = {};
                         tower.rotationAngle[unitInfo.rotationAngle].listing[unitIdentifier]  = unitInfo;
                     }
@@ -134,11 +135,11 @@ var getProjectData = (function() {
             useTowerUnitsCSVData(listing); 
         });
 
-        /*utils.getSvgData(zipPath+'/'+config.csv.unitplanInfo).success(function(data){
+        utils.getSvgData(zipPath+'/'+config.csv.unitplanInfo).success(function(data){
             console.log('unitplanInfo is: ');
              var data = processCsvDataToArray(data);
             console.log(data);
-        });*/
+        });
 
     }
 
@@ -206,8 +207,10 @@ var getProjectData = (function() {
             var towerName   = towerMap[towerId];
             var towerIdentifier = getIdentifier(towerName);
             var listing     = projectDetail.listings[i],
+            unitIdentifier = getIdentifier(listing.flatNumber),
             flatUnit = {};
             flatUnit.listingAddress = listing.flatNumber;
+            flatUnit.unitIdentifier = unitIdentifier;
             flatUnit.listingId = listing.id;
             flatUnit.floor  = listing.floor;
             flatUnit.isAvailable = (listing.bookingStatusId == 1 ? true : false ); // available if bookingStatusId = 1
@@ -223,7 +226,6 @@ var getProjectData = (function() {
             flatUnit.measure  = propertyDetail.measure;
             
             if(towerIdentifier){
-                var unitIdentifier = getIdentifier(listing.flatNumber);
                 projectData.towers[towerIdentifier].listings[unitIdentifier] = flatUnit;
             }
 

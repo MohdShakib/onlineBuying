@@ -17,6 +17,7 @@ var config = (function(){
 			unit: 'px'
 		},
 		selectedTowerImagesClass: 'selected-tower-image',
+		rotationButtonClass: 'rotation-button',
 		towerDetailContainerId: "tower-detail-container",
 		fadeImageClass: "fade-image",
 		menuItemHoverClass: "menu-item-hover",
