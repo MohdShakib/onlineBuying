@@ -58,6 +58,7 @@ ellipse.apt-available {
 }
 ellipse.apt-unavailable {
 	fill: crimson;
+	cursor: default;
 }
 .no-pointer{
 	cursor: default;

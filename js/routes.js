@@ -39,13 +39,15 @@ var initializeRoutes = (function() {
             }
         }
 
-        /*routes[unitRoute] = {
-           on: function(projectName, projectId, towerName, unitAddress){
-                 rootdata = getProjectData(projectId);
-                 var elements = prepareTemplateSkeleton(UNIT, controller, rootdata);
-                 controller.generateTemplate(rootdata.towers[towerName].listings[unitAddress], rootdata, elements);
-               }
-         }*/
+        routes[unitRoute] = {
+            on: function(projectName, projectId, towerName, unitAddress) {
+                rootdata = getProjectData(projectId);
+                var model = new DataModel(rootdata.towers[towerName], rootdata),
+                    view = new TowerselectedView(model),
+                    controller = new TowerselectedController(model, view);
+                controller.generateTemplate();
+            }
+        }
 
         // instantiate the router
         var router = Router(routes);

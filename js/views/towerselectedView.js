@@ -91,7 +91,7 @@ var TowerselectedView = (function() {
             }
             this._elements.towerImgContainer.html(imgCode);
         },
-        towerSvgContainer: function(data) {
+        towerSvgContainer: function(data, rootdata) {
             var currentRotationAngle = this._model.getCurrentRotationAngle();
             var listings = (data && data.rotationAngle[currentRotationAngle] && Object.keys(data.rotationAngle[currentRotationAngle].listing).length) ? data.rotationAngle[currentRotationAngle].listing : null;
 
@@ -101,7 +101,8 @@ var TowerselectedView = (function() {
 
             var svgCode = "",
                 unitIdentifier, unitInfo, svgClass,
-                filteredListingKeys = this._model.getFilteredListings();
+                filteredListingKeys = this._model.getFilteredListings(),
+                baseUrl = rootdata.baseUrl + "/" + data.towerIdentifier + "/";
 
             for (unitIdentifier in listings) {
                 unitInfo = listings[unitIdentifier];
@@ -110,8 +111,12 @@ var TowerselectedView = (function() {
                     unitInfo.unitSvgOnTower &&
                     (filteredListingKeys == null || filteredListingKeys.indexOf(unitIdentifier) > -1)
                 ) {
+                    var url = listings[unitIdentifier].isAvailable ? baseUrl + unitIdentifier : "undefined";
                     svgClass = listings[unitIdentifier].isAvailable ? 'apt-available' : 'apt-unavailable';
-                    svgCode += "<ellipse  class=\"" + config.towerUnitSvgClass + " " + svgClass + "\" id=\"" + unitInfo.unitName + "-path\" data-index=\"" + unitIdentifier + "\"  cx='" + unitInfo.unitSvgOnTower[0] + "' cy='" + unitInfo.unitSvgOnTower[1] + "' ry='1.2' rx='0.55' />";
+                    svgCode += "<ellipse  class=\"" + config.towerUnitSvgClass + " " + svgClass + 
+                            "\" id=\"" + unitInfo.unitName + "-path\" data-index=\"" + unitIdentifier + 
+                            "\" data-url=\"" + url +
+                            "\"  cx='" + unitInfo.unitSvgOnTower[0] + "' cy='" + unitInfo.unitSvgOnTower[1] + "' ry='1.2' rx='0.55' />";
                 }
             }
 
@@ -189,12 +194,13 @@ var TowerselectedView = (function() {
         rotateTower: function() {
             this._elements.towerSvgContainer.html('');
             var data = this._model.getData(),
+                rootdata = this._model.getRootdata(),
                 imageClass = this._model.getCurrentRotationAngle();
             var _this = this;
             $('.' + config.selectedTowerImagesClass).fadeOut(1000);
             $('.' + imageClass).fadeIn(1000, function() {
                 // change unit availability svgs
-                _this.towerSvgContainer(data);
+                _this.towerSvgContainer(data, rootdata);
             });
 
         },
