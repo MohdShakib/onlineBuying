@@ -18,6 +18,8 @@ var config = (function(){
 		},
 		selectedTowerImagesClass: 'selected-tower-image',
 		rotationButtonClass: 'rotation-button',
+		filterMenuContainerId: 'filter-menu-container',
+		towerRotationContainerId: 'tower-rotation-container',
 		towerDetailContainerId: "tower-detail-container",
 		fadeImageClass: "fade-image",
 		menuItemHoverClass: "menu-item-hover",

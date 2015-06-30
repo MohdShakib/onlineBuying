@@ -12,8 +12,8 @@ var TowerselectedView = (function() {
         //'overviewImgContainer': '<div  class="overview-img-container" id="overview-img-container" ></div>',
         'towerSvgContainer': '<svg class="svg-container" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'towerDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>',
-        'towerRotationContainer': '<div class="tower-rotation-container" id="tower-rotation-container"></div>',
-        'towerMenuContainer': '<div class="tower-menu-container" id="tower-menu-container"></div>'
+        'towerRotationContainer': '<div class="tower-rotation-container" id="'+config.towerRotationContainerId+'"></div>',
+        'filterMenuContainer': '<div class="tower-menu-container" id="'+config.filterMenuContainerId+'"></div>'
     };
 
     function getElements() {
@@ -23,7 +23,7 @@ var TowerselectedView = (function() {
             'towerSvgContainer': $('#svg-container'),
             'towerDetailContainer': $('#tower-detail-container'),
             'towerRotationContainer': $('#tower-rotation-container'),
-            'towerMenuContainer': $('#tower-menu-container')
+            'filterMenuContainer': $('#filter-menu-container')
         };
         return elements;
     }
@@ -111,7 +111,8 @@ var TowerselectedView = (function() {
                     unitInfo.unitSvgOnTower &&
                     (filteredListingKeys == null || filteredListingKeys.indexOf(unitIdentifier) > -1)
                 ) {
-                    var url = listings[unitIdentifier].isAvailable ? baseUrl + unitIdentifier : "undefined";
+                    var rotationAngle = this._model.getCurrentRotationAngle(),
+                    url = listings[unitIdentifier].isAvailable ? baseUrl + rotationAngle + '/' + unitIdentifier : "undefined";
                     svgClass = listings[unitIdentifier].isAvailable ? 'apt-available' : 'apt-unavailable';
                     svgCode += "<ellipse  class=\"" + config.towerUnitSvgClass + " " + svgClass + 
                             "\" id=\"" + unitInfo.unitName + "-path\" data-index=\"" + unitIdentifier + 
@@ -218,7 +219,7 @@ var TowerselectedView = (function() {
                 this._elements.towerRotationContainer.html(code);
             }
         },
-        towerMenuContainer: function(data, rootdata) {
+        filterMenuContainer: function(data, rootdata) {
             var url = rootdata.baseUrl;
             var code = "<table><tr><td class='menu-header menu-icon'><a href='" + url + "'>&lt;--</a></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
@@ -240,33 +241,33 @@ var TowerselectedView = (function() {
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-call menu-icon'> C </td></tr>";
             code += "</table>";
-            this._elements.towerMenuContainer.html(code);
-            this.towerMenuContainerEvents();
+            this._elements.filterMenuContainer.html(code);
+            this.filterMenuContainerEvents();
         },
-        towerMenuContainerEvents: function() {
+        filterMenuContainerEvents: function() {
             var _this = this;
 
-            _this._elements.towerMenuContainer.off('click').on('click', '.' + config.filters.bhk, function(event) {
+            _this._elements.filterMenuContainer.off('click').on('click', '.' + config.filters.bhk, function(event) {
                 // notify controller
                 _this._bhkFilterOptionClick.notify(this); // this refers to element here
             });
 
-            _this._elements.towerMenuContainer.on('click', '.' + config.filters.floor, function(event) {
+            _this._elements.filterMenuContainer.on('click', '.' + config.filters.floor, function(event) {
                 // notify controller
                 _this._floorFilterOptionClick.notify(this); // this refers to element here
             });
 
-            _this._elements.towerMenuContainer.on('click', '.' + config.filters.entrance, function(event) {
+            _this._elements.filterMenuContainer.on('click', '.' + config.filters.entrance, function(event) {
                 // notify controller
                 _this._entranceFilterOptionClick.notify(this); // this refers to element here
             });
 
-            _this._elements.towerMenuContainer.on('click', '.' + config.filters.price, function(event) {
+            _this._elements.filterMenuContainer.on('click', '.' + config.filters.price, function(event) {
                 // notify controller
                 _this._priceFilterOptionClick.notify(this); // this refers to element here
             });
 
-            _this._elements.towerMenuContainer.on('click', '.' + config.filters.resetClass, function(event) {
+            _this._elements.filterMenuContainer.on('click', '.' + config.filters.resetClass, function(event) {
                 // notify controller
                 _this._resetFiltersClick.notify(this); // this refers to element here
             });
@@ -281,7 +282,7 @@ var TowerselectedView = (function() {
             }
         },
         resetFilterOption: function(element) {
-            this._elements.towerMenuContainer.find('*').removeClass(config.filters.selectedClass);
+            this._elements.filterMenuContainer.find('*').removeClass(config.filters.selectedClass);
         },
         getBHKMenuOptions: function(data) {
             var code = "<div class='menu-item-options'><table>";

@@ -4,9 +4,9 @@
  */
 
 "use strict";
-var DataModel = (function() {
+var TowerselectedModel = (function() {
 
-    function DataModel(data, rootdata) {
+    function TowerselectedModel(data, rootdata) {
         this._data = data;
         this._rootdata = rootdata;
 
@@ -14,7 +14,7 @@ var DataModel = (function() {
         this._filteredListings = null;
     }
 
-    DataModel.prototype = {
+    TowerselectedModel.prototype = {
         getData: function() {
             if (!this._data) {
                 return {};
@@ -51,6 +51,6 @@ var DataModel = (function() {
         }
     };
 
-    return DataModel;
+    return TowerselectedModel;
 
 })();

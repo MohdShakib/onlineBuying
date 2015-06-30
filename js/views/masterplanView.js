@@ -49,13 +49,12 @@ var MasterplanView = (function() {
     MasterplanView.prototype = {
         buildView: function() {
             var i, data = this._model.getData();
-            var rootdata = this._model.getRootdata();
             var _this = this;
             this.buildSkeleton(Object.keys(containerMap));
             this.renderInitialData(data);
             for (i in this._elements) {
                 if (this._elements.hasOwnProperty(i) && this[i]) {
-                    this[i](data, rootdata);
+                    this[i](data);
                 }
             }
         },
@@ -84,7 +83,7 @@ var MasterplanView = (function() {
                 return t1.displayOrder - t2.displayOrder;
             });
         },
-        buildingImgContainer: function(data, rootdata) {
+        buildingImgContainer: function(data) {
             var imgCode = "<img id=\"main-image\" width='100%' src=\"" + data.bgImage + "\"/>";
             var tower, i,
                 towers = this.sortTowersObject(data.towers),
@@ -98,7 +97,7 @@ var MasterplanView = (function() {
             }
             this._elements.buildingImgContainer.html(imgCode);
         },
-        buildingMenuContainer: function(data, rootdata) {
+        buildingMenuContainer: function(data) {
             var code = "<table><tr><td class='menu-header menu-icon'>|||</td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><table>";
@@ -135,7 +134,7 @@ var MasterplanView = (function() {
                 _this._menuMouseLeave.notify(); // this refers to element here
             });
         },
-        buildingSvgContainer: function(data, rootdata) {
+        buildingSvgContainer: function(data) {
             var svgCode = "",
                 i, tower, towerUrl,
                 towers = this.sortTowersObject(data.towers),
@@ -236,7 +235,7 @@ var MasterplanView = (function() {
             window.getComputedStyle(document.getElementById('container-detail')).opacity;
             document.getElementById('container-detail').style.opacity = "1";
         },
-        amenitiesContainer: function(data, rootdata) {
+        amenitiesContainer: function(data) {
             var code = "";
             for (var amenityKey in data.amenities) {
                 if (hasOwnProperty.call(data.amenities, amenityKey)) {

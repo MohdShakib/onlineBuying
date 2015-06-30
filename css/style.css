@@ -286,6 +286,14 @@ ellipse.apt-unavailable {
 	z-index: 99999;
 }
 
+.selected-unit-container{
+	position: absolute;
+	z-index: 99999999;
+	background: white;
+	width: 60%;
+	height: 100%;
+	right: 0px;
+}	
 
 /* Overview Image */
 .overview-img-container {

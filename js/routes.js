@@ -9,43 +9,57 @@ var initializeRoutes = (function() {
             projectName: "([a-z0-9-]+)",
             projectId: "([0-9]{6})",
             towerName: "([a-z0-9-]+)",
+            towerAngle: "(0|180)",
             unitAddress: "([a-z0-9-]+)"
         };
 
         var projectRoute = routeRegex.sep + routeRegex.projectName + routeRegex.wordSep + routeRegex.projectId,
             towerRoute = projectRoute + routeRegex.sep + routeRegex.towerName,
-            unitRoute = towerRoute + routeRegex.sep + routeRegex.unitAddress;
+            unitRoute = towerRoute + routeRegex.sep + routeRegex.towerAngle + routeRegex.sep + routeRegex.unitAddress;
 
         var routes = {},
             rootdata = {};
 
+        var masterplanController, masterplanModel, masterplanView,
+        towerselectedController, towerselectedModel, towerselectedView, 
+        unitplaninfoController, unitplaninfoModel, unitplaninfoView; 
+
+        function onTowerselectedRoute(projectName, projectId, towerName) {
+            rootdata = getProjectData(projectId);
+            towerselectedModel = new TowerselectedModel(rootdata.towers[towerName], rootdata),
+            towerselectedView = new TowerselectedView(towerselectedModel),
+            towerselectedController = new TowerselectedController(towerselectedModel, towerselectedView);
+            towerselectedController.generateTemplate();
+        }
+
         routes[projectRoute] = {
             on: function(projectName, projectId) {
                 rootdata = getProjectData(projectId);
-                var model = new DataModel(rootdata, rootdata),
-                    view = new MasterplanView(model),
-                    controller = new MasterplanController(model, view);
-                controller.generateTemplate();
+                masterplanModel = new MasterplanModel(rootdata);
+                masterplanView = new MasterplanView(masterplanModel),
+                masterplanController = new MasterplanController(masterplanModel, masterplanView);
+                masterplanController.generateTemplate();
             }
         }
 
         routes[towerRoute] = {
-            on: function(projectName, projectId, towerName) {
-                rootdata = getProjectData(projectId);
-                var model = new DataModel(rootdata.towers[towerName], rootdata),
-                    view = new TowerselectedView(model),
-                    controller = new TowerselectedController(model, view);
-                controller.generateTemplate();
-            }
+            on: onTowerselectedRoute
         }
 
         routes[unitRoute] = {
-            on: function(projectName, projectId, towerName, unitAddress) {
+            on: function(projectName, projectId, towerName, towerAngle, unitAddress) {
                 rootdata = getProjectData(projectId);
-                var model = new DataModel(rootdata.towers[towerName], rootdata),
-                    view = new TowerselectedView(model),
-                    controller = new TowerselectedController(model, view);
-                controller.generateTemplate();
+                if(!towerselectedController){
+                  onTowerselectedRoute(projectName, projectId, towerName);
+                }
+
+                var data = rootdata.towers[towerName].listings[unitAddress],
+                rotationdata = rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress];
+
+                unitplaninfoModel = new UnitplaninfoModel(data, rotationdata, rootdata),
+                unitplaninfoView = new UnitplaninfoView(unitplaninfoModel),
+                unitplaninfoController = new UnitplaninfoController(unitplaninfoModel, unitplaninfoView);
+                unitplaninfoController.generateTemplate();
             }
         }
 
