@@ -36,7 +36,7 @@ var config = (function(){
 		amenityPopupClass: "amenity-popup",
 		amenityPopupCloseClass: "amenity-popup-close",
 
-		// Towerseleted
+		// Towerselected
 		imgContainerId: 'img-container',
 		svgContainerId: 'svg-container',
 		towerRotationContainerId: 'tower-rotation-container',
