@@ -20,10 +20,10 @@ var UnitplaninfoModel = (function() {
             return this._data;
         },
         getRotationdata: function() {
-            if (!this.__rotationdata) {
+            if (!this._rotationdata) {
                 return {};
             }
-            return this.__rotationdata;
+            return this._rotationdata;
         },
         getRootdata: function() {
             if (!this._rootdata) {

@@ -27,20 +27,27 @@ var UnitplaninfoView = (function() {
 
     UnitplaninfoView.prototype = {
         buildView: function() {
-            $('#'+config.filterMenuContainerId).hide();
-            $('#'+config.imgContainerId).addClass(config.shiftLeftClass);
-            var originalClasses = document.getElementById(config.svgContainerId).className.baseVal;
-            $('#'+config.svgContainerId).attr('class', originalClasses + ' ' + config.shiftLeftClass);
-            $('#'+config.towerRotationContainerId).addClass(config.shrinkClass);
-           // return;
             var i, data = this._model.getData(),
-            rotationdata = this._model.getRotationdata(),
-            rootdata = this._model.getRootdata();
+                rotationdata = this._model.getRotationdata(),
+                rootdata = this._model.getRootdata();
             var _this = this;
+
+            $('#' + config.filterMenuContainerId).hide();
+            $('#' + config.imgContainerId).addClass(config.shiftLeftClass);
+            $('#' + config.towerRotationContainerId).addClass(config.shrinkClass);
+
+            var originalClasses = document.getElementById(config.svgContainerId).className.baseVal;
+            $('#' + config.svgContainerId).attr('class', originalClasses + ' ' + config.shiftLeftClass);
+
+            // var svgCode = "<ellipse  class=\"" + config.towerUnitSelectedSvgClass + "\" " +
+            //     "id=\"" + data.unitIdentifier + "-selected-path\" " +
+            //     "cx='" + rotationdata.unitSvgOnTower[0] + "' cy='" + rotationdata.unitSvgOnTower[1] + "' ry='1.7' rx='0.8' />";
+            // $('#' + config.svgContainerId).append(svgCode);
+
             this.buildSkeleton(Object.keys(containerMap));
             for (i in this._elements) {
                 if (this._elements.hasOwnProperty(i) && this[i]) {
-                    this[i](data, rootdata);
+                    this[i](data, rotationdata, rootdata);
                 }
             }
         },
@@ -51,8 +58,14 @@ var UnitplaninfoView = (function() {
                     htmlCode += containerMap[containerList[key]];
                 }
             }
-            $('#'+config.mainContainerId).append(htmlCode);
+            $('#' + config.mainContainerId).append(htmlCode);
             this._elements = getElements();
+        },
+        selectedUnitContainer: function(data, rotationdata, rootdata) {
+            var code = "<div class='unit-header'></div>" +
+                        "<div class='unit-close'> X </div>" +
+                        "<div class='unit-body'></div>";
+            this._elements.selectedUnitContainer.html(code);
         }
     };
 

@@ -43,6 +43,7 @@ var config = (function(){
 		filterMenuContainerId: 'filter-menu-container',
 		
 		towerUnitSvgClass: 'tower-unit-svg-path',
+		towerUnitSelectedSvgClass: 'tower-unit-selected-svg-path',
 		selectedTowerImagesClass: 'selected-tower-image',
 		rotationButtonClass: 'rotation-button',
 		shiftLeftClass: 'shift-left',
