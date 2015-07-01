@@ -374,6 +374,7 @@ ellipse.tower-unit-selected-svg-path {
 .unit-body {
 	background-color: #EEE;
   	height: 100%;
+  	text-align: center;
 }
 
 /* Overview Image */

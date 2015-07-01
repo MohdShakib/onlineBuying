@@ -62,6 +62,7 @@ var UnitplaninfoView = (function() {
             this._elements = getElements();
         },
         selectedUnitContainer: function(data, rotationdata, rootdata) {
+            var imageUrl = rootdata.unitTypes[rotationdata.unitTypeIdentifier].unitImageUrl;
             var code = "<div class='unit-close'> X </div>" +
                 "<table><tr><td class='unit-header'>" +
                 "<table><tr><td class='header-item header-title'> " + 
@@ -73,7 +74,7 @@ var UnitplaninfoView = (function() {
                 "<td class='header-item'><span>#</span>Cluster Plan</td>" +
                 "<td class='header-item'><span>$</span>Price Breakup</td>" +
                 "<td class='header-item right'><span>&</span>Specification</td></tr></table></td></tr>" +
-                "<tr><td class='unit-body'></td></tr></table>";
+                "<tr><td class='unit-body'><img src='" + imageUrl + "'></td></tr></table>";
             this._elements.selectedUnitContainer.html(code);
         }
     };
