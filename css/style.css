@@ -356,7 +356,7 @@ ellipse.tower-unit-selected-svg-path {
 .unit-header .right {
 	border-right: none;
 }
-.unit-close {
+.unit-close-container {
 	height: 50px;
 	width: 50px;
 	position: absolute;

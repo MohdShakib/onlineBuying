@@ -216,7 +216,7 @@ var getProjectData = (function() {
 
 
         projectData.projectId = projectDetail.projectId;
-        projectData.baseUrl = '#/projectname-'+projectDetail.projectId;
+        projectData.baseUrl = 'projectname-'+projectDetail.projectId;
         projectData.projectName = projectDetail.name;
         projectData.address = projectDetail.address;
         projectData.bgImage = zipImagePath+config.backgroundImage;

@@ -58,10 +58,11 @@ var config = (function(){
 			resetClass: 'reset-filters',
 			floorInterval: 3,
 			priceInterval: 1000000
-		}
-		
+		},
+
 		// Unitplan
-		
+		selectedUnitContainerId: 'selected-unit-container',
+		closeUnitContainerId: 'unit-close-container'
 	};
 
 	return config;

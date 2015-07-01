@@ -223,7 +223,7 @@ var TowerselectedView = (function() {
         },
         filterMenuContainer: function(data, rootdata) {
             var url = rootdata.baseUrl;
-            var code = "<table><tr><td class='menu-header menu-icon'><a href='" + url + "'>&lt;--</a></td></tr>";
+            var code = "<table><tr><td class='menu-header menu-icon'><a href='#" + url + "'>&lt;--</a></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><table>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> @ </div>";
