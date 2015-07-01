@@ -22,10 +22,11 @@ var initializeRoutes = (function() {
 
         var masterplanController, masterplanModel, masterplanView,
             towerselectedController, towerselectedModel, towerselectedView,
-            unitplaninfoController, unitplaninfoModel, unitplaninfoView;
+            unitplaninfoController, unitplaninfoModel, unitplaninfoView,
+            errorPageController, errorPageView;
 
         function onTowerselectedRoute(projectName, projectId, towerName) {
-            rootdata = getProjectData(projectId);
+
             towerselectedModel = new TowerselectedModel(rootdata.towers[towerName], rootdata),
                 towerselectedView = new TowerselectedView(towerselectedModel),
                 towerselectedController = new TowerselectedController(towerselectedModel, towerselectedView);
@@ -34,7 +35,6 @@ var initializeRoutes = (function() {
 
         routes[projectRoute] = {
             on: function(projectName, projectId) {
-                rootdata = getProjectData(projectId);
                 masterplanModel = new MasterplanModel(rootdata);
                 masterplanView = new MasterplanView(masterplanModel),
                     masterplanController = new MasterplanController(masterplanModel, masterplanView);
@@ -48,7 +48,7 @@ var initializeRoutes = (function() {
 
         routes[unitRoute] = {
             on: function(projectName, projectId, towerName, towerAngle, unitAddress) {
-                rootdata = getProjectData(projectId);
+
                 if (!towerselectedController) {
                     onTowerselectedRoute(projectName, projectId, towerName);
                 }
@@ -63,6 +63,14 @@ var initializeRoutes = (function() {
             }
         }
 
+        routes['/404'] = {
+            on: function() {
+                  errorPageView = new ErrorPageView();
+                  errorPageController = new ErrorPageController(errorPageView);
+                  errorPageController.generateTemplate();
+            }
+        }
+
         // instantiate the router
         var router = Router(routes);
         router.configure({ // a global configuration setting.
@@ -72,8 +80,27 @@ var initializeRoutes = (function() {
             notfound: function() {
                 console.log('Route not found');
             },
-            before: function(projectName, projectId) {
-                //console.log(projectName, projectId);
+            before: function(projectName, projectId, towerName, towerAngle, unitAddress) {
+
+              rootdata = getProjectData(projectId);
+              var flag = false;
+
+              if(towerAngle && unitAddress){
+                flag = rootdata.towers && rootdata.towers[towerName] && rootdata.towers[towerName].rotationAngle && rootdata.towers[towerName].rotationAngle[towerAngle]  && rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress] ? true : false;
+              }else if(towerName){
+                flag = rootdata.towers && rootdata.towers[towerName] ? true : false;
+              }else if(projectId){
+                flag = rootdata && rootdata.towers ? true : false;
+              }else {
+                return true;
+              }
+
+              if(!flag){
+                console.log('data not available for the url');
+              }
+
+              return flag;
+
             }
         });
 

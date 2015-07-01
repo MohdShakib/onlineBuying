@@ -17,6 +17,7 @@ var config = (function(){
 			amenitiesHotspots: 'amenitiesHotspots.csv',
 			unitplanInfo: 'unitplanInfo.csv'
 		},
+		noPointerClass: 'no-pointer',
 		availabilityClass: {
 			available: 'apt-available',
 			unavailable: 'apt-unavailable'

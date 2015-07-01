@@ -151,6 +151,9 @@ ellipse.apt-unavailable {
 .apt-available {
 	border-right: 4px solid limegreen;
 }
+.apt-unavailable {
+	border-right: 4px solid crimson;
+}
 .apt-available-color{
 	color: limegreen  !important;
 }
@@ -163,9 +166,7 @@ ellipse.apt-unavailable {
 .apt-unavailable-color{
 	color: crimson !important;
 }
-.apt-unavailable {
-	border-right: 4px solid crimson;
-}
+
 
 /* Tower Menu */
 .tower-menu-container {
@@ -237,7 +238,6 @@ ellipse.apt-unavailable {
 }
 .tower-menu-container .menu-item-hover {
 	width: 100px;
-  	border-right: 4px green solid;
 }
 .tower-menu-container .menu-items .menu-item-container {
 	-webkit-transition: 0.5s;
