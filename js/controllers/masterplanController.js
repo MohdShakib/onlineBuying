@@ -15,7 +15,7 @@ var MasterplanController = (function() {
         changeUrl: function(element) {
             var hash = element.dataset.url ? element.dataset.url : null;
             if (hash && hash != "undefined")
-                window.location.hash = hash;
+            	router.setRoute(hash);
             return;
         },
         attachListeners: function() {

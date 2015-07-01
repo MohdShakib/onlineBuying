@@ -23,6 +23,8 @@ var UnitplaninfoView = (function() {
         this._model = model;
         this._elements = null;
         var _this = this;
+
+        this._unitCloseClick = new Event(this);
     }
 
     UnitplaninfoView.prototype = {
@@ -63,9 +65,22 @@ var UnitplaninfoView = (function() {
         },
         selectedUnitContainer: function(data, rotationdata, rootdata) {
             var code = "<div class='unit-header'></div>" +
-                        "<div class='unit-close'> X </div>" +
+                        "<div class='unit-close' id='unit-close'> X </div>" +
                         "<div class='unit-body'></div>";
             this._elements.selectedUnitContainer.html(code);
+            this.selectedUnitContainerEvents();
+        },
+        selectedUnitContainerEvents: function(){
+            var _this = this;
+            _this._elements.selectedUnitContainer.off('click').on('click', '#unit-close', function(event) {
+                // notify controller
+                _this._unitCloseClick.notify(); // this refers to element here
+            });
+        },
+        closeUnitPlan: function(){
+            var hash = 'projectname-640037/tower-a';
+            router.setRoute(hash);
+            return;
         }
     };
 

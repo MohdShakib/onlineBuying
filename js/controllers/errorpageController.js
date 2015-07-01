@@ -17,8 +17,11 @@ var ErrorPageController = (function() {
                 window.location.hash = hash;
             return;
         },*/
+        attachListeners: function(){
+            
+        },
         generateTemplate: function() {
-            //this.attachListeners();
+            this.attachListeners();
             this._view.buildView();
         }
     };

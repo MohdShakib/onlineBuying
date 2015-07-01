@@ -12,14 +12,12 @@ var UnitplaninfoController = (function() {
     }
 
     UnitplaninfoController.prototype = {
-        changeUrl: function(element) {
-            var hash = element.dataset.url ? element.dataset.url : null;
-            if (hash && hash != "undefined")
-                window.location.hash = hash;
-            return;
-        },
         attachListeners: function() {
             var _this = this;
+            // Menu Events
+            this._view._unitCloseClick.attach(function(sender, element) {
+                _this._view.closeUnitPlan();
+            });
         },
         generateTemplate: function(data, rootdata, elements) {
             this.attachListeners();

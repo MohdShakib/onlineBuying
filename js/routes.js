@@ -1,4 +1,5 @@
 "use strict";
+var router;
 var initializeRoutes = (function() {
 
     function initializeRoutes() {
@@ -72,7 +73,7 @@ var initializeRoutes = (function() {
         }
 
         // instantiate the router
-        var router = Router(routes);
+        router = Router(routes);
         router.configure({ // a global configuration setting.
             on: function(projectName, projectId) {
                 //console.log(projectName, projectId);
