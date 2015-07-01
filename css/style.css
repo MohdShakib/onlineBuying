@@ -312,10 +312,49 @@ ellipse.tower-unit-selected-svg-path {
 	width: 60%;
 	height: 100%;
 	right: 0px;
+}
+.selected-unit-container table {
+	width: 100%;
+	height: 100%;
+	border-collapse: separate;
+    border-spacing: 0;
 }	
 .unit-header {
 	height: 50px;
- 	background-color: #333;
+}
+.unit-header .header-item {
+	color: #DDD;
+	font-size: 11px;
+	text-align: center;
+	background-color: #333;
+	border-right: 1px #EEE solid;
+	border-bottom: 5px #666 solid;
+	cursor: pointer; 
+	line-height: 20px;
+	padding: 0 5px;
+}
+.unit-header .header-item span {
+	display: block;
+	font-size: 15px;
+	line-height: 25px;
+}
+.unit-header .header-title {
+	width: 50%;
+	font-size: 10px;
+	text-align: left;
+	padding-left: 10px;
+	cursor: default;
+}
+.unit-header .header-title span {
+	display: inline;
+	font-size: 14px;
+}
+.unit-header .header-title .address {
+	font-size: 19px;
+	color: #FFF;
+}
+.unit-header .right {
+	border-right: none;
 }
 .unit-close {
 	height: 50px;
@@ -335,6 +374,7 @@ ellipse.tower-unit-selected-svg-path {
 .unit-body {
 	background-color: #EEE;
   	height: 100%;
+  	text-align: center;
 }
 
 /* Overview Image */
