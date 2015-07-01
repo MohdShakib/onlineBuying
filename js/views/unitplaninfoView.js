@@ -62,9 +62,18 @@ var UnitplaninfoView = (function() {
             this._elements = getElements();
         },
         selectedUnitContainer: function(data, rotationdata, rootdata) {
-            var code = "<div class='unit-header'></div>" +
-                        "<div class='unit-close'> X </div>" +
-                        "<div class='unit-body'></div>";
+            var code = "<div class='unit-close'> X </div>" +
+                "<table><tr><td class='unit-header'>" +
+                "<table><tr><td class='header-item header-title'> " + 
+                "<span class='address'>" + data.listingAddress + "</span> " +
+                "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
+                "- <span>" + data.size + " " + data.measure + "</span> " +
+                "- <span>Rs. " + utils.getReadablePrice(data.price) + "* </span></td>" +
+                "<td class='header-item'><span>@</span>2D Unit Plan</td>" +
+                "<td class='header-item'><span>#</span>Cluster Plan</td>" +
+                "<td class='header-item'><span>$</span>Price Breakup</td>" +
+                "<td class='header-item right'><span>&</span>Specification</td></tr></table></td></tr>" +
+                "<tr><td class='unit-body'></td></tr></table>";
             this._elements.selectedUnitContainer.html(code);
         }
     };
