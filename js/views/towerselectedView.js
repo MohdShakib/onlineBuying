@@ -115,7 +115,7 @@ var TowerselectedView = (function() {
                     url = listings[unitIdentifier].isAvailable ? baseUrl + rotationAngle + '/' + unitIdentifier : "undefined";
                     svgClass = listings[unitIdentifier].isAvailable ? 'apt-available' : 'apt-unavailable';
                     svgCode += "<ellipse  class=\"" + config.towerUnitSvgClass + " " + svgClass + 
-                            "\" id=\"" + unitInfo.unitName + "-path\" data-index=\"" + unitIdentifier + 
+                            "\" id=\"" + unitInfo.unitIdentifier + "-path\" data-index=\"" + unitIdentifier + 
                             "\" data-url=\"" + url +
                             "\"  cx='" + unitInfo.unitSvgOnTower[0] + "' cy='" + unitInfo.unitSvgOnTower[1] + "' ry='1.2' rx='0.55' />";
                 }
