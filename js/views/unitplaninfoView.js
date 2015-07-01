@@ -56,7 +56,9 @@ var UnitplaninfoView = (function() {
                 "id=\"" + data.unitIdentifier + "-selected-path\" " +
                 "cx='" + rotationdata.unitSvgOnTower[0] + "' cy='" + rotationdata.unitSvgOnTower[1] + "' ry='1.7' rx='0.8' />";
             $('#' + config.svgContainerId).append(svgCode);
-            $('#' + config.mainContainerId).append("<div class='selected-unit-container' id='"+config.selectedUnitContainerId+"'></div>");
+            if(!$('#'+config.selectedUnitContainerId).length){
+                $('#' + config.mainContainerId).append("<div class='selected-unit-container' id='"+config.selectedUnitContainerId+"'></div>");
+            }
         },
         buildSkeleton: function(containerList) {
             var key, htmlCode = '';
@@ -65,7 +67,7 @@ var UnitplaninfoView = (function() {
                     htmlCode += containerMap[containerList[key]];
                 }
             }
-            $('#' + config.selectedUnitContainerId).append(htmlCode);
+            $('#' + config.selectedUnitContainerId).html(htmlCode);
             this._elements = getElements();
         },
         unitCloseContainer: function(data, rotationdata, rootdata) {
