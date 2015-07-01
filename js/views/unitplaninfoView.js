@@ -68,22 +68,6 @@ var UnitplaninfoView = (function() {
             $('#' + config.selectedUnitContainerId).append(htmlCode);
             this._elements = getElements();
         },
-        /*selectedUnitContainer: function(data, rotationdata, rootdata) {
-            var imageUrl = rootdata.unitTypes[rotationdata.unitTypeIdentifier].unitImageUrl;
-            var code = "<div class='unit-close'> X </div>" +
-                "<div class='unit-header'>" +
-                "<table><tr><td class='header-item header-title'> " +
-                "<span class='address'>" + data.listingAddress + "</span> " +
-                "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
-                "- <span>" + data.size + " " + data.measure + "</span> " +
-                "- <span>Rs. " + utils.getReadablePrice(data.price) + "* </span></td>" +
-                "<td class='header-item'><span>@</span>Floor Plan</td>" +
-                "<td class='header-item'><span>#</span>Cluster Plan</td>" +
-                "<td class='header-item'><span>$</span>Price Breakup</td>" +
-                "<td class='header-item right'><span>&</span>Specification</td></tr></table></div>" +
-                "<div class='unit-body'><img src='" + imageUrl + "'></div>";
-            this._elements.selectedUnitContainer.html(code);
-        },*/
         unitCloseContainer: function(data, rotationdata, rootdata) {
             var code = 'X';
             this._elements.unitCloseContainer.html(code);
@@ -96,10 +80,22 @@ var UnitplaninfoView = (function() {
                 _this._unitCloseClick.notify(); // this refers to element here
             });
         },
-        closeUnitPlan: function(){
-            var hash = 'projectname-640037/tower-a';
-            router.setRoute(hash);
-            return;
+        unitMenuContainer: function(data, rotationdata, rootdata) {
+            var code = "<table><tr><td class='header-item header-title'> " +
+                "<span class='address'>" + data.listingAddress + "</span> " +
+                "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
+                "- <span>" + data.size + " " + data.measure + "</span> " +
+                "- <span>Rs. " + utils.getReadablePrice(data.price) + "* </span></td>" +
+                "<td class='header-item'><span>@</span>Floor Plan</td>" +
+                "<td class='header-item'><span>#</span>Cluster Plan</td>" +
+                "<td class='header-item'><span>$</span>Price Breakup</td>" +
+                "<td class='header-item right'><span>&</span>Specification</td></tr></table>";
+            this._elements.unitMenuContainer.html(code);
+        },
+        unitDataContainer: function(data, rotationdata, rootdata) {
+            var imageUrl = rootdata.unitTypes[rotationdata.unitTypeIdentifier].unitImageUrl;
+            var code = "<img class='floorView' src='" + imageUrl + "'>";
+            this._elements.unitDataContainer.html(code);
         }
     };
 

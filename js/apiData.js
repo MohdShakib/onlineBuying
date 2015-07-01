@@ -65,6 +65,9 @@ var getProjectData = (function() {
                         continue;
                     }
 
+                    unitInfo.towerIdentifier = unitTowerIdentifier;
+                    delete unitInfo.towerName;
+
                     tower = projectData.towers[unitTowerIdentifier];
 
                     if(tower.listings[unitIdentifier]){ // get unit availability status
@@ -82,6 +85,7 @@ var getProjectData = (function() {
                         tower.rotationAngle[unitInfo.rotationAngle].listing = {};
                         tower.rotationAngle[unitInfo.rotationAngle].listing[unitIdentifier]  = unitInfo;
                     }
+                    delete unitInfo.towerImageName;
                 }
             }
         }
@@ -251,6 +255,7 @@ var getProjectData = (function() {
             flatUnit.listingAddress = listing.flatNumber;
             flatUnit.unitIdentifier = unitIdentifier;
             flatUnit.listingId = listing.id;
+            flatUnit.towerIdentifier = towerIdentifier;
             flatUnit.floor  = listing.floor;
             flatUnit.isAvailable = (listing.bookingStatusId == 1 ? true : false ); // available if bookingStatusId = 1
             flatUnit.bookingStatusId = listing.bookingStatusId;

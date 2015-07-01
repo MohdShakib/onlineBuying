@@ -12,11 +12,16 @@ var UnitplaninfoController = (function() {
     }
 
     UnitplaninfoController.prototype = {
+        closeUnitPlan: function(){
+            var hash = this._model._rootdata.baseUrl+'/'+this._model._data.towerIdentifier;
+            router.setRoute(hash);
+            return;
+        },
         attachListeners: function() {
             var _this = this;
             // Menu Events
             this._view._unitCloseClick.attach(function(sender, element) {
-                _this._view.closeUnitPlan();
+                _this.closeUnitPlan();
             });
         },
         generateTemplate: function(data, rootdata, elements) {
