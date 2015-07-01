@@ -307,55 +307,14 @@ ellipse.tower-unit-selected-svg-path {
 /* Selected Unit */
 .selected-unit-container {
 	position: absolute;
-	z-index: 99999999;
+	z-index: 999999;
 	background: white;
 	width: 60%;
 	height: 100%;
 	right: 0px;
 }
-.selected-unit-container table {
-	width: 100%;
-	height: 100%;
-	border-collapse: separate;
-    border-spacing: 0;
-}	
-.unit-header {
-	height: 50px;
-}
-.unit-header .header-item {
-	color: #DDD;
-	font-size: 11px;
-	text-align: center;
-	background-color: #333;
-	border-right: 1px #EEE solid;
-	border-bottom: 5px #666 solid;
-	cursor: pointer; 
-	line-height: 20px;
-	padding: 0 5px;
-}
-.unit-header .header-item span {
-	display: block;
-	font-size: 15px;
-	line-height: 25px;
-}
-.unit-header .header-title {
-	width: 50%;
-	font-size: 10px;
-	text-align: left;
-	padding-left: 10px;
-	cursor: default;
-}
-.unit-header .header-title span {
-	display: inline;
-	font-size: 14px;
-}
-.unit-header .header-title .address {
-	font-size: 19px;
-	color: #FFF;
-}
-.unit-header .right {
-	border-right: none;
-}
+
+/* Unit Close */
 .unit-close-container {
 	height: 50px;
 	width: 50px;
@@ -367,14 +326,72 @@ ellipse.tower-unit-selected-svg-path {
 	text-align: center;
 	line-height: 50px;
 	cursor: pointer;
+	-webkit-transition: 0.5s;
+    transition: 0.5s;
 }
-.unit-close:hover {
+.unit-close-container:hover {
 	color: #FFF;
 }
-.unit-body {
+
+/* Unit Menu */
+.unit-menu-container {
+	position: absolute;
+	height: 50px;
+	width: 100%;
+  	z-index: 9999999;
+}
+.unit-menu-container table {
+	width: 100%;
+	border-spacing: 0px;
+    border-collapse: separate;
+}
+.unit-menu-container .header-item {
+	color: #DDD;
+	font-size: 11px;
+	text-align: center;
+	background-color: #333;
+	border-right: 1px #EEE solid;
+	border-bottom: 5px #666 solid;
+	cursor: pointer; 
+	line-height: 20px;
+	padding: 0 5px;
+}
+.unit-menu-container .header-item span {
+	display: block;
+	font-size: 15px;
+	line-height: 25px;
+}
+.unit-menu-container .header-title {
+	width: 50%;
+	font-size: 10px;
+	text-align: left;
+	padding-left: 10px;
+	cursor: default;
+}
+.unit-menu-container .header-title span {
+	display: inline;
+	font-size: 14px;
+}
+.unit-menu-container .header-title .address {
+	font-size: 19px;
+	color: #FFF;
+}
+.unit-menu-container .right {
+	border-right: none;
+}
+
+/* Unit Data */
+.unit-data-container {
+	position: absolute;
+	top: 0px;
 	background-color: #EEE;
   	height: 100%;
+  	width: 100%;
   	text-align: center;
+}
+.unit-data-container .floorView {
+	width: 100%;
+	height: 100%;
 }
 
 /* Overview Image */
