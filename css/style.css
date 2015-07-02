@@ -379,9 +379,12 @@ ellipse.tower-unit-selected-svg-path {
 	font-size: 19px;
 	color: #FFF;
 }
-.unit-menu-container .header-link:hover, .unit-menu-container .selected {
+.unit-menu-container .unit-menu-link:hover, .unit-menu-container .selected {
 	background-color: #666;
 	cursor: pointer; 
+}
+.unit-menu-container .unit-menu-link:hover.selected {
+	cursor: default; 
 }
 .unit-menu-container .right {
 	border-right: none;
@@ -396,7 +399,7 @@ ellipse.tower-unit-selected-svg-path {
   	width: 100%;
   	text-align: center;
 }
-.unit-data-container .floorView {
+.unit-data-container .fullView {
 	width: 100%;
 	height: 100%;
 }
