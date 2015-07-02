@@ -192,8 +192,7 @@ var UnitplaninfoView = (function() {
             this._elements.clusterPlanContainer.html(code);
         },
         priceBreakupContainer: function(data, rotationdata, rootdata) {
-            var imageUrl = '/zip-file/img/dummy-cluster-plan.jpeg';
-            var code = "<img class='fullView' src='" + imageUrl + "'>";
+            var code = "<br><br><br><br><br><br>Price Breakup";
             this._elements.priceBreakupContainer.html(code);
         },
         specificationContainer: function(data, rotationdata, rootdata) {

@@ -58,7 +58,10 @@ polygon {
 	radius: 1;
 }
 #unit-svg-container polygon:hover{
-	fill: rgba(50,205,50,0.3);
+	stroke: orange;
+	stroke-width: 0.4;
+	fill: orange;
+	fill-opacity: 0.1;
 }
 ellipse {
 	cursor: pointer;
@@ -408,6 +411,10 @@ ellipse.tower-unit-selected-svg-path {
 .specification-container {
 	background-color: #EEE;
 }
+
+.specification-container {
+	overflow: scroll;
+}
 .specification-container .base-table {
 	padding: 70px 20px 20px 20px;
  	width: 100%;
@@ -415,13 +422,12 @@ ellipse.tower-unit-selected-svg-path {
 .specification-container .base-table td {
 	text-align: left;
 	padding: 5px 10px;
-	font-size: 13px;
+	font-size: 12px;
 	color: #555;
 }
 .specification-container .base-table .heading {
 	background-color: #666;
 	color: #FFF;
-	font-size: 14px;
 	text-transform: uppercase;
 }
 
