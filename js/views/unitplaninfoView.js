@@ -94,10 +94,10 @@ var UnitplaninfoView = (function() {
                 "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
                 "- <span>" + data.size + " " + data.measure + "</span> " +
                 "- <span>Rs. " + utils.getReadablePrice(data.price) + "* </span></td>" +
-                "<td class='header-item'><span>@</span>Floor Plan</td>" +
-                "<td class='header-item'><span>#</span>Cluster Plan</td>" +
-                "<td class='header-item'><span>$</span>Price Breakup</td>" +
-                "<td class='header-item right'><span>&</span>Specification</td></tr></table>";
+                "<td class='header-item header-link selected'><span>@</span>Floor Plan</td>" +
+                "<td class='header-item header-link'><span>#</span>Cluster Plan</td>" +
+                "<td class='header-item header-link'><span>$</span>Price Breakup</td>" +
+                "<td class='header-item header-link right'><span>&</span>Specification</td></tr></table>";
             this._elements.unitMenuContainer.html(code);
         },
         unitDataContainer: function(data, rotationdata, rootdata) {

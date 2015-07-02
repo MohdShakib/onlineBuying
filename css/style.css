@@ -355,9 +355,10 @@ ellipse.tower-unit-selected-svg-path {
 	background-color: #333;
 	border-right: 1px #EEE solid;
 	border-bottom: 5px #666 solid;
-	cursor: pointer; 
 	line-height: 20px;
 	padding: 0 5px;
+	-webkit-transition: 0.5s;
+    transition: 0.5s;
 }
 .unit-menu-container .header-item span {
 	display: block;
@@ -369,7 +370,6 @@ ellipse.tower-unit-selected-svg-path {
 	font-size: 10px;
 	text-align: left;
 	padding-left: 10px;
-	cursor: default;
 }
 .unit-menu-container .header-title span {
 	display: inline;
@@ -378,6 +378,10 @@ ellipse.tower-unit-selected-svg-path {
 .unit-menu-container .header-title .address {
 	font-size: 19px;
 	color: #FFF;
+}
+.unit-menu-container .header-link:hover, .unit-menu-container .selected {
+	background-color: #666;
+	cursor: pointer; 
 }
 .unit-menu-container .right {
 	border-right: none;
