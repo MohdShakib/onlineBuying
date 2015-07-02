@@ -198,20 +198,19 @@ var UnitplaninfoView = (function() {
         },
         specificationContainer: function(data, rotationdata, rootdata) {
             var code = "<table class='base-table'>";
-            code += "<tr><td class='heading'>Doors</td></tr>";
-            code += "<tr><td><strong>Internal: </strong> Hardwood</td></tr>";
-            code += "<tr><td><strong>Main: </strong> Teak Wood</td></tr>";
-            code += "<tr><td class='heading'>Flooring</td></tr>";
-            code += "<tr><td><strong>Balcony: </strong> Anti skid tiles</td></tr>";
-            code += "<tr><td><strong>Kitchen: </strong> Designer Vitrified tiles</td></tr>";
-            code += "<tr><td><strong>Living/Dining: </strong> Designer Vitrified tiles</td></tr>";
-            code += "<tr><td><strong>Master Bedroom: </strong> Designer Vitrified tiles</td></tr>";
-            code += "<tr><td><strong>Other Bedrooms: </strong> Designer Vitrified tiles</td></tr>";
-            code += "<tr><td class='heading'>Windows</td></tr>";
-            code += "<tr><td>Coated aluminum sliding with plain sheet glass and mosquito mesh</td></tr>";
-            code += "<tr><td class='heading'>Fittings</td></tr>";
-            code += "<tr><td><strong>Electrical: </strong> Fire resistant wires with ISI mark Elegant designer modular switches</td></tr>";
-            code += "<tr><td><strong>Kitchen: </strong> Granite platform with SS sink</td></tr>";
+            for(var category in rootdata.specifications){
+                if(rootdata.specifications.hasOwnProperty(category)){
+                    var items = rootdata.specifications[category];
+                    code += "<tr><td class='heading'>"+category+"</td></tr>";
+                    if(typeof items == "object"){
+                        for(var subCategory in items){
+                            code += "<tr><td><strong>"+subCategory+": </strong>"+items[subCategory]+"</td></tr>";
+                        }
+                    }else{
+                        code += "<tr><td>"+items+"</td></tr>";
+                    }
+                }
+            }
             code += "</table>";
             this._elements.specificationContainer.html(code);
         }
