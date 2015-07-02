@@ -105,17 +105,37 @@ var getProjectData = (function() {
         }
     }
 
+    function htmlEntities(str) {
+        return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+    
+    function parseDetailsField(details){
+        var response = '', length = details.length;
+        if(details && details.length && details[0] == '"' && details[length-1] == '"'){
+            details = details.substring(1, length-1);
+            length = details.length;
+            for(var i = 0; i < length; i++){
+                if(!(details[i] == '"' && details[i+1] == '"')){
+                   response += details[i];
+                }
+            }
+        }
+        response = htmlEntities(response);
+        return response;
+    }
+
     function processUnitSvgs(unitInfo){
-        var response = [];
+        var response = [], details;
       
         for(var i=1; i<=1000; i++){
                 var partial = 'view'+i+'-';
                 if(hasOwnProperty.call(unitInfo, partial+'svg') && unitInfo[partial+'svg'].length){
+                    details = unitInfo[partial+'details'];
                     response.push({
                         name: unitInfo[partial+'name'],
                         svgPath: unitInfo[partial+'svg'],
                         type: unitInfo[partial+'type'],
-                        details: unitInfo[partial+'details']
+                        details: parseDetailsField(details)
                     });
                 }else{
                     return response;

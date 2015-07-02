@@ -23,6 +23,14 @@ var UnitplaninfoController = (function() {
             this._view._unitCloseClick.attach(function(sender, element) {
                 _this.closeUnitPlan();
             });
+
+            this._view._unitComponentMouseEnter.attach(function(sender, params){
+                _this._view.unitComponentMouseEnter(params);
+            });
+
+            this._view._unitComponentMouseLeave.attach(function(){
+                _this._view.unitComponentMouseLeave();
+            });
         },
         generateTemplate: function(data, rootdata, elements) {
             this.attachListeners();

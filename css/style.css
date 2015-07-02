@@ -56,6 +56,9 @@ polygon {
 	stroke-width: 0;
 	radius: 1;
 }
+#unit-svg-container polygon:hover{
+	fill: rgba(50,205,50,0.3);
+}
 ellipse {
 	cursor: pointer;
 	stroke: rgba(255,255,255,0.8);

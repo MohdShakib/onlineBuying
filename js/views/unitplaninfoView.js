@@ -10,14 +10,18 @@ var UnitplaninfoView = (function() {
     var containerMap = {
         'unitCloseContainer': '<div class="unit-close-container" id="'+config.closeUnitContainerId+'"></div>',
         'unitMenuContainer': '<div class="unit-menu-container" id="unit-menu-container"></div>',
-        'unitDataContainer': '<div class="unit-data-container" id="unit-data-container"></div>'
+        'unitDataContainer': '<div class="unit-data-container" id="unit-data-container"></div>',
+        'unitSvgContainer': '<svg class="svg-container" id="unit-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
+        'unitComponentDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>'
     };
 
     function getElements() {
         var elements = {
             'unitCloseContainer': $('#'+config.closeUnitContainerId),
             'unitMenuContainer': $('#unit-menu-container'),
-            'unitDataContainer': $('#unit-data-container')
+            'unitDataContainer': $('#unit-data-container'),
+            'unitSvgContainer': $('#unit-svg-container'),
+            'unitComponentDetailContainer': $('#tower-detail-container')
         };
         return elements;
     }
@@ -28,6 +32,8 @@ var UnitplaninfoView = (function() {
         var _this = this;
 
         this._unitCloseClick = new Event(this);
+        this._unitComponentMouseEnter = new Event(this);
+        this._unitComponentMouseLeave = new Event(this);
     }
 
     UnitplaninfoView.prototype = {
@@ -98,6 +104,67 @@ var UnitplaninfoView = (function() {
             var imageUrl = rootdata.unitTypes[rotationdata.unitTypeIdentifier].unitImageUrl;
             var code = "<img class='floorView' src='" + imageUrl + "'>";
             this._elements.unitDataContainer.html(code);
+        },
+        unitSvgContainer: function(){
+            var unitTypeData = this._model.getUnitTypeData(),
+            svgData = unitTypeData.svgs,
+            svgs_count = svgData && svgData.length ? svgData.length : 0;
+
+            var svgCode = '';
+            for(var i=0; i < svgs_count; i++){
+                var svgObj =  svgData[i];
+                svgCode += "<polygon data-name='"+svgObj.name+"' data-type='"+svgObj.type+"' data-details='"+svgObj.details+"'   points=\"" + svgObj.svgPath + "\" />";
+            }
+
+            this._elements.unitSvgContainer.html(svgCode);
+            this.unitSvgContainerEvents();
+        },
+        unitSvgContainerEvents: function(){
+            var _this = this;
+            this._elements.unitSvgContainer.off('mouseenter').on('mouseenter', 'polygon', function(event){
+                //here this refers to element
+                _this._unitComponentMouseEnter.notify({
+                    element: this,
+                    event: event
+                });
+            });
+
+            this._elements.unitSvgContainer.off('mouseleave').on('mouseleave', 'polygon', function(event){
+                //here this refers to element
+                _this._unitComponentMouseLeave.notify();
+            });
+        },
+        unitComponentMouseEnter: function(params){
+            var dataset = params.element.dataset,
+            towerCode = "<div id='container-detail' class='tooltip-detail'>";
+        
+            var info = {
+                'name': dataset.name,
+                'type': dataset.type,
+                'details': dataset.details
+            };
+
+            towerCode += '<div class="towerunit-detail-container">';
+            towerCode += '<div class="towerunit-name">' + info.name + '</div>';
+            towerCode += '<div>' + info.details + '</div>';
+          
+            if (this._elements && this._elements.unitComponentDetailContainer) {
+                this._elements.unitComponentDetailContainer.html(towerCode);
+                var offset = this._elements.unitComponentDetailContainer.offset();
+                var left = params.event.clientX - offset.left;
+                var top = params.event.clientY - offset.top;
+
+                $('#container-detail').css("left", left + 'px');
+                $('#container-detail').css("top", top + 'px');
+                // animate
+                window.getComputedStyle(document.getElementById('container-detail')).opacity;
+                document.getElementById('container-detail').style.opacity = "1";
+            }
+
+            
+        },
+        unitComponentMouseLeave: function(){
+            document.getElementById(config.towerDetailContainerId).innerHTML = '';
         }
     };
 

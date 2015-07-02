@@ -19,6 +19,13 @@ var UnitplaninfoModel = (function() {
             }
             return this._data;
         },
+        getUnitTypeData: function(){
+            var unitType = this._rotationdata.unitTypeIdentifier;
+            if (!(this._rootdata.unitTypes && this._rootdata.unitTypes[unitType])) {
+                return {};
+            }
+            return this._rootdata.unitTypes[unitType];
+        },
         getRotationdata: function() {
             if (!this._rotationdata) {
                 return {};
