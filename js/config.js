@@ -62,7 +62,9 @@ var config = (function(){
 
 		// Unitplan
 		selectedUnitContainerId: 'selected-unit-container',
-		closeUnitContainerId: 'unit-close-container'
+		closeUnitContainerId: 'unit-close-container',
+		unitMenuLinkClass: 'unit-menu-link',
+		selectedUnitMenuClass: 'selected'
 	};
 
 	return config;

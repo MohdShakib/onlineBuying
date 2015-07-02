@@ -12,24 +12,30 @@ var UnitplaninfoController = (function() {
     }
 
     UnitplaninfoController.prototype = {
-        closeUnitPlan: function(){
-            var hash = this._model._rootdata.baseUrl+'/'+this._model._data.towerIdentifier;
+        closeUnitPlan: function() {
+            var hash = this._model._rootdata.baseUrl + '/' + this._model._data.towerIdentifier;
             router.setRoute(hash);
             return;
         },
         attachListeners: function() {
             var _this = this;
-            // Menu Events
+
+            // Close Events
             this._view._unitCloseClick.attach(function(sender, element) {
                 _this.closeUnitPlan();
             });
 
-            this._view._unitComponentMouseEnter.attach(function(sender, params){
+            // Unit Component
+            this._view._unitComponentMouseEnter.attach(function(sender, params) {
                 _this._view.unitComponentMouseEnter(params);
             });
-
-            this._view._unitComponentMouseLeave.attach(function(){
+            this._view._unitComponentMouseLeave.attach(function() {
                 _this._view.unitComponentMouseLeave();
+            });
+
+            // Menu Events
+            this._view._unitMenuClick.attach(function(sender, element) {
+                _this._view.selectMenuOption(element);
             });
         },
         generateTemplate: function(data, rootdata, elements) {

@@ -8,20 +8,22 @@
 var UnitplaninfoView = (function() {
 
     var containerMap = {
-        'unitCloseContainer': '<div class="unit-close-container" id="'+config.closeUnitContainerId+'"></div>',
+        'unitCloseContainer': '<div class="unit-close-container" id="' + config.closeUnitContainerId + '"></div>',
         'unitMenuContainer': '<div class="unit-menu-container" id="unit-menu-container"></div>',
-        'unitDataContainer': '<div class="unit-data-container" id="unit-data-container"></div>',
         'unitSvgContainer': '<svg class="svg-container" id="unit-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
-        'unitComponentDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>'
+        'unitComponentDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>',
+        'floorPlanContainer': '<div class="floor-plan-container unit-data-container" id="floor-plan-container"></div>',
+        'clusterPlanContainer': '<div class="cluster-plan-container unit-data-container hidden" id="cluster-plan-container"></div>'
     };
 
     function getElements() {
         var elements = {
-            'unitCloseContainer': $('#'+config.closeUnitContainerId),
+            'unitCloseContainer': $('#' + config.closeUnitContainerId),
             'unitMenuContainer': $('#unit-menu-container'),
-            'unitDataContainer': $('#unit-data-container'),
             'unitSvgContainer': $('#unit-svg-container'),
-            'unitComponentDetailContainer': $('#tower-detail-container')
+            'unitComponentDetailContainer': $('#tower-detail-container'),
+            'floorPlanContainer': $('#floor-plan-container'),
+            'clusterPlanContainer': $('#cluster-plan-container')
         };
         return elements;
     }
@@ -34,6 +36,7 @@ var UnitplaninfoView = (function() {
         this._unitCloseClick = new Event(this);
         this._unitComponentMouseEnter = new Event(this);
         this._unitComponentMouseLeave = new Event(this);
+        this._unitMenuClick = new Event(this);
     }
 
     UnitplaninfoView.prototype = {
@@ -62,8 +65,8 @@ var UnitplaninfoView = (function() {
                 "id=\"" + data.unitIdentifier + "-selected-path\" " +
                 "cx='" + rotationdata.unitSvgOnTower[0] + "' cy='" + rotationdata.unitSvgOnTower[1] + "' ry='1.7' rx='0.8' />";
             $('#' + config.svgContainerId).append(svgCode);
-            if(!$('#'+config.selectedUnitContainerId).length){
-                $('#' + config.mainContainerId).append("<div class='selected-unit-container' id='"+config.selectedUnitContainerId+"'></div>");
+            if (!$('#' + config.selectedUnitContainerId).length) {
+                $('#' + config.mainContainerId).append("<div class='selected-unit-container' id='" + config.selectedUnitContainerId + "'></div>");
             }
         },
         buildSkeleton: function(containerList) {
@@ -81,7 +84,7 @@ var UnitplaninfoView = (function() {
             this._elements.unitCloseContainer.html(code);
             this.unitCloseContainerEvents();
         },
-        unitCloseContainerEvents: function(){
+        unitCloseContainerEvents: function() {
             var _this = this;
             _this._elements.unitCloseContainer.off('click').on('click', function(event) {
                 // notify controller
@@ -94,34 +97,46 @@ var UnitplaninfoView = (function() {
                 "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
                 "- <span>" + data.size + " " + data.measure + "</span> " +
                 "- <span>Rs. " + utils.getReadablePrice(data.price) + "* </span></td>" +
-                "<td class='header-item header-link selected'><span>@</span>Floor Plan</td>" +
-                "<td class='header-item header-link'><span>#</span>Cluster Plan</td>" +
-                "<td class='header-item header-link'><span>$</span>Price Breakup</td>" +
-                "<td class='header-item header-link right'><span>&</span>Specification</td></tr></table>";
+                "<td class='header-item " + config.unitMenuLinkClass + " " + config.selectedUnitMenuClass + "'><span>@</span>Floor Plan</td>" +
+                "<td class='header-item " + config.unitMenuLinkClass + "'><span>#</span>Cluster Plan</td>" +
+                "<td class='header-item " + config.unitMenuLinkClass + "'><span>$</span>Price Breakup</td>" +
+                "<td class='header-item " + config.unitMenuLinkClass + " right'><span>&</span>Specification</td></tr></table>";
             this._elements.unitMenuContainer.html(code);
+            this.unitMenuContainerEvents();
         },
-        unitDataContainer: function(data, rotationdata, rootdata) {
+        unitMenuContainerEvents: function() {
+            var _this = this;
+            _this._elements.unitMenuContainer.off('click').on('click', '.' + config.unitMenuLinkClass, function(event) {
+                // notify controller
+                _this._unitMenuClick.notify(this); // this refers to element here
+            });
+        },
+        selectMenuOption: function(element) {
+            $('.' + config.unitMenuLinkClass).removeClass(config.selectedUnitMenuClass);
+            element.setAttribute('class', element.classList + " " + config.selectedUnitMenuClass);
+        },
+        floorPlanContainer: function(data, rotationdata, rootdata) {
             var imageUrl = rootdata.unitTypes[rotationdata.unitTypeIdentifier].unitImageUrl;
-            var code = "<img class='floorView' src='" + imageUrl + "'>";
-            this._elements.unitDataContainer.html(code);
+            var code = "<img class='fullView' src='" + imageUrl + "'>";
+            this._elements.floorPlanContainer.html(code);
         },
-        unitSvgContainer: function(){
+        unitSvgContainer: function() {
             var unitTypeData = this._model.getUnitTypeData(),
-            svgData = unitTypeData.svgs,
-            svgs_count = svgData && svgData.length ? svgData.length : 0;
+                svgData = unitTypeData.svgs,
+                svgs_count = svgData && svgData.length ? svgData.length : 0;
 
             var svgCode = '';
-            for(var i=0; i < svgs_count; i++){
-                var svgObj =  svgData[i];
-                svgCode += "<polygon data-name='"+svgObj.name+"' data-type='"+svgObj.type+"' data-details='"+svgObj.details+"'   points=\"" + svgObj.svgPath + "\" />";
+            for (var i = 0; i < svgs_count; i++) {
+                var svgObj = svgData[i];
+                svgCode += "<polygon data-name='" + svgObj.name + "' data-type='" + svgObj.type + "' data-details='" + svgObj.details + "'   points=\"" + svgObj.svgPath + "\" />";
             }
 
             this._elements.unitSvgContainer.html(svgCode);
             this.unitSvgContainerEvents();
         },
-        unitSvgContainerEvents: function(){
+        unitSvgContainerEvents: function() {
             var _this = this;
-            this._elements.unitSvgContainer.off('mouseenter').on('mouseenter', 'polygon', function(event){
+            this._elements.unitSvgContainer.off('mouseenter').on('mouseenter', 'polygon', function(event) {
                 //here this refers to element
                 _this._unitComponentMouseEnter.notify({
                     element: this,
@@ -129,15 +144,15 @@ var UnitplaninfoView = (function() {
                 });
             });
 
-            this._elements.unitSvgContainer.off('mouseleave').on('mouseleave', 'polygon', function(event){
+            this._elements.unitSvgContainer.off('mouseleave').on('mouseleave', 'polygon', function(event) {
                 //here this refers to element
                 _this._unitComponentMouseLeave.notify();
             });
         },
-        unitComponentMouseEnter: function(params){
+        unitComponentMouseEnter: function(params) {
             var dataset = params.element.dataset,
-            towerCode = "<div id='container-detail' class='tooltip-detail'>";
-        
+                towerCode = "<div id='container-detail' class='tooltip-detail'>";
+
             var info = {
                 'name': dataset.name,
                 'type': dataset.type,
@@ -147,7 +162,7 @@ var UnitplaninfoView = (function() {
             towerCode += '<div class="towerunit-detail-container">';
             towerCode += '<div class="towerunit-name">' + info.name + '</div>';
             towerCode += '<div>' + info.details + '</div>';
-          
+
             if (this._elements && this._elements.unitComponentDetailContainer) {
                 this._elements.unitComponentDetailContainer.html(towerCode);
                 var offset = this._elements.unitComponentDetailContainer.offset();
@@ -161,10 +176,15 @@ var UnitplaninfoView = (function() {
                 document.getElementById('container-detail').style.opacity = "1";
             }
 
-            
+
         },
-        unitComponentMouseLeave: function(){
+        unitComponentMouseLeave: function() {
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
+        },
+        clusterPlanContainer: function(data, rotationdata, rootdata) {
+            var imageUrl = '/zip-file/img/dummy-cluster-plan.jpeg';
+            var code = "<img class='fullView' src='" + imageUrl + "'>";
+            this._elements.clusterPlanContainer.html(code);
         }
     };
 
