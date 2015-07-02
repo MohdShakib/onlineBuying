@@ -18,6 +18,7 @@ var config = (function(){
 			unitplanInfo: 'unitplanInfo.csv'
 		},
 		noPointerClass: 'no-pointer',
+		hideClass: 'hidden',
 		availabilityClass: {
 			available: 'apt-available',
 			unavailable: 'apt-unavailable'
@@ -63,6 +64,7 @@ var config = (function(){
 		// Unitplan
 		selectedUnitContainerId: 'selected-unit-container',
 		closeUnitContainerId: 'unit-close-container',
+		unitDataContainer: 'unit-data-container',
 		unitMenuLinkClass: 'unit-menu-link',
 		selectedUnitMenuClass: 'selected'
 	};

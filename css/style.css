@@ -46,6 +46,7 @@ table td, table tr {
 /* SVG */
 .svg-container {
 	position: absolute;
+	left: 0px;
 	border: none;
 	z-index: 10000;
 }
@@ -394,7 +395,6 @@ ellipse.tower-unit-selected-svg-path {
 .unit-data-container {
 	position: absolute;
 	top: 0px;
-	background-color: #EEE;
   	height: 100%;
   	width: 100%;
   	text-align: center;
@@ -402,6 +402,10 @@ ellipse.tower-unit-selected-svg-path {
 .unit-data-container .fullView {
 	width: 100%;
 	height: 100%;
+}
+.floor-plan-container,
+.cluster-plan-container {
+	background-color: #EEE;
 }
 
 /* Overview Image */

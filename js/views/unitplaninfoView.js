@@ -10,10 +10,10 @@ var UnitplaninfoView = (function() {
     var containerMap = {
         'unitCloseContainer': '<div class="unit-close-container" id="' + config.closeUnitContainerId + '"></div>',
         'unitMenuContainer': '<div class="unit-menu-container" id="unit-menu-container"></div>',
-        'unitSvgContainer': '<svg class="svg-container" id="unit-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
-        'unitComponentDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>',
-        'floorPlanContainer': '<div class="floor-plan-container unit-data-container" id="floor-plan-container"></div>',
-        'clusterPlanContainer': '<div class="cluster-plan-container unit-data-container hidden" id="cluster-plan-container"></div>'
+        'floorPlanContainer': '<div class="floor-plan-container fp-container ' + config.unitDataContainer + '" id="floor-plan-container"></div>',
+        'unitSvgContainer': '<div class="fp-container ' + config.unitDataContainer + '"><svg class="svg-container" id="unit-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
+        'unitComponentDetailContainer': '<div class="tower-unit-detail-container fp-container ' + config.unitDataContainer + '" id="tower-detail-container"></div>',
+        'clusterPlanContainer': '<div class="cluster-plan-container cp-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="cluster-plan-container"></div>'
     };
 
     function getElements() {
@@ -97,8 +97,8 @@ var UnitplaninfoView = (function() {
                 "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
                 "- <span>" + data.size + " " + data.measure + "</span> " +
                 "- <span>Rs. " + utils.getReadablePrice(data.price) + "* </span></td>" +
-                "<td class='header-item " + config.unitMenuLinkClass + " " + config.selectedUnitMenuClass + "'><span>@</span>Floor Plan</td>" +
-                "<td class='header-item " + config.unitMenuLinkClass + "'><span>#</span>Cluster Plan</td>" +
+                "<td data-container='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedUnitMenuClass + "'><span>@</span>Floor Plan</td>" +
+                "<td data-container='cp-container' class='header-item " + config.unitMenuLinkClass + "'><span>#</span>Cluster Plan</td>" +
                 "<td class='header-item " + config.unitMenuLinkClass + "'><span>$</span>Price Breakup</td>" +
                 "<td class='header-item " + config.unitMenuLinkClass + " right'><span>&</span>Specification</td></tr></table>";
             this._elements.unitMenuContainer.html(code);
@@ -114,6 +114,9 @@ var UnitplaninfoView = (function() {
         selectMenuOption: function(element) {
             $('.' + config.unitMenuLinkClass).removeClass(config.selectedUnitMenuClass);
             element.setAttribute('class', element.classList + " " + config.selectedUnitMenuClass);
+            var container = element.dataset.container;
+            $('.' + config.unitDataContainer).addClass(config.hideClass);
+            $('.' + container).removeClass(config.hideClass);
         },
         floorPlanContainer: function(data, rotationdata, rootdata) {
             var imageUrl = rootdata.unitTypes[rotationdata.unitTypeIdentifier].unitImageUrl;
@@ -175,8 +178,6 @@ var UnitplaninfoView = (function() {
                 window.getComputedStyle(document.getElementById('container-detail')).opacity;
                 document.getElementById('container-detail').style.opacity = "1";
             }
-
-
         },
         unitComponentMouseLeave: function() {
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
