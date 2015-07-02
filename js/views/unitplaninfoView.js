@@ -13,7 +13,9 @@ var UnitplaninfoView = (function() {
         'floorPlanContainer': '<div class="floor-plan-container fp-container ' + config.unitDataContainer + '" id="floor-plan-container"></div>',
         'unitSvgContainer': '<div class="fp-container ' + config.unitDataContainer + '"><svg class="svg-container" id="unit-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
         'unitComponentDetailContainer': '<div class="tower-unit-detail-container fp-container ' + config.unitDataContainer + '" id="tower-detail-container"></div>',
-        'clusterPlanContainer': '<div class="cluster-plan-container cp-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="cluster-plan-container"></div>'
+        'clusterPlanContainer': '<div class="cluster-plan-container cp-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="cluster-plan-container"></div>',
+        'priceBreakupContainer': '<div class="price-breakup-container pb-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="price-breakup-container"></div>',
+        'specificationContainer': '<div class="specification-container sf-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="specification-container"></div>'        
     };
 
     function getElements() {
@@ -23,7 +25,9 @@ var UnitplaninfoView = (function() {
             'unitSvgContainer': $('#unit-svg-container'),
             'unitComponentDetailContainer': $('#tower-detail-container'),
             'floorPlanContainer': $('#floor-plan-container'),
-            'clusterPlanContainer': $('#cluster-plan-container')
+            'clusterPlanContainer': $('#cluster-plan-container'),
+            'priceBreakupContainer': $('#price-breakup-container'),
+            'specificationContainer': $('#specification-container')
         };
         return elements;
     }
@@ -99,8 +103,8 @@ var UnitplaninfoView = (function() {
                 "- <span>Rs. " + utils.getReadablePrice(data.price) + "* </span></td>" +
                 "<td data-container='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedUnitMenuClass + "'><span>@</span>Floor Plan</td>" +
                 "<td data-container='cp-container' class='header-item " + config.unitMenuLinkClass + "'><span>#</span>Cluster Plan</td>" +
-                "<td class='header-item " + config.unitMenuLinkClass + "'><span>$</span>Price Breakup</td>" +
-                "<td class='header-item " + config.unitMenuLinkClass + " right'><span>&</span>Specification</td></tr></table>";
+                "<td data-container='pb-container' class='header-item " + config.unitMenuLinkClass + "'><span>$</span>Price Breakup</td>" +
+                "<td data-container='sf-container' class='header-item " + config.unitMenuLinkClass + " right'><span>&</span>Specification</td></tr></table>";
             this._elements.unitMenuContainer.html(code);
             this.unitMenuContainerEvents();
         },
@@ -186,6 +190,30 @@ var UnitplaninfoView = (function() {
             var imageUrl = '/zip-file/img/dummy-cluster-plan.jpeg';
             var code = "<img class='fullView' src='" + imageUrl + "'>";
             this._elements.clusterPlanContainer.html(code);
+        },
+        priceBreakupContainer: function(data, rotationdata, rootdata) {
+            var imageUrl = '/zip-file/img/dummy-cluster-plan.jpeg';
+            var code = "<img class='fullView' src='" + imageUrl + "'>";
+            this._elements.priceBreakupContainer.html(code);
+        },
+        specificationContainer: function(data, rotationdata, rootdata) {
+            var code = "<table class='base-table'>";
+            code += "<tr><td class='heading'>Doors</td></tr>";
+            code += "<tr><td><strong>Internal: </strong> Hardwood</td></tr>";
+            code += "<tr><td><strong>Main: </strong> Teak Wood</td></tr>";
+            code += "<tr><td class='heading'>Flooring</td></tr>";
+            code += "<tr><td><strong>Balcony: </strong> Anti skid tiles</td></tr>";
+            code += "<tr><td><strong>Kitchen: </strong> Designer Vitrified tiles</td></tr>";
+            code += "<tr><td><strong>Living/Dining: </strong> Designer Vitrified tiles</td></tr>";
+            code += "<tr><td><strong>Master Bedroom: </strong> Designer Vitrified tiles</td></tr>";
+            code += "<tr><td><strong>Other Bedrooms: </strong> Designer Vitrified tiles</td></tr>";
+            code += "<tr><td class='heading'>Windows</td></tr>";
+            code += "<tr><td>Coated aluminum sliding with plain sheet glass and mosquito mesh</td></tr>";
+            code += "<tr><td class='heading'>Fittings</td></tr>";
+            code += "<tr><td><strong>Electrical: </strong> Fire resistant wires with ISI mark Elegant designer modular switches</td></tr>";
+            code += "<tr><td><strong>Kitchen: </strong> Granite platform with SS sink</td></tr>";
+            code += "</table>";
+            this._elements.specificationContainer.html(code);
         }
     };
 

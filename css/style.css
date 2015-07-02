@@ -404,8 +404,25 @@ ellipse.tower-unit-selected-svg-path {
 	height: 100%;
 }
 .floor-plan-container,
-.cluster-plan-container {
+.cluster-plan-container,
+.specification-container {
 	background-color: #EEE;
+}
+.specification-container .base-table {
+	padding: 70px 20px 20px 20px;
+ 	width: 100%;
+}
+.specification-container .base-table td {
+	text-align: left;
+	padding: 5px 10px;
+	font-size: 13px;
+	color: #555;
+}
+.specification-container .base-table .heading {
+	background-color: #666;
+	color: #FFF;
+	font-size: 14px;
+	text-transform: uppercase;
 }
 
 /* Overview Image */
