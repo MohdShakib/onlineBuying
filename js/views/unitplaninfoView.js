@@ -146,7 +146,7 @@ var UnitplaninfoView = (function() {
 
             towerCode += '<div class="towerunit-detail-container">';
             towerCode += '<div class="towerunit-name">' + info.name + '</div>';
-            towerCode += '<div>' + info.details + '</div>';
+            towerCode += '<div class="towerunit-detail">' + info.details + '</div>';
           
             if (this._elements && this._elements.unitComponentDetailContainer) {
                 this._elements.unitComponentDetailContainer.html(towerCode);

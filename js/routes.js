@@ -27,10 +27,12 @@ var initializeRoutes = (function() {
             errorPageController, errorPageView;
 
         function onTowerselectedRoute(projectName, projectId, towerName) {
+            if(!(towerselectedModel && towerselectedModel._data.towerIdentifier == towerName)){
+                towerselectedModel = new TowerselectedModel(rootdata.towers[towerName], rootdata),
+                    towerselectedView = new TowerselectedView(towerselectedModel),
+                    towerselectedController = new TowerselectedController(towerselectedModel, towerselectedView);
+            }
 
-            towerselectedModel = new TowerselectedModel(rootdata.towers[towerName], rootdata),
-                towerselectedView = new TowerselectedView(towerselectedModel),
-                towerselectedController = new TowerselectedController(towerselectedModel, towerselectedView);
             towerselectedController.generateTemplate();
         }
 

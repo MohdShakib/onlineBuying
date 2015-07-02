@@ -223,20 +223,26 @@ var TowerselectedView = (function() {
         },
         filterMenuContainer: function(data, rootdata) {
             var url = rootdata.baseUrl;
+            var filterdata = this._model.getSelectedFiltersData();
+            var bhkFiltersData = filterdata.bhk,
+            floorFiltersData = filterdata.floor,
+            entranceFiltersData = filterdata.entrance,
+            priceFiltersData = filterdata.price;
+
             var code = "<table><tr><td class='menu-header menu-icon'><a href='#" + url + "'>&lt;--</a></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><table>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> @ </div>";
-            code += this.getBHKMenuOptions(data);
+            code += this.getBHKMenuOptions(data, bhkFiltersData);
             code += "</td></tr>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> # </div>";
-            code += this.getFloorMenuOptions(data);
+            code += this.getFloorMenuOptions(data, floorFiltersData);
             code += "</td></tr>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> $ </div>";
-            code += this.getEntranceMenuOptions(data);
+            code += this.getEntranceMenuOptions(data, entranceFiltersData);
             code += "</td></tr>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> % </div>";
-            code += this.getPriceMenuOptions(data);
+            code += this.getPriceMenuOptions(data, priceFiltersData);
             code += "</td></tr>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.filters.resetClass + "'> R </div></td></tr>";
             code += "</table></td></tr>";
@@ -286,7 +292,7 @@ var TowerselectedView = (function() {
         resetFilterOption: function(element) {
             this._elements.filterMenuContainer.find('*').removeClass(config.filters.selectedClass);
         },
-        getBHKMenuOptions: function(data) {
+        getBHKMenuOptions: function(data, bhkFiltersData) {
             var code = "<div class='menu-item-options'><table>";
             var bhks = this.getBHKAvailability(data.listings);
             var sortedBhks = Object.keys(bhks).sort();
@@ -297,6 +303,13 @@ var TowerselectedView = (function() {
                 if (bhks[bhk] == 0) {
                     availabilityClass = "apt-unavailable-border-color";
                 }
+
+                //check if value is preselected
+                var checkForValue = bhk;
+                if(bhkFiltersData && bhkFiltersData.length && bhkFiltersData.indexOf(checkForValue) > -1){
+                    availabilityClass += ' '+config.filters.selectedClass;
+                }
+
                 code += "<tr><td class='option-item " + config.filters.bhk + " " + availabilityClass + "' ";
                 code += "id='" + id + "' data-index='" + id + "' data-value='" + bhk + "'>" + bhk + " BHK</td></tr>";
             }
@@ -316,7 +329,7 @@ var TowerselectedView = (function() {
             }
             return bhks;
         },
-        getFloorMenuOptions: function(data) {
+        getFloorMenuOptions: function(data, floorFiltersData) {
             var code = "<div class='menu-item-options'><table>";
             var floors = this.getFloorAvailability(data.listings);
             var sortedFloors = Object.keys(floors).sort();
@@ -327,6 +340,13 @@ var TowerselectedView = (function() {
                 if (floors[floorGroup].availability == 0) {
                     availabilityClass = "apt-unavailable-border-color";
                 }
+
+                //check if value is preselected
+                var checkForValue = floors[floorGroup].sfloor+" "+floors[floorGroup].efloor;
+                if(floorFiltersData && floorFiltersData.length && floorFiltersData.indexOf(checkForValue) > -1){
+                    availabilityClass += ' '+config.filters.selectedClass;
+                }
+
                 code += "<tr><td class='option-item " + config.filters.floor + " " + availabilityClass + "' ";
                 code += "id='" + id + "' data-index='" + id + "' data-svalue='" + floors[floorGroup].sfloor + "' data-evalue='" + floors[floorGroup].efloor + "'>" + floorGroup + "</td></tr>";
             }
@@ -354,7 +374,7 @@ var TowerselectedView = (function() {
             }
             return floors;
         },
-        getEntranceMenuOptions: function(data) {
+        getEntranceMenuOptions: function(data, entranceFiltersData) {
             var code = "<div class='menu-item-options'><table>";
             var entrances = this.getEntranceAvailability(data.listings);
             var sortedEntrances = Object.keys(entrances).sort();
@@ -365,6 +385,13 @@ var TowerselectedView = (function() {
                 if (entrances[entrance] == 0) {
                     availabilityClass = "apt-unavailable-border-color";
                 }
+
+                //check if value is preselected
+                var checkForValue = entrance;
+                if(entranceFiltersData && entranceFiltersData.length && entranceFiltersData.indexOf(checkForValue) > -1){
+                    availabilityClass += ' '+config.filters.selectedClass;
+                }
+
                 code += "<tr><td class='option-item " + config.filters.entrance + " " + availabilityClass + "' ";
                 code += "id='" + id + "' data-index='" + id + "' data-value='" + entrance + "'>" + entrance + "</td></tr>";
             }
@@ -384,7 +411,7 @@ var TowerselectedView = (function() {
             }
             return entrances;
         },
-        getPriceMenuOptions: function(data) {
+        getPriceMenuOptions: function(data, priceFiltersData) {
             var code = "<div class='menu-item-options'><table>";
             var prices = this.getPriceAvailability(data.listings);
             var sortedPrices = Object.keys(prices).sort();
@@ -395,6 +422,13 @@ var TowerselectedView = (function() {
                 if (prices[price].availability == 0) {
                     availabilityClass = "apt-unavailable-border-color";
                 }
+
+                //check if value is preselected
+                var checkForValue = prices[price].sprice+" "+prices[price].eprice;
+                if(priceFiltersData && priceFiltersData.length && priceFiltersData.indexOf(checkForValue) > -1){
+                    availabilityClass += ' '+config.filters.selectedClass;
+                }
+
                 code += "<tr><td class='option-item " + config.filters.price + " " + availabilityClass + "' ";
                 code += "id='" + id + "' data-index='" + id + "' data-svalue='" + prices[price].sprice + "' data-evalue='" + prices[price].eprice + "'>" + price + "</td></tr>";
             }

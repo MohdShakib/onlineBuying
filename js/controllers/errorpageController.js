@@ -8,6 +8,7 @@ var ErrorPageController = (function() {
 
     function ErrorPageController(view) {
         this._view = view;
+        this.attachListeners();
     }
 
     ErrorPageController.prototype = {
@@ -21,7 +22,6 @@ var ErrorPageController = (function() {
             
         },
         generateTemplate: function() {
-            this.attachListeners();
             this._view.buildView();
         }
     };

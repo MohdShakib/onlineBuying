@@ -9,6 +9,7 @@ var MasterplanController = (function() {
     function MasterplanController(model, view) {
         this._model = model;
         this._view = view;
+        this.attachListeners();
     }
 
     MasterplanController.prototype = {
@@ -52,7 +53,6 @@ var MasterplanController = (function() {
             });
         },
         generateTemplate: function() {
-            this.attachListeners();
             this._view.buildView();
         }
     };

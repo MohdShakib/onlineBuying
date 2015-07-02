@@ -9,6 +9,7 @@ var UnitplaninfoController = (function() {
     function UnitplaninfoController(model, view) {
         this._model = model;
         this._view = view;
+        this.attachListeners();
     }
 
     UnitplaninfoController.prototype = {
@@ -33,7 +34,6 @@ var UnitplaninfoController = (function() {
             });
         },
         generateTemplate: function(data, rootdata, elements) {
-            this.attachListeners();
             this._view.buildView();
         }
     };
