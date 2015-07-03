@@ -11,6 +11,7 @@ var UnitplaninfoView = (function() {
         'unitCloseContainer': '<div class="unit-close-container" id="' + config.closeUnitContainerId + '"></div>',
         'unitMenuContainer': '<div class="unit-menu-container" id="unit-menu-container"></div>',
         'floorPlanContainer': '<div class="floor-plan-container fp-container ' + config.unitDataContainer + '" id="floor-plan-container"></div>',
+        'floorPlanMenuContainer': '<div class="floor-plan-menu-container fp-container fp2-container fpwt-container ' + config.unitDataContainer + '" id="floor-plan-menu-container"></div>',
         'unitSvgContainer': '<div class="fp-container ' + config.unitDataContainer + '"><svg class="svg-container" id="unit-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
         'unitComponentDetailContainer': '<div class="tower-unit-detail-container fp-container ' + config.unitDataContainer + '" id="tower-detail-container"></div>',
         'clusterPlanContainer': '<div class="cluster-plan-container cp-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="cluster-plan-container"></div>',
@@ -22,9 +23,10 @@ var UnitplaninfoView = (function() {
         var elements = {
             'unitCloseContainer': $('#' + config.closeUnitContainerId),
             'unitMenuContainer': $('#unit-menu-container'),
+            'floorPlanContainer': $('#floor-plan-container'),
+            'floorPlanMenuContainer': $('#floor-plan-menu-container'),
             'unitSvgContainer': $('#unit-svg-container'),
             'unitComponentDetailContainer': $('#tower-detail-container'),
-            'floorPlanContainer': $('#floor-plan-container'),
             'clusterPlanContainer': $('#cluster-plan-container'),
             'priceBreakupContainer': $('#price-breakup-container'),
             'specificationContainer': $('#specification-container')
@@ -148,6 +150,14 @@ var UnitplaninfoView = (function() {
             var target = element.dataset.target;
             $('.' + config.sunlightImageClass).addClass(config.hideClass);
             $('#' + target).removeClass(config.hideClass);
+        },
+        floorPlanMenuContainer: function(data, rotationdata, rootdata) {
+            var code = "<table class='floor-plan-menu'><tr>";
+            code += "<td class='" + config.floorPlanMenuOptionClass + "'>2D</td>";
+            code += "<td class='" + config.floorPlanMenuOptionClass + " " + config.selectedClass + "'>3D</td>";
+            code += "<td class='" + config.floorPlanMenuOptionClass + " right'>Walkthrough</td>";
+            code += "</tr></table>";
+            this._elements.floorPlanMenuContainer.html(code);
         },
         unitSvgContainer: function() {
             var unitTypeData = this._model.getUnitTypeData(),
