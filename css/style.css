@@ -236,6 +236,7 @@ ellipse.tower-unit-selected-svg-path {
 	position: relative;
 	height: 40px;
 	width: 45px;
+	
 }
 .tower-menu-container .menu-item {
 	position: absolute;
@@ -244,8 +245,11 @@ ellipse.tower-unit-selected-svg-path {
 	height: 100%;
 	width: 100%;
 	cursor: pointer;
-	-webkit-transition: 0.5s;
-    transition: 0.5s;
+	transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
+	-webkit-transition:all 0.5s ease-in-out;
+    -o-transition:all 0.5s ease-in-out;
 }
 .tower-menu-container .menu-item-hover {
 	width: 100px;
@@ -503,7 +507,7 @@ ellipse.tower-unit-selected-svg-path {
 	background-color: rgba(0,0,0,0.3);
 	z-index: 100000;
 }
-.amenity-popup table {
+.amenity-popup{
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -554,7 +558,7 @@ ellipse.tower-unit-selected-svg-path {
 	animation-duration: 2s;
 	animation-fill-mode: both;
 	-webkit-animation-name: pop-in;
-    animation-name: pop-in;
+    animation-name: pop-out;
 }
   
 /*-----pop-in-----*/
@@ -569,8 +573,8 @@ ellipse.tower-unit-selected-svg-path {
 
   100% {
     opacity: 1;
-	width:500px;
-	height:400px;
+	width:600px;
+	height:360px;
     -webkit-transform-origin: 100% 50%;
     -webkit-transform: scale(1) translate(0%, 0%);
   }
@@ -586,8 +590,8 @@ ellipse.tower-unit-selected-svg-path {
 
   100% {
     opacity: 1;
- 	width:500px;
-	height:400px;
+ 	width:600px;
+	height:360px;
     transform-origin: 100% 50%;
     transform: scale(1) translate(0%, 0%);
   }
@@ -596,7 +600,9 @@ ellipse.tower-unit-selected-svg-path {
 /*-------pop-out-------*/
 @-webkit-keyframes pop-out {
   0% {
-	  
+	opacity: 1;
+	width:600px;
+	height:360px;
     -webkit-transform-origin: 100% 50%;
     -webkit-transform: scale(1) translate(0%, 0%);
   }
@@ -613,8 +619,8 @@ ellipse.tower-unit-selected-svg-path {
   0% {
 	  
 	opacity: 1;
-	width:500px;
-	height:400px;
+	width:600px;
+	height:360px;
     transform-origin: 100% 50%;
     transform: scale(1) translate(0%, 0%);
   }
