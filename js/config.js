@@ -76,7 +76,8 @@ var config = (function(){
 		unitDataContainer: 'unit-data-container',
 		unitMenuLinkClass: 'unit-menu-link',
 		sunlightImageClass: 'sunlight-img',
-		sunlightMenuOptionClass: 'sunlight-menu-option'
+		sunlightMenuOptionClass: 'sunlight-menu-option',
+		floorPlanMenuOptionClass: 'floor-plan-menu-option'
 	};
 
 	return config;
