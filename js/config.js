@@ -17,6 +17,10 @@ var config = (function(){
 			amenitiesHotspots: 'amenitiesHotspots.csv',
 			unitplanInfo: 'unitplanInfo.csv'
 		},
+		bottomFormGroup: {
+			'tabLinkClass': 'conect-tab li a',
+			'formPopUpClass': 'form-pop-up'
+		},
 		noPointerClass: 'no-pointer',
 		hideClass: 'hidden',
 		availabilityClass: {

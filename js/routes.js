@@ -24,7 +24,8 @@ var initializeRoutes = (function() {
         var masterplanController, masterplanModel, masterplanView,
             towerselectedController, towerselectedModel, towerselectedView,
             unitplaninfoController, unitplaninfoModel, unitplaninfoView,
-            errorPageController, errorPageView;
+            errorPageController, errorPageView,
+            baseController, baseView;
 
         function onTowerselectedRoute(projectName, projectId, towerName) {
             if(!(towerselectedModel && towerselectedModel._data.towerIdentifier == towerName)){
@@ -78,7 +79,11 @@ var initializeRoutes = (function() {
         router = Router(routes);
         router.configure({ // a global configuration setting.
             on: function(projectName, projectId) {
-                //console.log(projectName, projectId);
+                if(!baseController){
+                  baseView = new BaseView();
+                  baseController = new BaseController(baseView);
+                }
+                baseController.generateTemplate();
             },
             notfound: function() {
                 console.log('Route not found');
