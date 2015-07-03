@@ -1,6 +1,8 @@
 var config = (function(){
 	
 	var config = {
+
+		// Data
 		backgroundImage: 'masterplan.png',
 		projectDetail: {
 			titleId: "project-title",
@@ -17,8 +19,12 @@ var config = (function(){
 			amenitiesHotspots: 'amenitiesHotspots.csv',
 			unitplanInfo: 'unitplanInfo.csv'
 		},
+
+		// Common
 		noPointerClass: 'no-pointer',
 		hideClass: 'hidden',
+		transitionClass: 'transition',
+		selectedClass: 'selected',
 		availabilityClass: {
 			available: 'apt-available',
 			unavailable: 'apt-unavailable'
@@ -66,7 +72,8 @@ var config = (function(){
 		closeUnitContainerId: 'unit-close-container',
 		unitDataContainer: 'unit-data-container',
 		unitMenuLinkClass: 'unit-menu-link',
-		selectedUnitMenuClass: 'selected'
+		sunlightImageClass: 'sunlight-img',
+		sunlightMenuOptionClass: 'sunlight-menu-option'
 	};
 
 	return config;
