@@ -14,20 +14,15 @@ var TowerselectedController = (function() {
     function TowerselectedController(model, view) {
         this._model = model;
         this._view = view;
-
-        this._filters = {
-            bhk: [],
-            floor: [],
-            entrance: [],
-            price: []
-        };
+        this._filters = this._model._filters;
+        this.attachListeners();
     }
 
     TowerselectedController.prototype = {
         changeUrl: function(element) {
             var hash = element.dataset.url ? element.dataset.url : null;
             if (hash && hash != "undefined")
-                window.location.hash = hash;
+                router.setRoute(hash);
             return;
         },
         attachListeners: function() {
@@ -81,6 +76,7 @@ var TowerselectedController = (function() {
                 _this._view.resetFilterOption(element);
                 _this.updateFilteredListings();
             });
+
         },
         toggleFilterOption: function(filterArray, filterOption, element) {
             var index = filterArray.indexOf(filterOption);
@@ -141,7 +137,6 @@ var TowerselectedController = (function() {
             this._view.towerSvgContainer(this._model.getData(), this._model.getRootdata());
         },
         generateTemplate: function(data, rootdata, elements) {
-            this.attachListeners();
             this._view.buildView();
         }
     };

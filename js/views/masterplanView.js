@@ -102,11 +102,12 @@ var MasterplanView = (function() {
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><table>";
             for (var towerIdentifier in data.towers) {
-                var tower = data.towers[towerIdentifier];
+                var tower = data.towers[towerIdentifier],
+                towerUrl = tower.isAvailable ? data.baseUrl+"/"+tower.towerIdentifier : 'undefined';
                 code += "<tr><td class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass +
                     "' id='" + tower.towerId + "-menu' data-index='" + towerIdentifier +
                     "' data-imageid='" + tower.towerId +
-                    "' data-url='" + data.baseUrl + "/" + towerIdentifier +
+                    "' data-url='" +towerUrl+
                     "'>" + tower.towerName.split(' ')[1] + "</div></td></tr>";
             }
             code += "</table></td></tr>";
@@ -173,28 +174,30 @@ var MasterplanView = (function() {
         towerMouseEnterEvent: function(element) {
             var data = this._model.getData();
             var index = element.dataset.index;
-            var toolTipData = data && data.towers ? data.towers[index] : null;
+            var towerData = data && data.towers ? data.towers[index] : null;
             var imageid = element.dataset.imageid ? element.dataset.imageid : 'main-image';
             var svgpath = document.getElementById(imageid + '-path');
             var targetImage = $('img#' + imageid);
-
+            var availabilityStatusClass = towerData.isAvailable ? config.availabilityClass.available : config.availabilityClass.unavailable;
             if (!(targetImage && targetImage.length)) {
                 return;
-            }
+            }   
 
             $('img.' + config.imgContainerClass).addClass(config.fadeImageClass);
             targetImage.removeClass(config.fadeImageClass);
-            if (toolTipData && svgpath) {
+            if (towerData && svgpath) {
                 var svgpathClient = svgpath.getBoundingClientRect();
-                this.showTowerDetailContainer(toolTipData, (svgpathClient.left + svgpathClient.width / 2), svgpathClient.top);
+                this.showTowerDetailContainer(towerData, (svgpathClient.left + svgpathClient.width / 2), svgpathClient.top);
             }
 
             $('#' + imageid + '-menu').addClass(config.menuItemHoverClass);
+            $('#' + imageid + '-menu').addClass(availabilityStatusClass);
         },
         toweMouseLeaveEvent: function() {
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
             $('img.' + config.imgContainerClass).removeClass(config.fadeImageClass);
-            $('.' + config.leftPanelButtonClass).removeClass(config.menuItemHoverClass);
+            var removeClasses = config.menuItemHoverClass+' '+config.availabilityClass.available+' '+config.availabilityClass.unavailable;
+            $('.' + config.leftPanelButtonClass).removeClass(removeClasses);
         },
         showTowerDetailContainer: function(data, left, top) {
             if (!(data && data.unitInfo)) {

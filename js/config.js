@@ -17,6 +17,8 @@ var config = (function(){
 			amenitiesHotspots: 'amenitiesHotspots.csv',
 			unitplanInfo: 'unitplanInfo.csv'
 		},
+		noPointerClass: 'no-pointer',
+		hideClass: 'hidden',
 		availabilityClass: {
 			available: 'apt-available',
 			unavailable: 'apt-unavailable'
@@ -35,7 +37,7 @@ var config = (function(){
 		amenityPopupClass: "amenity-popup",
 		amenityPopupCloseClass: "amenity-popup-close",
 
-		// Towerseleted
+		// Towerselected
 		imgContainerId: 'img-container',
 		svgContainerId: 'svg-container',
 		towerRotationContainerId: 'tower-rotation-container',
@@ -57,10 +59,14 @@ var config = (function(){
 			resetClass: 'reset-filters',
 			floorInterval: 3,
 			priceInterval: 1000000
-		}
-		
+		},
+
 		// Unitplan
-		
+		selectedUnitContainerId: 'selected-unit-container',
+		closeUnitContainerId: 'unit-close-container',
+		unitDataContainer: 'unit-data-container',
+		unitMenuLinkClass: 'unit-menu-link',
+		selectedUnitMenuClass: 'selected'
 	};
 
 	return config;

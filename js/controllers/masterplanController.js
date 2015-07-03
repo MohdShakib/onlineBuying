@@ -9,13 +9,14 @@ var MasterplanController = (function() {
     function MasterplanController(model, view) {
         this._model = model;
         this._view = view;
+        this.attachListeners();
     }
 
     MasterplanController.prototype = {
         changeUrl: function(element) {
             var hash = element.dataset.url ? element.dataset.url : null;
             if (hash && hash != "undefined")
-                window.location.hash = hash;
+            	router.setRoute(hash);
             return;
         },
         attachListeners: function() {
@@ -52,7 +53,6 @@ var MasterplanController = (function() {
             });
         },
         generateTemplate: function() {
-            this.attachListeners();
             this._view.buildView();
         }
     };

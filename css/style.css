@@ -46,6 +46,7 @@ table td, table tr {
 /* SVG */
 .svg-container {
 	position: absolute;
+	left: 0px;
 	border: none;
 	z-index: 10000;
 }
@@ -55,6 +56,12 @@ polygon {
 	stroke: rgba(255,255,255,0.5);
 	stroke-width: 0;
 	radius: 1;
+}
+#unit-svg-container polygon:hover{
+	stroke: orange;
+	stroke-width: 0.4;
+	fill: orange;
+	fill-opacity: 0.1;
 }
 ellipse {
 	cursor: pointer;
@@ -141,7 +148,7 @@ ellipse.tower-unit-selected-svg-path {
 	padding: 3px;
 	color: #c3c3c3;
 }
-.towerunit-detail-container > div.towerunit-name {
+.towerunit-detail-container > div.towerunit-name,div.towerunit-detail {
 	font-size: 13px;
 	color: white;
 }
@@ -155,6 +162,9 @@ ellipse.tower-unit-selected-svg-path {
 .apt-available {
 	border-right: 4px solid limegreen;
 }
+.apt-unavailable {
+	border-right: 4px solid crimson;
+}
 .apt-available-color{
 	color: limegreen  !important;
 }
@@ -167,9 +177,7 @@ ellipse.tower-unit-selected-svg-path {
 .apt-unavailable-color{
 	color: crimson !important;
 }
-.apt-unavailable {
-	border-right: 4px solid crimson;
-}
+
 
 /* Tower Menu */
 .tower-menu-container {
@@ -241,7 +249,6 @@ ellipse.tower-unit-selected-svg-path {
 }
 .tower-menu-container .menu-item-hover {
 	width: 100px;
-  	border-right: 4px green solid;
 }
 .tower-menu-container .menu-items .menu-item-container {
 	-webkit-transition: 0.5s;
@@ -307,56 +314,15 @@ ellipse.tower-unit-selected-svg-path {
 /* Selected Unit */
 .selected-unit-container {
 	position: absolute;
-	z-index: 99999999;
+	z-index: 999999;
 	background: white;
 	width: 60%;
 	height: 100%;
 	right: 0px;
 }
-.selected-unit-container table {
-	width: 100%;
-	height: 100%;
-	border-collapse: separate;
-    border-spacing: 0;
-}	
-.unit-header {
-	height: 50px;
-}
-.unit-header .header-item {
-	color: #DDD;
-	font-size: 11px;
-	text-align: center;
-	background-color: #333;
-	border-right: 1px #EEE solid;
-	border-bottom: 5px #666 solid;
-	cursor: pointer; 
-	line-height: 20px;
-	padding: 0 5px;
-}
-.unit-header .header-item span {
-	display: block;
-	font-size: 15px;
-	line-height: 25px;
-}
-.unit-header .header-title {
-	width: 50%;
-	font-size: 10px;
-	text-align: left;
-	padding-left: 10px;
-	cursor: default;
-}
-.unit-header .header-title span {
-	display: inline;
-	font-size: 14px;
-}
-.unit-header .header-title .address {
-	font-size: 19px;
-	color: #FFF;
-}
-.unit-header .right {
-	border-right: none;
-}
-.unit-close {
+
+/* Unit Close */
+.unit-close-container {
 	height: 50px;
 	width: 50px;
 	position: absolute;
@@ -367,14 +333,102 @@ ellipse.tower-unit-selected-svg-path {
 	text-align: center;
 	line-height: 50px;
 	cursor: pointer;
+	-webkit-transition: 0.5s;
+    transition: 0.5s;
 }
-.unit-close:hover {
+.unit-close-container:hover {
 	color: #FFF;
 }
-.unit-body {
-	background-color: #EEE;
+
+/* Unit Menu */
+.unit-menu-container {
+	position: absolute;
+	height: 50px;
+	width: 100%;
+  	z-index: 9999999;
+}
+.unit-menu-container table {
+	width: 100%;
+	border-spacing: 0px;
+    border-collapse: separate;
+}
+.unit-menu-container .header-item {
+	color: #DDD;
+	font-size: 11px;
+	text-align: center;
+	background-color: #333;
+	border-right: 1px #EEE solid;
+	border-bottom: 5px #666 solid;
+	line-height: 20px;
+	padding: 0 5px;
+	-webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+.unit-menu-container .header-item span {
+	display: block;
+	font-size: 15px;
+	line-height: 25px;
+}
+.unit-menu-container .header-title {
+	width: 50%;
+	font-size: 10px;
+	text-align: left;
+	padding-left: 10px;
+}
+.unit-menu-container .header-title span {
+	display: inline;
+	font-size: 14px;
+}
+.unit-menu-container .header-title .address {
+	font-size: 19px;
+	color: #FFF;
+}
+.unit-menu-container .unit-menu-link:hover, .unit-menu-container .selected {
+	background-color: #666;
+	cursor: pointer; 
+}
+.unit-menu-container .unit-menu-link:hover.selected {
+	cursor: default; 
+}
+.unit-menu-container .right {
+	border-right: none;
+}
+
+/* Unit Data */
+.unit-data-container {
+	position: absolute;
+	top: 0px;
   	height: 100%;
+  	width: 100%;
   	text-align: center;
+}
+.unit-data-container .fullView {
+	width: 100%;
+	height: 100%;
+}
+.floor-plan-container,
+.cluster-plan-container,
+.specification-container {
+	background-color: #EEE;
+}
+
+.specification-container {
+	overflow: scroll;
+}
+.specification-container .base-table {
+	padding: 70px 20px 20px 20px;
+ 	width: 100%;
+}
+.specification-container .base-table td {
+	text-align: left;
+	padding: 5px 10px;
+	font-size: 12px;
+	color: #555;
+}
+.specification-container .base-table .heading {
+	background-color: #666;
+	color: #FFF;
+	text-transform: uppercase;
 }
 
 /* Overview Image */

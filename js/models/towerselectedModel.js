@@ -12,6 +12,13 @@ var TowerselectedModel = (function() {
 
         this._currentRotationAngle = '0';
         this._filteredListings = null;
+
+        this._filters = {
+            bhk: [],
+            floor: [],
+            entrance: [],
+            price: []
+        };
     }
 
     TowerselectedModel.prototype = {
@@ -39,6 +46,10 @@ var TowerselectedModel = (function() {
 
         getFilteredListings: function() {
             return this._filteredListings;
+        },
+
+        getSelectedFiltersData: function(){
+            return this._filters;
         },
 
         updateFilteredListings: function(listings) {

@@ -65,6 +65,9 @@ var getProjectData = (function() {
                         continue;
                     }
 
+                    unitInfo.towerIdentifier = unitTowerIdentifier;
+                    delete unitInfo.towerName;
+
                     tower = projectData.towers[unitTowerIdentifier];
 
                     if(tower.listings[unitIdentifier]){ // get unit availability status
@@ -82,6 +85,7 @@ var getProjectData = (function() {
                         tower.rotationAngle[unitInfo.rotationAngle].listing = {};
                         tower.rotationAngle[unitInfo.rotationAngle].listing[unitIdentifier]  = unitInfo;
                     }
+                    delete unitInfo.towerImageName;
                 }
             }
         }
@@ -101,17 +105,37 @@ var getProjectData = (function() {
         }
     }
 
+    function htmlEntities(str) {
+        return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+    
+    function parseDetailsField(details){
+        var response = '', length = details.length;
+        if(details && details.length && details[0] == '"' && details[length-1] == '"'){
+            details = details.substring(1, length-1);
+            length = details.length;
+            for(var i = 0; i < length; i++){
+                if(!(details[i] == '"' && details[i+1] == '"')){
+                   response += details[i];
+                }
+            }
+        }
+        response = htmlEntities(response);
+        return response;
+    }
+
     function processUnitSvgs(unitInfo){
-        var response = [];
+        var response = [], details;
       
         for(var i=1; i<=1000; i++){
                 var partial = 'view'+i+'-';
                 if(hasOwnProperty.call(unitInfo, partial+'svg') && unitInfo[partial+'svg'].length){
+                    details = unitInfo[partial+'details'];
                     response.push({
                         name: unitInfo[partial+'name'],
                         svgPath: unitInfo[partial+'svg'],
                         type: unitInfo[partial+'type'],
-                        details: unitInfo[partial+'details']
+                        details: parseDetailsField(details)
                     });
                 }else{
                     return response;
@@ -216,7 +240,7 @@ var getProjectData = (function() {
 
 
         projectData.projectId = projectDetail.projectId;
-        projectData.baseUrl = '#/projectname-'+projectDetail.projectId;
+        projectData.baseUrl = 'projectname-'+projectDetail.projectId;
         projectData.projectName = projectDetail.name;
         projectData.address = projectDetail.address;
         projectData.bgImage = zipImagePath+config.backgroundImage;
@@ -240,6 +264,7 @@ var getProjectData = (function() {
 
         projectData.towers = towers;
         projectData.unitTypes = {};
+        projectData.specifications = projectDetail.specifications || {};
 
         for(i = 0; i < listings_length; i += 1){
             var towerId     = projectDetail.listings[i].towerId;
@@ -251,6 +276,7 @@ var getProjectData = (function() {
             flatUnit.listingAddress = listing.flatNumber;
             flatUnit.unitIdentifier = unitIdentifier;
             flatUnit.listingId = listing.id;
+            flatUnit.towerIdentifier = towerIdentifier;
             flatUnit.floor  = listing.floor;
             flatUnit.isAvailable = (listing.bookingStatusId == 1 ? true : false ); // available if bookingStatusId = 1
             flatUnit.bookingStatusId = listing.bookingStatusId;
@@ -318,8 +344,8 @@ var getProjectData = (function() {
             return projectData;
         }
 
-        var apiUrl  = "http://192.168.1.8:8080/app/v4/project-detail/"+projectId+"?selector={%22paging%22:{%22start%22:0,%22rows%22:100},%22fields%22:[%22projectId%22,%22images%22,%22imageType%22,%22mediaType%22,%22objectType%22,%22title%22,%22type%22,%22absolutePath%22,%22properties%22,%22projectAmenities%22,%22amenityDisplayName%22,%22verified%22,%22amenityMaster%22,%22amenityId%22,%22towerId%22,%22amenityName%22,%22bedrooms%22,%22bathrooms%22,%22balcony%22,%22name%22,%22primaryOnline%22,%22propertyId%22,%22towers%22,%22listings%22,%22floor%22,%22size%22,%22measure%22,%22bookingAmount%22,%22viewDirections%22,%22viewType%22,%22facingId%22,%22address%22,%22towerName%22,%22clusterPlans%22,%22id%22,%22flatNumber%22,%22bookingStatusId%22,%22clusterPlanId%22,%22price%22]}";
-        var apiUrl = 'apiData.json';
+        var apiUrl  = "http://192.168.1.8:8080/app/v4/project-detail/"+projectId+"?selector={%22paging%22:{%22start%22:0,%22rows%22:100},%22fields%22:[%22projectId%22,%22images%22,%22imageType%22,%22mediaType%22,%22objectType%22,%22title%22,%22type%22,%22absolutePath%22,%22properties%22,%22projectAmenities%22,%22amenityDisplayName%22,%22verified%22,%22amenityMaster%22,%22amenityId%22,%22towerId%22,%22amenityName%22,%22bedrooms%22,%22bathrooms%22,%22balcony%22,%22name%22,%22primaryOnline%22,%22propertyId%22,%22towers%22,%22listings%22,%22floor%22,%22size%22,%22measure%22,%22bookingAmount%22,%22viewDirections%22,%22viewType%22,%22facingId%22,%22address%22,%22towerName%22,%22clusterPlans%22,%22id%22,%22flatNumber%22,%22bookingStatusId%22,%22clusterPlanId%22,%22price%22,%22specifications%22]}";
+        //var apiUrl = 'apiData.json';
         var apiData,
         params = {success_callback: function(response){
             apiData = response;
