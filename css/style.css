@@ -42,6 +42,12 @@ table td, table tr {
 .shrink {
 	width: 40% !important;
 }
+.selected {
+	cursor: default !important;
+}
+.right {
+	border-right: none !important;
+}
 
 /* SVG */
 .svg-container {
@@ -387,12 +393,6 @@ ellipse.tower-unit-selected-svg-path {
 	background-color: #666;
 	cursor: pointer; 
 }
-.unit-menu-container .unit-menu-link:hover.selected {
-	cursor: default; 
-}
-.unit-menu-container .right {
-	border-right: none;
-}
 
 /* Unit Data */
 .unit-data-container {
@@ -439,7 +439,52 @@ ellipse.tower-unit-selected-svg-path {
 .specification-container {
 	background-color: #EEE;
 }
-
+.floor-plan-container .sunlight-menu {
+	position: absolute;
+	background-color: #CCC;
+	top: 55px;
+	left: 5px;
+	border-radius: 30px;
+	padding: 2px;
+	z-index: 10001;
+}
+.floor-plan-container .sunlight-menu .sunlight-menu-option {
+	display: inline-block;
+	background-color: #DDD;
+	padding: 3px;
+	margin: 1px;
+	border-radius: 100%;
+	width: 23px;
+	height: 23px;
+	line-height: 23px;
+	text-align: center;
+	cursor: pointer;
+}
+.floor-plan-container .sunlight-menu .sunlight-menu-option:hover, 
+.floor-plan-container .sunlight-menu .sunlight-menu-option.selected {
+	background-color: #FFF;
+}
+.floor-plan-menu-container .floor-plan-menu {
+	position: absolute;
+	top: 60px;
+	right: 15px;
+	background-color: #333;
+	color: #EEE;
+	font-size: 11px;
+	border-radius: 5px;
+	border-spacing: 0px;
+	overflow: hidden;
+	z-index: 10001;
+}
+.floor-plan-menu-container .floor-plan-menu .floor-plan-menu-option {
+	padding: 5px;
+	border-right: 1px solid #EEE;
+	cursor: pointer;
+}
+.floor-plan-menu-container .floor-plan-menu .floor-plan-menu-option:hover,
+.floor-plan-menu-container .floor-plan-menu .floor-plan-menu-option.selected {
+	background-color: #666;
+}
 .specification-container {
 	overflow: scroll;
 }

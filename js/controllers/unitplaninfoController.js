@@ -38,6 +38,11 @@ var UnitplaninfoController = (function() {
             this._view._unitMenuClick.attach(function(sender, element) {
                 _this._view.selectMenuOption(element);
             });
+
+            // Sunlight menu Events
+            this._view._sunlightMenuClick.attach(function(sender, element) {
+                _this._view.selectSunlightMenuOption(element);
+            });
         },
         generateTemplate: function(data, rootdata, elements) {
             this._view.buildView();

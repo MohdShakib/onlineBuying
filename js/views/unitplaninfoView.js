@@ -11,6 +11,7 @@ var UnitplaninfoView = (function() {
         'unitCloseContainer': '<div class="unit-close-container" id="' + config.closeUnitContainerId + '"></div>',
         'unitMenuContainer': '<div class="unit-menu-container" id="unit-menu-container"></div>',
         'floorPlanContainer': '<div class="floor-plan-container fp-container ' + config.unitDataContainer + '" id="floor-plan-container"></div>',
+        'floorPlanMenuContainer': '<div class="floor-plan-menu-container fp-container fp2-container fpwt-container ' + config.unitDataContainer + '" id="floor-plan-menu-container"></div>',
         'unitSvgContainer': '<div class="fp-container ' + config.unitDataContainer + '"><svg class="svg-container" id="unit-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
         'unitComponentDetailContainer': '<div class="tower-unit-detail-container fp-container ' + config.unitDataContainer + '" id="tower-detail-container"></div>',
         'clusterPlanContainer': '<div class="cluster-plan-container cp-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="cluster-plan-container"></div>',
@@ -22,9 +23,10 @@ var UnitplaninfoView = (function() {
         var elements = {
             'unitCloseContainer': $('#' + config.closeUnitContainerId),
             'unitMenuContainer': $('#unit-menu-container'),
+            'floorPlanContainer': $('#floor-plan-container'),
+            'floorPlanMenuContainer': $('#floor-plan-menu-container'),
             'unitSvgContainer': $('#unit-svg-container'),
             'unitComponentDetailContainer': $('#tower-detail-container'),
-            'floorPlanContainer': $('#floor-plan-container'),
             'clusterPlanContainer': $('#cluster-plan-container'),
             'priceBreakupContainer': $('#price-breakup-container'),
             'specificationContainer': $('#specification-container')
@@ -41,6 +43,7 @@ var UnitplaninfoView = (function() {
         this._unitComponentMouseEnter = new Event(this);
         this._unitComponentMouseLeave = new Event(this);
         this._unitMenuClick = new Event(this);
+        this._sunlightMenuClick = new Event(this);
     }
 
     UnitplaninfoView.prototype = {
@@ -101,7 +104,7 @@ var UnitplaninfoView = (function() {
                 "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
                 "- <span>" + data.size + " " + data.measure + "</span> " +
                 "- <span>Rs. " + utils.getReadablePrice(data.price) + "* </span></td>" +
-                "<td data-container='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedUnitMenuClass + "'><span>@</span>Floor Plan</td>" +
+                "<td data-container='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><span>@</span>Floor Plan</td>" +
                 "<td data-container='cp-container' class='header-item " + config.unitMenuLinkClass + "'><span>#</span>Cluster Plan</td>" +
                 "<td data-container='pb-container' class='header-item " + config.unitMenuLinkClass + "'><span>$</span>Price Breakup</td>" +
                 "<td data-container='sf-container' class='header-item " + config.unitMenuLinkClass + " right'><span>&</span>Specification</td></tr></table>";
@@ -116,8 +119,8 @@ var UnitplaninfoView = (function() {
             });
         },
         selectMenuOption: function(element) {
-            $('.' + config.unitMenuLinkClass).removeClass(config.selectedUnitMenuClass);
-            element.setAttribute('class', element.classList + " " + config.selectedUnitMenuClass);
+            $('.' + config.unitMenuLinkClass).removeClass(config.selectedClass);
+            element.setAttribute('class', element.classList + " " + config.selectedClass);
             var container = element.dataset.container;
             $('.' + config.unitDataContainer).addClass(config.hideClass);
             $('.' + container).removeClass(config.hideClass);
@@ -125,7 +128,36 @@ var UnitplaninfoView = (function() {
         floorPlanContainer: function(data, rotationdata, rootdata) {
             var imageUrl = rootdata.unitTypes[rotationdata.unitTypeIdentifier].unitImageUrl;
             var code = "<img class='fullView' src='" + imageUrl + "'>";
+                code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + "' id='sunrise-image' src='/zip-file/img/yellow-sunlight.png'>";
+                code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + "' id='sunset-image' src='/zip-file/img/blue-sunlight.png'>";
+                
+                code += "<div class='sunlight-menu'>";
+                code += "<div data-target='sunrise-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'>@</div>";
+                code += "<div data-target='sunset-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'>#</div></div>";
             this._elements.floorPlanContainer.html(code);
+            this.floorPlanContainerEvents();
+        },
+        floorPlanContainerEvents: function() {
+            var _this = this;
+            _this._elements.floorPlanContainer.off('click').on('click', '.' + config.sunlightMenuOptionClass, function(event) {
+                // notify controller
+                _this._sunlightMenuClick.notify(this); // this refers to element here
+            });
+        },
+        selectSunlightMenuOption: function(element) {
+            $('.' + config.sunlightMenuOptionClass).removeClass(config.selectedClass);
+            element.setAttribute('class', element.classList + " " + config.selectedClass);
+            var target = element.dataset.target;
+            $('.' + config.sunlightImageClass).addClass(config.hideClass);
+            $('#' + target).removeClass(config.hideClass);
+        },
+        floorPlanMenuContainer: function(data, rotationdata, rootdata) {
+            var code = "<table class='floor-plan-menu'><tr>";
+            code += "<td class='" + config.floorPlanMenuOptionClass + "'>2D</td>";
+            code += "<td class='" + config.floorPlanMenuOptionClass + " " + config.selectedClass + "'>3D</td>";
+            code += "<td class='" + config.floorPlanMenuOptionClass + " right'>Walkthrough</td>";
+            code += "</tr></table>";
+            this._elements.floorPlanMenuContainer.html(code);
         },
         unitSvgContainer: function() {
             var unitTypeData = this._model.getUnitTypeData(),
