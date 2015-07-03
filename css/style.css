@@ -58,7 +58,10 @@ polygon {
 	radius: 1;
 }
 #unit-svg-container polygon:hover{
-	fill: rgba(50,205,50,0.3);
+	stroke: orange;
+	stroke-width: 0.4;
+	fill: orange;
+	fill-opacity: 0.1;
 }
 ellipse {
 	cursor: pointer;
@@ -400,13 +403,45 @@ ellipse.tower-unit-selected-svg-path {
   	text-align: center;
 }
 .unit-data-container .fullView {
-	width: 100%;
+	position: absolute;
+	top: 0px;
+ 	left: 0px;
+ 	width: 100%;
 	height: 100%;
+}
+.floor-plan-container .sunlight-menu {
+	position: absolute;
+	background-color: #CCC;
+	top: 55px;
+	left: 5px;
+	border-radius: 30px;
+	padding: 2px;
+	z-index: 10001;
+}
+.floor-plan-container .sunlight-menu .sunlight-menu-option {
+	display: inline-block;
+	background-color: #DDD;
+	padding: 3px;
+	margin: 1px;
+	border-radius: 100%;
+	width: 23px;
+	height: 23px;
+	line-height: 23px;
+	text-align: center;
+	cursor: pointer;
+}
+.floor-plan-container .sunlight-menu .sunlight-menu-option:hover, 
+.floor-plan-container .sunlight-menu .sunlight-menu-option.selected {
+	background-color: #FFF;
 }
 .floor-plan-container,
 .cluster-plan-container,
 .specification-container {
 	background-color: #EEE;
+}
+
+.specification-container {
+	overflow: scroll;
 }
 .specification-container .base-table {
 	padding: 70px 20px 20px 20px;
@@ -415,13 +450,12 @@ ellipse.tower-unit-selected-svg-path {
 .specification-container .base-table td {
 	text-align: left;
 	padding: 5px 10px;
-	font-size: 13px;
+	font-size: 12px;
 	color: #555;
 }
 .specification-container .base-table .heading {
 	background-color: #666;
 	color: #FFF;
-	font-size: 14px;
 	text-transform: uppercase;
 }
 
@@ -526,3 +560,99 @@ ellipse.tower-unit-selected-svg-path {
 	height: 360px;
 	width: 600px;
 }
+/*=================classes for animation added by jaswant singh=========================*/
+
+/*-------------transition effect for all-------------*/
+.transition{ 
+	transition:all 0.5s ease-in-out; 
+	-webkit-transition:all 0.5s ease-in-out; 
+	-ms-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-webkit-transition:all 0.5s ease-in-out;}
+/*-------------transition effect for all end-------------*/
+
+/*---image pop up animation---*/
+.pop-up-in{
+	animation-duration: 1s;
+	animation-fill-mode: both;
+	-webkit-animation-name: pop-in;
+    animation-name: pop-in;
+ }
+.pop-up-out{
+	animation-duration: 2s;
+	animation-fill-mode: both;
+	-webkit-animation-name: pop-in;
+    animation-name: pop-in;
+}
+  
+/*-----pop-in-----*/
+@-webkit-keyframes pop-in {
+  0% {
+    opacity: 0;
+	width:0;
+	height:0;
+    -webkit-transform-origin: 100% 50%;
+    -webkit-transform: scale(.2) translate(200%, 0%);
+  }
+
+  100% {
+    opacity: 1;
+	width:500px;
+	height:400px;
+    -webkit-transform-origin: 100% 50%;
+    -webkit-transform: scale(1) translate(0%, 0%);
+  }
+}
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+	width:0;
+	height:0;
+    transform-origin: 100% 50%;
+    transform: scale(.2) translate(200%, 0%);
+  }
+
+  100% {
+    opacity: 1;
+ 	width:500px;
+	height:400px;
+    transform-origin: 100% 50%;
+    transform: scale(1) translate(0%, 0%);
+  }
+}
+
+/*-------pop-out-------*/
+@-webkit-keyframes pop-out {
+  0% {
+	  
+    -webkit-transform-origin: 100% 50%;
+    -webkit-transform: scale(1) translate(0%, 0%);
+  }
+
+  100% {
+    opacity: 0;
+	width:0;
+	height:0;
+    -webkit-transform-origin: 100% 50%;
+    -webkit-transform: scale(.2) translate(200%, 0%);
+  }
+}
+@keyframes pop-out {
+  0% {
+	  
+	opacity: 1;
+	width:500px;
+	height:400px;
+    transform-origin: 100% 50%;
+    transform: scale(1) translate(0%, 0%);
+  }
+
+  100% {
+    opacity: 0;
+	width:0;
+	height:0;
+    transform-origin: 100% 50%;
+    transform: scale(.2) translate(200%, 0%);
+  }
+}
+/*---image pop up animation end---*/

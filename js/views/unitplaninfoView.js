@@ -41,6 +41,7 @@ var UnitplaninfoView = (function() {
         this._unitComponentMouseEnter = new Event(this);
         this._unitComponentMouseLeave = new Event(this);
         this._unitMenuClick = new Event(this);
+        this._sunlightMenuClick = new Event(this);
     }
 
     UnitplaninfoView.prototype = {
@@ -101,7 +102,7 @@ var UnitplaninfoView = (function() {
                 "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
                 "- <span>" + data.size + " " + data.measure + "</span> " +
                 "- <span>Rs. " + utils.getReadablePrice(data.price) + "* </span></td>" +
-                "<td data-container='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedUnitMenuClass + "'><span>@</span>Floor Plan</td>" +
+                "<td data-container='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><span>@</span>Floor Plan</td>" +
                 "<td data-container='cp-container' class='header-item " + config.unitMenuLinkClass + "'><span>#</span>Cluster Plan</td>" +
                 "<td data-container='pb-container' class='header-item " + config.unitMenuLinkClass + "'><span>$</span>Price Breakup</td>" +
                 "<td data-container='sf-container' class='header-item " + config.unitMenuLinkClass + " right'><span>&</span>Specification</td></tr></table>";
@@ -116,8 +117,8 @@ var UnitplaninfoView = (function() {
             });
         },
         selectMenuOption: function(element) {
-            $('.' + config.unitMenuLinkClass).removeClass(config.selectedUnitMenuClass);
-            element.setAttribute('class', element.classList + " " + config.selectedUnitMenuClass);
+            $('.' + config.unitMenuLinkClass).removeClass(config.selectedClass);
+            element.setAttribute('class', element.classList + " " + config.selectedClass);
             var container = element.dataset.container;
             $('.' + config.unitDataContainer).addClass(config.hideClass);
             $('.' + container).removeClass(config.hideClass);
@@ -125,7 +126,28 @@ var UnitplaninfoView = (function() {
         floorPlanContainer: function(data, rotationdata, rootdata) {
             var imageUrl = rootdata.unitTypes[rotationdata.unitTypeIdentifier].unitImageUrl;
             var code = "<img class='fullView' src='" + imageUrl + "'>";
+                code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + "' id='sunrise-image' src='/zip-file/img/yellow-sunlight.png'>";
+                code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + "' id='sunset-image' src='/zip-file/img/blue-sunlight.png'>";
+                
+                code += "<div class='sunlight-menu'>";
+                code += "<div data-target='sunrise-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'>@</div>";
+                code += "<div data-target='sunset-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'>#</div></div>";
             this._elements.floorPlanContainer.html(code);
+            this.floorPlanContainerEvents();
+        },
+        floorPlanContainerEvents: function() {
+            var _this = this;
+            _this._elements.floorPlanContainer.off('click').on('click', '.' + config.sunlightMenuOptionClass, function(event) {
+                // notify controller
+                _this._sunlightMenuClick.notify(this); // this refers to element here
+            });
+        },
+        selectSunlightMenuOption: function(element) {
+            $('.' + config.sunlightMenuOptionClass).removeClass(config.selectedClass);
+            element.setAttribute('class', element.classList + " " + config.selectedClass);
+            var target = element.dataset.target;
+            $('.' + config.sunlightImageClass).addClass(config.hideClass);
+            $('#' + target).removeClass(config.hideClass);
         },
         unitSvgContainer: function() {
             var unitTypeData = this._model.getUnitTypeData(),
@@ -192,8 +214,7 @@ var UnitplaninfoView = (function() {
             this._elements.clusterPlanContainer.html(code);
         },
         priceBreakupContainer: function(data, rotationdata, rootdata) {
-            var imageUrl = '/zip-file/img/dummy-cluster-plan.jpeg';
-            var code = "<img class='fullView' src='" + imageUrl + "'>";
+            var code = "<br><br><br><br><br><br>Price Breakup";
             this._elements.priceBreakupContainer.html(code);
         },
         specificationContainer: function(data, rotationdata, rootdata) {
