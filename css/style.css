@@ -236,7 +236,6 @@ ellipse.tower-unit-selected-svg-path {
 	position: relative;
 	height: 40px;
 	width: 45px;
-	
 }
 .tower-menu-container .menu-item {
 	position: absolute;
@@ -245,11 +244,8 @@ ellipse.tower-unit-selected-svg-path {
 	height: 100%;
 	width: 100%;
 	cursor: pointer;
-	transition:all 0.5s ease-in-out;
-	-moz-transition:all 0.5s ease-in-out;
-	-ms-transition:all 0.5s ease-in-out;
-	-webkit-transition:all 0.5s ease-in-out;
-    -o-transition:all 0.5s ease-in-out;
+	-webkit-transition: 0.5s;
+    transition: 0.5s;
 }
 .tower-menu-container .menu-item-hover {
 	width: 100px;
@@ -407,8 +403,36 @@ ellipse.tower-unit-selected-svg-path {
   	text-align: center;
 }
 .unit-data-container .fullView {
-	width: 100%;
+	position: absolute;
+	top: 0px;
+ 	left: 0px;
+ 	width: 100%;
 	height: 100%;
+}
+.floor-plan-container .sunlight-menu {
+	position: absolute;
+	background-color: #CCC;
+	top: 55px;
+	left: 5px;
+	border-radius: 30px;
+	padding: 2px;
+	z-index: 10001;
+}
+.floor-plan-container .sunlight-menu .sunlight-menu-option {
+	display: inline-block;
+	background-color: #DDD;
+	padding: 3px;
+	margin: 1px;
+	border-radius: 100%;
+	width: 23px;
+	height: 23px;
+	line-height: 23px;
+	text-align: center;
+	cursor: pointer;
+}
+.floor-plan-container .sunlight-menu .sunlight-menu-option:hover, 
+.floor-plan-container .sunlight-menu .sunlight-menu-option.selected {
+	background-color: #FFF;
 }
 .floor-plan-container,
 .cluster-plan-container,
@@ -507,8 +531,8 @@ ellipse.tower-unit-selected-svg-path {
 	background-color: rgba(0,0,0,0.3);
 	z-index: 100000;
 }
-.amenity-popup{
-	position: fixed;
+.amenity-popup table {
+	position: absolute;
 	top: 50%;
 	left: 50%;
 	margin: -206px 0 0 -304px;
@@ -567,7 +591,7 @@ ellipse.tower-unit-selected-svg-path {
     opacity: 0;
 	width:0;
 	height:0;
-    -webkit-transform-origin: 100% 50%;
+    -webkit-transform-origin: 0 0;
     -webkit-transform: scale(.2) translate(200%, 0%);
   }
 
@@ -575,7 +599,7 @@ ellipse.tower-unit-selected-svg-path {
     opacity: 1;
 	width:600px;
 	height:360px;
-    -webkit-transform-origin: 100% 50%;
+    -webkit-transform-origin: 0 0;
     -webkit-transform: scale(1) translate(0%, 0%);
   }
 }
@@ -584,15 +608,17 @@ ellipse.tower-unit-selected-svg-path {
     opacity: 0;
 	width:0;
 	height:0;
-    transform-origin: 100% 50%;
+    transform-origin: 0 0;
     transform: scale(.2) translate(200%, 0%);
   }
+
+
 
   100% {
     opacity: 1;
  	width:600px;
 	height:360px;
-    transform-origin: 100% 50%;
+    transform-origin: 0 0;
     transform: scale(1) translate(0%, 0%);
   }
 }
@@ -601,9 +627,9 @@ ellipse.tower-unit-selected-svg-path {
 @-webkit-keyframes pop-out {
   0% {
 	opacity: 1;
-	width:600px;
+ 	width:600px;
 	height:360px;
-    -webkit-transform-origin: 100% 50%;
+    -webkit-transform-origin: 0 0;
     -webkit-transform: scale(1) translate(0%, 0%);
   }
 
@@ -611,7 +637,7 @@ ellipse.tower-unit-selected-svg-path {
     opacity: 0;
 	width:0;
 	height:0;
-    -webkit-transform-origin: 100% 50%;
+    -webkit-transform-origin: 0 0;
     -webkit-transform: scale(.2) translate(200%, 0%);
   }
 }
@@ -621,7 +647,7 @@ ellipse.tower-unit-selected-svg-path {
 	opacity: 1;
 	width:600px;
 	height:360px;
-    transform-origin: 100% 50%;
+    transform-origin: 0 0;
     transform: scale(1) translate(0%, 0%);
   }
 
@@ -629,28 +655,56 @@ ellipse.tower-unit-selected-svg-path {
     opacity: 0;
 	width:0;
 	height:0;
-    transform-origin: 100% 50%;
+    transform-origin: 0 0;
     transform: scale(.2) translate(200%, 0%);
   }
 }
 /*---image pop up animation end---*/
-/*----------line animation--------*/
+.dot-one, .dot-two{ width:10px; height:10px; background:#fff; left:0; bottom:-4px; position:absolute; border-radius:50%;-moz-transform: scale(0);}
+.dot-two{ left:195px; top:-4px; bottom:inherit;}
 .line{
 	background:#fff; 
 	width:0px;
 	height:1px;
-	position:fixed; top:300px; left:300px;
+	position:absolute; 
+	top:300px; 
+	left:300px;
 }
-.line.line-in {
+.running:hover .dot-one.in{
+    -moz-animation: point 0.3s linear forwards;
+    -webkit-animation: point 0.3s linear forwards;
+	}
+.running:hover .dot-two.in{
+    -moz-animation: point 0.3s linear forwards;
+    -webkit-animation: point 0.3s linear forwards;
+	animation-delay:0.6s;
+
+}
+
+.running:hover .dot-one.out{
+    -moz-animation: point-out 0.3s linear forwards;
+    -webkit-animation: point-out 0.3s linear forwards;
+	animation-delay:0.6s;
+	}
+.running:hover .dot-two.in{
+    -moz-animation: point-out 0.3s linear forwards;
+    -webkit-animation: point-out 0.3s linear forwards;
+	animation-delay:0;
+
+}
+
+.running:hover .line.line-in{
 	-moz-transform:rotate(-60deg);
 	-moz-transform-origin: 0 -2em;
-	-moz-animation:move 0.3s ease-in-out both;
+	-moz-animation:line-in 0.3s ease-in-out both;
 	
 	-webkit-transform:rotate(-60deg);
 	-webkit-transform-origin: 0 -2em;
-	-webkit-animation:move 0.3s ease-in-out both;
+	-webkit-animation:line-in 0.3s ease-in-out both;
+	-webkit-animation-delay: 0.3s; /* Chrome, Safari, Opera */
+    animation-delay: 0.3s;
 }
-.line.line-out {
+.running:hover .line.line-out {
 	-moz-transform:rotate(-60deg);
 	-moz-transform-origin: 0 -2em;
 	-moz-animation:line-out 0.3s ease-in-out both;
@@ -659,7 +713,6 @@ ellipse.tower-unit-selected-svg-path {
 	-webkit-transform-origin: 0 -2em;
 	-webkit-animation:line-out 0.3s ease-in-out both;
 }
-/*-----------------------*/
 @-moz-keyframes line-in {
 	0%   { width:0px;}
 	100% { width:200px; }
@@ -668,7 +721,6 @@ ellipse.tower-unit-selected-svg-path {
 	0%   { width:0px;}
 	100% { width:200px;}
 }
-/*-----------------------*/
 @-moz-keyframes line-out {
 	0%   { width:200px;}
 	100% { width:0; }
@@ -676,4 +728,45 @@ ellipse.tower-unit-selected-svg-path {
 @-webkit-keyframes line-out {
 	0%   { width:200px;}
 	100% { width:0;}
+}
+@-moz-keyframes point-in {
+    0%  {
+		-moz-transform: scale(0,0);
+		opacity:0;
+}
+
+100% {
+    -moz-transform: scale(1,1);
+	opacity:1;
+}
+@-webkit-keyframes point-in {
+    0%  {
+		-webkit-transform: scale(0,0);
+		opacity:0;
+}
+
+100% {
+    -webkit-transform: scale(1,1);
+	opacity:1;
+}
+
+@-moz-keyframes point-out {
+    0%  {
+		-moz-transform: scale(1,1);
+		opacity:1;
+}
+
+100% {
+    -moz-transform: scale(0,0);
+	opacity:0;
+}
+@-webkit-keyframes point-out {
+    0%  {
+		-webkit-transform: scale(1,1);
+		opacity:1;
+}
+
+100% {
+    -webkit-transform: scale(0,0);
+	opacity:0;
 }
