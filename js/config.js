@@ -33,6 +33,7 @@ var config = (function(){
 			unavailable: 'apt-unavailable'
 		},
 		mainContainerId : "main-container",
+		baseContainerId:  "base-container",
 		towerDetailContainerId: "tower-detail-container",
 
 		leftPanelButtonClass: 'left-panel-button',

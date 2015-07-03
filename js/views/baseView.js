@@ -34,50 +34,57 @@ var BaseView = (function() {
                 }
             }
         },
+        callBackFormSubmit: function(){
+            console.log('button clicked for submit');
+        },
         bottomFormGroupContainer: function(){
+            var _this = this;
             var htmlCode = '<div class="pro-contact-actions">'
-                        +'<div class="form-pop-up">'
-                            +'<div class="call-box">'
-                                +'<p>Our advisor will call you in next 15 mins*<br>'
-                                +'Please provide your details'
-                                +'</p>'
-                                +'<input class="text" placeholder="enter email id*" type="text" />'
-                                +'<input class="text" placeholder="enter cell phone number*" type="text" />'
-                                +'<div class="submit"><input type="submit" />Sbmit <span>&rarr;</span></div>'
-                            +'</div>'
-                            +'<div class="compare-box">'
-                                +'<p>Unit plans you like &amp; shortlisted'
-                                +'</p>'
-                                +'<div class="unit-box fleft">'
-                                    +'<ul>'
-                                        +'<li>A - 1109</li>'
-                                        +'<li>A - 1109</li>'
-                                        +'<li>A - 1109</li>'
-                                        +'<li>A - 1109</li>'
-                                    +'</ul>'
-                                +'</div>'
-                                +'<div class="unit-box fright">'
-                                    +'<ul>'
-                                        +'<li>A - 1109</li>'
-                                        +'<li>A - 1109</li>'
-                                        +'<li>A - 1109</li>'
-                                        +'<li>A - 1109</li>'
-                                    +'</ul>'
-                                +'</div>'
-                                +'<div class="clear-fix"></div>'
-                                +'<div class="submit"><input type="submit" />View Liked Plans <span>&rarr;</span></div>'
-                            +'</div>'
-                            +'<div class="share-box">'
-                                +'<p>Share details with family / friedns via</br> Email / Facebook / Google+</p>'
-                                +'<div class="share-social">'
-                                    +'<a href="javascript:void(0);"><span class="icon icon-facebook"></span>Facebook</a>'
-                                    +'<span>or</span>'
-                                    +'<a href="javascript:void(0);"><span class="icon icon-google-plus"></span>Goggle+</a>'
-                                +'</div>'
-                                +'<input class="text" placeholder="enter email id*" type="text" />'
-                                +'<div class="submit"><input type="submit" />Sbmit <span>&rarr;</span></div>'
-                            +'</div>'
+                +'<div class="form-pop-up">'
+                    +'<div class="call-box">'
+                        +'<p>Our advisor will call you in next 15 mins*<br>'
+                        +'Please provide your details'
+                        +'</p>'
+                        +'<form id="call-box-form"  name="call-box-form"  >' //
+                            +'<input class="text" placeholder="enter email id*" type="text" required />'
+                            +'<input class="text" placeholder="enter cell phone number*" type="text" required />'
+                            +'<input type="submit"  />'
+                            //+'<div class="submit" id="call-box-submit-id">Submit <span>&rarr;</span></div>'
+                        +'</form>'
+                    +'</div>'
+                    +'<div class="compare-box">'
+                        +'<p>Unit plans you like &amp; shortlisted'
+                        +'</p>'
+                        +'<div class="unit-box fleft">'
+                            +'<ul>'
+                                +'<li>A - 1109</li>'
+                                +'<li>A - 1109</li>'
+                                +'<li>A - 1109</li>'
+                                +'<li>A - 1109</li>'
+                            +'</ul>'
                         +'</div>'
+                        +'<div class="unit-box fright">'
+                            +'<ul>'
+                                +'<li>A - 1109</li>'
+                                +'<li>A - 1109</li>'
+                                +'<li>A - 1109</li>'
+                                +'<li>A - 1109</li>'
+                            +'</ul>'
+                        +'</div>'
+                        +'<div class="clear-fix"></div>'
+                        +'<div class="submit"><input type="submit" />View Liked Plans <span>&rarr;</span></div>'
+                    +'</div>'
+                    +'<div class="share-box">'
+                        +'<p>Share details with family / friedns via</br> Email / Facebook / Google+</p>'
+                        +'<div class="share-social">'
+                            +'<a href="javascript:void(0);"><span class="icon icon-facebook"></span>Facebook</a>'
+                            +'<span>or</span>'
+                            +'<a href="javascript:void(0);"><span class="icon icon-google-plus"></span>Goggle+</a>'
+                        +'</div>'
+                        +'<input class="text" placeholder="enter email id*" type="text" />'
+                        +'<div class="submit"><input type="submit" />Submit <span>&rarr;</span></div>'
+                    +'</div>'
+                +'</div>'
                 +'<ul class="conect-tab">'
                     +'<li>'
                         +'<a href="javascript:void(0);"  data-name="call-box">'
@@ -114,6 +121,12 @@ var BaseView = (function() {
             this._elements.bottomFormGroupContainer.off('click').on('click', '.'+config.bottomFormGroup.tabLinkClass, function(event){
                 _this._bottomGroupButtonClick.notify(this); //this refers to element here                
             });
+
+            this._elements.bottomFormGroupContainer.on('click', '#call-box-submit-id', function(event){
+                console.log('submit button clicked');             
+            });
+
+            
         },
         bottomGroupButtonClicked: function(element){
             $('.'+config.bottomFormGroup.tabLinkClass).removeClass('active');
@@ -130,7 +143,7 @@ var BaseView = (function() {
                     htmlCode += containerMap[containerList[key]];
                 }
             }
-            $('#'+config.mainContainerId).append(htmlCode);
+            $('#'+config.baseContainerId).html(htmlCode);
             this._elements = getElements();
         }
     };

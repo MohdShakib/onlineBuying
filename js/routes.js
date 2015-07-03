@@ -82,8 +82,8 @@ var initializeRoutes = (function() {
                 if(!baseController){
                   baseView = new BaseView();
                   baseController = new BaseController(baseView);
+                  baseController.generateTemplate();
                 }
-                baseController.generateTemplate();
             },
             notfound: function() {
                 console.log('Route not found');
