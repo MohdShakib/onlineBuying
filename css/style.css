@@ -532,3 +532,99 @@ ellipse.tower-unit-selected-svg-path {
 	height: 360px;
 	width: 600px;
 }
+/*=================classes for animation added by jaswant singh=========================*/
+
+/*-------------transition effect for all-------------*/
+.transition{ 
+	transition:all 0.5s ease-in-out; 
+	-webkit-transition:all 0.5s ease-in-out; 
+	-ms-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-webkit-transition:all 0.5s ease-in-out;}
+/*-------------transition effect for all end-------------*/
+
+/*---image pop up animation---*/
+.pop-up-in{
+	animation-duration: 1s;
+	animation-fill-mode: both;
+	-webkit-animation-name: pop-in;
+    animation-name: pop-in;
+ }
+.pop-up-out{
+	animation-duration: 2s;
+	animation-fill-mode: both;
+	-webkit-animation-name: pop-in;
+    animation-name: pop-in;
+}
+  
+/*-----pop-in-----*/
+@-webkit-keyframes pop-in {
+  0% {
+    opacity: 0;
+	width:0;
+	height:0;
+    -webkit-transform-origin: 100% 50%;
+    -webkit-transform: scale(.2) translate(200%, 0%);
+  }
+
+  100% {
+    opacity: 1;
+	width:500px;
+	height:400px;
+    -webkit-transform-origin: 100% 50%;
+    -webkit-transform: scale(1) translate(0%, 0%);
+  }
+}
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+	width:0;
+	height:0;
+    transform-origin: 100% 50%;
+    transform: scale(.2) translate(200%, 0%);
+  }
+
+  100% {
+    opacity: 1;
+ 	width:500px;
+	height:400px;
+    transform-origin: 100% 50%;
+    transform: scale(1) translate(0%, 0%);
+  }
+}
+
+/*-------pop-out-------*/
+@-webkit-keyframes pop-out {
+  0% {
+	  
+    -webkit-transform-origin: 100% 50%;
+    -webkit-transform: scale(1) translate(0%, 0%);
+  }
+
+  100% {
+    opacity: 0;
+	width:0;
+	height:0;
+    -webkit-transform-origin: 100% 50%;
+    -webkit-transform: scale(.2) translate(200%, 0%);
+  }
+}
+@keyframes pop-out {
+  0% {
+	  
+	opacity: 1;
+	width:500px;
+	height:400px;
+    transform-origin: 100% 50%;
+    transform: scale(1) translate(0%, 0%);
+  }
+
+  100% {
+    opacity: 0;
+	width:0;
+	height:0;
+    transform-origin: 100% 50%;
+    transform: scale(.2) translate(200%, 0%);
+  }
+}
+/*---image pop up animation end---*/
