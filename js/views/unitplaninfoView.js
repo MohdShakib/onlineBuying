@@ -126,12 +126,14 @@ var UnitplaninfoView = (function() {
         floorPlanContainer: function(data, rotationdata, rootdata) {
             var imageUrl = rootdata.unitTypes[rotationdata.unitTypeIdentifier].unitImageUrl;
             var code = "<img class='fullView' src='" + imageUrl + "'>";
-            code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " sunrise-image' src='/zip-file/img/yellow-sunlight.png'>";
-            code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " sunset-image' src='/zip-file/img/blue-sunlight.png'>";
+            code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " mor-image' src='/zip-file/img/2bhk-type1-1105-1-mor.png'>";
+            code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " aft-image' src='/zip-file/img/2bhk-type1-1105-1-aft.png'>";
+            code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " eve-image' src='/zip-file/img/2bhk-type1-1105-1-eve.png'>";
 
             code += "<div class='sunlight-menu'>";
-            code += "<div data-target='sunrise-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'>@</div>";
-            code += "<div data-target='sunset-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'>#</div></div>";
+            code += "<div data-target='mor-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'>@</div>";
+            code += "<div data-target='aft-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'>$</div>";
+            code += "<div data-target='eve-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'>#</div></div>";
             this._elements.floorPlanContainer.html(code);
             this.floorPlanContainerEvents();
         },
@@ -144,9 +146,9 @@ var UnitplaninfoView = (function() {
         },
         floorPlanMenuContainer: function(data, rotationdata, rootdata) {
             var code = "<table class='floor-plan-menu'><tr>";
-            code += "<td data-target='fp2d-container' class='" + config.floorPlanMenuOptionClass + "' id='floor-plan2d'>2D</td>";
-            code += "<td data-target='fp-container' class='" + config.floorPlanMenuOptionClass + " " + config.selectedClass + "' id='floor-plan'>3D</td>";
-            code += "<td data-target='fpwt-container' class='" + config.floorPlanMenuOptionClass + " right' id='walkthrough'>Walkthrough</td>";
+            code += "<td data-target='fp2d-container' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + "' id='floor-plan2d'>2D</td>";
+            code += "<td data-target='fp-container' class='" + config.floorPlanMenuOptionClass + " " + config.selectedClass + " " + config.transitionClass + "' id='floor-plan'>3D</td>";
+            code += "<td data-target='fpwt-container' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + " right' id='walkthrough'>Walkthrough</td>";
             code += "</tr></table>";
             this._elements.floorPlanMenuContainer.html(code);
             this.floorPlanMenuContainerEvents();
@@ -159,7 +161,7 @@ var UnitplaninfoView = (function() {
             });
         },
         floorPlan2dContainer: function(data, rotationdata, rootdata) {
-            var imageUrl = '/zip-file/img/dummy-2d-plan.jpeg';
+            var imageUrl = '/zip-file/img/2bhk-type1-1105-1-2d.jpg';
             var code = "<img class='fullView' src='" + imageUrl + "'>";
             this._elements.floorPlan2dContainer.html(code);
         },
@@ -230,7 +232,7 @@ var UnitplaninfoView = (function() {
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
         },
         clusterPlanContainer: function(data, rotationdata, rootdata) {
-            var imageUrl = '/zip-file/img/dummy-cluster-plan.jpeg';
+            var imageUrl = '/zip-file/img/2bhk-type1-1105-cl.jpg';
             var code = "<img class='fullView' src='" + imageUrl + "'>";
             this._elements.clusterPlanContainer.html(code);
         },

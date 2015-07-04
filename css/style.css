@@ -441,8 +441,8 @@ ellipse.tower-unit-selected-svg-path {
 }
 .floor-plan-menu-container .floor-plan-menu {
 	position: absolute;
-	top: 60px;
-	right: 15px;
+	top: 55px;
+	right: 5px;
 	background-color: #333;
 	color: #EEE;
 	font-size: 11px;
