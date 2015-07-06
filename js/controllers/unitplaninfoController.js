@@ -36,12 +36,17 @@ var UnitplaninfoController = (function() {
 
             // Menu Events
             this._view._unitMenuClick.attach(function(sender, element) {
-                _this._view.selectMenuOption(element);
+                _this._view.selectUnitMenuOption(element, config.unitMenuLinkClass, config.unitDataContainer);
             });
 
             // Sunlight menu Events
             this._view._sunlightMenuClick.attach(function(sender, element) {
-                _this._view.selectSunlightMenuOption(element);
+                _this._view.selectMenuOption(element, config.sunlightMenuOptionClass, config.sunlightImageClass);
+            });
+
+            // Floor plan menu Event
+            this._view._floorPlanMenuClick.attach(function(sender, element) {
+                _this._view.selectMenuOption(element, config.floorPlanMenuOptionClass, config.unitDataContainer);
             });
         },
         generateTemplate: function(data, rootdata, elements) {

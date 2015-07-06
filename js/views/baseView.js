@@ -82,9 +82,11 @@ var BaseView = (function() {
                     +'<div class="share-box">'
                         +'<p>Share details with family / friedns via</br> Email / Facebook / Google+</p>'
                         +'<div class="share-social">'
-                            +'<a href="javascript:void(0);"><span class="icon icon-facebook"></span>Facebook</a>'
+                            //+'<a href="javascript:void(0);"><span class="icon icon-facebook"></span>Facebook</a>'
+                            +'<div class="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"></div>'
                             +'<span>or</span>'
-                            +'<a href="javascript:void(0);"><span class="icon icon-google-plus"></span>Goggle+</a>'
+                            +'<div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>'
+                            //+'<a href="javascript:void(0);"><span class="icon icon-google-plus"></span>Goggle+</a>'
                         +'</div>'
                         +'<input class="text" placeholder="enter email id*" type="text" />'
                         +'<div class="submit"><input type="submit" />Submit <span>&rarr;</span></div>'
@@ -130,8 +132,6 @@ var BaseView = (function() {
             this._elements.bottomFormGroupContainer.on('click', '#call-box-submit-id', function(event){
                 console.log('submit button clicked');             
             });
-
-            
         },
         bottomGroupButtonClicked: function(element){
             $('.'+config.bottomFormGroup.tabLinkClass).removeClass('active');
