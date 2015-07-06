@@ -188,7 +188,7 @@ ellipse.tower-unit-selected-svg-path {
 /* Tower Menu */
 .tower-menu-container {
 	position: absolute;
-	z-index: 10000;
+	z-index: 300000;
 	top: 0px;
 	left: 0px;
 	height: 100%;
