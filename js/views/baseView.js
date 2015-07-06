@@ -5,6 +5,14 @@
  */
 
 "use strict";
+
+function callBackFormSubmit(form){
+    var email = $('#'+config.callBox.emailId).val();
+    var phone = $('#'+config.callBox.phoneId).val();
+    $(form)[0].reset();
+    return false;
+}
+
 var BaseView = (function() {
 
     var containerMap = {
@@ -34,9 +42,6 @@ var BaseView = (function() {
                 }
             }
         },
-        callBackFormSubmit: function(){
-            console.log('button clicked for submit');
-        },
         bottomFormGroupContainer: function(){
             var _this = this;
             var htmlCode = '<div class="pro-contact-actions">'
@@ -45,10 +50,10 @@ var BaseView = (function() {
                         +'<p>Our advisor will call you in next 15 mins*<br>'
                         +'Please provide your details'
                         +'</p>'
-                        +'<form id="call-box-form"  name="call-box-form"  >' //
-                            +'<input class="text" placeholder="enter email id*" type="text" required />'
-                            +'<input class="text" placeholder="enter cell phone number*" type="text" required />'
-                            +'<input type="submit"  />'
+                        +'<form id="call-box-form"  name="call-box-form" onsubmit="return callBackFormSubmit(this)" >'
+                            +'<input class="text" id="call-box-email" name="email" placeholder="enter email id*" type="email" required />'
+                            +'<input class="text" id="call-box-phone" name="phone" placeholder="enter cell phone number*" type="number" minlength="10" maxlength="10" required />'
+                            +'<input type="submit" id="call-box-submit-id" />'
                             //+'<div class="submit" id="call-box-submit-id">Submit <span>&rarr;</span></div>'
                         +'</form>'
                     +'</div>'

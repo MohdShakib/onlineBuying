@@ -23,6 +23,10 @@ var config = (function(){
 			'tabLinkClass': 'conect-tab li a',
 			'formPopUpClass': 'form-pop-up'
 		},
+		callBox: {
+			emailId: 'call-box-email',
+			phoneId: 'call-box-phone'
+		},
 		// Common
 		noPointerClass: 'no-pointer',
 		hideClass: 'hidden',
