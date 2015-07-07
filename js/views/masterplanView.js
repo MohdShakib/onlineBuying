@@ -149,7 +149,7 @@ var MasterplanView = (function() {
                 if (tower.towerHoverSvg) {
                     towerUrl = tower.isAvailable ? data.baseUrl + "/" + tower.towerIdentifier : 'undefined';
                     var svgClass = tower.isAvailable ? '' : 'no-pointer';
-                    svgCode += "<polygon  class=\"" + config.towerSvgClass + " " + svgClass + "\" id=\"" + tower.towerId + "-path\" data-index=\"" + tower.towerIdentifier + "\" data-url=\"" + towerUrl + "\" data-imageid=\"" + tower.towerId + "\"  points=\"" + tower.towerHoverSvg + "\" />";
+                    svgCode += "<polygon  class=\"" + config.towerImgSvgClass + " " + svgClass + "\" id=\"" + tower.towerId + "-path\" data-index=\"" + tower.towerIdentifier + "\" data-url=\"" + towerUrl + "\" data-imageid=\"" + tower.towerId + "\"  points=\"" + tower.towerHoverSvg + "\" />";
                 }
             }
 
@@ -159,12 +159,12 @@ var MasterplanView = (function() {
         buildingSvgContainerEvents: function() {
             var _this = this;
 
-            _this._elements.buildingSvgContainer.off('click').on('click', '.' + config.towerSvgClass, function(event) {
+            _this._elements.buildingSvgContainer.off('click').on('click', '.' + config.towerImgSvgClass, function(event) {
                 // notify controller
                 _this._towerSvgClick.notify(this); // this refers to element here
             });
 
-            _this._elements.buildingSvgContainer.off('mouseenter').on('mouseenter', '.' + config.towerSvgClass, function(event) {
+            _this._elements.buildingSvgContainer.off('mouseenter').on('mouseenter', '.' + config.towerImgSvgClass, function(event) {
                 // notify controller
                 _this._towerSvgMouseEnter.notify({
                     element: this,
@@ -172,7 +172,7 @@ var MasterplanView = (function() {
                 }); // this refers to element here
             });
 
-            _this._elements.buildingSvgContainer.off('mouseleave').on('mouseleave', '.' + config.towerSvgClass, function(event) {
+            _this._elements.buildingSvgContainer.off('mouseleave').on('mouseleave', '.' + config.towerImgSvgClass, function(event) {
                 // notify controller
                 _this._towerSvgMouseLeave.notify(); // this refers to element here
             });
