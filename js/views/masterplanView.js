@@ -193,6 +193,7 @@ var MasterplanView = (function() {
 
             $('img.' + config.imgContainerClass).addClass(config.fadeImageClass);
             targetImage.removeClass(config.fadeImageClass);
+
             if (towerData && svgpath) {
                 var svgpathClient = svgpath.getBoundingClientRect();
                 this.showTowerDetailContainer(towerData, (svgpathClient.left + svgpathClient.width / 2), svgpathClient.top);
@@ -201,7 +202,7 @@ var MasterplanView = (function() {
             $('#' + imageid + '-menu').addClass(config.menuItemHoverClass);
             $('#' + imageid + '-menu').addClass(availabilityStatusClass);
         },
-        toweMouseLeaveEvent: function() {
+        towerMouseLeaveEvent: function() {
             $('.detail-box').removeClass('show-details');
 			$('.detail-box').addClass('hide-details');
 			
@@ -217,11 +218,17 @@ var MasterplanView = (function() {
             if (!(data && data.unitInfo)) {
                 return;
             }
+
+            var tooltipClass = utils.getTooltipPosition({
+                pageX: left,
+                pageY: top
+            });
+            tooltipClass = tooltipClass ? tooltipClass : 'top-right' ;
             var towerCode = "";
             towerCode += "<div id='container-detail' class='tooltip-detail'>";
 			towerCode += "<div class='detail-box show-details'>"
 						+"<div class='tooltip-title'>"+data.towerName.split(' ')[1]+"</div>"
-						+"<div class='line'>"
+						+"<div class='line "+tooltipClass+"''>"
 							+"<div class='dot-one'></div>"
 							+"<div class='dot-two'></div>"
 								+"<div class='detail-container'>";

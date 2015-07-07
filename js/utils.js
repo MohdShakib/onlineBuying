@@ -83,6 +83,23 @@ var utils = (function() {
                     return false;
                 }
             });
+        },
+        getTooltipPosition: function(event){
+
+            if(!event){
+                return 'top-right';
+            }
+
+            var positionClass,
+            screenWidth = $(window).width(), screenHeight = $(window).height(),
+            x = event.pageX, y = event.pageY;
+            x = (x/screenWidth)*100;
+            y = (y/screenHeight)*100;
+
+            positionClass  = y < 50 ? 'top-' : 'bottom-';
+            positionClass += x > 50 ? 'left' : 'right';
+          
+            return positionClass;
         }
     }
 

@@ -218,6 +218,10 @@ var getProjectData = (function() {
 
     var parseApiData = function(projectDetail){
 
+        if(!projectDetail){
+            return;
+        }
+
         var facingMap = {
             "1" : "East",       "2" : "West",
             "3" : "North",      "4" : "South",
@@ -351,7 +355,6 @@ var getProjectData = (function() {
         }
 
         var apiUrl  = "http://192.168.1.8:8080/app/v4/project-detail/"+projectId+"?selector={%22paging%22:{%22start%22:0,%22rows%22:100},%22fields%22:[%22projectId%22,%22images%22,%22imageType%22,%22mediaType%22,%22objectType%22,%22title%22,%22type%22,%22absolutePath%22,%22properties%22,%22projectAmenities%22,%22amenityDisplayName%22,%22verified%22,%22amenityMaster%22,%22amenityId%22,%22towerId%22,%22amenityName%22,%22bedrooms%22,%22bathrooms%22,%22balcony%22,%22name%22,%22primaryOnline%22,%22propertyId%22,%22towers%22,%22listings%22,%22floor%22,%22size%22,%22measure%22,%22bookingAmount%22,%22viewDirections%22,%22viewType%22,%22facingId%22,%22address%22,%22towerName%22,%22clusterPlans%22,%22id%22,%22flatNumber%22,%22bookingStatusId%22,%22clusterPlanId%22,%22price%22,%22specifications%22]}";
-        var apiUrl = 'apiData.json';
         var apiData,
         params = {success_callback: function(response){
             apiData = response;

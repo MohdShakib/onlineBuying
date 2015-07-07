@@ -27,7 +27,7 @@ var MasterplanController = (function() {
                 _this._view.towerMouseEnterEvent(obj);
             });
             this._view._menuMouseLeave.attach(function(sender, element) {
-                _this._view.toweMouseLeaveEvent();
+                _this._view.towerMouseLeaveEvent();
             });
             this._view._menuClick.attach(function(sender, element) {
                 _this.changeUrl(element);
@@ -38,7 +38,7 @@ var MasterplanController = (function() {
                 _this._view.towerMouseEnterEvent(obj);
             });
             this._view._towerSvgMouseLeave.attach(function(sender, element) {
-                _this._view.toweMouseLeaveEvent();
+                _this._view.towerMouseLeaveEvent();
             });
             this._view._towerSvgClick.attach(function(sender, element) {
                 _this.changeUrl(element);
