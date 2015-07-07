@@ -168,7 +168,7 @@ var MasterplanView = (function() {
 
             _this._elements.buildingSvgContainer.off('mouseleave').on('mouseleave', '.' + config.towerSvgClass, function(event) {
                 // notify controller
-               //_this._towerSvgMouseLeave.notify(); // this refers to element here
+               _this._towerSvgMouseLeave.notify(); // this refers to element here
             });
         },
         towerMouseEnterEvent: function(element) {
