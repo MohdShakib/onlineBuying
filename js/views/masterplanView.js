@@ -168,7 +168,7 @@ var MasterplanView = (function() {
 
             _this._elements.buildingSvgContainer.off('mouseleave').on('mouseleave', '.' + config.towerSvgClass, function(event) {
                 // notify controller
-               _this._towerSvgMouseLeave.notify(); // this refers to element here
+               //_this._towerSvgMouseLeave.notify(); // this refers to element here
             });
         },
         towerMouseEnterEvent: function(element) {
@@ -220,8 +220,7 @@ var MasterplanView = (function() {
 								+"<div class='detail-container'>";
 									towerCode += "<table>";
 									if(!data.isAvailable){
-										towerCode += "<tr><td width='70px'></td>";
-										towerCode += "<td colspan='2' class='"+config.availabilityClass.unavailable+"'>Sold</td>";
+										towerCode += "<td colspan='2' class='"+config.availabilityClass.unavailable+"'>Sold</td></tr>";
 									}else{
 										for (var j in data.unitInfo) {
 											var aptType = data.unitInfo[j];
@@ -231,7 +230,6 @@ var MasterplanView = (function() {
 												availabilityClass = config.availabilityClass.unavailable;
 												availabilityText = 'Sold';
 											}
-											towerCode += "<tr><td width='70px'></td>";
 											towerCode += "<td class=''>"+aptType.type+"</td>";
 											towerCode += "<td class='" + availabilityClass + "'>" + availabilityText + "</td></tr>";
 										}
