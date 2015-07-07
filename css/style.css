@@ -145,6 +145,7 @@ ellipse.tower-unit-selected-svg-path {
 	background: #333;
 	margin-left: 70px;
 	padding: 5px 12px;
+	min-width:100px;
 }
 .towerunit-detail-container > div{
 	text-align: left;
@@ -688,10 +689,11 @@ ellipse.tower-unit-selected-svg-path {
 }
 
 /*---image pop up animation end---*/
-.dot-one{ width:38px; height:38px; background:none; border:1px solid #fff; left:-39px; bottom:-18px; position:absolute; border-radius:50%;} 
+.dot-one{ width:38px; height:38px; background:none; border:1px solid #fff; left:-39px; bottom:-18px; position:absolute; border-radius:50%;}
+.tSelected-view .dot-one{ width:25px; height:25px; left:-27px; top:-13px;} 
 .dot-two{ width:12px; height:12px; background:limegreen; position:absolute; border-radius:50%;left:145px; top:-5px; z-index:1;}
 .dot-two.sold{ background:crimson;}
-.line .detail-container{ position:absolute; left:158px; top:-12px; transform:rotate(30deg); -moz-transform:rotate(30deg);-webkit-transform:rotate(30deg);transform-origin: 0 0; -moz-transform-origin: 0 0; -webkit-transform-origin: 0 0;}
+.line .detail-container, .line .tSelected-detail{ position:absolute; left:158px; top:-12px; transform:rotate(30deg); -moz-transform:rotate(30deg);-webkit-transform:rotate(30deg);transform-origin: 0 0; -moz-transform-origin: 0 0; -webkit-transform-origin: 0 0;}
 .line{
 	background:#fff; 
 	width:0px;
@@ -729,28 +731,35 @@ ellipse.tower-unit-selected-svg-path {
 	left:-27px;
 	top:27px;
 }
-.line.top-right .detail-container{ 
+.tSelected-view .line.bottom-right{ top:-6px; left:-8px;}
+.tSelected-view .line.top-right{left: 14px;top: 8px;}
+.tSelected-view .line.top-left{ left: -14px;top: 46px;}
+.tSelected-view .line.bottom-left{left: -33px;top: 29px;}
+.line.top-right .detail-container, .line.top-right .tSelected-detail{ 
 	transform:rotate(-30deg); 
 	-moz-transform:rotate(-30deg);
 	-webkit-transform:rotate(-30deg);
 	left:144px;
 	top:-13px;
 }
-.line.top-left .detail-container{
+.line.top-left .detail-container, .line.top-left .tSelected-detail{
 	transform:rotate(-160deg); 
 	-moz-transform:rotate(-160deg);
 	-webkit-transform:rotate(-160deg);
 	left:243px;
 	top:50px;
 }
-.line.bottom-left .detail-container{
+.line.bottom-left .detail-container, .line.bottom-left .tSelected-detail{
 	transform:rotate(140deg); 
 	-moz-transform:rotate(140deg);
 	-webkit-transform:rotate(140deg);
 	left:240px;
 	top:-55px;
 }
-
+.line .tSelected-detail{ left:90px; top:-13px;}
+.line.top-left .tSelected-detail{left: 195px;top: 58px;}
+.line.top-right .tSelected-detail{left: 73px;top: -12px;}
+.line.bottom-left .tSelected-detail{left: 187px;top: -68px;}
 .show-details .dot-one, .show-details .tooltip-title{
     animation:point 0.3s ease-in-out both;
 	-webkit-animation:point 0.3s ease-in-out both;
@@ -771,7 +780,7 @@ ellipse.tower-unit-selected-svg-path {
 	
 
 }
-.show-details .detail-container{
+.show-details .detail-container, .show-details .tSelected-detail{
 	animation: list-in 0.3s ease-in-out both;
     animation: list-in 0.3s ease-in-out both;
 	animation-delay:0.9s;
@@ -784,7 +793,7 @@ ellipse.tower-unit-selected-svg-path {
     -webkit-animation: list-in 0.3s ease-in-out both;
 	-webkit-animation-delay:0.9s;
 }
-.hide-details .detail-container{
+.hide-details .detail-container,.hide-details  .tSelected-detail{
 	animation: list-out 0.3s ease-in-out both;
     animation: list-out 0.3s ease-in-out both;
 	animation-delay:0;
