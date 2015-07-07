@@ -8,11 +8,11 @@
 var MasterplanView = (function() {
 
     var containerMap = {
-        'buildingImgContainer': '<div class="img-container" id="img-container"></div>',
-        'buildingSvgContainer': '<svg class="svg-container" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
+        'buildingImgContainer': '<div class="img-container ' + config.dynamicResizeClass + '" id="img-container"></div>',
+        'buildingSvgContainer': '<svg class="svg-container ' + config.dynamicResizeClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'buildingMenuContainer': '<div class="tower-menu-container" id="tower-menu-container"></div>',
         'towerDetailContainer': '<div class="tower-detail-container" id="tower-detail-container"></div>',
-        'amenitiesContainer': '<div class="amenities-container" id="amenities-container"></div>'
+        'amenitiesContainer': '<div class="amenities-container ' + config.dynamicResizeClass + '" id="amenities-container"></div>'
     };
 
     function getElements() {
@@ -103,11 +103,11 @@ var MasterplanView = (function() {
             code += "<tr><td class='menu-items'><table>";
             for (var towerIdentifier in data.towers) {
                 var tower = data.towers[towerIdentifier],
-                towerUrl = tower.isAvailable ? data.baseUrl+"/"+tower.towerIdentifier : 'undefined';
+                    towerUrl = tower.isAvailable ? data.baseUrl + "/" + tower.towerIdentifier : 'undefined';
                 code += "<tr><td class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass +
                     "' id='" + tower.towerId + "-menu' data-index='" + towerIdentifier +
                     "' data-imageid='" + tower.towerId +
-                    "' data-url='" +towerUrl+
+                    "' data-url='" + towerUrl +
                     "'>" + tower.towerName.split(' ')[1] + "</div></td></tr>";
             }
             code += "</table></td></tr>";
@@ -147,9 +147,9 @@ var MasterplanView = (function() {
             for (i = 0; i < tower_length; i++) {
                 tower = towers[i];
                 if (tower.towerHoverSvg) {
-                    towerUrl = tower.isAvailable ? data.baseUrl+"/"+tower.towerIdentifier : 'undefined';
-                    var svgClass = tower.isAvailable ? '' : 'no-pointer'; 
-                    svgCode += "<polygon  class=\"" + config.towerSvgClass + " "+svgClass+ "\" id=\"" + tower.towerId + "-path\" data-index=\"" + tower.towerIdentifier + "\" data-url=\"" + towerUrl+ "\" data-imageid=\"" + tower.towerId + "\"  points=\"" + tower.towerHoverSvg + "\" />";
+                    towerUrl = tower.isAvailable ? data.baseUrl + "/" + tower.towerIdentifier : 'undefined';
+                    var svgClass = tower.isAvailable ? '' : 'no-pointer';
+                    svgCode += "<polygon  class=\"" + config.towerSvgClass + " " + svgClass + "\" id=\"" + tower.towerId + "-path\" data-index=\"" + tower.towerIdentifier + "\" data-url=\"" + towerUrl + "\" data-imageid=\"" + tower.towerId + "\"  points=\"" + tower.towerHoverSvg + "\" />";
                 }
             }
 
@@ -174,12 +174,12 @@ var MasterplanView = (function() {
 
             _this._elements.buildingSvgContainer.off('mouseleave').on('mouseleave', '.' + config.towerSvgClass, function(event) {
                 // notify controller
-               _this._towerSvgMouseLeave.notify(); // this refers to element here
+                _this._towerSvgMouseLeave.notify(); // this refers to element here
             });
         },
         towerMouseEnterEvent: function(obj) {
             var element = obj.element;
-			document.getElementById(config.towerDetailContainerId).innerHTML = '';
+            document.getElementById(config.towerDetailContainerId).innerHTML = '';
             var data = this._model.getData();
             var index = element.dataset.index;
             var towerData = data && data.towers ? data.towers[index] : null;
@@ -189,7 +189,7 @@ var MasterplanView = (function() {
             var availabilityStatusClass = towerData.isAvailable ? config.availabilityClass.available : config.availabilityClass.unavailable;
             if (!(targetImage && targetImage.length)) {
                 return;
-            }   
+            }
 
             $('img.' + config.imgContainerClass).addClass(config.fadeImageClass);
             targetImage.removeClass(config.fadeImageClass);
@@ -204,15 +204,14 @@ var MasterplanView = (function() {
         },
         towerMouseLeaveEvent: function() {
             $('.detail-box').removeClass('show-details');
-			$('.detail-box').addClass('hide-details');
-			
-			$('img.' + config.imgContainerClass).removeClass(config.fadeImageClass);
-			
-            var removeClasses = config.menuItemHoverClass+' '+config.availabilityClass.available+' '+config.availabilityClass.unavailable;
+            $('.detail-box').addClass('hide-details');
+            $('img.' + config.imgContainerClass).removeClass(config.fadeImageClass);
+            var removeClasses = config.menuItemHoverClass + ' ' + config.availabilityClass.available + ' ' + config.availabilityClass.unavailable;
             $('.' + config.leftPanelButtonClass).removeClass(removeClasses);
-			//setTimeout(function() {
-				document.getElementById(config.towerDetailContainerId).innerHTML = '';
-			//},1000);
+
+            //setTimeout(function() {
+            document.getElementById(config.towerDetailContainerId).innerHTML = '';
+            //},1000);
         },
         showTowerDetailContainer: function(data, left, top) {
             if (!(data && data.unitInfo)) {
@@ -223,35 +222,29 @@ var MasterplanView = (function() {
                 pageX: left,
                 pageY: top
             });
-            tooltipClass = tooltipClass ? tooltipClass : 'top-right' ;
+            tooltipClass = tooltipClass ? tooltipClass : 'top-right';
             var towerCode = "";
             towerCode += "<div id='container-detail' class='tooltip-detail'>";
-			towerCode += "<div class='detail-box show-details'>"
-						+"<div class='tooltip-title'>"+data.towerName.split(' ')[1]+"</div>"
-						+"<div class='line "+tooltipClass+"''>"
-							+"<div class='dot-one'></div>"
-							+"<div class='dot-two'></div>"
-								+"<div class='detail-container'>";
-									towerCode += "<table>";
-									if(!data.isAvailable){
-										towerCode += "<td colspan='2' class='"+config.availabilityClass.unavailable+"'>Sold</td></tr>";
-									}else{
-										for (var j in data.unitInfo) {
-											var aptType = data.unitInfo[j];
-											var availabilityClass = config.availabilityClass.available;
-											var availabilityText = aptType.available + " Av";
-											if (aptType.available == 0) {
-												availabilityClass = config.availabilityClass.unavailable;
-												availabilityText = 'Sold';
-											}
-											towerCode += "<td class=''>"+aptType.type+"</td>";
-											towerCode += "<td class='" + availabilityClass + "'>" + availabilityText + "</td></tr>";
-										}
-									}
-									towerCode += "</table>";
-						towerCode += "</div>"
-						+"</div>"
-						 +"</div>";
+            towerCode += "<div class='detail-box show-details'>" + "<div class='tooltip-title'>" + data.towerName.split(' ')[1] + "</div>" + "<div class='line " + tooltipClass + "''>" + "<div class='dot-one'></div>" + "<div class='dot-two'></div>" + "<div class='detail-container'>";
+            towerCode += "<table>";
+            if (!data.isAvailable) {
+                towerCode += "<td colspan='2' class='" + config.availabilityClass.unavailable + "'>Sold</td></tr>";
+            } else {
+                for (var j in data.unitInfo) {
+                    var aptType = data.unitInfo[j];
+                    var availabilityClass = config.availabilityClass.available;
+                    var availabilityText = aptType.available + " Av";
+                    if (aptType.available == 0) {
+                        availabilityClass = config.availabilityClass.unavailable;
+                        availabilityText = 'Sold';
+                    }
+                    towerCode += "<td class=''>" + aptType.type + "</td>";
+                    towerCode += "<td class='" + availabilityClass + "'>" + availabilityText + "</td></tr>";
+                }
+            }
+            towerCode += "</table>";
+            towerCode += "</div>" + "</div>" + "</div>";
+
             if (this._elements && this._elements.towerDetailContainer) {
                 this._elements.towerDetailContainer.html(towerCode);
                 $('#container-detail').css("left", left + 'px');

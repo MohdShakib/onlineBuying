@@ -27,6 +27,7 @@ var config = (function(){
 			emailId: 'call-box-email',
 			phoneId: 'call-box-phone'
 		},
+		
 		// Common
 		noPointerClass: 'no-pointer',
 		hideClass: 'hidden',
@@ -38,8 +39,9 @@ var config = (function(){
 		},
 		mainContainerId : "main-container",
 		baseContainerId:  "base-container",
-		towerDetailContainerId: "tower-detail-container",
+		dynamicResizeClass: "dynamic-resize",
 
+		towerDetailContainerId: "tower-detail-container",
 		leftPanelButtonClass: 'left-panel-button',
 		menuItemHoverClass: "menu-item-hover",
 
@@ -61,8 +63,6 @@ var config = (function(){
 		towerUnitSelectedSvgClass: 'tower-unit-selected-svg-path',
 		selectedTowerImagesClass: 'selected-tower-image',
 		rotationButtonClass: 'rotation-button',
-		shiftLeftClass: 'shift-left',
-		shrinkClass: 'shrink',
 		
 		filters: {
 			bhk: 'bhk-option',

@@ -51,6 +51,11 @@ var UnitplaninfoView = (function() {
         this._unitMenuClick = new Event(this);
         this._sunlightMenuClick = new Event(this);
         this._floorPlanMenuClick = new Event(this);
+
+        // Event Listeners
+        window.addEventListener('resize', function() {
+            _this.dynamicResizeContainers();
+        });
     }
 
     UnitplaninfoView.prototype = {
@@ -68,9 +73,15 @@ var UnitplaninfoView = (function() {
             }
         },
         initView: function(data, rotationdata, rootdata) {
+            var width = config.imageResolution.width / config.imageResolution.height * window.innerHeight,
+                selectedUnitContainerWidth = width * 0.6,
+                towerContainerWidth = window.innerWidth - selectedUnitContainerWidth,
+                diff = (width - towerContainerWidth) / -2,
+                imageResolutionUnit = config.imageResolution.unit;
+
             $('#' + config.filterMenuContainerId).hide();
-            $('#' + config.imgContainerId).addClass(config.shiftLeftClass);
-            $('#' + config.towerRotationContainerId).addClass(config.shrinkClass);
+            $('#' + config.imgContainerId).css('left', diff + imageResolutionUnit);
+            $('#' + config.towerRotationContainerId).css('width', towerContainerWidth + imageResolutionUnit);
 
             var originalClasses = document.getElementById(config.svgContainerId).className.baseVal;
             $('#' + config.svgContainerId).attr('class', originalClasses + ' ' + config.shiftLeftClass);
@@ -81,7 +92,16 @@ var UnitplaninfoView = (function() {
             $('#' + config.svgContainerId).append(svgCode);
             if (!$('#' + config.selectedUnitContainerId).length) {
                 $('#' + config.mainContainerId).append("<div class='selected-unit-container' id='" + config.selectedUnitContainerId + "'></div>");
+                this.dynamicResizeContainers();
             }
+        },
+        dynamicResizeContainers: function() {
+            var width = config.imageResolution.width / config.imageResolution.height * window.innerHeight,
+                selectedUnitContainerWidth = width * 0.6,
+                towerContainerWidth = window.innerWidth - selectedUnitContainerWidth,
+                imageResolutionUnit = config.imageResolution.unit;
+            $('#' + config.selectedUnitContainerId).css('width', selectedUnitContainerWidth + imageResolutionUnit);
+            utils.dynamicResizeContainers(towerContainerWidth);
         },
         buildSkeleton: function(containerList) {
             var key, htmlCode = '';

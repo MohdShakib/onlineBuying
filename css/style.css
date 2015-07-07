@@ -24,6 +24,7 @@ table td, table tr {
 
 .main-container {
 	width: 100%;
+	overflow: hidden;
 	position: relative;
 }
 
@@ -35,12 +36,6 @@ table td, table tr {
 }
 .no-pointer{
 	cursor: default;
-}
-.shift-left {
-	left: -30% !important;
-}
-.shrink {
-	width: 40% !important;
 }
 .selected {
 	cursor: default !important;
@@ -60,8 +55,7 @@ polygon {
 	fill: rgba(0,0,0,0);
 	cursor: pointer;
 	stroke: rgba(255,255,255,0.5);
-	stroke-width: 0;
-	radius: 1;
+	stroke-width: 0.2;
 }
 .unit-svg-container polygon:hover{
 	stroke: orange;
