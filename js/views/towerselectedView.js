@@ -134,7 +134,10 @@ var TowerselectedView = (function() {
 
             _this._elements.towerSvgContainer.off('mouseenter').on('mouseenter', '.' + config.towerUnitSvgClass, function(event) {
                 // notify controller
-                _this._towerUnitSvgMouseEnter.notify(this); // this refers to element here
+                _this._towerUnitSvgMouseEnter.notify({
+                    element: this,
+                    event: event
+                }); // this refers to element here
             });
 
             _this._elements.towerSvgContainer.off('mouseleave').on('mouseleave', '.' + config.towerUnitSvgClass, function(event) {
@@ -142,7 +145,8 @@ var TowerselectedView = (function() {
                 _this._towerUnitSvgMouseLeave.notify(); // this refers to element here
             });
         },
-        towerUnitMouseEnterEvent: function(element) {
+        towerUnitMouseEnterEvent: function(obj) {
+            var element = obj.element;
             var data = this._model.getData();
             var index = element.dataset.index;
             var toolTipData = data && data.listings ? data.listings[index] : null;

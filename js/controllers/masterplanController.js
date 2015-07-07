@@ -23,8 +23,8 @@ var MasterplanController = (function() {
             var _this = this;
 
             // Menu Events
-            this._view._menuMouseEnter.attach(function(sender, element) {
-                _this._view.towerMouseEnterEvent(element);
+            this._view._menuMouseEnter.attach(function(sender, obj) {
+                _this._view.towerMouseEnterEvent(obj);
             });
             this._view._menuMouseLeave.attach(function(sender, element) {
                 _this._view.toweMouseLeaveEvent();
@@ -34,8 +34,8 @@ var MasterplanController = (function() {
             });
 
             // Svg Events
-            this._view._towerSvgMouseEnter.attach(function(sender, element) {
-                _this._view.towerMouseEnterEvent(element);
+            this._view._towerSvgMouseEnter.attach(function(sender, obj) {
+                _this._view.towerMouseEnterEvent(obj);
             });
             this._view._towerSvgMouseLeave.attach(function(sender, element) {
                 _this._view.toweMouseLeaveEvent();

@@ -29,8 +29,8 @@ var TowerselectedController = (function() {
             var _this = this;
 
             // Svg Events
-            this._view._towerUnitSvgMouseEnter.attach(function(sender, element) {
-                _this._view.towerUnitMouseEnterEvent(element);
+            this._view._towerUnitSvgMouseEnter.attach(function(sender, obj) {
+                _this._view.towerUnitMouseEnterEvent(obj);
             });
             this._view._towerUnitSvgMouseLeave.attach(function(sender, element) {
                 _this._view.towerUnitMouseLeaveEvent();

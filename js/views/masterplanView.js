@@ -127,7 +127,10 @@ var MasterplanView = (function() {
 
             _this._elements.buildingMenuContainer.off('mouseenter').on('mouseenter', '.' + config.leftPanelButtonClass, function(event) {
                 // notify controller
-                _this._menuMouseEnter.notify(this); // this refers to element here
+                _this._menuMouseEnter.notify({
+                    element: this,
+                    event: event
+                }); // this refers to element here
             });
 
             _this._elements.buildingMenuContainer.off('mouseleave').on('mouseleave', '.' + config.leftPanelButtonClass, function(event) {
@@ -163,7 +166,10 @@ var MasterplanView = (function() {
 
             _this._elements.buildingSvgContainer.off('mouseenter').on('mouseenter', '.' + config.towerSvgClass, function(event) {
                 // notify controller
-                _this._towerSvgMouseEnter.notify(this); // this refers to element here
+                _this._towerSvgMouseEnter.notify({
+                    element: this,
+                    event: event
+                }); // this refers to element here
             });
 
             _this._elements.buildingSvgContainer.off('mouseleave').on('mouseleave', '.' + config.towerSvgClass, function(event) {
@@ -171,7 +177,8 @@ var MasterplanView = (function() {
                _this._towerSvgMouseLeave.notify(); // this refers to element here
             });
         },
-        towerMouseEnterEvent: function(element) {
+        towerMouseEnterEvent: function(obj) {
+            var element = obj.element;
 			document.getElementById(config.towerDetailContainerId).innerHTML = '';
             var data = this._model.getData();
             var index = element.dataset.index;
