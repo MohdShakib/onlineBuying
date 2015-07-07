@@ -33,7 +33,6 @@ var initializeRoutes = (function() {
                 towerselectedView = new TowerselectedView(towerselectedModel);
                 towerselectedController = new TowerselectedController(towerselectedModel, towerselectedView);
             }
-
             towerselectedController.generateTemplate();
         }
 
@@ -43,11 +42,23 @@ var initializeRoutes = (function() {
                 masterplanView = new MasterplanView(masterplanModel);
                 masterplanController = new MasterplanController(masterplanModel, masterplanView);
                 masterplanController.generateTemplate();
+
+                utils.dynamicResizeContainers(null);
+                window.addEventListener('resize', function() {
+                    utils.dynamicResizeContainers(null);
+                });
             }
         }
 
         routes[towerRoute] = {
-            on: onTowerselectedRoute
+            on: function(projectName, projectId, towerName) {
+                onTowerselectedRoute(projectName, projectId, towerName);
+
+                utils.dynamicResizeContainers(null);
+                window.addEventListener('resize', function() {
+                    utils.dynamicResizeContainers(null);
+                });
+            }
         }
 
         routes[unitRoute] = {
@@ -79,10 +90,10 @@ var initializeRoutes = (function() {
         router = Router(routes);
         router.configure({ // a global configuration setting.
             on: function(projectName, projectId) {
-                if(!baseController){
-                  baseView = new BaseView();
-                  baseController = new BaseController(baseView);
-                  baseController.generateTemplate();
+                if (!baseController) {
+                    baseView = new BaseView();
+                    baseController = new BaseController(baseView);
+                    baseController.generateTemplate();
                 }
             },
             notfound: function() {

@@ -1,9 +1,27 @@
 var utils = (function() {
 
     return {
+        dynamicResizeContainers: function(containerWidth) {
+            var imageResolutionHeight = config.imageResolution.height;
+            var imageResolutionWidth = config.imageResolution.width;
+            var imageResolutionUnit = config.imageResolution.unit || 'px';
 
+            var mainContainerElement = document.getElementById(config.mainContainerId);
+            var dynamicResizeElement = $('.' + config.dynamicResizeClass);
+
+            if (containerWidth === null) {
+                containerWidth = window.innerWidth;
+            }
+            var height = window.innerHeight;
+            var width = imageResolutionWidth / imageResolutionHeight * height;
+            var diff = (width - containerWidth) / -2;
+
+            mainContainerElement.style.height = height + imageResolutionUnit;
+            dynamicResizeElement.css('height', height + imageResolutionUnit);
+            dynamicResizeElement.css('width', width + imageResolutionUnit);
+            dynamicResizeElement.css('left', diff + imageResolutionUnit);
+        },
         getGroupInterval: function(n, interval) {
-
             var start = Math.floor(n / interval) * interval;
             var end = start + interval;
             return {
@@ -22,16 +40,15 @@ var utils = (function() {
         getReadablePrice: function(price) {
             var rem = price % 1000;
             price = Math.floor(price / 1000);
-            var readablePrice = this.addLeadingZeros(rem,3);
+            var readablePrice = this.addLeadingZeros(rem, 3);
             while (price > 0) {
                 rem = price % 100;
                 price = Math.floor(price / 100);
-                readablePrice = this.addLeadingZeros(rem,2) + "," + readablePrice;
+                readablePrice = this.addLeadingZeros(rem, 2) + "," + readablePrice;
             }
             return readablePrice;
         },
         ajax: function(url, params) {
-
             var success_callback = typeof(params.success_callback) == 'function' ? params.success_callback : null;
             var error_callback = typeof(params.error_callback) == 'function' ? params.error_callback : null;
             var complete_callback = typeof(params.complete_callback) == 'function' ? params.complete_callback : null;
@@ -68,7 +85,6 @@ var utils = (function() {
             });
         },
         getSvgData: function(url) {
-
             return $.ajax({
                 type: "GET",
                 url: url,

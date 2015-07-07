@@ -8,9 +8,9 @@
 var TowerselectedView = (function() {
 
     var containerMap = {
-        'towerImgContainer': '<div class="img-container" id="img-container"></div>',
+        'towerImgContainer': '<div class="img-container ' + config.dynamicResizeClass + '" id="img-container"></div>',
         //'overviewImgContainer': '<div  class="overview-img-container" id="overview-img-container" ></div>',
-        'towerSvgContainer': '<svg class="svg-container" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
+        'towerSvgContainer': '<svg class="svg-container ' + config.dynamicResizeClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'towerDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>',
         'towerRotationContainer': '<div class="tower-rotation-container" id="'+config.towerRotationContainerId+'"></div>',
         'filterMenuContainer': '<div class="tower-menu-container" id="'+config.filterMenuContainerId+'"></div>'
@@ -170,6 +170,12 @@ var TowerselectedView = (function() {
                 availabilityClass = 'apt-unavailable';
             }
 
+            var tooltipClass = utils.getTooltipPosition({
+                pageX: left,
+                pageY: top
+            });
+            tooltipClass = tooltipClass ? tooltipClass : 'top-right' ;
+
             var details = {
                 'address': unitInfo.listingAddress,
                 'size': unitInfo.size + ' ' + unitInfo.measure,
@@ -180,6 +186,12 @@ var TowerselectedView = (function() {
                 'type': unitInfo.bedrooms + ' BHK'
             };
 
+            towerCode += "<div class='detail-box show-details'>";
+            towerCode += "<div class='line "+tooltipClass+"'>";
+            towerCode += "<div class='dot-one'></div>";
+            towerCode += "<div class='dot-two'></div>";
+
+
             towerCode += '<div class="towerunit-detail-container ' + availabilityClass + '">';
             towerCode += '<div class="towerunit-name">' + details.address + '</div>';
             towerCode += '<div>' + details.type + '</div>';
@@ -187,6 +199,9 @@ var TowerselectedView = (function() {
             towerCode += '<div>' + details.price + '</div>';
             towerCode += '<div>Floor ' + details.floor + '</div>';
             towerCode += '<div class="' + details.color + '">' + details.availability + '</div>';
+            towerCode += '</div></div>'
+            towerCode += '</div></div>'
+
 
             if (this._elements && this._elements.towerDetailContainer) {
                 this._elements.towerDetailContainer.html(towerCode);
