@@ -598,14 +598,12 @@ ellipse.tower-unit-selected-svg-path {
 .pop-up-out{
 	animation-duration: 2s;
 	animation-fill-mode: both;
-	-webkit-animation-name: pop-in;
+	-webkit-animation-name: pop-out;
     animation-name: pop-out;
-}
-  
+} 
 /*-----pop-in-----*/
 @keyframes pop-in {
   0% {
-    opacity: 0;
     transform-origin: 0 0;
     transform: scale(.2) translate(200%, 0%);
   }
@@ -691,8 +689,9 @@ ellipse.tower-unit-selected-svg-path {
 
 /*---image pop up animation end---*/
 .dot-one{ width:38px; height:38px; background:none; border:1px solid #fff; left:-39px; bottom:-18px; position:absolute; border-radius:50%;} 
-.dot-two{ width:10px; height:10px; background:#fff; position:absolute; border-radius:50%;left:145px; top:-4px;}
-.line .detail-container{ position:absolute; left:165px; top:-8px; transform:rotate(30deg); -moz-transform:rotate(30deg);-webkit-transform:rotate(30deg);transform-origin: 0 0; -moz-transform-origin: 0 0; -webkit-transform-origin: 0 0;}
+.dot-two{ width:12px; height:12px; background:limegreen; position:absolute; border-radius:50%;left:145px; top:-5px; z-index:1;}
+.dot-two.sold{ background:crimson;}
+.line .detail-container{ position:absolute; left:158px; top:-12px; transform:rotate(30deg); -moz-transform:rotate(30deg);-webkit-transform:rotate(30deg);transform-origin: 0 0; -moz-transform-origin: 0 0; -webkit-transform-origin: 0 0;}
 .line{
 	background:#fff; 
 	width:0px;
@@ -734,16 +733,22 @@ ellipse.tower-unit-selected-svg-path {
 	transform:rotate(-30deg); 
 	-moz-transform:rotate(-30deg);
 	-webkit-transform:rotate(-30deg);
+	left:144px;
+	top:-13px;
 }
 .line.top-left .detail-container{
 	transform:rotate(-160deg); 
 	-moz-transform:rotate(-160deg);
 	-webkit-transform:rotate(-160deg);
+	left:243px;
+	top:50px;
 }
 .line.bottom-left .detail-container{
 	transform:rotate(140deg); 
 	-moz-transform:rotate(140deg);
 	-webkit-transform:rotate(140deg);
+	left:240px;
+	top:-55px;
 }
 
 .show-details .dot-one, .show-details .tooltip-title{

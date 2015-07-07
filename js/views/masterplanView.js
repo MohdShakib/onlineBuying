@@ -286,7 +286,8 @@ var MasterplanView = (function() {
                     amenity = data.amenities[amenityKey];
                 }
             }
-            var code = "<div class='" + config.amenityPopupClass + "'><table><tr>";
+			//changed by jaswant for image pop up animation
+            var code = "<div class='" + config.amenityPopupClass + "'><table class='photo-table pop-up-in'><tr>";
             code += "<td class='amenity-heading'>" + amenity.amenityName;
             code += "<span class='" + config.amenityPopupCloseClass + "'>X</span></td></tr>";
             code += "<tr><td class='amenity-image'><img src='" + amenity.imageUrl + "'></td></tr></table>";
@@ -301,8 +302,17 @@ var MasterplanView = (function() {
             });
         },
         amenityCloseEvent: function() {
+			//added by jaswant for image pop up animation
+			$('.photo-table').removeClass('pop-up-in');
+			$('.photo-table').addClass('pop-up-out');
+			setTimeout( function(){
             $("." + config.amenityPopupClass).remove();
+			},1000);
             this.amenitiesContainerEvents();
+			//added by jaswant for image pop up animation
+			
+			
+			
         }
     };
 
