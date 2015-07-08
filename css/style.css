@@ -96,7 +96,7 @@ ellipse.tower-unit-selected-svg-path {
 .tower-detail-container {
 	position: absolute;
 	width: 100%;
-	z-index: 200000;
+	z-index: 9999;
 }
 .tower-unit-detail-container {
 	position: absolute;
