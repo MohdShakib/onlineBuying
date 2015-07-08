@@ -16,20 +16,25 @@ function callBackFormSubmit(form){
 var BaseView = (function() {
 
     var containerMap = {
-        'bottomFormGroupContainer': '<div class"bottom-form-group" id="bottom-form-group"></div>'
+        'bottomFormGroupContainer': '<div class"bottom-form-group" id="bottom-form-group"></div>',
+        'compareUnitsContainer': '<div  class="hidden compare-units-container" id="'+config.compareUnitscontainerId+'"></div>'
     };
 
 
     function getElements() {
         var elements = {
-            'bottomFormGroupContainer': $('#bottom-form-group')
+            'bottomFormGroupContainer': $('#bottom-form-group'),
+            'compareUnitsContainer': $('#'+config.compareUnitscontainerId)
         };
         return elements;
     }
 
-    function BaseView() {
+    function BaseView(model) {
+        this._model = model;
         this._elements = null;
         this._bottomGroupButtonClick = new Event(this);
+        this._compareBackButtonClick = new Event(this);
+        this._unitCompareButtonClick = new Event(this);
     }
 
     BaseView.prototype = {
@@ -41,6 +46,39 @@ var BaseView = (function() {
                     this[i]();
                 }
             }
+        },
+        compareUnitsContainer: function(){
+            var compareList = this._model.getCompareList();
+            var rootdata = this._model.getRootdata();
+            
+            var htmlCode = '';
+            
+            /*if(compareList && Object.keys(compareList).length){
+
+            }
+            */
+
+            htmlCode += '<div class="compare-back-button">Back</div>';
+
+            for(var i=0; i<2; i++){
+                var borderClass = !i ? 'compare-unit-box-right-border' : '';
+                var imageUrl = compareList[i] ? compareList[i].unitTypeData.unitImageUrl : undefined; ///zip-file/img/2bhk-type1-1105-2.jpg
+                htmlCode += '<div  class="compare-unit-box '+borderClass+'">'
+                    +'<img class="compare-unit-img"  src="'+imageUrl+'">'
+                +'</div>';
+            }
+        
+            this._elements.compareUnitsContainer.html(htmlCode);
+            this.compareUnitsContainerEvents();
+        },
+        compareUnitsContainerEvents: function(){
+            var _this = this;
+            this._elements.compareUnitsContainer.off('click').on('click', '.'+config.compareBackButtonClass, function(event){
+                _this._compareBackButtonClick.notify(this); //this refers to element here                
+            });
+        },
+        compareBackButtonClicked: function(){
+            $('#'+config.compareUnitscontainerId).addClass('hidden');
         },
         bottomFormGroupContainer: function(){
             var _this = this;
@@ -77,7 +115,7 @@ var BaseView = (function() {
                             +'</ul>'
                         +'</div>'
                         +'<div class="clear-fix"></div>'
-                        +'<div class="submit"><input type="submit" />View Liked Plans <span>&rarr;</span></div>'
+                        +'<div id="'+config.unitCompareButtonId+'" class="submit"><input type="submit" />View Liked Plans <span>&rarr;</span></div>'
                     +'</div>'
                     +'<div class="share-box">'
                         +'<p>Share details with family / friedns via</br> Email / Facebook / Google+</p>'
@@ -124,7 +162,9 @@ var BaseView = (function() {
             this.bottomFormGroupContainerEvents();
         },
         bottomFormGroupContainerEvents: function(){
+
             var _this = this;
+
             this._elements.bottomFormGroupContainer.off('click').on('click', '.'+config.bottomFormGroup.tabLinkClass, function(event){
                 _this._bottomGroupButtonClick.notify(this); //this refers to element here                
             });
@@ -132,6 +172,11 @@ var BaseView = (function() {
             this._elements.bottomFormGroupContainer.on('click', '#call-box-submit-id', function(event){
                 console.log('submit button clicked');             
             });
+
+            this._elements.bottomFormGroupContainer.on('click', '#'+config.unitCompareButtonId, function(event){
+                _this._unitCompareButtonClick.notify(this);
+            });
+
         },
         bottomGroupButtonClicked: function(element){
             $('.'+config.bottomFormGroup.tabLinkClass).removeClass('active');
@@ -140,6 +185,9 @@ var BaseView = (function() {
             $('.'+config.bottomFormGroup.formPopUpClass+'>div').hide();
             $('.'+anchorName).fadeIn(300);
             $(element).addClass('active');
+        },
+        unitCompareButtonClicked: function(){
+            $('#'+config.compareUnitscontainerId).removeClass('hidden');
         },
         buildSkeleton: function(containerList) {
             var key, htmlCode = '';

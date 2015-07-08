@@ -6,7 +6,8 @@
 "use strict";
 var BaseController = (function() {
 
-    function BaseController(view) {
+    function BaseController(model, view) {
+        this._model = model;
         this._view = view;
         this.attachListeners();
     }
@@ -17,6 +18,15 @@ var BaseController = (function() {
             this._view._bottomGroupButtonClick.attach(function(sender, element){
                 _this._view.bottomGroupButtonClicked(element);
             });
+
+            this._view._compareBackButtonClick.attach(function(sender, element){
+                _this._view.compareBackButtonClicked(element);
+            });
+
+            this._view._unitCompareButtonClick.attach(function(sender, element){
+                _this._view.unitCompareButtonClicked(element); 
+            });
+            
         },
         generateTemplate: function() {
             this._view.buildView();

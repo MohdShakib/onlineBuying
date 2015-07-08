@@ -44,7 +44,10 @@ var config = (function(){
 		towerDetailContainerId: "tower-detail-container",
 		leftPanelButtonClass: 'left-panel-button',
 		menuItemHoverClass: "menu-item-hover",
-
+		compareBackButtonClass: "compare-back-button",
+		compareUnitscontainerId: 'compare-units-container',
+		unitCompareButtonId: 'unit-compare-button',
+		
 		// Masterplan
 		imgContainerClass : "menu-mapped-image",
 		towerImgSvgClass: 'tower-svg-path',
