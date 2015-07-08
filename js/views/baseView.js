@@ -17,16 +17,14 @@ var BaseView = (function() {
 
     var containerMap = {
         'bottomFormGroupContainer': '<div class"bottom-form-group" id="bottom-form-group"></div>',
-        'compareUnitsContainer': '<div  class="hidden compare-units-container" id="'+config.compareUnitscontainerId+'"></div>',
-        'unit3dSvgContainer': '<div class="'+config.unitDataContainer+'"><svg class="svg-container unit-svg-container" id="unit-3d-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>'
+        'compareUnitsContainer': '<div  class="hidden compare-units-container" id="'+config.compareUnitscontainerId+'"></div>'
     };
 
 
     function getElements() {
         var elements = {
             'bottomFormGroupContainer': $('#bottom-form-group'),
-            'compareUnitsContainer': $('#'+config.compareUnitscontainerId),
-            'unit3dSvgContainer': $('#unit-3d-svg-container')
+            'compareUnitsContainer': $('#'+config.compareUnitscontainerId)
         };
         return elements;
     }
@@ -59,15 +57,18 @@ var BaseView = (function() {
             htmlCode += '<div class="compare-back-button">Back</div>';
 
             for(var i=0; i<2; i++){
-                var borderClass = !i ? 'compare-unit-box-right-border' : '';
+                var borderClass = !i ? 'compare-unit-box-right-border' : 'compare-unit-box-right';
                 var imageUrl = compareList[i] ? compareList[i].unitTypeData.unitImageUrl : undefined; ///zip-file/img/2bhk-type1-1105-2.jpg
                 htmlCode += '<div  class="compare-unit-box '+borderClass+'">'
+                    +'<svg class="svg-container unit-svg-container" id="unit-compare-svg-container'+i+'" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'
                     +'<img class="compare-unit-img"  src="'+imageUrl+'">'
                 +'</div>';
             }
         
             this._elements.compareUnitsContainer.html(htmlCode);
             this.compareUnitsContainerEvents();
+            this.unit3dSvgContainer(0);
+            this.unit3dSvgContainer(1);
         },
         compareUnitsContainerEvents: function(){
             var _this = this;
@@ -75,9 +76,9 @@ var BaseView = (function() {
                 _this._compareBackButtonClick.notify(this); //this refers to element here                
             });
         },
-        unit3dSvgContainer: function() {
+        unit3dSvgContainer: function(index) {
             var compareList = this._model.getCompareList();
-            var unitTypeData = compareList[0].unitTypeData;
+            var unitTypeData = compareList[index].unitTypeData;
             var svgData = unitTypeData.svgs,
                 svgs_count = svgData && svgData.length ? svgData.length : 0;
 
@@ -91,7 +92,8 @@ var BaseView = (function() {
                 }
             }
 
-            this._elements.unit3dSvgContainer.html(svgCode);
+            //this._elements.unit3dSvgContainer.html(svgCode);
+            $('#unit-compare-svg-container'+index).html(svgCode);
             //this.unit3dSvgContainerEvents();
         },
         compareBackButtonClicked: function(){
