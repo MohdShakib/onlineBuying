@@ -49,6 +49,8 @@ a{ text-decoration:none;}
 .fleft{ float:left;}
 .fright{ float:right;}
 .clear-fix{ clear:both;}
+.error{ box-shadow:0 0 8px crimson inset; color:crimson !important;}
+.close-form{ position:absolute; z-index:3; width:20px; height:20px; line-height:20px; font-size:12px; text-transform:uppercase; background:rgba(0,0,0,0.7); right:-20px; top:0; text-align:center; color:#fff; cursor:pointer;}
 .br50{border-radius:50%;-moz-border-radius:50%;-ms-border-radius:50%;-o-border-radius:50%;-webkit-border-radius:50%;}
 .pro-contact-actions{ position:absolute; bottom:1px; left:46px; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; z-index: 200000;}
 .pro-contact-actions ul.conect-tab{ margin:0; padding:0; position:relative; float:left;}

@@ -1,3 +1,4 @@
+*{ margin:0; padding:0;}
 body {
 	margin: 0;
 	font-family: verdana;
@@ -86,13 +87,20 @@ ellipse.tower-unit-selected-svg-path {
 	position: absolute;
 	width: 100%;
 	z-index: 1;
-	-webkit-transition: 0.5s;
-    transition: 0.5s;
+	transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-webkit-transition:all 0.5s ease-in-out;
+    
 }
 .img-container img {
 	position: absolute;
-	-webkit-transition: 0.5s;
-    transition: 0.5s;
+	transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-webkit-transition:all 0.5s ease-in-out;
 }
 
 /* Tower Details */
@@ -112,8 +120,11 @@ ellipse.tower-unit-selected-svg-path {
 	color: #FFF;
 	font-size: 11px;
 	z-index: 10000000;
-	-webkit-transition: 0.5s;
-    transition: 0.5s;
+	transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-webkit-transition:all 0.5s ease-in-out;
 }
 .tooltip-detail table {
 	border-spacing: 0px;
@@ -208,6 +219,7 @@ ellipse.tower-unit-selected-svg-path {
 .menu-item-options .option-item:hover,
 .menu-item-options .selected {
 	background: #333;
+	
 }
 .tower-menu-container .menu-icon, .tower-menu-container .menu-items {
 	color: #FFF;
@@ -248,15 +260,21 @@ ellipse.tower-unit-selected-svg-path {
 	height: 100%;
 	width: 100%;
 	cursor: pointer;
-	-webkit-transition: 0.5s;
-    transition: 0.5s;
+	transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-webkit-transition:all 0.5s ease-in-out;
 }
 .tower-menu-container .menu-item-hover {
 	width: 100px;
 }
 .tower-menu-container .menu-items .menu-item-container {
-	-webkit-transition: 0.5s;
-    transition: 0.5s;
+	transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-webkit-transition:all 0.5s ease-in-out;
 }
 .tower-menu-container .menu-items .menu-item-container .menu-item-options {
 	position: absolute;
@@ -267,8 +285,11 @@ ellipse.tower-unit-selected-svg-path {
 	border-left: 1px solid rgba(255,255,255,0.3);
 	opacity: 0;
 	visibility: hidden;
-	-webkit-transition: 0.5s;
-    transition: 0.5s;
+	transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-webkit-transition:all 0.5s ease-in-out;
 }
 .tower-menu-container .menu-items .menu-item-container:hover .menu-item-options {
 	opacity: 1;
@@ -284,8 +305,11 @@ ellipse.tower-unit-selected-svg-path {
 	padding: 0 10px;
 	height: 40px;
 	cursor: pointer;
-	-webkit-transition: 0.5s;
-    transition: 0.5s;
+	transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-webkit-transition:all 0.5s ease-in-out;
 }
 .menu-item-options .option-item:hover {
   	border-right: 4px solid;
@@ -302,17 +326,31 @@ ellipse.tower-unit-selected-svg-path {
 	position: absolute;
 	width: 100%;
 }
+.rotation-button{
+	position:absolute; 
+	z-index:999999; 
+	top:300px; 
+	width:48px; 
+	height:48px; 
+	border-radius:50%; 
+	font-size:12px; 
+	text-align:center; 
+	border:2px solid #D1D1D1; 
+	background:rgba(0,0,0,0.3); 
+	color:#d1d1d1; 
+	cursor:pointer; 
+	transition:all 0.3s ease-in-out;
+}
+.rotation-button:hover{
+	background:#fff; 
+	border-color:#fff; 
+	color:#494949;
+}
 .tower-rotation-left-button {
-	position: absolute;
-	left: 100px;
-	top: 100px;
-	z-index: 99999;
+	left: 150px;
 }
 .tower-rotation-right-button{
-	position: absolute;
-	right: 100px;
-	top: 100px;
-	z-index: 99999;
+	right: 150px;
 }
 
 /* Selected Unit */
@@ -337,8 +375,11 @@ ellipse.tower-unit-selected-svg-path {
 	text-align: center;
 	line-height: 50px;
 	cursor: pointer;
-	-webkit-transition: 0.5s;
-    transition: 0.5s;
+	transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-webkit-transition:all 0.5s ease-in-out;
 }
 .unit-close-container:hover {
 	color: #FFF;
@@ -365,8 +406,11 @@ ellipse.tower-unit-selected-svg-path {
 	border-bottom: 5px #666 solid;
 	line-height: 20px;
 	padding: 0 5px;
-	-webkit-transition: 0.5s;
-    transition: 0.5s;
+	transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-webkit-transition:all 0.5s ease-in-out;
 }
 .unit-menu-container .header-item span {
 	display: block;
@@ -387,7 +431,8 @@ ellipse.tower-unit-selected-svg-path {
 	font-size: 19px;
 	color: #FFF;
 }
-.unit-menu-container .unit-menu-link:hover, .unit-menu-container .selected {
+.unit-menu-container .unit-menu-link:hover, 
+.unit-menu-container .selected {
 	background-color: #666;
 	cursor: pointer; 
 }
@@ -512,8 +557,11 @@ ellipse.tower-unit-selected-svg-path {
 	border: 1px solid #FFF;
 	border-radius: 100%;
 	cursor: pointer;
-	-webkit-transition: 0.5s;
-    transition: 0.5s;
+	transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-webkit-transition:all 0.5s ease-in-out;
 }
 .amenities-container .amenity-icon:hover {
 	background: rgba(0,0,0,0.5);
@@ -528,8 +576,11 @@ ellipse.tower-unit-selected-svg-path {
 	text-shadow: 1px 1px 2px #333;
 	opacity: 0;
 	visibility: hidden;
-	-webkit-transition: 0.5s;
-    transition: 0.5s;
+	transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-webkit-transition:all 0.5s ease-in-out;
 }
 .amenities-container .amenity-icon:hover .name {
 	opacity: 1;
@@ -564,19 +615,32 @@ ellipse.tower-unit-selected-svg-path {
 	float: right;
 	color: #999;
 	cursor: pointer;
-	-webkit-transition: 0.5s;
-    transition: 0.5s;
+	transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-webkit-transition:all 0.5s ease-in-out;
 }
 .amenity-popup .amenity-popup-close:hover {
 	color: #AAA;
 }
 .amenity-popup .amenity-image {
 	margin-top: 2px;
+	width:600px;
+	height:360px;
+	overflow:hidden;
 }
 .amenity-popup .amenity-image img {
 	border: 2px rgba(0,0,0,0.7) solid;
 	height: 360px;
 	width: 600px;
+	animation: zoom 45s;
+	-moz-animation: zoom 45s;
+	-webkit-animation: zoom 45s;
+	animation-delay:1s;
+	-moz-animation-delay:1s;
+	-webkit-animation-delay:1s;
+    
 }
 /*=================classes for animation added by jaswant singh=========================*/
 
@@ -689,11 +753,47 @@ ellipse.tower-unit-selected-svg-path {
 }
 
 /*---image pop up animation end---*/
-.dot-one{ width:38px; height:38px; background:none; border:1px solid #fff; left:-39px; bottom:-18px; position:absolute; border-radius:50%;}
-.tSelected-view .dot-one{ width:25px; height:25px; left:-27px; top:-13px;} 
-.dot-two{ width:12px; height:12px; background:limegreen; position:absolute; border-radius:50%;left:145px; top:-5px; z-index:1;}
-.dot-two.sold{ background:crimson;}
-.line .detail-container, .line .tSelected-detail{ position:absolute; left:158px; top:-12px; transform:rotate(30deg); -moz-transform:rotate(30deg);-webkit-transform:rotate(30deg);transform-origin: 0 0; -moz-transform-origin: 0 0; -webkit-transform-origin: 0 0;}
+.dot-one{ 
+	width:38px; 
+	height:38px; 
+	background:none; 
+	border:1px solid #fff; 
+	left:-39px; 
+	bottom:-18px; 
+	position:absolute; 
+	border-radius:50%;
+}
+.tSelected-view .dot-one{ 
+	width:25px; 
+	height:25px; 
+	left:-27px; 
+	top:-13px;
+} 
+.dot-two{ 
+	width:12px; 
+	height:12px; 
+	background:limegreen; 
+	position:absolute; 
+	border-radius:50%;
+	left:145px; 
+	top:-5px; 
+	z-index:1;
+}
+.dot-two.sold{ 
+	background:crimson;
+}
+.line .detail-container, 
+.line .tSelected-detail{ 
+	position:absolute; 
+	left:158px; 
+	top:-12px; 
+	transform:rotate(30deg); 
+	-moz-transform:rotate(30deg);
+	-webkit-transform:rotate(30deg);
+	transform-origin: 0 0; 
+	-moz-transform-origin: 0 0; 
+	-webkit-transform-origin: 0 0;
+}
 .line{
 	background:#fff; 
 	width:0px;
@@ -731,36 +831,75 @@ ellipse.tower-unit-selected-svg-path {
 	left:-27px;
 	top:27px;
 }
-.tSelected-view .line.bottom-right{ top:-6px; left:-8px;}
-.tSelected-view .line.top-right{left: 14px;top: 8px;}
-.tSelected-view .line.top-left{ left: -14px;top: 46px;}
-.tSelected-view .line.bottom-left{left: -33px;top: 29px;}
-.line.top-right .detail-container, .line.top-right .tSelected-detail{ 
+.tSelected-view .line.bottom-right{ 
+	top:-6px; 
+	left:-8px;
+}
+.tSelected-view .line.top-right{
+	left: 14px;
+	top: 8px;
+}
+.tSelected-view .line.top-left{ 
+	left: -14px;
+	top: 46px;
+}
+.tSelected-view .line.bottom-left{
+	left: -33px;
+	top: 29px;
+}
+.line.top-right .detail-container, 
+.line.top-right .tSelected-detail{ 
 	transform:rotate(-30deg); 
 	-moz-transform:rotate(-30deg);
 	-webkit-transform:rotate(-30deg);
 	left:144px;
 	top:-13px;
 }
-.line.top-left .detail-container, .line.top-left .tSelected-detail{
+.line.top-left .detail-container, 
+.line.top-left .tSelected-detail{
 	transform:rotate(-160deg); 
 	-moz-transform:rotate(-160deg);
 	-webkit-transform:rotate(-160deg);
 	left:243px;
 	top:50px;
 }
-.line.bottom-left .detail-container, .line.bottom-left .tSelected-detail{
+.line.bottom-left .detail-container, 
+.line.bottom-left .tSelected-detail{
 	transform:rotate(140deg); 
 	-moz-transform:rotate(140deg);
 	-webkit-transform:rotate(140deg);
 	left:240px;
 	top:-55px;
 }
-.line .tSelected-detail{ left:90px; top:-13px;}
-.line.top-left .tSelected-detail{left: 195px;top: 58px;}
-.line.top-right .tSelected-detail{left: 73px;top: -12px;}
-.line.bottom-left .tSelected-detail{left: 187px;top: -68px;}
-.show-details .dot-one, .show-details .tooltip-title{
+.line .tSelected-detail{ 
+	left:90px; 
+	top:-13px;
+}
+.line.top-left .tSelected-detail{
+	left: 195px;
+	top: 58px;
+}
+.line.top-right .tSelected-detail{
+	left: 73px;
+	top: -12px;
+}
+.line.bottom-left .tSelected-detail{
+	left: 187px;
+	top: -68px;
+}
+.line.top-left .apt-available, 
+.line.bottom-left .apt-available{
+	border-left: 4px solid limegreen;
+	border-right:0;
+}
+.line.top-left .apt-unavailable,
+.line.bottom-left .apt-unavailable
+ {
+	border-left: 4px solid crimson;
+	border-right:0;
+}
+.show-details .dot-one, 
+.show-details .tooltip-title{
     animation:point 0.3s ease-in-out both;
 	-webkit-animation:point 0.3s ease-in-out both;
 	-moz-animation:point 0.3s ease-in-out both;
@@ -780,7 +919,8 @@ ellipse.tower-unit-selected-svg-path {
 	
 
 }
-.show-details .detail-container, .show-details .tSelected-detail{
+.show-details .detail-container, 
+.show-details .tSelected-detail{
 	animation: list-in 0.3s ease-in-out both;
     animation: list-in 0.3s ease-in-out both;
 	animation-delay:0.9s;
@@ -793,7 +933,8 @@ ellipse.tower-unit-selected-svg-path {
     -webkit-animation: list-in 0.3s ease-in-out both;
 	-webkit-animation-delay:0.9s;
 }
-.hide-details .detail-container,.hide-details  .tSelected-detail{
+.hide-details .detail-container,
+.hide-details  .tSelected-detail{
 	animation: list-out 0.3s ease-in-out both;
     animation: list-out 0.3s ease-in-out both;
 	animation-delay:0;
@@ -807,7 +948,8 @@ ellipse.tower-unit-selected-svg-path {
 	-webkit-animation-delay:0;
 
 }
-.hide-details .dot-one, .hide-details .tooltip-title{
+.hide-details .dot-one, 
+.hide-details .tooltip-title{
     animation: point-out 0.3s ease-in-out both;
     animation: point-out 0.3s ease-in-out both;
 	-moz-animation-delay:1s;
@@ -1007,3 +1149,28 @@ ellipse.tower-unit-selected-svg-path {
 }
 }
 /*-------------------------------------*/
+@-webkit-keyframes zoom {
+    from {
+    	-webkit-transform: scale(1,1);
+    }
+    to {
+    	-webkit-transform: scale(1.5,1.5);
+    }
+}
+@-moz-keyframes zoom {
+    from {
+    	-moz-transform: scale(1,1);
+    }
+    to {
+    	-moz-transform: scale(1.5,1.5);
+    }
+}
+/* Standard syntax */
+@keyframes zoom {
+   from {
+        transform: scale(1,1);
+   }
+   to {
+        transform: scale(1.5,1.5);
+   }
+}

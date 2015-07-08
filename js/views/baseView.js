@@ -46,6 +46,7 @@ var BaseView = (function() {
             var _this = this;
             var htmlCode = '<div class="pro-contact-actions">'
                 +'<div class="form-pop-up">'
+					+'<span class="close-form">x</span>'
                     +'<div class="call-box">'
                         +'<p>Our advisor will call you in next 15 mins*<br>'
                         +'Please provide your details'
@@ -154,5 +155,4 @@ var BaseView = (function() {
     };
 
     return BaseView;
-
 })();
