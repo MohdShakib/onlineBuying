@@ -15,7 +15,7 @@ var UnitplaninfoView = (function() {
         'floorPlan2dContainer': '<div class="floor-plan2d-container fp2d-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="floor-plan2d-container"></div>',
         'walkthroughContainer': '<div class="walkthrough-container fpwt-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="walkthrough-container"></div>',
         'unit3dSvgContainer': '<div class="fp-container ' + config.unitDataContainer + '"><svg class="svg-container unit-svg-container" id="unit-3d-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
-        'unit2dSvgContainer': '<div class="'+config.hideClass+' fp2d-container ' + config.unitDataContainer + '"><svg class="svg-container unit-svg-container" id="unit-2d-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
+        'unit2dSvgContainer': '<div class="' + config.hideClass + ' fp2d-container ' + config.unitDataContainer + '"><svg class="svg-container unit-svg-container" id="unit-2d-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
         'unitComponentDetailContainer': '<div class="tower-unit-detail-container fp-container ' + config.unitDataContainer + '" id="tower-detail-container"></div>',
         'clusterPlanContainer': '<div class="cluster-plan-container cp-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="cluster-plan-container"></div>',
         'priceBreakupContainer': '<div class="price-breakup-container pb-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="price-breakup-container"></div>',
@@ -73,23 +73,7 @@ var UnitplaninfoView = (function() {
             }
         },
         initView: function(data, rotationdata, rootdata) {
-            var width = config.imageResolution.width / config.imageResolution.height * window.innerHeight,
-                selectedUnitContainerWidth = width * 0.6,
-                towerContainerWidth = window.innerWidth - selectedUnitContainerWidth,
-                diff = (width - towerContainerWidth) / -2,
-                imageResolutionUnit = config.imageResolution.unit;
-
             $('#' + config.filterMenuContainerId).hide();
-            $('#' + config.imgContainerId).css('left', diff + imageResolutionUnit);
-            $('#' + config.towerRotationContainerId).css('width', towerContainerWidth + imageResolutionUnit);
-
-            var originalClasses = document.getElementById(config.svgContainerId).className.baseVal;
-            $('#' + config.svgContainerId).attr('class', originalClasses + ' ' + config.shiftLeftClass);
-
-            var svgCode = "<ellipse  class=\"" + config.towerUnitSelectedSvgClass + "\" " +
-                "id=\"" + data.unitIdentifier + "-selected-path\" " +
-                "cx='" + rotationdata.unitSvgOnTower[0] + "' cy='" + rotationdata.unitSvgOnTower[1] + "' ry='1.7' rx='0.8' />";
-            $('#' + config.svgContainerId).append(svgCode);
             if (!$('#' + config.selectedUnitContainerId).length) {
                 $('#' + config.mainContainerId).append("<div class='selected-unit-container' id='" + config.selectedUnitContainerId + "'></div>");
                 this.dynamicResizeContainers();
@@ -101,6 +85,7 @@ var UnitplaninfoView = (function() {
                 towerContainerWidth = window.innerWidth - selectedUnitContainerWidth,
                 imageResolutionUnit = config.imageResolution.unit;
             $('#' + config.selectedUnitContainerId).css('width', selectedUnitContainerWidth + imageResolutionUnit);
+            $('#' + config.towerRotationContainerId).css('width', towerContainerWidth + imageResolutionUnit);
             utils.dynamicResizeContainers(towerContainerWidth);
         },
         buildSkeleton: function(containerList) {
@@ -150,10 +135,10 @@ var UnitplaninfoView = (function() {
             var imageUrl = unitTypeData.unitImageUrl;
             var code = "<img class='fullView' src='" + imageUrl + "'>";
 
-            if(unitTypeData.morningSunlightImageUrl){
-                code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " mor-image' src='"+unitTypeData.morningSunlightImageUrl+"'>"; ///zip-file/img/2bhk-type1-1105-1-mor.png
-                code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " aft-image' src='"+unitTypeData.afternoonSunlightImageUrl+"'>"; ///zip-file/img/2bhk-type1-1105-1-aft.png
-                code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " eve-image' src='"+unitTypeData.eveningSunlightImageUrl+"'>"; ///zip-file/img/2bhk-type1-1105-1-eve.png
+            if (unitTypeData.morningSunlightImageUrl) {
+                code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " mor-image' src='" + unitTypeData.morningSunlightImageUrl + "'>"; ///zip-file/img/2bhk-type1-1105-1-mor.png
+                code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " aft-image' src='" + unitTypeData.afternoonSunlightImageUrl + "'>"; ///zip-file/img/2bhk-type1-1105-1-aft.png
+                code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " eve-image' src='" + unitTypeData.eveningSunlightImageUrl + "'>"; ///zip-file/img/2bhk-type1-1105-1-eve.png
 
                 code += "<div class='sunlight-menu'>";
                 code += "<div data-target='mor-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'>@</div>";
@@ -199,7 +184,6 @@ var UnitplaninfoView = (function() {
             this._elements.walkthroughContainer.html(code);
         },
         unit3dSvgContainer: function() {
-            //return;
             var unitTypeData = this._model.getUnitTypeData(),
                 svgData = unitTypeData.svgs,
                 svgs_count = svgData && svgData.length ? svgData.length : 0;
@@ -207,7 +191,11 @@ var UnitplaninfoView = (function() {
             var svgCode = '';
             for (var i = 0; i < svgs_count; i++) {
                 var svgObj = svgData[i];
-                svgCode += "<polygon data-name='" + svgObj.name + "' data-type='" + svgObj.type + "' data-details='" + svgObj.details + "'   points=\"" + svgObj.svgPath + "\" />";
+                if (svgObj.type == 'link') {
+                    svgCode += "<circle data-name='" + svgObj.name + "' data-type='" + svgObj.type + "' data-details='" + svgObj.details + "' cx='" + svgObj.svgPath.split(' ')[0] + "' cy='" + svgObj.svgPath.split(' ')[1] + "' r='1'  />";
+                } else {
+                    svgCode += "<polygon data-name='" + svgObj.name + "' data-type='" + svgObj.type + "' data-details='" + svgObj.details + "'   points=\"" + svgObj.svgPath + "\" />";
+                }
             }
 
             this._elements.unit3dSvgContainer.html(svgCode);
@@ -229,7 +217,6 @@ var UnitplaninfoView = (function() {
             });
         },
         unit2dSvgContainer: function() {
-            //return;
             var unitTypeData = this._model.getUnitTypeData(),
                 svgData = unitTypeData.svgs,
                 svgs_count = svgData && svgData.length ? svgData.length : 0;
