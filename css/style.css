@@ -198,7 +198,7 @@ ellipse.tower-unit-selected-svg-path {
 /* Tower Menu */
 .tower-menu-container {
 	position: absolute;
-	z-index: 300000;
+	z-index: 99999;/*300000;*/
 	top: 0px;
 	left: 0px;
 	height: 100%;
@@ -523,6 +523,39 @@ ellipse.tower-unit-selected-svg-path {
 	text-transform: uppercase;
 }
 
+.compare-units-container {
+	position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    top: 0;
+    z-index: 99999;
+}
+.compare-units-container .compare-back-button{
+	position: absolute;
+	width: 50px;
+	background: #121212;
+	color: white;
+	padding: 10px;
+	margin: 5px 5px 5px 1px; 
+	cursor: pointer;
+}
+.compare-units-container .compare-unit-box{
+	float:left; width:50%; height:100%;
+}
+.compare-units-container .compare-unit-img{
+	width: 100%;
+	margin-top: 9%;
+}
+.compare-units-container > div{
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+}
+
+.compare-unit-box-right-border{
+	border-right:1px solid black;
+}
 /* Overview Image */
 .overview-img-container {
 	position: absolute;
@@ -547,7 +580,7 @@ ellipse.tower-unit-selected-svg-path {
 }
 .amenities-container .amenity-icon {
 	position: absolute;
-	z-index: 100000;
+	z-index: 10000;
 	background: rgba(0,0,0,0.3);
 	color: #FFF;
 	height: 20px;
