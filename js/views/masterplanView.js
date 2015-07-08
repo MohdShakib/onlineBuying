@@ -223,9 +223,9 @@ var MasterplanView = (function() {
                 pageY: top
             });
             tooltipClass = tooltipClass ? tooltipClass : 'top-right';
-            var towerCode = "";
+            var towerCode = "", dotClass = !data.isAvailable ? 'sold' : '';
             towerCode += "<div id='container-detail' class='tooltip-detail'>";
-            towerCode += "<div class='detail-box show-details'>" + "<div class='tooltip-title'>" + data.towerName.split(' ')[1] + "</div>" + "<div class='line " + tooltipClass + "''>" + "<div class='dot-one'></div>" + "<div class='dot-two'></div>" + "<div class='detail-container'>";
+            towerCode += "<div class='detail-box show-details'>" + "<div class='tooltip-title'>" + data.towerName.split(' ')[1] + "</div>" + "<div class='line " + tooltipClass + "''>" + "<div class='dot-one'></div>" + "<div class='dot-two "+dotClass+"'></div>" + "<div class='detail-container'>";
             towerCode += "<table>";
             if (!data.isAvailable) {
                 towerCode += "<td colspan='2' class='" + config.availabilityClass.unavailable + "'>Sold</td></tr>";
