@@ -1,4 +1,5 @@
 *{ margin:0; padding:0;}
+*:focus{ outline:none;}
 @font-face {
 	font-family: 'icomoon';
 	src:url('fonts/propicons_mobile.eot?-wxk34n');
@@ -401,7 +402,6 @@ ellipse.tower-unit-selected-svg-path {
 	right:10px;
 	border:2px solid #D1D1D1;
 	overflow:hidden;
-	background:#fff;
 	transform:scale(0,0);
 	-moz-transform:scale(0,0);
 	-ms-transform:scale(0,0);
@@ -414,6 +414,10 @@ ellipse.tower-unit-selected-svg-path {
 	-webkit-transition:all 0.5s ease-in-out;
 	z-index:1;
 }
+.rotation-btn-container.left-btn .photo-thumb{
+	right:inherit;
+	left:10px;
+}
 .photo-thumb img{
 	height:100%;
 	width:100%;
@@ -423,12 +427,11 @@ ellipse.tower-unit-selected-svg-path {
 	-ms-transform:scale(0,0);
 	-o-transform:scale(0,0);
 	-webkit-transform:scale(0,0);
-	transition:all 0.5s ease-in-out;
-	-ms-transition:all 0.5s ease-in-out;
-	-ms-transition:all 0.5s ease-in-out;
-	-o-transition:all 0.5s ease-in-out;
-	-webkit-transition:all 0.5s ease-in-out;
-	transition-delay:0.2;
+	transition:all 0.4s ease-in-out;
+	-ms-transition:all 0.4s ease-in-out;
+	-ms-transition:all 0.4s ease-in-out;
+	-o-transition:all 0.4s ease-in-out;
+	-webkit-transition:all 0.4s ease-in-out;
 }
 .rotation-btn-container:hover .photo-thumb, 
 .rotation-btn-container:hover .photo-thumb img{
@@ -446,9 +449,16 @@ ellipse.tower-unit-selected-svg-path {
 	width:150px;
 	opacity:0;
 }
+.rotation-btn-container.left-btn .rotation-title{
+	right:inherit;
+	left:-150px;
+}
 .rotation-btn-container:hover .rotation-title{
 	right:-80px;
 	opacity:1;
+}
+.rotation-btn-container.left-btn:hover .rotation-title{
+	left:-20px;
 }
 .rotation-btn-container button{
 	width:48px; 
