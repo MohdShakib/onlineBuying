@@ -173,7 +173,7 @@ var MasterplanView = (function() {
 
             _this._elements.buildingSvgContainer.off('mouseleave').on('mouseleave', '.' + config.towerImgSvgClass, function(event) {
                 // notify controller
-                //_this._towerSvgMouseLeave.notify(); // this refers to element here
+                _this._towerSvgMouseLeave.notify(); // this refers to element here
             });
         },
         towerMouseEnterEvent: function(obj) {
@@ -191,6 +191,7 @@ var MasterplanView = (function() {
             }
 
             $('img.' + config.imgContainerClass).not(targetImage).stop().fadeTo("500", 0.3, function() {});
+            $('.' + config.amenityContainerClass).addClass(config.amenityNotOnTopClass);
 
             if (towerData && svgpath) {
                 var svgpathClient = svgpath.getBoundingClientRect();
@@ -204,6 +205,7 @@ var MasterplanView = (function() {
             $('.detail-box').removeClass('show-details');
             $('.detail-box').addClass('hide-details');
             $('img.' + config.imgContainerClass).stop().fadeTo("500", 1, function() {});
+            $('.' + config.amenityContainerClass).removeClass(config.amenityNotOnTopClass);
             var removeClasses = config.menuItemHoverClass + ' ' + config.availabilityClass.available + ' ' + config.availabilityClass.unavailable;
             $('.' + config.leftPanelButtonClass).removeClass(removeClasses);
 
@@ -227,9 +229,10 @@ var MasterplanView = (function() {
                 availabilityClassSuffix = '-border-left';
             }
 
-            var towerCode = "", dotClass = !data.isAvailable ? 'sold' : '';
+            var towerCode = "",
+                dotClass = !data.isAvailable ? 'sold' : '';
             towerCode += "<div id='container-detail' class='tooltip-detail'>";
-            towerCode += "<div class='detail-box show-details'>" + "<div class='tooltip-title'>" + data.towerName.split(' ')[1] + "</div>" + "<div class='line " + tooltipClass + "''>" + "<div class='dot-one'></div>" + "<div class='dot-two "+dotClass+"'></div>" + "<div class='detail-container'>";
+            towerCode += "<div class='detail-box show-details'>" + "<div class='tooltip-title'>" + data.towerName.split(' ')[1] + "</div>" + "<div class='line " + tooltipClass + "''>" + "<div class='dot-one'></div>" + "<div class='dot-two " + dotClass + "'></div>" + "<div class='detail-container'>";
             towerCode += "<table>";
             if (!data.isAvailable) {
                 towerCode += "<tr><td colspan='2' class='" + config.availabilityClass.unavailable + "'>Sold</td></tr>";
@@ -291,7 +294,7 @@ var MasterplanView = (function() {
                     amenity = data.amenities[amenityKey];
                 }
             }
-			//changed by jaswant for image pop up animation
+            //changed by jaswant for image pop up animation
             var position = "top:" + element.dataset.top + "%; left:" + element.dataset.left + "%;";
             var code = "<div class='" + config.amenityPopupClass + "'><table class='photo-table pop-up-in' style='" + position + "'><tr>";
             code += "<td class='amenity-heading'>" + amenity.amenityName;
@@ -302,23 +305,30 @@ var MasterplanView = (function() {
         },
         amenitiesPopupEvents: function() {
             var _this = this;
-            _this._elements.amenitiesContainer.off('click').on('click', '.' + config.amenityPopupCloseClass, function(event) {
+            _this._elements.amenitiesContainer.off('click').on('click', '.' + config.amenityPopupClass, function(event) {
+                // notify controller
+                _this._amenityClose.notify(this); // this refers to element here
+            });
+            _this._elements.amenitiesContainer.on('click', '.' + config.amenityPopupTableClass, function(event) {
+                event.stopPropagation();
+            });
+            _this._elements.amenitiesContainer.on('click', '.' + config.amenityPopupCloseClass, function(event) {
                 // notify controller
                 _this._amenityClose.notify(this); // this refers to element here
             });
         },
         amenityCloseEvent: function() {
-			//added by jaswant for image pop up animation
-			$('.photo-table').removeClass('pop-up-in');
-			$('.photo-table').addClass('pop-up-out');
-			setTimeout( function(){
-            $("." + config.amenityPopupClass).remove();
-			},1000);
+            //added by jaswant for image pop up animation
+            $('.photo-table').removeClass('pop-up-in');
+            $('.photo-table').addClass('pop-up-out');
+            setTimeout(function() {
+                $("." + config.amenityPopupClass).remove();
+            }, 1000);
             this.amenitiesContainerEvents();
-			//added by jaswant for image pop up animation
-			
-			
-			
+            //added by jaswant for image pop up animation
+
+
+
         }
     };
 

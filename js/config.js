@@ -52,8 +52,11 @@ var config = (function(){
 		imgContainerClass : "menu-mapped-image",
 		towerImgSvgClass: 'tower-svg-path',
 		fadeImageClass: "fade-image",
+		amenityContainerClass: "amenities-container",
+		amenityNotOnTopClass: "not-on-top",
 		amenityIconClass: "amenity-icon",
 		amenityPopupClass: "amenity-popup",
+		amenityPopupTableClass: "photo-table",
 		amenityPopupCloseClass: "amenity-popup-close",
 
 		// Towerselected
