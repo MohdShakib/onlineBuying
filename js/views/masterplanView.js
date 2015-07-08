@@ -112,7 +112,6 @@ var MasterplanView = (function() {
             }
             code += "</table></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
-            code += "<tr><td class='menu-call menu-icon'> C </td></tr>";
             code += "</table>";
             this._elements.buildingMenuContainer.html(code);
             this.buildingMenuContainerEvents();

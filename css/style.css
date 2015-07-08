@@ -537,7 +537,7 @@ ellipse.tower-unit-selected-svg-path {
 	background: #121212;
 	color: white;
 	padding: 10px;
-	margin: 5px;
+	margin: 5px 5px 5px 1px; 
 	cursor: pointer;
 }
 .compare-units-container .compare-unit-box{

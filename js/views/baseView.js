@@ -35,6 +35,7 @@ var BaseView = (function() {
         this._bottomGroupButtonClick = new Event(this);
         this._compareBackButtonClick = new Event(this);
         this._unitCompareButtonClick = new Event(this);
+        this._formPopupCloseClick = new Event(this);
     }
 
     BaseView.prototype = {
@@ -52,12 +53,7 @@ var BaseView = (function() {
             var rootdata = this._model.getRootdata();
             
             var htmlCode = '';
-            
-            /*if(compareList && Object.keys(compareList).length){
-
-            }
-            */
-
+        
             htmlCode += '<div class="compare-back-button">Back</div>';
 
             for(var i=0; i<2; i++){
@@ -100,14 +96,6 @@ var BaseView = (function() {
                         +'<p>Unit plans you like &amp; shortlisted'
                         +'</p>'
                         +'<div class="unit-box fleft">'
-                            +'<ul>'
-                                +'<li>A - 1109</li>'
-                                +'<li>A - 1109</li>'
-                                +'<li>A - 1109</li>'
-                                +'<li>A - 1109</li>'
-                            +'</ul>'
-                        +'</div>'
-                        +'<div class="unit-box fright">'
                             +'<ul>'
                                 +'<li>A - 1109</li>'
                                 +'<li>A - 1109</li>'
@@ -174,10 +162,19 @@ var BaseView = (function() {
                 console.log('submit button clicked');             
             });
 
+            this._elements.bottomFormGroupContainer.on('click', '.close-form', function(){
+                _this._formPopupCloseClick.notify(this);
+            });
+
             this._elements.bottomFormGroupContainer.on('click', '#'+config.unitCompareButtonId, function(event){
                 _this._unitCompareButtonClick.notify(this);
             });
 
+        },
+        formPopupCloseClicked: function(){
+            $('.'+config.bottomFormGroup.tabLinkClass).removeClass('active');
+            $('.'+config.bottomFormGroup.formPopUpClass).removeClass('out');
+            $('.'+config.bottomFormGroup.formPopUpClass+'>div').hide();
         },
         bottomGroupButtonClicked: function(element){
             $('.'+config.bottomFormGroup.tabLinkClass).removeClass('active');
@@ -188,6 +185,7 @@ var BaseView = (function() {
             $(element).addClass('active');
         },
         unitCompareButtonClicked: function(){
+            this.formPopupCloseClicked();
             $('#'+config.compareUnitscontainerId).removeClass('hidden');
         },
         buildSkeleton: function(containerList) {

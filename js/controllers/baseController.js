@@ -23,6 +23,10 @@ var BaseController = (function() {
                 _this._view.compareBackButtonClicked(element);
             });
 
+            this._view._formPopupCloseClick.attach(function(sender, element){
+                _this._view.formPopupCloseClicked();
+            });
+
             this._view._unitCompareButtonClick.attach(function(sender, element){
                 _this._view.unitCompareButtonClicked(element); 
             });
