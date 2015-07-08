@@ -17,6 +17,7 @@ var BaseModel = (function() {
             towerIdentifier: 'tower-a',
             rotationAngle: '0'
         }];
+        //this._comparedItems = [];
 
     }
 
@@ -38,7 +39,7 @@ var BaseModel = (function() {
                     data.push(item);
                 }
             }
-
+            
             return data;
         },
         getRootdata: function() {

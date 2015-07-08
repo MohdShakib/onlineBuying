@@ -17,14 +17,16 @@ var BaseView = (function() {
 
     var containerMap = {
         'bottomFormGroupContainer': '<div class"bottom-form-group" id="bottom-form-group"></div>',
-        'compareUnitsContainer': '<div  class="hidden compare-units-container" id="'+config.compareUnitscontainerId+'"></div>'
+        'compareUnitsContainer': '<div  class="hidden compare-units-container" id="'+config.compareUnitscontainerId+'"></div>',
+        'unit3dSvgContainer': '<div class="'+config.unitDataContainer+'"><svg class="svg-container unit-svg-container" id="unit-3d-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>'
     };
 
 
     function getElements() {
         var elements = {
             'bottomFormGroupContainer': $('#bottom-form-group'),
-            'compareUnitsContainer': $('#'+config.compareUnitscontainerId)
+            'compareUnitsContainer': $('#'+config.compareUnitscontainerId),
+            'unit3dSvgContainer': $('#unit-3d-svg-container')
         };
         return elements;
     }
@@ -73,6 +75,25 @@ var BaseView = (function() {
                 _this._compareBackButtonClick.notify(this); //this refers to element here                
             });
         },
+        unit3dSvgContainer: function() {
+            var compareList = this._model.getCompareList();
+            var unitTypeData = compareList[0].unitTypeData;
+            var svgData = unitTypeData.svgs,
+                svgs_count = svgData && svgData.length ? svgData.length : 0;
+
+            var svgCode = '';
+            for (var i = 0; i < svgs_count; i++) {
+                var svgObj = svgData[i];
+                if (svgObj.type == 'link') {
+                    svgCode += "<circle data-name='" + svgObj.name + "' data-type='" + svgObj.type + "' data-details='" + svgObj.details + "' cx='" + svgObj.svgPath.split(' ')[0] + "' cy='" + svgObj.svgPath.split(' ')[1] + "' r='1'  />";
+                } else {
+                    svgCode += "<polygon data-name='" + svgObj.name + "' data-type='" + svgObj.type + "' data-details='" + svgObj.details + "'   points=\"" + svgObj.svgPath + "\" />";
+                }
+            }
+
+            this._elements.unit3dSvgContainer.html(svgCode);
+            //this.unit3dSvgContainerEvents();
+        },
         compareBackButtonClicked: function(){
             $('#'+config.compareUnitscontainerId).addClass('hidden');
         },
@@ -88,6 +109,8 @@ var BaseView = (function() {
                     compare_li += '<li>'+compareList[i].unitName+'</li>';
                 }
                 compare_li += '</ul>';
+            }else{
+                compare_li += '<p>Nothing To Compare</p>';
             }
 
             var htmlCode = '<div class="pro-contact-actions">'
@@ -184,6 +207,9 @@ var BaseView = (function() {
             $('.'+config.bottomFormGroup.formPopUpClass+'>div').hide();
         },
         bottomGroupButtonClicked: function(element){
+            if($(element).hasClass('active')){ // if opened return to stop flickr
+                return;
+            }
             $('.'+config.bottomFormGroup.tabLinkClass).removeClass('active');
             var anchorName = element.dataset.name;
             $('.'+config.bottomFormGroup.formPopUpClass).addClass('out');
