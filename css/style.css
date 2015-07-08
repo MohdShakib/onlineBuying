@@ -701,6 +701,9 @@ ellipse.tower-unit-selected-svg-path {
 	width: 100%;
 	height: 100%;
 }
+.amenities-container.not-on-top {
+	z-index: 9990;
+}
 .amenities-container .amenity-icon {
 	position: absolute;
 	z-index: 10000;
