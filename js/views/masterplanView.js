@@ -191,8 +191,7 @@ var MasterplanView = (function() {
                 return;
             }
 
-            $('img.' + config.imgContainerClass).addClass(config.fadeImageClass);
-            targetImage.removeClass(config.fadeImageClass);
+            $('img.' + config.imgContainerClass).not(targetImage).stop().fadeTo("500", 0.3, function() {});
 
             if (towerData && svgpath) {
                 var svgpathClient = svgpath.getBoundingClientRect();
@@ -205,7 +204,7 @@ var MasterplanView = (function() {
         towerMouseLeaveEvent: function() {
             $('.detail-box').removeClass('show-details');
             $('.detail-box').addClass('hide-details');
-            $('img.' + config.imgContainerClass).removeClass(config.fadeImageClass);
+            $('img.' + config.imgContainerClass).stop().fadeTo("500", 1, function() {});
             var removeClasses = config.menuItemHoverClass + ' ' + config.availabilityClass.available + ' ' + config.availabilityClass.unavailable;
             $('.' + config.leftPanelButtonClass).removeClass(removeClasses);
 
@@ -223,23 +222,30 @@ var MasterplanView = (function() {
                 pageY: top
             });
             tooltipClass = tooltipClass ? tooltipClass : 'top-right';
+
+            var availabilityClassSuffix = '-border-right';
+            if (tooltipClass == 'top-left' || tooltipClass == 'bottom-left') {
+                availabilityClassSuffix = '-border-left';
+            }
+
             var towerCode = "", dotClass = !data.isAvailable ? 'sold' : '';
             towerCode += "<div id='container-detail' class='tooltip-detail'>";
             towerCode += "<div class='detail-box show-details'>" + "<div class='tooltip-title'>" + data.towerName.split(' ')[1] + "</div>" + "<div class='line " + tooltipClass + "''>" + "<div class='dot-one'></div>" + "<div class='dot-two "+dotClass+"'></div>" + "<div class='detail-container'>";
             towerCode += "<table>";
             if (!data.isAvailable) {
-                towerCode += "<td colspan='2' class='" + config.availabilityClass.unavailable + "'>Sold</td></tr>";
+                towerCode += "<tr><td colspan='2' class='" + config.availabilityClass.unavailable + "'>Sold</td></tr>";
             } else {
                 for (var j in data.unitInfo) {
                     var aptType = data.unitInfo[j];
-                    var availabilityClass = config.availabilityClass.available;
+                    var availabilityClass = config.availabilityClass.available + availabilityClassSuffix;
                     var availabilityText = aptType.available + " Av";
                     if (aptType.available == 0) {
-                        availabilityClass = config.availabilityClass.unavailable;
+                        availabilityClass = config.availabilityClass.unavailable + availabilityClassSuffix;
                         availabilityText = 'Sold';
                     }
-                    towerCode += "<td class=''>" + aptType.type + "</td>";
-                    towerCode += "<td class='" + availabilityClass + "'>" + availabilityText + "</td></tr>";
+                    towerCode += "<tr class='" + availabilityClass + "'>";
+                    towerCode += "<td>" + aptType.type + "</td>";
+                    towerCode += "<td>" + availabilityText + "</td></tr>";
                 }
             }
             towerCode += "</table>";

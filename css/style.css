@@ -56,7 +56,7 @@ polygon {
 	fill: rgba(0,0,0,0);
 	cursor: pointer;
 	stroke: rgba(255,255,255,0.5);
-	stroke-width: 0.2;
+	stroke-width: 0;
 }
 .unit-svg-container polygon:hover{
 	stroke: orange;
@@ -87,20 +87,9 @@ ellipse.tower-unit-selected-svg-path {
 	position: absolute;
 	width: 100%;
 	z-index: 1;
-	transition:all 0.5s ease-in-out;
-	-moz-transition:all 0.5s ease-in-out;
-	-ms-transition:all 0.5s ease-in-out;
-	-o-transition:all 0.5s ease-in-out;
-	-webkit-transition:all 0.5s ease-in-out;
-    
 }
 .img-container img {
 	position: absolute;
-	transition:all 0.5s ease-in-out;
-	-moz-transition:all 0.5s ease-in-out;
-	-ms-transition:all 0.5s ease-in-out;
-	-o-transition:all 0.5s ease-in-out;
-	-webkit-transition:all 0.5s ease-in-out;
 }
 
 /* Tower Details */
@@ -149,7 +138,7 @@ ellipse.tower-unit-selected-svg-path {
 	padding: 0;
 	border-bottom: 1px solid #666;
 }
-.tooltip-detail .detail-container table{ width:100%;}
+.tooltip-detail .detail-container table{ width:100%; border-collapse: collapse;}
 .tooltip-detail .detail-container table td{ padding:8px 10px; min-width:30px; border-bottom:1px solid #7e7e7e;}
 .tooltip-detail .detail-container table tr:last-child td{ border-bottom:0;}
 .towerunit-detail-container{
@@ -178,6 +167,18 @@ ellipse.tower-unit-selected-svg-path {
 	border-right: 4px solid limegreen;
 }
 .apt-unavailable {
+	border-right: 4px solid crimson;
+}
+.apt-available-border-left {
+	border-left: 4px solid limegreen;
+}
+.apt-unavailable-border-left {
+	border-left: 4px solid crimson;
+}
+.apt-available-border-right {
+	border-right: 4px solid limegreen;
+}
+.apt-unavailable-border-right {
 	border-right: 4px solid crimson;
 }
 .apt-available-color{
@@ -923,15 +924,15 @@ ellipse.tower-unit-selected-svg-path {
 .show-details .tSelected-detail{
 	animation: list-in 0.3s ease-in-out both;
     animation: list-in 0.3s ease-in-out both;
-	animation-delay:0.9s;
+	animation-delay:0.7s;
 	
 	-moz-animation: list-in 0.3s ease-in-out both;
     -moz-animation: list-in 0.3s ease-in-out both;
-	-moz-animation-delay:0.9s;
+	-moz-animation-delay:0.7s;
 	
 	-webkit-animation: list-in 0.3s ease-in-out both;
     -webkit-animation: list-in 0.3s ease-in-out both;
-	-webkit-animation-delay:0.9s;
+	-webkit-animation-delay:0.7s;
 }
 .hide-details .detail-container,
 .hide-details  .tSelected-detail{
