@@ -78,6 +78,18 @@ var BaseView = (function() {
         },
         bottomFormGroupContainer: function(){
             var _this = this;
+            var compareList = this._model.getCompareList(),
+            compareList_length = compareList ? compareList.length : 0,
+            compare_li = '';
+
+            if(compareList_length){
+                compare_li = '<ul>';
+                for(var i=0; i<compareList_length; i++){
+                    compare_li += '<li>'+compareList[i].unitName+'</li>';
+                }
+                compare_li += '</ul>';
+            }
+
             var htmlCode = '<div class="pro-contact-actions">'
                 +'<div class="form-pop-up">'
 					+'<span class="close-form">x</span>'
@@ -96,12 +108,7 @@ var BaseView = (function() {
                         +'<p>Unit plans you like &amp; shortlisted'
                         +'</p>'
                         +'<div class="unit-box fleft">'
-                            +'<ul>'
-                                +'<li>A - 1109</li>'
-                                +'<li>A - 1109</li>'
-                                +'<li>A - 1109</li>'
-                                +'<li>A - 1109</li>'
-                            +'</ul>'
+                        +compare_li
                         +'</div>'
                         +'<div class="clear-fix"></div>'
                         +'<div id="'+config.unitCompareButtonId+'" class="submit"><input type="submit" />View Liked Plans <span>&rarr;</span></div>'
