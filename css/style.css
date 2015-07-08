@@ -677,7 +677,7 @@ ellipse.tower-unit-selected-svg-path {
 	cursor: pointer;
 }
 .compare-units-container .compare-unit-box{
-	position: absolute; width:50%; height:100%;
+	position: relative; width: 50%; margin-top: 9%; margin-bottom: 9%; display: inline-block;
 }
 .compare-units-container .compare-unit-box-right{
 	right: 0;
