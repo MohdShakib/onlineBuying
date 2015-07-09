@@ -51,11 +51,6 @@ var UnitplaninfoView = (function() {
         this._unitMenuClick = new Event(this);
         this._sunlightMenuClick = new Event(this);
         this._floorPlanMenuClick = new Event(this);
-
-        // Event Listeners
-        window.addEventListener('resize', function() {
-            _this.dynamicResizeContainers();
-        });
     }
 
     UnitplaninfoView.prototype = {
@@ -76,8 +71,8 @@ var UnitplaninfoView = (function() {
             $('#' + config.filterMenuContainerId).hide();
             if (!$('#' + config.selectedUnitContainerId).length) {
                 $('#' + config.mainContainerId).append("<div class='selected-unit-container transition' id='" + config.selectedUnitContainerId + "'></div>");
-                this.dynamicResizeContainers();
-				
+                // Add resize event listener
+                utils.addResizeEventListener(this.dynamicResizeContainers);
             }
         },
         dynamicResizeContainers: function() {

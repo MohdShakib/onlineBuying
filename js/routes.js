@@ -42,22 +42,16 @@ var initializeRoutes = (function() {
                 masterplanView = new MasterplanView(masterplanModel);
                 masterplanController = new MasterplanController(masterplanModel, masterplanView);
                 masterplanController.generateTemplate();
-
-                utils.dynamicResizeContainers(null);
-                window.addEventListener('resize', function() {
-                    utils.dynamicResizeContainers(null);
-                });
+                // Add resize event listener
+                utils.addResizeEventListener(utils.defaultDynamicResizeContainers);
             }
         }
 
         routes[towerRoute] = {
             on: function(projectName, projectId, towerName) {
                 onTowerselectedRoute(projectName, projectId, towerName);
-
-                utils.dynamicResizeContainers(null);
-                window.addEventListener('resize', function() {
-                    utils.dynamicResizeContainers(null);
-                });
+                // Add resize event listener
+                utils.addResizeEventListener(utils.defaultDynamicResizeContainers);
             }
         }
 
