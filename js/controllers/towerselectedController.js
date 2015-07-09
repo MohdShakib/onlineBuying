@@ -87,6 +87,7 @@ var TowerselectedController = (function() {
             }
             this._view.toggleFilterOption(element);
             this.updateFilteredListings();
+            this._view.updateFilterCount();
         },
         updateFilteredListings: function() {
             var listings = this._model.getData().listings,

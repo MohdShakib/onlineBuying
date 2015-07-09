@@ -115,6 +115,12 @@ table td, table tr {
 .hidden {
 	display: none;
 }
+.fade-out {
+	opacity: 0;
+}
+.fade-in {
+	opacity: 1;
+}
 .fade-image {
 	opacity: 0.3;
 }
@@ -368,17 +374,18 @@ ellipse.tower-unit-selected-svg-path {
 	top: 0px;
 	left: 45px;
 	border-left: 1px solid rgba(255,255,255,0.3);
-	opacity: 0;
-	visibility: hidden;
-	transition:opacity 0.5s ease-in-out;
-	-moz-transition:opacity 0.5s ease-in-out;
-	-ms-transition:opacity 0.5s ease-in-out;
-	-o-transition:opacity 0.5s ease-in-out;
-	-webkit-transition:opacity 0.5s ease-in-out;
+	display: none;
 }
-.tower-menu-container .menu-items .menu-item-container:hover .menu-item-options {
-	opacity: 1;
-	visibility: visible;
+.menu-item-container .filter-count {
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	padding: 2px;
+	font-size: 11px;
+	top: 12px;
+	left: 45px;
+	background-color: #333;
+	z-index: -1;
 }
 .menu-item-options table {
 	width: 100%;
@@ -500,7 +507,7 @@ ellipse.tower-unit-selected-svg-path {
 	position:absolute;
 	z-index:2;
 	padding:11px 0;
-	box-shadow:0 0 8px rgba(0,0,0,0.8);   
+	box-shadow:0 0 8px rgba(0,0,0,0.3);   
 }
 .rotation-btn-container.right-btn button span{ margin-left:5px;}
 .rotation-btn-container:hover button{
@@ -522,9 +529,9 @@ ellipse.tower-unit-selected-svg-path {
 	background: white;
 	width: 60%;
 	height: 100%;
-	right: 0;
+	right: -60%;
 }
-.selected-unit-container.unit-slide-out{
+.selected-unit-container.unit-slide-in {
 	right:0;
 }
 .unit-view-tabs{
