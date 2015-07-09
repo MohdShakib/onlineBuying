@@ -1,6 +1,18 @@
 *{ margin:0; padding:0;}
 *:focus{ outline:none;}
 @font-face {
+    font-family: 'proxima_nova_rgregular';
+    src: url('fonts/ProximaNova-Reg-webfont.eot');
+    src: url('fonts/ProximaNova-Reg-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/ProximaNova-Reg-webfont.woff2') format('woff2'),
+         url('fonts/ProximaNova-Reg-webfont.woff') format('woff'),
+         url('fonts/ProximaNova-Reg-webfont.ttf') format('truetype'),
+         url('fonts/ProximaNova-Reg-webfont.svg#proxima_nova_rgregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
 	font-family: 'icomoon';
 	src:url('fonts/propicons_mobile.eot?-wxk34n');
 	src:url('fonts/propicons_mobile.eot?#iefix-wxk34n') format('embedded-opentype'),
@@ -60,7 +72,7 @@
 
 body {
 	margin: 0;
-	font-family: verdana;
+	font-family: 'proxima_nova_rgregular';
 	color: #333;
 	background: black;
 }
@@ -352,11 +364,11 @@ ellipse.tower-unit-selected-svg-path {
 	border-left: 1px solid rgba(255,255,255,0.3);
 	opacity: 0;
 	visibility: hidden;
-	transition:all 0.5s ease-in-out;
-	-moz-transition:all 0.5s ease-in-out;
-	-ms-transition:all 0.5s ease-in-out;
-	-o-transition:all 0.5s ease-in-out;
-	-webkit-transition:all 0.5s ease-in-out;
+	transition:opacity 0.5s ease-in-out;
+	-moz-transition:opacity 0.5s ease-in-out;
+	-ms-transition:opacity 0.5s ease-in-out;
+	-o-transition:opacity 0.5s ease-in-out;
+	-webkit-transition:opacity 0.5s ease-in-out;
 }
 .tower-menu-container .menu-items .menu-item-container:hover .menu-item-options {
 	opacity: 1;
@@ -455,6 +467,7 @@ ellipse.tower-unit-selected-svg-path {
 	right:-150px;
 	width:150px;
 	opacity:0;
+	text-shadow:0 0 3px rgba(0,0,0,0.3);
 }
 .rotation-btn-container.left-btn .rotation-title{
 	right:inherit;
@@ -480,7 +493,8 @@ ellipse.tower-unit-selected-svg-path {
 	transition:all 0.3s ease-in-out;
 	position:absolute;
 	z-index:2;
-	padding:11px 0;   
+	padding:11px 0;
+	box-shadow:0 0 8px rgba(0,0,0,0.8);   
 }
 .rotation-btn-container.right-btn button span{ margin-left:5px;}
 .rotation-btn-container:hover button{
@@ -795,7 +809,7 @@ ellipse.tower-unit-selected-svg-path {
 	color: #FFF;
 	height: 20px;
 	width: 20px;
-	line-height: 20px;
+	line-height: 22px;
 	font-size: 12px;
 	text-align: center;
 	border: 1px solid #FFF;
