@@ -75,8 +75,9 @@ var UnitplaninfoView = (function() {
         initView: function(data, rotationdata, rootdata) {
             $('#' + config.filterMenuContainerId).hide();
             if (!$('#' + config.selectedUnitContainerId).length) {
-                $('#' + config.mainContainerId).append("<div class='selected-unit-container' id='" + config.selectedUnitContainerId + "'></div>");
+                $('#' + config.mainContainerId).append("<div class='selected-unit-container transition' id='" + config.selectedUnitContainerId + "'></div>");
                 this.dynamicResizeContainers();
+				
             }
         },
         dynamicResizeContainers: function() {
@@ -95,7 +96,35 @@ var UnitplaninfoView = (function() {
                     htmlCode += containerMap[containerList[key]];
                 }
             }
+			htmlCode += '<div class="unit-view-tabs">'
+							+'<div class="special-offers">'
+								+'<p><span class="icon icon-smile"></span></p>'
+								+'<p>No Pre-EMI offer and Discount Rs. 4,53,000/</p>'
+							+'</div>'
+							+'<div class="book-com-box">'
+								+'<div class="like-box">'
+									+'<a href="#">'
+										+'<span class="icon icon-heart"></span>'
+										+'<label class="like-count br50">+</label>'
+									+'</a>'
+								+'</div>'
+								+'<div class="book-now">'
+									+'<a href="#">Book online now <span>Rs. 15000/- (Refundable)</span></a>'
+								+'</div>'
+							+'</div>'
+						+'</div>';
+			htmlCode +='<div class="compare-box">'
+							+'<div class="com-pro-box">'
+								+'<p class="slected">A-1106</p>'
+								+'<img src="/zip-file/img/club_house.jpg" alt="" />'
+							+'</div>'
+							+'<div class="com-pro-box">'
+								+'<p class="selected">A-1106</p>'
+								+'<img src="/zip-file/img/club_house.jpg" alt="" />'
+							+'</div>'	
+					 +'</div>'
             $('#' + config.selectedUnitContainerId).html(htmlCode);
+			
             this._elements = getElements();
         },
         unitCloseContainer: function(data, rotationdata, rootdata) {
