@@ -1,4 +1,9 @@
-*{ margin:0; padding:0;}
+*{
+	 margin:0; padding:0;
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
 *:focus{ outline:none;}
 @font-face {
     font-family: 'proxima_nova_rgregular';
@@ -311,6 +316,7 @@ ellipse.tower-unit-selected-svg-path {
 	line-height: 45px;
 	cursor: pointer;
 }
+.tower-menu-container .menu-icon.menu-call{ background:none;}
 .tower-menu-container .menu-icon a {
 	color: white;
 	text-decoration: none;
@@ -550,7 +556,7 @@ ellipse.tower-unit-selected-svg-path {
 
 .like-box{ float:left;height:50px; margin-right:1px;  cursor: pointer;}
 .like-box a{ display:block; padding:14px 14px 10px 14px;background:#414141; color:#fff; position:relative; transition:all 0.3s ease-in-out; -moz-transition:all 0.3s ease-in-out; -webkit-transition:all 0.3s ease-in-out;}
-.like-box.selected a, .like-box:hover a{ background:#000; color:#ff8714; box-shadow:0 4px #ff8714 inset;}
+.like-box.selected a, .like-box:hover a{ background:#121212; color:#ff8714; box-shadow:0 4px #ff8714 inset;}
 .like-box a label{ right:8px; top:22px; cursor: pointer;}
 .like-box a label:before{ content:'+';}
 .like-box.selected a label:before{ content:'-';}
@@ -558,7 +564,7 @@ ellipse.tower-unit-selected-svg-path {
 .book-now a{ color:#fff; padding:8px 11px; display:block; font-size:12px;}
 .book-now a span{ display:block; background:#414141; padding:3px 5px;}
 /*----compare box---*/
-.compare-box{ position:absolute; width:100%; left:0; bottom:1px; text-align:center; z-index:99999;}
+.compare-container{ position:absolute; width:100%; left:0; bottom:1px; text-align:center; z-index:99999;}
 .com-pro-box{ width:94px; display:inline-block; margin:0 1px;}
 .com-pro-box p{ font-size:12px; background:#414141; color:#c4c5c0; width:100%; padding:5px 0;}
 .com-pro-box p.selected{ background:#fab53e; color:#414141;}
