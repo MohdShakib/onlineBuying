@@ -531,10 +531,10 @@ ellipse.tower-unit-selected-svg-path {
 	padding:11px; color:#fff; font-size:12px;
 }
 .book-com-box{ position:absolute; right:0; bottom:0; overflow:hidden;}
-.like-box{ float:left;height:50px;}
+.like-box{ float:left;height:50px; cursor: pointer;}
 .like-box a{ display:block; padding:14px 14px 10px 14px;background:#414141; color:#fff; position:relative;}
 .like-box a label{ right:8px; top:22px;}
-.book-now{ float:right; background:limegreen; height:50px;}
+.book-now{ float:right; background:limegreen; height:50px; cursor: pointer;}
 .book-now a{ color:#fff; padding:8px 11px; display:block; font-size:12px;}
 .book-now a span{ display:block; background:#414141; padding:3px 5px;}
 /*----compare box---*/
@@ -721,6 +721,7 @@ ellipse.tower-unit-selected-svg-path {
 	padding: 10px;
 	margin: 5px 5px 5px 1px; 
 	cursor: pointer;
+	z-index: 10;
 }
 .compare-units-container .compare-unit-box{
 	position: absolute; width: 50%; display: inline-block;
