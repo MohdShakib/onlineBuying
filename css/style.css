@@ -27,6 +27,9 @@
 .icon-heart-o:before {
     content: "\e612"
 }
+.icon-heart:before {
+    content: "\f08a"
+}
 .icon-phone:before {
     content: "\f095"
 }
@@ -50,6 +53,9 @@
 }
 .icon-previous:before {
     content: "\f053"
+}
+.icon-smile:before {
+    content: "\f118"
 }
 
 body {
@@ -494,9 +500,49 @@ ellipse.tower-unit-selected-svg-path {
 	background: white;
 	width: 60%;
 	height: 100%;
-	right: 0px;
+	right: 0;
 }
-
+.selected-unit-container.unit-slide-out{
+	right:0;
+}
+.unit-view-tabs{
+	position:absolute; bottom:0; left:0; width:100%; z-index:2;
+}
+.unit-view-tabs.top-view{ bottom:inherit; top:100px; width:54%; left:inherit; right:0;}
+.special-offers{
+	background:#fab53e;
+	position:absolute;
+	left:0;
+	bottom:0;
+	box-shadow:10px 0 0 #e76d00 inset;
+	width:223px;
+	padding-left:10px;
+	height:50px;
+}
+.special-offers:before{
+	content:'';
+	width:5px; height:5px; background:#fff; border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50%; position:absolute; top:50%; left:2px; margin-top:-2.5px;
+}
+.special-offers p:first-child{
+	float:left;
+}
+.special-offers p:first-child span{ margin-top:3px;}
+.special-offers p{
+	padding:11px; color:#fff; font-size:12px;
+}
+.book-com-box{ position:absolute; right:0; bottom:0; overflow:hidden;}
+.like-box{ float:left;height:50px;}
+.like-box a{ display:block; padding:14px 14px 10px 14px;background:#414141; color:#fff; position:relative;}
+.like-box a label{ right:8px; top:22px;}
+.book-now{ float:right; background:limegreen; height:50px;}
+.book-now a{ color:#fff; padding:8px 11px; display:block; font-size:12px;}
+.book-now a span{ display:block; background:#414141; padding:3px 5px;}
+/*----compare box---*/
+.compare-box{ position:absolute; width:100%; left:0; bottom:0; text-align:center; z-index:2;}
+.com-pro-box{ width:94px; height:94px; display:inline-block; margin:0 1px;}
+.com-pro-box p{ font-size:12px; background:#414141; color:#c4c5c0; width:100%; padding:5px 0;}
+.com-pro-box p.selected{ background:#fab53e; color:#414141;}
+.com-pro-box img{ display:block; width:94px; height:76px;}
 /* Unit Close */
 .unit-close-container {
 	height: 50px;
