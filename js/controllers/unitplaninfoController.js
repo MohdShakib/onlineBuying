@@ -52,7 +52,7 @@ var UnitplaninfoController = (function() {
             //shortlisting button
             this._view._likeBoxClick.attach(function(sender, element){
                 var data = _this._model.getRotationdata();
-                utils.likeBoxClicked(element, data.unitIdentifier, data.towerIdentifier, data.rotationAngle);
+                utils.likeBoxClicked(element, data.unitIdentifier, data.unitName, data.towerIdentifier, data.rotationAngle);
             });
         },
         generateTemplate: function(data, rootdata, elements) {

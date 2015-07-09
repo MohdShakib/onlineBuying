@@ -50,6 +50,17 @@ var BaseView = (function() {
                 }
             }
         },
+        updateCompareUnitBox: function(){
+            var compareList = this._model.getCompareList(), htmlCode =  '';
+            for(var i=0; i<compareList.length; i++){
+                var imageUrl = compareList[i].unitTypeData.unitImageUrl;
+                htmlCode += '<div class="com-pro-box">'
+                    +'<p class="selected">'+compareList[i].unitName+'</p>'
+                    +'<img src="'+imageUrl+'" />'
+                +'</div>';
+            }
+            $('.compare-unit-box').html(htmlCode);
+        },
         compareUnitsContainer: function(){
             var compareList = this._model.getCompareList();
             var rootdata = this._model.getRootdata();
@@ -58,7 +69,7 @@ var BaseView = (function() {
         
             htmlCode += '<div class="compare-back-button">Back</div>';
 
-            htmlCode +='<div class="compare-box">';
+            htmlCode +='<div class="compare-container">';
             for(var i=0; i<compareList.length; i++){
                 var imageUrl = compareList[i].unitTypeData.unitImageUrl;
                 htmlCode += '<div class="com-pro-box">'
@@ -101,6 +112,7 @@ var BaseView = (function() {
             }
         
             this._elements.compareUnitsContainer.html(htmlCode);
+            //this.updateCompareUnitBox();
             this.compareUnitsContainerEvents();
             this.unit3dSvgContainer(0);
             this.unit3dSvgContainer(1);
@@ -147,20 +159,6 @@ var BaseView = (function() {
         },
         bottomFormGroupContainer: function(){
             var _this = this;
-            var compareList = this._model.getCompareList(),
-            compareList_length = compareList ? compareList.length : 0,
-            compare_li = '';
-
-            if(compareList_length){
-                compare_li = '<ul>';
-                for(var i=0; i<compareList_length; i++){
-                    compare_li += '<li>'+compareList[i].unitName+'<span>x</span></li>';
-                }
-                compare_li += '</ul>';
-            }else{
-                compare_li += '<p>Nothing To Compare</p>';
-            }
-
             var htmlCode = '<div class="pro-contact-actions">'
                 +'<div class="form-pop-up">'
 					+'<span class="close-form">x</span>'
@@ -178,8 +176,7 @@ var BaseView = (function() {
                     +'<div class="compare-box">'
                         +'<p>Unit plans you like &amp; shortlisted'
                         +'</p>'
-                        +'<div class="unit-box fleft">'
-                        +compare_li
+                        +'<div class="unit-box fleft" id="'+config.shortListedUnitListId+'">'
                         +'</div>'
                         +'<div class="clear-fix"></div>'
                         +'<div id="'+config.unitCompareButtonId+'" class="submit"><input type="submit" />View Liked Plans <span>&rarr;</span></div>'
@@ -226,6 +223,7 @@ var BaseView = (function() {
             +'</div>';
 
             this._elements.bottomFormGroupContainer.html(htmlCode);
+            utils.updateShortListedList();
             this.bottomFormGroupContainerEvents();
         },
         bottomFormGroupContainerEvents: function(){
@@ -266,6 +264,14 @@ var BaseView = (function() {
             $(element).addClass('active');
         },
         unitCompareButtonClicked: function(){
+
+            var comparedItems = utils.getComparedItems('shortlistedItems'),
+            length = comparedItems.length;
+
+            if(!(comparedItems && comparedItems.length > 1)){
+                return;
+            }
+
             this.formPopupCloseClicked();
             $('#'+config.compareUnitscontainerId).removeClass('hidden');
         },

@@ -190,6 +190,7 @@ var utils = (function() {
                 $(element).addClass('selected');
                 utils.addToShortListed(unitIdentifier, towerIdentifier, rotationAngle);
             }
+            utils.updateShortListedList();
         },
         removeFromShortListed : function(unitIdentifier){
             var comparedItems = utils.getComparedItems('shortlistedItems'),
@@ -207,7 +208,7 @@ var utils = (function() {
                 localStorage.setItem('shortlistedItems',comparedItems);
             }
         },
-        addToShortListed: function(unitIdentifier, towerIdentifier, rotationAngle){
+        addToShortListed: function(unitIdentifier, unitName, towerIdentifier, rotationAngle){
             var comparedItems = utils.getComparedItems('shortlistedItems'),
             length = comparedItems.length, itemIndex = -1;
             for(var i=0; i<length; i++){
@@ -220,12 +221,27 @@ var utils = (function() {
             if(itemIndex == -1){
                 comparedItems.push({
                     unitIdentifier: unitIdentifier,
+                    unitName: unitName,
                     towerIdentifier: towerIdentifier,
                     rotationAngle: rotationAngle
                 });
                 comparedItems = JSON.stringify(comparedItems);
                 localStorage.setItem('shortlistedItems',comparedItems);
             }
+        },
+        updateShortListedList: function(){
+            var comparedItems = utils.getComparedItems('shortlistedItems'),
+            length = comparedItems.length, htmlCode = '';
+            if(length){
+                htmlCode = '<ul>';
+                for(var i=0; i<length; i++){
+                    htmlCode += '<li>'+comparedItems[i].unitName+'<span>x</span></li>';
+                }
+                htmlCode += '</ul>';
+            }else{
+                htmlCode += '<p>Nothing To Compare</p>';
+            }
+            $('#'+config.shortListedUnitListId).html(htmlCode);
         }
     }
 

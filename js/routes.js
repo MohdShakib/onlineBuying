@@ -17,10 +17,12 @@ var initializeRoutes = (function() {
         // dummy data to check..
         var comparedItems = [{
             unitIdentifier: 'a-0003',
+            unitName: 'A-0003',
             towerIdentifier: 'tower-a',
             rotationAngle: '0'
         },{
             unitIdentifier: 'a-0303',
+            unitName: 'A-3003',
             towerIdentifier: 'tower-a',
             rotationAngle: '0'
         }];
