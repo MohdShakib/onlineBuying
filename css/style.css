@@ -506,9 +506,9 @@ ellipse.tower-unit-selected-svg-path {
 	right:0;
 }
 .unit-view-tabs{
-	position:absolute; bottom:0; left:0; width:100%; z-index:2;
+	position:absolute; bottom:1px; left:0; width:100%; z-index:999999;
 }
-.unit-view-tabs.top-view{ bottom:inherit; top:100px; width:54%; left:inherit; right:0;}
+.unit-view-tabs.top-view{ bottom:inherit; top:101px; width:443px; left:inherit; right:1px;}
 .special-offers{
 	background:#fab53e;
 	position:absolute;
@@ -531,14 +531,17 @@ ellipse.tower-unit-selected-svg-path {
 	padding:11px; color:#fff; font-size:12px;
 }
 .book-com-box{ position:absolute; right:0; bottom:0; overflow:hidden;}
-.like-box{ float:left;height:50px;}
-.like-box a{ display:block; padding:14px 14px 10px 14px;background:#414141; color:#fff; position:relative;}
+.like-box{ float:left;height:50px; margin-right:1px;}
+.like-box a{ display:block; padding:14px 14px 10px 14px;background:#414141; color:#fff; position:relative; transition:all 0.3s ease-in-out; -moz-transition:all 0.3s ease-in-out; -webkit-transition:all 0.3s ease-in-out;}
+.like-box.selected a, .like-box:hover a{ background:#000; color:#ff8714; box-shadow:0 4px #ff8714 inset;}
 .like-box a label{ right:8px; top:22px;}
+.like-box a label:before{ content:'+';}
+.like-box.selected a label:before{ content:'-';}
 .book-now{ float:right; background:limegreen; height:50px;}
 .book-now a{ color:#fff; padding:8px 11px; display:block; font-size:12px;}
 .book-now a span{ display:block; background:#414141; padding:3px 5px;}
 /*----compare box---*/
-.compare-box{ position:absolute; width:100%; left:0; bottom:0; text-align:center; z-index:2;}
+.compare-box{ position:absolute; width:100%; left:0; bottom:1px; text-align:center; z-index:99999;}
 .com-pro-box{ width:94px; height:94px; display:inline-block; margin:0 1px;}
 .com-pro-box p{ font-size:12px; background:#414141; color:#c4c5c0; width:100%; padding:5px 0;}
 .com-pro-box p.selected{ background:#fab53e; color:#414141;}
