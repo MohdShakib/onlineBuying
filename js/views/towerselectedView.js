@@ -266,7 +266,7 @@ var TowerselectedView = (function() {
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.filters.resetClass + "'> R </div></td></tr>";
             code += "</table></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
-            code += "<tr><td class='menu-call menu-icon'> C </td></tr>";
+            code += "<tr><td class='menu-call menu-icon'>&nbsp;</td></tr>";
             code += "</table>";
             this._elements.filterMenuContainer.html(code);
             this.filterMenuContainerEvents();
