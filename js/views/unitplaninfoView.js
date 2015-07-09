@@ -113,7 +113,7 @@ var UnitplaninfoView = (function() {
 								+'</div>'
 							+'</div>'
 						+'</div>';
-			htmlCode +='<div class="compare-box">'
+			/*htmlCode +='<div class="compare-box">'
 							+'<div class="com-pro-box">'
 								+'<p class="slected">A-1106</p>'
 								+'<img src="/zip-file/img/club_house.jpg" alt="" />'
@@ -123,7 +123,7 @@ var UnitplaninfoView = (function() {
 								+'<img src="/zip-file/img/club_house.jpg" alt="" />'
 							+'</div>'	
 					 +'</div>'
-            $('#' + config.selectedUnitContainerId).html(htmlCode);
+*/            $('#' + config.selectedUnitContainerId).html(htmlCode);
 			
             this._elements = getElements();
         },
