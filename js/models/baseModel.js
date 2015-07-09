@@ -8,23 +8,15 @@ var BaseModel = (function() {
 
     function BaseModel(rootdata) {
         this._rootdata = rootdata;
-        this._comparedItems = [{
-            unitIdentifier: 'a-0003',
-            towerIdentifier: 'tower-a',
-            rotationAngle: '0'
-        },{
-            unitIdentifier: 'a-0303',
-            towerIdentifier: 'tower-a',
-            rotationAngle: '0'
-        }];
-        //this._comparedItems = [];
-
+        this._comparedItems = utils.getComparedItems();
     }
 
     BaseModel.prototype = {
         getCompareList: function() {
-            if (!this._comparedItems) {
-                return {};
+
+            this._comparedItems = utils.getComparedItems();
+            if (!this._comparedItems && this._comparedItems.length) {
+                return [];
             }
 
             var data = [], item, eachItem;

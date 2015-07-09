@@ -78,7 +78,6 @@ var getProjectData = (function() {
                     unitInfo.unitSvgOnTower = unitSvgOnTower;
                     if (tower && tower.rotationAngle[unitInfo.rotationAngle] && unitInfo.rotationAngle) {
                         tower.rotationAngle[unitInfo.rotationAngle].listing[unitIdentifier] = unitInfo;
-                        delete unitInfo.rotationAngle;
                     } else if (tower && tower.rotationAngle && unitInfo.rotationAngle) {
                         tower.rotationAngle[unitInfo.rotationAngle] = {};
                         tower.rotationAngle[unitInfo.rotationAngle].towerImageUrl = zipImagePath + unitInfo.towerImageName;

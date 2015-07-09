@@ -36,6 +36,8 @@ var BaseView = (function() {
         this._compareBackButtonClick = new Event(this);
         this._unitCompareButtonClick = new Event(this);
         this._formPopupCloseClick = new Event(this);
+        this._unitComponentMouseEnter = new Event(this);
+        this._unitComponentMouseLeave = new Event(this);
     }
 
     BaseView.prototype = {
@@ -71,6 +73,7 @@ var BaseView = (function() {
                 var borderClass = !i ? 'compare-unit-box-right-border' : 'compare-unit-box-right';
                 var imageUrl = item ? item.unitTypeData.unitImageUrl : undefined; ///zip-file/img/2bhk-type1-1105-2.jpg
                 htmlCode += '<div  class="compare-unit-box '+borderClass+'">'
+                htmlCode += '<div class="tower-unit-detail-container ' + config.unitDataContainer + '"></div>'
                     +'<div class="compare-unit-box-detail top-right-component"><span>'+item.unitName+' Av</span>-<span>'+item.bedrooms+'</span>-<span>'+item.size+'</span>-<span>'+item.price+'</span>-<span>'+item.floor+'</span></div>';
                     
                     htmlCode += '<div class="unit-view-tabs top-view top-right-component">'
@@ -111,22 +114,33 @@ var BaseView = (function() {
         unit3dSvgContainer: function(index) {
             var compareList = this._model.getCompareList();
             var unitTypeData = compareList[index].unitTypeData;
-            var svgData = unitTypeData.svgs,
-                svgs_count = svgData && svgData.length ? svgData.length : 0;
-
-            var svgCode = '';
-            for (var i = 0; i < svgs_count; i++) {
-                var svgObj = svgData[i];
-                if (svgObj.type == 'link') {
-                    svgCode += "<circle data-name='" + svgObj.name + "' data-type='" + svgObj.type + "' data-details='" + svgObj.details + "' cx='" + svgObj.svgPath.split(' ')[0] + "' cy='" + svgObj.svgPath.split(' ')[1] + "' r='1'  />";
-                } else {
-                    svgCode += "<polygon data-name='" + svgObj.name + "' data-type='" + svgObj.type + "' data-details='" + svgObj.details + "'   points=\"" + svgObj.svgPath + "\" />";
-                }
-            }
-
-            //this._elements.unit3dSvgContainer.html(svgCode);
+            var svgCode = utils.getUnit3dSvgPolygonHtml(unitTypeData);
             $('#unit-compare-svg-container'+index).html(svgCode);
-            //this.unit3dSvgContainerEvents();
+            this.unit3dSvgContainerEvents();
+        },
+        unit3dSvgContainerEvents: function(){
+            var _this = this;
+            this._elements.compareUnitsContainer.off('mouseenter').on('mouseenter', 'polygon', function(event) {
+                //here this refers to element
+                _this._unitComponentMouseEnter.notify({
+                    element: this,
+                    event: event
+                });
+            });
+
+            this._elements.compareUnitsContainer.off('mouseleave').on('mouseleave', 'polygon', function(event) {
+                //here this refers to element
+                _this._unitComponentMouseLeave.notify();
+            });
+        },
+        unitComponentMouseEnter: function(params) {
+            var reference = $(params.element).parents('.compare-unit-box').children('.tower-unit-detail-container');
+            if(reference){
+                utils.unitComponentMouseEnter(params, reference);
+            }
+        },
+        unitComponentMouseLeave: function() {
+            $('.tower-unit-detail-container').html('');
         },
         compareBackButtonClicked: function(){
             $('#'+config.compareUnitscontainerId).addClass('hidden');
@@ -140,7 +154,7 @@ var BaseView = (function() {
             if(compareList_length){
                 compare_li = '<ul>';
                 for(var i=0; i<compareList_length; i++){
-                    compare_li += '<li>'+compareList[i].unitName+'</li>';
+                    compare_li += '<li>'+compareList[i].unitName+'<span>x</span></li>';
                 }
                 compare_li += '</ul>';
             }else{

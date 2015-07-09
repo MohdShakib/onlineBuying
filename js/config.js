@@ -47,6 +47,7 @@ var config = (function(){
 		compareBackButtonClass: "compare-back-button",
 		compareUnitscontainerId: 'compare-units-container',
 		unitCompareButtonId: 'unit-compare-button',
+		compareUnitComponentDetailContainer: 'compare-unit-component-detail-container',
 		
 		// Masterplan
 		imgContainerClass : "menu-mapped-image",

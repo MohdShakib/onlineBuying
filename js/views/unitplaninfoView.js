@@ -16,7 +16,7 @@ var UnitplaninfoView = (function() {
         'walkthroughContainer': '<div class="walkthrough-container fpwt-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="walkthrough-container"></div>',
         'unit3dSvgContainer': '<div class="fp-container ' + config.unitDataContainer + '"><svg class="svg-container unit-svg-container" id="unit-3d-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
         'unit2dSvgContainer': '<div class="' + config.hideClass + ' fp2d-container ' + config.unitDataContainer + '"><svg class="svg-container unit-svg-container" id="unit-2d-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
-        'unitComponentDetailContainer': '<div class="tower-unit-detail-container fp-container ' + config.unitDataContainer + '" id="tower-detail-container"></div>',
+        'unitComponentDetailContainer': '<div class="tower-unit-detail-container fp-container ' + config.unitDataContainer + '" id="'+config.towerDetailContainerId+'"></div>',
         'clusterPlanContainer': '<div class="cluster-plan-container cp-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="cluster-plan-container"></div>',
         'priceBreakupContainer': '<div class="price-breakup-container pb-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="price-breakup-container"></div>',
         'specificationContainer': '<div class="specification-container sf-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="specification-container"></div>'
@@ -32,7 +32,7 @@ var UnitplaninfoView = (function() {
             'walkthroughContainer': $('#walkthrough-container'),
             'unit3dSvgContainer': $('#unit-3d-svg-container'),
             'unit2dSvgContainer': $('#unit-2d-svg-container'),
-            'unitComponentDetailContainer': $('#tower-detail-container'),
+            'unitComponentDetailContainer': $('#'+config.towerDetailContainerId),
             'clusterPlanContainer': $('#cluster-plan-container'),
             'priceBreakupContainer': $('#price-breakup-container'),
             'specificationContainer': $('#specification-container')
@@ -51,6 +51,7 @@ var UnitplaninfoView = (function() {
         this._unitMenuClick = new Event(this);
         this._sunlightMenuClick = new Event(this);
         this._floorPlanMenuClick = new Event(this);
+        this._likeBoxClick = new Event(this);
     }
 
     UnitplaninfoView.prototype = {
@@ -85,32 +86,40 @@ var UnitplaninfoView = (function() {
             utils.dynamicResizeContainers(towerContainerWidth);
         },
         buildSkeleton: function(containerList) {
-            var key, htmlCode = '';
+            var key, htmlCode = '', data = this._model.getData(), _this = this;
             for (key in containerList) {
                 if (containerList.hasOwnProperty(key) && containerMap[containerList[key]]) {
                     htmlCode += containerMap[containerList[key]];
                 }
             }
+
+            var selectedClass = data.shortListed ? 'selected' : '';
 			htmlCode += '<div class="unit-view-tabs">'
 							+'<div class="special-offers">'
 								+'<p><span class="icon icon-smile"></span></p>'
 								+'<p>No Pre-EMI offer and Discount Rs. 4,53,000/</p>'
 							+'</div>'
 							+'<div class="book-com-box">'
-								+'<div class="like-box">'
-									+'<a href="#">'
+								+'<div class="like-box '+selectedClass+'">'
+									+'<a >'
 										+'<span class="icon icon-heart"></span>'
-										+'<label class="like-count br50">+</label>'
+										+'<label class="like-count br50"></label>'
 									+'</a>'
 								+'</div>'
 								+'<div class="book-now">'
-									+'<a href="#">Book online now <span>Rs. 15000/- (Refundable)</span></a>'
+									+'<a >Book online now <span>Rs. '+data.bookingAmount+'/- (Refundable)</span></a>'
 								+'</div>'
 							+'</div>'
 						+'</div>';
-	
+	       
+
             $('#' + config.selectedUnitContainerId).html(htmlCode);
             this._elements = getElements();
+
+            $('#' + config.selectedUnitContainerId).off('click').on('click', '.like-box', function(){
+                _this._likeBoxClick.notify(this); //this refers to element
+            });
+            
         },
         unitCloseContainer: function(data, rotationdata, rootdata) {
             var code = 'X';
@@ -199,19 +208,7 @@ var UnitplaninfoView = (function() {
         },
         unit3dSvgContainer: function() {
             var unitTypeData = this._model.getUnitTypeData(),
-                svgData = unitTypeData.svgs,
-                svgs_count = svgData && svgData.length ? svgData.length : 0;
-
-            var svgCode = '';
-            for (var i = 0; i < svgs_count; i++) {
-                var svgObj = svgData[i];
-                if (svgObj.type == 'link') {
-                    svgCode += "<circle data-name='" + svgObj.name + "' data-type='" + svgObj.type + "' data-details='" + svgObj.details + "' cx='" + svgObj.svgPath.split(' ')[0] + "' cy='" + svgObj.svgPath.split(' ')[1] + "' r='1'  />";
-                } else {
-                    svgCode += "<polygon data-name='" + svgObj.name + "' data-type='" + svgObj.type + "' data-details='" + svgObj.details + "'   points=\"" + svgObj.svgPath + "\" />";
-                }
-            }
-
+            svgCode = utils.getUnit3dSvgPolygonHtml(unitTypeData);
             this._elements.unit3dSvgContainer.html(svgCode);
             this.unit3dSvgContainerEvents();
         },
@@ -260,30 +257,8 @@ var UnitplaninfoView = (function() {
             });
         },
         unitComponentMouseEnter: function(params) {
-            var dataset = params.element.dataset,
-                towerCode = "<div id='container-detail' class='tooltip-detail'>";
-
-            var info = {
-                'name': dataset.name,
-                'type': dataset.type,
-                'details': dataset.details
-            };
-
-            towerCode += '<div class="towerunit-detail-container">';
-            towerCode += '<div class="towerunit-name">' + info.name + '</div>';
-            towerCode += '<div class="towerunit-detail">' + info.details + '</div>';
-
-            if (this._elements && this._elements.unitComponentDetailContainer) {
-                this._elements.unitComponentDetailContainer.html(towerCode);
-                var offset = this._elements.unitComponentDetailContainer.offset();
-                var left = params.event.clientX - offset.left;
-                var top = params.event.clientY - offset.top;
-
-                $('#container-detail').css("left", left + 'px');
-                $('#container-detail').css("top", top + 'px');
-                // animate
-                window.getComputedStyle(document.getElementById('container-detail')).opacity;
-                document.getElementById('container-detail').style.opacity = "1";
+            if(this._elements && this._elements.unitComponentDetailContainer){
+                utils.unitComponentMouseEnter(params, this._elements.unitComponentDetailContainer);
             }
         },
         unitComponentMouseLeave: function() {

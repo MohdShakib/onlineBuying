@@ -30,6 +30,15 @@ var BaseController = (function() {
             this._view._unitCompareButtonClick.attach(function(sender, element){
                 _this._view.unitCompareButtonClicked(element); 
             });
+
+            // Unit Component
+            this._view._unitComponentMouseEnter.attach(function(sender, params) {
+                _this._view.unitComponentMouseEnter(params);
+            });
+            this._view._unitComponentMouseLeave.attach(function() {
+                _this._view.unitComponentMouseLeave();
+            });
+
             
         },
         generateTemplate: function() {

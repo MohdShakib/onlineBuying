@@ -10,6 +10,18 @@ var UnitplaninfoModel = (function() {
         this._data = data;
         this._rotationdata = rotationdata;
         this._rootdata = rootdata;
+
+        var comparedItems = utils.getComparedItems(),
+        comparedItem_length = comparedItems && comparedItems.length ? comparedItems.length : 0;
+        
+        this._data.shortListed = false;
+        for(var i=0; i < comparedItem_length; i++){
+            if(comparedItems[i].unitIdentifier == this._data.unitIdentifier){
+                this._data.shortListed = true;
+                break;
+            }
+        }
+
     }
 
     UnitplaninfoModel.prototype = {

@@ -48,6 +48,12 @@ var UnitplaninfoController = (function() {
             this._view._floorPlanMenuClick.attach(function(sender, element) {
                 _this._view.selectMenuOption(element, config.floorPlanMenuOptionClass, config.unitDataContainer);
             });
+
+            //shortlisting button
+            this._view._likeBoxClick.attach(function(sender, element){
+                var data = _this._model.getRotationdata();
+                utils.likeBoxClicked(element, data.unitIdentifier, data.towerIdentifier, data.rotationAngle);
+            });
         },
         generateTemplate: function(data, rootdata, elements) {
             this._view.buildView();

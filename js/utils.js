@@ -129,6 +129,103 @@ var utils = (function() {
                 return '';
             }
             return (price/100000)+' Lacs';
+        },
+        getUnit3dSvgPolygonHtml: function(unitTypeData){
+            var svgData = unitTypeData ? unitTypeData.svgs : null,
+                svgs_count = svgData && svgData.length ? svgData.length : 0;
+
+            var svgCode = '';
+            for (var i = 0; i < svgs_count; i++) {
+                var svgObj = svgData[i];
+                if (svgObj.type == 'link') {
+                    svgCode += "<circle data-name='" + svgObj.name + "' data-type='" + svgObj.type + "' data-details='" + svgObj.details + "' cx='" + svgObj.svgPath.split(' ')[0] + "' cy='" + svgObj.svgPath.split(' ')[1] + "' r='1'  />";
+                } else {
+                    svgCode += "<polygon data-name='" + svgObj.name + "' data-type='" + svgObj.type + "' data-details='" + svgObj.details + "'   points=\"" + svgObj.svgPath + "\" />";
+                }
+            }
+
+            return svgCode;
+        },
+        unitComponentMouseEnter: function(params, containerReference){
+            var dataset = params.element.dataset,
+                towerCode = "<div id='container-detail' class='tooltip-detail'>";
+
+            var info = {
+                'name': dataset.name,
+                'type': dataset.type,
+                'details': dataset.details
+            };
+
+            towerCode += '<div class="towerunit-detail-container">';
+            towerCode += '<div class="towerunit-name">' + info.name + '</div>';
+            towerCode += '<div class="towerunit-detail">' + info.details + '</div>';
+
+            if (containerReference) {
+                containerReference.html(towerCode);
+                var offset = containerReference.offset();
+                var left = params.event.clientX - offset.left;
+                var top = params.event.clientY - offset.top;
+
+                $('#container-detail').css("left", left + 'px');
+                $('#container-detail').css("top", top + 'px');
+                // animate
+                window.getComputedStyle(document.getElementById('container-detail')).opacity;
+                document.getElementById('container-detail').style.opacity = "1";
+            }
+        },
+        getComparedItems: function(){
+            var comparedItems = localStorage.getItem('shortlistedItems');
+            if(comparedItems){
+                comparedItems = JSON.parse(comparedItems);
+            }else{
+                comparedItems = [];
+            }
+            return comparedItems;
+        },
+        likeBoxClicked: function(element, unitIdentifier, towerIdentifier, rotationAngle){
+            if($(element).hasClass('selected')){
+                $(element).removeClass('selected');
+                utils.removeFromShortListed(unitIdentifier);
+            }else{
+                $(element).addClass('selected');
+                utils.addToShortListed(unitIdentifier, towerIdentifier, rotationAngle);
+            }
+        },
+        removeFromShortListed : function(unitIdentifier){
+            var comparedItems = utils.getComparedItems('shortlistedItems'),
+            length = comparedItems.length, itemIndex = -1;
+            for(var i=0; i<length; i++){
+                if(comparedItems[i].unitIdentifier == unitIdentifier){
+                    itemIndex = i;
+                    break;
+                }
+            }
+
+            if(itemIndex > -1){
+                comparedItems.splice(itemIndex, 1);
+                comparedItems = JSON.stringify(comparedItems);
+                localStorage.setItem('shortlistedItems',comparedItems);
+            }
+        },
+        addToShortListed: function(unitIdentifier, towerIdentifier, rotationAngle){
+            var comparedItems = utils.getComparedItems('shortlistedItems'),
+            length = comparedItems.length, itemIndex = -1;
+            for(var i=0; i<length; i++){
+                if(comparedItems[i].unitIdentifier == unitIdentifier){
+                    itemIndex = i;
+                    break;
+                }
+            }
+
+            if(itemIndex == -1){
+                comparedItems.push({
+                    unitIdentifier: unitIdentifier,
+                    towerIdentifier: towerIdentifier,
+                    rotationAngle: rotationAngle
+                });
+                comparedItems = JSON.stringify(comparedItems);
+                localStorage.setItem('shortlistedItems',comparedItems);
+            }
         }
     }
 
