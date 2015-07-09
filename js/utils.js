@@ -116,6 +116,12 @@ var utils = (function() {
             positionClass += x > 50 ? 'left' : 'right';
           
             return positionClass;
+        },
+        priceFormat : function(price){
+            if(!price){
+                return '';
+            }
+            return (price/100000)+' Lacs';
         }
     }
 

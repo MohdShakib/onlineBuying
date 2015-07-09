@@ -677,7 +677,10 @@ ellipse.tower-unit-selected-svg-path {
 	cursor: pointer;
 }
 .compare-units-container .compare-unit-box{
-	position: relative; width: 50%; margin-top: 9%; margin-bottom: 9%; display: inline-block;
+	position: absolute; width: 50%; display: inline-block;
+}
+.compare-unit-box .img-svg-container{
+	position: relative; margin-top:9%; margin-bottom:9%;
 }
 .compare-units-container .compare-unit-box-right{
 	right: 0;
@@ -696,6 +699,14 @@ ellipse.tower-unit-selected-svg-path {
 .compare-unit-box-right-border{
 	border-right:1px solid black;
 }
+
+.compare-unit-box-detail{
+	display:inline-block; right: 20px; position: absolute; margin-top: 5px; background: rgba(0,0,0,0.5); color: white; padding: 10px;
+}
+.compare-unit-box-detail span{
+	padding: 0px 10px;
+}
+
 /* Overview Image */
 .overview-img-container {
 	position: absolute;

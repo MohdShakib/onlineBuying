@@ -17,7 +17,7 @@ var BaseView = (function() {
 
     var containerMap = {
         'bottomFormGroupContainer': '<div class"bottom-form-group" id="bottom-form-group"></div>',
-        'compareUnitsContainer': '<div  class="hidden compare-units-container" id="'+config.compareUnitscontainerId+'"></div>'
+        'compareUnitsContainer': '<div  class="compare-units-container" id="'+config.compareUnitscontainerId+'"></div>'
     };
 
 
@@ -55,13 +55,15 @@ var BaseView = (function() {
             var htmlCode = '';
         
             htmlCode += '<div class="compare-back-button">Back</div>';
-
+            htmlCode += '<div class="compare-back-button">Back</div>';
             for(var i=0; i<2; i++){
+                var item = compareList[i];
                 var borderClass = !i ? 'compare-unit-box-right-border' : 'compare-unit-box-right';
-                var imageUrl = compareList[i] ? compareList[i].unitTypeData.unitImageUrl : undefined; ///zip-file/img/2bhk-type1-1105-2.jpg
+                var imageUrl = item ? item.unitTypeData.unitImageUrl : undefined; ///zip-file/img/2bhk-type1-1105-2.jpg
                 htmlCode += '<div  class="compare-unit-box '+borderClass+'">'
-                    +'<svg class="svg-container unit-svg-container" id="unit-compare-svg-container'+i+'" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'
-                    +'<img class="compare-unit-img"  src="'+imageUrl+'">'
+                    +'<div class="compare-unit-box-detail"><span>'+item.unitName+' Av</span>-<span>'+item.bedrooms+'</span>-<span>'+item.size+'</span>-<span>'+item.price+'</span>-<span>'+item.floor+'</span></div>'
+                    +'<div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container'+i+'" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'
+                    +'<img class="compare-unit-img"  src="'+imageUrl+'"> </div>'
                 +'</div>';
             }
         
