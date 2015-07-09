@@ -58,9 +58,10 @@ var BaseView = (function() {
 
             htmlCode +='<div class="compare-box">';
             for(var i=0; i<compareList.length; i++){
+                var imageUrl = compareList[i].unitTypeData.unitImageUrl;
                 htmlCode += '<div class="com-pro-box">'
                     +'<p class="selected">'+compareList[i].unitName+'</p>'
-                    +'<img src="/zip-file/img/club_house.jpg" alt="" />'
+                    +'<img src="'+imageUrl+'" />'
                 +'</div>';
             }
             htmlCode +='</div>';
@@ -70,9 +71,9 @@ var BaseView = (function() {
                 var borderClass = !i ? 'compare-unit-box-right-border' : 'compare-unit-box-right';
                 var imageUrl = item ? item.unitTypeData.unitImageUrl : undefined; ///zip-file/img/2bhk-type1-1105-2.jpg
                 htmlCode += '<div  class="compare-unit-box '+borderClass+'">'
-                    +'<div class="compare-unit-box-detail"><span>'+item.unitName+' Av</span>-<span>'+item.bedrooms+'</span>-<span>'+item.size+'</span>-<span>'+item.price+'</span>-<span>'+item.floor+'</span></div>';
+                    +'<div class="compare-unit-box-detail top-right-component"><span>'+item.unitName+' Av</span>-<span>'+item.bedrooms+'</span>-<span>'+item.size+'</span>-<span>'+item.price+'</span>-<span>'+item.floor+'</span></div>';
                     
-                    htmlCode += '<div class="unit-view-tabs top-view">'
+                    htmlCode += '<div class="unit-view-tabs top-view top-right-component">'
                                     /*+'<div class="special-offers">'
                                         +'<p><span class="icon icon-smile"></span></p>'
                                         +'<p>No Pre-EMI offer and Discount Rs. 4,53,000/</p>'   
@@ -81,7 +82,7 @@ var BaseView = (function() {
                                         +'<div class="like-box">'
                                             +'<a >'
                                                 +'<span class="icon icon-heart"></span>'
-                                                +'<label class="like-count br50">+</label>'
+                                                +'<label class="like-count br50"></label>'
                                             +'</a>'
                                         +'</div>'
                                         +'<div class="book-now">'
