@@ -1,6 +1,13 @@
 var utils = (function() {
 
     return {
+        addResizeEventListener: function(listenerFunction) {
+            listenerFunction();;
+            $(window).off('resize').on('resize', listenerFunction);
+        },
+        defaultDynamicResizeContainers: function() {
+            utils.dynamicResizeContainers(window.innerWidth);
+        },
         dynamicResizeContainers: function(containerWidth) {
             var imageResolutionHeight = config.imageResolution.height;
             var imageResolutionWidth = config.imageResolution.width;
@@ -9,7 +16,7 @@ var utils = (function() {
             var mainContainerElement = document.getElementById(config.mainContainerId);
             var dynamicResizeElement = $('.' + config.dynamicResizeClass);
 
-            if (containerWidth === null) {
+            if (containerWidth == null || containerWidth == 'undefined') {
                 containerWidth = window.innerWidth;
             }
             var height = window.innerHeight;

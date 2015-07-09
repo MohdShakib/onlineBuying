@@ -392,6 +392,7 @@ ellipse.tower-unit-selected-svg-path {
 .tower-rotation-container {
 	position: absolute;
 	width: 100%;
+	z-index: 99990;
 }
 .rotation-btn-container{
 	position:absolute; 
@@ -458,6 +459,7 @@ ellipse.tower-unit-selected-svg-path {
 .rotation-btn-container.left-btn .rotation-title{
 	right:inherit;
 	left:-150px;
+	text-shadow: 0px 0px 10px #000;
 }
 .rotation-btn-container:hover .rotation-title{
 	right:-80px;
