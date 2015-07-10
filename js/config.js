@@ -73,7 +73,8 @@ var config = (function(){
 		filterMenuContainerId: 'filter-menu-container',
 		
 		towerUnitSvgClass: 'tower-unit-svg-path',
-		towerUnitSelectedSvgClass: 'tower-unit-selected-svg-path',
+		towerUnitSvgHoverClass: 'tower-unit-svg-hover-path',
+		towerUnitSvgSelectedClass: 'tower-unit-svg-selected-path',
 		selectedTowerImagesClass: 'selected-tower-image',
 		rotationButtonClass: 'rotation-button',
 		

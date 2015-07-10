@@ -114,10 +114,14 @@ var TowerselectedView = (function() {
                     var rotationAngle = this._model.getCurrentRotationAngle(),
                         url = listings[unitIdentifier].isAvailable ? baseUrl + rotationAngle + '/' + unitIdentifier : "undefined";
                     svgClass = listings[unitIdentifier].isAvailable ? 'apt-available' : 'apt-unavailable';
+                    svgCode += "<ellipse  class=\"" + config.towerUnitSvgSelectedClass + " " + config.hideClass + "\" id=\"" + unitIdentifier + "-selected-path\" " +
+                        "cx='" + unitInfo.unitSvgOnTower[0] + "' cy='" + unitInfo.unitSvgOnTower[1] + "' ry='1.7' rx='.78' />";
+                    svgCode += "<ellipse  class=\"" + config.towerUnitSvgHoverClass + " " + config.hideClass + "\" id=\"" + unitIdentifier + "-hover-path\" " +
+                        "cx='" + unitInfo.unitSvgOnTower[0] + "' cy='" + unitInfo.unitSvgOnTower[1] + "' ry='1.7' rx='.78' />";
                     svgCode += "<ellipse  class=\"" + config.towerUnitSvgClass + " " + svgClass +
-                        "\" id=\"" + unitInfo.unitIdentifier + "-path\" data-index=\"" + unitIdentifier +
+                        "\" id=\"" + unitIdentifier + "-path\" data-index=\"" + unitIdentifier +
                         "\" data-url=\"" + url +
-                        "\"  cx='" + unitInfo.unitSvgOnTower[0] + "' cy='" + unitInfo.unitSvgOnTower[1] + "' ry='1.2' rx='0.55' />";
+                        "\" cx='" + unitInfo.unitSvgOnTower[0] + "' cy='" + unitInfo.unitSvgOnTower[1] + "' ry='1.2' rx='0.55' />";
                 }
             }
 
@@ -142,21 +146,37 @@ var TowerselectedView = (function() {
 
             _this._elements.towerSvgContainer.off('mouseleave').on('mouseleave', '.' + config.towerUnitSvgClass, function(event) {
                 // notify controller
-                _this._towerUnitSvgMouseLeave.notify(); // this refers to element here
+                _this._towerUnitSvgMouseLeave.notify(this); // this refers to element here
             });
         },
         towerUnitMouseEnterEvent: function(obj) {
             var element = obj.element;
             var data = this._model.getData();
             var index = element.dataset.index;
+
+            // show svg hover circle
+            utils.removeSVGClass(index + "-hover-path", config.hideClass);
+
+            // show tooltip
             var toolTipData = data && data.listings ? data.listings[index] : null;
             if (toolTipData) {
                 var svgpathClient = element.getBoundingClientRect();
                 this.showTowerUnitDetailContainer(toolTipData, (svgpathClient.right), (svgpathClient.top + svgpathClient.height / 2));
             }
         },
-        towerUnitMouseLeaveEvent: function() {
+        towerUnitMouseLeaveEvent: function(element) {
+            // show svg hover circle
+            utils.addSVGClass(element.dataset.index + "-hover-path", config.hideClass);
+
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
+        },
+        towerUnitMouseClickEvent: function(element) {
+            this.towerUnitMouseLeaveEvent(element);
+            if (element.dataset.url != 'undefined') {
+                var svgElements = $('.' + config.towerUnitSvgSelectedClass);
+                utils.addSVGClassToElements(svgElements, config.hideClass);
+                utils.removeSVGClass(element.dataset.index + "-selected-path", config.hideClass);
+            }
         },
         showTowerUnitDetailContainer: function(unitInfo, left, top) {
             if (!(unitInfo && Object.keys(unitInfo).length)) {
@@ -165,9 +185,11 @@ var TowerselectedView = (function() {
             var towerCode = "";
             towerCode += "<div id='container-detail' class='tooltip-detail'>";
 
-            var availabilityClass = 'apt-available';
+            var availabilityClass = 'apt-available',
+                dotClass = '';
             if (!unitInfo.isAvailable) {
                 availabilityClass = 'apt-unavailable';
+                dotClass = 'sold';
             }
 
             var tooltipClass = utils.getTooltipPosition({
@@ -188,9 +210,7 @@ var TowerselectedView = (function() {
 
             towerCode += "<div class='detail-box show-details tSelected-view'>";
             towerCode += "<div class='line " + tooltipClass + "'>";
-            towerCode += "<div class='dot-one'></div>";
-            towerCode += "<div class='dot-two'></div>";
-
+            towerCode += "<div class='dot-two " + dotClass + "'></div>";
 
             towerCode += '<div class="tSelected-detail towerunit-detail-container ' + availabilityClass + '">';
             towerCode += '<div class="towerunit-name">' + details.address + '</div>';

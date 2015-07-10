@@ -33,10 +33,11 @@ var TowerselectedController = (function() {
                 _this._view.towerUnitMouseEnterEvent(obj);
             });
             this._view._towerUnitSvgMouseLeave.attach(function(sender, element) {
-                _this._view.towerUnitMouseLeaveEvent();
+                _this._view.towerUnitMouseLeaveEvent(element);
             });
             this._view._towerUnitSvgClick.attach(function(sender, element) {
                 _this.changeUrl(element);
+                _this._view.towerUnitMouseClickEvent(element);
             });
 
             // Tower Rotation
