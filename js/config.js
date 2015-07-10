@@ -34,6 +34,7 @@ var config = (function(){
 		fadeInClass: 'fade-in',
 		fadeOutClass: 'fade-out',
 		transitionClass: 'transition',
+		slowTransitionClass: 'slow-transition',
 		selectedClass: 'selected',
 		availabilityClass: {
 			available: 'apt-available',

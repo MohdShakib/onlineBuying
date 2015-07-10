@@ -150,10 +150,10 @@ var utils = (function() {
             var dataset = params.element.dataset,
                 towerCode = "<div id='container-detail' class='tooltip-detail'>";
 
-              /*  towerCode += "<div class='detail-box show-details'>";
+              towerCode += "<div class='detail-box show-details tSelected-view unit-view'>";
                 towerCode += "<div class='line bottom-right' >";
                 towerCode += "<div class='dot-one'></div>";
-                towerCode += "<div class='dot-two'></div>";*/
+                towerCode += "<div class='dot-two'></div>";
 
             var info = {
                 'name': dataset.name,
@@ -161,11 +161,11 @@ var utils = (function() {
                 'details': dataset.details
             };
 
-            towerCode += '<div class="towerunit-detail-container">';
+            towerCode += '<div class="tSelected-detail towerunit-detail-container">';
             towerCode += '<div class="towerunit-name">' + info.name + '</div>';
             towerCode += '<div class="towerunit-detail">' + info.details + '</div>';
 
-            //towerCode += '</div></div></div></div>';
+            towerCode += '</div></div></div></div>';
             towerCode += '</div>';
 
             if (containerReference) {

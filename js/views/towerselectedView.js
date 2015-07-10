@@ -8,11 +8,11 @@
 var TowerselectedView = (function() {
 
     var containerMap = {
-        'towerImgContainer': '<div class="img-container ' + config.dynamicResizeClass + ' ' + config.transitionClass + '" id="img-container"></div>',
+        'towerImgContainer': '<div class="img-container ' + config.dynamicResizeClass + ' ' + config.slowTransitionClass + '" id="img-container"></div>',
         //'overviewImgContainer': '<div  class="overview-img-container" id="overview-img-container" ></div>',
-        'towerSvgContainer': '<svg class="svg-container ' + config.dynamicResizeClass + ' ' + config.transitionClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
+        'towerSvgContainer': '<svg class="svg-container ' + config.dynamicResizeClass + ' ' + config.slowTransitionClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'towerDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>',
-        'towerRotationContainer': '<div class="tower-rotation-container ' + config.transitionClass + '" id="' + config.towerRotationContainerId + '"></div>',
+        'towerRotationContainer': '<div class="tower-rotation-container ' + config.slowTransitionClass + '" id="' + config.towerRotationContainerId + '"></div>',
         'filterMenuContainer': '<div class="tower-menu-container ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>'
     };
 
@@ -248,30 +248,30 @@ var TowerselectedView = (function() {
                 entranceFiltersData = filterdata.entrance,
                 priceFiltersData = filterdata.price;
 
-            var code = "<table><tr><td class='menu-header menu-icon'><a href='#" + url + "'><span class='icon icon-back fs14'></span></td></tr>";
+            var code = "<table><tr><td class='menu-header menu-icon'><a href='#" + url + "'><span class='icon icon-arrow_left fs20'></span></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><table>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
             code += this.displayFilterCount('bhk', bhkFiltersData.length);
-            code += "<div class='menu-item'><span class='icon icon-bhk fs14'></span></div>";
+            code += "<div class='menu-item'><span class='icon icon-bhk'></span></div>";
             code += this.getBHKMenuOptions(data, bhkFiltersData);
             code += "</td></tr>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
             code += this.displayFilterCount('floor', floorFiltersData.length);
-            code += "<div class='menu-item'><span class='icon icon-floor fs14'></span></div>";
+            code += "<div class='menu-item'><span class='icon icon-floor'></span></div>";
             code += this.getFloorMenuOptions(data, floorFiltersData);
             code += "</td></tr>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
             code += this.displayFilterCount('entrance', entranceFiltersData.length);
-            code += "<div class='menu-item'><span class='icon icon-facing fs14'></span></div>";
+            code += "<div class='menu-item'><span class='icon icon-door'></span></div>";
             code += this.getEntranceMenuOptions(data, entranceFiltersData);
             code += "</td></tr>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
             code += this.displayFilterCount('price', priceFiltersData.length);
-            code += "<div class='menu-item'><span class='icon icon-price fs14'></span></div>";
+            code += "<div class='menu-item'><span class='icon icon-price'></span></div>";
             code += this.getPriceMenuOptions(data, priceFiltersData);
             code += "</td></tr>";
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.filters.resetClass + "'><span class='icon icon-reset fs14'></span></div></td></tr>";
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.filters.resetClass + "'><span class='icon icon-reload'></span></div></td></tr>";
             code += "</table></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-call menu-icon'>&nbsp;</td></tr>";

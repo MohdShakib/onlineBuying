@@ -18,17 +18,18 @@
 
 }
 @font-face {
-	font-family: 'propicon';
-	src:url('fonts/propicons_mobile.eot?-wxk34n');
-	src:url('fonts/propicons_mobile.eot?#iefix-wxk34n') format('embedded-opentype'),
-		url('fonts/propicons_mobile.ttf?-wxk34n') format('truetype'),
-		url('fonts/propicons_mobile.woff?-wxk34n') format('woff'),
-		url('fonts/propicons_mobile.svg?-wxk34n#icomoon') format('svg');
+	font-family: 'propicons';
+	src:url('fonts/propicons.eot?-fcedqk');
+	src:url('fonts/propicons.eot?#iefix-fcedqk') format('embedded-opentype'),
+		url('fonts/propicons.ttf?-fcedqk') format('truetype'),
+		url('fonts/propicons.woff?-fcedqk') format('woff'),
+		url('fonts/propicons.svg?-fcedqk#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
+
 [class^="icon-"], [class*=" icon-"] {
-	font-family: 'propicon';
+	font-family: 'propicons';
 	speak: none;
 	font-style: normal;
 	font-weight: normal;
@@ -47,59 +48,134 @@
 .fs20{ font-size:20px;}
 .fs22{ font-size:22px;}
 .fs24{ font-size:24px;}
-.icon-heart-o:before {
-    content: "\e612"
+.icon-afternoon:before {
+	content: "\e600";
 }
-.icon-heart:before {
-    content: "\f08a"
+.icon-arrow_btm:before {
+	content: "\e601";
 }
-.icon-phone:before {
-    content: "\f095"
+.icon-arrow_left:before {
+	content: "\e602";
 }
-.icon-envelope:before {
-    content: "\f0e0"
+.icon-arrow_right:before {
+	content: "\e603";
 }
-.icon-envelope-o:before {
-    content: "\e601"
-}
-.icon-phone-o:before {
-    content: "\e652"
-}
-.icon-facebook:before {
-    content: "\f09a"
-}
-.icon-google-plus:before {
-    content: "\f0d5"
-}
-.icon-next:before {
-    content: "\f054"
-}
-.icon-previous:before {
-    content: "\f053"
-}
-.icon-smile:before {
-    content: "\f118"
-}
-.icon-menu:before {
-    content: "\f0c9"
-}
-.icon-reset:before {
-    content: "\f021"
+.icon-arrow_top:before {
+	content: "\e604";
 }
 .icon-bhk:before {
-    content: "\e623"
+	content: "\e605";
+}
+.icon-circlecross:before {
+	content: "\e606";
+}
+.icon-clubhouse:before {
+	content: "\e607";
+}
+.icon-clusterplan:before {
+	content: "\e608";
+}
+.icon-compass:before {
+	content: "\e609";
+}
+.icon-cross:before {
+	content: "\e60a";
+}
+.icon-door:before {
+	content: "\e60b";
+}
+.icon-email:before {
+	content: "\e60c";
+}
+.icon-facebook:before {
+	content: "\e60d";
+}
+.icon-fillcross:before {
+	content: "\e60e";
+}
+.icon-fitting:before {
+	content: "\e60f";
 }
 .icon-floor:before {
-    content: "\e618"
+	content: "\e610";
 }
-.icon-facing:before {
-    content: "\e610"
+.icon-googleplus:before {
+	content: "\e611";
+}
+.icon-gym:before {
+	content: "\e612";
+}
+.icon-harvesting:before {
+	content: "\e613";
+}
+.icon-heart:before {
+	content: "\e614";
+}
+.icon-heart-1:before {
+	content: "\e615";
+}
+.icon-intercom:before {
+	content: "\e616";
+}
+.icon-location:before {
+	content: "\e617";
+}
+.icon-morning:before {
+	content: "\e618";
+}
+.icon-multipurposeroom:before {
+	content: "\e619";
+}
+.icon-next:before {
+	content: "\e61a";
+}
+.icon-night:before {
+	content: "\e61b";
+}
+.icon-phone:before {
+	content: "\e61c";
+}
+.icon-playarea:before {
+	content: "\e61d";
+}
+.icon-plus:before {
+	content: "\e61e";
+}
+.icon-previous:before {
+	content: "\e61f";
 }
 .icon-price:before {
-    content: "\e620"
+	content: "\e620";
 }
-.icon-back:before {
-    content: "\f060"
+.icon-reload:before {
+	content: "\e621";
+}
+.icon-rotate-1:before {
+	content: "\e622";
+}
+.icon-rotate-2:before {
+	content: "\e623";
+}
+.icon-rupee:before {
+	content: "\e624";
+}
+.icon-security:before {
+	content: "\e625";
+}
+.icon-smiley:before {
+	content: "\e626";
+}
+.icon-specification:before {
+	content: "\e627";
+}
+.icon-sport:before {
+	content: "\e628";
+}
+.icon-swimming:before {
+	content: "\e629";
+}
+.icon-unitplan:before {
+	content: "\e62a";
 }
 
 body {
@@ -107,6 +183,7 @@ body {
 	font-family: 'proxima_nova_rgregular';
 	color: #333;
 	background: black;
+	overflow:hidden;
 }
 header {
 	position: absolute;
@@ -338,6 +415,7 @@ ellipse.tower-unit-selected-svg-path {
 	background: #333;
 	
 }
+.tower-menu-container .menu-item .icon{ margin-top:5px; color:#ccc;}
 .tower-menu-container .menu-icon, .tower-menu-container .menu-items {
 	color: #FFF;
 	width: 45px;
@@ -355,6 +433,7 @@ ellipse.tower-unit-selected-svg-path {
 	text-decoration: none;
 	display: block;
 }
+.tower-menu-container .menu-icon a .icon, .tower-menu-container .menu-icon .icon{ float:left; margin:12px;color:#ccc;}
 .tower-menu-container .menu-sep {
 	height: 1px;
 	padding: 0px;
@@ -556,7 +635,7 @@ ellipse.tower-unit-selected-svg-path {
 	background: white;
 	width: 60%;
 	height: 100%;
-	right: -60%;
+	right: -67%;
 }
 .selected-unit-container.unit-slide-in {
 	right:0;
@@ -590,7 +669,7 @@ ellipse.tower-unit-selected-svg-path {
 
 .like-box{ float:left;height:50px; margin-right:1px;  cursor: pointer;}
 .like-box a{ display:block; padding:14px 14px 10px 14px;background:#414141; color:#fff; position:relative; transition:all 0.3s ease-in-out; -moz-transition:all 0.3s ease-in-out; -webkit-transition:all 0.3s ease-in-out;}
-.like-box.selected a, .like-box:hover a{ background:#121212; color:#ff8714; box-shadow:0 4px #ff8714 inset;}
+.like-box:hover a{ background:#121212; color:#ff8714; box-shadow:0 4px #ff8714 inset;}
 .like-box a label{ right:8px; top:22px; cursor: pointer;}
 .like-box a label:before{ content:'+';}
 .like-box.selected a label:before{ content:'-';}
@@ -654,7 +733,7 @@ ellipse.tower-unit-selected-svg-path {
 }
 .unit-menu-container .header-item .item-icon-box {
 	font-size: 15px;
-	line-height: 25px;
+	padding-top:5px;
 }
 .unit-menu-container .header-title {
 	width: 50%;
@@ -713,7 +792,7 @@ ellipse.tower-unit-selected-svg-path {
 	border-radius: 100%;
 	width: 23px;
 	height: 23px;
-	line-height: 23px;
+	line-height: 26px;
 	text-align: center;
 	cursor: pointer;
 }
@@ -768,6 +847,7 @@ ellipse.tower-unit-selected-svg-path {
     background: white;
     top: 0;
     z-index: 100001;
+	right:-110%;
 }
 .compare-units-container .svg-container{
 	z-index: 100002;
@@ -948,6 +1028,13 @@ ellipse.tower-unit-selected-svg-path {
 	-ms-transition:all 0.5s ease-in-out;
 	-o-transition:all 0.5s ease-in-out;
 	-webkit-transition:all 0.5s ease-in-out;}
+	
+.slow-transition{ 
+	transition:all 0.9s ease-in-out; 
+	-webkit-transition:all 0.9s ease-in-out; 
+	-ms-transition:all 0.9s ease-in-out;
+	-o-transition:all 0.9s ease-in-out;
+	-webkit-transition:all 0.9s ease-in-out;}
 /*-------------transition effect for all end-------------*/
 
 /*---image pop up animation---*/
@@ -1081,6 +1168,15 @@ ellipse.tower-unit-selected-svg-path {
 	height:25px; 
 	left:-27px; 
 	top:-13px;
+}
+.unit-view .dot-one{ 
+	width:12px; 
+	height:12px; 
+	background:#fff; 
+	left:-5px; 
+	top:-8px !important; 
+	position:absolute; 
+	border-radius:50%;
 } 
 .dot-two{ 
 	width:12px; 

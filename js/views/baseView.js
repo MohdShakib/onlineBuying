@@ -17,7 +17,7 @@ var BaseView = (function() {
 
     var containerMap = {
         'bottomFormGroupContainer': '<div class"bottom-form-group" id="bottom-form-group"></div>',
-        'compareUnitsContainer': '<div  class="hidden compare-units-container" id="'+config.compareUnitscontainerId+'"></div>'
+        'compareUnitsContainer': '<div  class="compare-units-container" id="'+config.compareUnitscontainerId+'"></div>'
     };
 
 
@@ -95,7 +95,7 @@ var BaseView = (function() {
                                     +'<div class="book-com-box">'
                                         +'<div class="like-box '+item.unitIdentifier+'-like-box selected" >'
                                             +'<a >'
-                                                +'<span class="icon icon-heart"></span>'
+                                                +'<span class="icon icon-heart-1"></span>'
                                                 +'<label class="like-count br50"></label>'
                                             +'</a>'
                                         +'</div>'
@@ -162,7 +162,8 @@ var BaseView = (function() {
             $('.tower-unit-detail-container').html('');
         },
         compareBackButtonClicked: function(){
-            $('#'+config.compareUnitscontainerId).addClass('hidden');
+            //$('#'+config.compareUnitscontainerId).addClass('hidden');
+			$('#'+config.compareUnitscontainerId).animate({ right:'-110%'},800);
         },
         bottomFormGroupContainer: function(){
             var _this = this;
@@ -200,7 +201,7 @@ var BaseView = (function() {
                             //+'<div class="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"></div>'
                             +'<span>or</span>'
                             //+'<div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>'
-                            +'<a href="javascript:void(0);" class="" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"><span class="icon icon-google-plus"></span>Goggle+</a>'
+                            +'<a href="javascript:void(0);" class="" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"><span class="icon icon-googleplus"></span>Goggle+</a>'
                         +'</div>'
                         +'<input class="text" placeholder="enter name id*" type="text" />'
 						+'<input class="text" placeholder="enter email id*" type="text" />'
@@ -219,7 +220,7 @@ var BaseView = (function() {
                     +'<li>'
                         +'<a href="javascript:void(0);" data-name="compare-box">'
                             +'<p>Compare Plans</br> Once you Liked</p>'
-                            +'<span class="icon icon-heart-o">'
+                            +'<span class="icon icon-heart">'
                                 +'<label class="like-count br50" id="'+config.likeCountId+'">0</label>'
                             +'</span>'
                         +'</a>'
@@ -229,7 +230,7 @@ var BaseView = (function() {
                             +'<p>Email &amp; Share'
                                 +'<span>Sign In Now!</span>'
                             +'</p>'
-                            +'<span class="icon icon-envelope"></span>'
+                            +'<span class="icon icon-email"></span>'
                         +'</a>'
                     +'</li>'
                 +'</ul>'
@@ -271,7 +272,6 @@ var BaseView = (function() {
         formPopupCloseClicked: function(){
             $('.'+config.bottomFormGroup.tabLinkClass).removeClass('active');
             $('.'+config.bottomFormGroup.formPopUpClass).removeClass('out');
-            $('.'+config.bottomFormGroup.formPopUpClass+'>div').hide();
         },
         bottomGroupButtonClicked: function(element){
             if($(element).hasClass('active')){ // if opened return to stop flickr
@@ -295,7 +295,8 @@ var BaseView = (function() {
 
             this.formPopupCloseClicked();
             this.compareUnitsContainer();
-            $('#'+config.compareUnitscontainerId).removeClass('hidden');
+            //$('#'+config.compareUnitscontainerId).removeClass('hidden');
+			$('#'+config.compareUnitscontainerId).animate({ right:0},900);
         },
         buildSkeleton: function(containerList) {
             var key, htmlCode = '';
