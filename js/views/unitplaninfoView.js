@@ -70,18 +70,18 @@ var UnitplaninfoView = (function() {
         },
         initView: function(data, rotationdata, rootdata) {
             if (!$('#' + config.selectedUnitContainerId).length) {
-                $('#' + config.mainContainerId).append("<div class='selected-unit-container transition' id='" + config.selectedUnitContainerId + "'></div>");
+                $('#' + config.mainContainerId).append("<div class='selected-unit-container' id='" + config.selectedUnitContainerId + "'></div>");
                 // Add resize event listener
                 utils.addResizeEventListener(this.dynamicResizeContainers);
                 window.getComputedStyle(document.getElementById(config.selectedUnitContainerId)).right;
-                $('#' + config.selectedUnitContainerId).addClass(config.unitSlideInClass);
+                $('#' + config.selectedUnitContainerId).animate({ right:0},900);
                 $('#' + config.filterMenuContainerId).addClass(config.fadeOutClass);
             }
         },
         destroyView: function() {
             utils.dynamicResizeContainers(window.innerWidth);
             $('#' + config.towerRotationContainerId).css('width', window.innerWidth + config.imageResolution.unit);
-            $('#' + config.selectedUnitContainerId).removeClass(config.unitSlideInClass);
+            $('#' + config.selectedUnitContainerId).animate({ right:'-67%'},900);
             $('#' + config.filterMenuContainerId).addClass(config.fadeInClass);
         },
         dynamicResizeContainers: function() {
@@ -106,7 +106,7 @@ var UnitplaninfoView = (function() {
             var selectedClass = data.shortListed ? 'selected' : '';
 			htmlCode += '<div class="unit-view-tabs">'
 							+'<div class="special-offers">'
-								+'<p><span class="icon icon-smile"></span></p>'
+								+'<p><span class="icon icon-smiley"></span></p>'
 								+'<p>No Pre-EMI offer and Discount Rs. 4,53,000/</p>'
 							+'</div>'
 							+'<div class="book-com-box">'
@@ -132,7 +132,7 @@ var UnitplaninfoView = (function() {
 
         },
         unitCloseContainer: function(data, rotationdata, rootdata) {
-            var code = 'X';
+            var code = '<span class="icon icon-cross fs20"></span>';
             this._elements.unitCloseContainer.html(code);
             this.unitCloseContainerEvents();
         },
@@ -143,7 +143,7 @@ var UnitplaninfoView = (function() {
                 _this.destroyView();
                 setTimeout(function() {
                     _this._unitCloseClick.notify();
-                }, 500);
+                }, 1000);
             });
         },
         unitMenuContainer: function(data, rotationdata, rootdata) {
@@ -153,9 +153,9 @@ var UnitplaninfoView = (function() {
                 "- <span>" + data.size + " " + data.measure + "</span> " +
                 "- <span>Rs. " + utils.getReadablePrice(data.price) + "* </span></td>" +
                 "<td data-target='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'><span class='icon fs14 icon-floor'></span></div>Floor Plan</td>" +
-                "<td data-target='cp-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon fs14 icon-cluster'></span></div>Cluster Plan</td>" +
-                "<td data-target='pb-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon fs14 icon-rate'></span></div>Price Breakup</td>" +
-                "<td data-target='sf-container' class='header-item " + config.unitMenuLinkClass + " right'><div class='item-icon-box'><span class='icon fs14 icon-specification'></span></div>Specification</td></tr></table>";
+                "<td data-target='cp-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon fs14  icon-clusterplan'></span></div>Cluster Plan</td>" +
+                "<td data-target='pb-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon fs14 icon-rupee'></span></div>Price Breakup</td>" +
+                "<td data-target='sf-container' class='header-item " + config.unitMenuLinkClass + " right'><div class='item-icon-box'><span class='icon fs14 	icon-specification'></span></div>Specification</td></tr></table>";
             this._elements.unitMenuContainer.html(code);
             this.unitMenuContainerEvents();
         },
@@ -177,9 +177,9 @@ var UnitplaninfoView = (function() {
                 code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " eve-image' src='" + unitTypeData.eveningSunlightImageUrl + "'>"; ///zip-file/img/2bhk-type1-1105-1-eve.png
 
                 code += "<div class='sunlight-menu'>";
-                code += "<div data-target='mor-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'>@</div>";
-                code += "<div data-target='aft-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'>$</div>";
-                code += "<div data-target='eve-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'>#</div></div>";
+                code += "<div data-target='mor-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-morning fs16'></span></div>";
+                code += "<div data-target='aft-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-afternoon fs16'></span></div>";
+                code += "<div data-target='eve-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-night fs16'></span></div></div>";
             }
             this._elements.floorPlanContainer.html(code);
             this.floorPlanContainerEvents();
