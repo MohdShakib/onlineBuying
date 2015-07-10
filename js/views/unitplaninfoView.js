@@ -237,7 +237,7 @@ var UnitplaninfoView = (function() {
 
             this._elements.unit3dSvgContainer.off('mouseleave').on('mouseleave', 'polygon', function(event) {
                 //here this refers to element
-                //_this._unitComponentMouseLeave.notify();
+                _this._unitComponentMouseLeave.notify();
             });
         },
         unit2dSvgContainer: function() {
