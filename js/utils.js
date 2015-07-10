@@ -150,8 +150,14 @@ var utils = (function() {
             var dataset = params.element.dataset,
                 towerCode = "<div id='container-detail' class='tooltip-detail'>";
 
-              towerCode += "<div class='detail-box show-details tSelected-view unit-view'>";
-                towerCode += "<div class='line bottom-right' >";
+                var tooltipClass = utils.getTooltipPosition({
+                    pageX: params.event.clientX,
+                    pageY: params.event.clientY
+                });
+                tooltipClass = tooltipClass ? tooltipClass : 'bottom-right';
+
+                towerCode += "<div class='detail-box show-details tSelected-view unit-view'>";
+                towerCode += "<div class='line "+tooltipClass+"' >";
                 towerCode += "<div class='dot-one'></div>";
                 towerCode += "<div class='dot-two'></div>";
 

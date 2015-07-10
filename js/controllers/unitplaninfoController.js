@@ -31,7 +31,7 @@ var UnitplaninfoController = (function() {
                 _this._view.unitComponentMouseEnter(params);
             });
             this._view._unitComponentMouseLeave.attach(function() {
-                _this._view.unitComponentMouseLeave();
+               _this._view.unitComponentMouseLeave();
             });
 
             // Menu Events

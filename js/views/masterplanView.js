@@ -223,7 +223,7 @@ var MasterplanView = (function() {
                 pageX: left,
                 pageY: top
             });
-            tooltipClass = tooltipClass ? tooltipClass : 'top-right';
+            tooltipClass = tooltipClass ? tooltipClass : 'bottom-right';
 
             var availabilityClassSuffix = '-border-right';
             if (tooltipClass == 'top-left' || tooltipClass == 'bottom-left') {
