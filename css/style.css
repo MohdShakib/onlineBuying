@@ -18,18 +18,18 @@
 
 }
 @font-face {
-	font-family: 'propicons';
-	src:url('fonts/propicons.eot?-fcedqk');
-	src:url('fonts/propicons.eot?#iefix-fcedqk') format('embedded-opentype'),
-		url('fonts/propicons.ttf?-fcedqk') format('truetype'),
-		url('fonts/propicons.woff?-fcedqk') format('woff'),
-		url('fonts/propicons.svg?-fcedqk#icomoon') format('svg');
+	font-family: 'icomoon';
+	src:url('fonts/icomoon.eot?e44265');
+	src:url('fonts/icomoon.eot?#iefixe44265') format('embedded-opentype'),
+		url('fonts/icomoon.ttf?e44265') format('truetype'),
+		url('fonts/icomoon.woff?e44265') format('woff'),
+		url('fonts/icomoon.svg?e44265#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 [class^="icon-"], [class*=" icon-"] {
-	font-family: 'propicons';
+	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
 	font-weight: normal;
@@ -48,53 +48,56 @@
 .fs20{ font-size:20px;}
 .fs22{ font-size:22px;}
 .fs24{ font-size:24px;}
-.icon-afternoon:before {
+.icon-fav:before {
 	content: "\e600";
 }
-.icon-arrow_btm:before {
+.icon-next:before {
 	content: "\e601";
 }
-.icon-arrow_left:before {
+.icon-previous:before {
 	content: "\e602";
 }
-.icon-arrow_right:before {
+.icon-specification:before {
 	content: "\e603";
 }
-.icon-arrow_top:before {
+.icon-afternoon:before {
 	content: "\e604";
 }
-.icon-bhk:before {
+.icon-arrow_left:before {
 	content: "\e605";
 }
-.icon-circlecross:before {
+.icon-arrow_right:before {
 	content: "\e606";
 }
-.icon-clubhouse:before {
+.icon-bhk:before {
 	content: "\e607";
 }
-.icon-clusterplan:before {
+.icon-clubhouse:before {
 	content: "\e608";
 }
-.icon-compass:before {
+.icon-clusterplan:before {
 	content: "\e609";
 }
-.icon-cross:before {
+.icon-compass:before {
 	content: "\e60a";
 }
-.icon-door:before {
+.icon-cross:before {
 	content: "\e60b";
 }
-.icon-email:before {
+.icon-door:before {
 	content: "\e60c";
 }
-.icon-facebook:before {
+.icon-email:before {
 	content: "\e60d";
 }
-.icon-fillcross:before {
+.icon-facebook:before {
 	content: "\e60e";
 }
-.icon-fitting:before {
+.icon-fillcross:before {
 	content: "\e60f";
+}
+.icon-fitting:before {
+	content: "\e615";
 }
 .icon-floor:before {
 	content: "\e610";
@@ -111,9 +114,6 @@
 .icon-heart:before {
 	content: "\e614";
 }
-.icon-heart-1:before {
-	content: "\e615";
-}
 .icon-intercom:before {
 	content: "\e616";
 }
@@ -126,9 +126,6 @@
 .icon-multipurposeroom:before {
 	content: "\e619";
 }
-.icon-next:before {
-	content: "\e61a";
-}
 .icon-night:before {
 	content: "\e61b";
 }
@@ -140,9 +137,6 @@
 }
 .icon-plus:before {
 	content: "\e61e";
-}
-.icon-previous:before {
-	content: "\e61f";
 }
 .icon-price:before {
 	content: "\e620";
@@ -165,7 +159,7 @@
 .icon-smiley:before {
 	content: "\e626";
 }
-.icon-specification:before {
+.icon-specification2:before {
 	content: "\e627";
 }
 .icon-sport:before {
@@ -864,6 +858,7 @@ ellipse.tower-unit-selected-svg-path {
 	cursor: pointer;
 	z-index: 10;
 }
+.compare-back-button .icon{ top:5px;}
 .compare-units-container .compare-unit-box{
 	position: absolute; width: 50%; display: inline-block;
 }
