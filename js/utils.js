@@ -107,30 +107,32 @@ var utils = (function() {
                 }
             });
         },
-        getTooltipPosition: function(event){
+        getTooltipPosition: function(event) {
 
-            if(!event){
+            if (!event) {
                 return 'top-right';
             }
 
             var positionClass,
-            screenWidth = $(window).width(), screenHeight = $(window).height(),
-            x = event.pageX, y = event.pageY;
-            x = (x/screenWidth)*100;
-            y = (y/screenHeight)*100;
+                screenWidth = $(window).width(),
+                screenHeight = $(window).height(),
+                x = event.pageX,
+                y = event.pageY;
+            x = (x / screenWidth) * 100;
+            y = (y / screenHeight) * 100;
 
-            positionClass  = y < 50 ? 'top-' : 'bottom-';
+            positionClass = y < 50 ? 'top-' : 'bottom-';
             positionClass += x > 50 ? 'left' : 'right';
-          
+
             return positionClass;
         },
-        priceFormat : function(price){
-            if(!price){
+        priceFormat: function(price) {
+            if (!price) {
                 return '';
             }
-            return (price/100000)+' Lacs';
+            return (price / 100000) + ' Lacs';
         },
-        getUnit3dSvgPolygonHtml: function(unitTypeData){
+        getUnit3dSvgPolygonHtml: function(unitTypeData) {
             var svgData = unitTypeData ? unitTypeData.svgs : null,
                 svgs_count = svgData && svgData.length ? svgData.length : 0;
 
@@ -150,18 +152,16 @@ var utils = (function() {
             var dataset = params.element.dataset,
                 towerCode = "<div id='container-detail' class='tooltip-detail'>";
 
-                //console.log(params.event.clientX, params.event.clientY);
-
                 var tooltipClass = utils.getTooltipPosition({
                     pageX: params.event.clientX,
                     pageY: params.event.clientY
                 });
                 tooltipClass = tooltipClass ? tooltipClass : 'bottom-right';
 
-                towerCode += "<div class='detail-box show-details tSelected-view unit-view'>";
-                towerCode += "<div class='line "+tooltipClass+"' >";
-                towerCode += "<div class='dot-one'></div>";
-                towerCode += "<div class='dot-two'></div>";
+            towerCode += "<div class='detail-box show-details tSelected-view unit-view'>";
+            towerCode += "<div class='line " + tooltipClass + "' >";
+            towerCode += "<div class='dot-one'></div>";
+            towerCode += "<div class='dot-two'></div>";
 
             var info = {
                 'name': dataset.name,
@@ -191,89 +191,122 @@ var utils = (function() {
                 document.getElementById('container-detail').style.opacity = "1";
             }
         },
-        getComparedItems: function(){
+        getComparedItems: function() {
             var comparedItems = localStorage.getItem('shortlistedItems');
-            if(comparedItems){
+            if (comparedItems) {
                 comparedItems = JSON.parse(comparedItems);
-            }else{
+            } else {
                 comparedItems = [];
             }
             return comparedItems;
         },
-        likeBoxClicked: function(element, unitIdentifier, unitName, towerIdentifier, rotationAngle){
-            if($(element).hasClass('selected')){
+        likeBoxClicked: function(element, unitIdentifier, unitName, towerIdentifier, rotationAngle) {
+            if ($(element).hasClass('selected')) {
                 $(element).removeClass('selected');
                 utils.removeFromShortListed(unitIdentifier);
-            }else{
+            } else {
                 $(element).addClass('selected');
                 utils.addToShortListed(unitIdentifier, unitName, towerIdentifier, rotationAngle);
             }
         },
-        removeFromShortListed : function(unitIdentifier){
+        removeFromShortListed: function(unitIdentifier) {
             var comparedItems = utils.getComparedItems('shortlistedItems'),
-            length = comparedItems.length, itemIndex = -1;
-            for(var i=0; i<length; i++){
-                if(comparedItems[i].unitIdentifier == unitIdentifier){
+                length = comparedItems.length,
+                itemIndex = -1;
+            for (var i = 0; i < length; i++) {
+                if (comparedItems[i].unitIdentifier == unitIdentifier) {
                     itemIndex = i;
                     break;
                 }
             }
 
-            if(itemIndex > -1){
-                if($('.'+unitIdentifier+'-like-box')){
-                    $('.'+unitIdentifier+'-like-box').removeClass('selected');
+            if (itemIndex > -1) {
+                if ($('.' + unitIdentifier + '-like-box')) {
+                    $('.' + unitIdentifier + '-like-box').removeClass('selected');
                 }
                 comparedItems.splice(itemIndex, 1);
                 utils.updateShortListInStorage(comparedItems);
             }
             utils.updateShortListedList();
         },
-        addToShortListed: function(unitIdentifier, unitName, towerIdentifier, rotationAngle){
+        addToShortListed: function(unitIdentifier, unitName, towerIdentifier, rotationAngle) {
             var comparedItems = utils.getComparedItems('shortlistedItems'),
-            length = comparedItems.length, itemIndex = -1;
-            for(var i=0; i<length; i++){
-                if(comparedItems[i].unitIdentifier == unitIdentifier){
+                length = comparedItems.length,
+                itemIndex = -1;
+            for (var i = 0; i < length; i++) {
+                if (comparedItems[i].unitIdentifier == unitIdentifier) {
                     itemIndex = i;
                     break;
                 }
             }
 
-            if(itemIndex == -1){
+            if (itemIndex == -1) {
                 comparedItems.push({
                     unitIdentifier: unitIdentifier,
                     unitName: unitName,
                     towerIdentifier: towerIdentifier,
                     rotationAngle: rotationAngle
                 });
-                
+
                 utils.updateShortListInStorage(comparedItems);
             }
             utils.updateShortListedList();
         },
-        updateShortListInStorage: function(comparedItems){
+        updateShortListInStorage: function(comparedItems) {
             comparedItems = JSON.stringify(comparedItems);
-            localStorage.setItem('shortlistedItems',comparedItems);
+            localStorage.setItem('shortlistedItems', comparedItems);
         },
-        updateShortListedList: function(){
+        updateShortListedList: function() {
             var comparedItems = utils.getComparedItems('shortlistedItems'),
-            length = comparedItems.length, htmlCode = '';
-            if(length){
+                length = comparedItems.length,
+                htmlCode = '';
+            if (length) {
                 htmlCode = '<ul>';
-                for(var i=0; i<length; i++){
-                    htmlCode += '<li >'+comparedItems[i].unitName+'<span class="'+config.shortlistedUnitRemoveClass+'" data-unitIdentifier="'+comparedItems[i].unitIdentifier+'">x</span></li>';
+                for (var i = 0; i < length; i++) {
+                    htmlCode += '<li >' + comparedItems[i].unitName + '<span class="' + config.shortlistedUnitRemoveClass + '" data-unitIdentifier="' + comparedItems[i].unitIdentifier + '">x</span></li>';
                 }
                 htmlCode += '</ul>';
-            }else{
+            } else {
                 htmlCode += '<p>Nothing To Compare</p>';
             }
 
-            $('#'+config.unitCompareButtonId).addClass('disable');
-            if(length > 1){
-                $('#'+config.unitCompareButtonId).removeClass('disable');
+            $('#' + config.unitCompareButtonId).addClass('disable');
+            if (length > 1) {
+                $('#' + config.unitCompareButtonId).removeClass('disable');
             }
 
-            $('#'+config.shortListedUnitListId).html(htmlCode);
-            $('#'+config.likeCountId).html(length);
+            $('#' + config.shortListedUnitListId).html(htmlCode);
+            $('#' + config.likeCountId).html(length);
+        },
+        addSVGClass: function(id, newClass) {
+            var originalClasses = document.getElementById(id).getAttribute('class');
+            var classArray = originalClasses.split(" ");
+            var index = classArray.indexOf(newClass);
+            if (index < 0) {
+                document.getElementById(id).setAttribute('class', originalClasses + " " + newClass);
+            }
+        },
+        removeSVGClass: function(id, removeClass) {
+            var originalClasses = document.getElementById(id).getAttribute('class');
+            var classArray = originalClasses.split(" ");
+            if (classArray && classArray.length > 0) {
+                var index = classArray.indexOf(removeClass);
+                if (index > -1) {
+                    classArray.splice(index, 1);
+                }
+            }
+            document.getElementById(id).setAttribute('class', classArray.join(' '));
+        },
+        addSVGClassToElements: function(svgElements, newClass) {
+            for (var i = 0; i < svgElements.length; i++) {
+                var svgElement = svgElements[i];
+                var originalClasses = svgElement.getAttribute('class');
+                var classArray = originalClasses.split(" ");
+                var index = classArray.indexOf(newClass);
+                if (index < 0) {
+                    svgElement.setAttribute('class', originalClasses + " " + newClass);
+                }
+            }
         }
     }
 
