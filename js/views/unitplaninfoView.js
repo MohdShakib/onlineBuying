@@ -70,18 +70,18 @@ var UnitplaninfoView = (function() {
         },
         initView: function(data, rotationdata, rootdata) {
             if (!$('#' + config.selectedUnitContainerId).length) {
-                $('#' + config.mainContainerId).append("<div class='selected-unit-container transition' id='" + config.selectedUnitContainerId + "'></div>");
+                $('#' + config.mainContainerId).append("<div class='selected-unit-container' id='" + config.selectedUnitContainerId + "'></div>");
                 // Add resize event listener
                 utils.addResizeEventListener(this.dynamicResizeContainers);
                 window.getComputedStyle(document.getElementById(config.selectedUnitContainerId)).right;
-                $('#' + config.selectedUnitContainerId).addClass(config.unitSlideInClass);
+                $('#' + config.selectedUnitContainerId).animate({ right:0},900);
                 $('#' + config.filterMenuContainerId).addClass(config.fadeOutClass);
             }
         },
         destroyView: function() {
             utils.dynamicResizeContainers(window.innerWidth);
             $('#' + config.towerRotationContainerId).css('width', window.innerWidth + config.imageResolution.unit);
-            $('#' + config.selectedUnitContainerId).removeClass(config.unitSlideInClass);
+            $('#' + config.selectedUnitContainerId).animate({ right:'-67%'},900);
             $('#' + config.filterMenuContainerId).addClass(config.fadeInClass);
         },
         dynamicResizeContainers: function() {
@@ -143,7 +143,7 @@ var UnitplaninfoView = (function() {
                 _this.destroyView();
                 setTimeout(function() {
                     _this._unitCloseClick.notify();
-                }, 500);
+                }, 1000);
             });
         },
         unitMenuContainer: function(data, rotationdata, rootdata) {
@@ -237,7 +237,7 @@ var UnitplaninfoView = (function() {
 
             this._elements.unit3dSvgContainer.off('mouseleave').on('mouseleave', 'polygon', function(event) {
                 //here this refers to element
-                _this._unitComponentMouseLeave.notify();
+                //_this._unitComponentMouseLeave.notify();
             });
         },
         unit2dSvgContainer: function() {

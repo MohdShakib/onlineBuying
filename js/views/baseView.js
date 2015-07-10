@@ -17,7 +17,7 @@ var BaseView = (function() {
 
     var containerMap = {
         'bottomFormGroupContainer': '<div class"bottom-form-group" id="bottom-form-group"></div>',
-        'compareUnitsContainer': '<div  class="hidden compare-units-container" id="'+config.compareUnitscontainerId+'"></div>'
+        'compareUnitsContainer': '<div  class="compare-units-container" id="'+config.compareUnitscontainerId+'"></div>'
     };
 
 
@@ -162,7 +162,8 @@ var BaseView = (function() {
             $('.tower-unit-detail-container').html('');
         },
         compareBackButtonClicked: function(){
-            $('#'+config.compareUnitscontainerId).addClass('hidden');
+            //$('#'+config.compareUnitscontainerId).addClass('hidden');
+			$('#'+config.compareUnitscontainerId).animate({ right:'-110%'},800);
         },
         bottomFormGroupContainer: function(){
             var _this = this;
@@ -271,7 +272,6 @@ var BaseView = (function() {
         formPopupCloseClicked: function(){
             $('.'+config.bottomFormGroup.tabLinkClass).removeClass('active');
             $('.'+config.bottomFormGroup.formPopUpClass).removeClass('out');
-            $('.'+config.bottomFormGroup.formPopUpClass+'>div').hide();
         },
         bottomGroupButtonClicked: function(element){
             if($(element).hasClass('active')){ // if opened return to stop flickr
@@ -295,7 +295,8 @@ var BaseView = (function() {
 
             this.formPopupCloseClicked();
             this.compareUnitsContainer();
-            $('#'+config.compareUnitscontainerId).removeClass('hidden');
+            //$('#'+config.compareUnitscontainerId).removeClass('hidden');
+			$('#'+config.compareUnitscontainerId).animate({ right:0},900);
         },
         buildSkeleton: function(containerList) {
             var key, htmlCode = '';

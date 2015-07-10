@@ -107,6 +107,7 @@ body {
 	font-family: 'proxima_nova_rgregular';
 	color: #333;
 	background: black;
+	overflow:hidden;
 }
 header {
 	position: absolute;
@@ -556,7 +557,7 @@ ellipse.tower-unit-selected-svg-path {
 	background: white;
 	width: 60%;
 	height: 100%;
-	right: -60%;
+	right: -67%;
 }
 .selected-unit-container.unit-slide-in {
 	right:0;
@@ -590,7 +591,7 @@ ellipse.tower-unit-selected-svg-path {
 
 .like-box{ float:left;height:50px; margin-right:1px;  cursor: pointer;}
 .like-box a{ display:block; padding:14px 14px 10px 14px;background:#414141; color:#fff; position:relative; transition:all 0.3s ease-in-out; -moz-transition:all 0.3s ease-in-out; -webkit-transition:all 0.3s ease-in-out;}
-.like-box.selected a, .like-box:hover a{ background:#121212; color:#ff8714; box-shadow:0 4px #ff8714 inset;}
+.like-box:hover a{ background:#121212; color:#ff8714; box-shadow:0 4px #ff8714 inset;}
 .like-box a label{ right:8px; top:22px; cursor: pointer;}
 .like-box a label:before{ content:'+';}
 .like-box.selected a label:before{ content:'-';}
@@ -768,6 +769,7 @@ ellipse.tower-unit-selected-svg-path {
     background: white;
     top: 0;
     z-index: 100001;
+	right:-110%;
 }
 .compare-units-container .svg-container{
 	z-index: 100002;
@@ -948,6 +950,13 @@ ellipse.tower-unit-selected-svg-path {
 	-ms-transition:all 0.5s ease-in-out;
 	-o-transition:all 0.5s ease-in-out;
 	-webkit-transition:all 0.5s ease-in-out;}
+	
+.slow-transition{ 
+	transition:all 0.9s ease-in-out; 
+	-webkit-transition:all 0.9s ease-in-out; 
+	-ms-transition:all 0.9s ease-in-out;
+	-o-transition:all 0.9s ease-in-out;
+	-webkit-transition:all 0.9s ease-in-out;}
 /*-------------transition effect for all end-------------*/
 
 /*---image pop up animation---*/
