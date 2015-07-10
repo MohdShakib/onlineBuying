@@ -684,6 +684,9 @@ ellipse.tower-unit-selected-svg-path {
   	width: 100%;
   	text-align: center;
 }
+.unit-data-container.walkthrough-container{
+	height: 90%;
+}
 .unit-data-container .fullView {
 	position: absolute;
 	top: 0px;
