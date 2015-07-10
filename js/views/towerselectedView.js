@@ -8,12 +8,12 @@
 var TowerselectedView = (function() {
 
     var containerMap = {
-        'towerImgContainer': '<div class="img-container ' + config.dynamicResizeClass + '" id="img-container"></div>',
+        'towerImgContainer': '<div class="img-container ' + config.dynamicResizeClass + ' ' + config.transitionClass + '" id="img-container"></div>',
         //'overviewImgContainer': '<div  class="overview-img-container" id="overview-img-container" ></div>',
-        'towerSvgContainer': '<svg class="svg-container ' + config.dynamicResizeClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
+        'towerSvgContainer': '<svg class="svg-container ' + config.dynamicResizeClass + ' ' + config.transitionClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'towerDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>',
-        'towerRotationContainer': '<div class="tower-rotation-container" id="'+config.towerRotationContainerId+'"></div>',
-        'filterMenuContainer': '<div class="tower-menu-container" id="'+config.filterMenuContainerId+'"></div>'
+        'towerRotationContainer': '<div class="tower-rotation-container ' + config.transitionClass + '" id="' + config.towerRotationContainerId + '"></div>',
+        'filterMenuContainer': '<div class="tower-menu-container ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>'
     };
 
     function getElements() {
@@ -112,12 +112,12 @@ var TowerselectedView = (function() {
                     (filteredListingKeys == null || filteredListingKeys.indexOf(unitIdentifier) > -1)
                 ) {
                     var rotationAngle = this._model.getCurrentRotationAngle(),
-                    url = listings[unitIdentifier].isAvailable ? baseUrl + rotationAngle + '/' + unitIdentifier : "undefined";
+                        url = listings[unitIdentifier].isAvailable ? baseUrl + rotationAngle + '/' + unitIdentifier : "undefined";
                     svgClass = listings[unitIdentifier].isAvailable ? 'apt-available' : 'apt-unavailable';
-                    svgCode += "<ellipse  class=\"" + config.towerUnitSvgClass + " " + svgClass + 
-                            "\" id=\"" + unitInfo.unitIdentifier + "-path\" data-index=\"" + unitIdentifier + 
-                            "\" data-url=\"" + url +
-                            "\"  cx='" + unitInfo.unitSvgOnTower[0] + "' cy='" + unitInfo.unitSvgOnTower[1] + "' ry='1.2' rx='0.55' />";
+                    svgCode += "<ellipse  class=\"" + config.towerUnitSvgClass + " " + svgClass +
+                        "\" id=\"" + unitInfo.unitIdentifier + "-path\" data-index=\"" + unitIdentifier +
+                        "\" data-url=\"" + url +
+                        "\"  cx='" + unitInfo.unitSvgOnTower[0] + "' cy='" + unitInfo.unitSvgOnTower[1] + "' ry='1.2' rx='0.55' />";
                 }
             }
 
@@ -174,7 +174,7 @@ var TowerselectedView = (function() {
                 pageX: left,
                 pageY: top
             });
-            tooltipClass = tooltipClass ? tooltipClass : 'top-right' ;
+            tooltipClass = tooltipClass ? tooltipClass : 'top-right';
 
             var details = {
                 'address': unitInfo.listingAddress,
@@ -182,12 +182,12 @@ var TowerselectedView = (function() {
                 'floor': unitInfo.floor ? unitInfo.floor : 'Ground',
                 'color': unitInfo.isAvailable ? 'apt-available-color' : 'apt-unavailable-color',
                 'availability': unitInfo.isAvailable ? 'Available' : 'Sold',
-                'price': Math.floor(unitInfo.price/1000)/100 + ' Lacs',
+                'price': Math.floor(unitInfo.price / 1000) / 100 + ' Lacs',
                 'type': unitInfo.bedrooms + ' BHK'
             };
 
             towerCode += "<div class='detail-box show-details tSelected-view'>";
-            towerCode += "<div class='line "+tooltipClass+"'>";
+            towerCode += "<div class='line " + tooltipClass + "'>";
             towerCode += "<div class='dot-one'></div>";
             towerCode += "<div class='dot-two'></div>";
 
@@ -228,14 +228,14 @@ var TowerselectedView = (function() {
         },
         towerRotationContainer: function() {
             var _this = this;
-            _this._elements.towerRotationContainer.off('click').on('click', '.'+config.rotationButtonClass, function(event) {
+            _this._elements.towerRotationContainer.off('click').on('click', '.' + config.rotationButtonClass, function(event) {
                 // notify controller about rotatebutton click
                 _this._towerRotateClicked.notify();
 
             });
 
-            var code = '<div class="rotation-btn-container left-btn"><div class="photo-thumb br50"><img src="/zip-file/img/tow-a-ang-0.jpg" class="br50"></div><button class="'+config.rotationButtonClass+'  tower-rotation-left-button br50" ><span class="icon icon-previous"></span></button><div class="rotation-title transition">Rotate Left</div></div>';
-                code += '<div class="rotation-btn-container right-btn"><div class="photo-thumb br50"><img src="/zip-file/img/tow-a-ang-0.jpg" class="br50"></div><button class="'+config.rotationButtonClass+' tower-rotation-right-button br50" ><span class="icon icon-next"></span></button><div class="rotation-title transition">Rotate Right</div></div>';
+            var code = '<div class="rotation-btn-container left-btn"><div class="photo-thumb br50"><img src="/zip-file/img/tow-a-ang-0.jpg" class="br50"></div><button class="' + config.rotationButtonClass + '  tower-rotation-left-button br50" ><span class="icon icon-previous"></span></button><div class="rotation-title transition">Rotate Left</div></div>';
+            code += '<div class="rotation-btn-container right-btn"><div class="photo-thumb br50"><img src="/zip-file/img/tow-a-ang-0.jpg" class="br50"></div><button class="' + config.rotationButtonClass + ' tower-rotation-right-button br50" ><span class="icon icon-next"></span></button><div class="rotation-title transition">Rotate Right</div></div>';
             if (this._elements && this._elements.towerRotationContainer) {
                 this._elements.towerRotationContainer.html(code);
             }
@@ -244,23 +244,31 @@ var TowerselectedView = (function() {
             var url = rootdata.baseUrl;
             var filterdata = this._model.getSelectedFiltersData();
             var bhkFiltersData = filterdata.bhk,
-            floorFiltersData = filterdata.floor,
-            entranceFiltersData = filterdata.entrance,
-            priceFiltersData = filterdata.price;
+                floorFiltersData = filterdata.floor,
+                entranceFiltersData = filterdata.entrance,
+                priceFiltersData = filterdata.price;
 
             var code = "<table><tr><td class='menu-header menu-icon'><a href='#" + url + "'>&lt;--</a></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><table>";
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> @ </div>";
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
+            code += this.displayFilterCount('bhk', bhkFiltersData.length);
+            code += "<div class='menu-item'> @ </div>";
             code += this.getBHKMenuOptions(data, bhkFiltersData);
             code += "</td></tr>";
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> # </div>";
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
+            code += this.displayFilterCount('floor', floorFiltersData.length);
+            code += "<div class='menu-item'> # </div>";
             code += this.getFloorMenuOptions(data, floorFiltersData);
             code += "</td></tr>";
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> $ </div>";
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
+            code += this.displayFilterCount('entrance', entranceFiltersData.length);
+            code += "<div class='menu-item'> $ </div>";
             code += this.getEntranceMenuOptions(data, entranceFiltersData);
             code += "</td></tr>";
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item'> % </div>";
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
+            code += this.displayFilterCount('price', priceFiltersData.length);
+            code += "<div class='menu-item'> % </div>";
             code += this.getPriceMenuOptions(data, priceFiltersData);
             code += "</td></tr>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.filters.resetClass + "'> R </div></td></tr>";
@@ -271,8 +279,47 @@ var TowerselectedView = (function() {
             this._elements.filterMenuContainer.html(code);
             this.filterMenuContainerEvents();
         },
+        displayFilterCount: function(type, count) {
+            var style = "";
+            if (count <= 0) {
+                style += "display:none;"
+            }
+            var code = "<div id='" + type + "-filter-count' class='filter-count' style='" + style + "'>" + count + "</div>";
+            return code;
+        },
+        updateFilterCount: function() {
+            var filterdata = this._model.getSelectedFiltersData();
+            if (filterdata.bhk.length > 0) {
+                $('#bhk-filter-count').show().html(filterdata.bhk.length);
+            } else {
+                $('#bhk-filter-count').hide();
+            }
+            if (filterdata.floor.length > 0) {
+                $('#floor-filter-count').show().html(filterdata.floor.length);
+            } else {
+                $('#floor-filter-count').hide();
+            }
+            if (filterdata.entrance.length > 0) {
+                $('#entrance-filter-count').show().html(filterdata.entrance.length);
+            } else {
+                $('#entrance-filter-count').hide();
+            }
+            if (filterdata.price.length > 0) {
+                $('#price-filter-count').show().html(filterdata.price.length);
+            } else {
+                $('#price-filter-count').hide();
+            }
+        },
         filterMenuContainerEvents: function() {
             var _this = this;
+
+            _this._elements.filterMenuContainer.off('mouseenter').on('mouseenter', '.' + config.menuItemContainerClass, function(event) {
+                $(this).find('.' + config.menuItemOptionsClass).stop().fadeIn("fast", function() {});
+            });
+
+            _this._elements.filterMenuContainer.off('mouseleave').on('mouseleave', '.' + config.menuItemContainerClass, function(event) {
+                $(this).find('.' + config.menuItemOptionsClass).stop().fadeOut("fast", function() {});
+            });
 
             _this._elements.filterMenuContainer.off('click').on('click', '.' + config.filters.bhk, function(event) {
                 // notify controller
@@ -325,8 +372,8 @@ var TowerselectedView = (function() {
 
                 //check if value is preselected
                 var checkForValue = bhk;
-                if(bhkFiltersData && bhkFiltersData.length && bhkFiltersData.indexOf(checkForValue) > -1){
-                    availabilityClass += ' '+config.filters.selectedClass;
+                if (bhkFiltersData && bhkFiltersData.length && bhkFiltersData.indexOf(checkForValue) > -1) {
+                    availabilityClass += ' ' + config.filters.selectedClass;
                 }
 
                 code += "<tr><td class='option-item " + config.filters.bhk + " " + availabilityClass + "' ";
@@ -361,9 +408,9 @@ var TowerselectedView = (function() {
                 }
 
                 //check if value is preselected
-                var checkForValue = floors[floorGroup].sfloor+" "+floors[floorGroup].efloor;
-                if(floorFiltersData && floorFiltersData.length && floorFiltersData.indexOf(checkForValue) > -1){
-                    availabilityClass += ' '+config.filters.selectedClass;
+                var checkForValue = floors[floorGroup].sfloor + " " + floors[floorGroup].efloor;
+                if (floorFiltersData && floorFiltersData.length && floorFiltersData.indexOf(checkForValue) > -1) {
+                    availabilityClass += ' ' + config.filters.selectedClass;
                 }
 
                 code += "<tr><td class='option-item " + config.filters.floor + " " + availabilityClass + "' ";
@@ -407,8 +454,8 @@ var TowerselectedView = (function() {
 
                 //check if value is preselected
                 var checkForValue = entrance;
-                if(entranceFiltersData && entranceFiltersData.length && entranceFiltersData.indexOf(checkForValue) > -1){
-                    availabilityClass += ' '+config.filters.selectedClass;
+                if (entranceFiltersData && entranceFiltersData.length && entranceFiltersData.indexOf(checkForValue) > -1) {
+                    availabilityClass += ' ' + config.filters.selectedClass;
                 }
 
                 code += "<tr><td class='option-item " + config.filters.entrance + " " + availabilityClass + "' ";
@@ -443,9 +490,9 @@ var TowerselectedView = (function() {
                 }
 
                 //check if value is preselected
-                var checkForValue = prices[price].sprice+" "+prices[price].eprice;
-                if(priceFiltersData && priceFiltersData.length && priceFiltersData.indexOf(checkForValue) > -1){
-                    availabilityClass += ' '+config.filters.selectedClass;
+                var checkForValue = prices[price].sprice + " " + prices[price].eprice;
+                if (priceFiltersData && priceFiltersData.length && priceFiltersData.indexOf(checkForValue) > -1) {
+                    availabilityClass += ' ' + config.filters.selectedClass;
                 }
 
                 code += "<tr><td class='option-item " + config.filters.price + " " + availabilityClass + "' ";
@@ -463,7 +510,7 @@ var TowerselectedView = (function() {
                 var groupInterval = utils.getGroupInterval(unit.price, config.filters.priceInterval);
                 var sPrice = groupInterval.start;
                 var ePrice = groupInterval.end;
-                var priceGroup = Number(sPrice/denom) + ' L - ' + Number(ePrice/denom) + ' L';
+                var priceGroup = Number(sPrice / denom) + ' L - ' + Number(ePrice / denom) + ' L';
                 if (prices[priceGroup] == null) {
                     prices[priceGroup] = {
                         'sprice': sPrice,

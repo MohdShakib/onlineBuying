@@ -16,7 +16,7 @@ var UnitplaninfoView = (function() {
         'walkthroughContainer': '<div class="walkthrough-container fpwt-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="walkthrough-container"></div>',
         'unit3dSvgContainer': '<div class="fp-container ' + config.unitDataContainer + '"><svg class="svg-container unit-svg-container" id="unit-3d-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
         'unit2dSvgContainer': '<div class="' + config.hideClass + ' fp2d-container ' + config.unitDataContainer + '"><svg class="svg-container unit-svg-container" id="unit-2d-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
-        'unitComponentDetailContainer': '<div class="tower-unit-detail-container fp-container ' + config.unitDataContainer + '" id="'+config.towerDetailContainerId+'"></div>',
+        'unitComponentDetailContainer': '<div class="tower-unit-detail-container fp-container ' + config.unitDataContainer + '" id="' + config.towerDetailContainerId + '"></div>',
         'clusterPlanContainer': '<div class="cluster-plan-container cp-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="cluster-plan-container"></div>',
         'priceBreakupContainer': '<div class="price-breakup-container pb-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="price-breakup-container"></div>',
         'specificationContainer': '<div class="specification-container sf-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="specification-container"></div>'
@@ -32,7 +32,7 @@ var UnitplaninfoView = (function() {
             'walkthroughContainer': $('#walkthrough-container'),
             'unit3dSvgContainer': $('#unit-3d-svg-container'),
             'unit2dSvgContainer': $('#unit-2d-svg-container'),
-            'unitComponentDetailContainer': $('#'+config.towerDetailContainerId),
+            'unitComponentDetailContainer': $('#' + config.towerDetailContainerId),
             'clusterPlanContainer': $('#cluster-plan-container'),
             'priceBreakupContainer': $('#price-breakup-container'),
             'specificationContainer': $('#specification-container')
@@ -69,12 +69,20 @@ var UnitplaninfoView = (function() {
             }
         },
         initView: function(data, rotationdata, rootdata) {
-            $('#' + config.filterMenuContainerId).hide();
             if (!$('#' + config.selectedUnitContainerId).length) {
                 $('#' + config.mainContainerId).append("<div class='selected-unit-container transition' id='" + config.selectedUnitContainerId + "'></div>");
                 // Add resize event listener
                 utils.addResizeEventListener(this.dynamicResizeContainers);
+                window.getComputedStyle(document.getElementById(config.selectedUnitContainerId)).right;
+                $('#' + config.selectedUnitContainerId).addClass(config.unitSlideInClass);
+                $('#' + config.filterMenuContainerId).addClass(config.fadeOutClass);
             }
+        },
+        destroyView: function() {
+            utils.dynamicResizeContainers(window.innerWidth);
+            $('#' + config.towerRotationContainerId).css('width', window.innerWidth + config.imageResolution.unit);
+            $('#' + config.selectedUnitContainerId).removeClass(config.unitSlideInClass);
+            $('#' + config.filterMenuContainerId).addClass(config.fadeInClass);
         },
         dynamicResizeContainers: function() {
             var width = config.imageResolution.width / config.imageResolution.height * window.innerHeight,
@@ -86,7 +94,9 @@ var UnitplaninfoView = (function() {
             utils.dynamicResizeContainers(towerContainerWidth);
         },
         buildSkeleton: function(containerList) {
-            var key, htmlCode = '', data = this._model.getData(), _this = this;
+            var key, htmlCode = '',
+                data = this._model.getData(),
+                _this = this;
             for (key in containerList) {
                 if (containerList.hasOwnProperty(key) && containerMap[containerList[key]]) {
                     htmlCode += containerMap[containerList[key]];
@@ -116,10 +126,10 @@ var UnitplaninfoView = (function() {
             $('#' + config.selectedUnitContainerId).html(htmlCode);
             this._elements = getElements();
 
-            $('#' + config.selectedUnitContainerId).off('click').on('click', '.like-box', function(){
+            $('#' + config.selectedUnitContainerId).off('click').on('click', '.like-box', function() {
                 _this._likeBoxClick.notify(this); //this refers to element
             });
-            
+
         },
         unitCloseContainer: function(data, rotationdata, rootdata) {
             var code = 'X';
@@ -130,7 +140,10 @@ var UnitplaninfoView = (function() {
             var _this = this;
             _this._elements.unitCloseContainer.off('click').on('click', function(event) {
                 // notify controller
-                _this._unitCloseClick.notify(); // this refers to element here
+                _this.destroyView();
+                setTimeout(function() {
+                    _this._unitCloseClick.notify();
+                }, 500);
             });
         },
         unitMenuContainer: function(data, rotationdata, rootdata) {
@@ -208,7 +221,7 @@ var UnitplaninfoView = (function() {
         },
         unit3dSvgContainer: function() {
             var unitTypeData = this._model.getUnitTypeData(),
-            svgCode = utils.getUnit3dSvgPolygonHtml(unitTypeData);
+                svgCode = utils.getUnit3dSvgPolygonHtml(unitTypeData);
             this._elements.unit3dSvgContainer.html(svgCode);
             this.unit3dSvgContainerEvents();
         },
@@ -257,7 +270,7 @@ var UnitplaninfoView = (function() {
             });
         },
         unitComponentMouseEnter: function(params) {
-            if(this._elements && this._elements.unitComponentDetailContainer){
+            if (this._elements && this._elements.unitComponentDetailContainer) {
                 utils.unitComponentMouseEnter(params, this._elements.unitComponentDetailContainer);
             }
         },

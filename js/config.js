@@ -31,6 +31,8 @@ var config = (function(){
 		// Common
 		noPointerClass: 'no-pointer',
 		hideClass: 'hidden',
+		fadeInClass: 'fade-in',
+		fadeOutClass: 'fade-out',
 		transitionClass: 'transition',
 		selectedClass: 'selected',
 		availabilityClass: {
@@ -74,6 +76,8 @@ var config = (function(){
 		selectedTowerImagesClass: 'selected-tower-image',
 		rotationButtonClass: 'rotation-button',
 		
+		menuItemContainerClass: 'menu-item-container',
+		menuItemOptionsClass: 'menu-item-options',
 		filters: {
 			bhk: 'bhk-option',
 			floor: 'floor-option',
@@ -92,7 +96,8 @@ var config = (function(){
 		unitMenuLinkClass: 'unit-menu-link',
 		sunlightImageClass: 'sunlight-img',
 		sunlightMenuOptionClass: 'sunlight-menu-option',
-		floorPlanMenuOptionClass: 'floor-plan-menu-option'
+		floorPlanMenuOptionClass: 'floor-plan-menu-option',
+		unitSlideInClass: 'unit-slide-in'
 	};
 
 	return config;
