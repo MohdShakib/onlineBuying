@@ -69,7 +69,7 @@ var BaseView = (function() {
             
             var htmlCode = '';
         
-            htmlCode += '<div class="compare-back-button">Back</div>';
+            htmlCode += '<div class="compare-back-button">&larr; Back</div>';
 
             htmlCode +='<div class="compare-container">';
             for(var i=0; i<compareList.length; i++){
