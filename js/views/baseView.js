@@ -69,7 +69,7 @@ var BaseView = (function() {
             
             var htmlCode = '';
         
-            htmlCode += '<div class="compare-back-button">&larr; Back</div>';
+            htmlCode += '<div class="compare-back-button"><span class="icon icon-arrow_left"></span> Back</div>';
 
             htmlCode +='<div class="compare-container">';
             for(var i=0; i<compareList.length; i++){
@@ -86,7 +86,7 @@ var BaseView = (function() {
                 var borderClass = !i ? 'compare-unit-box-right-border' : 'compare-unit-box-right';
                 htmlCode += '<div  class="compare-unit-box '+borderClass+'">'
                 
-                if(!i && compareList_length){
+                if(!i && compareList_length > 1){
                     var item = compareList[i],
                     imageUrl = item ? item.unitTypeData.unitImageUrl : undefined;
                     htmlCode += '<div class="tower-unit-detail-container ' + config.unitDataContainer + '"></div>';
@@ -95,7 +95,7 @@ var BaseView = (function() {
                                     +'<div class="book-com-box">'
                                         +'<div class="like-box '+item.unitIdentifier+'-like-box selected" >'
                                             +'<a >'
-                                                +'<span class="icon icon-heart-1"></span>'
+                                                +'<span class="icon icon-fav"></span>'
                                                 +'<label class="like-count br50"></label>'
                                             +'</a>'
                                         +'</div>'
@@ -181,7 +181,7 @@ var BaseView = (function() {
                         +'<form id="call-box-form"  name="call-box-form" onsubmit="return callBackFormSubmit(this)" >'
                             +'<input class="text" id="call-box-email" name="email" placeholder="enter email id*" type="email" required />'
                             +'<input class="text" id="call-box-phone" name="phone" placeholder="enter cell phone number*" type="number" minlength="10" maxlength="10" required />'
-                            +'<div class="submit" id="call-box-submit-id">Submit <span>&rarr;</span>'
+                            +'<div class="submit" id="call-box-submit-id">Submit <span  class="icon icon-arrow_right"></span>'
 								+'<input type="submit" id="call-box-submit-id" />'
 							+'</div>'
                         +'</form>'
@@ -192,7 +192,7 @@ var BaseView = (function() {
                         +'<div class="unit-box fleft" id="'+config.shortListedUnitListId+'">'
                         +'</div>'
                         +'<div class="clear-fix"></div>'
-                        +'<div id="'+config.unitCompareButtonId+'" class="submit"><input type="submit" />View Liked Plans <span>&rarr;</span></div>'
+                        +'<div id="'+config.unitCompareButtonId+'" class="submit"><input type="submit" />View Liked Plans <span class="icon icon-arrow_right"></span></div>'
                     +'</div>'
                     +'<div class="share-box">'
                         +'<p>Share details with family / friedns via</br> Email / Facebook / Google+</p>'
@@ -205,7 +205,7 @@ var BaseView = (function() {
                         +'</div>'
                         +'<input class="text" placeholder="enter name id*" type="text" />'
 						+'<input class="text" placeholder="enter email id*" type="text" />'
-                        +'<div class="submit"><input type="submit" />Submit <span>&rarr;</span></div>'
+                        +'<div class="submit"><input type="submit" />Submit <span  class="icon icon-arrow_right"></span></div>'
                     +'</div>'
                 +'</div>'
                 +'<ul class="conect-tab">'
