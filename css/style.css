@@ -1168,6 +1168,15 @@ ellipse.tower-unit-selected-svg-path {
 	height:25px; 
 	left:-27px; 
 	top:-13px;
+}
+.unit-view .dot-one{ 
+	width:12px; 
+	height:12px; 
+	background:#fff; 
+	left:-5px; 
+	top:-8px !important; 
+	position:absolute; 
+	border-radius:50%;
 } 
 .dot-two{ 
 	width:12px; 
