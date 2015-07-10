@@ -150,6 +150,11 @@ var utils = (function() {
             var dataset = params.element.dataset,
                 towerCode = "<div id='container-detail' class='tooltip-detail'>";
 
+              /*  towerCode += "<div class='detail-box show-details'>";
+                towerCode += "<div class='line bottom-right' >";
+                towerCode += "<div class='dot-one'></div>";
+                towerCode += "<div class='dot-two'></div>";*/
+
             var info = {
                 'name': dataset.name,
                 'type': dataset.type,
@@ -159,6 +164,9 @@ var utils = (function() {
             towerCode += '<div class="towerunit-detail-container">';
             towerCode += '<div class="towerunit-name">' + info.name + '</div>';
             towerCode += '<div class="towerunit-detail">' + info.details + '</div>';
+
+            //towerCode += '</div></div></div></div>';
+            towerCode += '</div>';
 
             if (containerReference) {
                 containerReference.html(towerCode);
@@ -206,8 +214,7 @@ var utils = (function() {
                     $('.'+unitIdentifier+'-like-box').removeClass('selected');
                 }
                 comparedItems.splice(itemIndex, 1);
-                comparedItems = JSON.stringify(comparedItems);
-                localStorage.setItem('shortlistedItems',comparedItems);
+                utils.updateShortListInStorage(comparedItems);
             }
             utils.updateShortListedList();
         },
@@ -228,10 +235,14 @@ var utils = (function() {
                     towerIdentifier: towerIdentifier,
                     rotationAngle: rotationAngle
                 });
-                comparedItems = JSON.stringify(comparedItems);
-                localStorage.setItem('shortlistedItems',comparedItems);
+                
+                utils.updateShortListInStorage(comparedItems);
             }
             utils.updateShortListedList();
+        },
+        updateShortListInStorage: function(comparedItems){
+            comparedItems = JSON.stringify(comparedItems);
+            localStorage.setItem('shortlistedItems',comparedItems);
         },
         updateShortListedList: function(){
             var comparedItems = utils.getComparedItems('shortlistedItems'),
@@ -245,6 +256,12 @@ var utils = (function() {
             }else{
                 htmlCode += '<p>Nothing To Compare</p>';
             }
+
+            $('#'+config.unitCompareButtonId).addClass('disable');
+            if(length > 1){
+                $('#'+config.unitCompareButtonId).removeClass('disable');
+            }
+
             $('#'+config.shortListedUnitListId).html(htmlCode);
             $('#'+config.likeCountId).html(length);
         }
