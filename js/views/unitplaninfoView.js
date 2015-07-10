@@ -16,7 +16,7 @@ var UnitplaninfoView = (function() {
         'walkthroughContainer': '<div class="walkthrough-container fpwt-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="walkthrough-container"></div>',
         'unit3dSvgContainer': '<div class="fp-container ' + config.unitDataContainer + '"><svg class="svg-container unit-svg-container" id="unit-3d-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
         'unit2dSvgContainer': '<div class="' + config.hideClass + ' fp2d-container ' + config.unitDataContainer + '"><svg class="svg-container unit-svg-container" id="unit-2d-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
-        'unitComponentDetailContainer': '<div class="tower-unit-detail-container fp-container ' + config.unitDataContainer + '" id="' + config.towerDetailContainerId + '"></div>',
+        'unitComponentDetailContainer': '<div class="tower-unit-detail-container fp-container ' + config.unitDataContainer + '" id="'+config.towerDetailContainerId+'"></div>',
         'clusterPlanContainer': '<div class="cluster-plan-container cp-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="cluster-plan-container"></div>',
         'priceBreakupContainer': '<div class="price-breakup-container pb-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="price-breakup-container"></div>',
         'specificationContainer': '<div class="specification-container sf-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="specification-container"></div>'
@@ -112,7 +112,7 @@ var UnitplaninfoView = (function() {
 							+'<div class="book-com-box">'
 								+'<div class="like-box '+selectedClass+' '+data.unitIdentifier+'-like-box" >'
 									+'<a >'
-										+'<span class="icon icon-heart"></span>'
+										+'<span class="icon icon-fav"></span>'
 										+'<label class="like-count br50"></label>'
 									+'</a>'
 								+'</div>'
@@ -271,7 +271,9 @@ var UnitplaninfoView = (function() {
         },
         unitComponentMouseEnter: function(params) {
             if (this._elements && this._elements.unitComponentDetailContainer) {
-                utils.unitComponentMouseEnter(params, this._elements.unitComponentDetailContainer);
+                var pointX = $(params.element).attr('points').split(' ')[0];
+                var pointY = $(params.element).attr('points').split(' ')[1];
+                utils.unitComponentMouseEnter(params, this._elements.unitComponentDetailContainer, pointX, pointY);
             }
         },
         unitComponentMouseLeave: function() {
