@@ -268,7 +268,7 @@ var TowerselectedView = (function() {
                 entranceFiltersData = filterdata.entrance,
                 priceFiltersData = filterdata.price;
 
-            var code = "<table><tr><td class='menu-header menu-icon'><a href='#" + url + "'><span class='icon icon-arrow_left fs20'></span></td></tr>";
+            var code = "<table><tr><td class='menu-header menu-icon'><a href='#" + url + "'><span class='icon icon-arrow_left'></span></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><table>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";

@@ -415,7 +415,7 @@ ellipse.tower-unit-svg-selected-path {
 	background: #333;
 	
 }
-.tower-menu-container .menu-item .icon{ margin-top:5px; color:#ccc;}
+.tower-menu-container .menu-item .icon{ padding-top:10px; color:#ccc;}
 .tower-menu-container .menu-icon, .tower-menu-container .menu-items {
 	color: #FFF;
 	width: 45px;
@@ -433,7 +433,7 @@ ellipse.tower-unit-svg-selected-path {
 	text-decoration: none;
 	display: block;
 }
-.tower-menu-container .menu-icon a .icon, .tower-menu-container .menu-icon .icon{ float:left; margin:12px;color:#ccc;}
+.tower-menu-container .menu-icon a .icon, .tower-menu-container .menu-icon .icon{ float:left; padding:10px;color:#ccc;}
 .tower-menu-container .menu-sep {
 	height: 1px;
 	padding: 0px;
@@ -447,12 +447,12 @@ ellipse.tower-unit-svg-selected-path {
 }
 .tower-menu-container .menu-items .menu-item-container-td {
 	position: relative;
-	height: 40px;
+	height: 45px;
 	width: 45px;
 }
 .tower-menu-container .menu-item {
 	position: absolute;
-	line-height: 40px;
+	line-height: 45px;
 	top: 0px;
 	height: 100%;
 	width: 100%;
@@ -641,7 +641,7 @@ ellipse.tower-unit-svg-selected-path {
 	right:0;
 }
 .unit-view-tabs{
-	position:absolute; bottom:1px; left:0; width:100%; z-index:999999;
+	position:absolute; bottom:0; left:0; width:100%; z-index:999999;
 }
 .unit-view-tabs.top-view{ bottom:inherit; top:101px; width:443px; left:inherit; right:1px;}
 .special-offers{
@@ -670,12 +670,14 @@ ellipse.tower-unit-svg-selected-path {
 .like-box{ float:left;height:50px; margin-right:1px;  cursor: pointer;}
 .like-box a{ display:block; padding:14px 14px 10px 14px;background:#414141; color:#fff; position:relative; transition:all 0.3s ease-in-out; -moz-transition:all 0.3s ease-in-out; -webkit-transition:all 0.3s ease-in-out;}
 .like-box:hover a{ background:#121212; color:#ff8714; box-shadow:0 4px #ff8714 inset;}
+.like-box.selected a{background:#121212; color:#ff8714; }
 .like-box a label{ right:8px; top:22px; cursor: pointer;}
 .like-box a label:before{ content:'+';}
 .like-box.selected a label:before{ content:'-';}
-.book-now{ float:right; background:limegreen; height:50px;}
-.book-now a{ color:#fff; padding:8px 11px; display:block; font-size:12px;}
-.book-now a span{ display:block; background:#414141; padding:3px 5px;}
+.book-now{ float:right; background:limegreen; height:50px; cursor:pointer;}
+.book-now:hover{ background:#38D938;}
+.book-now a{ color:#fff; padding:8px 11px; display:block; font-size:12px; font-weight:bold;}
+.book-now a span{ display:block; background:#414141; padding:3px 5px; font-weight:normal;}
 /*----compare box---*/
 .compare-container{ position:absolute; width:100%; left:0; bottom:1px; text-align:center; z-index:99999;}
 .com-pro-box{ width:94px; display:inline-block; margin:0 1px;}
@@ -692,7 +694,7 @@ ellipse.tower-unit-svg-selected-path {
 	background-color: rgba(0,0,0,0.5);
 	color: #CCC;
 	text-align: center;
-	line-height: 50px;
+	line-height: 58px;
 	cursor: pointer;
 	transition:all 0.5s ease-in-out;
 	-moz-transition:all 0.5s ease-in-out;
@@ -718,7 +720,7 @@ ellipse.tower-unit-svg-selected-path {
 }
 .unit-menu-container .header-item {
 	color: #DDD;
-	font-size: 11px;
+	font-size: 14px;
 	text-align: center;
 	background-color: #333;
 	border-right: 1px #EEE solid;
@@ -1015,9 +1017,9 @@ ellipse.tower-unit-svg-selected-path {
 	height: 360px;
 	width: 600px;
 	display: block;
-	animation: zoom 45s;
-	-moz-animation: zoom 45s;
-	-webkit-animation: zoom 45s;
+	animation: zoom 30s;
+	-moz-animation: zoom 30s;
+	-webkit-animation: zoom 30s;
 	animation-delay:1s;
 	-moz-animation-delay:1s;
 	-webkit-animation-delay:1s;
@@ -1178,9 +1180,10 @@ ellipse.tower-unit-svg-selected-path {
 	height:12px; 
 	background:#fff; 
 	left:-5px; 
-	top:-8px !important; 
+	top:-6px !important; 
 	position:absolute; 
 	border-radius:50%;
+	border:none;
 } 
 .dot-two{ 
 	width:12px; 
@@ -1192,6 +1195,7 @@ ellipse.tower-unit-svg-selected-path {
 	top:-5px; 
 	z-index:1;
 }
+.unit-view .dot-two{ background:orange;}
 .dot-two.sold{ 
 	background:crimson;
 }
@@ -1300,6 +1304,27 @@ ellipse.tower-unit-svg-selected-path {
 	left: 218px;
 	top: -35px;
 }
+
+
+
+.unit-view .line .tSelected-detail{ 
+	left:94px; 
+	top:-22px;
+}
+.unit-view .line.top-left .tSelected-detail{
+	left: 188px;
+	top: 69px;
+}
+.unit-view .line.top-right .tSelected-detail{
+	left: 68px;
+	top: -23px;
+}
+.unit-view .line.bottom-left .tSelected-detail{
+	left: 193px;
+	top: -59px;
+}
+
+
 .line.top-left .apt-available, 
 .line.bottom-left .apt-available{
 	border-left: 4px solid limegreen;
@@ -1567,7 +1592,7 @@ ellipse.tower-unit-svg-selected-path {
     	-webkit-transform: scale(1,1);
     }
     to {
-    	-webkit-transform: scale(1.5,1.5);
+    	-webkit-transform: scale(1.2,1.2);
     }
 }
 @-moz-keyframes zoom {
@@ -1575,7 +1600,7 @@ ellipse.tower-unit-svg-selected-path {
     	-moz-transform: scale(1,1);
     }
     to {
-    	-moz-transform: scale(1.5,1.5);
+    	-moz-transform: scale(1.2,1.2);
     }
 }
 /* Standard syntax */
@@ -1584,6 +1609,6 @@ ellipse.tower-unit-svg-selected-path {
         transform: scale(1,1);
    }
    to {
-        transform: scale(1.5,1.5);
+        transform: scale(1.2,1.2);
    }
 }

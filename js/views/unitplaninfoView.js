@@ -152,10 +152,10 @@ var UnitplaninfoView = (function() {
                 "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
                 "- <span>" + data.size + " " + data.measure + "</span> " +
                 "- <span>Rs. " + utils.getReadablePrice(data.price) + "* </span></td>" +
-                "<td data-target='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'><span class='icon fs14 icon-floor'></span></div>Floor Plan</td>" +
-                "<td data-target='cp-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon fs14  icon-clusterplan'></span></div>Cluster Plan</td>" +
-                "<td data-target='pb-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon fs14 icon-rupee'></span></div>Price Breakup</td>" +
-                "<td data-target='sf-container' class='header-item " + config.unitMenuLinkClass + " right'><div class='item-icon-box'><span class='icon fs14 	icon-specification'></span></div>Specification</td></tr></table>";
+                "<td data-target='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'><span class='icon fs16 icon-floor'></span></div>Floor Plan</td>" +
+                "<td data-target='cp-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon fs16  icon-clusterplan'></span></div>Cluster Plan</td>" +
+                "<td data-target='pb-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon fs16 icon-rupee'></span></div>Price Breakup</td>" +
+                "<td data-target='sf-container' class='header-item " + config.unitMenuLinkClass + " right'><div class='item-icon-box'><span class='icon fs16 icon-specification'></span></div>Specification</td></tr></table>";
             this._elements.unitMenuContainer.html(code);
             this.unitMenuContainerEvents();
         },
@@ -237,7 +237,7 @@ var UnitplaninfoView = (function() {
 
             this._elements.unit3dSvgContainer.off('mouseleave').on('mouseleave', 'polygon', function(event) {
                 //here this refers to element
-                _this._unitComponentMouseLeave.notify();
+               // _this._unitComponentMouseLeave.notify();
             });
         },
         unit2dSvgContainer: function() {
