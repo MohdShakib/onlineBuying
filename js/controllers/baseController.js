@@ -39,6 +39,10 @@ var BaseController = (function() {
                 _this._view.unitComponentMouseLeave();
             });
 
+            this._view._removeShortlistClick.attach(function(sender, data){
+                utils.removeFromShortListed(data.unitIdentifier);
+            });
+
             
         },
         generateTemplate: function() {

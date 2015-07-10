@@ -49,7 +49,9 @@ var config = (function(){
 		unitCompareButtonId: 'unit-compare-button',
 		compareUnitComponentDetailContainer: 'compare-unit-component-detail-container',
 		shortListedUnitListId: 'shortlisted-unit-list',
-		
+		likeCountId: 'like-count',
+		shortlistedUnitRemoveClass: 'remove-shortlist',
+
 		// Masterplan
 		imgContainerClass : "menu-mapped-image",
 		towerImgSvgClass: 'tower-svg-path',

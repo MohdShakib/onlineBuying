@@ -182,15 +182,14 @@ var utils = (function() {
             }
             return comparedItems;
         },
-        likeBoxClicked: function(element, unitIdentifier, towerIdentifier, rotationAngle){
+        likeBoxClicked: function(element, unitIdentifier, unitName, towerIdentifier, rotationAngle){
             if($(element).hasClass('selected')){
                 $(element).removeClass('selected');
                 utils.removeFromShortListed(unitIdentifier);
             }else{
                 $(element).addClass('selected');
-                utils.addToShortListed(unitIdentifier, towerIdentifier, rotationAngle);
+                utils.addToShortListed(unitIdentifier, unitName, towerIdentifier, rotationAngle);
             }
-            utils.updateShortListedList();
         },
         removeFromShortListed : function(unitIdentifier){
             var comparedItems = utils.getComparedItems('shortlistedItems'),
@@ -203,10 +202,14 @@ var utils = (function() {
             }
 
             if(itemIndex > -1){
+                if($('.'+unitIdentifier+'-like-box')){
+                    $('.'+unitIdentifier+'-like-box').removeClass('selected');
+                }
                 comparedItems.splice(itemIndex, 1);
                 comparedItems = JSON.stringify(comparedItems);
                 localStorage.setItem('shortlistedItems',comparedItems);
             }
+            utils.updateShortListedList();
         },
         addToShortListed: function(unitIdentifier, unitName, towerIdentifier, rotationAngle){
             var comparedItems = utils.getComparedItems('shortlistedItems'),
@@ -228,6 +231,7 @@ var utils = (function() {
                 comparedItems = JSON.stringify(comparedItems);
                 localStorage.setItem('shortlistedItems',comparedItems);
             }
+            utils.updateShortListedList();
         },
         updateShortListedList: function(){
             var comparedItems = utils.getComparedItems('shortlistedItems'),
@@ -235,13 +239,14 @@ var utils = (function() {
             if(length){
                 htmlCode = '<ul>';
                 for(var i=0; i<length; i++){
-                    htmlCode += '<li>'+comparedItems[i].unitName+'<span>x</span></li>';
+                    htmlCode += '<li >'+comparedItems[i].unitName+'<span class="'+config.shortlistedUnitRemoveClass+'" data-unitIdentifier="'+comparedItems[i].unitIdentifier+'">x</span></li>';
                 }
                 htmlCode += '</ul>';
             }else{
                 htmlCode += '<p>Nothing To Compare</p>';
             }
             $('#'+config.shortListedUnitListId).html(htmlCode);
+            $('#'+config.likeCountId).html(length);
         }
     }
 

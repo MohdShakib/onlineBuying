@@ -14,21 +14,6 @@ var initializeRoutes = (function() {
             unitAddress: "([a-z0-9-]+)"
         };
 
-        // dummy data to check..
-        var comparedItems = [{
-            unitIdentifier: 'a-0003',
-            unitName: 'A-0003',
-            towerIdentifier: 'tower-a',
-            rotationAngle: '0'
-        },{
-            unitIdentifier: 'a-0303',
-            unitName: 'A-3003',
-            towerIdentifier: 'tower-a',
-            rotationAngle: '0'
-        }];
-        comparedItems = JSON.stringify(comparedItems);
-        localStorage.setItem('shortlistedItems',comparedItems);
-
         var projectRoute = routeRegex.sep + routeRegex.projectName + routeRegex.wordSep + routeRegex.projectId,
             towerRoute = projectRoute + routeRegex.sep + routeRegex.towerName,
             unitRoute = towerRoute + routeRegex.sep + routeRegex.towerAngle + routeRegex.sep + routeRegex.unitAddress;

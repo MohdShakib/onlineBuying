@@ -38,6 +38,7 @@ var BaseView = (function() {
         this._formPopupCloseClick = new Event(this);
         this._unitComponentMouseEnter = new Event(this);
         this._unitComponentMouseLeave = new Event(this);
+        this._removeShortlistClick = new Event(this);
     }
 
     BaseView.prototype = {
@@ -62,7 +63,8 @@ var BaseView = (function() {
             $('.compare-unit-box').html(htmlCode);
         },
         compareUnitsContainer: function(){
-            var compareList = this._model.getCompareList();
+            var compareList = this._model.getCompareList(),
+            compareList_length = compareList.length;
             var rootdata = this._model.getRootdata();
             
             var htmlCode = '';
@@ -80,20 +82,18 @@ var BaseView = (function() {
             htmlCode +='</div>';
        
             for(var i=0; i<2; i++){
-                var item = compareList[i];
+                
                 var borderClass = !i ? 'compare-unit-box-right-border' : 'compare-unit-box-right';
-                var imageUrl = item ? item.unitTypeData.unitImageUrl : undefined; ///zip-file/img/2bhk-type1-1105-2.jpg
                 htmlCode += '<div  class="compare-unit-box '+borderClass+'">'
-                htmlCode += '<div class="tower-unit-detail-container ' + config.unitDataContainer + '"></div>'
-                    +'<div class="compare-unit-box-detail top-right-component"><span>'+item.unitName+' Av</span>-<span>'+item.bedrooms+'</span>-<span>'+item.size+'</span>-<span>'+item.price+'</span>-<span>'+item.floor+'</span></div>';
-                    
+                
+                if(!i && compareList_length){
+                    var item = compareList[i],
+                    imageUrl = item ? item.unitTypeData.unitImageUrl : undefined;
+                    htmlCode += '<div class="tower-unit-detail-container ' + config.unitDataContainer + '"></div>';
+                    htmlCode += '<div class="compare-unit-box-detail top-right-component"><span>'+item.unitName+' Av</span>-<span>'+item.bedrooms+'</span>-<span>'+item.size+'</span>-<span>'+item.price+'</span>-<span>'+item.floor+'</span></div>';
                     htmlCode += '<div class="unit-view-tabs top-view top-right-component">'
-                                    /*+'<div class="special-offers">'
-                                        +'<p><span class="icon icon-smile"></span></p>'
-                                        +'<p>No Pre-EMI offer and Discount Rs. 4,53,000/</p>'   
-                                    +'</div>'*/
                                     +'<div class="book-com-box">'
-                                        +'<div class="like-box">'
+                                        +'<div class="like-box '+item.unitIdentifier+'-like-box selected" >'
                                             +'<a >'
                                                 +'<span class="icon icon-heart"></span>'
                                                 +'<label class="like-count br50"></label>'
@@ -104,18 +104,25 @@ var BaseView = (function() {
                                         +'</div>'
                                     +'</div>'
                                 +'</div>';
-
-
                     htmlCode += '<div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container'+i+'" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'
-                    +'<img class="compare-unit-img"  src="'+imageUrl+'"> </div>'
-                +'</div>';
+                                +'<img class="compare-unit-img"  src="'+imageUrl+'"> </div>';
+                
+                }else{
+                    htmlCode += '<div class="compare-unit-box-detail top-right-component"><span>Drag & drop to select unit and compare it.</span></div>'
+                                +'<div class="img-svg-container drag-drop">'
+                                +'<img class="compare-unit-img"  src="compare_drag.jpg"></div>';
+                }
+
+                htmlCode += '</div>';
             }
         
             this._elements.compareUnitsContainer.html(htmlCode);
             //this.updateCompareUnitBox();
             this.compareUnitsContainerEvents();
-            this.unit3dSvgContainer(0);
-            this.unit3dSvgContainer(1);
+            if(compareList_length){
+                this.unit3dSvgContainer(0);
+                /*this.unit3dSvgContainer(1);*/
+            }
         },
         compareUnitsContainerEvents: function(){
             var _this = this;
@@ -213,7 +220,7 @@ var BaseView = (function() {
                         +'<a href="javascript:void(0);" data-name="compare-box">'
                             +'<p>Compare Plans</br> Once you Liked</p>'
                             +'<span class="icon icon-heart-o">'
-                                +'<label class="like-count br50">2</label>'
+                                +'<label class="like-count br50" id="'+config.likeCountId+'">0</label>'
                             +'</span>'
                         +'</a>'
                     +'</li>'
@@ -252,6 +259,14 @@ var BaseView = (function() {
                 _this._unitCompareButtonClick.notify(this);
             });
 
+            this._elements.bottomFormGroupContainer.on('click', '.'+config.shortlistedUnitRemoveClass, function(event){
+                var unitIdentifier = this.dataset.unitidentifier;
+                _this._removeShortlistClick.notify({
+                    element: this,
+                    unitIdentifier: unitIdentifier
+                });
+            });
+
         },
         formPopupCloseClicked: function(){
             $('.'+config.bottomFormGroup.tabLinkClass).removeClass('active');
@@ -279,6 +294,7 @@ var BaseView = (function() {
             }
 
             this.formPopupCloseClicked();
+            this.compareUnitsContainer();
             $('#'+config.compareUnitscontainerId).removeClass('hidden');
         },
         buildSkeleton: function(containerList) {
