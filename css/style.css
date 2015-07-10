@@ -641,7 +641,7 @@ ellipse.tower-unit-svg-selected-path {
 	right:0;
 }
 .unit-view-tabs{
-	position:absolute; bottom:1px; left:0; width:100%; z-index:999999;
+	position:absolute; bottom:0; left:0; width:100%; z-index:999999;
 }
 .unit-view-tabs.top-view{ bottom:inherit; top:101px; width:443px; left:inherit; right:1px;}
 .special-offers{
@@ -674,9 +674,10 @@ ellipse.tower-unit-svg-selected-path {
 .like-box a label{ right:8px; top:22px; cursor: pointer;}
 .like-box a label:before{ content:'+';}
 .like-box.selected a label:before{ content:'-';}
-.book-now{ float:right; background:limegreen; height:50px;}
-.book-now a{ color:#fff; padding:8px 11px; display:block; font-size:12px;}
-.book-now a span{ display:block; background:#414141; padding:3px 5px;}
+.book-now{ float:right; background:limegreen; height:50px; cursor:pointer;}
+.book-now:hover{ background:#38D938;}
+.book-now a{ color:#fff; padding:8px 11px; display:block; font-size:12px; font-weight:bold;}
+.book-now a span{ display:block; background:#414141; padding:3px 5px; font-weight:normal;}
 /*----compare box---*/
 .compare-container{ position:absolute; width:100%; left:0; bottom:1px; text-align:center; z-index:99999;}
 .com-pro-box{ width:94px; display:inline-block; margin:0 1px;}
@@ -693,7 +694,7 @@ ellipse.tower-unit-svg-selected-path {
 	background-color: rgba(0,0,0,0.5);
 	color: #CCC;
 	text-align: center;
-	line-height: 50px;
+	line-height: 58px;
 	cursor: pointer;
 	transition:all 0.5s ease-in-out;
 	-moz-transition:all 0.5s ease-in-out;
@@ -719,7 +720,7 @@ ellipse.tower-unit-svg-selected-path {
 }
 .unit-menu-container .header-item {
 	color: #DDD;
-	font-size: 11px;
+	font-size: 14px;
 	text-align: center;
 	background-color: #333;
 	border-right: 1px #EEE solid;
@@ -1179,9 +1180,10 @@ ellipse.tower-unit-svg-selected-path {
 	height:12px; 
 	background:#fff; 
 	left:-5px; 
-	top:-8px !important; 
+	top:-6px !important; 
 	position:absolute; 
 	border-radius:50%;
+	border:none;
 } 
 .dot-two{ 
 	width:12px; 
@@ -1193,6 +1195,7 @@ ellipse.tower-unit-svg-selected-path {
 	top:-5px; 
 	z-index:1;
 }
+.unit-view .dot-two{ background:orange;}
 .dot-two.sold{ 
 	background:crimson;
 }
@@ -1301,6 +1304,27 @@ ellipse.tower-unit-svg-selected-path {
 	left: 218px;
 	top: -35px;
 }
+
+
+
+.unit-view .line .tSelected-detail{ 
+	left:94px; 
+	top:-22px;
+}
+.unit-view .line.top-left .tSelected-detail{
+	left: 188px;
+	top: 69px;
+}
+.unit-view .line.top-right .tSelected-detail{
+	left: 68px;
+	top: -23px;
+}
+.unit-view .line.bottom-left .tSelected-detail{
+	left: 193px;
+	top: -59px;
+}
+
+
 .line.top-left .apt-available, 
 .line.bottom-left .apt-available{
 	border-left: 4px solid limegreen;
