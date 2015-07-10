@@ -415,7 +415,7 @@ ellipse.tower-unit-svg-selected-path {
 	background: #333;
 	
 }
-.tower-menu-container .menu-item .icon{ margin-top:5px; color:#ccc;}
+.tower-menu-container .menu-item .icon{ padding-top:10px; color:#ccc;}
 .tower-menu-container .menu-icon, .tower-menu-container .menu-items {
 	color: #FFF;
 	width: 45px;
@@ -433,7 +433,7 @@ ellipse.tower-unit-svg-selected-path {
 	text-decoration: none;
 	display: block;
 }
-.tower-menu-container .menu-icon a .icon, .tower-menu-container .menu-icon .icon{ float:left; margin:12px;color:#ccc;}
+.tower-menu-container .menu-icon a .icon, .tower-menu-container .menu-icon .icon{ float:left; padding:10px;color:#ccc;}
 .tower-menu-container .menu-sep {
 	height: 1px;
 	padding: 0px;
@@ -447,12 +447,12 @@ ellipse.tower-unit-svg-selected-path {
 }
 .tower-menu-container .menu-items .menu-item-container-td {
 	position: relative;
-	height: 40px;
+	height: 45px;
 	width: 45px;
 }
 .tower-menu-container .menu-item {
 	position: absolute;
-	line-height: 40px;
+	line-height: 45px;
 	top: 0px;
 	height: 100%;
 	width: 100%;
@@ -670,6 +670,7 @@ ellipse.tower-unit-svg-selected-path {
 .like-box{ float:left;height:50px; margin-right:1px;  cursor: pointer;}
 .like-box a{ display:block; padding:14px 14px 10px 14px;background:#414141; color:#fff; position:relative; transition:all 0.3s ease-in-out; -moz-transition:all 0.3s ease-in-out; -webkit-transition:all 0.3s ease-in-out;}
 .like-box:hover a{ background:#121212; color:#ff8714; box-shadow:0 4px #ff8714 inset;}
+.like-box.selected a{background:#121212; color:#ff8714; }
 .like-box a label{ right:8px; top:22px; cursor: pointer;}
 .like-box a label:before{ content:'+';}
 .like-box.selected a label:before{ content:'-';}
@@ -1015,9 +1016,9 @@ ellipse.tower-unit-svg-selected-path {
 	height: 360px;
 	width: 600px;
 	display: block;
-	animation: zoom 45s;
-	-moz-animation: zoom 45s;
-	-webkit-animation: zoom 45s;
+	animation: zoom 30s;
+	-moz-animation: zoom 30s;
+	-webkit-animation: zoom 30s;
 	animation-delay:1s;
 	-moz-animation-delay:1s;
 	-webkit-animation-delay:1s;
@@ -1567,7 +1568,7 @@ ellipse.tower-unit-svg-selected-path {
     	-webkit-transform: scale(1,1);
     }
     to {
-    	-webkit-transform: scale(1.5,1.5);
+    	-webkit-transform: scale(1.2,1.2);
     }
 }
 @-moz-keyframes zoom {
@@ -1575,7 +1576,7 @@ ellipse.tower-unit-svg-selected-path {
     	-moz-transform: scale(1,1);
     }
     to {
-    	-moz-transform: scale(1.5,1.5);
+    	-moz-transform: scale(1.2,1.2);
     }
 }
 /* Standard syntax */
@@ -1584,6 +1585,6 @@ ellipse.tower-unit-svg-selected-path {
         transform: scale(1,1);
    }
    to {
-        transform: scale(1.5,1.5);
+        transform: scale(1.2,1.2);
    }
 }

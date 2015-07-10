@@ -18,12 +18,12 @@ a{ text-decoration:none;}
 .pro-contact-actions ul.conect-tab > li > a p span{ display:block;}
 .pro-contact-actions ul.conect-tab > li > a:hover .icon, .pro-contact-actions ul.conect-tab > li > a.active .icon{ color:#ff8714;}
 .like-count{ position:absolute; background:#383735; color:#fff; font-size:10px; border:1px solid #fff; text-align:center; width:15px; height:15px; right:-5px; top:8px; line-height:15px;}
-.form-pop-up{ position:absolute; width:234px; min-height:238px; bottom:46px; padding:13px; background:#323232; border-top:4px solid #ff8611; left:-320px;}
+.form-pop-up{ position:absolute; width:234px; height:238px; bottom:46px; padding:13px; background:#323232; border-top:4px solid #ff8611; left:-320px;}
 .form-pop-up.out{left:0;}
 .form-pop-up p{ font-size:12px; padding:0 0 13px 0; color:#c6c6c6; line-height:18px; margin: 0;}
 .form-pop-up input.text{ border:none; outline:none; background:#616161; padding:10px; font-size:12px; width:100%; box-sizing:border-box; color:#c6c6c6; margin-bottom:13px;}
-.form-pop-up .submit{ width:100%; box-sizing:border-box; background:#fff; color:#6c6c6c; height:47px; line-height:47px; text-align:center; cursor:pointer; font-size:16px; padding-right:13px; transition:all 0.3s ease-in-out;}
-.form-pop-up .submit:hover{ background:#FFECD8;}
+.form-pop-up .submit{ width:100%; box-sizing:border-box; background:#eee; color:#6c6c6c; height:47px; line-height:47px; text-align:center; cursor:pointer; font-size:16px; padding-right:13px; transition:all 0.3s ease-in-out;}
+.form-pop-up .submit:hover{ background:#ddd;}
 .form-pop-up .submit.disable{ opacity:0.3; cursor:none;pointer-events: none;}
 .form-pop-up .submit span{ font-size:25px; float:right; line-height:47px;}
 .form-pop-up .submit input{ border:none; outline:none; display:none;}
