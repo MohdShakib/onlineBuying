@@ -152,10 +152,10 @@ var UnitplaninfoView = (function() {
                 "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
                 "- <span>" + data.size + " " + data.measure + "</span> " +
                 "- <span>Rs. " + utils.getReadablePrice(data.price) + "* </span></td>" +
-                "<td data-target='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><span>@</span>Floor Plan</td>" +
-                "<td data-target='cp-container' class='header-item " + config.unitMenuLinkClass + "'><span>#</span>Cluster Plan</td>" +
-                "<td data-target='pb-container' class='header-item " + config.unitMenuLinkClass + "'><span>$</span>Price Breakup</td>" +
-                "<td data-target='sf-container' class='header-item " + config.unitMenuLinkClass + " right'><span>&</span>Specification</td></tr></table>";
+                "<td data-target='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'><span class='icon fs14 icon-floor'></span></div>Floor Plan</td>" +
+                "<td data-target='cp-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon fs14 icon-cluster'></span></div>Cluster Plan</td>" +
+                "<td data-target='pb-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon fs14 icon-rate'></span></div>Price Breakup</td>" +
+                "<td data-target='sf-container' class='header-item " + config.unitMenuLinkClass + " right'><div class='item-icon-box'><span class='icon fs14 icon-specification'></span></div>Specification</td></tr></table>";
             this._elements.unitMenuContainer.html(code);
             this.unitMenuContainerEvents();
         },

@@ -18,7 +18,7 @@
 
 }
 @font-face {
-	font-family: 'icomoon';
+	font-family: 'propicon';
 	src:url('fonts/propicons_mobile.eot?-wxk34n');
 	src:url('fonts/propicons_mobile.eot?#iefix-wxk34n') format('embedded-opentype'),
 		url('fonts/propicons_mobile.ttf?-wxk34n') format('truetype'),
@@ -28,7 +28,7 @@
 	font-style: normal;
 }
 [class^="icon-"], [class*=" icon-"] {
-	font-family: 'icomoon';
+	font-family: 'propicon';
 	speak: none;
 	font-style: normal;
 	font-weight: normal;
@@ -40,7 +40,13 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-.icon{ display:inline-block; font-size:25px; position:relative;}
+.icon{ display:inline-block !important; font-size:25px; position:relative;}
+.fs14{ font-size:14px;}
+.fs16{ font-size:16px;}
+.fs18{ font-size:18px;}
+.fs20{ font-size:20px;}
+.fs22{ font-size:22px;}
+.fs24{ font-size:24px;}
 .icon-heart-o:before {
     content: "\e612"
 }
@@ -73,6 +79,27 @@
 }
 .icon-smile:before {
     content: "\f118"
+}
+.icon-menu:before {
+    content: "\f0c9"
+}
+.icon-reset:before {
+    content: "\f021"
+}
+.icon-bhk:before {
+    content: "\e623"
+}
+.icon-floor:before {
+    content: "\e618"
+}
+.icon-facing:before {
+    content: "\e610"
+}
+.icon-price:before {
+    content: "\e620"
+}
+.icon-back:before {
+    content: "\f060"
 }
 
 body {
@@ -625,8 +652,7 @@ ellipse.tower-unit-selected-svg-path {
 	-o-transition:all 0.5s ease-in-out;
 	-webkit-transition:all 0.5s ease-in-out;
 }
-.unit-menu-container .header-item span {
-	display: block;
+.unit-menu-container .header-item .item-icon-box {
 	font-size: 15px;
 	line-height: 25px;
 }
