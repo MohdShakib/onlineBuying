@@ -433,7 +433,7 @@ ellipse.tower-unit-selected-svg-path {
 	text-decoration: none;
 	display: block;
 }
-.tower-menu-container .menu-icon a .icon{ float:left; margin:12px;color:#ccc;}
+.tower-menu-container .menu-icon a .icon, .tower-menu-container .menu-icon .icon{ float:left; margin:12px;color:#ccc;}
 .tower-menu-container .menu-sep {
 	height: 1px;
 	padding: 0px;
