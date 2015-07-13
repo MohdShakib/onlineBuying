@@ -98,7 +98,7 @@ var MasterplanView = (function() {
             this._elements.buildingImgContainer.html(imgCode);
         },
         buildingMenuContainer: function(data) {
-            var code = "<table><tr><td class='menu-header menu-icon'><span class='icon icon-arrow_left'></span></td></tr>";
+            var code = "<table><tr><td class='menu-header menu-icon transition'><span class='icon icon-arrow_left'></span></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><table>";
             for (var towerIdentifier in data.towers) {

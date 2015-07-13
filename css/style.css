@@ -829,11 +829,15 @@ ellipse.tower-unit-svg-selected-path {
 .floor-plan-menu-container .floor-plan-menu .floor-plan-menu-option.selected {
 	background-color: #666;
 }
-.specification-container {
+.unit-content-wrapper {
+	position: absolute;
 	overflow: scroll;
+	top: 70px;
+	bottom: 70px;
+	width: 100%;
 }
 .specification-container .base-table {
-	padding: 70px 20px 20px 20px;
+	padding: 0px 20px;
  	width: 100%;
 }
 .specification-container .base-table td {
@@ -1181,7 +1185,7 @@ ellipse.tower-unit-svg-selected-path {
 .unit-view .dot-one{ 
 	width:12px; 
 	height:12px; 
-	background:#fff; 
+	background:#eee; 
 	left:-5px; 
 	top:-6px !important; 
 	position:absolute; 
@@ -1197,6 +1201,9 @@ ellipse.tower-unit-svg-selected-path {
 	left:145px; 
 	top:-5px; 
 	z-index:1;
+}
+.unit-view .line{
+	background:#ddd;
 }
 .unit-view .dot-two{ background:orange;}
 .dot-two.sold{ 
@@ -1315,7 +1322,7 @@ ellipse.tower-unit-svg-selected-path {
 	top:-22px;
 }
 .unit-view .line.top-left .tSelected-detail{
-	left: 188px;
+	left: 192px;
 	top: 69px;
 }
 .unit-view .line.top-right .tSelected-detail{
@@ -1323,8 +1330,8 @@ ellipse.tower-unit-svg-selected-path {
 	top: -23px;
 }
 .unit-view .line.bottom-left .tSelected-detail{
-	left: 193px;
-	top: -59px;
+	left: 196px;
+	top: -60px;
 }
 
 
@@ -1338,6 +1345,16 @@ ellipse.tower-unit-svg-selected-path {
  {
 	border-left: 4px solid crimson;
 	border-right:0;
+}
+.line.top-left .floor-detail, 
+.line.bottom-left .floor-detail{
+	border-left: 4px solid orange;
+	border-right:0;
+}
+.line.top-right .floor-detail, 
+.line.bottom-right .floor-detail{
+	border-right: 4px solid orange;
+	border-left:0;
 }
 .show-details .dot-one, 
 .show-details .tooltip-title{
