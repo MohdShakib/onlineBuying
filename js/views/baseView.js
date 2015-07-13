@@ -97,7 +97,16 @@ var BaseView = (function() {
                 _this._compareBackButtonClick.notify(this); //this refers to element here                
             });
 
-            $('.'+config.compareBottomBox).draggable({helper:'clone'});
+            $('.'+config.compareBottomBox).draggable({
+                helper:'clone',
+                start: function(){
+                    $(this).addClass('drag-over');
+                },  
+                stop: function(){
+                    $(this).removeClass('drag-over');
+                }
+            });
+
             $('.compare-unit-box').droppable({
                 over: function( event, ui ) {
                     $(this).addClass('drag-over');
