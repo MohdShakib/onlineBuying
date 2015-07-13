@@ -12,6 +12,10 @@ function callBackFormSubmit(form){
     $(form)[0].reset();
     return false;
 }
+    
+function allowDrop(x){
+    x.preventDefault(); 
+}
 
 var BaseView = (function() {
 
@@ -55,7 +59,7 @@ var BaseView = (function() {
             var compareList = this._model.getCompareList(), htmlCode =  '';
             for(var i=0; i<compareList.length; i++){
                 var imageUrl = compareList[i].unitTypeData.unitImageUrl;
-                htmlCode += '<div class="com-pro-box">'
+                htmlCode += '<div class="com-pro-box" >'
                     +'<p class="selected">'+compareList[i].unitName+'</p>'
                     +'<img src="'+imageUrl+'" />'
                 +'</div>';
@@ -74,7 +78,7 @@ var BaseView = (function() {
             htmlCode +='<div class="compare-container">';
             for(var i=0; i<compareList.length; i++){
                 var imageUrl = compareList[i].unitTypeData.unitImageUrl;
-                htmlCode += '<div class="com-pro-box">'
+                htmlCode += '<div class="com-pro-box" data-index="'+i+'">'
                     +'<p class="selected">'+compareList[i].unitName+'</p>'
                     +'<img src="'+imageUrl+'" />'
                 +'</div>';
@@ -84,51 +88,68 @@ var BaseView = (function() {
             for(var i=0; i<2; i++){
                 
                 var borderClass = !i ? 'compare-unit-box-right-border' : 'compare-unit-box-right';
-                htmlCode += '<div  class="compare-unit-box '+borderClass+'">'
-                
-                if(!i && compareList_length > 1){
-                    var item = compareList[i],
-                    imageUrl = item ? item.unitTypeData.unitImageUrl : undefined;
-                    htmlCode += '<div class="tower-unit-detail-container ' + config.unitDataContainer + '"></div>';
-                    htmlCode += '<div class="compare-unit-box-detail top-right-component"><span>'+item.unitName+' Av</span>-<span>'+item.bedrooms+'</span>-<span>'+item.size+'</span>-<span>'+item.price+'</span>-<span>'+item.floor+'</span></div>';
-                    htmlCode += '<div class="unit-view-tabs top-view top-right-component">'
-                                    +'<div class="book-com-box">'
-                                        +'<div class="like-box '+item.unitIdentifier+'-like-box selected" >'
-                                            +'<a >'
-                                                +'<span class="icon icon-fav"></span>'
-                                                +'<label class="like-count br50"></label>'
-                                            +'</a>'
-                                        +'</div>'
-                                        +'<div class="book-now">'
-                                            +'<a >Book online now <span>Rs. '+item.bookingAmount+'/- (Refundable)</span></a>'
-                                        +'</div>'
-                                    +'</div>'
-                                +'</div>';
-                    htmlCode += '<div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container'+i+'" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'
-                                +'<img class="compare-unit-img"  src="'+imageUrl+'"> </div>';
-                
-                }else{
-                    htmlCode += '<div class="compare-unit-box-detail top-right-component"><span>Drag & drop to select unit and compare it.</span></div>'
-                                +'<div class="img-svg-container drag-drop">'
-                                +'<img class="compare-unit-img"  src="compare_drag.jpg"></div>';
-                }
+                htmlCode += '<div  class="compare-unit-box '+borderClass+'" ondragover="allowDrop(event);">'
+            
+                htmlCode += '<div class="compare-unit-box-detail top-right-component"><span>Drag & drop to select unit and compare it.</span></div>'
+                            +'<div class="img-svg-container drag-drop">'
+                            +'<img class="compare-unit-img"  src="compare_drag.jpg"></div>';
 
                 htmlCode += '</div>';
             }
         
             this._elements.compareUnitsContainer.html(htmlCode);
-            //this.updateCompareUnitBox();
-            this.compareUnitsContainerEvents();
-            if(compareList_length){
-                this.unit3dSvgContainer(0);
-                /*this.unit3dSvgContainer(1);*/
+            if(compareList_length > 1){
+                this.addToCompareBox($('.compare-unit-box')[0],0);
             }
+            this.compareUnitsContainerEvents();
         },
         compareUnitsContainerEvents: function(){
             var _this = this;
             this._elements.compareUnitsContainer.off('click').on('click', '.'+config.compareBackButtonClass, function(event){
                 _this._compareBackButtonClick.notify(this); //this refers to element here                
             });
+
+            $('.com-pro-box').draggable({helper:'clone'});
+            $('.compare-unit-box').droppable({
+                over: function( event, ui ) {
+                    $(this).addClass('drag-over');
+                },
+                out: function( event, ui ) {
+                    $(this).removeClass('drag-over');
+                },
+                drop: function(event, ui){
+                    $(this).removeClass('drag-over');
+                    var index = $(ui.draggable).data().index;
+                    _this.addToCompareBox(this, index);
+                }
+            });
+
+
+        },
+        addToCompareBox: function(compareBox, index){
+            var compareList = this._model.getCompareList(),
+            item = compareList[index],
+            imageUrl = item ? item.unitTypeData.unitImageUrl : undefined,
+            htmlCode = '<div class="tower-unit-detail-container ' + config.unitDataContainer + '"></div>';
+            htmlCode += '<div class="compare-unit-box-detail top-right-component"><span>'+item.unitName+' Av</span>-<span>'+item.bedrooms+'</span>-<span>'+item.size+'</span>-<span>'+item.price+'</span>-<span>'+item.floor+'</span></div>';
+            htmlCode += '<div class="unit-view-tabs top-view top-right-component">'
+                            +'<div class="book-com-box">'
+                                +'<div class="like-box '+item.unitIdentifier+'-like-box selected" >'
+                                    +'<a >'
+                                        +'<span class="icon icon-fav"></span>'
+                                        +'<label class="like-count br50"></label>'
+                                    +'</a>'
+                                +'</div>'
+                                +'<div class="book-now">'
+                                    +'<a >Book online now <span>Rs. '+item.bookingAmount+'/- (Refundable)</span></a>'
+                                +'</div>'
+                            +'</div>'
+                        +'</div>';
+            htmlCode += '<div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container'+index+'" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'
+                        +'<img class="compare-unit-img"  src="'+imageUrl+'"> </div>';
+            
+            $(compareBox).html(htmlCode);
+            this.unit3dSvgContainer(index);
         },
         unit3dSvgContainer: function(index) {
             var compareList = this._model.getCompareList();
@@ -140,7 +161,7 @@ var BaseView = (function() {
         unit3dSvgContainerEvents: function(){
             var _this = this;
             this._elements.compareUnitsContainer.off('mouseenter').on('mouseenter', 'polygon', function(event) {
-                //here this refers to element
+             //here this refers to element
                 _this._unitComponentMouseEnter.notify({
                     element: this,
                     event: event
