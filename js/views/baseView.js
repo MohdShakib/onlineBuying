@@ -117,7 +117,7 @@ var BaseView = (function() {
                 },
                 drop: function(event, ui){
                     $(this).removeClass('drag-over');
-                    var unitUniqueIdentifier = $(this).find('img.compare-unit-img').data('uniqueIdentifier');
+                    var unitUniqueIdentifier = $(this).find('img.compare-unit-img').data('uniqueidentifier');
                     if(unitUniqueIdentifier && $('#'+config.compareBottomBox+'-'+unitUniqueIdentifier)){
                         $('#'+config.compareBottomBox+'-'+unitUniqueIdentifier+' p').removeClass('selected');
                     }
@@ -202,8 +202,8 @@ var BaseView = (function() {
 							+'<a href="#" class="transition active">We will Call</a>'
 						+'</div>'
                         +'<form id="call-box-form"  name="call-box-form" onsubmit="return callBackFormSubmit(this)" >'
-                            +'<input class="text" id="call-box-email" name="email" placeholder="enter email id*" type="email" required />'
-                            +'<input class="text" id="call-box-phone" name="phone" placeholder="enter cell phone number*" type="number" minlength="10" maxlength="10" required />'
+                            +'<input class="text" id="call-box-email" name="email" placeholder="Enter email id*" type="email" required />'
+                            +'<input class="text" id="call-box-phone" name="phone" placeholder="Enter cell phone number*" type="number" minlength="10" maxlength="10" required />'
                             +'<div class="submit" id="call-box-submit-id">Submit <span  class="icon icon-arrow_right"></span>'
 								+'<input type="submit" id="call-box-submit-id" />'
 							+'</div>'
@@ -218,7 +218,7 @@ var BaseView = (function() {
                         +'<div id="'+config.unitCompareButtonId+'" class="submit"><input type="submit" />View Liked Plans <span class="icon icon-arrow_right"></span></div>'
                     +'</div>'
                     +'<div class="share-box">'
-                        +'<p>Share details with family / friedns via</br> Email / Facebook / Google+</p>'
+                        +'<p>Share details with family / friends via</br> Email / Facebook / Google+</p>'
                         +'<div class="share-social">'
                             +'<a href="javascript:void(0);" lass="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"><span class="icon icon-facebook"></span>Facebook</a>'
                             //+'<div class="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"></div>'
@@ -226,8 +226,8 @@ var BaseView = (function() {
                             //+'<div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>'
                             +'<a href="javascript:void(0);" class="" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"><span class="icon icon-googleplus"></span>Goggle+</a>'
                         +'</div>'
-                        +'<input class="text" placeholder="enter name id*" type="text" />'
-						+'<input class="text" placeholder="enter email id*" type="text" />'
+                        +'<input class="text" placeholder="Enter name*" type="text" />'
+						+'<input class="text" placeholder="Enter email id*" type="text" />'
                         +'<div class="submit"><input type="submit" />Submit <span  class="icon icon-arrow_right"></span></div>'
                     +'</div>'
                 +'</div>'

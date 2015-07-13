@@ -16,7 +16,7 @@ var UnitplaninfoView = (function() {
         'walkthroughContainer': '<div class="walkthrough-container fpwt-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="walkthrough-container"></div>',
         'unit3dSvgContainer': '<div class="fp-container ' + config.unitDataContainer + '"><svg class="svg-container unit-svg-container" id="unit-3d-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
         'unit2dSvgContainer': '<div class="' + config.hideClass + ' fp2d-container ' + config.unitDataContainer + '"><svg class="svg-container unit-svg-container" id="unit-2d-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
-        'unitComponentDetailContainer': '<div class="tower-unit-detail-container fp-container ' + config.unitDataContainer + '" id="'+config.towerDetailContainerId+'"></div>',
+        'unitComponentDetailContainer': '<div class="tower-unit-detail-container fp-container ' + config.unitDataContainer + '" id="' + config.towerDetailContainerId + '"></div>',
         'clusterPlanContainer': '<div class="cluster-plan-container cp-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="cluster-plan-container"></div>',
         'priceBreakupContainer': '<div class="price-breakup-container pb-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="price-breakup-container"></div>',
         'specificationContainer': '<div class="specification-container sf-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="specification-container"></div>'
@@ -74,14 +74,18 @@ var UnitplaninfoView = (function() {
                 // Add resize event listener
                 utils.addResizeEventListener(this.dynamicResizeContainers);
                 window.getComputedStyle(document.getElementById(config.selectedUnitContainerId)).right;
-                $('#' + config.selectedUnitContainerId).animate({ right:0},900);
+                $('#' + config.selectedUnitContainerId).animate({
+                    right: 0
+                }, 900);
                 $('#' + config.filterMenuContainerId).addClass(config.fadeOutClass);
             }
         },
         destroyView: function() {
             utils.dynamicResizeContainers(window.innerWidth);
             $('#' + config.towerRotationContainerId).css('width', window.innerWidth + config.imageResolution.unit);
-            $('#' + config.selectedUnitContainerId).animate({ right:'-67%'},900);
+            $('#' + config.selectedUnitContainerId).animate({
+                right: '-67%'
+            }, 900);
             $('#' + config.filterMenuContainerId).addClass(config.fadeInClass);
         },
         dynamicResizeContainers: function() {
@@ -121,7 +125,7 @@ var UnitplaninfoView = (function() {
 								+'</div>'
 							+'</div>'
 						+'</div>';
-	       
+	   
 
             $('#' + config.selectedUnitContainerId).html(htmlCode);
             this._elements = getElements();
@@ -152,7 +156,7 @@ var UnitplaninfoView = (function() {
                 "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
                 "- <span>" + data.size + " " + data.measure + "</span> " +
                 "- <span>Rs. " + utils.getReadablePrice(data.price) + "* </span></td>" +
-                "<td data-target='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'><span class='icon fs16 icon-floor'></span></div>Floor Plan</td>" +
+                "<td data-target='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'><span class='icon fs16 icon-unitplan'></span></div>Floor Plan</td>" +
                 "<td data-target='cp-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon fs16  icon-clusterplan'></span></div>Cluster Plan</td>" +
                 "<td data-target='pb-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon fs16 icon-rupee'></span></div>Price Breakup</td>" +
                 "<td data-target='sf-container' class='header-item " + config.unitMenuLinkClass + " right'><div class='item-icon-box'><span class='icon fs16 icon-specification'></span></div>Specification</td></tr></table>";
@@ -285,11 +289,36 @@ var UnitplaninfoView = (function() {
             this._elements.clusterPlanContainer.html(code);
         },
         priceBreakupContainer: function(data, rotationdata, rootdata) {
-            var code = "<br><br><br><br><br><br>Price Breakup";
+            var code = "<div class='unit-content-wrapper'><ul class='specification-tabs'>"
+						+'<li><a class="active" href="#">Project Amenities</a></li>'
+						+'<li><a href="#">Unit Amenities</a></li>'
+						+'<li><a href="#">Project Specs</a></li>'
+					  +'</ul>';
+			code += "<table class='base-table' cellpadding='0' cellspacing='0' border='0'>";
+            for (var category in rootdata.specifications) {
+                if (rootdata.specifications.hasOwnProperty(category)) {
+                    var items = rootdata.specifications[category];
+                    code += "<tr><td class='' width='50%'>" + category + "</td><td width='50%'>535636</td></tr>";
+                    if (typeof items == "object") {
+                        for (var subCategory in items) {
+                            code += "<tr><td width='50%'>" + subCategory + ":" + items[subCategory] + "</td><td width='50%'>44353454</td></tr>";
+                        }
+                    } else {
+                        code += "<tr><td>" + items + "</td><td></td></tr>";
+                    }
+                }
+            }
+            code += "</table></div>";
             this._elements.priceBreakupContainer.html(code);
         },
+		
         specificationContainer: function(data, rotationdata, rootdata) {
-            var code = "<table class='base-table'>";
+			var code = "<div class='unit-content-wrapper'><ul class='specification-tabs'>"
+						+'<li><a class="active" href="#">Project Amenities</a></li>'
+						+'<li><a href="#">Unit Amenities</a></li>'
+						+'<li><a href="#">Project Specs</a></li>'
+					  +'</ul>';
+			code += "<table class='base-table'>";
             for (var category in rootdata.specifications) {
                 if (rootdata.specifications.hasOwnProperty(category)) {
                     var items = rootdata.specifications[category];
@@ -303,7 +332,7 @@ var UnitplaninfoView = (function() {
                     }
                 }
             }
-            code += "</table>";
+            code += "</table></div>";
             this._elements.specificationContainer.html(code);
         },
         selectUnitMenuOption: function(element, optionClass, containerClass) {

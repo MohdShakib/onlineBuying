@@ -268,7 +268,7 @@ var TowerselectedView = (function() {
                 entranceFiltersData = filterdata.entrance,
                 priceFiltersData = filterdata.price;
 
-            var code = "<table><tr><td class='menu-header menu-icon'><a href='#" + url + "'><span class='icon icon-arrow_left'></span></td></tr>";
+            var code = "<table><tr><td class='menu-header menu-icon transition'><a href='#" + url + "'><span class='icon icon-arrow_left'></span></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><table>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
@@ -377,6 +377,7 @@ var TowerselectedView = (function() {
         },
         resetFilterOption: function(element) {
             this._elements.filterMenuContainer.find('*').removeClass(config.filters.selectedClass);
+            this.updateFilterCount();
         },
         getBHKMenuOptions: function(data, bhkFiltersData) {
             var code = "<div class='menu-item-options'><table>";
@@ -432,9 +433,9 @@ var TowerselectedView = (function() {
                 if (floorFiltersData && floorFiltersData.length && floorFiltersData.indexOf(checkForValue) > -1) {
                     availabilityClass += ' ' + config.filters.selectedClass;
                 }
-
+                var readableFloorGrp = floors[floorGroup].sfloor + " - " + floors[floorGroup].efloor + " Floor";
                 code += "<tr><td class='option-item " + config.filters.floor + " " + availabilityClass + "' ";
-                code += "id='" + id + "' data-index='" + id + "' data-svalue='" + floors[floorGroup].sfloor + "' data-evalue='" + floors[floorGroup].efloor + "'>" + floorGroup + "</td></tr>";
+                code += "id='" + id + "' data-index='" + id + "' data-svalue='" + floors[floorGroup].sfloor + "' data-evalue='" + floors[floorGroup].efloor + "'>" + readableFloorGrp + "</td></tr>";
             }
             code += "</table></div>";
             return code;
@@ -446,7 +447,7 @@ var TowerselectedView = (function() {
                 var groupInterval = utils.getGroupInterval(unit.floor, config.filters.floorInterval);
                 var sfloor = groupInterval.start;
                 var efloor = groupInterval.end - 1;
-                var floorGroup = sfloor + ' - ' + efloor;
+                var floorGroup = utils.addLeadingZeros(sfloor, 3) + " " + utils.addLeadingZeros(efloor, 3);
                 if (floors[floorGroup] == null) {
                     floors[floorGroup] = {
                         'sfloor': sfloor,
@@ -479,7 +480,7 @@ var TowerselectedView = (function() {
                 }
 
                 code += "<tr><td class='option-item " + config.filters.entrance + " " + availabilityClass + "' ";
-                code += "id='" + id + "' data-index='" + id + "' data-value='" + entrance + "'>" + entrance + "</td></tr>";
+                code += "id='" + id + "' data-index='" + id + "' data-value='" + entrance + "'>" + entrance + " Facing</td></tr>";
             }
             code += "</table></div>";
             return code;
@@ -514,9 +515,10 @@ var TowerselectedView = (function() {
                 if (priceFiltersData && priceFiltersData.length && priceFiltersData.indexOf(checkForValue) > -1) {
                     availabilityClass += ' ' + config.filters.selectedClass;
                 }
-
+                var denom = 100000;
+                var readablePriceGrp = Number(prices[price].sprice / denom) + ' - ' + Number(prices[price].eprice / denom) + ' Lacs';
                 code += "<tr><td class='option-item " + config.filters.price + " " + availabilityClass + "' ";
-                code += "id='" + id + "' data-index='" + id + "' data-svalue='" + prices[price].sprice + "' data-evalue='" + prices[price].eprice + "'>" + price + "</td></tr>";
+                code += "id='" + id + "' data-index='" + id + "' data-svalue='" + prices[price].sprice + "' data-evalue='" + prices[price].eprice + "'>" + readablePriceGrp + "</td></tr>";
             }
             code += "</table></div>";
             return code;
@@ -524,13 +526,12 @@ var TowerselectedView = (function() {
         getPriceAvailability: function(units) {
             var prices = {};
             var interval = config.filters.priceInterval;
-            var denom = 100000;
             for (var i in units) {
                 var unit = units[i];
                 var groupInterval = utils.getGroupInterval(unit.price, config.filters.priceInterval);
                 var sPrice = groupInterval.start;
                 var ePrice = groupInterval.end;
-                var priceGroup = Number(sPrice / denom) + ' L - ' + Number(ePrice / denom) + ' L';
+                var priceGroup = utils.addLeadingZeros(sPrice, 12) + ' ' + utils.addLeadingZeros(ePrice, 12);
                 if (prices[priceGroup] == null) {
                     prices[priceGroup] = {
                         'sprice': sPrice,

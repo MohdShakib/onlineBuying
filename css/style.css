@@ -622,10 +622,10 @@ ellipse.tower-unit-svg-selected-path {
 	color:#494949;
 }
 .rotation-btn-container.left-btn {
-	left: 100px;
+	left: 25%;
 }
 .rotation-btn-container.right-btn{
-	right: 100px;
+	right: 25%;
 }
 
 /* Selected Unit */
@@ -781,7 +781,7 @@ ellipse.tower-unit-svg-selected-path {
 .floor-plan-container,
 .cluster-plan-container,
 .specification-container {
-	background-color: #EEE;
+	background-color: #fff;
 }
 .floor-plan-container .sunlight-menu {
 	position: absolute;
@@ -829,25 +829,57 @@ ellipse.tower-unit-svg-selected-path {
 .floor-plan-menu-container .floor-plan-menu .floor-plan-menu-option.selected {
 	background-color: #666;
 }
+.unit-content-wrapper {
+	position: absolute;
+	overflow-y: auto;
+	overflow-x: hidden;
+	top: 70px;
+	bottom: 70px;
+	width: 100%;
+}
+.unit-content-wrapper .base-table{
+	padding: 0px 20px;
+}
 .specification-container {
-	overflow: scroll;
+	overflow: auto;
+	padding:80px 0 0 0;
 }
-.specification-container .base-table {
-	padding: 70px 20px 20px 20px;
- 	width: 100%;
+.specification-tabs{
+	margin:0 20px; 
+	list-style:none; 
+	padding:0; 
+	text-align:left;  
+	border-bottom:2px solid #494949;
 }
-.specification-container .base-table td {
+.specification-tabs li{
+	display:inline-block; 
+	margin-right:2px;
+}
+.specification-tabs li a{
+	display:block; 
+	padding:5px 15px; 
+	font-size:12px; 
+	width:130px; 
+	background:#838383; 
+	color:#fff;
+}
+.specification-tabs li a:hover, .specification-tabs li a.active{
+	background:#494949;
+}
+.unit-content-wrapper .base-table td {
 	text-align: left;
 	padding: 5px 10px;
 	font-size: 12px;
 	color: #555;
 }
-.specification-container .base-table .heading {
-	background-color: #666;
-	color: #FFF;
+.unit-content-wrapper .base-table .heading {
+	background-color:#E4E4E4;
+	color: #494949;
 	text-transform: uppercase;
+	font-size:12px;
+	font-weight:bold;
 }
-
+.price-breakup-container .base-table tr:nth-child(odd) td{ background:#EDEDED;}
 .compare-units-container {
 	position: absolute;
     width: 100%;
@@ -1181,7 +1213,7 @@ ellipse.tower-unit-svg-selected-path {
 .unit-view .dot-one{ 
 	width:12px; 
 	height:12px; 
-	background:#fff; 
+	background:#eee; 
 	left:-5px; 
 	top:-6px !important; 
 	position:absolute; 
@@ -1197,6 +1229,9 @@ ellipse.tower-unit-svg-selected-path {
 	left:145px; 
 	top:-5px; 
 	z-index:1;
+}
+.unit-view .line{
+	background:#ddd;
 }
 .unit-view .dot-two{ background:orange;}
 .dot-two.sold{ 
@@ -1315,7 +1350,7 @@ ellipse.tower-unit-svg-selected-path {
 	top:-22px;
 }
 .unit-view .line.top-left .tSelected-detail{
-	left: 188px;
+	left: 192px;
 	top: 69px;
 }
 .unit-view .line.top-right .tSelected-detail{
@@ -1323,8 +1358,8 @@ ellipse.tower-unit-svg-selected-path {
 	top: -23px;
 }
 .unit-view .line.bottom-left .tSelected-detail{
-	left: 193px;
-	top: -59px;
+	left: 196px;
+	top: -60px;
 }
 
 
@@ -1338,6 +1373,16 @@ ellipse.tower-unit-svg-selected-path {
  {
 	border-left: 4px solid crimson;
 	border-right:0;
+}
+.line.top-left .floor-detail, 
+.line.bottom-left .floor-detail{
+	border-left: 4px solid orange;
+	border-right:0;
+}
+.line.top-right .floor-detail, 
+.line.bottom-right .floor-detail{
+	border-right: 4px solid orange;
+	border-left:0;
 }
 .show-details .dot-one, 
 .show-details .tooltip-title{

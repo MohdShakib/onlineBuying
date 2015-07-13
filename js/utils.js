@@ -170,7 +170,7 @@ var utils = (function() {
                 'details': dataset.details
             };
 
-            towerCode += '<div class="tSelected-detail towerunit-detail-container">';
+            towerCode += '<div class="tSelected-detail towerunit-detail-container floor-detail">';
             towerCode += '<div class="towerunit-name">' + info.name + '</div>';
             towerCode += '<div class="towerunit-detail">' + info.details + '</div>';
 
