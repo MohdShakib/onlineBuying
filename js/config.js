@@ -52,6 +52,7 @@ var config = (function(){
 		unitCompareButtonId: 'unit-compare-button',
 		compareUnitComponentDetailContainer: 'compare-unit-component-detail-container',
 		shortListedUnitListId: 'shortlisted-unit-list',
+		compareBottomBox: 'com-pro-box',
 		likeCountId: 'like-count',
 		shortlistedUnitRemoveClass: 'remove-shortlist',
 

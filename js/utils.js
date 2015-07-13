@@ -224,6 +224,10 @@ var utils = (function() {
                 if ($('.' + unitIdentifier + '-like-box')) {
                     $('.' + unitIdentifier + '-like-box').removeClass('selected');
                 }
+
+                if($('#'+config.compareBottomBox+'-'+unitIdentifier)){
+                    $('#'+config.compareBottomBox+'-'+unitIdentifier).remove();
+                }
                 comparedItems.splice(itemIndex, 1);
                 utils.updateShortListInStorage(comparedItems);
             }
