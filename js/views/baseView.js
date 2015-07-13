@@ -163,7 +163,8 @@ var BaseView = (function() {
         },
         unit3dSvgContainerEvents: function(){
             var _this = this;
-            this._elements.compareUnitsContainer.off('mouseenter').on('mouseenter', 'polygon', function(event) {
+            this._elements.compareUnitsContainer.off('mousemove').on('mousemove', 'polygon', function(event) {
+
              //here this refers to element
                 _this._unitComponentMouseEnter.notify({
                     element: this,
@@ -172,12 +173,17 @@ var BaseView = (function() {
             });
 
             this._elements.compareUnitsContainer.off('mouseleave').on('mouseleave', 'polygon', function(event) {
+                 $('#container-detail').remove();
                 //here this refers to element
                 _this._unitComponentMouseLeave.notify();
             });
         },
         unitComponentMouseEnter: function(params) {
             var reference = $(params.element).parents('.compare-unit-box').children('.tower-unit-detail-container');
+            var pointX = $(params.element).attr('points').split(' ')[0];
+            var pointY = $(params.element).attr('points').split(' ')[1];
+            params.pointX = pointX;
+            params.pointY = pointY;
             if(reference){
                 utils.unitComponentMouseEnter(params, reference);
             }

@@ -16,7 +16,7 @@ var UnitplaninfoView = (function() {
         'walkthroughContainer': '<div class="walkthrough-container fpwt-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="walkthrough-container"></div>',
         'unit3dSvgContainer': '<div class="fp-container ' + config.unitDataContainer + '"><svg class="svg-container unit-svg-container" id="unit-3d-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
         'unit2dSvgContainer': '<div class="' + config.hideClass + ' fp2d-container ' + config.unitDataContainer + '"><svg class="svg-container unit-svg-container" id="unit-2d-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
-        'unitComponentDetailContainer': '<div class="tower-unit-detail-container fp-container ' + config.unitDataContainer + '" id="' + config.towerDetailContainerId + '"></div>',
+        'unitComponentDetailContainer': '<div class="tower-unit-detail-container fp-container ' + config.unitDataContainer + '" id="'+config.unitDetailContainerId+'"></div>',
         'clusterPlanContainer': '<div class="cluster-plan-container cp-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="cluster-plan-container"></div>',
         'priceBreakupContainer': '<div class="price-breakup-container pb-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="price-breakup-container"></div>',
         'specificationContainer': '<div class="specification-container sf-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="specification-container"></div>'
@@ -32,7 +32,7 @@ var UnitplaninfoView = (function() {
             'walkthroughContainer': $('#walkthrough-container'),
             'unit3dSvgContainer': $('#unit-3d-svg-container'),
             'unit2dSvgContainer': $('#unit-2d-svg-container'),
-            'unitComponentDetailContainer': $('#' + config.towerDetailContainerId),
+            'unitComponentDetailContainer': $('#' + config.unitDetailContainerId),
             'clusterPlanContainer': $('#cluster-plan-container'),
             'priceBreakupContainer': $('#price-breakup-container'),
             'specificationContainer': $('#specification-container')
@@ -231,7 +231,7 @@ var UnitplaninfoView = (function() {
         },
         unit3dSvgContainerEvents: function() {
             var _this = this;
-            this._elements.unit3dSvgContainer.off('mouseenter').on('mouseenter', 'polygon', function(event) {
+            this._elements.unit3dSvgContainer.off('mousemove').on('mousemove', 'polygon', function(event) {
                 //here this refers to element
                 _this._unitComponentMouseEnter.notify({
                     element: this,
@@ -240,6 +240,7 @@ var UnitplaninfoView = (function() {
             });
 
             this._elements.unit3dSvgContainer.off('mouseleave').on('mouseleave', 'polygon', function(event) {
+                $('#container-detail').remove();
                 //here this refers to element
                 _this._unitComponentMouseLeave.notify();
             });
@@ -277,11 +278,13 @@ var UnitplaninfoView = (function() {
             if (this._elements && this._elements.unitComponentDetailContainer) {
                 var pointX = $(params.element).attr('points').split(' ')[0];
                 var pointY = $(params.element).attr('points').split(' ')[1];
-                utils.unitComponentMouseEnter(params, this._elements.unitComponentDetailContainer, pointX, pointY);
+                params.pointX = pointX;
+                params.pointY = pointY;
+                utils.unitComponentMouseEnter(params, this._elements.unitComponentDetailContainer);
             }
         },
         unitComponentMouseLeave: function() {
-            document.getElementById(config.towerDetailContainerId).innerHTML = '';
+            document.getElementById(config.unitDetailContainerId).innerHTML = '';
         },
         clusterPlanContainer: function(data, rotationdata, rootdata) {
             var imageUrl = rootdata.unitTypes[rotationdata.unitTypeIdentifier].clusterplanImageUrl;

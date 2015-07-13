@@ -149,7 +149,7 @@ var utils = (function() {
 
             return svgCode;
         },
-        unitComponentMouseEnter: function(params, containerReference, pointX, pointY){
+        unitComponentMouseEnter: function(params, containerReference){
             var dataset = params.element.dataset,
                 towerCode = "<div id='container-detail' class='tooltip-detail'>";
 
@@ -180,13 +180,18 @@ var utils = (function() {
             if (containerReference) {
                 containerReference.html(towerCode);
                 var offset = containerReference.offset();
-                var left = params.event.clientX //- offset.left;
-                var top = params.event.clientY //- offset.top;
+                var left = params.event.clientX - offset.left;
+                var top = params.event.clientY - offset.top;
                 
                 $('#container-detail').css("left", left + 'px');
                 $('#container-detail').css("top", top + 'px');
-                /*$('#container-detail').css("margin-left", pointX+'%');
-                $('#container-detail').css("margin-top", pointY+'%');*/
+
+
+                /*pointX = params.pointX;
+                pointY = params.pointY;
+                $('#container-detail').css("left", pointX + '%');
+                $('#container-detail').css("top", pointY + '%');*/
+
                 // animate
                 window.getComputedStyle(document.getElementById('container-detail')).opacity;
                 document.getElementById('container-detail').style.opacity = "1";

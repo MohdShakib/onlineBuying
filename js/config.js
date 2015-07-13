@@ -94,6 +94,7 @@ var config = (function(){
 
 		// Unitplan
 		selectedUnitContainerId: 'selected-unit-container',
+		unitDetailContainerId: "unit-component-detail-container",
 		closeUnitContainerId: 'unit-close-container',
 		unitDataContainer: 'unit-data-container',
 		unitMenuLinkClass: 'unit-menu-link',
