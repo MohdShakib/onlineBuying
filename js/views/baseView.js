@@ -57,18 +57,19 @@ var BaseView = (function() {
         },
         compareUnitsContainer: function(){
             var compareList = this._model.getCompareList(),
-            compareList_length = compareList.length;
+            compareList_length = Object.keys(compareList).length;
             var rootdata = this._model.getRootdata();
             
-            var htmlCode = '';
+            var htmlCode = '', firstUniqueIdentifier;
         
             htmlCode += '<div class="compare-back-button"><span class="icon icon-arrow_left"></span> Back</div>';
 
             htmlCode +='<div class="compare-container">';
-            for(var i=0; i<compareList.length; i++){
-                var imageUrl = compareList[i].unitTypeData.unitImageUrl;
-                htmlCode += '<div class="'+config.compareBottomBox+'" id="'+config.compareBottomBox+'-'+compareList[i].unitIdentifier+'" data-index="'+i+'">'
-                    +'<p >'+compareList[i].unitName+'</p>'
+            for(var uniqueIdentifier in compareList){
+                firstUniqueIdentifier = uniqueIdentifier;
+                var imageUrl = compareList[uniqueIdentifier].unitTypeData.unitImageUrl;
+                htmlCode += '<div class="'+config.compareBottomBox+'" id="'+config.compareBottomBox+'-'+uniqueIdentifier+'" data-uniqueidentifier="'+uniqueIdentifier+'">'
+                    +'<p >'+compareList[uniqueIdentifier].unitName+'</p>'
                     +'<img src="'+imageUrl+'" />'
                 +'</div>';
             }
@@ -87,7 +88,7 @@ var BaseView = (function() {
         
             this._elements.compareUnitsContainer.html(htmlCode);
             if(compareList_length > 1){
-                this.addToCompareBox($('.compare-unit-box')[0],0);
+                this.addToCompareBox($('.compare-unit-box')[0],firstUniqueIdentifier);
             }
             this.compareUnitsContainerEvents();
         },
@@ -116,19 +117,19 @@ var BaseView = (function() {
                 },
                 drop: function(event, ui){
                     $(this).removeClass('drag-over');
-                    var unitIdentifier = $(this).find('img.compare-unit-img').data('unitidentifier');
-                    if(unitIdentifier && $('#'+config.compareBottomBox+'-'+unitIdentifier)){
-                        $('#'+config.compareBottomBox+'-'+unitIdentifier+' p').removeClass('selected');
+                    var unitUniqueIdentifier = $(this).find('img.compare-unit-img').data('uniqueIdentifier');
+                    if(unitUniqueIdentifier && $('#'+config.compareBottomBox+'-'+unitUniqueIdentifier)){
+                        $('#'+config.compareBottomBox+'-'+unitUniqueIdentifier+' p').removeClass('selected');
                     }
-                    var index = $(ui.draggable).data().index;
-                    _this.addToCompareBox(this, index);
+                    var uniqueIdentifier = $(ui.draggable).data('uniqueidentifier');
+                    _this.addToCompareBox(this, uniqueIdentifier);
                 }
             });
 
         },
-        addToCompareBox: function(compareBox, index){
+        addToCompareBox: function(compareBox, uniqueIdentifier){
             var compareList = this._model.getCompareList(),
-            item = compareList[index],
+            item = compareList[uniqueIdentifier],
             imageUrl = item ? item.unitTypeData.unitImageUrl : undefined,
             htmlCode = '<div class="tower-unit-detail-container ' + config.unitDataContainer + '"></div>';
             htmlCode += '<div class="compare-unit-box-detail top-right-component"><span>'+item.unitName+' Av</span>-<span>'+item.bedrooms+'</span>-<span>'+item.size+'</span>-<span>'+item.price+'</span>-<span>'+item.floor+'</span></div>';
@@ -146,18 +147,18 @@ var BaseView = (function() {
                                 +'</div>'
                             +'</div>'
                         +'</div>';
-            htmlCode += '<div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container'+index+'" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'
-                        +'<img data-unitIdentifier="'+item.unitIdentifier+'" class="compare-unit-img"  src="'+imageUrl+'"> </div>';
+            htmlCode += '<div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container'+uniqueIdentifier+'" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'
+                        +'<img data-uniqueIdentifier="'+item.unitUniqueIdentifier+'" class="compare-unit-img"  src="'+imageUrl+'"> </div>';
             
-            $('#'+config.compareBottomBox+'-'+item.unitIdentifier+' p').addClass('selected');
+            $('#'+config.compareBottomBox+'-'+uniqueIdentifier+' p').addClass('selected');
             $(compareBox).html(htmlCode);
-            this.unit3dSvgContainer(index);
+            this.unit3dSvgContainer(uniqueIdentifier);
         },
-        unit3dSvgContainer: function(index) {
+        unit3dSvgContainer: function(uniqueIdentifier) {
             var compareList = this._model.getCompareList();
-            var unitTypeData = compareList[index].unitTypeData;
+            var unitTypeData = compareList[uniqueIdentifier].unitTypeData;
             var svgCode = utils.getUnit3dSvgPolygonHtml(unitTypeData);
-            $('#unit-compare-svg-container'+index).html(svgCode);
+            $('#unit-compare-svg-container'+uniqueIdentifier).html(svgCode);
             this.unit3dSvgContainerEvents();
         },
         unit3dSvgContainerEvents: function(){
@@ -283,10 +284,12 @@ var BaseView = (function() {
             });
 
             this._elements.bottomFormGroupContainer.on('click', '.'+config.shortlistedUnitRemoveClass, function(event){
-                var unitIdentifier = this.dataset.unitidentifier;
+                var unitIdentifier = this.dataset.unitidentifier,
+                unitUniqueIdentifier = this.dataset.uniqueidentifier;
                 _this._removeShortlistClick.notify({
                     element: this,
-                    unitIdentifier: unitIdentifier
+                    unitIdentifier: unitIdentifier,
+                    unitUniqueIdentifier: unitUniqueIdentifier
                 });
             });
 
@@ -309,9 +312,9 @@ var BaseView = (function() {
         unitCompareButtonClicked: function(){
 
             var comparedItems = utils.getComparedItems('shortlistedItems'),
-            length = comparedItems.length;
+            length = Object.keys(comparedItems).length;
 
-            if(!(comparedItems && comparedItems.length > 1)){
+            if(!length){
                 return;
             }
 

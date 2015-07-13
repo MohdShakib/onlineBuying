@@ -110,7 +110,7 @@ var UnitplaninfoView = (function() {
 								+'<p>No Pre-EMI offer and Discount Rs. 4,53,000/</p>'
 							+'</div>'
 							+'<div class="book-com-box">'
-								+'<div class="like-box '+selectedClass+' '+data.unitIdentifier+'-like-box" >'
+								+'<div class="like-box '+selectedClass+' '+data.unitUniqueIdentifier+'-like-box" >'
 									+'<a >'
 										+'<span class="icon icon-fav"></span>'
 										+'<label class="like-count br50"></label>'

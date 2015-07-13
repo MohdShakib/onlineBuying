@@ -40,7 +40,7 @@ var BaseController = (function() {
             });
 
             this._view._removeShortlistClick.attach(function(sender, data){
-                utils.removeFromShortListed(data.unitIdentifier);
+                utils.removeFromShortListed(data.unitIdentifier, data.unitUniqueIdentifier);
             });
 
             

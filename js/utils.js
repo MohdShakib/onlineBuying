@@ -1,6 +1,7 @@
 var utils = (function() {
 
     return {
+        projectId: null,
         addResizeEventListener: function(listenerFunction) {
             listenerFunction();;
             $(window).off('resize').on('resize', listenerFunction);
@@ -193,81 +194,98 @@ var utils = (function() {
         },
         getComparedItems: function() {
             var comparedItems = localStorage.getItem('shortlistedItems');
+            var projectId = utils.projectId;
+
+            if(!comparedItems){
+                return {};
+            }
+
             if (comparedItems) {
                 comparedItems = JSON.parse(comparedItems);
-            } else {
-                comparedItems = [];
-            }
-            return comparedItems;
-        },
-        likeBoxClicked: function(element, unitIdentifier, unitName, towerIdentifier, rotationAngle) {
-            if ($(element).hasClass('selected')) {
-                $(element).removeClass('selected');
-                utils.removeFromShortListed(unitIdentifier);
-            } else {
-                $(element).addClass('selected');
-                utils.addToShortListed(unitIdentifier, unitName, towerIdentifier, rotationAngle);
-            }
-        },
-        removeFromShortListed: function(unitIdentifier) {
-            var comparedItems = utils.getComparedItems('shortlistedItems'),
-                length = comparedItems.length,
-                itemIndex = -1;
-            for (var i = 0; i < length; i++) {
-                if (comparedItems[i].unitIdentifier == unitIdentifier) {
-                    itemIndex = i;
-                    break;
-                }
+            }else {
+                comparedItems = {};
             }
 
-            if (itemIndex > -1) {
-                if ($('.' + unitIdentifier + '-like-box')) {
-                    $('.' + unitIdentifier + '-like-box').removeClass('selected');
-                }
-
-                if($('#'+config.compareBottomBox+'-'+unitIdentifier)){
-                    $('#'+config.compareBottomBox+'-'+unitIdentifier).remove();
-                }
-                comparedItems.splice(itemIndex, 1);
-                utils.updateShortListInStorage(comparedItems);
+            if(!(comparedItems[projectId] && Object.keys(comparedItems[projectId]).length)){
+                return {};
             }
-            utils.updateShortListedList();
+
+            return comparedItems[projectId];
         },
-        addToShortListed: function(unitIdentifier, unitName, towerIdentifier, rotationAngle) {
-            var comparedItems = utils.getComparedItems('shortlistedItems'),
-                length = comparedItems.length,
-                itemIndex = -1;
-            for (var i = 0; i < length; i++) {
-                if (comparedItems[i].unitIdentifier == unitIdentifier) {
-                    itemIndex = i;
-                    break;
-                }
+        updateShortListInStorage: function(updatedComparedItems) {
+            var comparedItems = localStorage.getItem('shortlistedItems');
+            var projectId = utils.projectId;
+
+            if(comparedItems){
+                comparedItems = JSON.parse(comparedItems);
+            }else{
+                comparedItems = {};
             }
 
-            if (itemIndex == -1) {
-                comparedItems.push({
-                    unitIdentifier: unitIdentifier,
-                    unitName: unitName,
-                    towerIdentifier: towerIdentifier,
-                    rotationAngle: rotationAngle
-                });
-
-                utils.updateShortListInStorage(comparedItems);
-            }
-            utils.updateShortListedList();
-        },
-        updateShortListInStorage: function(comparedItems) {
+            comparedItems[projectId] = updatedComparedItems;
             comparedItems = JSON.stringify(comparedItems);
             localStorage.setItem('shortlistedItems', comparedItems);
         },
-        updateShortListedList: function() {
+        likeBoxClicked: function(element, unitIdentifier, unitName, towerIdentifier, rotationAngle, unitUniqueIdentifier) {
+            if ($(element).hasClass('selected')) {
+                $(element).removeClass('selected');
+                utils.removeFromShortListed(unitIdentifier, unitUniqueIdentifier);
+            } else {
+                $(element).addClass('selected');
+                utils.addToShortListed(unitIdentifier, unitName, towerIdentifier, rotationAngle, unitUniqueIdentifier);
+            }
+        },
+        removeFromShortListed: function(unitIdentifier, unitUniqueIdentifier) {
             var comparedItems = utils.getComparedItems('shortlistedItems'),
                 length = comparedItems.length,
+                found = 0;
+
+            for(var uniqueIdentifier in comparedItems){
+                if(uniqueIdentifier == unitUniqueIdentifier){
+                    found = uniqueIdentifier;
+                    break;
+                }
+            }
+
+            if (found) {
+                if ($('.' + unitUniqueIdentifier + '-like-box')) {
+                    $('.' + unitUniqueIdentifier + '-like-box').removeClass('selected');
+                }
+
+                if($('#'+config.compareBottomBox+'-'+unitUniqueIdentifier)){
+                    $('#'+config.compareBottomBox+'-'+unitUniqueIdentifier).remove();
+                }
+                delete comparedItems[found];
+                utils.updateShortListInStorage(comparedItems);
+            }
+            utils.updateShortListedList();
+        },
+        addToShortListed: function(unitIdentifier, unitName, towerIdentifier, rotationAngle, unitUniqueIdentifier) {
+            var comparedItems = utils.getComparedItems('shortlistedItems'),
+                length = comparedItems.length;
+
+            if (!comparedItems[unitUniqueIdentifier]) {
+                comparedItems[unitUniqueIdentifier] = {
+                    unitIdentifier: unitIdentifier,
+                    unitName: unitName,
+                    towerIdentifier: towerIdentifier,
+                    rotationAngle: rotationAngle,
+                    unitUniqueIdentifier: unitUniqueIdentifier
+                };
+
+                utils.updateShortListInStorage(comparedItems);
+            }
+            utils.updateShortListedList();
+        },
+        updateShortListedList: function() {
+            var comparedItems = utils.getComparedItems('shortlistedItems'),
+                length = Object.keys(comparedItems).length,
                 htmlCode = '';
             if (length) {
                 htmlCode = '<ul>';
-                for (var i = 0; i < length; i++) {
-                    htmlCode += '<li >' + comparedItems[i].unitName + '<span class="' + config.shortlistedUnitRemoveClass + '" data-unitIdentifier="' + comparedItems[i].unitIdentifier + '">x</span></li>';
+      
+                for (var uniqueIdentifier in comparedItems) {
+                    htmlCode += '<li >' + comparedItems[uniqueIdentifier].unitName + '<span class="' + config.shortlistedUnitRemoveClass + '" data-unitidentifier="' + comparedItems[uniqueIdentifier].unitIdentifier + '" data-uniqueidentifier="'+uniqueIdentifier+'">x</span></li>';
                 }
                 htmlCode += '</ul>';
             } else {

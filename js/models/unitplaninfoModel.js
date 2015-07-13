@@ -11,12 +11,11 @@ var UnitplaninfoModel = (function() {
         this._rotationdata = rotationdata;
         this._rootdata = rootdata;
 
-        var comparedItems = utils.getComparedItems(),
-        comparedItem_length = comparedItems && comparedItems.length ? comparedItems.length : 0;
+        var comparedItems = utils.getComparedItems();
         
         this._data.shortListed = false;
-        for(var i=0; i < comparedItem_length; i++){
-            if(comparedItems[i].unitIdentifier == this._data.unitIdentifier){
+        for(var uniqueIdentifier in comparedItems){
+            if(uniqueIdentifier == this._data.unitUniqueIdentifier){
                 this._data.shortListed = true;
                 break;
             }

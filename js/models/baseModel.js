@@ -15,15 +15,16 @@ var BaseModel = (function() {
         getCompareList: function() {
 
             this._comparedItems = utils.getComparedItems();
-            if (!this._comparedItems && this._comparedItems.length) {
-                return [];
+            var totalItems =  Object.keys(this._comparedItems).length;
+
+            if (!totalItems) {
+                return {};
             }
 
-            var data = [], item, eachItem;
-            var totalItems = this._comparedItems.length;
+            var data = {}, item, eachItem;
 
-            for(var i=0; i<totalItems; i++){
-                eachItem = this._comparedItems[i];
+            for(var uniqueIdentifier in this._comparedItems){
+                eachItem = this._comparedItems[uniqueIdentifier];
                 if(this._rootdata){
                     var listingItem = this._rootdata.towers[eachItem.towerIdentifier].listings[eachItem.unitIdentifier] || {};
                     item = this._rootdata.towers[eachItem.towerIdentifier].rotationAngle[eachItem.rotationAngle].listing[eachItem.unitIdentifier];
@@ -34,7 +35,7 @@ var BaseModel = (function() {
                     item['floor'] = 'Floor '+listingItem.floor;
                     item['bedrooms'] = listingItem.bedrooms+' BHK';
                     item['unitTypeData'] = this._rootdata.unitTypes[item.unitTypeIdentifier];
-                    data.push(item);
+                    data[uniqueIdentifier] = item;
                 }
             }
             

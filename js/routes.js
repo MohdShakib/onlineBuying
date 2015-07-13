@@ -84,6 +84,7 @@ var initializeRoutes = (function() {
         router = Router(routes);
         router.configure({ // a global configuration setting.
             on: function(projectName, projectId) {
+
                 if (!baseController) {
                     baseModel = new BaseModel(rootdata);
                     baseView = new BaseView(baseModel);
@@ -99,6 +100,8 @@ var initializeRoutes = (function() {
                 rootdata = getProjectData(projectId);
                 var flag = false;
 
+                utils.projectId = projectId;
+                
                 if (towerAngle && unitAddress) {
                     flag = rootdata.towers && rootdata.towers[towerName] && rootdata.towers[towerName].rotationAngle && rootdata.towers[towerName].rotationAngle[towerAngle] && rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress] ? true : false;
                 } else if (towerName) {

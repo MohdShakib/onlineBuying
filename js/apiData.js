@@ -50,6 +50,10 @@ var getProjectData = (function() {
         return lines;
     }
 
+    function unitUniqueIdentifier(unitIdentifier, towerIdentifier){
+        return unitIdentifier+'-'+towerIdentifier;
+    }
+
     function useTowerUnitsCSVData(listing) {
         var i, towerIdentifier, unitInfo, tower, unitTowerIdentifier, unitIdentifier, unit;
         for (var towerIdentifier in projectData.towers) {
@@ -65,6 +69,8 @@ var getProjectData = (function() {
                         continue;
                     }
 
+                    unitInfo.unitUniqueIdentifier = unitUniqueIdentifier(unitIdentifier, unitTowerIdentifier);
+                    
                     unitInfo.towerIdentifier = unitTowerIdentifier;
                     delete unitInfo.towerName;
 
@@ -297,6 +303,7 @@ var getProjectData = (function() {
                 flatUnit = {};
             flatUnit.listingAddress = listing.flatNumber;
             flatUnit.unitIdentifier = unitIdentifier;
+            flatUnit.unitUniqueIdentifier = unitUniqueIdentifier(unitIdentifier, towerIdentifier);
             flatUnit.listingId = listing.id;
             flatUnit.towerIdentifier = towerIdentifier;
             flatUnit.floor = listing.floor;
