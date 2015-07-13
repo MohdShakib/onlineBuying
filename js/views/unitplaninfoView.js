@@ -273,11 +273,36 @@ var UnitplaninfoView = (function() {
             this._elements.clusterPlanContainer.html(code);
         },
         priceBreakupContainer: function(data, rotationdata, rootdata) {
-            var code = "<div class='unit-content-wrapper'><br><br><br><br><br><br>Price Breakup</div>";
+            var code = "<div class='unit-content-wrapper'><ul class='specification-tabs'>"
+						+'<li><a class="active" href="#">Project Amenities</a></li>'
+						+'<li><a href="#">Unit Amenities</a></li>'
+						+'<li><a href="#">Project Specs</a></li>'
+					  +'</ul>';
+			code += "<table class='base-table' cellpadding='0' cellspacing='0' border='0'>";
+            for (var category in rootdata.specifications) {
+                if (rootdata.specifications.hasOwnProperty(category)) {
+                    var items = rootdata.specifications[category];
+                    code += "<tr><td class='' width='50%'>" + category + "</td><td width='50%'>535636</td></tr>";
+                    if (typeof items == "object") {
+                        for (var subCategory in items) {
+                            code += "<tr><td width='50%'>" + subCategory + ":" + items[subCategory] + "</td><td width='50%'>44353454</td></tr>";
+                        }
+                    } else {
+                        code += "<tr><td>" + items + "</td><td></td></tr>";
+                    }
+                }
+            }
+            code += "</table></div>";
             this._elements.priceBreakupContainer.html(code);
         },
+		
         specificationContainer: function(data, rotationdata, rootdata) {
-            var code = "<div class='unit-content-wrapper'><table class='base-table'>";
+			var code = "<div class='unit-content-wrapper'><ul class='specification-tabs'>"
+						+'<li><a class="active" href="#">Project Amenities</a></li>'
+						+'<li><a href="#">Unit Amenities</a></li>'
+						+'<li><a href="#">Project Specs</a></li>'
+					  +'</ul>';
+			code += "<table class='base-table'>";
             for (var category in rootdata.specifications) {
                 if (rootdata.specifications.hasOwnProperty(category)) {
                     var items = rootdata.specifications[category];
