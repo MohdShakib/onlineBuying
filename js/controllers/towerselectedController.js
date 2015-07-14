@@ -20,7 +20,8 @@ var TowerselectedController = (function() {
 
     TowerselectedController.prototype = {
         changeUrl: function(element) {
-            var hash = element.dataset.url ? element.dataset.url : null;
+            element = $(element);
+            var hash = element.data('url') ? element.data('url') : null;
             if (hash && hash != "undefined")
                 router.setRoute(hash);
             return;
@@ -52,19 +53,23 @@ var TowerselectedController = (function() {
 
             // Filter Events
             this._view._bhkFilterOptionClick.attach(function(sender, element) {
-                var bhk = element.dataset.value;
+                var dataset = $(element).data();
+                var bhk = dataset.value;
                 _this.toggleFilterOption(_this._filters.bhk, bhk, element);
             });
             this._view._floorFilterOptionClick.attach(function(sender, element) {
-                var floorGroup = element.dataset.svalue + " " + element.dataset.evalue;
+                var dataset = $(element).data();
+                var floorGroup = dataset.svalue + " " + dataset.evalue;
                 _this.toggleFilterOption(_this._filters.floor, floorGroup, element);
             });
             this._view._entranceFilterOptionClick.attach(function(sender, element) {
-                var entrance = element.dataset.value;
+                var dataset = $(element).data();
+                var entrance = dataset.value;
                 _this.toggleFilterOption(_this._filters.entrance, entrance, element);
             });
             this._view._priceFilterOptionClick.attach(function(sender, element) {
-                var priceGroup = element.dataset.svalue + " " + element.dataset.evalue;
+                var dataset = $(element).data();
+                var priceGroup = dataset.svalue + " " + dataset.evalue;
                 _this.toggleFilterOption(_this._filters.price, priceGroup, element);
             });
             this._view._resetFiltersClick.attach(function(sender, element) {

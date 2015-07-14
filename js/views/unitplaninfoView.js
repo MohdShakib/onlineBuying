@@ -349,7 +349,7 @@ var UnitplaninfoView = (function() {
             this.selectMenuOptionUI(element, optionClass);
             $('.' + containerClass).addClass(config.hideClass);
             if (element) {
-                var target = element.dataset.target;
+                var target = $(element).data('target');
                 $('.' + target).removeClass(config.hideClass);
             }
         },

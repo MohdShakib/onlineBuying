@@ -13,7 +13,8 @@ var ErrorPageController = (function() {
 
     ErrorPageController.prototype = {
         /*changeUrl: function(element) {
-            var hash = element.dataset.url ? element.dataset.url : null;
+            element = $(element);
+            var hash = element.data('url') ? element.data('url') : null;
             if (hash && hash != "undefined")
                 window.location.hash = hash;
             return;

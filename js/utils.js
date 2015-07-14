@@ -150,7 +150,7 @@ var utils = (function() {
             return svgCode;
         },
         unitComponentMouseEnter: function(params, containerReference){
-            var dataset = params.element.dataset,
+            var dataset = $(params.element).data(),
                 towerCode = "<div id='container-detail' class='tooltip-detail'>";
 
                 var tooltipClass = utils.getTooltipPosition({

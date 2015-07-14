@@ -178,12 +178,12 @@ var MasterplanView = (function() {
             });
         },
         towerMouseEnterEvent: function(obj) {
-            var element = obj.element;
+            var element = $(obj.element);
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
             var data = this._model.getData();
-            var index = element.dataset.index;
+            var index = element.data('index');
             var towerData = data && data.towers ? data.towers[index] : null;
-            var imageid = element.dataset.imageid ? element.dataset.imageid : 'main-image';
+            var imageid = element.data('imageid') ? element.data('imageid') : 'main-image';
             var svgpath = document.getElementById(imageid + '-path');
             var targetImage = $('img#' + imageid);
             var availabilityStatusClass = towerData.isAvailable ? config.availabilityClass.available : config.availabilityClass.unavailable;
@@ -296,7 +296,7 @@ var MasterplanView = (function() {
                 }
             }
             //changed by jaswant for image pop up animation
-            var position = "top:" + element.dataset.top + "%; left:" + element.dataset.left + "%;";
+            var position = "top:" + $(element).data('top') + "%; left:" + $(element).data('left') + "%;";
             var code = "<div class='" + config.amenityPopupClass + "'><table class='photo-table pop-up-in' style='" + position + "'><tr>";
             code += "<td class='amenity-heading'>" + amenity.amenityName;
             code += "<span class='" + config.amenityPopupCloseClass + "'>X</span></td></tr>";

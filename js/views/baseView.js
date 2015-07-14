@@ -290,8 +290,8 @@ var BaseView = (function() {
             });
 
             this._elements.bottomFormGroupContainer.on('click', '.'+config.shortlistedUnitRemoveClass, function(event){
-                var unitIdentifier = this.dataset.unitidentifier,
-                unitUniqueIdentifier = this.dataset.uniqueidentifier;
+                var unitIdentifier = $(this).data('unitidentifier'),
+                unitUniqueIdentifier = $(this).data('uniqueidentifier');
                 _this._removeShortlistClick.notify({
                     element: this,
                     unitIdentifier: unitIdentifier,
@@ -309,7 +309,7 @@ var BaseView = (function() {
                 return;
             }
             $('.'+config.bottomFormGroup.tabLinkClass).removeClass('active');
-            var anchorName = element.dataset.name;
+            var anchorName = $(element).data('name');
             $('.'+config.bottomFormGroup.formPopUpClass).addClass('out');
             $('.'+config.bottomFormGroup.formPopUpClass+'>div').hide();
             $('.'+anchorName).fadeIn(300);

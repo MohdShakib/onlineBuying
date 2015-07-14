@@ -152,7 +152,7 @@ var TowerselectedView = (function() {
         towerUnitMouseEnterEvent: function(obj) {
             var element = obj.element;
             var data = this._model.getData();
-            var index = element.dataset.index;
+            var index = $(element).data('index');
 
             // show svg hover circle
             utils.removeSVGClass(index + "-hover-path", config.hideClass);
@@ -165,17 +165,19 @@ var TowerselectedView = (function() {
             }
         },
         towerUnitMouseLeaveEvent: function(element) {
+            var index = $(element).data('index');
             // show svg hover circle
-            utils.addSVGClass(element.dataset.index + "-hover-path", config.hideClass);
+            utils.addSVGClass(index + "-hover-path", config.hideClass);
 
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
         },
         towerUnitMouseClickEvent: function(element) {
             this.towerUnitMouseLeaveEvent(element);
-            if (element.dataset.url != 'undefined') {
+            var dataset = $(element).data();
+            if (dataset.url != 'undefined') {
                 var svgElements = $('.' + config.towerUnitSvgSelectedClass);
                 utils.addSVGClassToElements(svgElements, config.hideClass);
-                utils.removeSVGClass(element.dataset.index + "-selected-path", config.hideClass);
+                utils.removeSVGClass(dataset.index + "-selected-path", config.hideClass);
             }
         },
         showTowerUnitDetailContainer: function(unitInfo, left, top) {
@@ -367,7 +369,7 @@ var TowerselectedView = (function() {
             });
         },
         toggleFilterOption: function(element) {
-            var index = element.dataset.index;
+            var index = $(element).data('index');
             var classList = element.classList;
             if ($.inArray(config.filters.selectedClass, classList) < 0) {
                 $('#' + index).addClass(config.filters.selectedClass);
