@@ -19,15 +19,14 @@
 }
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?e44265');
-	src:url('fonts/icomoon.eot?#iefixe44265') format('embedded-opentype'),
-		url('fonts/icomoon.ttf?e44265') format('truetype'),
-		url('fonts/icomoon.woff?e44265') format('woff'),
-		url('fonts/icomoon.svg?e44265#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?-sggb6j');
+	src:url('fonts/icomoon.eot?#iefix-sggb6j') format('embedded-opentype'),
+		url('fonts/icomoon.ttf?-sggb6j') format('truetype'),
+		url('fonts/icomoon.woff?-sggb6j') format('woff'),
+		url('fonts/icomoon.svg?-sggb6j#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
-
 [class^="icon-"], [class*=" icon-"] {
 	font-family: 'icomoon';
 	speak: none;
@@ -48,6 +47,24 @@
 .fs20{ font-size:20px;}
 .fs22{ font-size:22px;}
 .fs24{ font-size:24px;}
+.icon-cafe:before {
+	content: "\e61a";
+}
+.icon-garden:before {
+	content: "\e61f";
+}
+.icon-jogging:before {
+	content: "\e62b";
+}
+.icon-parking:before {
+	content: "\e62c";
+}
+.icon-powerbackup:before {
+	content: "\e62d";
+}
+.icon-powerbackup-1:before {
+	content: "\e62e";
+}
 .icon-fav:before {
 	content: "\e600";
 }
@@ -847,19 +864,18 @@ ellipse.tower-unit-svg-selected-path {
 	position: absolute;
 	overflow-y: auto;
 	overflow-x: hidden;
-	top: 70px;
+	top: 120px;
 	bottom: 70px;
 	width: 100%;
 }
 .unit-content-wrapper .base-table{
 	padding: 0px 20px;
+	width:100%;
 }
-.specification-container {
-	overflow: auto;
-	padding:80px 0 0 0;
-}
+.payment-pic{ padding:20px; text-align:center;}
+.payment-pic img{ width:100%; display:inline-block;}
 .specification-tabs{
-	margin:0 20px; 
+	margin:93px 20px 0 20px; 
 	list-style:none; 
 	padding:0; 
 	text-align:left;  
@@ -1088,7 +1104,7 @@ ellipse.tower-unit-svg-selected-path {
 /*----------project amenities start here-----------*/
 .project-amenities{ text-align:left; padding:20px 10px;}
 .project-amenities .icon{ width:55px; height:55px; font-size:28px; background:#fff; border-radius:2px; border:1px solid #dedede; color:#666; text-align:center; line-height:55px;}
-.project-amenities li{ float:left; width:55px; height:145px; margin:0 10px;}
+.project-amenities li{ float:left; width:55px; height:145px; margin:0 65px;}
 .project-amenities li label{ color:#333; font-size:13px; display:block; margin-top:10px; text-align:center;}
 /*-------payment screen start here-------*/
 .payment-screen{ width:100%; background:rgba(0,0,0,0.7); padding:50px; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; position:fixed; top:0; left:0; height:100%; z-index:999999; display:none;}

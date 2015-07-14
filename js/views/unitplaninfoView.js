@@ -347,11 +347,12 @@ var UnitplaninfoView = (function() {
             this._elements.clusterPlanContainer.html(code);
         },
         priceBreakupContainer: function(data, rotationdata, rootdata) {
-            var code = "<div class='unit-content-wrapper'><ul class='specification-tabs'>"
+            var code = "<ul class='specification-tabs'>"
 						+'<li class="active">Price Breakup</li>'
-						+'<li>Payment</li>'
+						+'<li>Payment Plan</li>'
 					  +'</ul>'
-					  +'<div><img src="" alt="" />gdgddg</div>'
+					  +'<div class="unit-content-wrapper">'
+					  +'<div class="payment-pic"><img src="images/walkthrough-cover.jpg" alt="" /></div>'
 			code += "<table class='base-table' cellpadding='0' cellspacing='0' border='0'>";
             for (var category in rootdata.specifications) {
                 if (rootdata.specifications.hasOwnProperty(category)) {
@@ -366,15 +367,16 @@ var UnitplaninfoView = (function() {
                     }
                 }
             }
-            code += "</table></div>";
+            code += "<tr><td>Total</td><td>343276</td></tr></table></div>";
             this._elements.priceBreakupContainer.html(code);
         },
 
         specificationContainer: function(data, rotationdata, rootdata) {
-			var code = "<div class='unit-content-wrapper'><ul class='specification-tabs'>"
+			var code = "<ul class='specification-tabs'>"
 						+'<li class="active">Project Specification</li>'
 						+'<li>Project Amenities</li>'
 					  +'</ul>'
+					  +'<div class="unit-content-wrapper">'
 					  +'<div class="project-amenities">'
 					  		+'<ul>'
 								+'<li>'
@@ -398,15 +400,15 @@ var UnitplaninfoView = (function() {
 									+'<label>24 X 7 Security</label>'
 								+'</li>'
 								+'<li>'
-									+'<span class="icon"></span>'
+									+'<span class="icon icon-powerbackup-1"></span>'
 									+'<label>Power Backup</label>'
 								+'</li>'
 								+'<li>'
-									+'<span class="icon"></span>'
+									+'<span class="icon icon-garden"></span>'
 									+'<label>Landscaped Gardens</label>'
 								+'</li>'
 								+'<li>'
-									+'<span class="icon"></span>'
+									+'<span class="icon icon-parking"></span>'
 									+'<label>Ample Parking Space</label>'
 								+'</li>'
 								+'<li>'
@@ -414,7 +416,7 @@ var UnitplaninfoView = (function() {
 									+'<label>Children Play area</label>'
 								+'</li>'
 								+'<li>'
-									+'<span class="icon"></span>'
+									+'<span class="icon icon-jogging"></span>'
 									+'<label>Jogging Track</label>'
 								+'</li>'
 								+'<li>'
@@ -422,7 +424,7 @@ var UnitplaninfoView = (function() {
 									+'<label>Rain Water Harvesting</label>'
 								+'</li>'
 								+'<li>'
-									+'<span class="icon"></span>'
+									+'<span class="icon icon-cafe"></span>'
 									+'<label>Cafeteria</label>'
 								+'</li>'
 							+'</ul>'
