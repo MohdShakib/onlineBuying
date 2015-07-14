@@ -339,6 +339,20 @@ var utils = (function() {
                     svgElement.setAttribute('class', originalClasses + " " + newClass);
                 }
             }
+        },
+        socialClicked: function(shareon){
+            var url = location.href;
+            var url = 'http://beta-onlinebuying.proptiger-ws.com/#/projectname-640037';
+            switch(shareon){
+                case 'facebook':
+                    window.open("https://www.facebook.com/sharer.php?u="+encodeURIComponent(url), "sharer?", "toolbar=0,status=0,width=626,height=436");
+                    break;
+                case 'googleplus':
+                    window.open("https://plus.google.com/share?url="+encodeURIComponent(url), " "," status=0,width=626,height=436,menubar=no,toolbar=no,resizable=yes,scrollbars=yes");
+                    break;
+                default:
+                    return false;
+            }
         }
     }
 

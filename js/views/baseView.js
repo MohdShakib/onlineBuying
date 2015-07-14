@@ -140,8 +140,7 @@ var BaseView = (function() {
                                         +'<span class="icon icon-fav"></span>'
                                         +'<label class="like-count br50"></label>'
                                     +'</a>'
-                                +'</div>'
-                                */                                  
+                                +'</div>'*/                                  
                                 +'<div class="book-now">'
                                     +'<a >Book online now <span>Rs. '+item.bookingAmount+'/- (Refundable)</span></a>'
                                 +'</div>'
@@ -226,11 +225,11 @@ var BaseView = (function() {
                     +'<div class="share-box">'
                         +'<p>Share details with family / friends via</br> Email / Facebook / Google+</p>'
                         +'<div class="share-social">'
-                            +'<a href="javascript:void(0);" lass="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"><span class="icon icon-facebook"></span>Facebook</a>'
+                            +'<a href="javascript:void(0);" onclick="utils.socialClicked(\'facebook\')" ><span class="icon icon-facebook"></span>Facebook</a>'
                             //+'<div class="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"></div>'
                             +'<span>or</span>'
                             //+'<div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>'
-                            +'<a href="javascript:void(0);" class="" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"><span class="icon icon-googleplus"></span>Goggle+</a>'
+                            +'<a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Goggle+</a>'
                         +'</div>'
                         +'<input class="text" placeholder="Enter name*" type="text" />'
 						+'<input class="text" placeholder="Enter email id*" type="text" />'
