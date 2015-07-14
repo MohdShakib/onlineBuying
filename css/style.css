@@ -248,8 +248,18 @@ polygon {
 .unit-svg-container polygon:hover{
 	stroke: orange;
 	stroke-width: 0.4;
-	fill: orange;
-	fill-opacity: 0.1;
+}
+.unit-svg-container ellipse {
+	cursor: pointer;
+	stroke: rgba(0,0,0,0.4);
+	stroke-width: 0.1;
+	fill: black;
+	fill-opacity: 0.3;
+}
+.unit-svg-container ellipse:hover {
+	cursor: pointer;
+	stroke: rgba(0,0,0,0.5);
+	fill-opacity: 0.4;
 }
 ellipse {
 	cursor: pointer;
@@ -972,7 +982,7 @@ ellipse.tower-unit-svg-selected-path {
 	height: 20px;
 	width: 20px;
 	line-height: 22px;
-	font-size: 12px;
+	font-size: 20px;
 	text-align: center;
 	border: 1px solid #FFF;
 	border-radius: 100%;
@@ -983,8 +993,16 @@ ellipse.tower-unit-svg-selected-path {
 	-o-transition:all 0.5s ease-in-out;
 	-webkit-transition:all 0.5s ease-in-out;
 }
+.selected-unit-container .amenities-container .amenity-icon {
+	background: #BBB;
+	border: 1px solid #AAA;
+}
 .amenities-container .amenity-icon:hover {
 	background: rgba(0,0,0,0.5);
+}
+.selected-unit-container .amenities-container .amenity-icon:hover {
+	background: #999;
+	border: 1px solid #888;
 }
 .amenities-container .amenity-icon .name {
 	position: absolute;
@@ -993,7 +1011,7 @@ ellipse.tower-unit-svg-selected-path {
 	width: 200px;
 	line-height: normal;
 	font-size: 12px;
-	text-shadow: 1px 1px 2px #333;
+	text-shadow: 1px 1px 2px #666;
 	opacity: 0;
 	visibility: hidden;
 	transition:all 0.5s ease-in-out;
@@ -1012,6 +1030,9 @@ ellipse.tower-unit-svg-selected-path {
 	border-radius: 100px;
 	padding: 5px 10px;
 }
+.selected-unit-container .amenities-container .amenity-icon .name span {
+	background: #999;
+}
 .amenity-popup {
 	position: absolute;
 	top: 0px;
@@ -1019,6 +1040,9 @@ ellipse.tower-unit-svg-selected-path {
 	height: 100%;
 	background-color: rgba(0,0,0,0.3);
 	z-index: 100000;
+}
+.selected-unit-container .amenity-popup {
+	z-index: 10000000;
 }
 .amenity-popup table {
 	position: absolute;

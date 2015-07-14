@@ -112,7 +112,7 @@ var MasterplanView = (function() {
             }
             code += "</table></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
-			code += "<tr><td class='menu-call menu-icon'>&nbsp;</td></tr>";
+            code += "<tr><td class='menu-call menu-icon'>&nbsp;</td></tr>";
             code += "</table>";
             this._elements.buildingMenuContainer.html(code);
             this.buildingMenuContainerEvents();
@@ -319,17 +319,12 @@ var MasterplanView = (function() {
             });
         },
         amenityCloseEvent: function() {
-            //added by jaswant for image pop up animation
             $('.photo-table').removeClass('pop-up-in');
             $('.photo-table').addClass('pop-up-out');
             setTimeout(function() {
                 $("." + config.amenityPopupClass).remove();
             }, 1000);
             this.amenitiesContainerEvents();
-            //added by jaswant for image pop up animation
-
-
-
         }
     };
 
