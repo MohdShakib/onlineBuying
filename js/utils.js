@@ -314,6 +314,11 @@ var utils = (function() {
             }
         },
         removeSVGClass: function(id, removeClass) {
+
+            if(!document.getElementById(id)){
+                return;
+            }
+
             var originalClasses = document.getElementById(id).getAttribute('class');
             var classArray = originalClasses.split(" ");
             if (classArray && classArray.length > 0) {

@@ -177,7 +177,6 @@ var TowerselectedView = (function() {
             if (dataset.url != 'undefined') {
                 var svgElements = $('.' + config.towerUnitSvgSelectedClass);
                 utils.addSVGClassToElements(svgElements, config.hideClass);
-                utils.removeSVGClass(dataset.index + "-selected-path", config.hideClass);
             }
         },
         showTowerUnitDetailContainer: function(unitInfo, left, top) {
@@ -195,7 +194,7 @@ var TowerselectedView = (function() {
             }
 
             var tooltipClass = utils.getTooltipPosition({
-                pageX: left,
+                pageX: 50, // to keep tooltip always on the right
                 pageY: top
             });
             tooltipClass = tooltipClass ? tooltipClass : 'bottom-right';

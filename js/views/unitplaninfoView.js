@@ -134,6 +134,8 @@ var UnitplaninfoView = (function() {
                 _this._likeBoxClick.notify(this); //this refers to element
             });
 
+            // to show unit icon selected on tower
+            utils.removeSVGClass(data.unitIdentifier + "-selected-path", config.hideClass);
         },
         unitCloseContainer: function(data, rotationdata, rootdata) {
             var code = '<span class="icon icon-cross fs20"></span>';
@@ -218,7 +220,7 @@ var UnitplaninfoView = (function() {
         },
         walkthroughContainer: function(data, rotationdata, rootdata) {
             var videoUrl = "http://d1vh6m45iog96e.cloudfront.net/4/2/5000168/106/2/supertech-capetown-floor-plan-2bhk-2t-930-sq-ft-5000168.mp4";
-            var code = "<video class='fullView' controls>";
+            var code = "<video class='fullView' controls poster='/images/walkthrough-cover.jpg'>";
             code += "<source src='" + videoUrl + "' type='video/mp4'>";
             code += "</video>";
             this._elements.walkthroughContainer.html(code);
