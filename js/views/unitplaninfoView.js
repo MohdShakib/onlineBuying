@@ -347,8 +347,13 @@ var UnitplaninfoView = (function() {
             this._elements.clusterPlanContainer.html(code);
         },
         priceBreakupContainer: function(data, rotationdata, rootdata) {
-            var code = "<div class='unit-content-wrapper'><ul class='specification-tabs'>" + '<li><a class="active" href="#">Project Amenities</a></li>' + '<li><a href="#">Unit Amenities</a></li>' + '<li><a href="#">Project Specs</a></li>' + '</ul>';
-            code += "<table class='base-table' cellpadding='0' cellspacing='0' border='0'>";
+            var code = "<ul class='specification-tabs'>"
+						+'<li class="active">Price Breakup</li>'
+						+'<li>Payment Plan</li>'
+					  +'</ul>'
+					  +'<div class="unit-content-wrapper">'
+					  +'<div class="payment-pic"><img src="images/walkthrough-cover.jpg" alt="" /></div>'
+			code += "<table class='base-table' cellpadding='0' cellspacing='0' border='0'>";
             for (var category in rootdata.specifications) {
                 if (rootdata.specifications.hasOwnProperty(category)) {
                     var items = rootdata.specifications[category];
@@ -362,13 +367,70 @@ var UnitplaninfoView = (function() {
                     }
                 }
             }
-            code += "</table></div>";
+            code += "<tr><td>Total</td><td>343276</td></tr></table></div>";
             this._elements.priceBreakupContainer.html(code);
         },
 
         specificationContainer: function(data, rotationdata, rootdata) {
-            var code = "<div class='unit-content-wrapper'><ul class='specification-tabs'>" + '<li><a class="active" href="#">Project Amenities</a></li>' + '<li><a href="#">Unit Amenities</a></li>' + '<li><a href="#">Project Specs</a></li>' + '</ul>';
-            code += "<table class='base-table'>";
+			var code = "<ul class='specification-tabs'>"
+						+'<li class="active">Project Specification</li>'
+						+'<li>Project Amenities</li>'
+					  +'</ul>'
+					  +'<div class="unit-content-wrapper">'
+					  +'<div class="project-amenities">'
+					  		+'<ul>'
+								+'<li>'
+									+'<span class="icon  icon-gym"></span>'
+									+'<label>Gymnaslum</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-swimming"></span>'
+									+'<label>Swimming Pool</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-clubhouse"></span>'
+									+'<label>Club House</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-intercom"></span>'
+									+'<label>Intercom</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-security"></span>'
+									+'<label>24 X 7 Security</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-powerbackup-1"></span>'
+									+'<label>Power Backup</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-garden"></span>'
+									+'<label>Landscaped Gardens</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-parking"></span>'
+									+'<label>Ample Parking Space</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-playarea"></span>'
+									+'<label>Children Play area</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-jogging"></span>'
+									+'<label>Jogging Track</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-harvesting"></span>'
+									+'<label>Rain Water Harvesting</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-cafe"></span>'
+									+'<label>Cafeteria</label>'
+								+'</li>'
+							+'</ul>'
+							+'<div class="clear-fix"></div>'
+					  +'</div>';
+			code += "<table class='base-table'>";
             for (var category in rootdata.specifications) {
                 if (rootdata.specifications.hasOwnProperty(category)) {
                     var items = rootdata.specifications[category];
