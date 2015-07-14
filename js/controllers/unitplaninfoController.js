@@ -54,6 +54,14 @@ var UnitplaninfoController = (function() {
                 var data = _this._model.getRotationdata();
                 utils.likeBoxClicked(element, data.unitIdentifier, data.unitName, data.towerIdentifier, data.rotationAngle, data.unitUniqueIdentifier);
             });
+
+            // Amenity Events
+            this._view._amenityClick.attach(function(sender, element) {
+                _this._view.amenityClickEvent(element);
+            });
+            this._view._amenityClose.attach(function(sender, element) {
+                _this._view.amenityCloseEvent();
+            });
         },
         generateTemplate: function(data, rootdata, elements) {
             this._view.buildView();

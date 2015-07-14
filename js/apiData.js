@@ -50,8 +50,8 @@ var getProjectData = (function() {
         return lines;
     }
 
-    function unitUniqueIdentifier(unitIdentifier, towerIdentifier){
-        return unitIdentifier+'-'+towerIdentifier;
+    function unitUniqueIdentifier(unitIdentifier, towerIdentifier) {
+        return unitIdentifier + '-' + towerIdentifier;
     }
 
     function useTowerUnitsCSVData(listing) {
@@ -70,7 +70,7 @@ var getProjectData = (function() {
                     }
 
                     unitInfo.unitUniqueIdentifier = unitUniqueIdentifier(unitIdentifier, unitTowerIdentifier);
-                    
+
                     unitInfo.towerIdentifier = unitTowerIdentifier;
                     delete unitInfo.towerName;
 
@@ -130,21 +130,30 @@ var getProjectData = (function() {
         return response;
     }
 
-    function processUnitSvgs(unitInfo) {
-        var response = [],
+    function processUnitSvgs(unitInfo, type) {
+        var response = (type == 'link') ? {} : [],
             details;
 
         for (var i = 1; i <= 1000; i++) {
             var partial = 'view' + i + '-';
             if (hasOwnProperty.call(unitInfo, partial + 'svg') && unitInfo[partial + 'svg'].length) {
                 details = unitInfo[partial + 'details'];
-                response.push({
+                var item = {
                     name: unitInfo[partial + 'name'],
                     svgPath: unitInfo[partial + 'svg'],
                     svg2dPath: unitInfo[partial + 'svg-2d'],
-                    type: unitInfo[partial + 'type'],
-                    details: parseDetailsField(details)
-                });
+                    type: unitInfo[partial + 'type']
+                }
+
+                if (type == 'link' && item.type == 'link') {
+                    item.details = zipImagePath + details;
+                    var identifier = getIdentifier(item.name);
+                    response[identifier] = item;
+                } else if (type != 'link' && item.type != 'link') {
+                    item.details = parseDetailsField(details);
+                    response.push(item);
+                }
+
             } else {
                 return response;
             }
@@ -171,6 +180,7 @@ var getProjectData = (function() {
                     singleUnitInfo.afternoonSunlightImageUrl = unitplanInfo[unitPlankey]['sun-aft'] && unitplanInfo[unitPlankey]['sun-aft'].length ? zipImagePath + unitplanInfo[unitPlankey]['sun-aft'] : undefined;
                     singleUnitInfo.eveningSunlightImageUrl = unitplanInfo[unitPlankey]['sun-eve'] && unitplanInfo[unitPlankey]['sun-eve'].length ? zipImagePath + unitplanInfo[unitPlankey]['sun-eve'] : undefined;
                     singleUnitInfo.svgs = processUnitSvgs(unitplanInfo[unitPlankey]);
+                    singleUnitInfo.linkSvgs = processUnitSvgs(unitplanInfo[unitPlankey], 'link');
                     unitsInfo[singleUnitInfoIdentifier] = singleUnitInfo;
                 }
             }

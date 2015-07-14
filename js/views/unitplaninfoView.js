@@ -16,10 +16,11 @@ var UnitplaninfoView = (function() {
         'walkthroughContainer': '<div class="walkthrough-container fpwt-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="walkthrough-container"></div>',
         'unit3dSvgContainer': '<div class="fp-container ' + config.unitDataContainer + '"><svg class="svg-container unit-svg-container" id="unit-3d-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
         'unit2dSvgContainer': '<div class="' + config.hideClass + ' fp2d-container ' + config.unitDataContainer + '"><svg class="svg-container unit-svg-container" id="unit-2d-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
-        'unitComponentDetailContainer': '<div class="tower-unit-detail-container fp-container ' + config.unitDataContainer + '" id="'+config.unitDetailContainerId+'"></div>',
+        'unitComponentDetailContainer': '<div class="tower-unit-detail-container fp-container ' + config.unitDataContainer + '" id="' + config.unitDetailContainerId + '"></div>',
         'clusterPlanContainer': '<div class="cluster-plan-container cp-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="cluster-plan-container"></div>',
         'priceBreakupContainer': '<div class="price-breakup-container pb-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="price-breakup-container"></div>',
-        'specificationContainer': '<div class="specification-container sf-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="specification-container"></div>'
+        'specificationContainer': '<div class="specification-container sf-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="specification-container"></div>',
+        'amenitiesContainer': '<div class="amenities-container fp-container ' + config.unitDataContainer + '" id="amenities-container"></div>'
     };
 
     function getElements() {
@@ -35,7 +36,8 @@ var UnitplaninfoView = (function() {
             'unitComponentDetailContainer': $('#' + config.unitDetailContainerId),
             'clusterPlanContainer': $('#cluster-plan-container'),
             'priceBreakupContainer': $('#price-breakup-container'),
-            'specificationContainer': $('#specification-container')
+            'specificationContainer': $('#specification-container'),
+            'amenitiesContainer': $('#amenities-container')
         };
         return elements;
     }
@@ -52,6 +54,10 @@ var UnitplaninfoView = (function() {
         this._sunlightMenuClick = new Event(this);
         this._floorPlanMenuClick = new Event(this);
         this._likeBoxClick = new Event(this);
+
+        // Amenity Events
+        this._amenityClick = new Event(this);
+        this._amenityClose = new Event(this);
     }
 
     UnitplaninfoView.prototype = {
@@ -108,24 +114,8 @@ var UnitplaninfoView = (function() {
             }
 
             var selectedClass = data.shortListed ? 'selected' : '';
-			htmlCode += '<div class="unit-view-tabs">'
-							+'<div class="special-offers">'
-								+'<p><span class="icon icon-smiley"></span></p>'
-								+'<p>No Pre-EMI offer and Discount Rs. 4,53,000/</p>'
-							+'</div>'
-							+'<div class="book-com-box">'
-								+'<div class="like-box '+selectedClass+' '+data.unitUniqueIdentifier+'-like-box" >'
-									+'<a >'
-										+'<span class="icon icon-fav"></span>'
-										+'<label class="like-count br50"></label>'
-									+'</a>'
-								+'</div>'
-								+'<div class="book-now">'
-									+'<a >Book online now <span>Rs. '+data.bookingAmount+'/- (Refundable)</span></a>'
-								+'</div>'
-							+'</div>'
-						+'</div>';
-	   
+            htmlCode += '<div class="unit-view-tabs">' + '<div class="special-offers">' + '<p><span class="icon icon-smiley"></span></p>' + '<p>No Pre-EMI offer and Discount Rs. 4,53,000/</p>' + '</div>' + '<div class="book-com-box">' + '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box" >' + '<a >' + '<span class="icon icon-fav"></span>' + '<label class="like-count br50"></label>' + '</a>' + '</div>' + '<div class="book-now">' + '<a >Book online now <span>Rs. ' + data.bookingAmount + '/- (Refundable)</span></a>' + '</div>' + '</div>' + '</div>';
+
 
             $('#' + config.selectedUnitContainerId).html(htmlCode);
             this._elements = getElements();
@@ -288,17 +278,81 @@ var UnitplaninfoView = (function() {
         unitComponentMouseLeave: function() {
             document.getElementById(config.unitDetailContainerId).innerHTML = '';
         },
+        amenitiesContainer: function(data, rotationdata, rootdata) {
+            var unitTypeData = this._model.getUnitTypeData(),
+                svgData = unitTypeData ? unitTypeData.linkSvgs : null;
+
+            var code = '';
+            for (var svgId in svgData) {
+                var svgObj = svgData[svgId];
+                var point = svgObj.svgPath.split(' ');
+                var position = "top:" + point[1] + "%; left:" + point[0] + "%;";
+                code += "<div id='" + svgId + "' data-top='" + point[1] + "' data-left='" + point[0] + "' class='" + config.amenityIconClass + "' style='" + position + "'>+";
+                code += "<div class='name'><span>" + svgObj.name + "</span></div>";
+                code += "</div>";
+            }
+            this._elements.amenitiesContainer.html(code);
+            this.amenitiesContainerEvents();
+        },
+        amenitiesContainerEvents: function() {
+            var _this = this;
+            _this._elements.amenitiesContainer.off('click').on('click', '.' + config.amenityIconClass, function(event) {
+                // notify controller
+                _this._amenityClick.notify(this); // this refers to element here
+            });
+        },
+        amenityClickEvent: function(element) {
+            var rotationdata = this._model.getRotationdata(),
+                rootdata = this._model.getRootdata(),
+                unitTypeIdentifier = rotationdata.unitTypeIdentifier,
+                unitType = rootdata.unitTypes[unitTypeIdentifier],
+                amenityId = element.id,
+                amenity = unitType.linkSvgs[amenityId],
+                amenityImg = amenity.details;
+
+            //changed by jaswant for image pop up animation
+            var position = "top:" + element.dataset.top + "%; left:" + element.dataset.left + "%;";
+            var code = "<div class='" + config.amenityPopupClass + "'><table class='photo-table pop-up-in' style='" + position + "'><tr>";
+            code += "<td class='amenity-heading'>" + amenity.name;
+            code += "<span class='" + config.amenityPopupCloseClass + "'>X</span></td></tr>";
+            code += "<tr><td class='amenity-image'><img src='" + amenityImg + "'></td></tr></table>";
+            this._elements.amenitiesContainer.append(code);
+            this.amenitiesPopupEvents();
+        },
+        amenitiesPopupEvents: function() {
+            var _this = this;
+            _this._elements.amenitiesContainer.off('click').on('click', '.' + config.amenityPopupClass, function(event) {
+                // notify controller
+                _this._amenityClose.notify(this); // this refers to element here
+            });
+            _this._elements.amenitiesContainer.on('click', '.' + config.amenityPopupTableClass, function(event) {
+                event.stopPropagation();
+            });
+            _this._elements.amenitiesContainer.on('click', '.' + config.amenityPopupCloseClass, function(event) {
+                // notify controller
+                _this._amenityClose.notify(this); // this refers to element here
+            });
+        },
+        amenityCloseEvent: function() {
+            $('.photo-table').removeClass('pop-up-in');
+            $('.photo-table').addClass('pop-up-out');
+            setTimeout(function() {
+                $("." + config.amenityPopupClass).remove();
+            }, 1000);
+            this.amenitiesContainerEvents();
+        },
         clusterPlanContainer: function(data, rotationdata, rootdata) {
             var imageUrl = rootdata.unitTypes[rotationdata.unitTypeIdentifier].clusterplanImageUrl;
             var code = "<img class='fullView' src='" + imageUrl + "'>";
             this._elements.clusterPlanContainer.html(code);
         },
         priceBreakupContainer: function(data, rotationdata, rootdata) {
-            var code = "<div class='unit-content-wrapper'><ul class='specification-tabs'>"
-						+'<li><a class="active" href="#">Project Amenities</a></li>'
-						+'<li><a href="#">Unit Amenities</a></li>'
-						+'<li><a href="#">Project Specs</a></li>'
-					  +'</ul>';
+            var code = "<ul class='specification-tabs'>"
+						+'<li class="active">Price Breakup</li>'
+						+'<li>Payment Plan</li>'
+					  +'</ul>'
+					  +'<div class="unit-content-wrapper">'
+					  +'<div class="payment-pic"><img src="images/walkthrough-cover.jpg" alt="" /></div>'
 			code += "<table class='base-table' cellpadding='0' cellspacing='0' border='0'>";
             for (var category in rootdata.specifications) {
                 if (rootdata.specifications.hasOwnProperty(category)) {
@@ -313,16 +367,69 @@ var UnitplaninfoView = (function() {
                     }
                 }
             }
-            code += "</table></div>";
+            code += "<tr><td>Total</td><td>343276</td></tr></table></div>";
             this._elements.priceBreakupContainer.html(code);
         },
-		
+
         specificationContainer: function(data, rotationdata, rootdata) {
-			var code = "<div class='unit-content-wrapper'><ul class='specification-tabs'>"
-						+'<li><a class="active" href="#">Project Amenities</a></li>'
-						+'<li><a href="#">Unit Amenities</a></li>'
-						+'<li><a href="#">Project Specs</a></li>'
-					  +'</ul>';
+			var code = "<ul class='specification-tabs'>"
+						+'<li class="active">Project Specification</li>'
+						+'<li>Project Amenities</li>'
+					  +'</ul>'
+					  +'<div class="unit-content-wrapper">'
+					  +'<div class="project-amenities">'
+					  		+'<ul>'
+								+'<li>'
+									+'<span class="icon  icon-gym"></span>'
+									+'<label>Gymnaslum</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-swimming"></span>'
+									+'<label>Swimming Pool</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-clubhouse"></span>'
+									+'<label>Club House</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-intercom"></span>'
+									+'<label>Intercom</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-security"></span>'
+									+'<label>24 X 7 Security</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-powerbackup-1"></span>'
+									+'<label>Power Backup</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-garden"></span>'
+									+'<label>Landscaped Gardens</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-parking"></span>'
+									+'<label>Ample Parking Space</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-playarea"></span>'
+									+'<label>Children Play area</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-jogging"></span>'
+									+'<label>Jogging Track</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-harvesting"></span>'
+									+'<label>Rain Water Harvesting</label>'
+								+'</li>'
+								+'<li>'
+									+'<span class="icon icon-cafe"></span>'
+									+'<label>Cafeteria</label>'
+								+'</li>'
+							+'</ul>'
+							+'<div class="clear-fix"></div>'
+					  +'</div>';
 			code += "<table class='base-table'>";
             for (var category in rootdata.specifications) {
                 if (rootdata.specifications.hasOwnProperty(category)) {

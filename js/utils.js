@@ -140,10 +140,8 @@ var utils = (function() {
             var svgCode = '';
             for (var i = 0; i < svgs_count; i++) {
                 var svgObj = svgData[i];
-                if (svgObj.type == 'link') {
-                    svgCode += "<circle data-name='" + svgObj.name + "' data-type='" + svgObj.type + "' data-details='" + svgObj.details + "' cx='" + svgObj.svgPath.split(' ')[0] + "' cy='" + svgObj.svgPath.split(' ')[1] + "' r='1'  />";
-                } else {
-                    svgCode += "<polygon data-name='" + svgObj.name + "' data-type='" + svgObj.type + "' data-details='" + svgObj.details + "'   points=\"" + svgObj.svgPath + "\" />";
+                if (svgObj.type == 'info') {
+                    svgCode += "<polygon class='transition' data-name='" + svgObj.name + "' data-type='" + svgObj.type + "' data-details='" + svgObj.details + "'   points=\"" + svgObj.svgPath + "\" />";
                 }
             }
 
