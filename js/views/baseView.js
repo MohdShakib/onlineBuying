@@ -6,29 +6,29 @@
 
 "use strict";
 
-function callBackFormSubmit(form){
-    var email = $('#'+config.callBox.emailId).val();
-    var phone = $('#'+config.callBox.phoneId).val();
+function callBackFormSubmit(form) {
+    var email = $('#' + config.callBox.emailId).val();
+    var phone = $('#' + config.callBox.phoneId).val();
     $(form)[0].reset();
     return false;
 }
-    
-function allowDrop(x){
-    x.preventDefault(); 
+
+function allowDrop(x) {
+    x.preventDefault();
 }
 
 var BaseView = (function() {
 
     var containerMap = {
         'bottomFormGroupContainer': '<div class"bottom-form-group" id="bottom-form-group"></div>',
-        'compareUnitsContainer': '<div  class="compare-units-container" id="'+config.compareUnitscontainerId+'"></div>'
+        'compareUnitsContainer': '<div  class="compare-units-container" id="' + config.compareUnitscontainerId + '"></div>'
     };
 
 
     function getElements() {
         var elements = {
             'bottomFormGroupContainer': $('#bottom-form-group'),
-            'compareUnitsContainer': $('#'+config.compareUnitscontainerId)
+            'compareUnitsContainer': $('#' + config.compareUnitscontainerId)
         };
         return elements;
     }
@@ -55,71 +55,67 @@ var BaseView = (function() {
                 }
             }
         },
-        compareUnitsContainer: function(){
+        compareUnitsContainer: function() {
             var compareList = this._model.getCompareList(),
-            compareList_length = Object.keys(compareList).length;
+                compareList_length = Object.keys(compareList).length;
             var rootdata = this._model.getRootdata();
-            
-            var htmlCode = '', firstUniqueIdentifier;
-        
+
+            var htmlCode = '',
+                firstUniqueIdentifier;
+
             htmlCode += '<div class="compare-back-button"><span class="icon icon-arrow_left"></span> Back</div>';
 
-            htmlCode +='<div class="compare-container">';
-            for(var uniqueIdentifier in compareList){
+            htmlCode += '<div class="compare-container">';
+            for (var uniqueIdentifier in compareList) {
                 firstUniqueIdentifier = uniqueIdentifier;
                 var imageUrl = compareList[uniqueIdentifier].unitTypeData.unitImageUrl;
-                htmlCode += '<div class="'+config.compareBottomBox+'" id="'+config.compareBottomBox+'-'+uniqueIdentifier+'" data-uniqueidentifier="'+uniqueIdentifier+'">'
-                    +'<p >'+compareList[uniqueIdentifier].unitName+'</p>'
-                    +'<img src="'+imageUrl+'" />'
-                +'</div>';
+                htmlCode += '<div class="' + config.compareBottomBox + '" id="' + config.compareBottomBox + '-' + uniqueIdentifier + '" data-uniqueidentifier="' + uniqueIdentifier + '">' + '<p >' + compareList[uniqueIdentifier].unitName + '</p>' + '<img src="' + imageUrl + '" />' + '</div>';
             }
-            htmlCode +='</div>';
-       
-            for(var i=0; i<2; i++){
+            htmlCode += '</div>';
+
+            for (var i = 0; i < 2; i++) {
                 var borderClass = !i ? 'compare-unit-box-right-border' : 'compare-unit-box-right';
-                htmlCode += '<div  class="compare-unit-box '+borderClass+'" ondragover="allowDrop(event);">'
-            
-                htmlCode += '<div class="compare-unit-box-detail top-right-component"><span>Drag & drop to select unit and compare it.</span></div>'
-                            +'<div class="img-svg-container drag-drop">'
-                            +'<img class="compare-unit-img"  src="compare_drag.jpg"></div>';
+                htmlCode += '<div  class="compare-unit-box ' + borderClass + '" ondragover="allowDrop(event);">'
+
+                htmlCode += '<div class="compare-unit-box-detail top-right-component"><span>Drag & drop to select unit and compare it.</span></div>' + '<div class="img-svg-container drag-drop">' + '<img class="compare-unit-img"  src="compare_drag.jpg"></div>';
 
                 htmlCode += '</div>';
             }
-        
+
             this._elements.compareUnitsContainer.html(htmlCode);
-            if(compareList_length > 1){
-                this.addToCompareBox($('.compare-unit-box')[0],firstUniqueIdentifier);
+            if (compareList_length > 1) {
+                this.addToCompareBox($('.compare-unit-box')[0], firstUniqueIdentifier);
             }
             this.compareUnitsContainerEvents();
         },
-        compareUnitsContainerEvents: function(){
+        compareUnitsContainerEvents: function() {
             var _this = this;
-            this._elements.compareUnitsContainer.off('click').on('click', '.'+config.compareBackButtonClass, function(event){
+            this._elements.compareUnitsContainer.off('click').on('click', '.' + config.compareBackButtonClass, function(event) {
                 _this._compareBackButtonClick.notify(this); //this refers to element here                
             });
 
-            $('.'+config.compareBottomBox).draggable({
-                helper:'clone',
-                start: function(){
+            $('.' + config.compareBottomBox).draggable({
+                helper: 'clone',
+                start: function() {
                     $(this).addClass('drag-over');
-                },  
-                stop: function(){
+                },
+                stop: function() {
                     $(this).removeClass('drag-over');
                 }
             });
 
             $('.compare-unit-box').droppable({
-                over: function( event, ui ) {
+                over: function(event, ui) {
                     $(this).addClass('drag-over');
                 },
-                out: function( event, ui ) {
+                out: function(event, ui) {
                     $(this).removeClass('drag-over');
                 },
-                drop: function(event, ui){
+                drop: function(event, ui) {
                     $(this).removeClass('drag-over');
                     var unitUniqueIdentifier = $(this).find('img.compare-unit-img').data('uniqueidentifier');
-                    if(unitUniqueIdentifier && $('#'+config.compareBottomBox+'-'+unitUniqueIdentifier)){
-                        $('#'+config.compareBottomBox+'-'+unitUniqueIdentifier+' p').removeClass('selected');
+                    if (unitUniqueIdentifier && $('#' + config.compareBottomBox + '-' + unitUniqueIdentifier)) {
+                        $('#' + config.compareBottomBox + '-' + unitUniqueIdentifier + ' p').removeClass('selected');
                     }
                     var uniqueIdentifier = $(ui.draggable).data('uniqueidentifier');
                     _this.addToCompareBox(this, uniqueIdentifier);
@@ -127,30 +123,24 @@ var BaseView = (function() {
             });
 
         },
-        addToCompareBox: function(compareBox, uniqueIdentifier){
+        addToCompareBox: function(compareBox, uniqueIdentifier) {
             var compareList = this._model.getCompareList(),
-            item = compareList[uniqueIdentifier],
-            imageUrl = item ? item.unitTypeData.unitImageUrl : undefined,
-            htmlCode = '<div class="tower-unit-detail-container ' + config.unitDataContainer + '"></div>';
-            htmlCode += '<div class="compare-unit-box-detail top-right-component"><span>'+item.unitName+' Av</span>-<span>'+item.bedrooms+'</span>-<span>'+item.size+'</span>-<span>'+item.price+'</span>-<span>'+item.floor+'</span></div>';
-            htmlCode += '<div class="unit-view-tabs top-view top-right-component">'
-                            +'<div class="book-com-box">'
-                                /*+'<div class="like-box '+item.unitIdentifier+'-like-box selected" >'
-                                    +'<a >'
-                                        +'<span class="icon icon-fav"></span>'
-                                        +'<label class="like-count br50"></label>'
-                                    +'</a>'
-                                +'</div>'
-                                */                                  
-                                +'<div class="book-now">'
-                                    +'<a >Book online now <span>Rs. '+item.bookingAmount+'/- (Refundable)</span></a>'
-                                +'</div>'
-                            +'</div>'
-                        +'</div>';
-            htmlCode += '<div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container'+uniqueIdentifier+'" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'
-                        +'<img data-uniqueIdentifier="'+item.unitUniqueIdentifier+'" class="compare-unit-img"  src="'+imageUrl+'"> </div>';
-            
-            $('#'+config.compareBottomBox+'-'+uniqueIdentifier+' p').addClass('selected');
+                item = compareList[uniqueIdentifier],
+                imageUrl = item ? item.unitTypeData.unitImageUrl : undefined,
+                htmlCode = '<div class="tower-unit-detail-container ' + config.unitDataContainer + '"></div>';
+            htmlCode += '<div class="compare-unit-box-detail top-right-component"><span class="address">' + item.unitName + '</span>-<span>' + item.bedrooms + '</span>-<span>' + item.size + '</span>-<span>' + item.price + '</span>-<span>' + item.floor + '</span></div>';
+            htmlCode += '<div class="unit-view-tabs top-view top-right-component">' + '<div class="book-com-box">'
+                /*+'<div class="like-box '+item.unitIdentifier+'-like-box selected" >'
+                    +'<a >'
+                        +'<span class="icon icon-fav"></span>'
+                        +'<label class="like-count br50"></label>'
+                    +'</a>'
+                +'</div>'
+                */
+                + '<div class="book-now">' + '<a >Book online now <span>Rs. ' + item.bookingAmount + '/- (Refundable)</span></a>' + '</div>' + '</div>' + '</div>';
+            htmlCode += '<div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + uniqueIdentifier + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' + '<img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img"  src="' + imageUrl + '"> </div>';
+
+            $('#' + config.compareBottomBox + '-' + uniqueIdentifier + ' p').addClass('selected');
             $(compareBox).html(htmlCode);
             this.unit3dSvgContainer(uniqueIdentifier);
         },
@@ -158,14 +148,14 @@ var BaseView = (function() {
             var compareList = this._model.getCompareList();
             var unitTypeData = compareList[uniqueIdentifier].unitTypeData;
             var svgCode = utils.getUnit3dSvgPolygonHtml(unitTypeData);
-            $('#unit-compare-svg-container'+uniqueIdentifier).html(svgCode);
+            $('#unit-compare-svg-container' + uniqueIdentifier).html(svgCode);
             this.unit3dSvgContainerEvents();
         },
-        unit3dSvgContainerEvents: function(){
+        unit3dSvgContainerEvents: function() {
             var _this = this;
             this._elements.compareUnitsContainer.off('mousemove').on('mousemove', 'polygon', function(event) {
 
-             //here this refers to element
+                //here this refers to element
                 _this._unitComponentMouseEnter.notify({
                     element: this,
                     event: event
@@ -173,7 +163,7 @@ var BaseView = (function() {
             });
 
             this._elements.compareUnitsContainer.off('mouseleave').on('mouseleave', 'polygon', function(event) {
-                 $('#container-detail').remove();
+                $('#container-detail').remove();
                 //here this refers to element
                 _this._unitComponentMouseLeave.notify();
             });
@@ -184,114 +174,53 @@ var BaseView = (function() {
             var pointY = $(params.element).attr('points').split(' ')[1];
             params.pointX = pointX;
             params.pointY = pointY;
-            if(reference){
+            if (reference) {
                 utils.unitComponentMouseEnter(params, reference);
             }
         },
         unitComponentMouseLeave: function() {
             $('.tower-unit-detail-container').html('');
         },
-        compareBackButtonClicked: function(){
-			$('#'+config.compareUnitscontainerId).animate({ right:'-110%'},800);
+        compareBackButtonClicked: function() {
+            $('#' + config.compareUnitscontainerId).animate({
+                right: '-110%'
+            }, 800);
         },
-        bottomFormGroupContainer: function(){
+        bottomFormGroupContainer: function() {
             var _this = this;
-            var htmlCode = '<div class="pro-contact-actions">'
-                +'<div class="form-pop-up transition">'
-					+'<span class="close-form">x</span>'
-                    +'<div class="call-box">'
-                        +'<p>Our advisor will call you in next 15 mins*<br>'
-                        +'Please provide your details'
-                        +'</p>'
-						+'<div class="chat-tab-box">'
-							+'<a href="#" class="transition">Start Chatting</a>'
-							+'<a href="#" class="transition active">We will Call</a>'
-						+'</div>'
-                        +'<form id="call-box-form"  name="call-box-form" onsubmit="return callBackFormSubmit(this)" >'
-                            +'<input class="text" id="call-box-email" name="email" placeholder="Enter email id*" type="email" required />'
-                            +'<input class="text" id="call-box-phone" name="phone" placeholder="Enter cell phone number*" type="number" minlength="10" maxlength="10" required />'
-                            +'<div class="submit" id="call-box-submit-id">Submit <span  class="icon icon-arrow_right"></span>'
-								+'<input type="submit" id="call-box-submit-id" />'
-							+'</div>'
-                        +'</form>'
-                    +'</div>'
-                    +'<div class="compare-box">'
-                        +'<p>Unit plans you like &amp; shortlisted'
-                        +'</p>'
-                        +'<div class="unit-box fleft" id="'+config.shortListedUnitListId+'">'
-                        +'</div>'
-                        +'<div class="clear-fix"></div>'
-                        +'<div id="'+config.unitCompareButtonId+'" class="submit"><input type="submit" />View Liked Plans <span class="icon icon-arrow_right"></span></div>'
-                    +'</div>'
-                    +'<div class="share-box">'
-                        +'<p>Share details with family / friends via</br> Email / Facebook / Google+</p>'
-                        +'<div class="share-social">'
-                            +'<a href="javascript:void(0);" lass="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"><span class="icon icon-facebook"></span>Facebook</a>'
-                            //+'<div class="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"></div>'
-                            +'<span>or</span>'
-                            //+'<div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>'
-                            +'<a href="javascript:void(0);" class="" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"><span class="icon icon-googleplus"></span>Goggle+</a>'
-                        +'</div>'
-                        +'<input class="text" placeholder="Enter name*" type="text" />'
-						+'<input class="text" placeholder="Enter email id*" type="text" />'
-                        +'<div class="submit"><input type="submit" />Submit <span  class="icon icon-arrow_right"></span></div>'
-                    +'</div>'
-                +'</div>'
-                +'<ul class="conect-tab">'
-                    +'<li>'
-                        +'<a href="javascript:void(0);"  data-name="call-box">'
-                        +'<p>Quick Call?</br>'
-                        +'We will call you!'
-                        +'</p>'
-                        +'<span class="icon icon-phone"></span>'
-                        +'</a>'
-                    +'</li>'
-                    +'<li>'
-                        +'<a href="javascript:void(0);" data-name="compare-box">'
-                            +'<p>Compare Plans</br> Once you Liked</p>'
-                            +'<span class="icon icon-heart">'
-                                +'<label class="like-count br50" id="'+config.likeCountId+'">0</label>'
-                            +'</span>'
-                        +'</a>'
-                    +'</li>'
-                    +'<li>'
-                        +'<a href="javascript:void(0);" data-name="share-box">'
-                            +'<p>Email &amp; Share'
-                                +'<span>Sign In Now!</span>'
-                            +'</p>'
-                            +'<span class="icon icon-email"></span>'
-                        +'</a>'
-                    +'</li>'
-                +'</ul>'
-            +'</div>';
+            var htmlCode = '<div class="pro-contact-actions">' + '<div class="form-pop-up transition">' + '<span class="close-form">x</span>' + '<div class="call-box">' + '<p>Our advisor will call you in next 15 mins*<br>' + 'Please provide your details' + '</p>' + '<div class="chat-tab-box">' + '<a href="#" class="transition">Start Chatting</a>' + '<a href="#" class="transition active">We will Call</a>' + '</div>' + '<form id="call-box-form"  name="call-box-form" onsubmit="return callBackFormSubmit(this)" >' + '<input class="text" id="call-box-email" name="email" placeholder="Enter email id*" type="email" required />' + '<input class="text" id="call-box-phone" name="phone" placeholder="Enter cell phone number*" type="number" minlength="10" maxlength="10" required />' + '<div class="submit" id="call-box-submit-id">Submit <span  class="icon icon-arrow_right"></span>' + '<input type="submit" id="call-box-submit-id" />' + '</div>' + '</form>' + '</div>' + '<div class="compare-box">' + '<p>Unit plans you like &amp; shortlisted' + '</p>' + '<div class="unit-box fleft" id="' + config.shortListedUnitListId + '">' + '</div>' + '<div class="clear-fix"></div>' + '<div id="' + config.unitCompareButtonId + '" class="submit"><input type="submit" />View Liked Plans <span class="icon icon-arrow_right"></span></div>' + '</div>' + '<div class="share-box">' + '<p>Share details with family / friends via</br> Email / Facebook / Google+</p>' + '<div class="share-social">' + '<a href="javascript:void(0);" lass="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"><span class="icon icon-facebook"></span>Facebook</a>'
+                //+'<div class="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"></div>'
+                + '<span>or</span>'
+                //+'<div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>'
+                + '<a href="javascript:void(0);" class="" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"><span class="icon icon-googleplus"></span>Goggle+</a>' + '</div>' + '<input class="text" placeholder="Enter name*" type="text" />' + '<input class="text" placeholder="Enter email id*" type="text" />' + '<div class="submit"><input type="submit" />Submit <span  class="icon icon-arrow_right"></span></div>' + '</div>' + '</div>' + '<ul class="conect-tab">' + '<li>' + '<a href="javascript:void(0);"  data-name="call-box">' + '<p>Quick Call?</br>' + 'We will call you!' + '</p>' + '<span class="icon icon-phone"></span>' + '</a>' + '</li>' + '<li>' + '<a href="javascript:void(0);" data-name="compare-box">' + '<p>Compare Plans</br> Once you Liked</p>' + '<span class="icon icon-heart">' + '<label class="like-count br50" id="' + config.likeCountId + '">0</label>' + '</span>' + '</a>' + '</li>' + '<li>' + '<a href="javascript:void(0);" data-name="share-box">' + '<p>Email &amp; Share' + '<span>Sign In Now!</span>' + '</p>' + '<span class="icon icon-email"></span>' + '</a>' + '</li>' + '</ul>' + '</div>';
 
             this._elements.bottomFormGroupContainer.html(htmlCode);
             utils.updateShortListedList();
             this.bottomFormGroupContainerEvents();
         },
-        bottomFormGroupContainerEvents: function(){
+        bottomFormGroupContainerEvents: function() {
 
             var _this = this;
 
-            this._elements.bottomFormGroupContainer.off('click').on('click', '.'+config.bottomFormGroup.tabLinkClass, function(event){
+            this._elements.bottomFormGroupContainer.off('click').on('click', '.' + config.bottomFormGroup.tabLinkClass, function(event) {
                 _this._bottomGroupButtonClick.notify(this); //this refers to element here                
             });
 
-            this._elements.bottomFormGroupContainer.on('click', '#call-box-submit-id', function(event){
-                console.log('submit button clicked');             
+            this._elements.bottomFormGroupContainer.on('click', '#call-box-submit-id', function(event) {
+                console.log('submit button clicked');
             });
 
-            this._elements.bottomFormGroupContainer.on('click', '.close-form', function(){
+            this._elements.bottomFormGroupContainer.on('click', '.close-form', function() {
                 _this._formPopupCloseClick.notify(this);
             });
 
-            this._elements.bottomFormGroupContainer.on('click', '#'+config.unitCompareButtonId, function(event){
+            this._elements.bottomFormGroupContainer.on('click', '#' + config.unitCompareButtonId, function(event) {
                 _this._unitCompareButtonClick.notify(this);
             });
 
-            this._elements.bottomFormGroupContainer.on('click', '.'+config.shortlistedUnitRemoveClass, function(event){
+            this._elements.bottomFormGroupContainer.on('click', '.' + config.shortlistedUnitRemoveClass, function(event) {
                 var unitIdentifier = $(this).data('unitidentifier'),
-                unitUniqueIdentifier = $(this).data('uniqueidentifier');
+                    unitUniqueIdentifier = $(this).data('uniqueidentifier');
                 _this._removeShortlistClick.notify({
                     element: this,
                     unitIdentifier: unitIdentifier,
@@ -300,33 +229,35 @@ var BaseView = (function() {
             });
 
         },
-        formPopupCloseClicked: function(){
-            $('.'+config.bottomFormGroup.tabLinkClass).removeClass('active');
-            $('.'+config.bottomFormGroup.formPopUpClass).removeClass('out');
+        formPopupCloseClicked: function() {
+            $('.' + config.bottomFormGroup.tabLinkClass).removeClass('active');
+            $('.' + config.bottomFormGroup.formPopUpClass).removeClass('out');
         },
-        bottomGroupButtonClicked: function(element){
-            if($(element).hasClass('active')){ // if opened return to stop flickr
+        bottomGroupButtonClicked: function(element) {
+            if ($(element).hasClass('active')) { // if opened return to stop flickr
                 return;
             }
-            $('.'+config.bottomFormGroup.tabLinkClass).removeClass('active');
+            $('.' + config.bottomFormGroup.tabLinkClass).removeClass('active');
             var anchorName = $(element).data('name');
-            $('.'+config.bottomFormGroup.formPopUpClass).addClass('out');
-            $('.'+config.bottomFormGroup.formPopUpClass+'>div').hide();
-            $('.'+anchorName).fadeIn(300);
+            $('.' + config.bottomFormGroup.formPopUpClass).addClass('out');
+            $('.' + config.bottomFormGroup.formPopUpClass + '>div').hide();
+            $('.' + anchorName).fadeIn(300);
             $(element).addClass('active');
         },
-        unitCompareButtonClicked: function(){
+        unitCompareButtonClicked: function() {
 
             var comparedItems = utils.getComparedItems('shortlistedItems'),
-            length = Object.keys(comparedItems).length;
+                length = Object.keys(comparedItems).length;
 
-            if(!length){
+            if (!length) {
                 return;
             }
 
             this.formPopupCloseClicked();
             this.compareUnitsContainer();
-			$('#'+config.compareUnitscontainerId).animate({ right:0},900);
+            $('#' + config.compareUnitscontainerId).animate({
+                right: 0
+            }, 900);
         },
         buildSkeleton: function(containerList) {
             var key, htmlCode = '';
@@ -335,7 +266,7 @@ var BaseView = (function() {
                     htmlCode += containerMap[containerList[key]];
                 }
             }
-            $('#'+config.baseContainerId).html(htmlCode);
+            $('#' + config.baseContainerId).html(htmlCode);
             this._elements = getElements();
         }
     };

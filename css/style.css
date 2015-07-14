@@ -694,7 +694,7 @@ ellipse.tower-unit-svg-selected-path {
 .special-offers p{
 	padding:11px; color:#fff; font-size:12px;
 }
-.book-com-box{ position:absolute; right:0; bottom:0; overflow:hidden;}
+.book-com-box{ position:absolute; right:0; bottom:4px; overflow:hidden;}
 
 .like-box{ float:left;height:50px; margin-right:1px;  cursor: pointer;}
 .like-box a{ display:block; padding:14px 14px 10px 14px;background:#414141; color:#fff; position:relative; transition:all 0.3s ease-in-out; -moz-transition:all 0.3s ease-in-out; -webkit-transition:all 0.3s ease-in-out;}
@@ -708,9 +708,10 @@ ellipse.tower-unit-svg-selected-path {
 .book-now a{ color:#fff; padding:8px 11px; display:block; font-size:12px; font-weight:bold;}
 .book-now a span{ display:block; background:#414141; padding:3px 5px; font-weight:normal;}
 /*----compare box---*/
-.compare-container{ position:absolute; width:100%; left:0; bottom:1px; text-align:center; z-index:99999;}
-.com-pro-box{ width:94px; display:inline-block; margin:0 1px;}
-.com-pro-box p{ font-size:12px; background:#414141; color:#c4c5c0; width:100%; padding:5px 0;}
+.compare-container{ position:absolute; width:100%; left:0; bottom:1px; text-align:center; z-index:999999;}
+.com-pro-box{ width:94px; display:inline-block; margin:0 1px; cursor: pointer;}
+.com-pro-box:hover {opacity: 0.8}
+.com-pro-box p{ font-size:12px; background:#414141; color:#fff; width:100%; padding:5px 0;}
 .com-pro-box p.selected{ background:#fab53e; color:#414141;}
 .com-pro-box img{ display:block; width:94px; height:76px;}
 .drag-over{
@@ -923,12 +924,15 @@ ellipse.tower-unit-svg-selected-path {
 	position: absolute;
 	background: #121212;
 	color: white;
-	padding: 10px;
-	margin: 5px 5px 5px 1px; 
+	padding: 0px 15px;
 	cursor: pointer;
+	line-height: 45px;
 	z-index: 10;
 }
-.compare-back-button .icon{ top:5px;}
+.compare-units-container .compare-back-button:hover {
+	background: #333;
+}
+.compare-back-button .icon{ top:6px;}
 .compare-units-container .compare-unit-box{
 	position: absolute; width: 50%; display: inline-block;
 }
@@ -953,14 +957,26 @@ ellipse.tower-unit-svg-selected-path {
 }
 
 .compare-unit-box-right-border{
-	border-right:1px solid black;
+	border-right:1px solid #888;
 }
 
 .compare-units-container .top-right-component{
-	right: 20px;
+	right: 0px;
 }
 .compare-unit-box-detail{
-	display:inline-block; position: absolute; margin-top: 5px; background: rgba(0,0,0,0.5); color: white; padding: 10px;
+	font-size: 14px;
+	text-align: center;
+	background-color: #333;
+	border-bottom: 5px #666 solid;
+	line-height: 20px;
+	display: inline-block;
+	position: absolute;
+	color: #DDD;
+	padding: 10px;
+}
+.compare-unit-box-detail .address {
+	font-size: 19px;
+	color: #FFF;
 }
 .compare-unit-box-detail span{
 	padding: 0px 10px;
