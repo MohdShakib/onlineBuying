@@ -20,7 +20,8 @@ var UnitplaninfoView = (function() {
         'clusterPlanContainer': '<div class="cluster-plan-container cp-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="cluster-plan-container"></div>',
         'priceBreakupContainer': '<div class="price-breakup-container pb-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="price-breakup-container"></div>',
         'specificationContainer': '<div class="specification-container sf-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="specification-container"></div>',
-        'amenitiesContainer': '<div class="amenities-container fp-container ' + config.unitDataContainer + '" id="amenities-container"></div>'
+        'amenitiesContainer': '<div class="amenities-container fp-container ' + config.unitDataContainer + '" id="amenities-container"></div>',
+        'unitViewTabs': '<div class="unit-view-tabs" id="unit-view-tabs">'
     };
 
     function getElements() {
@@ -37,7 +38,8 @@ var UnitplaninfoView = (function() {
             'clusterPlanContainer': $('#cluster-plan-container'),
             'priceBreakupContainer': $('#price-breakup-container'),
             'specificationContainer': $('#specification-container'),
-            'amenitiesContainer': $('#amenities-container')
+            'amenitiesContainer': $('#amenities-container'),
+            'unitViewTabs': $('#unit-view-tabs')
         };
         return elements;
     }
@@ -54,6 +56,7 @@ var UnitplaninfoView = (function() {
         this._sunlightMenuClick = new Event(this);
         this._floorPlanMenuClick = new Event(this);
         this._likeBoxClick = new Event(this);
+        this._bookingClick = new Event(this);
 
         // Amenity Events
         this._amenityClick = new Event(this);
@@ -84,6 +87,9 @@ var UnitplaninfoView = (function() {
                     right: 0
                 }, 900);
                 $('#' + config.filterMenuContainerId).addClass(config.fadeOutClass);
+
+                // to show unit icon selected on tower
+                utils.removeSVGClass(data.unitIdentifier + "-selected-path", config.hideClass);
             }
         },
         destroyView: function() {
@@ -113,28 +119,37 @@ var UnitplaninfoView = (function() {
                 }
             }
 
-            var offerDiv = '';
-
-            if(data.discount){
-                offerDiv = '<div class="special-offers">' 
-                                +'<p><span class="icon icon-smiley"></span></p>' 
-                                +'<p>'+data.discountDescription+' Rs. '+data.discount+'/</p>' 
-                            +'</div>';
-            }
-
-            var selectedClass = data.shortListed ? 'selected' : '';
-            htmlCode += '<div class="unit-view-tabs">'+offerDiv+'<div class="book-com-box">' + '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box" >' + '<a >' + '<span class="icon icon-fav"></span>' + '<label class="like-count br50"></label>' + '</a>' + '</div>' + '<div class="book-now">' + '<a >Book online now <span>Rs. ' + data.bookingAmount + '/- (Refundable)</span></a>' + '</div>' + '</div>' + '</div>';
-
-
             $('#' + config.selectedUnitContainerId).html(htmlCode);
             this._elements = getElements();
+        },
+        unitViewTabs: function(data, rotationdata, rootdata) {
+            var offerDiv = '';
 
+            if (data.discount) {
+                offerDiv = '<div class="special-offers">' + '<p><span class="icon icon-smiley"></span></p>' + '<p>' + data.discountDescription + ' Rs. ' + data.discount + '/</p>' + '</div>';
+            }
+
+            var htmlCode = offerDiv,
+                selectedClass = data.shortListed ? 'selected' : '',
+                link = rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier + '/booking';
+
+            htmlCode += '<div class="book-com-box">';
+            htmlCode += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
+            htmlCode += '<a><span class="icon icon-fav"></span><label class="like-count br50"></label></a></div>';
+            htmlCode += '<div class="book-now" data-url="' + link + '"><a>Book online now <span>Rs. ' + data.bookingAmount + '/- (Refundable)</span></a>';
+            htmlCode += '</div></div>';
+
+            this._elements.unitViewTabs.html(htmlCode);
+            this.unitViewTabsEvents();
+        },
+        unitViewTabsEvents: function() {
+            var _this = this;
             $('#' + config.selectedUnitContainerId).off('click').on('click', '.like-box', function() {
                 _this._likeBoxClick.notify(this); //this refers to element
             });
-
-            // to show unit icon selected on tower
-            utils.removeSVGClass(data.unitIdentifier + "-selected-path", config.hideClass);
+            $('#' + config.selectedUnitContainerId).off('click').on('click', '.book-now', function() {
+                _this._bookingClick.notify(this); //this refers to element
+            });
         },
         unitCloseContainer: function(data, rotationdata, rootdata) {
             var code = '<span class="icon icon-cross fs20"></span>';
@@ -356,23 +371,18 @@ var UnitplaninfoView = (function() {
             this._elements.clusterPlanContainer.html(code);
         },
         priceBreakupContainer: function(data, rotationdata, rootdata) {
-            var code = '<ul class="pricebreakup-tabs">'
-						+'<li class="active"  data-type="pricebreakup">Price Breakup</li>'
-						+'<li  data-type="paymentplan">Payment Plan</li>'
-					  +'</ul>'
-					  +'<div class="unit-content-wrapper">'
-					  +'<div class="payment-pic pricebreakup-tabs-content paymentplan '+config.hideClass+'"><img src="images/walkthrough-cover.jpg" alt="" /></div>'
-			code += "<table class='base-table pricebreakup-tabs-content pricebreakup' cellpadding='0' cellspacing='0' border='0'>";
-            if(data.price){
-                code += "<tr><td width='50%'>Base Price</td><td width='50%'>"+data.basePrice+"</td></tr>";
-        
+            var code = '<ul class="pricebreakup-tabs">' + '<li class="active"  data-type="pricebreakup">Price Breakup</li>' + '<li  data-type="paymentplan">Payment Plan</li>' + '</ul>' + '<div class="unit-content-wrapper">' + '<div class="payment-pic pricebreakup-tabs-content paymentplan ' + config.hideClass + '"><img src="images/walkthrough-cover.jpg" alt="" /></div>'
+            code += "<table class='base-table pricebreakup-tabs-content pricebreakup' cellpadding='0' cellspacing='0' border='0'>";
+            if (data.price) {
+                code += "<tr><td width='50%'>Base Price</td><td width='50%'>" + data.basePrice + "</td></tr>";
+
                 var length = data.unitPricingSubcategories ? data.unitPricingSubcategories.length : 0,
-                pricingSubcategory, unitPricingSubcategory;
-                for (var i=0; i<length; i++) {
+                    pricingSubcategory, unitPricingSubcategory;
+                for (var i = 0; i < length; i++) {
                     unitPricingSubcategory = data.unitPricingSubcategories[i] || {};
                     pricingSubcategory = rootdata.pricingSubcategories[unitPricingSubcategory.id];
                     if (pricingSubcategory) {
-                        code += "<tr><td>"+pricingSubcategory.name+" ("+pricingSubcategory.masterName+")</td><td>"+unitPricingSubcategory.price+"</td></tr>";
+                        code += "<tr><td>" + pricingSubcategory.name + " (" + pricingSubcategory.masterName + ")</td><td>" + unitPricingSubcategory.price + "</td></tr>";
                     }
                 }
                 code += "<tr><td><strong>Total</strong></td><td><strong>"+data.price+"</strong></td></tr></table></div>";
@@ -382,77 +392,20 @@ var UnitplaninfoView = (function() {
             this._elements.priceBreakupContainer.html(code);
             this.priceBreakupContainerEvents();
         },
-        priceBreakupContainerEvents: function(){
-            
-            this._elements.priceBreakupContainer.off('click').on('click', '.pricebreakup-tabs li', function(){
+        priceBreakupContainerEvents: function() {
+
+            this._elements.priceBreakupContainer.off('click').on('click', '.pricebreakup-tabs li', function() {
                 var type = $(this).data('type');
                 $('.pricebreakup-tabs li').removeClass('active');
                 $(this).addClass('active');
 
                 $('.unit-content-wrapper  .pricebreakup-tabs-content').addClass(config.hideClass);
-                $('.unit-content-wrapper  .pricebreakup-tabs-content.'+type).removeClass(config.hideClass);
+                $('.unit-content-wrapper  .pricebreakup-tabs-content.' + type).removeClass(config.hideClass);
             });
         },
         specificationContainer: function(data, rotationdata, rootdata) {
-			var code = "<ul class='specification-tabs'>"
-				+'<li class="active" data-type="specifications">Project Specification</li>'
-				+'<li data-type="project-amenities">Project Amenities</li>'
-			+'</ul>'
-		  +'<div class="unit-content-wrapper">'
-					  +'<div class="project-amenities '+config.hideClass+' specification-tabs-content" >'
-					  		+'<ul>'
-								+'<li>'
-									+'<span class="icon  icon-gym"></span>'
-									+'<label>Gymnaslum</label>'
-								+'</li>'
-								+'<li>'
-									+'<span class="icon icon-swimming"></span>'
-									+'<label>Swimming Pool</label>'
-								+'</li>'
-								+'<li>'
-									+'<span class="icon icon-clubhouse"></span>'
-									+'<label>Club House</label>'
-								+'</li>'
-								+'<li>'
-									+'<span class="icon icon-intercom"></span>'
-									+'<label>Intercom</label>'
-								+'</li>'
-								+'<li>'
-									+'<span class="icon icon-security"></span>'
-									+'<label>24 X 7 Security</label>'
-								+'</li>'
-								+'<li>'
-									+'<span class="icon icon-powerbackup-1"></span>'
-									+'<label>Power Backup</label>'
-								+'</li>'
-								+'<li>'
-									+'<span class="icon icon-garden"></span>'
-									+'<label>Landscaped Gardens</label>'
-								+'</li>'
-								+'<li>'
-									+'<span class="icon icon-parking"></span>'
-									+'<label>Ample Parking Space</label>'
-								+'</li>'
-								+'<li>'
-									+'<span class="icon icon-playarea"></span>'
-									+'<label>Children Play area</label>'
-								+'</li>'
-								+'<li>'
-									+'<span class="icon icon-jogging"></span>'
-									+'<label>Jogging Track</label>'
-								+'</li>'
-								+'<li>'
-									+'<span class="icon icon-harvesting"></span>'
-									+'<label>Rain Water Harvesting</label>'
-								+'</li>'
-								+'<li>'
-									+'<span class="icon icon-cafe"></span>'
-									+'<label>Cafeteria</label>'
-								+'</li>'
-							+'</ul>'
-							+'<div class="clear-fix"></div>'
-					  +'</div>';
-			code += "<table class='base-table  specification-tabs-content specifications'>";
+            var code = "<ul class='specification-tabs'>" + '<li class="active" data-type="specifications">Project Specification</li>' + '<li data-type="project-amenities">Project Amenities</li>' + '</ul>' + '<div class="unit-content-wrapper">' + '<div class="project-amenities ' + config.hideClass + ' specification-tabs-content" >' + '<ul>' + '<li>' + '<span class="icon  icon-gym"></span>' + '<label>Gymnaslum</label>' + '</li>' + '<li>' + '<span class="icon icon-swimming"></span>' + '<label>Swimming Pool</label>' + '</li>' + '<li>' + '<span class="icon icon-clubhouse"></span>' + '<label>Club House</label>' + '</li>' + '<li>' + '<span class="icon icon-intercom"></span>' + '<label>Intercom</label>' + '</li>' + '<li>' + '<span class="icon icon-security"></span>' + '<label>24 X 7 Security</label>' + '</li>' + '<li>' + '<span class="icon icon-powerbackup-1"></span>' + '<label>Power Backup</label>' + '</li>' + '<li>' + '<span class="icon icon-garden"></span>' + '<label>Landscaped Gardens</label>' + '</li>' + '<li>' + '<span class="icon icon-parking"></span>' + '<label>Ample Parking Space</label>' + '</li>' + '<li>' + '<span class="icon icon-playarea"></span>' + '<label>Children Play area</label>' + '</li>' + '<li>' + '<span class="icon icon-jogging"></span>' + '<label>Jogging Track</label>' + '</li>' + '<li>' + '<span class="icon icon-harvesting"></span>' + '<label>Rain Water Harvesting</label>' + '</li>' + '<li>' + '<span class="icon icon-cafe"></span>' + '<label>Cafeteria</label>' + '</li>' + '</ul>' + '<div class="clear-fix"></div>' + '</div>';
+            code += "<table class='base-table  specification-tabs-content specifications'>";
             for (var category in rootdata.specifications) {
                 if (rootdata.specifications.hasOwnProperty(category)) {
                     var items = rootdata.specifications[category];
@@ -470,15 +423,15 @@ var UnitplaninfoView = (function() {
             this._elements.specificationContainer.html(code);
             this.specificationContainerEvents();
         },
-        specificationContainerEvents: function(){
-            
-            this._elements.specificationContainer.off('click').on('click', '.specification-tabs li', function(){
+        specificationContainerEvents: function() {
+
+            this._elements.specificationContainer.off('click').on('click', '.specification-tabs li', function() {
                 var type = $(this).data('type');
                 $('.specification-tabs li').removeClass('active');
                 $(this).addClass('active');
 
                 $('.unit-content-wrapper  .specification-tabs-content').addClass(config.hideClass);
-                $('.unit-content-wrapper  .specification-tabs-content.'+type).removeClass(config.hideClass);
+                $('.unit-content-wrapper  .specification-tabs-content.' + type).removeClass(config.hideClass);
             });
         },
         selectUnitMenuOption: function(element, optionClass, containerClass) {

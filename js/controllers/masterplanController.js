@@ -13,13 +13,6 @@ var MasterplanController = (function() {
     }
 
     MasterplanController.prototype = {
-        changeUrl: function(element) {
-            element = $(element);
-            var hash = element.data('url') ? element.data('url') : null;
-            if (hash && hash != "undefined")
-            	router.setRoute(hash);
-            return;
-        },
         attachListeners: function() {
             var _this = this;
 
@@ -31,7 +24,7 @@ var MasterplanController = (function() {
                 _this._view.towerMouseLeaveEvent();
             });
             this._view._menuClick.attach(function(sender, element) {
-                _this.changeUrl(element);
+                utils.changeUrl(element);
             });
 
             // Svg Events
@@ -42,7 +35,7 @@ var MasterplanController = (function() {
                 _this._view.towerMouseLeaveEvent();
             });
             this._view._towerSvgClick.attach(function(sender, element) {
-                _this.changeUrl(element);
+                utils.changeUrl(element);
             });
 
             // Amenity Events

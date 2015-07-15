@@ -11,12 +11,14 @@ var initializeRoutes = (function() {
             projectId: "([0-9]{6})",
             towerName: "([a-z0-9-]+)",
             towerAngle: "(0|180)",
-            unitAddress: "([a-z0-9-]+)"
+            unitAddress: "([a-z0-9-]+)",
+            booking: "booking"
         };
 
         var projectRoute = routeRegex.sep + routeRegex.projectName + routeRegex.wordSep + routeRegex.projectId,
             towerRoute = projectRoute + routeRegex.sep + routeRegex.towerName,
-            unitRoute = towerRoute + routeRegex.sep + routeRegex.towerAngle + routeRegex.sep + routeRegex.unitAddress;
+            unitRoute = towerRoute + routeRegex.sep + routeRegex.towerAngle + routeRegex.sep + routeRegex.unitAddress,
+            bookingRoute = unitRoute + routeRegex.sep + routeRegex.booking;
 
         var routes = {},
             rootdata = {};
@@ -25,7 +27,8 @@ var initializeRoutes = (function() {
             towerselectedController, towerselectedModel, towerselectedView,
             unitplaninfoController, unitplaninfoModel, unitplaninfoView,
             baseController, baseModel, baseView,
-            errorPageController, errorPageView;
+            errorPageController, errorPageView,
+            bookingController, bookingModel, bookingView;
 
         function onTowerselectedRoute(projectName, projectId, towerName, towerAngle) {
             if (!(towerselectedModel && towerselectedModel._data.towerIdentifier == towerName)) {
@@ -69,6 +72,19 @@ var initializeRoutes = (function() {
                 unitplaninfoView = new UnitplaninfoView(unitplaninfoModel);
                 unitplaninfoController = new UnitplaninfoController(unitplaninfoModel, unitplaninfoView);
                 unitplaninfoController.generateTemplate();
+            }
+        }
+
+        routes[bookingRoute] = {
+            on: function(projectName, projectId, towerName, towerAngle, unitAddress) {
+
+                var data = rootdata.towers[towerName].listings[unitAddress],
+                    rotationdata = rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress];
+
+                bookingModel = new UnitplaninfoModel(data, rotationdata, rootdata); // using same model as unitPlanInfo
+                bookingView = new BookingView(bookingModel);
+                bookingController = new BookingController(bookingModel, bookingView);
+                bookingController.generateTemplate();
             }
         }
 
