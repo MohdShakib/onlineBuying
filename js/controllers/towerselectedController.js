@@ -19,13 +19,6 @@ var TowerselectedController = (function() {
     }
 
     TowerselectedController.prototype = {
-        changeUrl: function(element) {
-            element = $(element);
-            var hash = element.data('url') ? element.data('url') : null;
-            if (hash && hash != "undefined")
-                router.setRoute(hash);
-            return;
-        },
         attachListeners: function() {
             var _this = this;
 
@@ -37,7 +30,7 @@ var TowerselectedController = (function() {
                 _this._view.towerUnitMouseLeaveEvent(element);
             });
             this._view._towerUnitSvgClick.attach(function(sender, element) {
-                _this.changeUrl(element);
+                utils.changeUrl(element);
                 _this._view.towerUnitMouseClickEvent(element);
             });
 

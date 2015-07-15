@@ -694,7 +694,7 @@ ellipse.tower-unit-svg-selected-path {
 .special-offers p{
 	padding:11px; color:#fff; font-size:12px;
 }
-.book-com-box{ position:absolute; right:0; bottom:4px; overflow:hidden;}
+.book-com-box{ position:absolute; right:0; bottom:0px; overflow:hidden;}
 
 .like-box{ float:left;height:50px; margin-right:1px;  cursor: pointer;}
 .like-box a{ display:block; padding:14px 14px 10px 14px;background:#414141; color:#fff; position:relative; transition:all 0.3s ease-in-out; -moz-transition:all 0.3s ease-in-out; -webkit-transition:all 0.3s ease-in-out;}

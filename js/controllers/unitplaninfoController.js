@@ -49,10 +49,15 @@ var UnitplaninfoController = (function() {
                 _this._view.selectMenuOption(element, config.floorPlanMenuOptionClass, config.unitDataContainer);
             });
 
-            //shortlisting button
+            // Shortlisting button
             this._view._likeBoxClick.attach(function(sender, element){
                 var data = _this._model.getRotationdata();
                 utils.likeBoxClicked(element, data.unitIdentifier, data.unitName, data.towerIdentifier, data.rotationAngle, data.unitUniqueIdentifier);
+            });
+
+            // Booking Event
+            this._view._bookingClick.attach(function(sender, element) {
+                utils.changeUrl(element);
             });
 
             // Amenity Events

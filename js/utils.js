@@ -147,15 +147,15 @@ var utils = (function() {
 
             return svgCode;
         },
-        unitComponentMouseEnter: function(params, containerReference){
+        unitComponentMouseEnter: function(params, containerReference) {
             var dataset = $(params.element).data(),
                 towerCode = "<div id='container-detail' class='tooltip-detail'>";
 
-                var tooltipClass = utils.getTooltipPosition({
-                    pageX: params.event.clientX,
-                    pageY: params.event.clientY
-                });
-                tooltipClass = tooltipClass ? tooltipClass : 'bottom-right';
+            var tooltipClass = utils.getTooltipPosition({
+                pageX: params.event.clientX,
+                pageY: params.event.clientY
+            });
+            tooltipClass = tooltipClass ? tooltipClass : 'bottom-right';
 
             towerCode += "<div class='detail-box show-details tSelected-view unit-view'>";
             towerCode += "<div class='line " + tooltipClass + "' >";
@@ -180,7 +180,7 @@ var utils = (function() {
                 var offset = containerReference.offset();
                 var left = params.event.clientX - offset.left;
                 var top = params.event.clientY - offset.top;
-                
+
                 $('#container-detail').css("left", left + 'px');
                 $('#container-detail').css("top", top + 'px');
 
@@ -199,17 +199,17 @@ var utils = (function() {
             var comparedItems = localStorage.getItem('shortlistedItems');
             var projectId = utils.projectId;
 
-            if(!comparedItems){
+            if (!comparedItems) {
                 return {};
             }
 
             if (comparedItems) {
                 comparedItems = JSON.parse(comparedItems);
-            }else {
+            } else {
                 comparedItems = {};
             }
 
-            if(!(comparedItems[projectId] && Object.keys(comparedItems[projectId]).length)){
+            if (!(comparedItems[projectId] && Object.keys(comparedItems[projectId]).length)) {
                 return {};
             }
 
@@ -219,9 +219,9 @@ var utils = (function() {
             var comparedItems = localStorage.getItem('shortlistedItems');
             var projectId = utils.projectId;
 
-            if(comparedItems){
+            if (comparedItems) {
                 comparedItems = JSON.parse(comparedItems);
-            }else{
+            } else {
                 comparedItems = {};
             }
 
@@ -243,8 +243,8 @@ var utils = (function() {
                 length = comparedItems.length,
                 found = 0;
 
-            for(var uniqueIdentifier in comparedItems){
-                if(uniqueIdentifier == unitUniqueIdentifier){
+            for (var uniqueIdentifier in comparedItems) {
+                if (uniqueIdentifier == unitUniqueIdentifier) {
                     found = uniqueIdentifier;
                     break;
                 }
@@ -255,8 +255,8 @@ var utils = (function() {
                     $('.' + unitUniqueIdentifier + '-like-box').removeClass('selected');
                 }
 
-                if($('#'+config.compareBottomBox+'-'+unitUniqueIdentifier)){
-                    $('#'+config.compareBottomBox+'-'+unitUniqueIdentifier).remove();
+                if ($('#' + config.compareBottomBox + '-' + unitUniqueIdentifier)) {
+                    $('#' + config.compareBottomBox + '-' + unitUniqueIdentifier).remove();
                 }
                 delete comparedItems[found];
                 utils.updateShortListInStorage(comparedItems);
@@ -286,9 +286,9 @@ var utils = (function() {
                 htmlCode = '';
             if (length) {
                 htmlCode = '<ul>';
-      
+
                 for (var uniqueIdentifier in comparedItems) {
-                    htmlCode += '<li >' + comparedItems[uniqueIdentifier].unitName + '<span class="' + config.shortlistedUnitRemoveClass + '" data-unitidentifier="' + comparedItems[uniqueIdentifier].unitIdentifier + '" data-uniqueidentifier="'+uniqueIdentifier+'">x</span></li>';
+                    htmlCode += '<li >' + comparedItems[uniqueIdentifier].unitName + '<span class="' + config.shortlistedUnitRemoveClass + '" data-unitidentifier="' + comparedItems[uniqueIdentifier].unitIdentifier + '" data-uniqueidentifier="' + uniqueIdentifier + '">x</span></li>';
                 }
                 htmlCode += '</ul>';
             } else {
@@ -313,7 +313,7 @@ var utils = (function() {
         },
         removeSVGClass: function(id, removeClass) {
 
-            if(!document.getElementById(id)){
+            if (!document.getElementById(id)) {
                 return;
             }
 
@@ -338,19 +338,26 @@ var utils = (function() {
                 }
             }
         },
-        socialClicked: function(shareon){
+        socialClicked: function(shareon) {
             var url = location.href;
             var url = 'http://beta-onlinebuying.proptiger-ws.com/#/projectname-640037';
-            switch(shareon){
+            switch (shareon) {
                 case 'facebook':
-                    window.open("https://www.facebook.com/sharer.php?u="+encodeURIComponent(url), "sharer?", "toolbar=0,status=0,width=626,height=436");
+                    window.open("https://www.facebook.com/sharer.php?u=" + encodeURIComponent(url), "sharer?", "toolbar=0,status=0,width=626,height=436");
                     break;
                 case 'googleplus':
-                    window.open("https://plus.google.com/share?url="+encodeURIComponent(url), " "," status=0,width=626,height=436,menubar=no,toolbar=no,resizable=yes,scrollbars=yes");
+                    window.open("https://plus.google.com/share?url=" + encodeURIComponent(url), " ", " status=0,width=626,height=436,menubar=no,toolbar=no,resizable=yes,scrollbars=yes");
                     break;
                 default:
                     return false;
             }
+        },
+        changeUrl: function(element) {
+            element = $(element);
+            var hash = element.data('url') ? element.data('url') : null;
+            if (hash && hash != "undefined")
+                router.setRoute(hash);
+            return;
         }
     }
 
