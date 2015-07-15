@@ -347,13 +347,13 @@ var UnitplaninfoView = (function() {
             this._elements.clusterPlanContainer.html(code);
         },
         priceBreakupContainer: function(data, rotationdata, rootdata) {
-            var code = "<ul class='specification-tabs'>"
-						+'<li class="active">Price Breakup</li>'
-						+'<li>Payment Plan</li>'
+            var code = '<ul class="pricebreakup-tabs">'
+						+'<li class="active"  data-type="pricebreakup">Price Breakup</li>'
+						+'<li  data-type="paymentplan">Payment Plan</li>'
 					  +'</ul>'
 					  +'<div class="unit-content-wrapper">'
-					  +'<div class="payment-pic"><img src="images/walkthrough-cover.jpg" alt="" /></div>'
-			code += "<table class='base-table' cellpadding='0' cellspacing='0' border='0'>";
+					  +'<div class="payment-pic pricebreakup-tabs-content paymentplan '+config.hideClass+'"><img src="images/walkthrough-cover.jpg" alt="" /></div>'
+			code += "<table class='base-table pricebreakup-tabs-content pricebreakup' cellpadding='0' cellspacing='0' border='0'>";
             for (var category in rootdata.specifications) {
                 if (rootdata.specifications.hasOwnProperty(category)) {
                     var items = rootdata.specifications[category];
@@ -369,15 +369,26 @@ var UnitplaninfoView = (function() {
             }
             code += "<tr><td>Total</td><td>343276</td></tr></table></div>";
             this._elements.priceBreakupContainer.html(code);
+            this.priceBreakupContainerEvents();
         },
+        priceBreakupContainerEvents: function(){
+            
+            this._elements.priceBreakupContainer.off('click').on('click', '.pricebreakup-tabs li', function(){
+                var type = $(this).data('type');
+                $('.pricebreakup-tabs li').removeClass('active');
+                $(this).addClass('active');
 
+                $('.unit-content-wrapper  .pricebreakup-tabs-content').addClass(config.hideClass);
+                $('.unit-content-wrapper  .pricebreakup-tabs-content.'+type).removeClass(config.hideClass);
+            });
+        },
         specificationContainer: function(data, rotationdata, rootdata) {
 			var code = "<ul class='specification-tabs'>"
-						+'<li class="active">Project Specification</li>'
-						+'<li>Project Amenities</li>'
-					  +'</ul>'
-					  +'<div class="unit-content-wrapper">'
-					  +'<div class="project-amenities">'
+				+'<li class="active" data-type="specifications">Project Specification</li>'
+				+'<li data-type="project-amenities">Project Amenities</li>'
+			+'</ul>'
+		  +'<div class="unit-content-wrapper">'
+					  +'<div class="project-amenities '+config.hideClass+' specification-tabs-content" >'
 					  		+'<ul>'
 								+'<li>'
 									+'<span class="icon  icon-gym"></span>'
@@ -430,7 +441,7 @@ var UnitplaninfoView = (function() {
 							+'</ul>'
 							+'<div class="clear-fix"></div>'
 					  +'</div>';
-			code += "<table class='base-table'>";
+			code += "<table class='base-table  specification-tabs-content specifications'>";
             for (var category in rootdata.specifications) {
                 if (rootdata.specifications.hasOwnProperty(category)) {
                     var items = rootdata.specifications[category];
@@ -446,6 +457,18 @@ var UnitplaninfoView = (function() {
             }
             code += "</table></div>";
             this._elements.specificationContainer.html(code);
+            this.specificationContainerEvents();
+        },
+        specificationContainerEvents: function(){
+            
+            this._elements.specificationContainer.off('click').on('click', '.specification-tabs li', function(){
+                var type = $(this).data('type');
+                $('.specification-tabs li').removeClass('active');
+                $(this).addClass('active');
+
+                $('.unit-content-wrapper  .specification-tabs-content').addClass(config.hideClass);
+                $('.unit-content-wrapper  .specification-tabs-content.'+type).removeClass(config.hideClass);
+            });
         },
         selectUnitMenuOption: function(element, optionClass, containerClass) {
             // select unit menu option

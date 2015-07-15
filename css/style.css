@@ -875,14 +875,14 @@ ellipse.tower-unit-svg-selected-path {
 }
 .payment-pic{ padding:20px; text-align:center;}
 .payment-pic img{ width:100%; display:inline-block;}
-.specification-tabs{
+.specification-tabs,.pricebreakup-tabs{
 	margin:93px 20px 0 20px; 
 	list-style:none; 
 	padding:0; 
 	text-align:left;  
 	border-bottom:2px solid #494949;
 }
-.specification-tabs li{
+.specification-tabs li,.pricebreakup-tabs li{
 	display:inline-block; 
 	margin-right:2px;
 	padding:5px 15px; 
@@ -890,8 +890,9 @@ ellipse.tower-unit-svg-selected-path {
 	width:130px; 
 	background:#838383; 
 	color:#fff;
+	cursor: pointer;
 }
-.specification-tabs li:hover, .specification-tabs li.active{
+.specification-tabs li:hover, .pricebreakup-tabs li:hover, .specification-tabs li.active, .pricebreakup-tabs li.active{
 	background:#494949;
 }
 .unit-content-wrapper .base-table td {
