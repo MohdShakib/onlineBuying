@@ -27,9 +27,9 @@ var initializeRoutes = (function() {
             baseController, baseModel, baseView,
             errorPageController, errorPageView;
 
-        function onTowerselectedRoute(projectName, projectId, towerName) {
+        function onTowerselectedRoute(projectName, projectId, towerName, towerAngle) {
             if (!(towerselectedModel && towerselectedModel._data.towerIdentifier == towerName)) {
-                towerselectedModel = new TowerselectedModel(rootdata.towers[towerName], rootdata);
+                towerselectedModel = new TowerselectedModel(rootdata.towers[towerName], rootdata, towerAngle);
                 towerselectedView = new TowerselectedView(towerselectedModel);
                 towerselectedController = new TowerselectedController(towerselectedModel, towerselectedView);
             }
@@ -59,7 +59,7 @@ var initializeRoutes = (function() {
             on: function(projectName, projectId, towerName, towerAngle, unitAddress) {
 
                 if (!towerselectedController) {
-                    onTowerselectedRoute(projectName, projectId, towerName);
+                    onTowerselectedRoute(projectName, projectId, towerName, towerAngle);
                 }
 
                 var data = rootdata.towers[towerName].listings[unitAddress],

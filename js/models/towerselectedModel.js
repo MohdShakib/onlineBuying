@@ -6,11 +6,11 @@
 "use strict";
 var TowerselectedModel = (function() {
 
-    function TowerselectedModel(data, rootdata) {
+    function TowerselectedModel(data, rootdata, towerAngle) {
         this._data = data;
         this._rootdata = rootdata;
 
-        this._currentRotationAngle = '0';
+        this._currentRotationAngle = towerAngle ? ''+towerAngle : '0';
         this._filteredListings = null;
 
         this._filters = {

@@ -375,7 +375,7 @@ var UnitplaninfoView = (function() {
                         code += "<tr><td>"+pricingSubcategory.name+" ("+pricingSubcategory.masterName+")</td><td>"+unitPricingSubcategory.price+"</td></tr>";
                     }
                 }
-                code += "<tr><td>Total</td><td>"+data.price+"</td></tr></table></div>";
+                code += "<tr><td><strong>Total</strong></td><td><strong>"+data.price+"</strong></td></tr></table></div>";
             }else{
                 code += '<br/><br/><br/>No price details available.';
             }
