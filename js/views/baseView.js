@@ -77,7 +77,7 @@ var BaseView = (function() {
                 var borderClass = !i ? 'compare-unit-box-right-border' : 'compare-unit-box-right';
                 htmlCode += '<div  class="compare-unit-box ' + borderClass + '" ondragover="allowDrop(event);">'
 
-                htmlCode += '<div class="compare-unit-box-detail top-right-component"><span>Drag & drop to select unit and compare it.</span></div>' + '<div class="img-svg-container drag-drop">' + '<img class="compare-unit-img"  src="compare_drag.jpg"></div>';
+                htmlCode += '<div class="compare-unit-box-detail top-right-component"><span>Drag & drop to select unit and compare it.</span></div>' + '<div class="img-svg-container drag-drop">' + '<img class="compare-unit-img"  src="images/compare_drag.jpg"></div>';
 
                 htmlCode += '</div>';
             }

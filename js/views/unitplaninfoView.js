@@ -113,8 +113,17 @@ var UnitplaninfoView = (function() {
                 }
             }
 
+            var offerDiv = '';
+
+            if(data.discount){
+                offerDiv = '<div class="special-offers">' 
+                                +'<p><span class="icon icon-smiley"></span></p>' 
+                                +'<p>'+data.discountDescription+' Rs. '+data.discount+'/</p>' 
+                            +'</div>';
+            }
+
             var selectedClass = data.shortListed ? 'selected' : '';
-            htmlCode += '<div class="unit-view-tabs">' + '<div class="special-offers">' + '<p><span class="icon icon-smiley"></span></p>' + '<p>No Pre-EMI offer and Discount Rs. 4,53,000/</p>' + '</div>' + '<div class="book-com-box">' + '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box" >' + '<a >' + '<span class="icon icon-fav"></span>' + '<label class="like-count br50"></label>' + '</a>' + '</div>' + '<div class="book-now">' + '<a >Book online now <span>Rs. ' + data.bookingAmount + '/- (Refundable)</span></a>' + '</div>' + '</div>' + '</div>';
+            htmlCode += '<div class="unit-view-tabs">'+offerDiv+'<div class="book-com-box">' + '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box" >' + '<a >' + '<span class="icon icon-fav"></span>' + '<label class="like-count br50"></label>' + '</a>' + '</div>' + '<div class="book-now">' + '<a >Book online now <span>Rs. ' + data.bookingAmount + '/- (Refundable)</span></a>' + '</div>' + '</div>' + '</div>';
 
 
             $('#' + config.selectedUnitContainerId).html(htmlCode);
@@ -354,20 +363,22 @@ var UnitplaninfoView = (function() {
 					  +'<div class="unit-content-wrapper">'
 					  +'<div class="payment-pic pricebreakup-tabs-content paymentplan '+config.hideClass+'"><img src="images/walkthrough-cover.jpg" alt="" /></div>'
 			code += "<table class='base-table pricebreakup-tabs-content pricebreakup' cellpadding='0' cellspacing='0' border='0'>";
-            for (var category in rootdata.specifications) {
-                if (rootdata.specifications.hasOwnProperty(category)) {
-                    var items = rootdata.specifications[category];
-                    code += "<tr><td class='' width='50%'>" + category + "</td><td width='50%'>535636</td></tr>";
-                    if (typeof items == "object") {
-                        for (var subCategory in items) {
-                            code += "<tr><td width='50%'>" + subCategory + ":" + items[subCategory] + "</td><td width='50%'>44353454</td></tr>";
-                        }
-                    } else {
-                        code += "<tr><td>" + items + "</td><td></td></tr>";
+            if(data.price){
+                code += "<tr><td width='50%'>Base Price</td><td width='50%'>"+data.basePrice+"</td></tr>";
+        
+                var length = data.unitPricingSubcategories ? data.unitPricingSubcategories.length : 0,
+                pricingSubcategory, unitPricingSubcategory;
+                for (var i=0; i<length; i++) {
+                    unitPricingSubcategory = data.unitPricingSubcategories[i] || {};
+                    pricingSubcategory = rootdata.pricingSubcategories[unitPricingSubcategory.id];
+                    if (pricingSubcategory) {
+                        code += "<tr><td>"+pricingSubcategory.name+" ("+pricingSubcategory.masterName+")</td><td>"+unitPricingSubcategory.price+"</td></tr>";
                     }
                 }
+                code += "<tr><td>Total</td><td>"+data.price+"</td></tr></table></div>";
+            }else{
+                code += '<br/><br/><br/>No price details available.';
             }
-            code += "<tr><td>Total</td><td>343276</td></tr></table></div>";
             this._elements.priceBreakupContainer.html(code);
             this.priceBreakupContainerEvents();
         },
