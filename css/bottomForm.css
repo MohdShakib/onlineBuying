@@ -35,8 +35,9 @@ a{ text-decoration:none;}
 .share-social{ text-align:center; margin-bottom:12px;}
 .share-social a, .share-social span{ display:inline-block;}
 .share-social span{ font-size:12px; color:#c6c6c6;margin:0 5px;}
-.share-social a{ font-size:12px; color:#c6c6c6; height:33px; line-height:33px; background:#616161; padding-right:13px;}
+.share-social a{ font-size:12px; color:#c6c6c6; height:33px; line-height:33px; background:#616161; padding-right:13px; transition:all 0.5 ease-in-out; -moz-transition:all 0.5 ease-in-out; -webkit-transition:all 0.5 ease-in-out;}
 .share-social a span{ margin:0 10px 0 0; width:33px; float:left; line-height:33px; height:33px; text-align:center; font-size:15px; background:#121212;}
+.share-social a:hover{ opacity:0.8;}
 .chat-tab-box{ width:100%; overflow:hidden; margin-bottom:13px;}
 .chat-tab-box a{ float:left; width:50%; background:#4d4d4d; color:#ff8611; padding:10px; text-align:center; font-size:12px; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
 .chat-tab-box a:hover, .chat-tab-box a.active{ background:#f3f3f3; box-shadow:0 -2px 0 #ff8611 inset;}
