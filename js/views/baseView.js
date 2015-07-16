@@ -6,13 +6,6 @@
 
 "use strict";
 
-function callBackFormSubmit(form) {
-    var email = $('#' + config.callBox.emailId).val();
-    var phone = $('#' + config.callBox.phoneId).val();
-    $(form)[0].reset();
-    return false;
-}
-
 function allowDrop(x) {
     x.preventDefault();
 }
@@ -206,9 +199,11 @@ var BaseView = (function() {
 							+'<a href="#" class="transition">Start Chatting</a>'
 							+'<a href="#" class="transition active">We will Call</a>'
 						+'</div>'
-                        +'<form id="call-box-form"  name="call-box-form" onsubmit="return callBackFormSubmit(this)" >'
-                            +'<div class="form-input-box"><input class="text" id="call-box-email" name="email" placeholder="Enter email id*" type="email" required /></div>'
-                            +'<div class="form-input-box"><input class="text" id="call-box-phone" name="phone" placeholder="Enter cell phone number*" type="number" minlength="10" maxlength="10" required /></div>'
+                        +'<form id="call-box-form"  name="call-box-form" novalidate onSubmit="return false;"  >'
+                            +'<div class="form-input-box"><input class="text" id="call-box-email" name="email" placeholder="Enter email id*" type="email" required />'
+                            +'<div class="error-box">This field is required</div></div>'
+                            +'<div class="form-input-box"><input class="text" id="call-box-phone" name="phone" placeholder="Enter cell phone number*" type="text" minlength="10" maxlength="10" required />'
+                            +'<div class="error-box">This field is required</div></div>'
                             +'<div class="submit" id="call-box-submit-id">Submit <span  class="icon icon-arrow_right"></span>'
 								+'<input type="submit" id="call-box-submit-id" />'
 							+'</div>'
@@ -231,9 +226,13 @@ var BaseView = (function() {
                             //+'<div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>'
                             +'<a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Goggle+</a>'
                         +'</div>'
-                        +'<div class="form-input-box"><input class="text" placeholder="Enter name*" type="text" /></div>'
-						+'<div class="form-input-box"><input class="text" placeholder="Enter email id*" type="text" /><div class="error-box">This field is required</div></div>'
-                        +'<div class="submit"><input type="submit" />Submit <span  class="icon icon-arrow_right"></span></div>'
+                        +'<form id="share-box-form" novalidate name="share-box-form" onSubmit="return false;"  >'
+                            +'<div class="form-input-box"><input class="text" placeholder="Enter name*" type="text" required />'
+    						+'<div class="error-box">This field is required</div></div>'
+                            +'<div class="form-input-box"><input class="text" placeholder="Enter email id*" type="email" required />'
+                            +'<div class="error-box">This field is required</div></div>'
+                            +'<div class="submit" id="share-box-submit-id"><input type="submit" />Submit <span  class="icon icon-arrow_right"></span></div>'
+                        +'</form>'
                     +'</div>'
                 +'</div>'
                 +'<ul class="conect-tab">'
@@ -277,7 +276,13 @@ var BaseView = (function() {
             });
 
             this._elements.bottomFormGroupContainer.on('click', '#call-box-submit-id', function(event) {
-                console.log('submit button clicked');
+                var callBoxForm = $('#call-box-form');
+                _this.callBackFormSubmit(callBoxForm)
+            });
+
+            this._elements.bottomFormGroupContainer.on('click', '#share-box-submit-id', function(event) {
+                var shareBoxForm = $('#share-box-form');
+                _this.shareOnEmailSubmit(shareBoxForm)
             });
 
             this._elements.bottomFormGroupContainer.on('click', '.close-form', function() {
@@ -299,6 +304,29 @@ var BaseView = (function() {
             });
 
         },
+        callBackFormSubmit: function(form) {
+            var validationFlag = utils.validateForm(form);
+            if(!validationFlag){
+                return false;
+            }
+
+            var email = $('#' + config.callBox.emailId).val();
+            var phone = $('#' + config.callBox.phoneId).val();
+
+            var url = 'https://www.proptiger.com/data/v1/entity/enquiry?debug=true';
+            var data = {
+                phone: phone,
+                email: email,
+                projectId: utils.projectId
+            }
+            utils.ajax(url, {success_callback: function(){ $(form)[0].reset(); }}, true, data);
+        },
+        shareOnEmailSubmit: function(form){
+            var validationFlag = utils.validateForm(form);
+            if(!validationFlag){
+                return false;
+            }
+        },
         formPopupCloseClicked: function() {
             $('.' + config.bottomFormGroup.tabLinkClass).removeClass('active');
             $('.' + config.bottomFormGroup.formPopUpClass).removeClass('out');
@@ -307,6 +335,8 @@ var BaseView = (function() {
             if ($(element).hasClass('active')) { // if opened return to stop flickr
                 return;
             }
+
+            $('form input').parent('div').removeClass('error');
             $('.' + config.bottomFormGroup.tabLinkClass).removeClass('active');
             var anchorName = $(element).data('name');
             $('.' + config.bottomFormGroup.formPopUpClass).addClass('out');

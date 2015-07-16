@@ -56,12 +56,12 @@ var utils = (function() {
             }
             return readablePrice;
         },
-        ajax: function(url, params) {
+        ajax: function(url, params, isPost, postData) {
             var success_callback = typeof(params.success_callback) == 'function' ? params.success_callback : null;
             var error_callback = typeof(params.error_callback) == 'function' ? params.error_callback : null;
             var complete_callback = typeof(params.complete_callback) == 'function' ? params.complete_callback : null;
 
-            $.ajax({
+            var ajaxObj = {
                 type: "GET",
                 url: url,
                 async: false,
@@ -90,7 +90,63 @@ var utils = (function() {
                         complete_callback(params);
                     }
                 }
-            });
+            }
+
+            if(isPost){
+                ajaxObj.type = "POST";
+                ajaxObj.contentType = "application/json";
+                ajaxObj.async = true;
+                ajaxObj.data = postData ? postData : {} ;
+                ajaxObj.data = JSON.stringify(ajaxObj.data);
+            }
+
+            $.ajax(ajaxObj);
+        },
+        validateForm: function(form){
+            function validateEmail(email) {
+                var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+                return re.test(email);
+            }
+
+            function validatePhone(phoneNumber) {
+                var re = /^\d{10}$/; 
+                return re.test(phoneNumber);
+            }
+
+            var fields = $(form).find('input[type=text],input[type=password],input[type=email]');
+            var total_fields = fields.length;
+
+            var requiredMessage = 'This field is required';
+            var invalidEmailMessage = 'Invalid email address';
+            var invalidNumberMessage = 'Enter 10 digit number';
+
+            var validationFlag = true;
+            for(var i=0; i<total_fields; i++){
+
+                var this_field = $(fields[i]),
+                value = $(this_field).val(),
+                type = $(this_field).attr('type'),
+                name = $(this_field).attr('name'),
+                isRequired = $(this_field).attr('required');
+
+                $(this_field).parent('div').removeClass('error');
+
+                if(isRequired && !value){
+                    validationFlag = false;
+                    $(this_field).parent('div').addClass('error');
+                    $(this_field).siblings('.error-box').text(requiredMessage);
+                }else if(isRequired && type == 'email' && !validateEmail(value)){
+                    validationFlag = false;
+                    $(this_field).parent('div').addClass('error');
+                    $(this_field).siblings('.error-box').text(invalidEmailMessage);
+                }else if(isRequired && name == 'phone' && !validatePhone(value)){
+                    validationFlag = false;
+                    $(this_field).parent('div').addClass('error');
+                    $(this_field).siblings('.error-box').text(invalidNumberMessage);
+                }
+
+            }
+            return validationFlag;
         },
         getSvgData: function(url) {
             return $.ajax({
