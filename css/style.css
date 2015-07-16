@@ -1789,6 +1789,4 @@ ellipse.tower-unit-svg-selected-path {
 .tc-container h3, .price-breakup-trems h3{ text-transform:uppercase; margin-bottom:20px;}
 .price-breakup-trems{ padding:20px; text-align:left;}
 /*-----------media query------------*/
-@media only screen and (min-device-width: 1365px){
-	#wraper{ width:100%; height:100%; max-width:1366px; max-height:630px; position:fixed; left:50%; top:50%; margin:-315px 0 0 -685px; box-shadow:0 0 15px rgba(0,0,0,0.7); position:relative;}
-}
+#wraper{ width:100%; height:100%; max-width:1366px;position:relative; margin:0 auto;box-shadow:0 0 15px rgba(0,0,0,0.7); position:relative; overflow:hidden;;}
