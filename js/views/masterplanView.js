@@ -271,7 +271,7 @@ var MasterplanView = (function() {
                     var amenity = data.amenities[amenityKey];
                     var point = data.amenities[amenityKey].amenitySvg.split(' ');
                     var position = "top:" + point[1] + "%; left:" + point[0] + "%;";
-                    code += "<div data-top='" + point[1] + "' data-left='" + point[0] + "' id='" + amenityKey + "' class='" + config.amenityIconClass + "' style='" + position + "'>+";
+                    code += "<div data-top='" + point[1] + "' data-left='" + point[0] + "' id='" + amenityKey + "' class='" + config.amenityIconClass + "' style='" + position + "'><span class='icon icon-location'></span>";
                     code += "<div class='name'><span>" + amenity.amenityName + "</span></div>";
                     code += "</div>";
                 }
@@ -300,7 +300,7 @@ var MasterplanView = (function() {
             var code = "<div class='" + config.amenityPopupClass + "'><table class='photo-table pop-up-in' style='" + position + "'><tr>";
             code += "<td class='amenity-heading'>" + amenity.amenityName;
             code += "<span class='" + config.amenityPopupCloseClass + "'>X</span></td></tr>";
-            code += "<tr><td class='amenity-image'><img src='" + amenity.imageUrl + "'></td></tr></table>";
+            code += "<tr><td class='amenity-image'><div><img src='" + amenity.imageUrl + "'></div></td></tr></table>";
             this._elements.amenitiesContainer.append(code);
             this.amenitiesPopupEvents();
         },

@@ -87,7 +87,7 @@ var UnitplaninfoView = (function() {
                     right: 0
                 }, 900);
                 $('#' + config.filterMenuContainerId).addClass(config.fadeOutClass);
-
+				$('#' + config.towerRotationContainerId).addClass(config.smallLeftArea);
                 // to show unit icon selected on tower
                 utils.removeSVGClass(data.unitIdentifier + "-selected-path", config.hideClass);
             }
@@ -99,6 +99,7 @@ var UnitplaninfoView = (function() {
                 right: '-67%'
             }, 900);
             $('#' + config.filterMenuContainerId).addClass(config.fadeInClass);
+			$('#' + config.towerRotationContainerId).removeClass(config.smallLeftArea);
         },
         dynamicResizeContainers: function() {
             var width = config.imageResolution.width / config.imageResolution.height * window.innerHeight,
@@ -374,7 +375,7 @@ var UnitplaninfoView = (function() {
             var code = '<ul class="pricebreakup-tabs">' + '<li class="active"  data-type="pricebreakup">Price Breakup</li>' + '<li  data-type="paymentplan">Payment Plan</li>' + '</ul>' + '<div class="unit-content-wrapper">' + '<div class="payment-pic pricebreakup-tabs-content paymentplan ' + config.hideClass + '"><img src="images/walkthrough-cover.jpg" alt="" /></div>'
             code += "<table class='base-table pricebreakup-tabs-content pricebreakup' cellpadding='0' cellspacing='0' border='0'>";
             if (data.price) {
-                code += "<tr><td width='50%'>Base Price</td><td width='50%'>" + data.basePrice + "</td></tr>";
+                code += "<tr><td width='50%'>Base Price</td><td width='50%'>Rs. " + data.basePrice + "</td></tr>";
 
                 var length = data.unitPricingSubcategories ? data.unitPricingSubcategories.length : 0,
                     pricingSubcategory, unitPricingSubcategory;
@@ -382,10 +383,10 @@ var UnitplaninfoView = (function() {
                     unitPricingSubcategory = data.unitPricingSubcategories[i] || {};
                     pricingSubcategory = rootdata.pricingSubcategories[unitPricingSubcategory.id];
                     if (pricingSubcategory) {
-                        code += "<tr><td>" + pricingSubcategory.name + " (" + pricingSubcategory.masterName + ")</td><td>" + unitPricingSubcategory.price + "</td></tr>";
+                        code += "<tr><td>" + pricingSubcategory.name + " (" + pricingSubcategory.masterName + ")</td><td>Rs. " + unitPricingSubcategory.price + "</td></tr>";
                     }
                 }
-                code += "<tr><td><strong>Total</strong></td><td><strong>"+data.price+"</strong></td></tr></table></div>";
+                code += "<tr><td class='total-price'>Total</td><td class='total-price'>Rs. "+data.formattedPrice+"</td></tr></table></div>";
             }else{
                 code += '<br/><br/><br/>No price details available.';
             }

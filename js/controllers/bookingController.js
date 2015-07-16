@@ -17,6 +17,11 @@ var BookingController = (function() {
         attachListeners: function() {
             var _this = this;
 
+            // Close Event
+            this._view._closeEvent.attach(function(sender, element) {
+                utils.changeUrl(element);
+            });
+
         },
         generateTemplate: function(data, rootdata, elements) {
             this._view.buildView();

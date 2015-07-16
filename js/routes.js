@@ -25,6 +25,7 @@ var initializeRoutes = (function() {
 
         var masterplanController, masterplanModel, masterplanView,
             towerselectedController, towerselectedModel, towerselectedView,
+            reloadTowerSelectedView = true,
             unitplaninfoController, unitplaninfoModel, unitplaninfoView,
             baseController, baseModel, baseView,
             errorPageController, errorPageView,
@@ -55,13 +56,14 @@ var initializeRoutes = (function() {
                 onTowerselectedRoute(projectName, projectId, towerName);
                 // Add resize event listener
                 utils.addResizeEventListener(utils.defaultDynamicResizeContainers);
+                reloadTowerSelectedView = false;
             }
         }
 
         routes[unitRoute] = {
             on: function(projectName, projectId, towerName, towerAngle, unitAddress) {
 
-                if (!towerselectedController) {
+                if (reloadTowerSelectedView) {
                     onTowerselectedRoute(projectName, projectId, towerName, towerAngle);
                 }
 
@@ -85,6 +87,9 @@ var initializeRoutes = (function() {
                 bookingView = new BookingView(bookingModel);
                 bookingController = new BookingController(bookingModel, bookingView);
                 bookingController.generateTemplate();
+
+                // Reload tower selected container or not on closing this view
+                reloadTowerSelectedView = true;
             }
         }
 
@@ -117,7 +122,7 @@ var initializeRoutes = (function() {
                 var flag = false;
 
                 utils.projectId = projectId;
-                
+
                 if (towerAngle && unitAddress) {
                     flag = rootdata.towers && rootdata.towers[towerName] && rootdata.towers[towerName].rotationAngle && rootdata.towers[towerName].rotationAngle[towerAngle] && rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress] ? true : false;
                 } else if (towerName) {

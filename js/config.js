@@ -55,6 +55,7 @@ var config = (function(){
 		compareBottomBox: 'com-pro-box',
 		likeCountId: 'like-count',
 		shortlistedUnitRemoveClass: 'remove-shortlist',
+		smallLeftArea: 'small-left',
 
 		// Masterplan
 		imgContainerClass : "menu-mapped-image",
@@ -101,7 +102,13 @@ var config = (function(){
 		sunlightImageClass: 'sunlight-img',
 		sunlightMenuOptionClass: 'sunlight-menu-option',
 		floorPlanMenuOptionClass: 'floor-plan-menu-option',
-		unitSlideInClass: 'unit-slide-in'
+		unitSlideInClass: 'unit-slide-in',
+
+		// Booking
+		bookingInputDivClass: 'booking-input-div',
+		bookingSelectionDivClass: 'booking-selection-div',
+		bookingDropdownClass: 'booking-dropdown',
+		activeBookingInputClass: 'active'
 	};
 
 	return config;

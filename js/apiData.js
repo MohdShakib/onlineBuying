@@ -343,7 +343,8 @@ var getProjectData = (function() {
             flatUnit.size = propertyDetail.size ? propertyDetail.size : 0;
             flatUnit.measure = propertyDetail.measure;
 
-            flatUnit.price = listing.currentListingPrice ? utils.getReadablePrice(listing.currentListingPrice.price) : undefined;
+            flatUnit.price = listing.currentListingPrice ? listing.currentListingPrice.price : undefined;
+            flatUnit.formattedPrice = flatUnit.price ? utils.getReadablePrice(listing.currentListingPrice.price) : undefined;
             flatUnit.basePrice = undefined;
             if(listing.currentListingPrice && listing.currentListingPrice.pricePerUnitArea && flatUnit.size){
                 flatUnit.basePrice = listing.currentListingPrice.pricePerUnitArea * flatUnit.size;
