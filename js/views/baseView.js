@@ -313,11 +313,11 @@ var BaseView = (function() {
             var email = $('#' + config.callBox.emailId).val();
             var phone = $('#' + config.callBox.phoneId).val();
 
-            var url = 'https://www.proptiger.com/data/v1/entity/enquiry?debug=true';
+            var url = 'https://www.proptiger.com/data/v1/entity/enquiry';
             var data = {
-                phone: phone,
-                email: email,
-                projectId: utils.projectId
+                'phone': phone,
+                'email': email,
+                'projectId': utils.projectId
             }
             utils.ajax(url, {success_callback: function(){ $(form)[0].reset(); }}, true, data);
         },

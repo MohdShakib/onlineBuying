@@ -22,6 +22,12 @@ var BookingController = (function() {
                 utils.changeUrl(element);
             });
 
+            // Make payment Event
+            this._view._makePayment.attach(function(sender, element) {
+                var data = _this._view.getPaymentData();
+                console.log(data);
+            });
+
         },
         generateTemplate: function(data, rootdata, elements) {
             this._view.buildView();

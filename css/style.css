@@ -1037,7 +1037,7 @@ ellipse.tower-unit-svg-selected-path {
 .amenities-container .amenity-icon {
 	position: absolute;
 	z-index: 10000;
-	color: #FFF;
+	color: #DFDFDF;
 	height: 20px;
 	width: 20px;
 	line-height: 22px;
@@ -1053,7 +1053,7 @@ ellipse.tower-unit-svg-selected-path {
 }
 .amenities-container .amenity-icon .name {
 	position: absolute;
-	top: 30px;
+	top: 35px;
 	left: -90px;
 	width: 200px;
 	line-height: normal;
@@ -1161,7 +1161,7 @@ ellipse.tower-unit-svg-selected-path {
 .personal-detail-box table tr td:last-child{padding-left:5px}
 .input-box{ padding:15px 17px 0 17px; border-bottom:1px solid #ccc; position:relative; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
 .input-box label{ position:absolute; left:17px; top:25px; font-size:13px; text-transform:uppercase; color:#9e9e9e; z-index:1;}
-.view-price-brakup{ font-size:12px; color:#06BDF5; display:block; text-align:center; padding:0 0 10px 0;}
+.view-price-brakup{ font-size:12px; color:#04A3D3; display:block; text-align:center; padding:0 0 10px 0;}
 .input-box.active label{ font-size:11px; top:8px; color:#f39b13;}
 .input-box input{ background:none;width:100%; outline:none; border:none; padding:10px 0 5px 0; font-size:14px; color:#616161;box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; position:relative; z-index:2; resize:none;}
 .input-box span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:none;}
@@ -1175,11 +1175,12 @@ ellipse.tower-unit-svg-selected-path {
 .nationalty-drop-down li{ background:#fff; cursor: pointer;}
 .nationalty-drop-down li a{ font-size:13px; display:block; color:#9e9e9e; padding:10px 20px;}
 .nationalty-drop-down li:hover, .nationalty-drop-down li a.active{ background:#DFDFDF; color:#616161;}
-.make-payment{ font-size:14px; background:#f39b13; color:#fff; text-align:center; width:220px; line-height:42px; border-radius:3px; margin:15px 0 0 0;}
+.make-payment{ font-size:14px; background:#f39b13; color:#fff; text-align:center; width:220px; line-height:42px; border-radius:3px; margin:15px 0 0 0; cursor: pointer;}
+.make-payment:hover {background: #ECA537;}
 .terms-condition{ margin:20px 0 10px  0;}
 .terms-condition input{float:left; margin:5px 10px 0 0;}
 .terms-condition  label{font-size:13px; cursor:pointer; color:#252525;}
-.terms-condition  label a{ color:#06BDF5;}
+.terms-condition  label a{ color:#04A3D3;}
 /*-------payment screen start here-------*/
 /*=================classes for animation added by jaswant singh=========================*/
 
@@ -1781,7 +1782,7 @@ ellipse.tower-unit-svg-selected-path {
         transform: translateX(-150px);
    }
 }
-.terms-condition-popup{ background:rgba(0,0,0,0.7); position:fixed; top:0; left:0; width:100%; height:100%; z-index:999999; display:none;}
+.terms-condition-popup{ background:rgba(0,0,0,0.7); position:fixed; top:0; left:0; width:100%; height:100%; z-index:999999;}
 .tc-container{ background:#fff; height:440px; position:absolute; padding:20px; width:600px; top:50%; left:50%; margin:-220px; overflow:hidden; 0 0 -300px;}
 .tc-container .close-payment{ color:#616161;}
 .tc-container p, .price-breakup-trems p{ font-size:14px; color:#494949; margin-bottom:10px;}

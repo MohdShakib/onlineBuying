@@ -8,12 +8,14 @@
 var BookingView = (function() {
 
     var containerMap = {
-        'paymentScreen': '<div class="payment-screen" id="payment-screen"></div>'
+        'paymentScreen': '<div id="payment-screen" class="payment-screen"></div>',
+        'termsConditionPopup': '<div id="terms-condition-popup" class="terms-condition-popup" style="display:none;"></div>'
     };
 
     function getElements() {
         var elements = {
-            'paymentScreen': $('#payment-screen')
+            'paymentScreen': $('#payment-screen'),
+            'termsConditionPopup': $('#terms-condition-popup')
         };
         return elements;
     }
@@ -24,6 +26,7 @@ var BookingView = (function() {
         var _this = this;
 
         this._closeEvent = new Event(this);
+        this._makePayment = new Event(this);
     }
 
     BookingView.prototype = {
@@ -123,7 +126,7 @@ var BookingView = (function() {
                 '                                <label class="transition">nationality</label>' +
                 '                                <input type="text" />' +
                 '                            </div>' +
-                '                        </td>' +                
+                '                        </td>' +
                 // '                        <td width="50%">' +
                 // '                            <div id="booking-nationality" class="input-box transition no-paddind  ' + config.bookingSelectionDivClass + '">' +
                 // '                                <a class="nationalty-link">Nationality<span class="icon fs18 icon-next transition"></span></a>' +
@@ -147,9 +150,9 @@ var BookingView = (function() {
                 '            </div>' +
                 '            <div class="terms-condition">' +
                 '                <input type="checkbox" id="terms" />' +
-                '                <label for="terms">I have read &amp; agree to <a href="#">Terms &amp; Conditions</a></label>' +
+                '                <label for="terms">I have read &amp; agree to <a id="tnc">Terms &amp; Conditions</a></label>' +
                 '            </div>' +
-                '            <a href="#" class="fright make-payment">Continue to Payment</a>' +
+                '            <a class="fright transition make-payment">Continue to Payment</a>' +
                 '            <div class="clear-fix"></div>' +
                 '        </div>' +
                 '        </div>' +
@@ -170,7 +173,10 @@ var BookingView = (function() {
             });
 
             _this._elements.paymentScreen.off('focusout').on('focusout', '.' + config.bookingInputDivClass, function(event) {
-                $('#' + this.id).removeClass(config.activeBookingInputClass);
+                var value = $('#' + this.id + ' input').val();
+                if (value == null || value == "") {
+                    $('#' + this.id).removeClass(config.activeBookingInputClass);
+                }
             });
 
             // _this._elements.paymentScreen.off('click').on('click', '.' + config.bookingSelectionDivClass, function(event) {
@@ -179,6 +185,40 @@ var BookingView = (function() {
             //     $('#' + this.id + ' .' + config.bookingDropdownClass).show();
             // });
 
+            _this._elements.paymentScreen.on('click', '.make-payment', function(event) {
+                // notify controller
+                _this._makePayment.notify(this); // this refers to element here
+            });
+
+            _this._elements.paymentScreen.on('click', '#tnc', function(event) {
+                $('#' + config.termsConditionPopupId).show();
+            });
+        },
+        getPaymentData: function() {
+            var data = {};
+            data.firstName = $('#booking-first-name input').val();
+            data.lastName = $('#booking-last-name input').val();
+            data.email = $('#booking-email input').val();
+            data.phone = $('#booking-phone input').val();
+            data.dob = $('#booking-dob input').val();
+            data.nationality = $('#booking-nationality input').val();
+            data.pan = $('#booking-pan input').val();
+            return data;
+        },
+        termsConditionPopup: function(data, rotationdata, rootdata) {
+            var code = '<div class="tc-container">' +
+                '<a class="close-payment"><span class="icon icon-cross fs24"></span></a>' +
+                utils.getTermsConditionsHtml() +
+                '</div>';
+            this._elements.termsConditionPopup.html(code);
+            this.termsConditionPopupEvents();
+        },
+        termsConditionPopupEvents: function() {
+            var _this = this;
+
+            _this._elements.termsConditionPopup.off('click').on('click', '.close-payment', function(event) {
+                $('#' + config.termsConditionPopupId).hide();
+            });
         }
     };
 

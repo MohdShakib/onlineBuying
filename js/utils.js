@@ -56,6 +56,13 @@ var utils = (function() {
             }
             return readablePrice;
         },
+        getIdentifier: function(string) {
+            var identifier = '';
+            if (string) {
+                identifier = string.toLowerCase().replace(' ', '-');
+            }
+            return identifier;
+        },
         ajax: function(url, params, isPost, postData) {
             var success_callback = typeof(params.success_callback) == 'function' ? params.success_callback : null;
             var error_callback = typeof(params.error_callback) == 'function' ? params.error_callback : null;
@@ -65,7 +72,7 @@ var utils = (function() {
                 type: "GET",
                 url: url,
                 async: false,
-                dataType: 'JSON',
+                //dataType: 'JSON',
                 success: function(response) {
                     if (response.statusCode == '2XX') {
                         if (success_callback == null) {
@@ -92,24 +99,24 @@ var utils = (function() {
                 }
             }
 
-            if(isPost){
+            if (isPost) {
                 ajaxObj.type = "POST";
                 ajaxObj.contentType = "application/json";
                 ajaxObj.async = true;
-                ajaxObj.data = postData ? postData : {} ;
-                ajaxObj.data = JSON.stringify(ajaxObj.data);
+                ajaxObj.data = postData ? postData : {};
+                //ajaxObj.data = JSON.stringify(ajaxObj.data);
             }
 
             $.ajax(ajaxObj);
         },
-        validateForm: function(form){
+        validateForm: function(form) {
             function validateEmail(email) {
                 var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
                 return re.test(email);
             }
 
             function validatePhone(phoneNumber) {
-                var re = /^\d{10}$/; 
+                var re = /^\d{10}$/;
                 return re.test(phoneNumber);
             }
 
@@ -121,25 +128,25 @@ var utils = (function() {
             var invalidNumberMessage = 'Enter 10 digit number';
 
             var validationFlag = true;
-            for(var i=0; i<total_fields; i++){
+            for (var i = 0; i < total_fields; i++) {
 
                 var this_field = $(fields[i]),
-                value = $(this_field).val(),
-                type = $(this_field).attr('type'),
-                name = $(this_field).attr('name'),
-                isRequired = $(this_field).attr('required');
+                    value = $(this_field).val(),
+                    type = $(this_field).attr('type'),
+                    name = $(this_field).attr('name'),
+                    isRequired = $(this_field).attr('required');
 
                 $(this_field).parent('div').removeClass('error');
 
-                if(isRequired && !value){
+                if (isRequired && !value) {
                     validationFlag = false;
                     $(this_field).parent('div').addClass('error');
                     $(this_field).siblings('.error-box').text(requiredMessage);
-                }else if(isRequired && type == 'email' && !validateEmail(value)){
+                } else if (isRequired && type == 'email' && !validateEmail(value)) {
                     validationFlag = false;
                     $(this_field).parent('div').addClass('error');
                     $(this_field).siblings('.error-box').text(invalidEmailMessage);
-                }else if(isRequired && name == 'phone' && !validatePhone(value)){
+                } else if (isRequired && name == 'phone' && !validatePhone(value)) {
                     validationFlag = false;
                     $(this_field).parent('div').addClass('error');
                     $(this_field).siblings('.error-box').text(invalidNumberMessage);
@@ -414,6 +421,18 @@ var utils = (function() {
             if (hash && hash != "undefined")
                 router.setRoute(hash);
             return;
+        },
+        getTermsConditionsHtml: function() {
+            return '<h3>Terms &amp; Conditions</h3>' +
+                '<p>All details provided about the project is based on information provided by Prestige Group to <a href="http://www.makaan.com/" target="_blank">makaan.com</a> . <a href="http://www.makaan.com/" target="_blank">Makaan.com</a> is not liable for the changes in facts post buying.</p>' +
+                '<p>Only Indian Residents, Non- Resident Indians (NRIs) &amp; Persons of Indian Origin (PIOs) eligible to enter into contract as per Indian Contract Act, 1881 shall be eligible to apply.</p>' +
+                '<p>Payment plan and Prices are subject to change at the sole discretion of the builder. Images displayed are for representational purpose only.Floor plan and the layout dimensions are subject to modification.</p>' +
+                '<p>The booking amount of Rs.20000/- paid by the user for booking is only a token advance and it does not confer ownership rights in the chosen property. The booking only ensures blocking of the property temporarily and should not be considered as buying or owning the property.</p>' +
+                '<p>The booking amount is refundable. For cancellation or refunding please contact <a href="http://www.makaan.com/" target="_blank">makaan.com</a> customer care.</p>' +
+                '<p>Any request for customisation or changes are to be handled directly with Prestige builders</p>' +
+                '<p>Post booking the builder can provide further information required for the completion of the purchase and further till possession of the property</p>' +
+                '<p>Please use the Booking ID in all further communication with builder and <a href="http://www.makaan.com/">makaan.com</a></p>' +
+                '<p>Offer prices provided are subject to the payment schedule mentioned in the project</p>';
         }
     }
 

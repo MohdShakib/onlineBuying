@@ -121,7 +121,14 @@ var initializeRoutes = (function() {
                 rootdata = getProjectData(projectId);
                 var flag = false;
 
+                var projectIdentifier = utils.getIdentifier(rootdata.projectName);
                 utils.projectId = projectId;
+
+                if(projectIdentifier != projectName){
+                    var hash = window.location.hash;
+                    hash = hash.replace(projectName,projectIdentifier);
+                    window.location.hash = hash;
+                }
 
                 if (towerAngle && unitAddress) {
                     flag = rootdata.towers && rootdata.towers[towerName] && rootdata.towers[towerName].rotationAngle && rootdata.towers[towerName].rotationAngle[towerAngle] && rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress] ? true : false;
