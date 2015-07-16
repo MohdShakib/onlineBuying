@@ -354,8 +354,8 @@ var getProjectData = (function() {
 
             var propertyOtherPricingSubcategoryMappingsLength = listing.propertyOtherPricingSubcategoryMappings ? listing.propertyOtherPricingSubcategoryMappings.length : 0;
             if(propertyOtherPricingSubcategoryMappingsLength){
-                for(var i=0; i<propertyOtherPricingSubcategoryMappingsLength; i++){
-                    var subCategory = listing.propertyOtherPricingSubcategoryMappings[i];
+                for(var j=0; j<propertyOtherPricingSubcategoryMappingsLength; j++){
+                    var subCategory = listing.propertyOtherPricingSubcategoryMappings[j];
                     flatUnit.unitPricingSubcategories.push({
                         id: subCategory.otherPricingSubcategoryId,
                         price: utils.getReadablePrice(subCategory.price)
@@ -383,8 +383,8 @@ var getProjectData = (function() {
         }
 
         var otherPricingDetailsLength =  projectDetail.otherPricingDetails ?  projectDetail.otherPricingDetails.length : 0;
-        for(var i=0; i < otherPricingDetailsLength; i++){
-            var pricingDetail = projectDetail.otherPricingDetails[i];
+        for(var k=0; k < otherPricingDetailsLength; k++){
+            var pricingDetail = projectDetail.otherPricingDetails[k];
             var otherPricingSubcategory = pricingDetail.otherPricingSubcategory;
     
             projectData.pricingSubcategories[otherPricingSubcategory.id] = {
