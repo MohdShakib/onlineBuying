@@ -87,7 +87,7 @@ var UnitplaninfoView = (function() {
                     right: 0
                 }, 900);
                 $('#' + config.filterMenuContainerId).addClass(config.fadeOutClass);
-
+				$('#' + config.towerRotationContainerId).addClass(config.smallLeftArea);
                 // to show unit icon selected on tower
                 utils.removeSVGClass(data.unitIdentifier + "-selected-path", config.hideClass);
             }
@@ -99,6 +99,7 @@ var UnitplaninfoView = (function() {
                 right: '-67%'
             }, 900);
             $('#' + config.filterMenuContainerId).addClass(config.fadeInClass);
+			$('#' + config.towerRotationContainerId).removeClass(config.smallLeftArea);
         },
         dynamicResizeContainers: function() {
             var width = config.imageResolution.width / config.imageResolution.height * window.innerHeight,

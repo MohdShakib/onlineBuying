@@ -255,8 +255,8 @@ var TowerselectedView = (function() {
 
             });
 
-            var code = '<div class="rotation-btn-container left-btn"><div class="photo-thumb br50"><img src="/zip-file/img/tow-a-ang-0.jpg" class="br50"></div><button class="' + config.rotationButtonClass + '  tower-rotation-left-button br50" ><span class="icon icon-previous"></span></button><div class="rotation-title transition">Rotate Left</div></div>';
-            code += '<div class="rotation-btn-container right-btn"><div class="photo-thumb br50"><img src="/zip-file/img/tow-a-ang-0.jpg" class="br50"></div><button class="' + config.rotationButtonClass + ' tower-rotation-right-button br50" ><span class="icon icon-next"></span></button><div class="rotation-title transition">Rotate Right</div></div>';
+            var code = '<div class="rotation-btn-container left-btn"><div class="photo-thumb br50"><img src="/zip-file/img/tow-a-ang-0.jpg" class="br50"></div><button class="' + config.rotationButtonClass + '  tower-rotation-left-button br50" ><span class="icon icon-rotate-1"></span></button><div class="rotation-title transition">Rotate Left</div></div>';
+            code += '<div class="rotation-btn-container right-btn"><div class="photo-thumb br50"><img src="/zip-file/img/tow-a-ang-0.jpg" class="br50"></div><button class="' + config.rotationButtonClass + ' tower-rotation-right-button br50" ><span class="icon icon-rotate-2"></span></button><div class="rotation-title transition">Rotate Right</div></div>';
             if (this._elements && this._elements.towerRotationContainer) {
                 this._elements.towerRotationContainer.html(code);
             }
@@ -284,7 +284,7 @@ var TowerselectedView = (function() {
             code += "</td></tr>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
             code += this.displayFilterCount('entrance', entranceFiltersData.length);
-            code += "<div class='menu-item'><span class='icon icon-door'></span></div>";
+            code += "<div class='menu-item'><span class='icon icon-compass'></span></div>";
             code += this.getEntranceMenuOptions(data, entranceFiltersData);
             code += "</td></tr>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
