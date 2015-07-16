@@ -20,7 +20,7 @@ function allowDrop(x) {
 var BaseView = (function() {
 
     var containerMap = {
-        'bottomFormGroupContainer': '<div class"bottom-form-group" id="bottom-form-group"></div>',
+        'bottomFormGroupContainer': '<div class="bottom-form-group" id="bottom-form-group"></div>',
         'compareUnitsContainer': '<div  class="compare-units-container" id="' + config.compareUnitscontainerId + '"></div>'
     };
 

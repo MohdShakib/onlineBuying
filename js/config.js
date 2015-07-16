@@ -101,7 +101,13 @@ var config = (function(){
 		sunlightImageClass: 'sunlight-img',
 		sunlightMenuOptionClass: 'sunlight-menu-option',
 		floorPlanMenuOptionClass: 'floor-plan-menu-option',
-		unitSlideInClass: 'unit-slide-in'
+		unitSlideInClass: 'unit-slide-in',
+
+		// Booking
+		bookingInputDivClass: 'booking-input-div',
+		bookingSelectionDivClass: 'booking-selection-div',
+		bookingDropdownClass: 'booking-dropdown',
+		activeBookingInputClass: 'active'
 	};
 
 	return config;
