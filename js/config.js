@@ -55,6 +55,7 @@ var config = (function(){
 		compareBottomBox: 'com-pro-box',
 		likeCountId: 'like-count',
 		shortlistedUnitRemoveClass: 'remove-shortlist',
+		smallLeftArea: 'small-left',
 
 		// Masterplan
 		imgContainerClass : "menu-mapped-image",
