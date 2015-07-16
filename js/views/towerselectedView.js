@@ -289,7 +289,7 @@ var TowerselectedView = (function() {
             code += "</td></tr>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
             code += this.displayFilterCount('price', priceFiltersData.length);
-            code += "<div class='menu-item'><span class='icon icon-price'></span></div>";
+            code += "<div class='menu-item'><span class='icon icon-rupee'></span></div>";
             code += this.getPriceMenuOptions(data, priceFiltersData);
             code += "</td></tr>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.filters.resetClass + "'><span class='icon icon-reload'></span></div></td></tr>";
