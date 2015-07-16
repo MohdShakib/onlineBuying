@@ -48,11 +48,12 @@ var utils = (function() {
         getReadablePrice: function(price) {
             var rem = price % 1000;
             price = Math.floor(price / 1000);
-            var readablePrice = this.addLeadingZeros(rem, 3);
+            var readablePrice = (price == 0) ? rem : this.addLeadingZeros(rem, 3);
             while (price > 0) {
                 rem = price % 100;
                 price = Math.floor(price / 100);
-                readablePrice = this.addLeadingZeros(rem, 2) + "," + readablePrice;
+                var prefix = (price == 0) ? rem : this.addLeadingZeros(rem, 2);
+                readablePrice = prefix + "," + readablePrice;
             }
             return readablePrice;
         },

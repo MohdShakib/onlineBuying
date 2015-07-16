@@ -105,7 +105,7 @@ var MasterplanView = (function() {
                 var tower = data.towers[towerIdentifier],
                     towerUrl = tower.isAvailable ? data.baseUrl + "/" + tower.towerIdentifier : 'undefined';
                 code += "<tr><td class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass +
-                    "' id='" + tower.towerId + "-menu' data-index='" + towerIdentifier +
+                    "' id='" + towerIdentifier + "-menu' data-index='" + towerIdentifier +
                     "' data-imageid='" + tower.towerId +
                     "' data-url='" + towerUrl +
                     "'>" + tower.towerName.split(' ')[1] + "</div></td></tr>";
@@ -135,7 +135,7 @@ var MasterplanView = (function() {
 
             _this._elements.buildingMenuContainer.off('mouseleave').on('mouseleave', '.' + config.leftPanelButtonClass, function(event) {
                 // notify controller
-                _this._menuMouseLeave.notify(); // this refers to element here
+                _this._menuMouseLeave.notify(this); // this refers to element here
             });
         },
         buildingSvgContainer: function(data) {
@@ -174,7 +174,7 @@ var MasterplanView = (function() {
 
             _this._elements.buildingSvgContainer.off('mouseleave').on('mouseleave', '.' + config.towerImgSvgClass, function(event) {
                 // notify controller
-                _this._towerSvgMouseLeave.notify(); // this refers to element here
+                _this._towerSvgMouseLeave.notify(this); // this refers to element here
             });
         },
         towerMouseEnterEvent: function(obj) {
@@ -199,16 +199,30 @@ var MasterplanView = (function() {
                 this.showTowerDetailContainer(towerData, (svgpathClient.left + svgpathClient.width / 2), svgpathClient.top);
             }
 
-            $('#' + imageid + '-menu').addClass(config.menuItemHoverClass);
-            $('#' + imageid + '-menu').addClass(availabilityStatusClass);
+            var menuElement = $('#' + index + '-menu');
+
+            // Add tower name in menu
+            setTimeout(function() {
+                var originalText = menuElement.html();
+                menuElement.html('Tower ' + originalText);
+            }, 300);
+
+
+            menuElement.addClass(config.menuItemHoverClass);
+            menuElement.addClass(availabilityStatusClass);
         },
-        towerMouseLeaveEvent: function() {
+        towerMouseLeaveEvent: function(element) {
+            var index = element.dataset.index;
             $('.detail-box').removeClass('show-details');
             $('.detail-box').addClass('hide-details');
             $('img.' + config.imgContainerClass).stop().fadeTo("500", 1, function() {});
             $('.' + config.amenityContainerClass).removeClass(config.amenityNotOnTopClass);
             var removeClasses = config.menuItemHoverClass + ' ' + config.availabilityClass.available + ' ' + config.availabilityClass.unavailable;
             $('.' + config.leftPanelButtonClass).removeClass(removeClasses);
+
+            // Remove tower name from menu
+            var originalText = $('#' + index + '-menu').html();
+            $('#' + index + '-menu').html(originalText.charAt(originalText.length-1));
 
             //setTimeout(function() {
             document.getElementById(config.towerDetailContainerId).innerHTML = '';

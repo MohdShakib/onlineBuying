@@ -9,7 +9,6 @@ var TowerselectedView = (function() {
 
     var containerMap = {
         'towerImgContainer': '<div class="img-container ' + config.dynamicResizeClass + ' ' + config.slowTransitionClass + '" id="img-container"></div>',
-        //'overviewImgContainer': '<div  class="overview-img-container" id="overview-img-container" ></div>',
         'towerSvgContainer': '<svg class="svg-container ' + config.dynamicResizeClass + ' ' + config.slowTransitionClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'towerDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>',
         'towerRotationContainer': '<div class="tower-rotation-container ' + config.slowTransitionClass + '" id="' + config.towerRotationContainerId + '"></div>',
@@ -19,7 +18,6 @@ var TowerselectedView = (function() {
     function getElements() {
         var elements = {
             'towerImgContainer': $('#img-container'),
-            //'overviewImgContainer': $('#overview-img-container'),
             'towerSvgContainer': $('#svg-container'),
             'towerDetailContainer': $('#tower-detail-container'),
             'towerRotationContainer': $('#tower-rotation-container'),

@@ -97,7 +97,7 @@ var TowerselectedController = (function() {
                 // BHK Check
                 if (this._filters.bhk != null &&
                     this._filters.bhk.length != 0 &&
-                    this._filters.bhk.indexOf(unit.bedrooms.toString()) < 0) {
+                    this._filters.bhk.indexOf(unit.bedrooms) < 0) {
                     continue;
                 }
 
