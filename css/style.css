@@ -1789,4 +1789,4 @@ ellipse.tower-unit-svg-selected-path {
 .tc-container h3, .price-breakup-trems h3{ text-transform:uppercase; margin-bottom:20px;}
 .price-breakup-trems{ padding:20px; text-align:left;}
 /*-----------media query------------*/
-#wraper{ width:100%; height:100%; max-width:1366px;position:relative; margin:0 auto;box-shadow:0 0 15px rgba(0,0,0,0.7); position:relative; overflow:hidden;;}
+/*#wraper{ width:100%; height:100%; max-width:1366px;position:relative; margin:0 auto;box-shadow:0 0 15px rgba(0,0,0,0.7); position:relative; overflow:hidden;;}*/
