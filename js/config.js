@@ -105,6 +105,7 @@ var config = (function(){
 		unitSlideInClass: 'unit-slide-in',
 
 		// Booking
+		termsConditionPopupId: 'terms-condition-popup',
 		bookingInputDivClass: 'booking-input-div',
 		bookingSelectionDivClass: 'booking-selection-div',
 		bookingDropdownClass: 'booking-dropdown',
