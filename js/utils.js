@@ -56,6 +56,13 @@ var utils = (function() {
             }
             return readablePrice;
         },
+        getIdentifier: function(string) {
+            var identifier = '';
+            if (string) {
+                identifier = string.toLowerCase().replace(' ', '-');
+            }
+            return identifier;
+        },
         ajax: function(url, params, isPost, postData) {
             var success_callback = typeof(params.success_callback) == 'function' ? params.success_callback : null;
             var error_callback = typeof(params.error_callback) == 'function' ? params.error_callback : null;
@@ -65,7 +72,7 @@ var utils = (function() {
                 type: "GET",
                 url: url,
                 async: false,
-                dataType: 'JSON',
+                //dataType: 'JSON',
                 success: function(response) {
                     if (response.statusCode == '2XX') {
                         if (success_callback == null) {
@@ -96,8 +103,8 @@ var utils = (function() {
                 ajaxObj.type = "POST";
                 ajaxObj.contentType = "application/json";
                 ajaxObj.async = true;
-                ajaxObj.data = postData ? postData : {} ;
-                ajaxObj.data = JSON.stringify(ajaxObj.data);
+                ajaxObj.data = postData ? postData : {};
+                //ajaxObj.data = JSON.stringify(ajaxObj.data);
             }
 
             $.ajax(ajaxObj);

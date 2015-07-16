@@ -4,14 +4,6 @@ var getProjectData = (function() {
     var zipPath = 'zip-file',
         zipImagePath = '/' + zipPath + '/img/';
 
-    function getIdentifier(string) {
-        var identifier = '';
-        if (string) {
-            identifier = string.toLowerCase().replace(' ', '-');
-        }
-        return identifier;
-    }
-
     function processCsvDataToArray(allText) {
         var allTextLines = allText.split(/\r\n|\n/);
         var headers = allTextLines[0].split(',');
@@ -60,10 +52,10 @@ var getProjectData = (function() {
             if (hasOwnProperty.call(projectData.towers, towerIdentifier)) {
                 for (i = 0; i < listing.length; i++) {
                     unitInfo = listing[i];
-                    unitIdentifier = getIdentifier(unitInfo.unitName);
+                    unitIdentifier = utils.getIdentifier(unitInfo.unitName);
                     unitInfo.unitIdentifier = unitIdentifier;
-                    unitInfo.unitTypeIdentifier = unitInfo.unitType ? getIdentifier(unitInfo.unitType) : null;
-                    unitTowerIdentifier = getIdentifier(unitInfo.towerName);
+                    unitInfo.unitTypeIdentifier = unitInfo.unitType ? utils.getIdentifier(unitInfo.unitType) : null;
+                    unitTowerIdentifier = utils.getIdentifier(unitInfo.towerName);
 
                     if (unitTowerIdentifier !== towerIdentifier) { // If listing does not belong to towerIdentifier then skip
                         continue;
@@ -147,7 +139,7 @@ var getProjectData = (function() {
 
                 if (type == 'link' && item.type == 'link') {
                     item.details = zipImagePath + details;
-                    var identifier = getIdentifier(item.name);
+                    var identifier = utils.getIdentifier(item.name);
                     response[identifier] = item;
                 } else if (type != 'link' && item.type != 'link') {
                     item.details = parseDetailsField(details);
@@ -169,7 +161,7 @@ var getProjectData = (function() {
         if (unitplanInfo && Object.keys(unitplanInfo).length) {
             for (var unitPlankey in unitplanInfo) {
                 singleUnitInfo = {};
-                singleUnitInfoIdentifier = getIdentifier(unitPlankey);
+                singleUnitInfoIdentifier = utils.getIdentifier(unitPlankey);
                 if (hasOwnProperty.call(unitplanInfo, unitPlankey)) {
                     singleUnitInfo.unitType = unitplanInfo[unitPlankey].unitName;
                     singleUnitInfo.unitIdentifier = singleUnitInfoIdentifier;
@@ -276,8 +268,9 @@ var getProjectData = (function() {
             tower;
 
 
+        var projectIdentifier = utils.getIdentifier(projectDetail.name);
         projectData.projectId = projectDetail.projectId;
-        projectData.baseUrl = 'projectname-' + projectDetail.projectId;
+        projectData.baseUrl = projectIdentifier +'-'+ projectDetail.projectId;
         projectData.projectName = projectDetail.name;
         projectData.address = projectDetail.address;
         projectData.bgImage = zipImagePath + config.backgroundImage;
@@ -287,7 +280,7 @@ var getProjectData = (function() {
         for (i = 0; i < towers_length; i += 1) {
 
             tower = projectDetail.towers[i];
-            towerIdentifier = getIdentifier(tower.towerName);
+            towerIdentifier = utils.getIdentifier(tower.towerName);
             towers[towerIdentifier] = {};
             towerMap[tower.towerId] = tower.towerName;
             towers[towerIdentifier].towerId = tower.towerId;
@@ -320,9 +313,9 @@ var getProjectData = (function() {
 
 
             var towerName = towerMap[towerId];
-            var towerIdentifier = getIdentifier(towerName);
+            var towerIdentifier = utils.getIdentifier(towerName);
             var listing = projectDetail.listings[i],
-                unitIdentifier = getIdentifier(listing.flatNumber),
+                unitIdentifier = utils.getIdentifier(listing.flatNumber),
                 flatUnit = {};
             flatUnit.listingAddress = listing.flatNumber;
             flatUnit.unitIdentifier = unitIdentifier;
