@@ -505,7 +505,8 @@ ellipse.tower-unit-svg-selected-path {
 	line-height: 45px;
 	top: 0px;
 	height: 100%;
-	width: 100%;
+	width: 100px;
+	left:-55px;
 	cursor: pointer;
 	box-sizing:border-box;
 	-moz-box-sizing:border-box;
@@ -516,12 +517,13 @@ ellipse.tower-unit-svg-selected-path {
 	-o-transition:all 0.5s ease-in-out;
 	-webkit-transition:all 0.5s ease-in-out;
 }
-..tower-menu-container .menu-item .tower-menu-text{ opacity:0;height:100%; width:50px; left:-55px; top:0; transition:all 0.5s ease-in-out; transform:translateX(-70px);}
+.tower-menu-container .menu-item .tower-menu-text{}
 .tower-menu-container .menu-item-hover {
 	width: 100px;
-	padding-left:70px;
+	left:0;
 }
-.tower-menu-container .menu-item-hover .tower-menu-text{transform:translateX(0);}
+.tower-menu-container .menu-item .tower-menu-text{display:inline-block; position:relative; left:-15px;}
+.tower-menu-container .menu-item-hover .tower-menu-text{ left:0;}
 .tower-menu-container .menu-items .menu-item-container {
 	transition:all 0.5s ease-in-out;
 	-moz-transition:all 0.5s ease-in-out;
