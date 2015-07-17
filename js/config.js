@@ -106,6 +106,7 @@ var config = (function(){
 
 		// Booking
 		termsConditionPopupId: 'terms-condition-popup',
+		paymentBreakupPopupId: 'payment-breakup-popup',
 		bookingInputDivClass: 'booking-input-div',
 		bookingSelectionDivClass: 'booking-selection-div',
 		bookingDropdownClass: 'booking-dropdown',

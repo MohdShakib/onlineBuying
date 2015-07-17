@@ -9,13 +9,15 @@ var BookingView = (function() {
 
     var containerMap = {
         'paymentScreen': '<div id="payment-screen" class="payment-screen"></div>',
-        'termsConditionPopup': '<div id="terms-condition-popup" class="terms-condition-popup" style="display:none;"></div>'
+        'termsConditionPopup': '<div id="terms-condition-popup" class="terms-condition-popup" style="display:none;"></div>',
+        'paymentBreakupPopup': '<div id="payment-breakup-popup" class="terms-condition-popup" style="display:none;"></div>'
     };
 
     function getElements() {
         var elements = {
             'paymentScreen': $('#payment-screen'),
-            'termsConditionPopup': $('#terms-condition-popup')
+            'termsConditionPopup': $('#terms-condition-popup'),
+            'paymentBreakupPopup': $('#payment-breakup-popup')
         };
         return elements;
     }
@@ -75,7 +77,7 @@ var BookingView = (function() {
                 '                    <div class="clear-fix"></div>' +
                 '            </div>' +
                 '            </div>' +
-                '            <a href="#" class="view-price-brakup">View Price Breakup &amp; Payment plan</a>' +
+                '            <a id="payment-breakup" class="view-price-brakup">View Price Breakup &amp; Payment plan</a>' +
                 '            <div class="booking-amount">' +
                 '                <h3>Booking Amount: Rs. ' + utils.getReadablePrice(data.bookingAmount) + '</h3> ' +
                 '            </div>' +
@@ -193,6 +195,10 @@ var BookingView = (function() {
             _this._elements.paymentScreen.on('click', '#tnc', function(event) {
                 $('#' + config.termsConditionPopupId).show();
             });
+
+            _this._elements.paymentScreen.on('click', '#payment-breakup', function(event) {
+                $('#' + config.paymentBreakupPopupId).show();
+            });
         },
         getPaymentData: function() {
             var data = {};
@@ -218,6 +224,30 @@ var BookingView = (function() {
 
             _this._elements.termsConditionPopup.off('click').on('click', '.close-payment', function(event) {
                 $('#' + config.termsConditionPopupId).hide();
+            });
+        },
+        paymentBreakupPopup: function(data, rotationdata, rootdata) {
+            var code = '<div class="tc-container">' +
+                '<a class="close-payment"><span class="icon icon-cross fs24"></span></a>' +
+                utils.getPriceBreakupHtml(data, rotationdata, rootdata, false) +
+                '</div>';
+            this._elements.paymentBreakupPopup.html(code);
+            this.paymentBreakupPopupEvents();
+        },
+        paymentBreakupPopupEvents: function() {
+            var _this = this;
+
+            _this._elements.paymentBreakupPopup.off('click').on('click', '.close-payment', function(event) {
+                $('#' + config.paymentBreakupPopupId).hide();
+            });
+
+            _this._elements.paymentBreakupPopup.on('click', '.pricebreakup-tabs li', function() {
+                var type = $(this).data('type');
+                $('.pricebreakup-tabs li').removeClass('active');
+                $(this).addClass('active');
+
+                $('.unit-content-wrapper  .pricebreakup-tabs-content').addClass(config.hideClass);
+                $('.unit-content-wrapper  .pricebreakup-tabs-content.' + type).removeClass(config.hideClass);
             });
         }
     };
