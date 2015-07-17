@@ -201,12 +201,6 @@ var MasterplanView = (function() {
 
             var menuElement = $('#' + index + '-menu');
 
-            // Add tower name in menu
-            /*setTimeout(function() {
-                var originalText = menuElement.html();
-                menuElement.html('Tower ' + originalText);
-            }, 300);*/
-
 
             menuElement.addClass(config.menuItemHoverClass);
             menuElement.addClass(availabilityStatusClass);
@@ -219,10 +213,6 @@ var MasterplanView = (function() {
             $('.' + config.amenityContainerClass).removeClass(config.amenityNotOnTopClass);
             var removeClasses = config.menuItemHoverClass + ' ' + config.availabilityClass.available + ' ' + config.availabilityClass.unavailable;
             $('.' + config.leftPanelButtonClass).removeClass(removeClasses);
-
-            // Remove tower name from menu
-//            var originalText = $('#' + index + '-menu').html();
-  //          $('#' + index + '-menu').html(originalText.charAt(originalText.length-1));
 
             //setTimeout(function() {
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
