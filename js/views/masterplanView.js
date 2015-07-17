@@ -204,7 +204,7 @@ var MasterplanView = (function() {
             // Add tower name in menu
             setTimeout(function() {
                 var originalText = menuElement.html();
-                menuElement.html('Tower ' + originalText);
+                menuElement.html('Tower ' + originalText.charAt(originalText.length-1));
             }, 300);
 
 

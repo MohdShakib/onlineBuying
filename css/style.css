@@ -1802,13 +1802,13 @@ ellipse.tower-unit-svg-selected-path {
 .back-cloud {
 	width: 1366px; height: 745px;
 	background: url(../images/cloud_2.png) no-repeat;
-	top:0; right:250px;
+	top:0; right:400px;
 	position:absolute;
 	z-index:2;
 }
 .front-cloud {
 	width: 847px; height: 480px;
-	left:350px; top:-100px;
+	left:700px; top:0px;
 	background: url(../images/cloud.png) no-repeat;
 	position:absolute;
 	z-index:2;
