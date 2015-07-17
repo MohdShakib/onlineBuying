@@ -201,9 +201,9 @@ var BaseView = (function() {
 						+'</div>'
                         +'<form id="call-box-form"  name="call-box-form" novalidate onSubmit="return false;"  >'
                             +'<div class="form-input-box"><input class="text" id="call-box-email" name="email" placeholder="Enter email id*" type="email" required />'
-                            +'<div class="error-box">This field is required</div></div>'
+                            +'<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>'
                             +'<div class="form-input-box"><input class="text" id="call-box-phone" name="phone" placeholder="Enter cell phone number*" type="text" minlength="10" maxlength="10" required />'
-                            +'<div class="error-box">This field is required</div></div>'
+                            +'<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>'
                             +'<div class="submit" id="call-box-submit-id">Submit <span  class="icon icon-arrow_right"></span>'
 								+'<input type="submit" id="call-box-submit-id" />'
 							+'</div>'
@@ -228,9 +228,9 @@ var BaseView = (function() {
                         +'</div>'
                         +'<form id="share-box-form" novalidate name="share-box-form" onSubmit="return false;"  >'
                             +'<div class="form-input-box"><input class="text" placeholder="Enter name*" type="text" required />'
-    						+'<div class="error-box">This field is required</div></div>'
+    						+'<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>'
                             +'<div class="form-input-box"><input class="text" placeholder="Enter email id*" type="email" required />'
-                            +'<div class="error-box">This field is required</div></div>'
+                            +'<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>'
                             +'<div class="submit" id="share-box-submit-id"><input type="submit" />Submit <span  class="icon icon-arrow_right"></span></div>'
                         +'</form>'
                     +'</div>'
@@ -313,13 +313,13 @@ var BaseView = (function() {
             var email = $('#' + config.callBox.emailId).val();
             var phone = $('#' + config.callBox.phoneId).val();
 
-            var url = 'https://www.proptiger.com/data/v1/entity/enquiry';
             var data = {
                 'phone': phone,
                 'email': email,
                 'projectId': utils.projectId
             }
-            utils.ajax(url, {success_callback: function(){ $(form)[0].reset(); }}, true, data);
+            
+            ajaxUtils.submitLead(data);
         },
         shareOnEmailSubmit: function(form){
             var validationFlag = utils.validateForm(form);

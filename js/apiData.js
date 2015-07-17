@@ -270,7 +270,7 @@ var getProjectData = (function() {
 
         var projectIdentifier = utils.getIdentifier(projectDetail.name);
         projectData.projectId = projectDetail.projectId;
-        projectData.baseUrl = projectIdentifier +'-'+ projectDetail.projectId;
+        projectData.baseUrl = projectIdentifier + '-' + projectDetail.projectId;
         projectData.projectName = projectDetail.name;
         projectData.address = projectDetail.address;
         projectData.bgImage = zipImagePath + config.backgroundImage;
@@ -301,13 +301,13 @@ var getProjectData = (function() {
         for (i = 0; i < listings_length; i += 1) {
             var towerId = projectDetail.listings[i].towerId;
 
-            if(projectDetail.listings[i].flatNumber == 'A0104'){
+            if (projectDetail.listings[i].flatNumber == 'A0104') {
                 projectDetail.listings[i].flatNumber = 'A-0104';
-            }else if(projectDetail.listings[i].flatNumber == 'A0402'){
+            } else if (projectDetail.listings[i].flatNumber == 'A0402') {
                 projectDetail.listings[i].flatNumber = 'A-0402';
-            }else if(projectDetail.listings[i].flatNumber == 'A0103'){
+            } else if (projectDetail.listings[i].flatNumber == 'A0103') {
                 projectDetail.listings[i].flatNumber = 'A-0103';
-            }else if(projectDetail.listings[i].flatNumber == 'A-0104' || projectDetail.listings[i].flatNumber == 'A-0103' || projectDetail.listings[i].flatNumber == 'A-0402'){
+            } else if (projectDetail.listings[i].flatNumber == 'A-0104' || projectDetail.listings[i].flatNumber == 'A-0103' || projectDetail.listings[i].flatNumber == 'A-0402') {
                 continue;
             }
 
@@ -339,7 +339,7 @@ var getProjectData = (function() {
             flatUnit.price = listing.currentListingPrice ? listing.currentListingPrice.price : undefined;
             flatUnit.formattedPrice = flatUnit.price ? utils.getReadablePrice(listing.currentListingPrice.price) : undefined;
             flatUnit.basePrice = undefined;
-            if(listing.currentListingPrice && listing.currentListingPrice.pricePerUnitArea && flatUnit.size){
+            if (listing.currentListingPrice && listing.currentListingPrice.pricePerUnitArea && flatUnit.size) {
                 flatUnit.basePrice = listing.currentListingPrice.pricePerUnitArea * flatUnit.size;
                 flatUnit.basePrice = utils.getReadablePrice(flatUnit.basePrice);
             }
@@ -347,8 +347,8 @@ var getProjectData = (function() {
             flatUnit.unitPricingSubcategories = [];
 
             var propertyOtherPricingSubcategoryMappingsLength = listing.propertyOtherPricingSubcategoryMappings ? listing.propertyOtherPricingSubcategoryMappings.length : 0;
-            if(propertyOtherPricingSubcategoryMappingsLength){
-                for(var j=0; j<propertyOtherPricingSubcategoryMappingsLength; j++){
+            if (propertyOtherPricingSubcategoryMappingsLength) {
+                for (var j = 0; j < propertyOtherPricingSubcategoryMappingsLength; j++) {
                     var subCategory = listing.propertyOtherPricingSubcategoryMappings[j];
                     flatUnit.unitPricingSubcategories.push({
                         id: subCategory.otherPricingSubcategoryId,
@@ -376,11 +376,11 @@ var getProjectData = (function() {
 
         }
 
-        var otherPricingDetailsLength =  projectDetail.otherPricingDetails ?  projectDetail.otherPricingDetails.length : 0;
-        for(var k=0; k < otherPricingDetailsLength; k++){
+        var otherPricingDetailsLength = projectDetail.otherPricingDetails ? projectDetail.otherPricingDetails.length : 0;
+        for (var k = 0; k < otherPricingDetailsLength; k++) {
             var pricingDetail = projectDetail.otherPricingDetails[k];
             var otherPricingSubcategory = pricingDetail.otherPricingSubcategory;
-    
+
             projectData.pricingSubcategories[otherPricingSubcategory.id] = {
                 id: otherPricingSubcategory.id,
                 name: otherPricingSubcategory.component,
@@ -426,8 +426,6 @@ var getProjectData = (function() {
             return projectData;
         }
 
-        var apiUrl = "http://192.168.1.8:8080/app/v4/project-detail/"+projectId+"?selector={%22paging%22:{%22start%22:0,%22rows%22:100},%22fields%22:[%22projectId%22,%22value%22,%22images%22,%22imageType%22,%22mediaType%22,%22objectType%22,%22title%22,%22type%22,%22absolutePath%22,%22properties%22,%22projectAmenities%22,%22amenityDisplayName%22,%22verified%22,%22amenityMaster%22,%22amenityId%22,%22towerId%22,%22amenityName%22,%22bedrooms%22,%22bathrooms%22,%22balcony%22,%22name%22,%22hasPrimaryExpandedListing%22,%22propertyId%22,%22towers%22,%22listings%22,%22floor%22,%22size%22,%22measure%22,%22bookingAmount%22,%22viewDirections%22,%22viewType%22,%22facingId%22,%22address%22,%22towerName%22,%22clusterPlans%22,%22id%22,%22flatNumber%22,%22bookingStatusId%22,%22clusterPlanId%22,%22price%22,%22specifications%22,%22floorNumber%22,%22mandatory%22,%22otherPricingSubcategoryId%22,%22effectiveDate%22,%22status%22,%22listingId%22,%22pricePerUnitArea%22,%22objectId%22,%22objectTypeId%22,%22otherPricingDetails%22,%22propertyOtherPricingSubcategoryMappings%22,%22discount%22,%22discountDescription%22,%22otherPricingValueType%22,%22otherPricingValueType%22,%22otherPricingSubcategory%22,%22component%22,%22name%22,%22masterOtherPricingCategory%22,%22currentListingPrice%22]}";
-        var apiUrl = "apiData.json";
         var apiData,
             params = {
                 success_callback: function(response) {
@@ -435,7 +433,7 @@ var getProjectData = (function() {
                 }
             };
 
-        utils.ajax(apiUrl, params);
+        ajaxUtils.getProjectData(projectId, params);
         parseApiData(apiData);
         parseAllCSVData();
 

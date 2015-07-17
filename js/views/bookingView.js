@@ -83,7 +83,7 @@ var BookingView = (function() {
                 '            </div>' +
                 '        </div>' +
                 '        <div class="payment-right">' +
-                '            <div class="payment-right-container">' +
+                '            <div id="booking-user-details" class="payment-right-container">' +
                 '            <p>Please verify your flat details &amp; make the payment to block your apartment</p>' +
                 '            <h3>Personal Details</h3>' +
                 '            <div class="personal-detail-box">' +
@@ -92,13 +92,15 @@ var BookingView = (function() {
                 '                        <td width="50%">' +
                 '                            <div id="booking-first-name" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">First Name</label>' +
-                '                                <input type="text" />' +
+                '                                <input type="text" required />' +
+                '                                <span class="error ' + config.errorMsgClass + '"></span>' +                
                 '                            </div>' +
                 '                        </td>' +
                 '                        <td width="50%">' +
                 '                            <div id="booking-last-name" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">Last Name</label>' +
-                '                                <input type="text" />' +
+                '                                <input type="text" required />' +
+                '                                <span class="error ' + config.errorMsgClass + '"></span>' +                
                 '                            </div>' +
                 '                        </td>' +
                 '                    </tr>' +
@@ -106,13 +108,15 @@ var BookingView = (function() {
                 '                        <td width="50%">' +
                 '                            <div id="booking-email" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">email</label>' +
-                '                                <input type="text" />' +
+                '                                <input type="email" required />' +
+                '                                <span class="error ' + config.errorMsgClass + '"></span>' +                
                 '                            </div>' +
                 '                        </td>' +
                 '                        <td width="50%">' +
                 '                            <div id="booking-phone" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">phone</label>' +
-                '                                <input type="text" />' +
+                '                                <input type="text" name="phone" required />' +
+                '                                <span class="error ' + config.errorMsgClass + '"></span>' +                
                 '                            </div>' +
                 '                        </td>' +
                 '                    </tr>' +
@@ -121,12 +125,14 @@ var BookingView = (function() {
                 '                            <div id="booking-dob" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">date of birth (DD/MM/YYY)</label>' +
                 '                                <input type="text" />' +
+                '                                <span class="error ' + config.errorMsgClass + '"></span>' +                
                 '                            </div>' +
                 '                        </td>' +
                 '                        <td width="50%">' +
                 '                            <div id="booking-nationality" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">nationality</label>' +
                 '                                <input type="text" />' +
+                '                                <span class="error ' + config.errorMsgClass + '"></span>' +                
                 '                            </div>' +
                 '                        </td>' +
                 // '                        <td width="50%">' +
@@ -143,16 +149,17 @@ var BookingView = (function() {
                 '                        <td colspan="2">' +
                 '                            <div id="booking-pan" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">pan number</label>' +
-                '                                <input type="text" />' +
-                //'                                <span class="error">This field is Required</span>' +
+                '                                <input type="text" required />' +
+                '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
                 '                        </td>' +
                 '                    </tr>' +
                 '                </table>' +
                 '            </div>' +
                 '            <div class="terms-condition">' +
-                '                <input type="checkbox" id="terms" />' +
+                '                <input type="checkbox" id="terms" required />' +
                 '                <label for="terms">I have read &amp; agree to <a id="tnc">Terms &amp; Conditions</a></label>' +
+                '                <span class="error ' + config.errorMsgClass + '"></span>' +                
                 '            </div>' +
                 '            <a class="fright transition make-payment">Continue to Payment</a>' +
                 '            <div class="clear-fix"></div>' +
@@ -200,8 +207,15 @@ var BookingView = (function() {
                 $('#' + config.paymentBreakupPopupId).show();
             });
         },
-        getPaymentData: function() {
-            var data = {};
+        getValidatedPaymentData: function() {
+            var bookingForm = $('#booking-user-details'),
+                unitData = this._model.getData(),
+                data = {};
+
+            if(!utils.validateForm(bookingForm)) {
+                return null;
+            }
+
             data.firstName = $('#booking-first-name input').val();
             data.lastName = $('#booking-last-name input').val();
             data.email = $('#booking-email input').val();
@@ -209,6 +223,8 @@ var BookingView = (function() {
             data.dob = $('#booking-dob input').val();
             data.nationality = $('#booking-nationality input').val();
             data.pan = $('#booking-pan input').val();
+            data.listingId = unitData.listingId;
+            data.amount = unitData.bookingAmount;
             return data;
         },
         termsConditionPopup: function(data, rotationdata, rootdata) {

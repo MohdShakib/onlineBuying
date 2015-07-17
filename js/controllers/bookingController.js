@@ -24,8 +24,10 @@ var BookingController = (function() {
 
             // Make payment Event
             this._view._makePayment.attach(function(sender, element) {
-                var data = _this._view.getPaymentData();
-                console.log(data);
+                var data = _this._view.getValidatedPaymentData();
+                if (data != null) {
+                    ajaxUtils.bookListing(data);
+                }
             });
 
         },

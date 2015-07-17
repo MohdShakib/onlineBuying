@@ -43,6 +43,7 @@ var config = (function(){
 		mainContainerId : "main-container",
 		baseContainerId:  "base-container",
 		dynamicResizeClass: "dynamic-resize",
+		errorMsgClass: "error-msg",
 
 		towerDetailContainerId: "tower-detail-container",
 		leftPanelButtonClass: 'left-panel-button',

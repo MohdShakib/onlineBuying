@@ -373,26 +373,6 @@ var UnitplaninfoView = (function() {
         },
         priceBreakupContainer: function(data, rotationdata, rootdata) {
             var code = utils.getPriceBreakupHtml(data, rotationdata, rootdata, true);
-            // '<ul class="pricebreakup-tabs">' + '<li class="active"  data-type="pricebreakup">Price Breakup</li>' + '<li  data-type="paymentplan">Payment Plan</li>' + '</ul>' + '<div class="unit-content-wrapper">' + '<div class="payment-pic pricebreakup-tabs-content paymentplan ' + config.hideClass + '"><img src="images/walkthrough-cover.jpg" alt="" /></div>'
-            // code += "<table class='base-table pricebreakup-tabs-content pricebreakup' cellpadding='0' cellspacing='0' border='0'>";
-            // if (data.price) {
-            //     code += "<tr><td width='50%'>Base Price</td><td width='50%'>Rs. " + data.basePrice + "</td></tr>";
-
-            //     var length = data.unitPricingSubcategories ? data.unitPricingSubcategories.length : 0,
-            //         pricingSubcategory, unitPricingSubcategory;
-            //     for (var i = 0; i < length; i++) {
-            //         unitPricingSubcategory = data.unitPricingSubcategories[i] || {};
-            //         pricingSubcategory = rootdata.pricingSubcategories[unitPricingSubcategory.id];
-            //         if (pricingSubcategory) {
-            //             code += "<tr><td>" + pricingSubcategory.name + " (" + pricingSubcategory.masterName + ")</td><td>Rs. " + unitPricingSubcategory.price + "</td></tr>";
-            //         }
-            //     }
-            //     code += "<tr><td class='total-price'>Total</td><td class='total-price'>Rs. " + data.formattedPrice + "</td></tr>";
-            //     code += "<tr><td colspan='2'><div class='price-breakup-trems'>" + utils.getTermsConditionsHtml() + "</div></td></tr>";
-            // } else {
-            //     code += "<tr><td colspan='2'><br/><br/><br/>No price details available.</td></tr>";
-            // }
-            // code += "</table>";
             this._elements.priceBreakupContainer.html(code);
             this.priceBreakupContainerEvents();
         },
