@@ -57,35 +57,46 @@ var BookingView = (function() {
         paymentScreen: function(data, rotationdata, rootdata) {
             var url = rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier;
             var code = '<div class="payment-container">' +
-                '        <a class="close-payment transition" data-url="' + url + '"><span class="icon icon-cross fs24"></span></a>' +
+				'		 <div class="title-text">' +
+				'        	<a class="close-payment transition" data-url="' + url + '"><span class="icon icon-arrow_left fs24"></span></a>' +
+				'			<p>Payment Screen</p>' +
+				' 		 </div>' +
                 '        <div class="payment-left">' +
                 '            <div class="payment-left-top">' +
-                '                <h3>' + rootdata.projectName + '</h3>' +
+                '                <h3>' + rootdata.projectName + ' <span>Whitefield Bangalore</span></h3>' +
                 '                <div class="payment-photo-box">' +
                 '                <img src="' + rootdata.unitTypes[rotationdata.unitTypeIdentifier].unitImageUrl + '" width="100%" alt="">' +
                 '                </div>' +
-                '                <h5>' + data.listingAddress + ', Floor no. ' + data.floor + '</h5>' +
-                '                <div>' +
+                '                <h5 class="fleft">' + data.listingAddress + '</h5>' +
+                '                <div class="fright floor-area">' +
                 '                    <p class="fleft">' +
                 '                        Area' +
                 '                        <span>' + data.size + ' ' + data.measure + '</span>' +
                 '                    </p>' +
-                '                    <p class="fright">' +
-                '                        Total Price' +
-                '                        <span>Rs. ' + utils.getReadablePrice(data.price) + '</span>' +
+				'					 <p class="fleft ml10 mr10">|</p>' +
+				'                    <p class="fleft">' +
+                '                        Floor no.' +
+                '                        <span>' + data.floor + '</span>' +
                 '                    </p>' +
                 '                    <div class="clear-fix"></div>' +
                 '            </div>' +
+				'            <div class="clear-fix"></div>' +
+				'                    <p class="fright">' +
+                '                        Total Price' +
+                '                        <span>Rs. ' + utils.getReadablePrice(data.price) + '</span>' +
+                '                    </p>' +
                 '            </div>' +
+				'            <div class="clear-fix"></div>' +
                 '            <a id="payment-breakup" class="view-price-brakup">View Price Breakup &amp; Payment plan</a>' +
                 '            <div class="booking-amount">' +
-                '                <h3>Booking Amount: Rs. ' + utils.getReadablePrice(data.bookingAmount) + '</h3> ' +
+                '            <h3>Booking Amount: <span><span class="icon icon-rupee"><span><strong>' + utils.getReadablePrice(data.bookingAmount) + ' </strong><label>only</label></span></h3> ' +
+				'			 <p>( no cancellation charges )</p>' +
                 '            </div>' +
                 '        </div>' +
                 '        <div class="payment-right">' +
                 '            <div id="booking-user-details" class="payment-right-container">' +
-                '            <p>Please verify your flat details &amp; make the payment to block your apartment</p>' +
-                '            <h3>Personal Details</h3>' +
+				'            <h3>Nice Selection!</h3>' +
+                '            <p>Now Make a tokan payment of <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- to book your choice.</p>' +
                 '            <div class="personal-detail-box">' +
                 '                <table cellpadding="0" cellspacing="0" width="100%">' +
                 '                    <tr>' +
@@ -121,11 +132,18 @@ var BookingView = (function() {
                 '                        </td>' +
                 '                    </tr>' +
                 '                    <tr>' +
-                '                        <td width="50%">' +
-                '                            <div id="booking-dob" class="input-box transition ' + config.bookingInputDivClass + '">' +
-                '                                <label class="transition">date of birth (DD/MM/YYY)</label>' +
-                '                                <input type="text" />' +
-                '                                <span class="error ' + config.errorMsgClass + '"></span>' +                
+                //'                        <td width="50%">' +
+                //'                            <div id="booking-dob" class="input-box transition ' + config.bookingInputDivClass + '">' +
+                //'                                <label class="transition">date of birth (DD/MM/YYY)</label>' +
+                //'                                <input type="text" />' +
+                //'                                <span class="error ' + config.errorMsgClass + '"></span>' +                
+                //'                            </div>' +
+                //'                        </td>' +
+				'                        <td width="50%">' +
+                '                            <div id="booking-pan" class="input-box transition ' + config.bookingInputDivClass + '">' +
+                '                                <label class="transition">pan number</label>' +
+                '                                <input type="text" required />' +
+                '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
                 '                        </td>' +
                 '                        <td width="50%">' +
@@ -145,15 +163,6 @@ var BookingView = (function() {
                 // '                            </div>' +
                 // '                        </td>' +
                 '                    </tr>' +
-                '                    <tr>' +
-                '                        <td colspan="2">' +
-                '                            <div id="booking-pan" class="input-box transition ' + config.bookingInputDivClass + '">' +
-                '                                <label class="transition">pan number</label>' +
-                '                                <input type="text" required />' +
-                '                                <span class="error ' + config.errorMsgClass + '"></span>' +
-                '                            </div>' +
-                '                        </td>' +
-                '                    </tr>' +
                 '                </table>' +
                 '            </div>' +
                 '            <div class="terms-condition">' +
@@ -161,7 +170,7 @@ var BookingView = (function() {
                 '                <label for="terms">I have read &amp; agree to <a id="tnc">Terms &amp; Conditions</a></label>' +
                 '                <span class="error ' + config.errorMsgClass + '"></span>' +                
                 '            </div>' +
-                '            <a class="fright transition make-payment">Continue to Payment</a>' +
+                '            <a class="fleft transition make-payment">Continue to Payment</a>' +
                 '            <div class="clear-fix"></div>' +
                 '        </div>' +
                 '        </div>' +
