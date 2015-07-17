@@ -312,7 +312,7 @@ var UnitplaninfoView = (function() {
                 var svgObj = svgData[svgId];
                 var point = svgObj.svgPath.split(' ');
                 var position = "top:" + point[1] + "%; left:" + point[0] + "%;";
-                code += "<div id='" + svgId + "' data-top='" + point[1] + "' data-left='" + point[0] + "' class='" + config.amenityIconClass + "' style='" + position + "'><spna class='icon icon-location'></span>";
+                code += "<div id='" + svgId + "' data-top='" + point[1] + "' data-left='" + point[0] + "' class='" + config.amenityIconClass + "' style='" + position + "'><span class='icon icon-location'></span>";
                 code += "<div class='name'><span>" + svgObj.name + "</span></div>";
                 code += "</div>";
             }

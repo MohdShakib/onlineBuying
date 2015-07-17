@@ -894,7 +894,7 @@ ellipse.tower-unit-svg-selected-path {
 	bottom: 70px;
 	width: 100%;
 }
-.unit-content-wrapper .base-table{
+.base-table{
 	padding: 0px 20px;
 	width:100%;
 }
@@ -907,6 +907,7 @@ ellipse.tower-unit-svg-selected-path {
 	text-align:left;  
 	border-bottom:2px solid #494949;
 }
+.tc-container .pricebreakup-tabs{ margin:20px 0 0 0;}
 .specification-tabs li,.pricebreakup-tabs li{
 	display:inline-block; 
 	margin-right:2px;
@@ -920,21 +921,23 @@ ellipse.tower-unit-svg-selected-path {
 .specification-tabs li:hover, .pricebreakup-tabs li:hover, .specification-tabs li.active, .pricebreakup-tabs li.active{
 	background:#494949;
 }
-.unit-content-wrapper .base-table td {
+.base-table td {
 	text-align: left;
 	padding: 5px 10px;
 	font-size: 12px;
 	color: #555;
 }
-.unit-content-wrapper .base-table .heading {
+.base-table .heading {
 	background-color:#E4E4E4;
 	color: #494949;
 	text-transform: uppercase;
 	font-size:12px;
 	font-weight:bold;
 }
-.price-breakup-container .base-table tr:nth-child(odd) td{ background:#EDEDED;}
-.price-breakup-container .base-table tr td.total-price {font-weight: bold; background: #DDD}
+.price-breakup-container .base-table tr:nth-child(odd) td, .tc-container .base-table tr:nth-child(odd) td{ background:#EDEDED;}
+.price-breakup-container .base-table tr td.total-price, .tc-container .base-table tr td.total-price {font-weight: bold; background: #DDD}
+.tc-container .base-table{ padding:0;}
+.tc-container .unit-content-wrapper{ position:static; top:inherit; bottom:inherit;}
 .compare-units-container {
 	position: absolute;
     width: 100%;
@@ -1038,9 +1041,9 @@ ellipse.tower-unit-svg-selected-path {
 	position: absolute;
 	z-index: 10000;
 	color: #DFDFDF;
-	height: 20px;
-	width: 20px;
-	line-height: 22px;
+	height: 25px;
+	width: 25px;
+	line-height: 25px;
 	font-size: 20px;
 	text-align: center;
 	border-radius: 100%;
@@ -1051,6 +1054,7 @@ ellipse.tower-unit-svg-selected-path {
 	-o-transition:all 0.5s ease-in-out;
 	-webkit-transition:all 0.5s ease-in-out;
 }
+.selected-unit-container .amenities-container .amenity-icon{ color:#616161;}
 .amenities-container .amenity-icon .name {
 	position: absolute;
 	top: 35px;
@@ -1078,7 +1082,8 @@ ellipse.tower-unit-svg-selected-path {
 	padding: 5px 10px;
 }
 .selected-unit-container .amenities-container .amenity-icon .name span {
-	background: #999;
+	background: #616161;
+	color:#fff;
 }
 .amenity-popup {
 	position: absolute;
@@ -1161,7 +1166,8 @@ ellipse.tower-unit-svg-selected-path {
 .personal-detail-box table tr td:last-child{padding-left:5px}
 .input-box{ padding:15px 17px 0 17px; border-bottom:1px solid #ccc; position:relative; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
 .input-box label{ position:absolute; left:17px; top:25px; font-size:13px; text-transform:uppercase; color:#9e9e9e; z-index:1;}
-.view-price-brakup{ font-size:12px; color:#04A3D3; display:block; text-align:center; padding:0 0 10px 0;}
+.view-price-brakup{ font-size:12px; color:#04A3D3; display:block; width:200px; margin:0 auto; text-align:center; padding:0 0 10px 0; cursor:pointer;}
+.view-price-brakup:hover{ text-decoration:underline;}
 .input-box.active label{ font-size:11px; top:8px; color:#f39b13;}
 .input-box input{ background:none;width:100%; outline:none; border:none; padding:10px 0 5px 0; font-size:14px; color:#616161;box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; position:relative; z-index:2; resize:none;}
 .input-box span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:none;}
@@ -1180,7 +1186,8 @@ ellipse.tower-unit-svg-selected-path {
 .terms-condition{ margin:20px 0 10px  0;}
 .terms-condition input{float:left; margin:5px 10px 0 0;}
 .terms-condition  label{font-size:13px; cursor:pointer; color:#252525;}
-.terms-condition  label a{ color:#04A3D3;}
+.terms-condition  label a{ color:#04A3D3; cursor:pointer;}
+.terms-condition  label a:hover{ text-decoration:underline;}
 /*-------payment screen start here-------*/
 /*=================classes for animation added by jaswant singh=========================*/
 
@@ -1783,7 +1790,7 @@ ellipse.tower-unit-svg-selected-path {
    }
 }
 .terms-condition-popup{ background:rgba(0,0,0,0.7); position:fixed; top:0; left:0; width:100%; height:100%; z-index:999999;}
-.tc-container{ background:#fff; height:440px; position:absolute; padding:20px; width:600px; top:50%; left:50%; margin:-220px; overflow:hidden; 0 0 -300px;}
+.tc-container{ background:#fff; height:500px; position:absolute; padding:20px; width:640px; top:50%; left:50%; margin:-240px 0 0 -320px;; overflow:hidden; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;box-sizing:border-box;}
 .tc-container .close-payment{ color:#616161;}
 .tc-container p, .price-breakup-trems p{ font-size:14px; color:#494949; margin-bottom:10px;}
 .tc-container p a, .price-breakup-trems p a{ color:#06BDF5;}
@@ -1797,31 +1804,31 @@ ellipse.tower-unit-svg-selected-path {
 	background: url(../images/cloud_2.png) no-repeat;
 	top:-450px; right:-1300px;
 	position:absolute;
-	z-index:9999999;
+	z-index:2;
 }
 .front-cloud {
 	width: 847px; height: 480px;
 	left:150px; top:0;
 	background: url(../images/cloud.png) no-repeat;
 	position:absolute;
-	z-index:9999999;
+	z-index:2;
 }
 
 /*variable speed, opacity, and position of clouds for realistic effect*/
 .x2 {
 	/*Speed will also be proportional to the size and opacity*/
 	/*More the speed. Less the time in 's' = seconds*/
-	-webkit-animation: moveclouds 45s linear;
-	-moz-animation: moveclouds 45s linear;
-	-o-animation: moveclouds 45s linear;
+	-webkit-animation: moveclouds 10s linear;
+	-moz-animation: moveclouds 10s linear;
+	-o-animation: moveclouds 10s linear;
 	animation-iteration-count:1;
 }
 
 .x3 {
 	
-	-webkit-animation: moveRightclouds 30s linear;
-	-moz-animation: moveRightclouds 30s linear;
-	-o-animation: moveRightclouds 30s linear;
+	-webkit-animation: moveRightclouds 12s linear;
+	-moz-animation: moveRightclouds 12s linear;
+	-o-animation: moveRightclouds 12s linear;
 	animation-iteration-count:1;
 }
 
