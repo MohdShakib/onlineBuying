@@ -64,52 +64,6 @@ var utils = (function() {
             }
             return identifier;
         },
-        ajax: function(url, params, isPost, postData) {
-            var success_callback = typeof(params.success_callback) == 'function' ? params.success_callback : null;
-            var error_callback = typeof(params.error_callback) == 'function' ? params.error_callback : null;
-            var complete_callback = typeof(params.complete_callback) == 'function' ? params.complete_callback : null;
-
-            var ajaxObj = {
-                type: "GET",
-                url: url,
-                async: false,
-                //dataType: 'JSON',
-                success: function(response) {
-                    if (response.statusCode == '2XX') {
-                        if (success_callback == null) {
-                            // default error callback handling
-                        } else {
-                            success_callback(response.data, params);
-                        }
-                    } else {
-                        if (error_callback == null) {
-                            // default error callback handling
-                        } else {
-                            error_callback(response.data);
-                        }
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    console.log('ajax in error callback');
-                    console.log('error occured ' + errorThrown);
-                },
-                complete: function() {
-                    if (complete_callback != null) {
-                        complete_callback(params);
-                    }
-                }
-            }
-
-            if (isPost) {
-                ajaxObj.type = "POST";
-                ajaxObj.contentType = "application/json";
-                ajaxObj.async = true;
-                ajaxObj.data = postData ? postData : {};
-                //ajaxObj.data = JSON.stringify(ajaxObj.data);
-            }
-
-            $.ajax(ajaxObj);
-        },
         validateForm: function(form) {
             function validateEmail(email) {
                 var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
@@ -121,10 +75,11 @@ var utils = (function() {
                 return re.test(phoneNumber);
             }
 
-            var fields = $(form).find('input[type=text],input[type=password],input[type=email]');
+            var fields = $(form).find('input[type=text],input[type=password],input[type=email],input[type=checkbox]');
             var total_fields = fields.length;
 
             var requiredMessage = 'This field is required';
+            var requiredCheckboxMessage = 'Please tick the checkbox';
             var invalidEmailMessage = 'Invalid email address';
             var invalidNumberMessage = 'Enter 10 digit number';
 
@@ -142,15 +97,19 @@ var utils = (function() {
                 if (isRequired && !value) {
                     validationFlag = false;
                     $(this_field).parent('div').addClass('error');
-                    $(this_field).siblings('.error-box').text(requiredMessage);
+                    $(this_field).siblings('.' + config.errorMsgClass).text(requiredMessage);
+                } else if (isRequired && type == 'checkbox' && !$(this_field).is(":checked")) {
+                    validationFlag = false;
+                    $(this_field).parent('div').addClass('error');
+                    $(this_field).siblings('.' + config.errorMsgClass).text(requiredCheckboxMessage);
                 } else if (isRequired && type == 'email' && !validateEmail(value)) {
                     validationFlag = false;
                     $(this_field).parent('div').addClass('error');
-                    $(this_field).siblings('.error-box').text(invalidEmailMessage);
+                    $(this_field).siblings('.' + config.errorMsgClass).text(invalidEmailMessage);
                 } else if (isRequired && name == 'phone' && !validatePhone(value)) {
                     validationFlag = false;
                     $(this_field).parent('div').addClass('error');
-                    $(this_field).siblings('.error-box').text(invalidNumberMessage);
+                    $(this_field).siblings('.' + config.errorMsgClass).text(invalidNumberMessage);
                 }
 
             }
