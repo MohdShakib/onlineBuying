@@ -56,9 +56,9 @@ var BaseView = (function() {
             var htmlCode = '',
                 firstUniqueIdentifier;
 
-            htmlCode += '<div class="compare-back-button"><span class="icon icon-arrow_left"></span> Back</div>';
+            htmlCode += '<div class="title-text"><div class="compare-back-button"><span class="icon icon-arrow_left"></span></div>Compare Screen</div>';
 
-            htmlCode += '<div class="compare-container">';
+            htmlCode += '<div class="compare-container"><div class="drag-info">Please Drag &amp; Drop from the list into the box to compare</div>';
             for (var uniqueIdentifier in compareList) {
                 firstUniqueIdentifier = uniqueIdentifier;
                 var imageUrl = compareList[uniqueIdentifier].unitTypeData.unitImageUrl;
@@ -108,7 +108,7 @@ var BaseView = (function() {
                     $(this).removeClass('drag-over');
                     var unitUniqueIdentifier = $(this).find('img.compare-unit-img').data('uniqueidentifier');
                     if (unitUniqueIdentifier && $('#' + config.compareBottomBox + '-' + unitUniqueIdentifier)) {
-                        $('#' + config.compareBottomBox + '-' + unitUniqueIdentifier + ' p').removeClass('selected');
+                        $('#' + config.compareBottomBox + '-' + unitUniqueIdentifier + ' ').removeClass('selected');
                     }
                     var uniqueIdentifier = $(ui.draggable).data('uniqueidentifier');
                     _this.addToCompareBox(this, uniqueIdentifier);
@@ -122,24 +122,15 @@ var BaseView = (function() {
             item = compareList[uniqueIdentifier],
             imageUrl = item ? item.unitTypeData.unitImageUrl : undefined,
             htmlCode = '<div class="tower-unit-detail-container ' + config.unitDataContainer + '"></div>';
-            htmlCode += '<div class="compare-unit-box-detail top-right-component"><span>'+item.unitName+' Av</span>-<span>'+item.bedrooms+'</span>-<span>'+item.size+'</span>-<span>'+item.price+'</span>-<span>'+item.floor+'</span></div>';
-            htmlCode += '<div class="unit-view-tabs top-view top-right-component">'
-                            +'<div class="book-com-box">'
-                                /*+'<div class="like-box '+item.unitIdentifier+'-like-box selected" >'
-                                    +'<a >'
-                                        +'<span class="icon icon-fav"></span>'
-                                        +'<label class="like-count br50"></label>'
-                                    +'</a>'
-                                +'</div>'*/                                  
+            htmlCode += '<span class="icon fs14 icon-cross close-compare-box"></span><div class="compare-unit-box-detail top-right-component"><span>'+item.unitName+' Av</span> | <span>'+item.bedrooms+'</span> | <span>'+item.size+'</span> | <span>'+item.price+'</span> | <span>'+item.floor+'</span></div>';
+            htmlCode += '<div class="top-right-component">'
                                 +'<div class="book-now">'
-                                    +'<a >Book online now <span>Rs. '+item.bookingAmount+'/- (Refundable)</span></a>'
-                                +'</div>'
-                            +'</div>'
-                        +'</div>';
+                                  +'<a >Book now</a><span>Rs. '+item.bookingAmount+'/- (Refundable)</span>'
+                                +'</div>';
             htmlCode += '<div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container'+uniqueIdentifier+'" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'
                         +'<img data-uniqueIdentifier="'+item.unitUniqueIdentifier+'" class="compare-unit-img"  src="'+imageUrl+'"> </div>';
             
-            $('#'+config.compareBottomBox+'-'+uniqueIdentifier+' p').addClass('selected');
+            $('#'+config.compareBottomBox+'-'+uniqueIdentifier+' ').addClass('selected');
             
             $(compareBox).html(htmlCode);
             this.unit3dSvgContainer(uniqueIdentifier);

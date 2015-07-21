@@ -152,7 +152,7 @@ var UnitplaninfoView = (function() {
             $('#' + config.selectedUnitContainerId).off('click').on('click', '.like-box', function() {
                 _this._likeBoxClick.notify(this); //this refers to element
             });
-            $('#' + config.selectedUnitContainerId).off('click').on('click', '.book-now', function() {
+            $('#' + config.selectedUnitContainerId).on('click', '.book-now', function() {
                 _this._bookingClick.notify(this); //this refers to element
             });
         },
@@ -176,7 +176,7 @@ var UnitplaninfoView = (function() {
                 "<span class='address'>" + data.listingAddress + "</span> " +
                 "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
                 "- <span>" + data.size + " " + data.measure + "</span> " +
-                "- <span class='fright big-size'>Rs. " + utils.getReadablePrice(data.price) + "* </span><span class='total-amount fright'>Rs. 23.7 L</span></div>" +
+                "- <span class='fright big-size'><span class='icon icon-rupee fs20'></span> " + utils.getReadablePrice(data.price) + "* </span><span class='total-amount fright'><span class='icon icon-rupee'></span> 23.7 L</span></div>" +
                 "<div class='uit-header-menu'><div data-target='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'></div>Floor Plan</div>" +
                 "<div data-target='cp-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'></div>Cluster Plan</div>" +
                 "<div data-target='pb-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'></div>Price Breakup</div>" +
@@ -396,10 +396,10 @@ var UnitplaninfoView = (function() {
             for (var category in rootdata.specifications) {
                 if (rootdata.specifications.hasOwnProperty(category)) {
                     var items = rootdata.specifications[category];
-                    code += "<tr><td class='heading'>" + category + "</td></tr>";
+                    code += "<tr><td></td></tr><tr><td class='heading'>" + category + "</td></tr>";
                     if (typeof items == "object") {
                         for (var subCategory in items) {
-                            code += "<tr><td><strong>" + subCategory + ": </strong>" + items[subCategory] + "</td></tr>";
+                            code += "<tr><td>" + subCategory + ": " + items[subCategory] + "</td></tr>";
                         }
                     } else {
                         code += "<tr><td>" + items + "</td></tr>";
