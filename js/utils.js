@@ -14,25 +14,28 @@ var utils = (function() {
             var imageResolutionWidth = config.imageResolution.width;
             var imageResolutionUnit = config.imageResolution.unit || 'px';
 
-            var mainContainerElement = document.getElementById(config.mainContainerId);
+            var parentContainerElement = document.getElementById(config.parentContainerId);
+            var parentContainerWidth = window.innerWidth;
+
             var dynamicResizeElement = $('.' + config.dynamicResizeClass);
 
             if (containerWidth == null || containerWidth == 'undefined') {
                 containerWidth = window.innerWidth;
             }
             
-            var height = window.innerHeight;
-
             // For max height and width of containers
             var height = (window.innerHeight < imageResolutionHeight) ? window.innerHeight : imageResolutionHeight;
-            
             var width = imageResolutionWidth / imageResolutionHeight * height;
             var diff = (width - containerWidth) / -2;
+            var parentDiff = (width - window.innerWidth) / -2;
 
-            mainContainerElement.style.height = height + imageResolutionUnit;
+            parentContainerElement.style.width = (width > parentContainerWidth) ? (parentContainerWidth + imageResolutionUnit) : (width + imageResolutionUnit);
+            parentContainerElement.style.height = height + imageResolutionUnit;
+            parentContainerElement.style.left = (parentDiff > 0) ? (parentDiff + imageResolutionUnit) : 0;
+
             dynamicResizeElement.css('height', height + imageResolutionUnit);
             dynamicResizeElement.css('width', width + imageResolutionUnit);
-            dynamicResizeElement.css('left', diff + imageResolutionUnit);
+            dynamicResizeElement.css('left', (diff < 0) ? (diff + imageResolutionUnit) : 0);
         },
         getGroupInterval: function(n, interval) {
             var start = Math.floor(n / interval) * interval;

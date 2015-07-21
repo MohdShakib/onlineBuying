@@ -40,7 +40,8 @@ var config = (function(){
 			available: 'apt-available',
 			unavailable: 'apt-unavailable'
 		},
-		mainContainerId : "main-container",
+		parentContainerId: "parent-container",
+		mainContainerId: "main-container",
 		baseContainerId:  "base-container",
 		dynamicResizeClass: "dynamic-resize",
 		errorMsgClass: "error-msg",

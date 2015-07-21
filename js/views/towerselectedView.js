@@ -161,7 +161,8 @@ var TowerselectedView = (function() {
             var toolTipData = data && data.listings ? data.listings[index] : null;
             if (toolTipData) {
                 var svgpathClient = element.getBoundingClientRect();
-                this.showTowerUnitDetailContainer(toolTipData, (svgpathClient.right), (svgpathClient.top + svgpathClient.height / 2));
+                var diff = (window.innerWidth > config.imageResolution.width) ? (window.innerWidth - config.imageResolution.width)/2 : 0;
+                this.showTowerUnitDetailContainer(toolTipData, (svgpathClient.right - diff), (svgpathClient.top + svgpathClient.height / 2));
             }
         },
         towerUnitMouseLeaveEvent: function(element) {

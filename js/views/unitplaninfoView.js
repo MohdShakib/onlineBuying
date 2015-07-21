@@ -109,7 +109,7 @@ var UnitplaninfoView = (function() {
         dynamicResizeContainers: function() {
             var width = config.imageResolution.width / config.imageResolution.height * window.innerHeight,
                 selectedUnitContainerWidth = width * 0.6,
-                towerContainerWidth = window.innerWidth - selectedUnitContainerWidth,
+                towerContainerWidth = (window.innerWidth > config.imageResolution.width ? config.imageResolution.width : window.innerWidth) - selectedUnitContainerWidth,
                 imageResolutionUnit = config.imageResolution.unit;
             $('#' + config.selectedUnitContainerId).css('width', selectedUnitContainerWidth + imageResolutionUnit);
             $('#' + config.towerRotationContainerId).css('width', towerContainerWidth + imageResolutionUnit);

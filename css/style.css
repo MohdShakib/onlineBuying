@@ -213,6 +213,12 @@ body {
 }
 .no-paddind{ padding:0 !important;}
 .no-border{ border:0 !important;}
+.parent-container {
+	overflow: hidden;
+	position: relative;
+	max-width: 1365px;
+	max-height: 630px;
+}
 header {
 	position: absolute;
 	color: #CCC;
@@ -244,6 +250,7 @@ table td, table tr {
 
 .main-container {
 	width: 100%;
+	height: 100%;
 	overflow: hidden;
 	position: relative;
 }

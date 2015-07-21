@@ -196,7 +196,8 @@ var MasterplanView = (function() {
 
             if (towerData && svgpath) {
                 var svgpathClient = svgpath.getBoundingClientRect();
-                this.showTowerDetailContainer(towerData, (svgpathClient.left + svgpathClient.width / 2), svgpathClient.top);
+                var diff = (window.innerWidth > config.imageResolution.width) ? (window.innerWidth - config.imageResolution.width)/2 : 0;
+                this.showTowerDetailContainer(towerData, (svgpathClient.left - diff + svgpathClient.width / 2), svgpathClient.top);
             }
 
             var menuElement = $('#' + index + '-menu');
@@ -214,9 +215,7 @@ var MasterplanView = (function() {
             var removeClasses = config.menuItemHoverClass + ' ' + config.availabilityClass.available + ' ' + config.availabilityClass.unavailable;
             $('.' + config.leftPanelButtonClass).removeClass(removeClasses);
 
-            //setTimeout(function() {
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
-            //},1000);
         },
         showTowerDetailContainer: function(data, left, top) {
             if (!(data && data.unitInfo)) {
