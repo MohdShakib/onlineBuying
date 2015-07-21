@@ -30,8 +30,9 @@ var TowerselectedController = (function() {
                 _this._view.towerUnitMouseLeaveEvent(element);
             });
             this._view._towerUnitSvgClick.attach(function(sender, element) {
-                utils.changeUrl(element);
+                _this._model.setSelectedListing(element.dataset.index);
                 _this._view.towerUnitMouseClickEvent(element);
+                utils.changeUrl(element);
             });
 
             // Tower Rotation

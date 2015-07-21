@@ -24,7 +24,7 @@ var utils = (function() {
             var height = window.innerHeight;
 
             // For max height and width of containers
-            // var height = (window.innerHeight < imageResolutionHeight) ? window.innerHeight : imageResolutionHeight;
+            var height = (window.innerHeight < imageResolutionHeight) ? window.innerHeight : imageResolutionHeight;
             
             var width = imageResolutionWidth / imageResolutionHeight * height;
             var diff = (width - containerWidth) / -2;

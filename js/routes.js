@@ -36,6 +36,8 @@ var initializeRoutes = (function() {
                 towerselectedModel = new TowerselectedModel(rootdata.towers[towerName], rootdata, towerAngle);
                 towerselectedView = new TowerselectedView(towerselectedModel);
                 towerselectedController = new TowerselectedController(towerselectedModel, towerselectedView);
+            } else {
+                towerselectedModel.init();
             }
             towerselectedController.generateTemplate();
         }
