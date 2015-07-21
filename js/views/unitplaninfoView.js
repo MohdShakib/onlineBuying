@@ -127,18 +127,17 @@ var UnitplaninfoView = (function() {
             var offerDiv = '';
 
             if (data.discount) {
-                offerDiv = '<div class="special-offers">' + '<p><span class="icon icon-smiley"></span></p>' + '<p>' + data.discountDescription + ' Rs. ' + data.discount + '/</p>' + '</div>';
+                offerDiv = '<div class="special-offers">' + '<span></span>' + '<p>' + data.discountDescription + ' Rs. ' + data.discount + '/</p>' + '</div>';
             }
 
             var htmlCode = offerDiv,
                 selectedClass = data.shortListed ? 'selected' : '',
                 link = rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier + '/booking';
 
-            htmlCode += '<div class="book-com-box">';
             htmlCode += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
-            htmlCode += '<a><span class="icon icon-fav"></span><label class="like-count br50"></label></a></div>';
-            htmlCode += '<div class="book-now" data-url="' + link + '"><a>Book online now <span>Rs. ' + data.bookingAmount + '/- (Refundable)</span></a>';
-            htmlCode += '</div></div>';
+            htmlCode += '<a>Add to Compare</a></div>';
+            htmlCode += '<div class="book-now" data-url="' + link + '"><a>Book now</a><span>Rs. ' + data.bookingAmount + '/- (Refundable)</span>';
+            htmlCode += '</div>';
 
             this._elements.unitViewTabs.html(htmlCode);
             this.unitViewTabsEvents();
@@ -168,15 +167,15 @@ var UnitplaninfoView = (function() {
             });
         },
         unitMenuContainer: function(data, rotationdata, rootdata) {
-            var code = "<table><tr><td class='header-item header-title'> " +
+            var code = "<div class='unit-header'><div class='unit-header-container'><div class='header-item header-title'> " +
                 "<span class='address'>" + data.listingAddress + "</span> " +
                 "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
                 "- <span>" + data.size + " " + data.measure + "</span> " +
-                "- <span>Rs. " + utils.getReadablePrice(data.price) + "* </span></td>" +
-                "<td data-target='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'><span class='icon fs16 icon-unitplan'></span></div>Floor Plan</td>" +
-                "<td data-target='cp-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon fs16  icon-clusterplan'></span></div>Cluster Plan</td>" +
-                "<td data-target='pb-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon fs16 icon-rupee'></span></div>Price Breakup</td>" +
-                "<td data-target='sf-container' class='header-item " + config.unitMenuLinkClass + " right'><div class='item-icon-box'><span class='icon fs16 icon-specification'></span></div>Specification</td></tr></table>";
+                "- <span class='fright big-size'>Rs. " + utils.getReadablePrice(data.price) + "* </span><span class='total-amount fright'>Rs. 23.7 L</span></div>" +
+                "<div class='uit-header-menu'><div data-target='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'></div>Floor Plan</div>" +
+                "<div data-target='cp-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'></div>Cluster Plan</div>" +
+                "<div data-target='pb-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'></div>Price Breakup</div>" +
+                "<div data-target='sf-container' class='header-item " + config.unitMenuLinkClass + " right'><div class='item-icon-box'></div>Specification</div></div></div></div>";
             this._elements.unitMenuContainer.html(code);
             this.unitMenuContainerEvents();
         },
@@ -198,9 +197,9 @@ var UnitplaninfoView = (function() {
                 code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " eve-image' src='" + unitTypeData.eveningSunlightImageUrl + "'>"; ///zip-file/img/2bhk-type1-1105-1-eve.png
 
                 code += "<div class='sunlight-menu'>";
-                code += "<div data-target='mor-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-morning fs16'></span></div>";
-                code += "<div data-target='aft-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-afternoon fs16'></span></div>";
-                code += "<div data-target='eve-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-night fs16'></span></div></div>";
+                code += "<div data-target='mor-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-morning fs16'></span><label>Morning View</label></div>";
+                code += "<div data-target='aft-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-afternoon fs16'></span><label>Noon View</label></div>";
+                code += "<div data-target='eve-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-night fs16'></span><label>Evening View</label></div></div>";
             }
             this._elements.floorPlanContainer.html(code);
             this.floorPlanContainerEvents();
@@ -213,7 +212,7 @@ var UnitplaninfoView = (function() {
             });
         },
         floorPlanMenuContainer: function(data, rotationdata, rootdata) {
-            var code = "<table class='floor-plan-menu'><tr>";
+            var code = "<table class='floor-plan-menu' cellpadding='0' cellspacind='0' border='0'><tr>";
             code += "<td data-target='fp2d-container' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + "' id='floor-plan2d'>2D</td>";
             code += "<td data-target='fp-container' class='" + config.floorPlanMenuOptionClass + " " + config.selectedClass + " " + config.transitionClass + "' id='floor-plan'>3D</td>";
             code += "<td data-target='fpwt-container' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + " right' id='walkthrough'>Walkthrough</td>";
@@ -387,7 +386,7 @@ var UnitplaninfoView = (function() {
             });
         },
         specificationContainer: function(data, rotationdata, rootdata) {
-            var code = "<ul class='specification-tabs'>" + '<li class="active" data-type="specifications">Project Specification</li>' + '<li data-type="project-amenities">Project Amenities</li>' + '</ul>' + '<div class="unit-content-wrapper">' + '<div class="project-amenities ' + config.hideClass + ' specification-tabs-content" >' + '<ul>' + '<li>' + '<span class="icon  icon-gym"></span>' + '<label>Gymnaslum</label>' + '</li>' + '<li>' + '<span class="icon icon-swimming"></span>' + '<label>Swimming Pool</label>' + '</li>' + '<li>' + '<span class="icon icon-clubhouse"></span>' + '<label>Club House</label>' + '</li>' + '<li>' + '<span class="icon icon-intercom"></span>' + '<label>Intercom</label>' + '</li>' + '<li>' + '<span class="icon icon-security"></span>' + '<label>24 X 7 Security</label>' + '</li>' + '<li>' + '<span class="icon icon-powerbackup-1"></span>' + '<label>Power Backup</label>' + '</li>' + '<li>' + '<span class="icon icon-garden"></span>' + '<label>Landscaped Gardens</label>' + '</li>' + '<li>' + '<span class="icon icon-parking"></span>' + '<label>Ample Parking Space</label>' + '</li>' + '<li>' + '<span class="icon icon-playarea"></span>' + '<label>Children Play area</label>' + '</li>' + '<li>' + '<span class="icon icon-jogging"></span>' + '<label>Jogging Track</label>' + '</li>' + '<li>' + '<span class="icon icon-harvesting"></span>' + '<label>Rain Water Harvesting</label>' + '</li>' + '<li>' + '<span class="icon icon-cafe"></span>' + '<label>Cafeteria</label>' + '</li>' + '</ul>' + '<div class="clear-fix"></div>' + '</div>';
+            var code = "<ul class='specification-tabs'>" + '<li class="active" data-type="specifications">Specification</li>' + '<li data-type="project-amenities">Amenities</li>' + '</ul>' + '<div class="unit-content-wrapper">' + '<div class="project-amenities ' + config.hideClass + ' specification-tabs-content" >' + '<ul>' + '<li>' + '<span class="icon  icon-gym"></span>' + '<label>Gymnaslum</label>' + '</li>' + '<li>' + '<span class="icon icon-swimming"></span>' + '<label>Swimming Pool</label>' + '</li>' + '<li>' + '<span class="icon icon-clubhouse"></span>' + '<label>Club House</label>' + '</li>' + '<li>' + '<span class="icon icon-intercom"></span>' + '<label>Intercom</label>' + '</li>' + '<li>' + '<span class="icon icon-security"></span>' + '<label>24 X 7 Security</label>' + '</li>' + '<li>' + '<span class="icon icon-powerbackup-1"></span>' + '<label>Power Backup</label>' + '</li>' + '<li>' + '<span class="icon icon-garden"></span>' + '<label>Landscaped Gardens</label>' + '</li>' + '<li>' + '<span class="icon icon-parking"></span>' + '<label>Ample Parking Space</label>' + '</li>' + '<li>' + '<span class="icon icon-playarea"></span>' + '<label>Children Play area</label>' + '</li>' + '<li>' + '<span class="icon icon-jogging"></span>' + '<label>Jogging Track</label>' + '</li>' + '<li>' + '<span class="icon icon-harvesting"></span>' + '<label>Rain Water Harvesting</label>' + '</li>' + '<li>' + '<span class="icon icon-cafe"></span>' + '<label>Cafeteria</label>' + '</li>' + '</ul>' + '<div class="clear-fix"></div>' + '</div>';
             code += "<table class='base-table  specification-tabs-content specifications'>";
             for (var category in rootdata.specifications) {
                 if (rootdata.specifications.hasOwnProperty(category)) {
