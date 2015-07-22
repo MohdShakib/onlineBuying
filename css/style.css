@@ -745,7 +745,7 @@ ellipse.tower-unit-svg-selected-path {
 .book-now span{ display:block; padding:3px 5px; font-size:12px; font-weight:normal;}
 /*----compare box---*/
 .compare-container{ position:absolute; width:100%; left:0; top:50px; z-index:999999; padding-left:270px;}
-.com-pro-box{ width:94px; display:inline-block; margin:2px 3px; box-shadow:0 0 1px #D0D0D0; cursor: pointer; border-bottom:2px solid #252525;}
+.com-pro-box{ width:94px; display:inline-block; margin:2px 3px; box-shadow:0 0 1px #D0D0D0; cursor: pointer; border-bottom:2px solid #252525; cursor:pointer;}
 .com-pro-box:hover {opacity: 0.8}
 .com-pro-box p{ font-size:12px; padding:5px 10px; color:#616161; text-align:left;}
 .com-pro-box.selected{ border-color:#f18d18;}
@@ -775,7 +775,7 @@ ellipse.tower-unit-svg-selected-path {
 	-webkit-transition:all 0.5s ease-in-out;
 }
 .unit-close-container:hover {
-	color: #FFF;
+	background:#333;
 }
 
 /* Unit Menu */
@@ -1903,3 +1903,8 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .loading-bar span{ height:100%; width:50%; background:rgba(255,255,255,0.5); display:block;}
 .loading-persentage{ width:100%; font-size:18px; color:rgba(255,255,255,0.64);}
 /*-----loading screen css end here------*/
+/*---------page not found 404-----------*/
+.error-404{ background:#fff; text-align:center; position:fixed; top:0; left:0; height:100%; width:100%; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; padding-top:150px; z-index:999999;}
+.error-404 p{ font-size:60px; color:#333; text-shadow:2px 2px 1px rgba(0,0,0,0.5);}
+.error-404 p span{ display:inline-block; width:100%; margin:15px 0; font-size:16px; text-shadow:none;}
+.error-404 a{color: #fff;padding: 11px 20px;display: inline-block;font-size: 16px;text-transform: uppercase;font-weight: bold;font-weight: bold;background: #f18d18;border-radius: 3px;cursor: pointer;}
