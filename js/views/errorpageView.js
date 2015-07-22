@@ -43,9 +43,12 @@ var ErrorPageView = (function() {
             $('body').html(htmlCode);
             this._elements = getElements();
         },
-        errorPageViewContainer: function(){
+        errorPageViewContainer: function() {
             var htmlCode = '';
-            htmlCode = '<div style="font-size: xx-large; text-align:center;">404</div>';
+            htmlCode = '<div class="error-404">' +
+                '    <p>404 Error<span>The page you request is not found.</span></p>' +
+                '    <a href="#">Back to the Main View</a>' +
+                '</div>';
             this._elements.errorPageViewContainer.html(htmlCode);
         }
     };

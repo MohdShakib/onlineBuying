@@ -17,6 +17,7 @@ var ajaxUtils = (function() {
                 },
                 data: data,
                 success: function(response) {
+                    console.log(response);
                     if (response.statusCode == '2XX') {
                         if (success_callback == null) {
                             // default error callback handling
