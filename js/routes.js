@@ -12,13 +12,15 @@ var initializeRoutes = (function() {
             towerName: "([a-z0-9-]+)",
             towerAngle: "(0|180)",
             unitAddress: "([a-z0-9-]+)",
-            booking: "booking"
+            booking: "booking",
+            error: "404"
         };
 
         var projectRoute = routeRegex.sep + routeRegex.projectName + routeRegex.wordSep + routeRegex.projectId,
             towerRoute = projectRoute + routeRegex.sep + routeRegex.towerName,
             unitRoute = towerRoute + routeRegex.sep + routeRegex.towerAngle + routeRegex.sep + routeRegex.unitAddress,
-            bookingRoute = unitRoute + routeRegex.sep + routeRegex.booking;
+            bookingRoute = unitRoute + routeRegex.sep + routeRegex.booking,
+            errorRoute = routeRegex.sep + routeRegex.error;
 
         var routes = {},
             rootdata = {};
@@ -95,7 +97,7 @@ var initializeRoutes = (function() {
             }
         }
 
-        routes['/404'] = {
+        routes[errorRoute] = {
             on: function() {
                 errorPageView = new ErrorPageView();
                 errorPageController = new ErrorPageController(errorPageView);
@@ -106,6 +108,7 @@ var initializeRoutes = (function() {
         // instantiate the router
         router = Router(routes);
         router.configure({ // a global configuration setting.
+            strict: false,
             on: function(projectName, projectId) {
 
                 if (!baseController) {
@@ -143,7 +146,8 @@ var initializeRoutes = (function() {
                 }
 
                 if (!flag) {
-                    console.log('data not available for the url');
+                    //console.log('data not available for the url');
+                    router.setRoute(errorRoute);
                 }
 
                 return flag;

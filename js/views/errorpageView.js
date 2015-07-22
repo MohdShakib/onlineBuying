@@ -40,7 +40,7 @@ var ErrorPageView = (function() {
                     htmlCode += containerMap[containerList[key]];
                 }
             }
-            $('#'+config.mainContainerId).append(htmlCode);
+            $('body').html(htmlCode);
             this._elements = getElements();
         },
         errorPageViewContainer: function(){

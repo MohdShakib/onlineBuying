@@ -27,6 +27,10 @@ var config = (function(){
 			emailId: 'call-box-email',
 			phoneId: 'call-box-phone'
 		},
+		emailBox: {
+			nameId: 'email-box-name',
+			emailId: 'email-box-email'
+		},
 		
 		// Common
 		noPointerClass: 'no-pointer',

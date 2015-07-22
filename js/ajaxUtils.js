@@ -11,6 +11,10 @@ var ajaxUtils = (function() {
                 url: url,
                 async: async,
                 contentType: "application/json",
+                crossDomain: true,
+                headers: {
+                    'Access-Control-Allow-Origin': '*'
+                },
                 data: data,
                 success: function(response) {
                     if (response.statusCode == '2XX') {
@@ -54,6 +58,30 @@ var ajaxUtils = (function() {
             };
             this.ajax(url, params, 'POST', true, data);
         },
+        sendEmail: function(data) {
+            var req = {},
+                user = {},
+                emailDetails = {};
+            user.email = data.email;
+            emailDetails.mediumType = "Email";
+            emailDetails.subject = "this is subject";
+            emailDetails.body = "this is body";
+            emailDetails.from = "PropGuide <no-reply@proptiger.com>";
+            req.notificationType = 'default';
+            req.users = [user];
+            req.mediumDetails = [emailDetails];
+
+            console.log(req);
+
+            var url = 'https://beta.proptiger-ws.com/data/v1/entity/notification/sender?debug=true';
+            var params = {
+                success_callback: function() {
+                    console.log("Hurreeyyyyy");
+                }
+            };
+
+            this.ajax(url, params, 'POST', true, req);
+        },
         bookListing: function(data) {
             var req = {},
                 user = {},
@@ -74,13 +102,56 @@ var ajaxUtils = (function() {
 
             console.log(req);
 
-            var url = "https://www.proptiger.com/data/v1/transaction/coupon";
+            var url = "http://192.168.1.4:8080/data/v1/transaction/coupon";
             var params = {
                 success_callback: function() {
                     console.log("Hurreeyyyyy");
                 }
             };
-            this.ajax(url, params, 'POST', true, data);
+            //            this.ajax(url, params, 'POST', true, req);
+
+            function createCORSRequest(method, url) {
+                var xhr = new XMLHttpRequest();
+                if ("withCredentials" in xhr) {
+
+                    // Check if the XMLHttpRequest object has a "withCredentials" property.
+                    // "withCredentials" only exists on XMLHTTPRequest2 objects.
+                    xhr.open(method, url, true);
+
+                } else if (typeof XDomainRequest != "undefined") {
+
+                    // Otherwise, check if XDomainRequest.
+                    // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+                    xhr = new XDomainRequest();
+                    xhr.open(method, url);
+
+                } else {
+
+                    // Otherwise, CORS is not supported by the browser.
+                    xhr = null;
+
+                }
+                return xhr;
+            }
+
+            var xhr = createCORSRequest('POST', url);
+            if (!xhr) {
+                throw new Error('CORS not supported');
+            }
+            xhr.setRequestHeader(
+                'Content-Type', 'application/json');
+            xhr.setRequestHeader(
+                'Access-Control-Allow-Origin', '*');
+            xhr.onload = function() {
+                var responseText = xhr.responseText;
+                console.log(responseText);
+                // process the response.
+            };
+
+            xhr.onerror = function() {
+                console.log('There was an error!');
+            };
+            xhr.send();
         }
     }
 

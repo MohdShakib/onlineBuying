@@ -191,9 +191,9 @@ var BaseView = (function() {
 							+'<a href="#" class="transition active">We will Call</a>'
 						+'</div>'
                         +'<form id="call-box-form"  name="call-box-form" novalidate onSubmit="return false;"  >'
-                            +'<div class="form-input-box"><input class="text" id="call-box-email" name="email" placeholder="Enter email id*" type="email" required />'
+                            +'<div class="form-input-box"><input class="text" id="' + config.callBox.emailId + '" name="email" placeholder="Enter email id*" type="email" required />'
                             +'<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>'
-                            +'<div class="form-input-box"><input class="text" id="call-box-phone" name="phone" placeholder="Enter cell phone number*" type="text" minlength="10" maxlength="10" required />'
+                            +'<div class="form-input-box"><input class="text" id="' + config.callBox.phoneId + '" name="phone" placeholder="Enter cell phone number*" type="text" minlength="10" maxlength="10" required />'
                             +'<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>'
                             +'<div class="submit" id="call-box-submit-id">Submit <span  class="icon icon-arrow_right"></span>'
 								+'<input type="submit" id="call-box-submit-id" />'
@@ -218,9 +218,9 @@ var BaseView = (function() {
                             +'<a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Goggle+</a>'
                         +'</div>'
                         +'<form id="share-box-form" novalidate name="share-box-form" onSubmit="return false;"  >'
-                            +'<div class="form-input-box"><input class="text" placeholder="Enter name*" type="text" required />'
+                            +'<div class="form-input-box"><input class="text" id="' + config.emailBox.nameId + '" placeholder="Enter name*" type="text" required />'
     						+'<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>'
-                            +'<div class="form-input-box"><input class="text" placeholder="Enter email id*" type="email" required />'
+                            +'<div class="form-input-box"><input class="text" id="' + config.emailBox.emailId + '" placeholder="Enter email id*" type="email" required />'
                             +'<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>'
                             +'<div class="submit" id="share-box-submit-id"><input type="submit" />Submit <span  class="icon icon-arrow_right"></span></div>'
                         +'</form>'
@@ -317,6 +317,16 @@ var BaseView = (function() {
             if(!validationFlag){
                 return false;
             }
+
+            var name = $('#' + config.emailBox.nameId).val();
+            var email = $('#' + config.emailBox.emailId).val();
+
+            var data = {
+                'name': name,
+                'email': email,
+            }
+            
+            ajaxUtils.sendEmail(data);
         },
         formPopupCloseClicked: function() {
             $('.' + config.bottomFormGroup.tabLinkClass).removeClass('active');
