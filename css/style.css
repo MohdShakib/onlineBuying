@@ -733,18 +733,18 @@ ellipse.tower-unit-svg-selected-path {
 	color:#fff; fontx-size:15px;
 }
 .special-offers span{ position:absolute; right:0; top:0; height:100%;}
-.special-offers span:before{ content:''; position:absolute; border-top:0 solid rgba(0,0,0,0);border-bottom:12px solid rgba(0,0,0,0);border-left:10px solid #37b34a; left:0; top:0;}
-.special-offers span:after{ content:''; position:absolute; border-top:12px solid rgba(0,0,0,0);border-bottom:0 solid rgba(0,0,0,0);border-left:10px solid #37b34a; left:0; bottom:0;}
+.special-offers span:before{ content:''; position:absolute; border-top:0 solid rgba(0,0,0,0);border-bottom:15px solid rgba(0,0,0,0);border-left:15px solid #37b34a; left:0; top:0;}
+.special-offers span:after{ content:''; position:absolute; border-top:15px solid rgba(0,0,0,0);border-bottom:0 solid rgba(0,0,0,0);border-left:15px solid #37b34a; left:0; bottom:0;}
 .like-box{position:absolute; top:43px; right:15px; cursor: pointer;z-index:9999999;}
-.like-box a{ display:block; padding:2px 10px; width:100px; font-size:12px; border-radius:3px; border:1px solid #fff; background:#414141; text-align:center; color:#fff; position:relative; transition:all 0.3s ease-in-out; -moz-transition:all 0.3s ease-in-out; -webkit-transition:all 0.3s ease-in-out;}
-.like-box:hover a, .like-box.selected a{ background:#121212; color:#f18d18; border-color:#f18d18;}
+.like-box a{ display:block; padding:2px 10px; width:100px; font-size:12px; border-radius:3px; border:1px solid #fff; text-align:center; color:#fff; position:relative; transition:all 0.3s ease-in-out; -moz-transition:all 0.3s ease-in-out; -webkit-transition:all 0.3s ease-in-out;}
+.like-box:hover a{ opacity:0.6;}
 .book-now{ position:absolute; left:50%; width:182px; text-align:center; margin-left:-91px; bottom:20px;z-index:999999;}
 .book-now a{ color:#fff; padding:11px; display:inline-block; font-size:16px; text-transform:uppercase; font-weight:bold; width:160px; font-weight:bold; background:#f18d18; border-radius:3px; cursor:pointer;}
 .compare-units-container .book-now{ right:20px; left:inherit; margin:0; bottom:10px;}
 .book-now a:hover{ opacity:0.9;}
 .book-now span{ display:block; padding:3px 5px; font-size:12px; font-weight:normal;}
 /*----compare box---*/
-.compare-container{ position:absolute; width:100%; left:0; top:50px; text-align:center; z-index:999999;}
+.compare-container{ position:absolute; width:100%; left:0; top:50px; z-index:999999; padding-left:270px;}
 .com-pro-box{ width:94px; display:inline-block; margin:2px 3px; box-shadow:0 0 1px #D0D0D0; cursor: pointer; border-bottom:2px solid #252525;}
 .com-pro-box:hover {opacity: 0.8}
 .com-pro-box p{ font-size:12px; padding:5px 10px; color:#616161; text-align:left;}
@@ -755,7 +755,7 @@ ellipse.tower-unit-svg-selected-path {
 }
 .close-compare-box{ position:absolute; color:#616161; right:15px; top:15px; z-index:9999999; cursor:pointer;}
 .close-compare-box:hover{ opacity:0.8;}
-.drag-info{ position:absolute; width:180px; font-size:12px; color:#616161; left:20px; top:20px; text-align:left; font-weight:bold;}
+.drag-info{ position:absolute; width:200px; font-size:14px; color:#616161; left:50px; top:20px; text-align:left; font-weight:bold;}
 /* Unit Close */
 .unit-close-container {
 	height: 50px;
@@ -1009,21 +1009,23 @@ ellipse.tower-unit-svg-selected-path {
 .compare-back-button .icon{ top:6px;}
 .compare-units-container .compare-unit-box{
 	position:relative;
-	width:calc(50% - 30px);
+	width:calc(50% - 60px);
 	float:left;
-	margin:15px;
+	margin:15px 10px 15px 50px;
 	box-shadow:0 0 10px rgba(0,0,0,0.5);
-	height:465px;
+	height:380px;
 }
-.compare-unit-box .img-svg-container{
+.compare-unit-box .img-svg-container img{
 	position: relative;
-	max-height:100%;
+	max-height:380px;
+	
 }
 .compare-unit-box .img-svg-container.drag-drop{
-	padding: 20%;
+	padding:15% 20%;
 }
 .compare-units-container .compare-unit-box-right{
-	right: 0;
+	float:right;
+	margin:15px 50px 15px 10px;
 }
 .compare-units-container .compare-unit-img{
 	width: 100%;
@@ -1241,8 +1243,8 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .terms-condition{ margin:65px 0 10px  0; position:relative;}
 .terms-condition input{float:left; margin:5px 10px 0 0;}
 .terms-condition  label{font-size:13px; cursor:pointer; color:#252525;}
-.terms-condition  label a{ color:#ECA537; cursor:pointer;}
-.terms-condition  label a:hover{ text-decoration:underline;}
+.terms-condition  label a, .price-terms{ color:#ECA537; cursor:pointer;}
+.terms-condition  label a:hover, .price-terms:hover{ text-decoration:underline;}
 /*-------payment screen start here-------*/
 /*=================classes for animation added by jaswant singh=========================*/
 
@@ -1834,6 +1836,13 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
     to {
     	-moz-transform: translateX(-120px);
     }
+}
+@keyframes beat{
+    to { transform: scale(2); }
+}
+.added-to-copare{
+	animation: beat .25s once alternate;
+    transform-origin: center;
 }
 /* Standard syntax */
 @keyframes zoom {
