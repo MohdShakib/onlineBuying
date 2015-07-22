@@ -65,6 +65,9 @@ var utils = (function() {
             }
             return readablePrice;
         },
+        getReadablePriceInLacs: function(price) {
+            return Math.floor(price/10000)/10 + " Lacs";
+        },
         getIdentifier: function(string) {
             var identifier = '';
             if (string) {

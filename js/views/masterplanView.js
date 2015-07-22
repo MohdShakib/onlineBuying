@@ -12,7 +12,8 @@ var MasterplanView = (function() {
         'buildingSvgContainer': '<svg class="svg-container ' + config.dynamicResizeClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'buildingMenuContainer': '<div class="tower-menu-container" id="tower-menu-container"></div>',
         'towerDetailContainer': '<div class="tower-detail-container" id="tower-detail-container"></div>',
-        'amenitiesContainer': '<div class="amenities-container ' + config.dynamicResizeClass + '" id="amenities-container"></div>'
+        'amenitiesContainer': '<div class="amenities-container ' + config.dynamicResizeClass + '" id="amenities-container"></div>',
+        'cloudContainer': '<div class="cloud-container" id="cloud-container"></div>'
     };
 
     function getElements() {
@@ -21,7 +22,8 @@ var MasterplanView = (function() {
             'buildingSvgContainer': $('#svg-container'),
             'buildingMenuContainer': $('#tower-menu-container'),
             'towerDetailContainer': $('#tower-detail-container'),
-            'amenitiesContainer': $('#amenities-container')
+            'amenitiesContainer': $('#amenities-container'),
+            'cloudContainer': $('#cloud-container')
         };
         return elements;
     }
@@ -196,7 +198,7 @@ var MasterplanView = (function() {
 
             if (towerData && svgpath) {
                 var svgpathClient = svgpath.getBoundingClientRect();
-                var diff = (window.innerWidth > config.imageResolution.width) ? (window.innerWidth - config.imageResolution.width)/2 : 0;
+                var diff = (window.innerWidth > config.imageResolution.width) ? (window.innerWidth - config.imageResolution.width) / 2 : 0;
                 this.showTowerDetailContainer(towerData, (svgpathClient.left - diff + svgpathClient.width / 2), svgpathClient.top);
             }
 
@@ -328,6 +330,26 @@ var MasterplanView = (function() {
                 $("." + config.amenityPopupClass).remove();
             }, 1000);
             this.amenitiesContainerEvents();
+        },
+        cloudContainer: function(data) {
+            var code = '<div class="back-cloud"></div><div class="front-cloud"></div>';
+            this._elements.cloudContainer.html(code);
+            if (this._model.isFirstLoad()) {
+                $('.back-cloud').animate({
+                    right: '80%'
+                }, 6000);
+                $('.front-cloud').animate({
+                    left: '80%'
+                }, 6000);
+                this._model.toggleFirstLoad();
+            } else {
+                $('.back-cloud').css({
+                    right: '80%'
+                });
+                $('.front-cloud').css({
+                    left: '80%'
+                });
+            }
         }
     };
 

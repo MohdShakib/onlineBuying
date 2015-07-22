@@ -46,9 +46,11 @@ var initializeRoutes = (function() {
 
         routes[projectRoute] = {
             on: function(projectName, projectId) {
-                masterplanModel = new MasterplanModel(rootdata);
-                masterplanView = new MasterplanView(masterplanModel);
-                masterplanController = new MasterplanController(masterplanModel, masterplanView);
+                if (!masterplanModel) {
+                    masterplanModel = new MasterplanModel(rootdata);
+                    masterplanView = new MasterplanView(masterplanModel);
+                    masterplanController = new MasterplanController(masterplanModel, masterplanView);
+                }
                 masterplanController.generateTemplate();
                 // Add resize event listener
                 utils.addResizeEventListener(utils.defaultDynamicResizeContainers);
@@ -129,9 +131,9 @@ var initializeRoutes = (function() {
                 var projectIdentifier = utils.getIdentifier(rootdata.projectName);
                 utils.projectId = projectId;
 
-                if(projectIdentifier != projectName){
+                if (projectIdentifier != projectName) {
                     var hash = window.location.hash;
-                    hash = hash.replace(projectName,projectIdentifier);
+                    hash = hash.replace(projectName, projectIdentifier);
                     window.location.hash = hash;
                 }
 

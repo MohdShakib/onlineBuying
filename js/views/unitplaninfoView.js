@@ -16,7 +16,7 @@ var UnitplaninfoView = (function() {
         'walkthroughContainer': '<div class="walkthrough-container fpwt-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="walkthrough-container"></div>',
         'unit3dSvgContainer': '<div class="fp-container ' + config.unitDataContainer + '"><svg class="svg-container unit-svg-container" id="unit-3d-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
         'unit2dSvgContainer': '<div class="' + config.hideClass + ' fp2d-container ' + config.unitDataContainer + '"><svg class="svg-container unit-svg-container" id="unit-2d-svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg></div>',
-        'unitComponentDetailContainer': '<div class="tower-unit-detail-container fp-container ' + config.unitDataContainer + '" id="' + config.unitDetailContainerId + '"></div>',
+        'unitComponentDetailContainer': '<div class="tower-unit-detail-container fp-container fp2d-container ' + config.unitDataContainer + '" id="' + config.unitDetailContainerId + '"></div>',
         'clusterPlanContainer': '<div class="cluster-plan-container cp-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="cluster-plan-container"></div>',
         'priceBreakupContainer': '<div class="price-breakup-container pb-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="price-breakup-container"></div>',
         'specificationContainer': '<div class="specification-container sf-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="specification-container"></div>',
@@ -107,9 +107,10 @@ var UnitplaninfoView = (function() {
             utils.addSVGClassToElements(svgElements, config.hideClass);
         },
         dynamicResizeContainers: function() {
-            var width = config.imageResolution.width / config.imageResolution.height * window.innerHeight,
-                selectedUnitContainerWidth = width * 0.6,
-                towerContainerWidth = (window.innerWidth > config.imageResolution.width ? config.imageResolution.width : window.innerWidth) - selectedUnitContainerWidth,
+            var parentContainerHeight = (window.innerHeight > config.imageResolution.height ? config.imageResolution.height : window.innerHeight),
+                parentContainerWidth = config.imageResolution.width / config.imageResolution.height * parentContainerHeight,
+                selectedUnitContainerWidth = parentContainerWidth * 0.6,
+                towerContainerWidth = parentContainerWidth - selectedUnitContainerWidth,
                 imageResolutionUnit = config.imageResolution.unit;
             $('#' + config.selectedUnitContainerId).css('width', selectedUnitContainerWidth + imageResolutionUnit);
             $('#' + config.towerRotationContainerId).css('width', towerContainerWidth + imageResolutionUnit);
@@ -132,7 +133,7 @@ var UnitplaninfoView = (function() {
             var offerDiv = '';
 
             if (data.discount) {
-                offerDiv = '<div class="special-offers">' + '<span></span>' + '<p>' + data.discountDescription + ' Rs. ' + data.discount + '/</p>' + '</div>';
+                offerDiv = '<div class="special-offers">' + '<span></span>' + '<p>Save <strong><label class="icon fs14 icon-rupee"></label>' + utils.getReadablePrice(data.discount) + '</strong> ' + data.discountDescription + '</p>' + '</div>';
             }
 
             var htmlCode = offerDiv,
@@ -175,8 +176,10 @@ var UnitplaninfoView = (function() {
             var code = "<div class='unit-header'><div class='unit-header-container'><div class='header-item header-title'> " +
                 "<span class='address'>" + data.listingAddress + "</span> " +
                 "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
-                "- <span>" + data.size + " " + data.measure + "</span> " +
-                "- <span class='fright big-size'><span class='icon icon-rupee fs20'></span> " + utils.getReadablePrice(data.price) + "* </span><span class='total-amount fright'><span class='icon icon-rupee'></span> 23.7 L</span></div>" +
+                ", <span>" + data.size + " " + data.measure + "</span> " +
+                ", <span>Floor " + data.floor + "</span> " +
+                "<span class='fright big-size'><span class='icon icon-rupee fs20'></span> " + utils.getReadablePriceInLacs(data.price  - data.discount) + "* </span>" + 
+                "<span class='total-amount fright'><span class='icon icon-rupee'></span>" + utils.getReadablePriceInLacs(data.price) + "</span></div>" +
                 "<div class='uit-header-menu'><div data-target='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'></div>Floor Plan</div>" +
                 "<div data-target='cp-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'></div>Cluster Plan</div>" +
                 "<div data-target='pb-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'></div>Price Breakup</div>" +
@@ -261,7 +264,6 @@ var UnitplaninfoView = (function() {
             });
 
             this._elements.unit3dSvgContainer.off('mouseleave').on('mouseleave', 'polygon', function(event) {
-                $('#container-detail').remove();
                 //here this refers to element
                 _this._unitComponentMouseLeave.notify();
             });
@@ -274,7 +276,7 @@ var UnitplaninfoView = (function() {
             var svgCode = '';
             for (var i = 0; i < svgs_count; i++) {
                 var svgObj = svgData[i];
-                svgCode += "<polygon data-name='" + svgObj.name + "' data-type='" + svgObj.type + "' data-details='" + svgObj.details + "'   points=\"" + svgObj.svg2dPath + "\" />";
+                svgCode += "<polygon class='" + config.transitionClass + "' data-name='" + svgObj.name + "' data-type='" + svgObj.type + "' data-details='" + svgObj.details + "'   points=\"" + svgObj.svg2dPath + "\" />";
             }
 
             this._elements.unit2dSvgContainer.html(svgCode);
@@ -282,7 +284,7 @@ var UnitplaninfoView = (function() {
         },
         unit2dSvgContainerEvents: function() {
             var _this = this;
-            this._elements.unit2dSvgContainer.off('mouseenter').on('mouseenter', 'polygon', function(event) {
+            this._elements.unit2dSvgContainer.off('mousemove').on('mousemove', 'polygon', function(event) {
                 //here this refers to element
                 _this._unitComponentMouseEnter.notify({
                     element: this,

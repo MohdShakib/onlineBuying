@@ -8,6 +8,7 @@ var MasterplanModel = (function() {
 
     function MasterplanModel(data) {
         this._data = data;
+        this._firstLoad = true;
     }
 
     MasterplanModel.prototype = {
@@ -16,6 +17,12 @@ var MasterplanModel = (function() {
                 return {};
             }
             return this._data;
+        },
+        isFirstLoad: function() {
+            return this._firstLoad;
+        },
+        toggleFirstLoad: function() {
+            this._firstLoad = false;
         },
         updateData: function(data) {
             this._data = data;

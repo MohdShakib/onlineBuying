@@ -142,7 +142,7 @@ var getProjectData = (function() {
                     var identifier = utils.getIdentifier(item.name);
                     response[identifier] = item;
                 } else if (type != 'link' && item.type != 'link') {
-                    item.details = parseDetailsField(details);
+                    item.details = details; //parseDetailsField(details);
                     response.push(item);
                 }
 
@@ -327,7 +327,7 @@ var getProjectData = (function() {
             flatUnit.bookingStatusId = listing.bookingStatusId;
             flatUnit.facing = facingMap[listing.facingId];
             flatUnit.bookingAmount = listing.bookingAmount;
-            flatUnit.discount = listing.discount ? utils.getReadablePrice(listing.discount) : undefined;
+            flatUnit.discount = listing.discount ? listing.discount : undefined;
             flatUnit.discountDescription = listing.discountDescription;
 
             var propertyDetail = _getPropertyById(projectDetail.properties, listing.propertyId);

@@ -730,7 +730,7 @@ ellipse.tower-unit-svg-selected-path {
    bottom: -5px;
 }
 .special-offers p{
-	color:#fff; fontx-size:15px;
+	color:#fff; font-size:15px;
 }
 .special-offers span{ position:absolute; right:0; top:0; height:100%;}
 .special-offers span:before{ content:''; position:absolute; border-top:0 solid rgba(0,0,0,0);border-bottom:15px solid rgba(0,0,0,0);border-left:15px solid #37b34a; left:0; top:0;}
