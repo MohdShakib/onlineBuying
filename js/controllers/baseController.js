@@ -43,6 +43,10 @@ var BaseController = (function() {
                 utils.removeFromShortListed(data.unitIdentifier, data.unitUniqueIdentifier);
             });
 
+            // Booking Event
+            this._view._bookingClick.attach(function(sender, element) {
+                utils.changeUrl(element);
+            });
             
         },
         generateTemplate: function() {

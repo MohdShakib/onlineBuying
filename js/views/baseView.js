@@ -36,6 +36,8 @@ var BaseView = (function() {
         this._unitComponentMouseEnter = new Event(this);
         this._unitComponentMouseLeave = new Event(this);
         this._removeShortlistClick = new Event(this);
+        this._bookingClick = new Event(this);
+        this._closeClick = new Event(this);
     }
 
     BaseView.prototype = {
@@ -77,7 +79,10 @@ var BaseView = (function() {
 
             this._elements.compareUnitsContainer.html(htmlCode);
             if (compareList_length > 1) {
-                this.addToCompareBox($('.compare-unit-box')[0], firstUniqueIdentifier);
+                this.addToCompareBox($('.compare-unit-box')[0], Object.keys(compareList)[0]);
+            }
+            if (compareList_length == 2) {
+                this.addToCompareBox($('.compare-unit-box')[1], Object.keys(compareList)[1]);
             }
             this.compareUnitsContainerEvents();
         },
@@ -85,6 +90,10 @@ var BaseView = (function() {
             var _this = this;
             this._elements.compareUnitsContainer.off('click').on('click', '.' + config.compareBackButtonClass, function(event) {
                 _this._compareBackButtonClick.notify(this); //this refers to element here                
+            });
+
+            this._elements.compareUnitsContainer.on('click', '.book-now', function(event) {
+                _this._bookingClick.notify(this); //this refers to element here                
             });
 
             $('.' + config.compareBottomBox).draggable({
@@ -118,20 +127,18 @@ var BaseView = (function() {
         },
         addToCompareBox: function(compareBox, uniqueIdentifier) {
             var compareList = this._model.getCompareList(),
+                rootdata = this._model.getRootdata(),
+                item = compareList[uniqueIdentifier],
+                imageUrl = item ? item.unitTypeData.unitImageUrl : undefined,
+                link = rootdata.baseUrl + '/' + item.towerIdentifier + '/' + item.rotationAngle + '/' + item.unitIdentifier + '/booking',
+                htmlCode = '<div class="tower-unit-detail-container ' + config.unitDataContainer + '"></div>';
 
-            item = compareList[uniqueIdentifier],
-            imageUrl = item ? item.unitTypeData.unitImageUrl : undefined,
-            htmlCode = '<div class="tower-unit-detail-container ' + config.unitDataContainer + '"></div>';
-            htmlCode += '<span class="icon fs14 icon-cross close-compare-box"></span><div class="compare-unit-box-detail top-right-component"><span>'+item.unitName+' Av</span> | <span>'+item.bedrooms+'</span> | <span>'+item.size+'</span> | <span>'+item.price+'</span> | <span>'+item.floor+'</span></div>';
-            htmlCode += '<div class="top-right-component">'
-                                +'<div class="book-now">'
-                                  +'<a >Book now</a><span>Rs. '+item.bookingAmount+'/- (Refundable)</span>'
-                                +'</div>';
-            htmlCode += '<div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container'+uniqueIdentifier+'" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'
-                        +'<img data-uniqueIdentifier="'+item.unitUniqueIdentifier+'" class="compare-unit-img"  src="'+imageUrl+'"> </div>';
-            
-            $('#'+config.compareBottomBox+'-'+uniqueIdentifier+' ').addClass('selected');
-            
+            htmlCode += '<span class="icon fs14 icon-cross close-compare-box"></span><div class="compare-unit-box-detail top-right-component"><span>' + item.unitName + ' Av</span> | <span>' + item.bedrooms + '</span> | <span>' + item.size + '</span> | <span>' + item.price + '</span> | <span>' + item.floor + '</span></div>';
+            htmlCode += '<div class="top-right-component">' + '<div class="book-now" data-url="' + link + '">' + '<a>Book now</a><span>Rs. ' + item.bookingAmount + '/- (Refundable)</span>' + '</div>';
+            htmlCode += '<div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + uniqueIdentifier + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' + '<img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img"  src="' + imageUrl + '"> </div>';
+
+            $('#' + config.compareBottomBox + '-' + uniqueIdentifier + ' ').addClass('selected');
+
             $(compareBox).html(htmlCode);
             this.unit3dSvgContainer(uniqueIdentifier);
         },
@@ -179,80 +186,18 @@ var BaseView = (function() {
         },
         bottomFormGroupContainer: function() {
             var _this = this;
-            var htmlCode = '<div class="pro-contact-actions">'
-                +'<div class="form-pop-up transition">'
-					+'<span class="close-form icon icon-cross fs12"></span>'
-                    +'<div class="call-box">'
-                        +'<p>Get instant call back from our property advisor*<br>'
-                        +'Please provide your details'
-                        +'</p>'
-						//+'<div class="chat-tab-box">'
-							//+'<a href="#" class="transition">Start Chatting</a>'
-							//+'<a href="#" class="transition active">We will Call</a>'
-						//+'</div>'
-                        +'<form id="call-box-form"  name="call-box-form" novalidate onSubmit="return false;"  >'
-                            +'<div class="form-input-box"><input class="text" id="' + config.callBox.emailId + '" name="email" placeholder="enter email id*" type="email" required />'
-                            +'<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>'
-                            +'<div class="form-input-box"><input class="text" id="' + config.callBox.phoneId + '" name="phone*" placeholder="enter cell phone number*" type="text" minlength="10" maxlength="10" required />'
-                            +'<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>'
-                            +'<div class="submit" id="call-box-submit-id">Get Call Back <span  class="icon icon-arrow_right"></span>'
-								+'<input type="submit" id="call-box-submit-id" />'
-							+'</div>'
-                        +'</form>'
-                    +'</div>'
-                    +'<div class="compare-box">'
-                        +'<p>Shortlisted Units are listed below'
-                        +'</p>'
-                        +'<div class="unit-box fleft" id="'+config.shortListedUnitListId+'">'
-                        +'</div>'
-                        +'<div class="clear-fix"></div>'
-                        +'<div id="'+config.unitCompareButtonId+'" class="submit"><input type="submit" />Compare Floor Plans <span class="icon icon-arrow_right"></span></div>'
-                    +'</div>'
-                    +'<div class="share-box">'
-                        +'<p>Share details with family / friends via</br> Email / Facebook / Google+</p>'
-                        +'<div class="share-social">'
-                            +'<a href="javascript:void(0);" onclick="utils.socialClicked(\'facebook\')" ><span class="icon icon-facebook"></span>Facebook</a>'
-                            //+'<div class="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"></div>'
-                            +'<span>or</span>'
-                            //+'<div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>'
-                            +'<a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Goggle+</a>'
-                        +'</div>'
-                        +'<form id="share-box-form" novalidate name="share-box-form" onSubmit="return false;"  >'
-                            +'<div class="form-input-box"><input class="text" id="' + config.emailBox.nameId + '" placeholder="enter name*" type="text" required />'
-    						+'<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>'
-                            +'<div class="form-input-box"><input class="text" id="' + config.emailBox.emailId + '" placeholder="enter email id*" type="email" required />'
-                            +'<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>'
-                            +'<div class="submit" id="share-box-submit-id"><input type="submit" />Share <span  class="icon icon-arrow_right"></span></div>'
-                        +'</form>'
-                    +'</div>'
-                +'</div>'
-                +'<ul class="conect-tab">'
-                    +'<li>'
-                        +'<a href="javascript:void(0);"  data-name="call-box">'
-                        +'<p>Need Clarification?</br>'
-                        +'Get in touch'
-                        +'</p>'
-                        +'<span class="icon icon-phone"></span>'
-                        +'</a>'
-                    +'</li>'
-                    +'<li>'
-                        +'<a href="javascript:void(0);" data-name="compare-box">'
-                            +'<p>Compare among</br> shortlisted flats</p>'
-                            +'<span class="icon icon-heart">'
-                                +'<label class="like-count br50" id="'+config.likeCountId+'">0</label>'
-                            +'</span>'
-                        +'</a>'
-                    +'</li>'
-                    +'<li>'
-                        +'<a href="javascript:void(0);" data-name="share-box">'
-                            +'<p>Share with</br> friends'
-                                //+'<span>Sign In Now!</span>'
-                            +'</p>'
-                            +'<span class="icon icon-email"></span>'
-                        +'</a>'
-                    +'</li>'
-                +'</ul>'
-            +'</div>';
+            var htmlCode = '<div class="pro-contact-actions">' + '<div class="form-pop-up transition">' + '<span class="close-form icon icon-cross fs12"></span>' + '<div class="call-box">' + '<p>Get instant call back from our property advisor*<br>' + 'Please provide your details' + '</p>'
+                //+'<div class="chat-tab-box">'
+                //+'<a href="#" class="transition">Start Chatting</a>'
+                //+'<a href="#" class="transition active">We will Call</a>'
+                //+'</div>'
+                + '<form id="call-box-form"  name="call-box-form" novalidate onSubmit="return false;"  >' + '<div class="form-input-box"><input class="text" id="' + config.callBox.emailId + '" name="email" placeholder="enter email id*" type="email" required />' + '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' + '<div class="form-input-box"><input class="text" id="' + config.callBox.phoneId + '" name="phone*" placeholder="enter cell phone number*" type="text" minlength="10" maxlength="10" required />' + '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' + '<div class="submit" id="call-box-submit-id">Get Call Back <span  class="icon icon-arrow_right"></span>' + '<input type="submit" id="call-box-submit-id" />' + '</div>' + '</form>' + '</div>' + '<div class="compare-box">' + '<p>Shortlisted Units are listed below' + '</p>' + '<div class="unit-box fleft" id="' + config.shortListedUnitListId + '">' + '</div>' + '<div class="clear-fix"></div>' + '<div id="' + config.unitCompareButtonId + '" class="submit"><input type="submit" />Compare Floor Plans <span class="icon icon-arrow_right"></span></div>' + '</div>' + '<div class="share-box">' + '<p>Share details with family / friends via</br> Email / Facebook / Google+</p>' + '<div class="share-social">' + '<a href="javascript:void(0);" onclick="utils.socialClicked(\'facebook\')" ><span class="icon icon-facebook"></span>Facebook</a>'
+                //+'<div class="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"></div>'
+                + '<span>or</span>'
+                //+'<div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>'
+                + '<a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Goggle+</a>' + '</div>' + '<form id="share-box-form" novalidate name="share-box-form" onSubmit="return false;"  >' + '<div class="form-input-box"><input class="text" id="' + config.emailBox.nameId + '" placeholder="enter name*" type="text" required />' + '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' + '<div class="form-input-box"><input class="text" id="' + config.emailBox.emailId + '" placeholder="enter email id*" type="email" required />' + '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' + '<div class="submit" id="share-box-submit-id"><input type="submit" />Share <span  class="icon icon-arrow_right"></span></div>' + '</form>' + '</div>' + '</div>' + '<ul class="conect-tab">' + '<li>' + '<a href="javascript:void(0);"  data-name="call-box">' + '<p>Need Clarification?</br>' + 'Get in touch' + '</p>' + '<span class="icon icon-phone"></span>' + '</a>' + '</li>' + '<li>' + '<a href="javascript:void(0);" data-name="compare-box">' + '<p>Compare among</br> shortlisted flats</p>' + '<span class="icon icon-heart">' + '<label class="like-count br50" id="' + config.likeCountId + '">0</label>' + '</span>' + '</a>' + '</li>' + '<li>' + '<a href="javascript:void(0);" data-name="share-box">' + '<p>Share with</br> friends'
+                //+'<span>Sign In Now!</span>'
+                + '</p>' + '<span class="icon icon-email"></span>' + '</a>' + '</li>' + '</ul>' + '</div>';
 
             this._elements.bottomFormGroupContainer.html(htmlCode);
             utils.updateShortListedList();
@@ -297,7 +242,7 @@ var BaseView = (function() {
         },
         callBackFormSubmit: function(form) {
             var validationFlag = utils.validateForm(form);
-            if(!validationFlag){
+            if (!validationFlag) {
                 return false;
             }
 
@@ -309,12 +254,12 @@ var BaseView = (function() {
                 'email': email,
                 'projectId': utils.projectId
             }
-            
+
             ajaxUtils.submitLead(data);
         },
-        shareOnEmailSubmit: function(form){
+        shareOnEmailSubmit: function(form) {
             var validationFlag = utils.validateForm(form);
-            if(!validationFlag){
+            if (!validationFlag) {
                 return false;
             }
 
@@ -325,7 +270,7 @@ var BaseView = (function() {
                 'name': name,
                 'email': email,
             }
-            
+
             ajaxUtils.sendEmail(data);
         },
         formPopupCloseClicked: function() {

@@ -1898,7 +1898,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 /*Time to finalise the cloud shape*/
 .back-cloud {
 	width: 1366px; height: 745px;
-	background: url(../images/cloud_2.png) no-repeat;
+	background: url(../images/cloud-right.png) no-repeat;
 	top:0; right:400px;
 	position:absolute;
 	z-index:2;
@@ -1906,7 +1906,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .front-cloud {
 	width: 847px; height: 480px;
 	left:700px; top:0px;
-	background: url(../images/cloud.png) no-repeat;
+	background: url(../images/cloud-left.png) no-repeat;
 	position:absolute;
 	z-index:2;
 }
