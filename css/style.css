@@ -1001,7 +1001,7 @@ ellipse.tower-unit-svg-selected-path {
 	font-weight:bold;
 	padding:5px 10px 10px 10px;
 }
-.unit-content-wrapper .pricebreakup-tabs-content { padding-right: 150px}
+.unit-content-wrapper .pricebreakup-tabs-content.pricebreakup { padding-right: 150px}
 .sub-total-price{ border-top:1px solid #333; color:#252525; font-weight:bold;}
 .discount-price{ border-bottom:1px solid #333; color:#37b34a !important; font-weight:bold;}
 .total-price{color:#252525; font-weight:bold;}

@@ -407,7 +407,16 @@ var utils = (function() {
         },
         getPriceBreakupHtml: function(data, rotationdata, rootdata, showTnc) {
             var opCode = '';
-            var code = '<ul class="pricebreakup-tabs">' + '<li class="active"  data-type="pricebreakup">Price Breakup</li>' + '<li  data-type="paymentplan">Payment Plan</li>' + '</ul>' + '<div class="unit-content-wrapper">' + '<div class="payment-pic pricebreakup-tabs-content paymentplan ' + config.hideClass + '"><img src="images/walkthrough-cover.jpg" alt="" /></div>'
+            var code = '<ul class="pricebreakup-tabs">' + '<li class="active"  data-type="pricebreakup">Price Breakup</li>' + '<li  data-type="paymentplan">Payment Plan</li>' + '</ul>' + 
+                '<div class="unit-content-wrapper">' + 
+                '<div class="payment-pic pricebreakup-tabs-content paymentplan ' + config.hideClass + '">';
+            if(rootdata.paymentPlanImage) {
+                code += '<img src="' + rootdata.paymentPlanImage + '" />';
+            } else {
+                code += 'No payment plan available';
+            }
+                
+            code += '</div>';
             code += "<table class='base-table pricebreakup-tabs-content pricebreakup' cellpadding='0' cellspacing='0' border='0'>";
             if (data.price) {
                 code += "<tr><td>Base Price</td><td class='right-align'>" + data.basePrice + "</td></tr>";

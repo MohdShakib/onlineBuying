@@ -287,6 +287,13 @@ var getProjectData = (function() {
             projectData.projectAmeneties[projectAmenity.amenityMaster.abbreviation] = amenity;
         }
 
+        // Payment plan image
+        for(var i in projectDetail.images) {
+            if(projectDetail.images[i].imageType.type == 'paymentPlan') {
+                projectData.paymentPlanImage = projectDetail.images[i].absolutePath;
+            }
+        }
+
         var towersUnitInfo = {},
             towerIdentifier;
         for (i = 0; i < towers_length; i += 1) {
