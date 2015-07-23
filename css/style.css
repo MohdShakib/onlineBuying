@@ -726,7 +726,7 @@ ellipse.tower-unit-svg-selected-path {
 	background:#37b34a;
 	position:absolute;
 	left:-5px;
-	top:50px;
+	top:60px;
 	padding:5px 15px;
 	z-index:999999;
 }
@@ -745,7 +745,7 @@ ellipse.tower-unit-svg-selected-path {
 .special-offers span{ position:absolute; right:0; top:0; height:100%;}
 .special-offers span:before{ content:''; position:absolute; border-top:0 solid rgba(0,0,0,0);border-bottom:15px solid rgba(0,0,0,0);border-left:15px solid #37b34a; left:0; top:0;}
 .special-offers span:after{ content:''; position:absolute; border-top:15px solid rgba(0,0,0,0);border-bottom:0 solid rgba(0,0,0,0);border-left:15px solid #37b34a; left:0; bottom:0;}
-.like-box{position:absolute; top:50px; right:15px; cursor: pointer;z-index:9999999;}
+.like-box{position:absolute; top:60px; right:15px; cursor: pointer;z-index:9999999;}
 .like-box a{ display:block;position:relative; transition:all 0.3s ease-in-out; -moz-transition:all 0.3s ease-in-out; -webkit-transition:all 0.3s ease-in-out; color:#ccc; cursor:pointer;}
 .like-box a span{ position:relative;}
 .like-box a label{right:-2px; top:7px; cursor: pointer; height:13px; line-height:13px; text-align:center; border-radius:50%; background:#fff; border:1px solid #ccc; color:#ccc; cursor:pointer; position:absolute; font-size:12px; width:13px}
@@ -830,9 +830,10 @@ ellipse.tower-unit-svg-selected-path {
 	box-sizing:border-box;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
-	line-height:38px;
+	height:50px;
+	line-height:50px;
 }
-.uit-header-menu{width:40%; float:left; padding-left:1.9%; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; display:table;}
+.uit-header-menu{width:40%; height:50px; line-height:20px; float:left; padding-left:1.9%; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; display:table;}
 .total-amount{ padding-right:15px; opacity:0.5; text-decoration:line-through;}
 .unit-menu-container .header-title span {
 	display: inline;
@@ -878,7 +879,7 @@ ellipse.tower-unit-svg-selected-path {
 .floor-plan-container .sunlight-menu {
 	position: absolute;
 	background-color: #E7E7E7;
-	top: 90px;
+	top: 100px;
 	left: 15px;
 	border-radius: 30px;
 	padding: 2px;
@@ -911,7 +912,7 @@ ellipse.tower-unit-svg-selected-path {
 }
 .floor-plan-menu-container .floor-plan-menu {
 	position: absolute;
-	top: 50px;
+	top: 60px;
 	right: 55px;
 	background-color: #fff;
 	color: #333;
@@ -1009,7 +1010,7 @@ ellipse.tower-unit-svg-selected-path {
 .discount-price span{ font-weight:normal; color:#333;}
 .color-green{ color:#37b34a !important;}
 .tc-container .base-table{ padding:0 45px 0 165px;}
-.other-options{ color:#252525; font-weight:bold;}
+.other-options{text-transform:uppercase; font-size:10px; color:#666;}
 .tc-container .unit-content-wrapper{ position:static; top:inherit; bottom:inherit;}
 .compare-units-container {
 	position: absolute;
