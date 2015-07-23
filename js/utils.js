@@ -82,7 +82,7 @@ var utils = (function() {
             }
 
             function validatePhone(phoneNumber) {
-                var re = /^\d{10}$/;
+                var re = /^\d{5,15}$/;
                 return re.test(phoneNumber);
             }
 
@@ -90,9 +90,9 @@ var utils = (function() {
             var total_fields = fields.length;
 
             var requiredMessage = 'This field is required';
-            var requiredCheckboxMessage = 'Please tick the checkbox';
+            var requiredCheckboxMessage = 'Please read and agree to Terms & Conditions';
             var invalidEmailMessage = 'Invalid email address';
-            var invalidNumberMessage = 'Enter 10 digit number';
+            var invalidNumberMessage = 'Invalid phone number';
 
             var validationFlag = true;
             for (var i = 0; i < total_fields; i++) {
@@ -397,21 +397,36 @@ var utils = (function() {
             return '<a class="price-terms">Terms &amp; Conditions</a>';
         },
         getPriceBreakupHtml: function(data, rotationdata, rootdata, showTnc) {
+            var opCode = '';
             var code = '<ul class="pricebreakup-tabs">' + '<li class="active"  data-type="pricebreakup">Price Breakup</li>' + '<li  data-type="paymentplan">Payment Plan</li>' + '</ul>' + '<div class="unit-content-wrapper">' + '<div class="payment-pic pricebreakup-tabs-content paymentplan ' + config.hideClass + '"><img src="images/walkthrough-cover.jpg" alt="" /></div>'
             code += "<table class='base-table pricebreakup-tabs-content pricebreakup' cellpadding='0' cellspacing='0' border='0'>";
             if (data.price) {
-                code += "<tr><td width='50%'>Base Price</td><td width='50%'>Rs. " + data.basePrice + "</td></tr>";
+                code += "<tr><td>Base Price</td><td class='right-align'>" + data.basePrice + "</td></tr>";
 
                 var length = data.unitPricingSubcategories ? data.unitPricingSubcategories.length : 0,
                     pricingSubcategory, unitPricingSubcategory;
                 for (var i = 0; i < length; i++) {
                     unitPricingSubcategory = data.unitPricingSubcategories[i] || {};
                     pricingSubcategory = rootdata.pricingSubcategories[unitPricingSubcategory.id];
-                    if (pricingSubcategory) {
-                        code += "<tr><td>" + pricingSubcategory.name + " (" + pricingSubcategory.masterName + ")</td><td>Rs. " + unitPricingSubcategory.price + "</td></tr>";
+                    
+                    // Handling floor rise use case
+                    if (!pricingSubcategory) {
+                        var key = unitPricingSubcategory.id + '-' + data.towerId + '-' + data.floor;
+                        pricingSubcategory = rootdata.pricingSubcategories[key];
+                    }
+                    
+                    if (pricingSubcategory && pricingSubcategory.isMandatory) {
+                        code += "<tr><td>" + pricingSubcategory.name + " (" + pricingSubcategory.masterName + ")</td><td class='right-align'>" + unitPricingSubcategory.price + "</td></tr>";
+                    } else if (pricingSubcategory) {
+                        opCode += "<tr><td>" + pricingSubcategory.name + " (" + pricingSubcategory.masterName + ")</td><td class='right-align'>" + unitPricingSubcategory.price + "</td></tr>";
                     }
                 }
-                code += "<tr><td class='total-price'>Total</td><td class='total-price'>Rs. " + data.formattedPrice + "</td></tr>";
+                code += "<tr><td class='total-price'>Sub Total</td><td class='total-price right-align'>" + data.formattedPrice + "</td></tr>";
+                if (data.discount && data.discount > 0) {
+                    code += "<tr><td class='discount-price'>Discount (" + data.discountDescription + ")</td><td class='discount-price right-align'>" + utils.getReadablePrice(data.discount) + "</td></tr>";
+                    code += "<tr><td class='total-price'>Total Price</td><td class='total-price right-align'><span class='icon fs14 icon-rupee'></span> " + utils.getReadablePrice(data.price - data.discount) + "</td></tr>";
+                }
+                code += "<tr><td colspan=2>Other optional costs</td></tr>" + opCode;
                 if (showTnc) {
                     code += "<tr><td colspan='2'><div class='price-breakup-trems'>" + utils.getTermsConditionsHtml() + "</div></td></tr>";
                 }

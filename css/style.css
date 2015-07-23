@@ -276,6 +276,9 @@ table td, table tr {
 .right {
 	border-right: none !important;
 }
+.right-align {
+	text-align: right !important;
+}
 
 /* SVG */
 .svg-container {
@@ -965,7 +968,7 @@ ellipse.tower-unit-svg-selected-path {
 .specification-tabs li:after,.pricebreakup-tabs li:after{ content:''; position:absolute; border-top:4px solid rgba(0,0,0,0);border-bottom:4px solid rgba(0,0,0,0);border-right:5px solid #fff; top:50%; margin-top:-2px; right:-1px; z-index:1; display:none;}
 .specification-tabs li:hover, .pricebreakup-tabs li:hover, .specification-tabs li.active, .pricebreakup-tabs li.active{
 	color:#f18d18;
-	box-shadow:2px 0 0 #f18d18 inset;
+	box-shadow:3px 0 0 #f18d18 inset;
 }
 .specification-tabs li.active:before, .pricebreakup-tabs li.active:before,.specification-tabs li.active:after, .pricebreakup-tabs li.active:after{ display:block;}
 .base-table td {
@@ -982,6 +985,7 @@ ellipse.tower-unit-svg-selected-path {
 	font-weight:bold;
 	padding:5px 10px 10px 10px;
 }
+.unit-content-wrapper .pricebreakup-tabs-content { padding-right: 150px}
 .tc-container .base-table{ padding:0 45px 0 165px;}
 .tc-container .unit-content-wrapper{ position:static; top:inherit; bottom:inherit;}
 .compare-units-container {

@@ -142,7 +142,7 @@ var BookingView = (function() {
 				'                        <td width="50%">' +
                 '                            <div id="booking-pan" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">pan number</label>' +
-                '                                <input type="text" required />' +
+                '                                <input type="text" />' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
                 '                        </td>' +

@@ -322,6 +322,7 @@ var getProjectData = (function() {
             flatUnit.unitUniqueIdentifier = unitUniqueIdentifier(unitIdentifier, towerIdentifier);
             flatUnit.listingId = listing.id;
             flatUnit.towerIdentifier = towerIdentifier;
+            flatUnit.towerId = towerId;
             flatUnit.floor = listing.floor;
             flatUnit.isAvailable = (listing.bookingStatusId == 1 ? true : false); // available if bookingStatusId = 1
             flatUnit.bookingStatusId = listing.bookingStatusId;
@@ -380,14 +381,17 @@ var getProjectData = (function() {
         for (var k = 0; k < otherPricingDetailsLength; k++) {
             var pricingDetail = projectDetail.otherPricingDetails[k];
             var otherPricingSubcategory = pricingDetail.otherPricingSubcategory;
+            var key = otherPricingSubcategory.id;
+            if (pricingDetail.towerId && pricingDetail.floorNumber) {
+                key += "-" + pricingDetail.towerId + "-" + pricingDetail.floorNumber;
+            }
 
-            projectData.pricingSubcategories[otherPricingSubcategory.id] = {
+            projectData.pricingSubcategories[key] = {
                 id: otherPricingSubcategory.id,
                 name: otherPricingSubcategory.component,
                 masterName: otherPricingSubcategory.masterOtherPricingCategory.name,
                 type: pricingDetail.otherPricingValueType.type,
                 isMandatory: pricingDetail.mandatory
-
             };
         }
 

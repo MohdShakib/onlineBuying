@@ -107,8 +107,9 @@ var UnitplaninfoView = (function() {
             utils.addSVGClassToElements(svgElements, config.hideClass);
         },
         dynamicResizeContainers: function() {
-            var parentContainerHeight = (window.innerHeight > config.imageResolution.height ? config.imageResolution.height : window.innerHeight),
+            var parentContainerHeight = (window.innerHeight > config.imageResolution.height ? config.imageResolution.height : window.innerHeight), 
                 parentContainerWidth = config.imageResolution.width / config.imageResolution.height * parentContainerHeight,
+                parentContainerWidth = (parentContainerWidth > window.innerWidth ? window.innerWidth : parentContainerWidth),
                 selectedUnitContainerWidth = parentContainerWidth * 0.6,
                 towerContainerWidth = parentContainerWidth - selectedUnitContainerWidth,
                 imageResolutionUnit = config.imageResolution.unit;
