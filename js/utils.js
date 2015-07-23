@@ -435,7 +435,9 @@ var utils = (function() {
                     code += "<tr><td class='discount-price'>Discount <span>(" + data.discountDescription + ")</span> </td><td class='discount-price right-align'>" + utils.getReadablePrice(data.discount) + "</td></tr>";
                     code += "<tr><td class='total-price'>Total Price</td><td class='total-price right-align'><span class='icon fs14 icon-rupee'></span> " + utils.getReadablePrice(data.price - data.discount) + "</td></tr>";
                 }
-                code += "<tr><td colspan=2 class='other-options'>Other optional costs</td></tr>" + opCode;
+                if (opCode != '') {
+                    code += "<tr><td colspan=2 class='other-options'>Other optional costs</td></tr>" + opCode;
+                }
                 if (showTnc) {
                     code += "<tr><td colspan='2'><div class='price-breakup-trems'><a class='price-terms'>Terms &amp; Conditions</a></div></td></tr>";
                 }

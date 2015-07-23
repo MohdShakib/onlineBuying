@@ -275,6 +275,18 @@ var getProjectData = (function() {
         projectData.address = projectDetail.address;
         projectData.bgImage = zipImagePath + config.backgroundImage;
 
+        // Project Ameneties
+        projectData.projectAmeneties = {};
+        for (var i in projectDetail.projectAmenities) {
+            var projectAmenity = projectDetail.projectAmenities[i],
+                amenity = {};
+                amenity.displayName = projectAmenity.amenityDisplayName;
+                amenity.name = projectAmenity.amenityMaster.amenityName;
+                amenity.abbreviation = projectAmenity.amenityMaster.abbreviation;
+                amenity.isVerified = projectAmenity.verified;
+            projectData.projectAmeneties[projectAmenity.amenityMaster.abbreviation] = amenity;
+        }
+
         var towersUnitInfo = {},
             towerIdentifier;
         for (i = 0; i < towers_length; i += 1) {

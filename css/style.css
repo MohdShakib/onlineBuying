@@ -1214,7 +1214,7 @@ ellipse.tower-unit-svg-selected-path {
 /*----------project amenities start here-----------*/
 .project-amenities{ text-align:left; padding:5px 10px 20px 150px;}
 .project-amenities .icon{ width:55px; height:55px; font-size:28px; background:#fff; border-radius:2px; border:1px solid #dedede; color:#666; text-align:center; line-height:55px;}
-.project-amenities li{ float:left; width:55px; height:145px; margin:0 85px 0 40px;}
+.project-amenities li{ float:left; width:55px; height:130px; margin:0 69px 0 40px;}
 .project-amenities li.disable{ opacity:0.3;}
 .project-amenities li label{ color:#333; font-size:13px; display:block; margin-top:10px; text-align:center;}
 /*-------payment screen start here-------*/
