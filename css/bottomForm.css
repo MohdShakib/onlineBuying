@@ -34,9 +34,9 @@ a{ text-decoration:none;}
 .form-pop-up .submit span{ font-size:25px; position:absolute; right:13px;line-height:47px;}
 .form-pop-up .submit input{ border:none; outline:none; display:none;}
 .unit-box{ width:100%; margin-bottom:13px; min-height:147px;}
-.unit-box li{ font-size:12px; color:#c6c6c6; background:#616161; padding:10px; display:inline-block; width:40%; margin-right:6px; margin-bottom:5px; position:relative;}
+.unit-box li{ font-size:14px; color:#c6c6c6; background:#616161; padding:10px; display:inline-block; width:40%; margin-right:6px; margin-bottom:5px; position:relative;}
 .unit-box li:nth-child(even){ margin-right:0;}
-.unit-box li span{ position:absolute; width:12px; height:12px; background:#121212; text-align:center; font-size:9px; line-height:12px; color:#ccc; top:11px; right:5px; cursor:pointer; z-index:1; border-radius:50%;}
+.unit-box li span{ position:absolute; width:18px; height:18px; background:#121212; text-align:center; font-size:9px; border:1px solid #A2A2A2; line-height:18px; color:#ccc; top:8px; right:5px; cursor:pointer; z-index:1; border-radius:50%;}
 .unit-box p{ font-size:12px; color:#c6c6c6; padding-top:50px; text-align:center;}
 .share-social{ text-align:center; margin-bottom:12px;}
 .share-social a, .share-social span{ display:inline-block;}

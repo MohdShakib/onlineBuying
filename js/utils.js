@@ -326,7 +326,7 @@ var utils = (function() {
                 }
                 htmlCode += '</ul>';
             } else {
-                htmlCode += '<p>Nothing To Compare</p>';
+                htmlCode += '<p>Please shortlist atlist two properties to compare</p>';
             }
 
             $('#' + config.unitCompareButtonId).addClass('disable');
@@ -425,17 +425,17 @@ var utils = (function() {
                     }
                     
                     if (pricingSubcategory && pricingSubcategory.isMandatory) {
-                        code += "<tr><td>" + pricingSubcategory.name + " (" + pricingSubcategory.masterName + ")</td><td class='right-align'>" + unitPricingSubcategory.price + "</td></tr>";
+                        code += "<tr><td>" + pricingSubcategory.name + " <span>(" + pricingSubcategory.masterName + ")</span></td><td class='right-align'>" + unitPricingSubcategory.price + "</td></tr>";
                     } else if (pricingSubcategory) {
-                        opCode += "<tr><td>" + pricingSubcategory.name + " (" + pricingSubcategory.masterName + ")</td><td class='right-align'>" + unitPricingSubcategory.price + "</td></tr>";
+                        opCode += "<tr><td>" + pricingSubcategory.name + " <span>(" + pricingSubcategory.masterName + ")</span></td><td class='right-align'>" + unitPricingSubcategory.price + "</td></tr>";
                     }
                 }
-                code += "<tr><td class='total-price'>Sub Total</td><td class='total-price right-align'>" + data.formattedPrice + "</td></tr>";
+                code += "<tr><td class='sub-total-price'>Sub Total</td><td class='sub-total-price right-align'>" + data.formattedPrice + "</td></tr>";
                 if (data.discount && data.discount > 0) {
-                    code += "<tr><td class='discount-price'>Discount (" + data.discountDescription + ")</td><td class='discount-price right-align'>" + utils.getReadablePrice(data.discount) + "</td></tr>";
+                    code += "<tr><td class='discount-price'>Discount <span>(" + data.discountDescription + ")</span> </td><td class='discount-price right-align'>" + utils.getReadablePrice(data.discount) + "</td></tr>";
                     code += "<tr><td class='total-price'>Total Price</td><td class='total-price right-align'><span class='icon fs14 icon-rupee'></span> " + utils.getReadablePrice(data.price - data.discount) + "</td></tr>";
                 }
-                code += "<tr><td colspan=2>Other optional costs</td></tr>" + opCode;
+                code += "<tr><td colspan=2 class='other-options'>Other optional costs</td></tr>" + opCode;
                 if (showTnc) {
                     code += "<tr><td colspan='2'><div class='price-breakup-trems'><a class='price-terms'>Terms &amp; Conditions</a></div></td></tr>";
                 }
