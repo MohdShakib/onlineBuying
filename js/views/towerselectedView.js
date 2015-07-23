@@ -384,7 +384,7 @@ var TowerselectedView = (function() {
             this.updateFilterCount();
         },
         getBHKMenuOptions: function(data, bhkFiltersData) {
-            var code = "<div class='menu-item-options'><table>";
+            var code = "<div class='menu-item-options'><table><tr><td class='filter-title'>Bedrooms</td></tr>";
             var bhks = this.getBHKAvailability(data.listings);
             var sortedBhks = Object.keys(bhks).sort();
             for (var i in sortedBhks) {
@@ -400,9 +400,9 @@ var TowerselectedView = (function() {
                 if (bhkFiltersData && bhkFiltersData.length && bhkFiltersData.indexOf(checkForValue) > -1) {
                     availabilityClass += ' ' + config.filters.selectedClass;
                 }
-
+		
                 code += "<tr><td class='option-item " + config.filters.bhk + " " + availabilityClass + "' ";
-                code += "id='" + id + "' data-index='" + id + "' data-value='" + bhk + "'>" + bhk + " BHK</td></tr>";
+                code += "id='" + id + "' data-index='" + id + "' data-value='" + bhk + "'><span>" + bhk + " BHK</span></td></tr>";
             }
             code += "</table></div>";
             return code;
@@ -421,7 +421,7 @@ var TowerselectedView = (function() {
             return bhks;
         },
         getFloorMenuOptions: function(data, floorFiltersData) {
-            var code = "<div class='menu-item-options'><table>";
+            var code = "<div class='menu-item-options'><table><tr><td class='filter-title'>Floor</td></tr>";
             var floors = this.getFloorAvailability(data.listings);
             var sortedFloors = Object.keys(floors).sort();
             for (var i in sortedFloors) {
@@ -439,7 +439,7 @@ var TowerselectedView = (function() {
                 }
                 var readableFloorGrp = floors[floorGroup].sfloor + " - " + floors[floorGroup].efloor + " Floor";
                 code += "<tr><td class='option-item " + config.filters.floor + " " + availabilityClass + "' ";
-                code += "id='" + id + "' data-index='" + id + "' data-svalue='" + floors[floorGroup].sfloor + "' data-evalue='" + floors[floorGroup].efloor + "'>" + readableFloorGrp + "</td></tr>";
+                code += "id='" + id + "' data-index='" + id + "' data-svalue='" + floors[floorGroup].sfloor + "' data-evalue='" + floors[floorGroup].efloor + "'><span>" + readableFloorGrp + "</span></td></tr>";
             }
             code += "</table></div>";
             return code;
@@ -466,7 +466,7 @@ var TowerselectedView = (function() {
             return floors;
         },
         getEntranceMenuOptions: function(data, entranceFiltersData) {
-            var code = "<div class='menu-item-options'><table>";
+            var code = "<div class='menu-item-options'><table><tr><td class='filter-title'>Entrance</td></tr>";
             var entrances = this.getEntranceAvailability(data.listings);
             var sortedEntrances = Object.keys(entrances).sort();
             for (var i in sortedEntrances) {
@@ -484,7 +484,7 @@ var TowerselectedView = (function() {
                 }
 
                 code += "<tr><td class='option-item " + config.filters.entrance + " " + availabilityClass + "' ";
-                code += "id='" + id + "' data-index='" + id + "' data-value='" + entrance + "'>" + entrance + " Facing</td></tr>";
+                code += "id='" + id + "' data-index='" + id + "' data-value='" + entrance + "'><span>" + entrance + "</span></td></tr>";
             }
             code += "</table></div>";
             return code;
@@ -503,7 +503,7 @@ var TowerselectedView = (function() {
             return entrances;
         },
         getPriceMenuOptions: function(data, priceFiltersData) {
-            var code = "<div class='menu-item-options'><table>";
+            var code = "<div class='menu-item-options'><table><tr><td class='filter-title'>Budget</td></tr>";
             var prices = this.getPriceAvailability(data.listings);
             var sortedPrices = Object.keys(prices).sort();
             for (var i in sortedPrices) {
@@ -522,7 +522,7 @@ var TowerselectedView = (function() {
                 var denom = 100000;
                 var readablePriceGrp = Number(prices[price].sprice / denom) + ' - ' + Number(prices[price].eprice / denom) + ' Lacs';
                 code += "<tr><td class='option-item " + config.filters.price + " " + availabilityClass + "' ";
-                code += "id='" + id + "' data-index='" + id + "' data-svalue='" + prices[price].sprice + "' data-evalue='" + prices[price].eprice + "'>" + readablePriceGrp + "</td></tr>";
+                code += "id='" + id + "' data-index='" + id + "' data-svalue='" + prices[price].sprice + "' data-evalue='" + prices[price].eprice + "'><span>" + readablePriceGrp + "</span></td></tr>";
             }
             code += "</table></div>";
             return code;

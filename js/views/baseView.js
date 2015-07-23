@@ -181,7 +181,7 @@ var BaseView = (function() {
             var _this = this;
             var htmlCode = '<div class="pro-contact-actions">'
                 +'<div class="form-pop-up transition">'
-					+'<span class="close-form">x</span>'
+					+'<span class="close-form icon icon-cross fs12"></span>'
                     +'<div class="call-box">'
                         +'<p>Get instant call back from our property advisor*<br>'
                         +'Please provide your details'
