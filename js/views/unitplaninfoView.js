@@ -21,7 +21,8 @@ var UnitplaninfoView = (function() {
         'priceBreakupContainer': '<div class="price-breakup-container pb-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="price-breakup-container"></div>',
         'specificationContainer': '<div class="specification-container sf-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="specification-container"></div>',
         'amenitiesContainer': '<div class="amenities-container fp-container ' + config.unitDataContainer + '" id="amenities-container"></div>',
-        'unitViewTabs': '<div class="unit-view-tabs" id="unit-view-tabs">'
+        'unitViewTabs': '<div class="unit-view-tabs" id="unit-view-tabs"></div>',
+        'termsConditionPopup': '<div class="terms-condition-popup" id="terms-condition-popup" style="display:none;"></div>'
     };
 
     function getElements() {
@@ -39,7 +40,8 @@ var UnitplaninfoView = (function() {
             'priceBreakupContainer': $('#price-breakup-container'),
             'specificationContainer': $('#specification-container'),
             'amenitiesContainer': $('#amenities-container'),
-            'unitViewTabs': $('#unit-view-tabs')
+            'unitViewTabs': $('#unit-view-tabs'),
+            'termsConditionPopup': $('#terms-condition-popup')
         };
         return elements;
     }
@@ -392,6 +394,9 @@ var UnitplaninfoView = (function() {
                 $('.unit-content-wrapper  .pricebreakup-tabs-content').addClass(config.hideClass);
                 $('.unit-content-wrapper  .pricebreakup-tabs-content.' + type).removeClass(config.hideClass);
             });
+            this._elements.priceBreakupContainer.on('click', '.price-terms', function() {
+                $('#' + config.termsConditionPopupId).show();
+            });
         },
         specificationContainer: function(data, rotationdata, rootdata) {
             var code = "<ul class='specification-tabs'>" + '<li class="active" data-type="specifications">Specification</li>' + '<li data-type="project-amenities">Amenities</li>' + '</ul>' + '<div class="unit-content-wrapper">' + '<div class="project-amenities ' + config.hideClass + ' specification-tabs-content" >' + '<ul>' + '<li>' + '<span class="icon  icon-gym"></span>' + '<label>Gymnaslum</label>' + '</li>' + '<li>' + '<span class="icon icon-swimming"></span>' + '<label>Swimming Pool</label>' + '</li>' + '<li>' + '<span class="icon icon-clubhouse"></span>' + '<label>Club House</label>' + '</li>' + '<li>' + '<span class="icon icon-intercom"></span>' + '<label>Intercom</label>' + '</li>' + '<li>' + '<span class="icon icon-security"></span>' + '<label>24 X 7 Security</label>' + '</li>' + '<li>' + '<span class="icon icon-powerbackup-1"></span>' + '<label>Power Backup</label>' + '</li>' + '<li>' + '<span class="icon icon-garden"></span>' + '<label>Landscaped Gardens</label>' + '</li>' + '<li>' + '<span class="icon icon-parking"></span>' + '<label>Ample Parking Space</label>' + '</li>' + '<li>' + '<span class="icon icon-playarea"></span>' + '<label>Children Play area</label>' + '</li>' + '<li>' + '<span class="icon icon-jogging"></span>' + '<label>Jogging Track</label>' + '</li>' + '<li>' + '<span class="icon icon-harvesting"></span>' + '<label>Rain Water Harvesting</label>' + '</li>' + '<li>' + '<span class="icon icon-cafe"></span>' + '<label>Cafeteria</label>' + '</li>' + '</ul>' + '<div class="clear-fix"></div>' + '</div>';
@@ -444,6 +449,21 @@ var UnitplaninfoView = (function() {
             if (element) {
                 element.setAttribute('class', element.classList + " " + config.selectedClass);
             }
+        },
+        termsConditionPopup: function(data, rotationdata, rootdata) {
+            var code = '<div class="tc-container">' +
+                '<a class="close-payment"><span class="icon icon-cross fs24"></span></a>' +
+                utils.getTermsConditionsHtml() +
+                '</div>';
+            this._elements.termsConditionPopup.html(code);
+            this.termsConditionPopupEvents();
+        },
+        termsConditionPopupEvents: function() {
+            var _this = this;
+
+            _this._elements.termsConditionPopup.off('click').on('click', '.close-payment', function(event) {
+                $('#' + config.termsConditionPopupId).hide();
+            });
         }
     };
 

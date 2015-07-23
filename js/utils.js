@@ -394,7 +394,16 @@ var utils = (function() {
             return;
         },
         getTermsConditionsHtml: function() {
-            return '<a class="price-terms">Terms &amp; Conditions</a>';
+            return '<h3>Terms &amp; Conditions</h3>' +
+                '<p>All details provided about the project is based on information provided by Prestige Group to <a href="http://www.makaan.com/" target="_blank">makaan.com</a> . <a href="http://www.makaan.com/" target="_blank">Makaan.com</a> is not liable for the changes in facts post buying.</p>' +
+                '<p>Only Indian Residents, Non- Resident Indians (NRIs) &amp; Persons of Indian Origin (PIOs) eligible to enter into contract as per Indian Contract Act, 1881 shall be eligible to apply.</p>' +
+                '<p>Payment plan and Prices are subject to change at the sole discretion of the builder. Images displayed are for representational purpose only.Floor plan and the layout dimensions are subject to modification.</p>' +
+                '<p>The booking amount of Rs.20000/- paid by the user for booking is only a token advance and it does not confer ownership rights in the chosen property. The booking only ensures blocking of the property temporarily and should not be considered as buying or owning the property.</p>' +
+                '<p>The booking amount is refundable. For cancellation or refunding please contact <a href="http://www.makaan.com/" target="_blank">makaan.com</a> customer care.</p>' +
+                '<p>Any request for customisation or changes are to be handled directly with Prestige builders</p>' +
+                '<p>Post booking the builder can provide further information required for the completion of the purchase and further till possession of the property</p>' +
+                '<p>Please use the Booking ID in all further communication with builder and <a href="http://www.makaan.com/">makaan.com</a></p>' +
+                '<p>Offer prices provided are subject to the payment schedule mentioned in the project</p>';
         },
         getPriceBreakupHtml: function(data, rotationdata, rootdata, showTnc) {
             var opCode = '';
@@ -428,7 +437,7 @@ var utils = (function() {
                 }
                 code += "<tr><td colspan=2>Other optional costs</td></tr>" + opCode;
                 if (showTnc) {
-                    code += "<tr><td colspan='2'><div class='price-breakup-trems'>" + utils.getTermsConditionsHtml() + "</div></td></tr>";
+                    code += "<tr><td colspan='2'><div class='price-breakup-trems'><a class='price-terms'>Terms &amp; Conditions</a></div></td></tr>";
                 }
             } else {
                 code += "<tr><td colspan='2'><br/><br/><br/>No price details available.</td></tr>";

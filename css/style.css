@@ -1862,7 +1862,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 @-webkit-keyframes beat{
     to { -webkit-transform: scale(1.7); }
 }
-.terms-condition-popup{ background:rgba(0,0,0,0.7); position:fixed; top:0; left:0; width:100%; height:100%; z-index:999999;}
+.terms-condition-popup{ background:rgba(0,0,0,0.7); position:fixed; top:0; left:0; width:100%; height:100%; z-index:9999999;}
 .tc-container{ background:#fff; height:500px; position:absolute; padding:20px; width:640px; top:50%; left:50%; margin:-240px 0 0 -320px;; overflow:hidden; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;box-sizing:border-box;}
 .tc-container .close-payment{ color:#616161;}
 .tc-container p, .price-breakup-trems p{ font-size:14px; color:#494949; margin-bottom:10px;}
