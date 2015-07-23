@@ -90,7 +90,7 @@ var UnitplaninfoView = (function() {
                 }, 900);
                 $('#' + config.filterMenuContainerId).addClass(config.fadeOutClass);
                 $('#' + config.towerRotationContainerId).addClass(config.smallLeftArea);
-                
+
                 // to show unit icon selected on tower
                 utils.removeSVGClass(data.unitIdentifier + "-selected-path", config.hideClass);
             }
@@ -109,7 +109,7 @@ var UnitplaninfoView = (function() {
             utils.addSVGClassToElements(svgElements, config.hideClass);
         },
         dynamicResizeContainers: function() {
-            var parentContainerHeight = (window.innerHeight > config.imageResolution.height ? config.imageResolution.height : window.innerHeight), 
+            var parentContainerHeight = (window.innerHeight > config.imageResolution.height ? config.imageResolution.height : window.innerHeight),
                 parentContainerWidth = config.imageResolution.width / config.imageResolution.height * parentContainerHeight,
                 parentContainerWidth = (parentContainerWidth > window.innerWidth ? window.innerWidth : parentContainerWidth),
                 selectedUnitContainerWidth = parentContainerWidth * 0.6,
@@ -181,7 +181,7 @@ var UnitplaninfoView = (function() {
                 "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
                 ", <span>" + data.size + " " + data.measure + "</span> " +
                 ", <span>Floor " + data.floor + "</span> " +
-                "<span class='fright big-size'><span class='icon icon-rupee fs20'></span> " + utils.getReadablePriceInLacs(data.price  - data.discount) + "* </span>" + 
+                "<span class='fright big-size'><span class='icon icon-rupee fs20'></span> " + utils.getReadablePriceInLacs(data.price - data.discount) + "* </span>" +
                 "<span class='total-amount fright'><span class='icon icon-rupee'></span>" + utils.getReadablePriceInLacs(data.price) + "</span></div>" +
                 "<div class='uit-header-menu'><div data-target='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'></div>Floor Plan</div>" +
                 "<div data-target='cp-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'></div>Cluster Plan</div>" +
@@ -398,8 +398,35 @@ var UnitplaninfoView = (function() {
                 $('#' + config.termsConditionPopupId).show();
             });
         },
+        getAmenityClass: function(rootdata, key) {
+            var ameneties = Object.keys(rootdata.projectAmeneties);
+            if (ameneties.indexOf(key) > -1) {
+                return 'class="disable"';
+            } else {
+                return '';
+            }
+        },
         specificationContainer: function(data, rotationdata, rootdata) {
-            var code = "<ul class='specification-tabs'>" + '<li class="active" data-type="specifications">Specification</li>' + '<li data-type="project-amenities">Amenities</li>' + '</ul>' + '<div class="unit-content-wrapper">' + '<div class="project-amenities ' + config.hideClass + ' specification-tabs-content" >' + '<ul>' + '<li>' + '<span class="icon  icon-gym"></span>' + '<label>Gymnaslum</label>' + '</li>' + '<li>' + '<span class="icon icon-swimming"></span>' + '<label>Swimming Pool</label>' + '</li>' + '<li>' + '<span class="icon icon-clubhouse"></span>' + '<label>Club House</label>' + '</li>' + '<li>' + '<span class="icon icon-intercom"></span>' + '<label>Intercom</label>' + '</li>' + '<li>' + '<span class="icon icon-security"></span>' + '<label>24 X 7 Security</label>' + '</li>' + '<li>' + '<span class="icon icon-powerbackup-1"></span>' + '<label>Power Backup</label>' + '</li>' + '<li>' + '<span class="icon icon-garden"></span>' + '<label>Landscaped Gardens</label>' + '</li>' + '<li>' + '<span class="icon icon-parking"></span>' + '<label>Ample Parking Space</label>' + '</li>' + '<li>' + '<span class="icon icon-playarea"></span>' + '<label>Children Play area</label>' + '</li>' + '<li>' + '<span class="icon icon-jogging"></span>' + '<label>Jogging Track</label>' + '</li>' + '<li>' + '<span class="icon icon-harvesting"></span>' + '<label>Rain Water Harvesting</label>' + '</li>' + '<li>' + '<span class="icon icon-cafe"></span>' + '<label>Cafeteria</label>' + '</li>' + '</ul>' + '<div class="clear-fix"></div>' + '</div>';
+            var code = '<ul class="specification-tabs">' +
+                '<li class="active" data-type="specifications">Specification</li>' +
+                '<li data-type="project-amenities">Amenities</li>' +
+                '</ul><div class="unit-content-wrapper">' +
+                '<div class="project-amenities ' + config.hideClass + ' specification-tabs-content" >' +
+                '<ul>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Gym') + '><span class="icon icon-gym"></span><label>Gymnasium</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Swi') + '><span class="icon icon-swimming"></span><label>Swimming Pool</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Clu') + '><span class="icon icon-clubhouse"></span><label>Club House</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Int') + '><span class="icon icon-intercom"></span><label>Intercom</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Sec') + '><span class="icon icon-security"></span><label>24 X 7 Security</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Pow') + '><span class="icon icon-powerbackup-1"></span><label>Power Backup</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Lan') + '><span class="icon icon-garden"></span><label>Landscaped Gardens</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Car') + '><span class="icon icon-parking"></span><label>Ample Parking Space</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Chi') + '><span class="icon icon-playarea"></span><label>Children Play area</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Jog') + '><span class="icon icon-jogging"></span><label>Jogging Track</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Rai') + '><span class="icon icon-harvesting"></span><label>Rain Water Harvesting</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Caf') + '><span class="icon icon-cafe"></span><label>Cafeteria</label></li>' +
+                '</ul>' +
+                '<div class="clear-fix"></div></div>';
             code += "<table class='base-table  specification-tabs-content specifications'>";
             for (var category in rootdata.specifications) {
                 if (rootdata.specifications.hasOwnProperty(category)) {
