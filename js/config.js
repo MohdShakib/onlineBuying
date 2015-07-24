@@ -62,6 +62,7 @@ var config = (function(){
 		likeCountId: 'like-count',
 		shortlistedUnitRemoveClass: 'remove-shortlist',
 		smallLeftArea: 'small-left',
+		beepEffectClass:'heart-beep-effect',
 
 		// Masterplan
 		imgContainerClass : "menu-mapped-image",
@@ -109,6 +110,7 @@ var config = (function(){
 		sunlightMenuOptionClass: 'sunlight-menu-option',
 		floorPlanMenuOptionClass: 'floor-plan-menu-option',
 		unitSlideInClass: 'unit-slide-in',
+		blinkElementClass: 'blink',
 
 		// Booking
 		termsConditionPopupId: 'terms-condition-popup',

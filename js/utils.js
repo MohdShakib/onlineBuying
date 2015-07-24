@@ -324,7 +324,7 @@ var utils = (function() {
                 htmlCode = '<ul>';
 
                 for (var uniqueIdentifier in comparedItems) {
-                    htmlCode += '<li >' + comparedItems[uniqueIdentifier].unitName + '<span class="' + config.shortlistedUnitRemoveClass + '" data-unitidentifier="' + comparedItems[uniqueIdentifier].unitIdentifier + '" data-uniqueidentifier="' + uniqueIdentifier + '">x</span></li>';
+                    htmlCode += '<li >' + comparedItems[uniqueIdentifier].unitName + '<span class="icon icon-cross fs14' + config.shortlistedUnitRemoveClass + '" data-unitidentifier="' + comparedItems[uniqueIdentifier].unitIdentifier + '" data-uniqueidentifier="' + uniqueIdentifier + '"></span></li>';
                 }
                 htmlCode += '</ul>';
             } else {
@@ -338,6 +338,10 @@ var utils = (function() {
 
             $('#' + config.shortListedUnitListId).html(htmlCode);
             $('#' + config.likeCountId).html(length);
+			$('.' + config.blinkElementClass).addClass(config.beepEffectClass);
+			setTimeout(function(){
+				$('.' + config.blinkElementClass).removeClass(config.beepEffectClass);
+			}, 500);
         },
         addSVGClass: function(id, newClass) {
             var originalClasses = document.getElementById(id).getAttribute('class');

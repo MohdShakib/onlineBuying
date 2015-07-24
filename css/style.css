@@ -861,6 +861,7 @@ ellipse.tower-unit-svg-selected-path {
   	z-index: 9999999;
 	background:#323232;
 	left:0; top:0;
+	border-bottom:2px solid #ccc;
 }
 .unit-menu-container table {
 	width: 100%;
@@ -963,8 +964,8 @@ ellipse.tower-unit-svg-selected-path {
 	position:relative;
 	overflow:hidden;
 }
-.floor-plan-container .sunlight-menu .sunlight-menu-option label{ font-size:12px; color:#333; text-shadow:1px 1px 0 #D2D2D2; position:absolute; right:-70px; width:100px; top:auto; opacity:0; transition:all 0.5s ease-in-out;-moz-transition:all 0.5s ease-in-out;-webkit-transition:all 0.5s ease-in-out; text-align:left; cursor:pointer;}
-.floor-plan-container .sunlight-menu .sunlight-menu-option:hover label{ opacity:1; right:-110px;}
+.floor-plan-container .sunlight-menu .sunlight-menu-option label{ font-size:12px; color:#333; text-shadow:1px 1px 0 #D2D2D2; position:absolute; right:-150px; visibility:hidden; top:auto; opacity:0; transition:all 0.5s ease-in-out;-moz-transition:all 0.5s ease-in-out;-webkit-transition:all 0.5s ease-in-out; text-align:left; cursor:pointer;}
+.floor-plan-container .sunlight-menu .sunlight-menu-option:hover label{ width:100px; opacity:1; right:-110px; visibility: visible;}
 .floor-plan-container .sunlight-menu .sunlight-menu-option:hover, 
 .floor-plan-container .sunlight-menu .sunlight-menu-option.selected {
 	background-color: #fff;
@@ -1282,7 +1283,7 @@ ellipse.tower-unit-svg-selected-path {
 /*----------project amenities start here-----------*/
 .project-amenities{ text-align:left; padding:5px 10px 20px 150px;}
 .project-amenities .icon{ width:55px; height:55px; font-size:28px; background:#fff; border-radius:2px; border:1px solid #dedede; color:#666; text-align:center; line-height:55px;}
-.project-amenities li{ float:left; width:55px; height:130px; margin:0 69px 0 40px;}
+.project-amenities li{ float:left; width:85px; height:120px; margin:0 25px 0 40px; text-align:center;}
 .project-amenities li.disable{ opacity:0.3;}
 .project-amenities li label{ color:#333; font-size:13px; display:block; margin-top:10px; text-align:center;}
 /*-------payment screen start here-------*/
@@ -1938,6 +1939,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 @keyframes zoom {
    to {
         transform: translateX(-120px);
+		
    }
 }
 .heart-beep-effect{
@@ -1949,13 +1951,13 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 	-webkit-transform-origin: center;
 }
 @keyframes beat{
-    to { transform: scale(1.7); }
+    to { transform: scale(1.7); color:#f18d18;}
 }
 @-moz-keyframes beat{
-    to { -moz-transform: scale(1.7); }
+    to { -moz-transform: scale(1.7);color:#f18d18; }
 }
 @-webkit-keyframes beat{
-    to { -webkit-transform: scale(1.7); }
+    to { -webkit-transform: scale(1.7); color:#f18d18;}
 }
 .terms-condition-popup{ background:rgba(0,0,0,0.7); position:fixed; top:0; left:0; width:100%; height:100%; z-index:9999999;}
 .tc-container{ background:#fff; height:500px; position:absolute; padding:20px; width:640px; top:50%; left:50%; margin:-240px 0 0 -320px;; overflow:hidden; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;box-sizing:border-box;}
@@ -1967,17 +1969,31 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 
 /*-----------cloud animation------------*/
 /*Time to finalise the cloud shape*/
-.back-cloud {
-	width: 1366px; height: 745px;
-	background: url(../images/cloud-right.png) no-repeat;
-	top:0; right:400px;
+.top-left-cloud {
+	width: 847px; height: 469px;
+	background: url(../images/top-left.png) no-repeat;
+	bottom:-50px; right:469px;
 	position:absolute;
 	z-index:2;
 }
-.front-cloud {
-	width: 847px; height: 480px;
-	left:700px; top:0px;
-	background: url(../images/cloud-left.png) no-repeat;
+.top-right-cloud {
+	width: 847px; height: 453px;
+	left:700px; bottom:-50px;
+	background: url(../images/top-right.png) no-repeat;
+	position:absolute;
+	z-index:2;
+}
+.bottom-left-cloud {
+	width: 701px; height: 434px;
+	left:400px; top:-50px;
+	background: url(../images/bottom-left.png) no-repeat;
+	position:absolute;
+	z-index:2;
+}
+.bottom-right-cloud {
+	width: 847px; height: 520px;
+	right:300px; top:-50px;
+	background: url(../images/bottom-right.png) no-repeat;
 	position:absolute;
 	z-index:2;
 }
@@ -2012,7 +2028,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .error-404 p{ font-size:60px; color:#333; text-shadow:2px 2px 1px rgba(0,0,0,0.5);}
 .error-404 p span{ display:inline-block; width:100%; margin:15px 0; font-size:16px; text-shadow:none;}
 .error-404 a{color: #fff;padding: 11px 20px;display: inline-block;font-size: 16px;text-transform: uppercase;font-weight: bold;font-weight: bold;background: #f18d18;border-radius: 3px;cursor: pointer;}
-.offer-box{ position:fixed; right:0px; bottom:40px; background:rgba(255,255,255,0.96); border:1px solid #E8E8E8; z-index:999999;}
+.offer-box{ position:fixed; right:0px; bottom:40px; background:rgba(255,255,255,0.96); border:1px solid #E8E8E8; z-index:999999; display:none;}
 .offer-box a{ display:block; padding:10px 20px; overflow:hidden;}
 .offer-box a p{font-size:13px; color:#333; padding-left:15px; padding-top:8px;}
 .offer-box a p span{ color:#f18d18; display:block;}

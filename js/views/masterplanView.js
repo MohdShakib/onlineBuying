@@ -332,22 +332,34 @@ var MasterplanView = (function() {
             this.amenitiesContainerEvents();
         },
         cloudContainer: function(data) {
-            var code = '<div class="back-cloud"></div><div class="front-cloud"></div>';
+            var code = '<div class="top-left-cloud"></div><div class="top-right-cloud"></div><div class="bottom-left-cloud"></div><div class="bottom-right-cloud"></div>';
             this._elements.cloudContainer.html(code);
             if (this._model.isFirstLoad()) {
-                $('.back-cloud').animate({
+                $('.top-left-cloud').animate({
                     right: '80%'
-                }, 6000);
-                $('.front-cloud').animate({
+                }, 8000);
+                $('.top-right-cloud').animate({
+                    left: '85%'
+                }, 7000);
+				$('.bottom-left-cloud').animate({
                     left: '80%'
-                }, 6000);
+                }, 8000);
+                $('.bottom-right-cloud').animate({
+                    right: '90%'
+                }, 7000);
                 this._model.toggleFirstLoad();
             } else {
-                $('.back-cloud').css({
-                    right: '80%'
+                $('.top-left-cloud').css({
+                    right: '85%'
                 });
-                $('.front-cloud').css({
+                $('.top-right-cloud').css({
                     left: '80%'
+                });
+				$('.bottom-left-cloud').css({
+                    left: '90%'
+                });
+                $('.bottom-right-cloud').css({
+                    right: '85%'
                 });
             }
         }

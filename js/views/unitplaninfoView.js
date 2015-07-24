@@ -408,10 +408,10 @@ var UnitplaninfoView = (function() {
         },
         specificationContainer: function(data, rotationdata, rootdata) {
             var code = '<ul class="specification-tabs">' +
-                '<li class="active" data-type="specifications">Specification</li>' +
-                '<li data-type="project-amenities">Amenities</li>' +
+				'<li class="active" data-type="project-amenities">Amenities</li>' +
+                '<li data-type="specifications">Specification</li>' +
                 '</ul><div class="unit-content-wrapper">' +
-                '<div class="project-amenities ' + config.hideClass + ' specification-tabs-content" >' +
+                '<div class="project-amenities specification-tabs-content" >' +
                 '<ul>' +
                 '<li ' + this.getAmenityClass(rootdata, 'Gym') + '><span class="icon icon-gym"></span><label>Gymnasium</label></li>' +
                 '<li ' + this.getAmenityClass(rootdata, 'Swi') + '><span class="icon icon-swimming"></span><label>Swimming Pool</label></li>' +
@@ -427,7 +427,7 @@ var UnitplaninfoView = (function() {
                 '<li ' + this.getAmenityClass(rootdata, 'Caf') + '><span class="icon icon-cafe"></span><label>Cafeteria</label></li>' +
                 '</ul>' +
                 '<div class="clear-fix"></div></div>';
-            code += "<table class='base-table  specification-tabs-content specifications'>";
+            code += "<table class='base-table "+ config.hideClass +" specification-tabs-content specifications'>";
             for (var category in rootdata.specifications) {
                 if (rootdata.specifications.hasOwnProperty(category)) {
                     var items = rootdata.specifications[category];
