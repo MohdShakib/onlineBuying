@@ -181,12 +181,12 @@ var UnitplaninfoView = (function() {
                 "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
                 ", <span>" + data.size + " " + data.measure + "</span> " +
                 ", <span>Floor " + data.floor + "</span> " +
-                "<span class='fright big-size'><span class='icon icon-rupee fs18'></span> " + utils.getReadablePriceInLacs(data.price  - data.discount) + "* </span>" + 
+                "<span class='fright big-size'><span class='icon icon-rupee fs16'></span> " + utils.getReadablePriceInLacs(data.price  - data.discount) + "* </span>" + 
                 "<span class='total-amount fright'><span class='icon icon-rupee'></span>" + utils.getReadablePriceInLacs(data.price) + "</span></div>" +
                 "<div class='uit-header-menu'><div data-target='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'><span class='icon icon-unitplan fs18'></span></div>Unit Plan</div>" +
                 "<div data-target='cp-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon icon-clusterplan fs18'></span></div>Floor Plan</div>" +
                 "<div data-target='pb-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon icon-rupee fs18'></span></div>Pricing</div>" +
-                "<div data-target='sf-container' class='header-item " + config.unitMenuLinkClass + " right'><div class='item-icon-box'><span class='icon icon-specification2 fs18'></span></div>Amenities</div></div></div></div>";
+                "<div data-target='sf-container' class='header-item " + config.unitMenuLinkClass + " right'><div class='item-icon-box'><span class='icon icon-specification fs18'></span></div>Amenities</div></div></div></div>";
             this._elements.unitMenuContainer.html(code);
             this.unitMenuContainerEvents();
         },

@@ -85,10 +85,10 @@ var BookingView = (function() {
                 '                    <div class="clear-fix"></div>' +
                 '            </div>' +
 				'            <div class="clear-fix"></div>' +
-				'                    <p class="fleft">' +
-                '                        Total Price [ <span class="icon icon-rupee_final fs18"></span> ]' +
+				'                    <p class="fleft width-100">' +
+                '                        <span class="fleft">Total Price</span><span class="fleft"> [</span> <span class="icon icon-rupee_final fleft fs18"></span> <span class="fleft">]</span>' +
 				'						 <span class="fright"><span class="icon icon-rupee_final fleft fs18"></span>'+ utils.getReadablePriceInLacs(data.price  - data.discount) + '* </span>' + 
-                '                        <span class="fright"><span class="icon icon-rupee_final fleft fs18"></span>' + utils.getReadablePrice(data.price) + '</span>' +
+                '                        <span class="fright line-through"><span class="icon icon-rupee_final fleft fs18"></span>' + utils.getReadablePriceInLacs(data.price) + '</span>' +
                 '                    </p>' +
                 '            </div>' +
 				'            <div class="clear-fix"></div>' +
