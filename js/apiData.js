@@ -2,7 +2,7 @@
 var getProjectData = (function() {
 
     var zipPath = 'zip-file',
-        zipImagePath = '/' + zipPath + '/img/';
+        zipImagePath = './' + zipPath + '/img/';
 
     function processCsvDataToArray(allText) {
         var allTextLines = allText.split(/\r\n|\n/);
