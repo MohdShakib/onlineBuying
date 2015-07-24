@@ -108,8 +108,8 @@ var ajaxUtils = (function() {
 
             var url = "/data/v1/transaction/coupon?debug=true";
             var params = {
-                success_callback: function() {
-                    console.log("Hurreeyyyyy");
+                success_callback: function(data, params) {
+                    window.location.href = data;
                 }
             };
 
