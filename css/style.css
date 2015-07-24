@@ -1998,7 +1998,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 	z-index:2;
 }
 /*-----loading screen css start here------*/
-.show-loading{ height:100%; width:100%; position:fixed; top:0; right:0; z-index:999999; display:none;}
+.show-loading{ height:100%; width:100%; position:fixed; top:0; right:0; z-index:999999;}
 .loading-view{
 	background:rgba(0,0,0,0.52);
 	width:100%;
