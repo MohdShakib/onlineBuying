@@ -861,6 +861,7 @@ ellipse.tower-unit-svg-selected-path {
   	z-index: 9999999;
 	background:#323232;
 	left:0; top:0;
+	border-bottom:2px solid #ccc;
 }
 .unit-menu-container table {
 	width: 100%;
