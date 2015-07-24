@@ -287,15 +287,15 @@ var TowerselectedView = (function() {
             code += "</td></tr>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
             code += this.displayFilterCount('entrance', entranceFiltersData.length);
-            code += "<div class='menu-item'><span class='icon icon-compass'></span></div>";
+            code += "<div class='menu-item'><span class='icon icon-compass fs28'></span></div>";
             code += this.getEntranceMenuOptions(data, entranceFiltersData);
             code += "</td></tr>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
             code += this.displayFilterCount('price', priceFiltersData.length);
-            code += "<div class='menu-item'><span class='icon icon-rupee'></span></div>";
+            code += "<div class='menu-item'><span class='icon  icon-rupee_final fs30'></span></div>";
             code += this.getPriceMenuOptions(data, priceFiltersData);
             code += "</td></tr>";
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.filters.resetClass + "'><span class='icon icon-reload'></span></div></td></tr>";
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.filters.resetClass + "'><span class='icon icon-reset-final fs24'></span></div></td></tr>";
             code += "</table></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-call menu-icon'>&nbsp;</td></tr>";

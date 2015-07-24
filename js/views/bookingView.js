@@ -56,34 +56,39 @@ var BookingView = (function() {
         },
         paymentScreen: function(data, rotationdata, rootdata) {
             var url = rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier;
+			var offerDiv = '';
+			if (data.discount) {
+				offerDiv = '<div class="special-offers">' + '<span></span>' + '<p>Save <strong><label 		class="icon fs14 icon-rupee"></label>' + utils.getReadablePrice(data.discount) + '</strong> ' + data.discountDescription + '</p>' + '</div>';
+			}
             var code = '<div class="payment-container">' +
 				'		 <div class="title-text">' +
 				'        	<a class="close-payment transition" data-url="' + url + '"><span class="icon icon-arrow_left fs24"></span></a>' +
 				'			<p>Payment Screen</p>' +
 				' 		 </div>' +
-                '        <div class="payment-left">' +
-                '            <div class="payment-left-top">' +
+                '        <div class="payment-left">' + offerDiv +
+                '<div class="payment-left-top">' +
                 '                <h3>' + rootdata.projectName + ' <span>Whitefield Bangalore</span></h3>' +
                 '                <div class="payment-photo-box">' +
                 '                <img src="' + rootdata.unitTypes[rotationdata.unitTypeIdentifier].unitImageUrl + '" width="100%" alt="">' +
                 '                </div>' +
-                '                <h5 class="fleft">' + data.listingAddress + '</h5>' +
-                '                <div class="fright floor-area">' +
-                '                    <p class="fleft">' +
+                '                <div class="floor-area">' +
+				'                <h5>' + data.listingAddress + '</h5>' +
+                '                    <p>' +
                 '                        Area' +
                 '                        <span>' + data.size + ' ' + data.measure + '</span>' +
                 '                    </p>' +
-				'					 <p class="fleft ml10 mr10">|</p>' +
-				'                    <p class="fleft">' +
+				'					 <p class="ml5 mr5">|</p>' +
+				'                    <p>' +
                 '                        Floor no.' +
                 '                        <span>' + data.floor + '</span>' +
                 '                    </p>' +
                 '                    <div class="clear-fix"></div>' +
                 '            </div>' +
 				'            <div class="clear-fix"></div>' +
-				'                    <p class="fright">' +
-                '                        Total Price' +
-                '                        <span>Rs. ' + utils.getReadablePrice(data.price) + '</span>' +
+				'                    <p class="fleft">' +
+                '                        Total Price [ <span class="icon icon-rupee_final fs18"></span> ]' +
+				'						 <span class="fright"><span class="icon icon-rupee_final fleft fs18"></span>'+ utils.getReadablePriceInLacs(data.price  - data.discount) + '* </span>' + 
+                '                        <span class="fright"><span class="icon icon-rupee_final fleft fs18"></span>' + utils.getReadablePrice(data.price) + '</span>' +
                 '                    </p>' +
                 '            </div>' +
 				'            <div class="clear-fix"></div>' +

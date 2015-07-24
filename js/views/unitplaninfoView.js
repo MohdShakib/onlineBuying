@@ -186,7 +186,7 @@ var UnitplaninfoView = (function() {
                 "<div class='uit-header-menu'><div data-target='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'><span class='icon icon-unitplan fs18'></span></div>Unit Plan</div>" +
                 "<div data-target='cp-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon icon-clusterplan fs18'></span></div>Floor Plan</div>" +
                 "<div data-target='pb-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon icon-rupee fs18'></span></div>Pricing</div>" +
-                "<div data-target='sf-container' class='header-item " + config.unitMenuLinkClass + " right'><div class='item-icon-box'><span class='icon icon-specification2 fs18'></span></div>Specification</div></div></div></div>";
+                "<div data-target='sf-container' class='header-item " + config.unitMenuLinkClass + " right'><div class='item-icon-box'><span class='icon icon-specification2 fs18'></span></div>Amenities</div></div></div></div>";
             this._elements.unitMenuContainer.html(code);
             this.unitMenuContainerEvents();
         },
@@ -348,7 +348,7 @@ var UnitplaninfoView = (function() {
             var position = "top:" + element.dataset.top + "%; left:" + element.dataset.left + "%;";
             var code = "<div class='" + config.amenityPopupClass + "'><table class='photo-table pop-up-in' style='" + position + "'><tr>";
             code += "<td class='amenity-heading'>" + amenity.name;
-            code += "<span class='" + config.amenityPopupCloseClass + "'>X</span></td></tr>";
+            code += "<span class='icon icon-crossfs14 " + config.amenityPopupCloseClass + "'></span></td></tr>";
             code += "<tr><td class='amenity-image'><img src='" + amenityImg + "'></td></tr></table>";
             this._elements.amenitiesContainer.append(code);
             this.amenitiesPopupEvents();

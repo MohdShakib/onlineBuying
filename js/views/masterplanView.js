@@ -102,7 +102,7 @@ var MasterplanView = (function() {
         buildingMenuContainer: function(data) {
             var code = "<table><tr><td class='menu-header menu-icon transition'><span class='icon icon-arrow_left'></span></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
-            code += "<tr><td class='menu-items'><table>";
+            code += "<tr><td class='menu-items'><div class='menu-scroll'><table>";
             for (var towerIdentifier in data.towers) {
                 var tower = data.towers[towerIdentifier],
                     towerUrl = tower.isAvailable ? data.baseUrl + "/" + tower.towerIdentifier : 'undefined';
@@ -112,7 +112,7 @@ var MasterplanView = (function() {
                     "' data-url='" + towerUrl +
                     "'><span class='tower-menu-text transition'>Tower</span> " + tower.towerName.split(' ')[1] + "</div></td></tr>";
             }
-            code += "</table></td></tr>";
+            code += "</table></div></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-call menu-icon'>&nbsp;</td></tr>";
             code += "</table>";
@@ -304,7 +304,7 @@ var MasterplanView = (function() {
             var position = "top:" + $(element).data('top') + "%; left:" + $(element).data('left') + "%;";
             var code = "<div class='" + config.amenityPopupClass + "'><table class='photo-table pop-up-in' style='" + position + "'><tr>";
             code += "<td class='amenity-heading'>" + amenity.amenityName;
-            code += "<span class='" + config.amenityPopupCloseClass + "'>X</span></td></tr>";
+            code += "<span class='icon icon-cross fs14 " + config.amenityPopupCloseClass + "'></span></td></tr>";
             code += "<tr><td class='amenity-image'><div><img src='" + amenity.imageUrl + "'></div></td></tr></table>";
             this._elements.amenitiesContainer.append(code);
             this.amenitiesPopupEvents();
