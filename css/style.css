@@ -262,6 +262,7 @@ body {
 .mr10{ margin-right:10px;}
 .ml5{ margin-left:5px;} 
 .mr5{ margin-right:5px;}
+.width-100{ width:100%;}
 .blur-bg{
 	background: url('../images/walkthrough-cover.jpg') no-repeat; background-size:cover;
 	-webkit-filter: blur(10px);
@@ -901,7 +902,7 @@ ellipse.tower-unit-svg-selected-path {
 	font-size: 14px;
 	color:#fff;
 }
-.big-size{ font-size:18px !important; color:#fff; font-weight:bolder;}
+.big-size{ font-size:16px !important; color:#fff; font-weight:bolder;}
 .unit-menu-container .header-title .address {
 	font-size: 19px;
 	color: #FFF;
@@ -1299,7 +1300,7 @@ ellipse.tower-unit-svg-selected-path {
 .payment-left-top h3{ text-align:left;}
 .payment-left-top h3 span{ display:block;}
 .payment-container h5{ font-size:14px; margin:10px 0;}
-.payment-left{ float:left; width:350px; background:#fff; box-shadow:0 0 8px rgba(0,0,0,0.2); height:410px; position: relative; z-index: 1;}
+.payment-left{ float:left; width:350px; background:#fff; box-shadow:0 0 8px rgba(0,0,0,0.2); height:430px; position: relative; z-index: 1; overflow:hidden;}
 .payment-left p{font-size:14px; text-transform:uppercase; color:#252525;}
 .payment-left p span{text-transform:none;}
 .payment-left-top{ padding:20px;}
@@ -1337,7 +1338,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .nationalty-drop-down li:hover, .nationalty-drop-down li a.active{ background:#DFDFDF; color:#616161;}
 .make-payment{ font-size:14px; text-transform:uppercase; font-weight:600; background:#f28d19; color:#fff; text-align:center; width:220px; line-height:42px; border-radius:3px; margin:15px 0 0 0; cursor: pointer;}
 .make-payment:hover {background: #ECA537;}
-.terms-condition{ margin:65px 0 10px  0; position:relative;}
+.terms-condition{ margin:85px 0 10px  0; position:relative;}
 .terms-condition input{float:left; margin:5px 10px 0 0;}
 .terms-condition  label{font-size:13px; cursor:pointer; color:#252525;}
 .terms-condition  label a, .price-terms{ color:#ECA537; cursor:pointer;}
@@ -1345,6 +1346,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .floor-area{ text-align:center; position:relative;}
 .floor-area:after{ width:80%; content:''; position:absolute; bottom:0; height:1px; background:#ccc; left:50%; margin-left:-40%;}
 .floor-area > *{ display:inline-block;}
+.line-through{ opacity:0.5; text-decoration:line-through; margin-right:5px;}
 /*-------payment screen start here-------*/
 /*=================classes for animation added by jaswant singh=========================*/
 
@@ -2010,3 +2012,8 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .error-404 p{ font-size:60px; color:#333; text-shadow:2px 2px 1px rgba(0,0,0,0.5);}
 .error-404 p span{ display:inline-block; width:100%; margin:15px 0; font-size:16px; text-shadow:none;}
 .error-404 a{color: #fff;padding: 11px 20px;display: inline-block;font-size: 16px;text-transform: uppercase;font-weight: bold;font-weight: bold;background: #f18d18;border-radius: 3px;cursor: pointer;}
+.offer-box{ position:fixed; right:0px; bottom:40px; background:rgba(255,255,255,0.96); border:1px solid #E8E8E8; z-index:999999;}
+.offer-box a{ display:block; padding:10px 20px; overflow:hidden;}
+.offer-box a p{font-size:13px; color:#333; padding-left:15px; padding-top:8px;}
+.offer-box a p span{ color:#f18d18; display:block;}
+.offer-box a p label{ font-weight:bold;}
