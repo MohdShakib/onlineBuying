@@ -3,7 +3,7 @@ var config = (function(){
 	var config = {
 
 		// Data
-		backgroundImage: 'masterplan.png',
+		backgroundImage: 'masterplan.jpg',
 		projectDetail: {
 			titleId: "project-title",
 			addressId: "project-address"

@@ -74,7 +74,7 @@ var ajaxUtils = (function() {
 
             console.log(req);
 
-            var url = 'https://beta.proptiger-ws.com/data/v1/entity/notification/sender?debug=true';
+            var url = '/data/v1/entity/notification/sender?debug=true';
             var params = {
                 success_callback: function() {
                     console.log("Hurreeyyyyy");
@@ -103,7 +103,7 @@ var ajaxUtils = (function() {
 
             console.log(req);
 
-            var url = "http://192.168.1.4:8080/data/v1/transaction/coupon";
+            var url = "/data/v1/transaction/coupon?debug=true";
             var params = {
                 success_callback: function() {
                     console.log("Hurreeyyyyy");
