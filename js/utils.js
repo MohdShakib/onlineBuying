@@ -65,8 +65,16 @@ var utils = (function() {
             }
             return readablePrice;
         },
-        getReadablePriceInLacs: function(price) {
-            return Math.floor(price/10000)/10 + " Lacs";
+        getReadablePriceInWord: function(price) {
+            if (price/10000000 > 1) {
+                return Math.floor(price/1000000)/10 + " Cr";
+            } else if (price/100000 > 1) {
+                return Math.floor(price/10000)/10 + " L";
+            } else if (price/1000) {
+                return Math.floor(price/100)/10 + " K";
+            } else {
+                return price;
+            }
         },
         getIdentifier: function(string) {
             var identifier = '';
@@ -160,12 +168,6 @@ var utils = (function() {
             positionClass += x > 50 ? 'left' : 'right';
 
             return positionClass;
-        },
-        priceFormat: function(price) {
-            if (!price) {
-                return '';
-            }
-            return (price / 100000) + ' Lacs';
         },
         getUnit3dSvgPolygonHtml: function(unitTypeData) {
             var svgData = unitTypeData ? unitTypeData.svgs : null,
