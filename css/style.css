@@ -42,6 +42,7 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 .icon{ display:inline-block !important; font-size:25px; position:relative;}
+.fs0{ font-size:0px !important;}
 .fs14{ font-size:14px !important;}
 .fs16{ font-size:16px !important;}
 .fs18{ font-size:18px !important;}
@@ -516,9 +517,10 @@ ellipse.tower-unit-svg-selected-path {
 	position: absolute;
 	z-index: 99999;/*300000;*/
 	top: 0px;
-	left: 0px;
+	left: -45px;
 	height:auto;
 	max-height: 100%;
+	visibility: hidden;
 }
 .tower-menu-container table {
 	border-spacing: 0px;
@@ -924,8 +926,11 @@ ellipse.tower-unit-svg-selected-path {
   	text-align: center;
 }
 .uit-header-menu > div{ display:table-cell; width:25%;}
-.unit-data-container.walkthrough-container{
-	height: 90%;
+.unit-data-container.walkthrough-container video {
+	position: absolute;
+    top: 100px;
+    left: 0px;
+    width: 100%;
 }
 .unit-data-container .fullView {
 	position: absolute;
@@ -1178,7 +1183,8 @@ ellipse.tower-unit-svg-selected-path {
 .amenities-container .amenity-icon {
 	position: absolute;
 	z-index: 10000;
-	color: #DFDFDF;
+	color: rgba(0,0,0,0.6);
+    text-shadow: 0px 0px 20px #AAA;
 	height: 25px;
 	width: 25px;
 	line-height: 25px;
@@ -1198,6 +1204,7 @@ ellipse.tower-unit-svg-selected-path {
 	top: 35px;
 	left: -90px;
 	width: 200px;
+	color: #DFDFDF;
 	line-height: normal;
 	font-size: 12px;
 	text-shadow: 1px 1px 2px #666;
@@ -1972,27 +1979,27 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .top-left-cloud {
 	width: 847px; height: 469px;
 	background: url(../images/top-left.png) no-repeat;
-	bottom:-50px; right:469px;
+	top:-50px; left:0px;
 	position:absolute;
 	z-index:2;
 }
 .top-right-cloud {
 	width: 847px; height: 453px;
-	left:700px; bottom:-50px;
+	top:-50px; right:0px;
 	background: url(../images/top-right.png) no-repeat;
 	position:absolute;
 	z-index:2;
 }
 .bottom-left-cloud {
 	width: 701px; height: 434px;
-	left:400px; top:-50px;
+	left:0px; bottom:-50px;
 	background: url(../images/bottom-left.png) no-repeat;
 	position:absolute;
 	z-index:2;
 }
 .bottom-right-cloud {
 	width: 847px; height: 520px;
-	right:300px; top:-50px;
+	bottom:-50px; right:0px;
 	background: url(../images/bottom-right.png) no-repeat;
 	position:absolute;
 	z-index:2;

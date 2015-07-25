@@ -10,7 +10,7 @@ var MasterplanView = (function() {
     var containerMap = {
         'buildingImgContainer': '<div class="img-container ' + config.dynamicResizeClass + '" id="img-container"></div>',
         'buildingSvgContainer': '<svg class="svg-container ' + config.dynamicResizeClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
-        'buildingMenuContainer': '<div class="tower-menu-container" id="tower-menu-container"></div>',
+        'buildingMenuContainer': '<div class="tower-menu-container transition" id="tower-menu-container"></div>',
         'towerDetailContainer': '<div class="tower-detail-container" id="tower-detail-container"></div>',
         'amenitiesContainer': '<div class="amenities-container ' + config.dynamicResizeClass + '" id="amenities-container"></div>',
         'cloudContainer': '<div class="cloud-container" id="cloud-container"></div>'
@@ -73,6 +73,65 @@ var MasterplanView = (function() {
         renderInitialData: function(data) {
             document.getElementById(config.projectDetail.titleId).innerHTML = data.projectName;
             document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
+        },
+        startAnimation: function() {
+            // Clouds
+            $('.top-left-cloud').animate({
+                left: '-50%'
+            }, 8000);
+            $('.top-right-cloud').animate({
+                right: '-50%'
+            }, 8000);
+            $('.bottom-left-cloud').animate({
+                left: '-50%'
+            }, 8000);
+            $('.bottom-right-cloud').animate({
+                right: '-50%'
+            }, 8000);
+
+            // Amenities
+            var time = 5000;
+            $('.amenity-icon span').each(function() {
+                var _this = this;
+                setTimeout(function() {
+                    $(_this).removeClass('fs0');
+                }, time);
+                time += 200;
+            });
+
+            // Tower Menu
+            setTimeout(function() {
+                $('.tower-menu-container').css({left: '0px', visibility: 'visible'});
+            }, 7000);
+
+            // Connect tabs
+            setTimeout(function() {
+                $('.pro-contact-actions ul.conect-tab').css({bottom: '0px'});
+            }, 7000);
+        },
+        displayWithoutAnimation: function() {
+            // Clouds
+            $('.top-left-cloud').css({
+                left: '-50%'
+            });
+            $('.top-right-cloud').css({
+                right: '-50%'
+            });
+            $('.bottom-left-cloud').css({
+                left: '-50%'
+            });
+            $('.bottom-right-cloud').css({
+                right: '-50%'
+            });
+
+            // Amenities
+            $('.amenity-icon span').removeClass('fs0');
+
+            // Tower Menu
+            $('.tower-menu-container').css({left: '0px', visibility: 'visible'});
+
+            // Connect tabs
+            $('.pro-contact-actions ul.conect-tab').css({bottom: '0px'});
         },
         sortTowersObject: function(towers) {
             var towerName, towerValues = [];
@@ -276,7 +335,7 @@ var MasterplanView = (function() {
                     var amenity = data.amenities[amenityKey];
                     var point = data.amenities[amenityKey].amenitySvg.split(' ');
                     var position = "top:" + point[1] + "%; left:" + point[0] + "%;";
-                    code += "<div data-top='" + point[1] + "' data-left='" + point[0] + "' id='" + amenityKey + "' class='" + config.amenityIconClass + "' style='" + position + "'><span class='icon icon-location'></span>";
+                    code += "<div data-top='" + point[1] + "' data-left='" + point[0] + "' id='" + amenityKey + "' class='" + config.amenityIconClass + "' style='" + position + "'><span class='icon icon-location transition fs0'></span>";
                     code += "<div class='name'><span>" + amenity.amenityName + "</span></div>";
                     code += "</div>";
                 }
@@ -334,34 +393,6 @@ var MasterplanView = (function() {
         cloudContainer: function(data) {
             var code = '<div class="top-left-cloud"></div><div class="top-right-cloud"></div><div class="bottom-left-cloud"></div><div class="bottom-right-cloud"></div>';
             this._elements.cloudContainer.html(code);
-            if (this._model.isFirstLoad()) {
-                $('.top-left-cloud').animate({
-                    right: '80%'
-                }, 8000);
-                $('.top-right-cloud').animate({
-                    left: '85%'
-                }, 7000);
-				$('.bottom-left-cloud').animate({
-                    left: '80%'
-                }, 8000);
-                $('.bottom-right-cloud').animate({
-                    right: '90%'
-                }, 7000);
-                this._model.toggleFirstLoad();
-            } else {
-                $('.top-left-cloud').css({
-                    right: '85%'
-                });
-                $('.top-right-cloud').css({
-                    left: '80%'
-                });
-				$('.bottom-left-cloud').css({
-                    left: '90%'
-                });
-                $('.bottom-right-cloud').css({
-                    right: '85%'
-                });
-            }
         }
     };
 

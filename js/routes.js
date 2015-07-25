@@ -46,6 +46,9 @@ var initializeRoutes = (function() {
 
         routes[projectRoute] = {
             on: function(projectName, projectId) {
+                if(baseController) {
+                    baseView.reinit();
+                }
                 if (!masterplanModel) {
                     masterplanModel = new MasterplanModel(rootdata);
                     masterplanView = new MasterplanView(masterplanModel);
@@ -59,6 +62,9 @@ var initializeRoutes = (function() {
 
         routes[towerRoute] = {
             on: function(projectName, projectId, towerName) {
+                if(baseController) {
+                    baseView.reinit();
+                }
                 onTowerselectedRoute(projectName, projectId, towerName);
                 // Add resize event listener
                 utils.addResizeEventListener(utils.defaultDynamicResizeContainers);

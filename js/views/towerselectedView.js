@@ -73,6 +73,24 @@ var TowerselectedView = (function() {
             document.getElementById(config.projectDetail.titleId).innerHTML = rootdata.projectName;
             document.getElementById(config.projectDetail.addressId).innerHTML = data.towerName;
         },
+        startAnimation: function() {
+            // Tower Menu
+            setTimeout(function() {
+                $('.tower-menu-container').css({left: '0px', visibility: 'visible'});
+            }, 200);
+
+            // Connect tabs
+            setTimeout(function() {
+                $('.pro-contact-actions ul.conect-tab').css({bottom: '0px'});
+            }, 200);
+        },
+        displayWithoutAnimation: function() {
+            // Tower Menu
+            $('.tower-menu-container').css({left: '0px', visibility: 'visible'});
+
+            // Connect tabs
+            $('.pro-contact-actions ul.conect-tab').css({bottom: '0px'});
+        },
         overviewImgContainer: function(data, rootdata) {
             var code = "<img src='" + data.image_url + "'/>";
             this._elements.overviewImgContainer.html(code);

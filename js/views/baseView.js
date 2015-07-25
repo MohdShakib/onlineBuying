@@ -57,6 +57,9 @@ var BaseView = (function() {
             $('.project-address').html(rootdata.address);
             $('.project-desc').html(rootdata.description);
         },
+        reinit: function() {
+            $('.pro-contact-actions ul.conect-tab').css({bottom: '-45px'});
+        },
         compareUnitsContainer: function() {
             var compareList = this._model.getCompareList(),
                 compareList_length = Object.keys(compareList).length;
@@ -79,7 +82,7 @@ var BaseView = (function() {
                 var borderClass = !i ? 'compare-unit-box-right-border' : 'compare-unit-box-right';
                 htmlCode += '<div  class="compare-unit-box ' + borderClass + '" ondragover="allowDrop(event);">'
 
-                htmlCode += '<div class="compare-unit-box-detail top-right-component"><span>Drag & drop to select unit and compare it.</span></div>' + '<div class="img-svg-container drag-drop">' + '<img class="compare-unit-img"  src="images/compare_drag.jpg"></div>';
+                htmlCode += '<div class="compare-unit-box-detail top-right-component"><span>Drag & drop to select unit and compare it.</span></div>' + '<div class="img-svg-container drag-drop">' + '<img class="compare-unit-img"  src="images/compare_drag.jpg"/></div>';
 
                 htmlCode += '</div>';
             }
@@ -202,7 +205,7 @@ var BaseView = (function() {
                 //+'<div class="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"></div>'
                 + '<span>or</span>'
                 //+'<div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>'
-                + '<a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Goggle+</a>' + '</div>' + '<form id="share-box-form" novalidate name="share-box-form" onSubmit="return false;"  >' + '<div class="form-input-box"><input class="text" id="' + config.emailBox.nameId + '" placeholder="enter name*" type="text" required />' + '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' + '<div class="form-input-box"><input class="text" id="' + config.emailBox.emailId + '" placeholder="enter email id*" type="email" required />' + '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' + '<div class="submit" id="share-box-submit-id"><input type="submit" />Share <span  class="icon icon-arrow_right"></span></div>' + '</form>' + '</div>' + '</div>' + '<ul class="conect-tab">' + '<li>' + '<a href="javascript:void(0);"  data-name="call-box">' + '<p>Need Clarification?</br>' + 'Get in touch' + '</p>' + '<span class="icon icon-phone"></span>' + '</a>' + '</li>' + '<li>' + '<a href="javascript:void(0);" data-name="compare-box">' + '<p>Compare among</br> shortlisted flats</p>' + '<span class="icon icon-heart '+config.blinkElementClass+'">' + '<label class="like-count br50" id="' + config.likeCountId + '">0</label>' + '</span>' + '</a>' + '</li>' + '<li>' + '<a href="javascript:void(0);" data-name="share-box">' + '<p>Share with</br> friends'
+                + '<a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Goggle+</a>' + '</div>' + '<form id="share-box-form" novalidate name="share-box-form" onSubmit="return false;"  >' + '<div class="form-input-box"><input class="text" id="' + config.emailBox.nameId + '" placeholder="enter name*" type="text" required />' + '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' + '<div class="form-input-box"><input class="text" id="' + config.emailBox.emailId + '" placeholder="enter email id*" type="email" required />' + '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' + '<div class="submit" id="share-box-submit-id"><input type="submit" />Share <span  class="icon icon-arrow_right"></span></div>' + '</form>' + '</div>' + '</div>' + '<ul class="conect-tab transition">' + '<li>' + '<a href="javascript:void(0);"  data-name="call-box">' + '<p>Need Clarification?</br>' + 'Get in touch' + '</p>' + '<span class="icon icon-phone"></span>' + '</a>' + '</li>' + '<li>' + '<a href="javascript:void(0);" data-name="compare-box">' + '<p>Compare among</br> shortlisted flats</p>' + '<span class="icon icon-heart '+config.blinkElementClass+'">' + '<label class="like-count br50" id="' + config.likeCountId + '">0</label>' + '</span>' + '</a>' + '</li>' + '<li>' + '<a href="javascript:void(0);" data-name="share-box">' + '<p>Share with</br> friends'
                 //+'<span>Sign In Now!</span>'
                 + '</p>' + '<span class="icon icon-email"></span>' + '</a>' + '</li>' + '</ul>' + '</div>';
 

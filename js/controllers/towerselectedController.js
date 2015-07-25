@@ -76,7 +76,6 @@ var TowerselectedController = (function() {
                 _this._view.resetFilterOption(element);
                 _this.updateFilteredListings();
             });
-
         },
         toggleFilterOption: function(filterArray, filterOption, element) {
             var index = filterArray.indexOf(filterOption);
@@ -139,6 +138,12 @@ var TowerselectedController = (function() {
         },
         generateTemplate: function(data, rootdata, elements) {
             this._view.buildView();
+            if (this._model.isFirstLoad()) {
+                utils.showLoader(this._view.startAnimation);
+                this._model.toggleFirstLoad();
+            } else {
+                this._view.displayWithoutAnimation();
+            }
         }
     };
 

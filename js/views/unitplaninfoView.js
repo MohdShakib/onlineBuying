@@ -88,7 +88,7 @@ var UnitplaninfoView = (function() {
                 $('#' + config.selectedUnitContainerId).animate({
                     right: 0
                 }, 900);
-                $('#' + config.filterMenuContainerId).addClass(config.fadeOutClass);
+                $('#' + config.filterMenuContainerId).css({left: '-65px'});
                 $('#' + config.towerRotationContainerId).addClass(config.smallLeftArea);
 
                 // to show unit icon selected on tower
@@ -101,7 +101,7 @@ var UnitplaninfoView = (function() {
             $('#' + config.selectedUnitContainerId).animate({
                 right: '-67%'
             }, 900);
-            $('#' + config.filterMenuContainerId).addClass(config.fadeInClass);
+            $('#' + config.filterMenuContainerId).css({left: '0px'});
             $('#' + config.towerRotationContainerId).removeClass(config.smallLeftArea);
 
             // hide selected unit
@@ -245,7 +245,7 @@ var UnitplaninfoView = (function() {
         },
         walkthroughContainer: function(data, rotationdata, rootdata) {
             var videoUrl = "http://d1vh6m45iog96e.cloudfront.net/4/2/5000168/106/2/supertech-capetown-floor-plan-2bhk-2t-930-sq-ft-5000168.mp4";
-            var code = "<video class='fullView' controls poster='/images/walkthrough-cover.jpg'>";
+            var code = "<video controls poster='/images/walkthrough-cover.jpg'>";
             code += "<source src='" + videoUrl + "' type='video/mp4'>";
             code += "</video>";
             this._elements.walkthroughContainer.html(code);

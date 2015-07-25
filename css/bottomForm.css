@@ -8,7 +8,7 @@ a{ text-decoration:none;}
 .close-form{ position:absolute; z-index:3; width:20px; height:20px; line-height:20px; font-size:12px; text-transform:uppercase; background:rgba(0,0,0,0.7); right:-20px; top:0; text-align:center; color:#fff; cursor:pointer;}
 .br50{border-radius:50%;-moz-border-radius:50%;-ms-border-radius:50%;-o-border-radius:50%;-webkit-border-radius:50%;}
 .pro-contact-actions{ position:absolute; bottom:0; left:0; margin:0; padding:0; z-index: 200000;}
-.pro-contact-actions ul.conect-tab{ margin:0; padding:0; position:relative; float:left;}
+.pro-contact-actions ul.conect-tab{ margin:0; padding:0; position:relative; float:left; bottom: -45px}
 .pro-contact-actions ul.conect-tab > li{ margin:0; padding:0; list-style:none; float:left;margin-right:1px;background:rgba(0,0,0,0.8);}
 .pro-contact-actions ul.conect-tab > li > a{ display:block; padding:10px 10px 0 10px; font-size:12px; font-family:Arial, Helvetica, sans-serif; text-decoration:none; color:#c4c5c0; height:45px; width:45px; box-sizing:border-box; transition:all ease-in-out 0.5s; -webkit-transition:all ease-in-out 0.5s;position:relative; overflow:hidden;}
 .pro-contact-actions ul.conect-tab > li > a p{ position:absolute; left:-110px; top:8.5px;transition:all ease-in-out 0.5s; -webkit-transition:all ease-in-out 0.5s; width:110px; padding:0; margin:0; opacity:0;}

@@ -48,6 +48,12 @@ var MasterplanController = (function() {
         },
         generateTemplate: function() {
             this._view.buildView();
+            if (this._model.isFirstLoad()) {
+                utils.showLoader(this._view.startAnimation);
+                this._model.toggleFirstLoad();
+            } else {
+                this._view.displayWithoutAnimation();
+            }
         }
     };
 

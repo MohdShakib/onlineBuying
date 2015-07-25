@@ -461,6 +461,29 @@ var utils = (function() {
             }
             code += "</table>";
             return code;
+        },
+        showLoader: function(startAnimation) {
+            $('.loading-bar span').width('0%');
+            $('.loading-persentage').html('0%');
+            $('.show-loading').show();
+            var percentCounter = 0,
+                count = 0,
+                arrayOfImageUrls = $('img');
+            $.each(arrayOfImageUrls, function(index, value) {
+                $('<img>').attr('src', value.src) //load image
+                    .load(function() {
+                        count++;
+                        percentCounter = (count / arrayOfImageUrls.length) * 100; //set the percentCounter after this image has loaded
+                        var percentage = Math.floor(percentCounter) + '%';
+                        $('.loading-bar span').width(percentage);
+                        $('.loading-persentage').html(percentage);
+                        console.log(percentage);
+                        if (percentCounter == 100) {
+                            $('.show-loading').hide();
+                            startAnimation();
+                        }
+                    });
+            });
         }
     }
 

@@ -13,6 +13,7 @@ var TowerselectedModel = (function() {
         this._currentRotationAngle = towerAngle ? '' + towerAngle : '0';
         this._filteredListings = null;
         this._selectedListing = null;
+        this._firstLoad = true;
 
         this._filters = {
             bhk: [],
@@ -62,6 +63,12 @@ var TowerselectedModel = (function() {
         updateData: function(data, rootdata) {
             this._data = data;
             this._rootdata = rootdata;
+        },
+        isFirstLoad: function() {
+            return this._firstLoad;
+        },
+        toggleFirstLoad: function() {
+            this._firstLoad = false;
         }
     };
 
