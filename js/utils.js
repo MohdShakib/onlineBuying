@@ -477,7 +477,7 @@ var utils = (function() {
                         var percentage = Math.floor(percentCounter) + '%';
                         $('.loading-bar span').width(percentage);
                         $('.loading-persentage').html(percentage);
-                        console.log(percentage);
+                        //console.log(percentage);
                         if (percentCounter == 100) {
                             $('.show-loading').hide();
                             startAnimation();

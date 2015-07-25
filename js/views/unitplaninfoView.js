@@ -101,7 +101,7 @@ var UnitplaninfoView = (function() {
             $('#' + config.selectedUnitContainerId).animate({
                 right: '-67%'
             }, 900);
-            $('#' + config.filterMenuContainerId).css({left: '0px'});
+            $('#' + config.filterMenuContainerId).css({left: '0px', visibility: 'visible'});
             $('#' + config.towerRotationContainerId).removeClass(config.smallLeftArea);
 
             // hide selected unit
@@ -244,8 +244,9 @@ var UnitplaninfoView = (function() {
             this._elements.floorPlan2dContainer.html(code);
         },
         walkthroughContainer: function(data, rotationdata, rootdata) {
-            var videoUrl = "http://d1vh6m45iog96e.cloudfront.net/4/2/5000168/106/2/supertech-capetown-floor-plan-2bhk-2t-930-sq-ft-5000168.mp4";
-            var code = "<video controls poster='/images/walkthrough-cover.jpg'>";
+            var videoUrl = data.walkthrough.video;
+            var imageUrl = data.walkthrough.image;
+            var code = "<video controls poster='" + imageUrl + "'>";
             code += "<source src='" + videoUrl + "' type='video/mp4'>";
             code += "</video>";
             this._elements.walkthroughContainer.html(code);

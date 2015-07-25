@@ -77,6 +77,7 @@ var initializeRoutes = (function() {
 
                 if (reloadTowerSelectedView) {
                     onTowerselectedRoute(projectName, projectId, towerName, towerAngle);
+                    reloadTowerSelectedView = false;
                 }
 
                 var data = rootdata.towers[towerName].listings[unitAddress],

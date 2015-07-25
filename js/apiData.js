@@ -321,17 +321,6 @@ var getProjectData = (function() {
         for (i = 0; i < listings_length; i += 1) {
             var towerId = projectDetail.listings[i].towerId;
 
-            if (projectDetail.listings[i].flatNumber == 'A0104') {
-                projectDetail.listings[i].flatNumber = 'A-0104';
-            } else if (projectDetail.listings[i].flatNumber == 'A0402') {
-                projectDetail.listings[i].flatNumber = 'A-0402';
-            } else if (projectDetail.listings[i].flatNumber == 'A0103') {
-                projectDetail.listings[i].flatNumber = 'A-0103';
-            } else if (projectDetail.listings[i].flatNumber == 'A-0104' || projectDetail.listings[i].flatNumber == 'A-0103' || projectDetail.listings[i].flatNumber == 'A-0402') {
-                continue;
-            }
-
-
             var towerName = towerMap[towerId];
             var towerIdentifier = utils.getIdentifier(towerName);
             var listing = projectDetail.listings[i],
@@ -352,7 +341,21 @@ var getProjectData = (function() {
             flatUnit.discountDescription = listing.discountDescription;
 
             var propertyDetail = _getPropertyById(projectDetail.properties, listing.propertyId);
-
+            
+            // Walkthrough video
+            flatUnit.walkthrough = {};
+            for (var i in propertyDetail.video) {
+                var video = propertyDetail.video[i];
+                if (video.objectMediaType.type == "VideoWalkthrough") {
+                    flatUnit.walkthrough.video = video.url;
+                    flatUnit.walkthrough.image = video.imageUrl;
+                }
+            }
+            if (!flatUnit.walkthrough.video) {
+                flatUnit.walkthrough.video = "http://d1vh6m45iog96e.cloudfront.net/4/2/5000168/106/2/supertech-capetown-floor-plan-2bhk-2t-930-sq-ft-5000168.mp4";
+                flatUnit.walkthrough.image = "https://im.proptiger.com/4/2/5000168/106/2/supertech-capetown-floor-plan-2bhk-2t-930-sq-ft-5000168.jpg";
+            }
+            
             flatUnit.bedrooms = propertyDetail.bedrooms;
             flatUnit.size = propertyDetail.size ? propertyDetail.size : 0;
             flatUnit.measure = propertyDetail.measure;
