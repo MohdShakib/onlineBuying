@@ -42,13 +42,20 @@ var BaseView = (function() {
 
     BaseView.prototype = {
         buildView: function() {
-            var _this = this;
+            var rootdata = this._model.getRootdata(),
+                _this = this;
             this.buildSkeleton(Object.keys(containerMap));
+            this.init(rootdata);
             for (var i in this._elements) {
                 if (this._elements.hasOwnProperty(i) && this[i]) {
                     this[i]();
                 }
             }
+        },
+        init: function(rootdata) {
+            $('.project-title').html(rootdata.projectName);
+            $('.project-address').html(rootdata.address);
+            $('.project-desc').html(rootdata.description);
         },
         compareUnitsContainer: function() {
             var compareList = this._model.getCompareList(),
