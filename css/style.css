@@ -264,12 +264,12 @@ body {
 .mr5{ margin-right:5px;}
 .width-100{ width:100%;}
 .blur-bg{
-	background: url('../images/walkthrough-cover.jpg') no-repeat; background-size:cover;
-	-webkit-filter: blur(10px);
+	background: url('../images/loader-bg.jpg') no-repeat; background-size:cover;
+/*	-webkit-filter: blur(10px);
   	-moz-filter: blur(10px);
   	-o-filter: blur(10px);
   	-ms-filter: blur(10px);
-  	filter: blur(10px);
+  	filter: blur(10px);*/
 	width:100%;
 	height:100%;
 	position:fixed;
