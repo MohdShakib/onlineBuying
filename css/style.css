@@ -404,6 +404,7 @@ ellipse.tower-unit-svg-selected-path {
 	position: absolute;
 	width: 100%;
 	z-index: 1;
+	
 }
 .img-container img {
 	position: absolute;
@@ -560,7 +561,8 @@ ellipse.tower-unit-svg-selected-path {
 	text-decoration: none;
 	display: block;
 }
-.tower-menu-container .menu-icon a .icon, .tower-menu-container .menu-icon .icon{ float:left; padding:10px;color:#ccc;}
+.tower-menu-container .menu-icon a .icon, .tower-menu-container .menu-icon .icon{float:left;color:#ccc; position:absolute; height:100%; width:100%; left:0; top:0; overflow:hidden;}
+.tower-menu-container .menu-icon a .icon img, .tower-menu-container .menu-icon .icon img{ left:4px; display:block; position:absolute; top:2px;}
 .tower-menu-container .menu-sep {
 	height: 1px;
 	padding: 0px;
@@ -822,7 +824,7 @@ ellipse.tower-unit-svg-selected-path {
 .book-now a:hover{ opacity:0.9;}
 .book-now span{ display:block; padding:3px 5px; font-size:12px; font-weight:normal;}
 /*----compare box---*/
-.compare-container{ position:absolute; width:100%; left:0; top:50px; z-index:999999; padding-left:270px;}
+.compare-container{ position:absolute; width:100%; left:0; top:50px; z-index:999999; padding-left:290px;}
 .com-pro-box{ width:94px; display:inline-block; margin:2px 3px; box-shadow:0 0 1px #D0D0D0; cursor: pointer; border-bottom:2px solid #252525; cursor:pointer;}
 .com-pro-box:hover {opacity: 0.8}
 .com-pro-box p{ font-size:12px; padding:5px 10px; color:#616161; text-align:left;}
@@ -833,7 +835,7 @@ ellipse.tower-unit-svg-selected-path {
 }
 .close-compare-box{ position:absolute; color:#616161; right:15px; top:15px; z-index:9999999; cursor:pointer;}
 .close-compare-box:hover{ opacity:0.8;}
-.drag-info{ position:absolute; width:200px; font-size:14px; color:#616161; left:50px; top:20px; text-align:left; font-weight:bold;}
+.drag-info{ position:absolute; width:230px; font-size:14px; color:#616161; left:50px; top:20px; text-align:left; font-weight:bold;}
 /* Unit Close */
 .unit-close-container {
 	height: 50px;
@@ -1087,8 +1089,9 @@ ellipse.tower-unit-svg-selected-path {
     height: 100%;
     background: white;
     top: 0;
+	display:none;
     z-index: 100001;
-	right:-110%; padding-top:170px;
+	right:0; padding-top:170px;
 }
 .compare-units-container .inner-container{ padding:100px 15px 40px 15px;}
 .compare-units-container .svg-container{
@@ -1101,6 +1104,7 @@ ellipse.tower-unit-svg-selected-path {
 	cursor: pointer;
 	line-height: 50px;
 	z-index: 10;
+	right:0;
 }
 .compare-units-container .compare-back-button:hover {
 	opacity:0.7;
@@ -2040,3 +2044,6 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .offer-box a p{font-size:13px; color:#333; padding-left:15px; padding-top:8px;}
 .offer-box a p span{ color:#f18d18; display:block;}
 .offer-box a p label{ font-weight:bold;}
+.common-tol-tip{ position:absolute;top:0; left:50%; display:none; z-index:999999; width:500px; margin-left:-250px; text-align:center;}
+.common-tol-tip p{color:#fff; background:rgba(0,0,0,0.8); padding:5px 0 5px 10px;font-size:14px;display:inline-block;}
+.common-tol-tip p span.icon{ margin-left:10px; padding:0 5px; margin-top:2px; cursor:pointer;}

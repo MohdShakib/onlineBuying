@@ -282,8 +282,8 @@ var TowerselectedView = (function() {
 
             });
 
-            var code = '<div class="rotation-btn-container left-btn transition"><div class="photo-thumb br50"><img src="images/tower-thumb.jpg" class="br50"></div><button class="' + config.rotationButtonClass + '  tower-rotation-left-button br50" ><span class="icon icon-rotate-1"></span></button><div class="rotation-title transition">Rotate Left</div></div>';
-            code += '<div class="rotation-btn-container right-btn transition"><div class="photo-thumb br50"><img src="images/tower-thumb.jpg" class="br50"></div><button class="' + config.rotationButtonClass + ' tower-rotation-right-button br50" ><span class="icon icon-rotate-2"></span></button><div class="rotation-title transition">Rotate Right</div></div>';
+            var code = '<div class="rotation-btn-container left-btn transition"><div class="photo-thumb br50"><img src="images/tower-thumb.jpg" class="br50"></div><button class="' + config.rotationButtonClass + '  tower-rotation-left-button br50" ><span class="icon icon-rotate-1 fs30"></span></button><div class="rotation-title transition">Rotate Left</div></div>';
+            code += '<div class="rotation-btn-container right-btn transition"><div class="photo-thumb br50"><img src="images/tower-thumb.jpg" class="br50"></div><button class="' + config.rotationButtonClass + ' tower-rotation-right-button br50" ><span class="icon icon-rotate-2 fs30"></span></button><div class="rotation-title transition">Rotate Right</div></div>';
             if (this._elements && this._elements.towerRotationContainer) {
                 this._elements.towerRotationContainer.html(code);
             }
@@ -296,7 +296,7 @@ var TowerselectedView = (function() {
                 entranceFiltersData = filterdata.entrance,
                 priceFiltersData = filterdata.price;
 
-            var code = "<table><tr><td class='menu-header menu-icon transition'><a href='#" + url + "'><span class='icon icon-arrow_left'></span></td></tr>";
+            var code = "<table><tr><td class='menu-header menu-icon transition'><a href='#" + url + "'><span class='icon'><img src='../images/logo-big.png' alt='logo'></span></a></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><table>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
@@ -319,10 +319,9 @@ var TowerselectedView = (function() {
             code += "<div class='menu-item'><span class='icon  icon-rupee_final fs30'></span></div>";
             code += this.getPriceMenuOptions(data, priceFiltersData);
             code += "</td></tr>";
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.filters.resetClass + "'><span class='icon icon-reset-final fs24'></span></div></td></tr>";
+            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.filters.resetClass + "'><span class='icon icon-reset-final fs24'></span></div><div class='menu-item-options'><table><tr><td class='filter-title'>Reset All</td></tr><table></div></td></tr>";
             code += "</table></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
-            code += "<tr><td class='menu-call menu-icon'>&nbsp;</td></tr>";
             code += "</table>";
             this._elements.filterMenuContainer.html(code);
             this.filterMenuContainerEvents();

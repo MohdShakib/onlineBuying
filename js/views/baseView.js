@@ -68,9 +68,9 @@ var BaseView = (function() {
             var htmlCode = '',
                 firstUniqueIdentifier;
 
-            htmlCode += '<div class="title-text"><div class="compare-back-button"><span class="icon icon-arrow_left"></span></div>Compare Screen</div>';
+            htmlCode += '<div class="title-text"><div class="compare-back-button"><span class="icon icon-cross"></span></div>Compare Floor Plan</div>';
 
-            htmlCode += '<div class="compare-container"><div class="drag-info">Please Drag &amp; Drop from the list into the box to compare</div>';
+            htmlCode += '<div class="compare-container"><div class="drag-info">Please Drag &amp; Drop from the list into the box to compare floor plan</div>';
             for (var uniqueIdentifier in compareList) {
                 firstUniqueIdentifier = uniqueIdentifier;
                 var imageUrl = compareList[uniqueIdentifier].unitTypeData.unitImageUrl;
@@ -203,9 +203,7 @@ var BaseView = (function() {
             $('.tower-unit-detail-container').html('');
         },
         compareBackButtonClicked: function() {
-            $('#' + config.compareUnitscontainerId).animate({
-                right: '-110%'
-            }, 800);
+            $('#' + config.compareUnitscontainerId).fadeOut(800);
         },
         bottomFormGroupContainer: function() {
             var _this = this;
@@ -324,9 +322,7 @@ var BaseView = (function() {
 
             this.formPopupCloseClicked();
             this.compareUnitsContainer();
-            $('#' + config.compareUnitscontainerId).animate({
-                right: 0
-            }, 900);
+            $('#' + config.compareUnitscontainerId).fadeIn(900);
         },
         buildSkeleton: function(containerList) {
             var key, htmlCode = '';
