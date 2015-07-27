@@ -976,6 +976,7 @@ ellipse.tower-unit-svg-selected-path {
 	color:#f18d18;
 	box-shadow:0 0 3px rgba(0,0,0,0.3);
 	overflow:inherit;
+	cursor: pointer !important;
 }
 .floor-plan-menu-container .floor-plan-menu {
 	position: absolute;

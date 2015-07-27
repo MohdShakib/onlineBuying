@@ -465,11 +465,14 @@ var UnitplaninfoView = (function() {
             this.selectMenuOption(null, config.sunlightMenuOptionClass, config.sunlightImageClass);
         },
         selectMenuOption: function(element, optionClass, containerClass) {
+            var isSelected = $(element).hasClass(config.selectedClass);
             this.selectMenuOptionUI(element, optionClass);
             $('.' + containerClass).addClass(config.hideClass);
-            if (element) {
+            if (element && !isSelected) {
                 var target = $(element).data('target');
                 $('.' + target).removeClass(config.hideClass);
+            }else if(isSelected){
+                $('.' + optionClass).removeClass(config.selectedClass);
             }
         },
         selectMenuOptionUI: function(element, optionClass) {
