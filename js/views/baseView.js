@@ -325,7 +325,7 @@ var BaseView = (function() {
             this.formPopupCloseClicked();
             this.compareUnitsContainer();
             $('#' + config.compareUnitscontainerId).animate({
-                right: 0
+                right:0
             }, 900);
         },
         buildSkeleton: function(containerList) {

@@ -560,7 +560,8 @@ ellipse.tower-unit-svg-selected-path {
 	text-decoration: none;
 	display: block;
 }
-.tower-menu-container .menu-icon a .icon, .tower-menu-container .menu-icon .icon{ float:left; padding:10px;color:#ccc;}
+.tower-menu-container .menu-icon a .icon, .tower-menu-container .menu-icon .icon{ float:left; padding:5px;color:#ccc;}
+.tower-menu-container .menu-icon a .icon img, .tower-menu-container .menu-icon .icon img{ display:block;}
 .tower-menu-container .menu-sep {
 	height: 1px;
 	padding: 0px;
@@ -2039,3 +2040,5 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .offer-box a p{font-size:13px; color:#333; padding-left:15px; padding-top:8px;}
 .offer-box a p span{ color:#f18d18; display:block;}
 .offer-box a p label{ font-weight:bold;}
+.common-tol-tip{ position:absolute;top:8px; left:50%; z-index:999999; width:500px; margin-left:-250px; text-align:center;}
+.common-tol-tip p{color:#fff; background:rgba(0,0,0,0.8);  padding:10px 20px;font-size:14px; border-radius:20px; display:inline-block;}
