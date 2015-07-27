@@ -76,7 +76,11 @@ var MasterplanView = (function() {
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
         },
         startAnimation: function() {
-			$('.opacity-control').animate({opacity:1},700);
+            // Images
+            $('.opacity-control').animate({
+                opacity: 1
+            }, 700);
+
             // Clouds
             $('.top-left-cloud').animate({
                 left: '-50%'
@@ -90,6 +94,7 @@ var MasterplanView = (function() {
             $('.bottom-right-cloud').animate({
                 right: '-50%'
             }, 8000);
+
             // Amenities
             var time = 5000;
             $('.amenity-icon span').each(function() {
@@ -102,16 +107,25 @@ var MasterplanView = (function() {
 
             // Tower Menu
             setTimeout(function() {
-                $('.tower-menu-container').css({left: '0px', visibility: 'visible'});
+                $('.tower-menu-container').css({
+                    left: '0px',
+                    visibility: 'visible'
+                });
             }, 7000);
 
             // Connect tabs
             setTimeout(function() {
-                $('.pro-contact-actions ul.conect-tab').css({bottom: '0px'});
+                $('.pro-contact-actions ul.conect-tab').css({
+                    bottom: '0px'
+                });
             }, 7000);
         },
         displayWithoutAnimation: function() {
-			$('.opacity-control').animate({opacity:1},700);
+            // Images
+            $('.opacity-control').animate({
+                opacity: 1
+            }, 700);
+
             // Clouds
             $('.top-left-cloud').css({
                 left: '-50%'
@@ -130,10 +144,15 @@ var MasterplanView = (function() {
             $('.amenity-icon span').removeClass('fs0');
 
             // Tower Menu
-            $('.tower-menu-container').css({left: '0px', visibility: 'visible'});
+            $('.tower-menu-container').css({
+                left: '0px',
+                visibility: 'visible'
+            });
 
             // Connect tabs
-            $('.pro-contact-actions ul.conect-tab').css({bottom: '0px'});
+            $('.pro-contact-actions ul.conect-tab').css({
+                bottom: '0px'
+            });
         },
         sortTowersObject: function(towers) {
             var towerName, towerValues = [];
@@ -161,7 +180,7 @@ var MasterplanView = (function() {
             this._elements.buildingImgContainer.html(imgCode);
         },
         buildingMenuContainer: function(data) {
-            var code = "<table><tr><td class='menu-header menu-icon transition'><span class='icon'><a href='http://www.proptiger.com' target='_blank'><img src='../images/logo.jpg' alt='logo'></span></a></td></tr>";
+            var code = "<table><tr><td class='menu-header menu-icon transition'><span class='icon'><a href='http://www.proptiger.com' target='_blank'><img src='../images/logo.jpg' alt='proptiger.com'></span></a></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><div class='menu-scroll'><table>";
             for (var towerIdentifier in data.towers) {
