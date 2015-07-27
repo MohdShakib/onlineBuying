@@ -562,8 +562,8 @@ ellipse.tower-unit-svg-selected-path {
 	text-decoration: none;
 	display: block;
 }
-.tower-menu-container .menu-icon a .icon, .tower-menu-container .menu-icon .icon{float:left;color:#ccc; position:absolute; height:100%; width:100%; left:0; top:0; overflow:hidden;}
-.tower-menu-container .menu-icon a .icon img, .tower-menu-container .menu-icon .icon img{ left:4px; display:block; position:absolute; top:2px;}
+.tower-menu-container .menu-icon a .icon, .tower-menu-container .menu-icon .icon{float:left;color:#ccc; padding:0 10px;}
+.tower-menu-container .menu-icon a .icon img, .tower-menu-container .menu-icon .icon img{ left:4px; display:block; position:absolute; top:-18px; left:6px;}
 .tower-menu-container .menu-sep {
 	height: 1px;
 	padding: 0px;
