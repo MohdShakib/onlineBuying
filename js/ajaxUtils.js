@@ -105,10 +105,12 @@ var ajaxUtils = (function() {
             user.email = data.email;
             user.attributes = [attrib];
             user.contactNumbers = [contact];
+            user.countryId = data.countryId;
             req.productId = data.listingId;
             req.productType = 'PrimaryOnline';
             req.amount = data.amount;
             req.user = user;
+
 
             console.log(req);
 

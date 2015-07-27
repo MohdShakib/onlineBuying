@@ -151,17 +151,10 @@ var BookingView = (function() {
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
                 '                        </td>' +
-               /* '                        <td width="50%">' +
-                '                            <div id="booking-nationality" class="input-box transition ' + config.bookingInputDivClass + '">' +
-                '                                <label class="transition">nationality</label>' +
-                '                                <input type="text" />' +
-                '                                <span class="error ' + config.errorMsgClass + '"></span>' +                
-                '                            </div>' +
-                '                        </td>' +*/
                 '                        <td width="50%">' +
                 '                            <div id="booking-nationality" class="input-box transition no-paddind  ' + config.bookingSelectionDivClass + '">' +
-                '                                <a class="nationalty-link">Nationality<span class="icon fs18 icon-next transition"></span></a>' +
-                '                                <ul class="nationalty-drop-down transition ' + config.bookingDropdownClass + '" style="display:none;">' +
+                '                                <a class="nationalty-link selectedCountry" data-countrycode="0">Nationality<span class="icon fs18 icon-next transition"></span></a>' +
+                '                                <ul class="'+config.nationalityDropdownClass+' transition ' + config.bookingDropdownClass + '" style="display:none;">' +
                 '                                </ul>' +
                 '                            </div>' +
                 '                        </td>' +
@@ -181,17 +174,28 @@ var BookingView = (function() {
 
             
             this._elements.paymentScreen.html(code);
-            ajaxUtils.getCountries({successCallback: this.getCountriesList});
+            ajaxUtils.getCountries({successCallback: this.getCountriesList, self:this});
             this.paymentScreenEvents();
         },
-        getCountriesList: function(countries){
+        getCountriesList: function(countries, params){
             var htmlCode = '', totalCountries = countries ? countries.length : 0;
             if(countries && totalCountries){
                 for(var i=0; i<totalCountries; i++){
-                    htmlCode += '<li data-countrycode="'+countries[i].countryId+'"><a class="transition">'+countries[i].label+'</a></li>';
+                    htmlCode += '<li class="country-list-item" data-countrycode="'+countries[i].countryId+'"><a class="transition">'+countries[i].label+'</a></li>';
                 }
             }
-            $('.nationalty-drop-down').html(htmlCode);
+            $('.'+config.nationalityDropdownClass).html(htmlCode);
+            params.self.countryDropdownEvents();
+        },
+        countryDropdownEvents: function(){
+            $('.'+config.nationalityDropdownClass).off('click').on('click', '.country-list-item', function(){
+               event.stopPropagation();
+               var countryName = $(this).find('a').text();
+               var countryCode = $(this).data('countrycode');
+               $('.'+config.bookingSelectionDivClass +' .selectedCountry').text(countryName);
+               $('.'+config.bookingSelectionDivClass +' .selectedCountry').data('countrycode', countryCode);
+               $('.'+config.nationalityDropdownClass).css('display', 'none');
+            });
         },
         paymentScreenEvents: function() {
             var _this = this;
@@ -212,11 +216,11 @@ var BookingView = (function() {
                 }
             });
 
-            // _this._elements.paymentScreen.off('click').on('click', '.' + config.bookingSelectionDivClass, function(event) {
-            //     event.stopPropagation();
-            //     $('#' + this.id + ' > a').addClass(config.activeBookingInputClass);
-            //     $('#' + this.id + ' .' + config.bookingDropdownClass).show();
-            // });
+            _this._elements.paymentScreen.off('click').on('click', '.' + config.bookingSelectionDivClass, function(event) {
+                event.stopPropagation();
+                $('#' + this.id + ' > a').addClass(config.activeBookingInputClass);
+                $('#' + this.id + ' .' + config.bookingDropdownClass).show();
+            });
 
             _this._elements.paymentScreen.on('click', '.make-payment', function(event) {
                 // notify controller
@@ -229,6 +233,15 @@ var BookingView = (function() {
 
             _this._elements.paymentScreen.on('click', '#payment-breakup', function(event) {
                 $('#' + config.paymentBreakupPopupId).show();
+            });
+
+            this._elements.paymentScreen.on('click', function(){
+                //close country dropdown when clicked outside anywhere
+                $('.'+config.nationalityDropdownClass).css('display', 'none');
+            });
+
+            this._elements.paymentScreen.on('click', '.'+config.nationalityDropdownClass, function(){
+                event.stopPropagation();
             });
         },
         getValidatedPaymentData: function() {
@@ -245,7 +258,7 @@ var BookingView = (function() {
             data.email = $('#booking-email input').val();
             data.phone = $('#booking-phone input').val();
             data.dob = $('#booking-dob input').val();
-            data.nationality = $('#booking-nationality input').val();
+            data.countryId = $('.'+config.bookingSelectionDivClass +' .selectedCountry').data('countrycode');
             data.pan = $('#booking-pan input').val();
             data.listingId = unitData.listingId;
             data.amount = unitData.bookingAmount;
