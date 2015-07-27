@@ -232,7 +232,7 @@ var TowerselectedView = (function() {
                 'floor': unitInfo.floor ? unitInfo.floor : 'Ground',
                 'color': unitInfo.isAvailable ? 'apt-available-color' : 'apt-unavailable-color',
                 'availability': unitInfo.isAvailable ? 'Available' : 'Sold',
-                'price': Math.floor(unitInfo.price / 1000) / 100 + ' Lacs',
+                'price': utils.getReadablePriceInWord(unitInfo.price - unitInfo.discount),
                 'type': unitInfo.bedrooms + ' BHK'
             };
 
@@ -543,8 +543,7 @@ var TowerselectedView = (function() {
                 if (priceFiltersData && priceFiltersData.length && priceFiltersData.indexOf(checkForValue) > -1) {
                     availabilityClass += ' ' + config.filters.selectedClass;
                 }
-                var denom = 100000;
-                var readablePriceGrp = Number(prices[price].sprice / denom) + ' - ' + Number(prices[price].eprice / denom) + ' Lacs';
+                var readablePriceGrp = utils.getReadablePriceInWord(prices[price].sprice) + ' - ' + utils.getReadablePriceInWord(prices[price].eprice);
                 code += "<tr><td class='option-item " + config.filters.price + " " + availabilityClass + "' ";
                 code += "id='" + id + "' data-index='" + id + "' data-svalue='" + prices[price].sprice + "' data-evalue='" + prices[price].eprice + "'><span>" + readablePriceGrp + "</span></td></tr>";
             }

@@ -119,6 +119,7 @@ var config = (function(){
 		bookingInputDivClass: 'booking-input-div',
 		bookingSelectionDivClass: 'booking-selection-div',
 		bookingDropdownClass: 'booking-dropdown',
+		nationalityDropdownClass: 'nationalty-drop-down',
 		activeBookingInputClass: 'active'
 	};
 

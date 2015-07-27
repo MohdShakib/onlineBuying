@@ -929,10 +929,10 @@ ellipse.tower-unit-svg-selected-path {
 .uit-header-menu > div{ display:table-cell; width:25%;}
 .unit-data-container.walkthrough-container video {
 	position: absolute;
-    top: 0px;
+    top: 50px;
     left: 0px;
     width: 100%;
-    height: 100%;
+    height: 73%;
 }
 .unit-data-container .fullView {
 	position: absolute;
@@ -977,6 +977,7 @@ ellipse.tower-unit-svg-selected-path {
 	color:#f18d18;
 	box-shadow:0 0 3px rgba(0,0,0,0.3);
 	overflow:inherit;
+	cursor: pointer !important;
 }
 .floor-plan-menu-container .floor-plan-menu {
 	position: absolute;

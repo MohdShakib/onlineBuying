@@ -145,7 +145,7 @@ var UnitplaninfoView = (function() {
 
             htmlCode += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
             htmlCode += '<a><span class="icon icon-heart fs26"><label></label></span></a></div>';
-            htmlCode += '<div class="book-now" data-url="' + link + '"><a>Book now</a><span>Rs. ' + data.bookingAmount + '/- (Refundable)</span>';
+            htmlCode += '<div class="book-now" data-url="' + link + '"><a>Book now</a><span>Rs. ' + utils.getReadablePrice(data.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
             htmlCode += '</div>';
 
             this._elements.unitViewTabs.html(htmlCode);
@@ -465,11 +465,14 @@ var UnitplaninfoView = (function() {
             this.selectMenuOption(null, config.sunlightMenuOptionClass, config.sunlightImageClass);
         },
         selectMenuOption: function(element, optionClass, containerClass) {
+            var isSelected = $(element).hasClass(config.selectedClass);
             this.selectMenuOptionUI(element, optionClass);
             $('.' + containerClass).addClass(config.hideClass);
-            if (element) {
+            if (element && !isSelected) {
                 var target = $(element).data('target');
                 $('.' + target).removeClass(config.hideClass);
+            }else if(isSelected){
+                $('.' + optionClass).removeClass(config.selectedClass);
             }
         },
         selectMenuOptionUI: function(element, optionClass) {

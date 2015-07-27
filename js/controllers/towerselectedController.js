@@ -140,10 +140,8 @@ var TowerselectedController = (function() {
                 filteredListings.push(id);
             }
 
-            if(filteredListings && filteredListings.length){
-                this._model.updateFilteredAvailableCount(filteredAvailableCount);
-                this._view.updateAvailableCountText();
-            }
+            this._model.updateFilteredAvailableCount(filteredAvailableCount);
+            this._view.updateAvailableCountText();
 
             this._model.updateFilteredListings(filteredListings);
             this._view.towerSvgContainer(this._model.getData(), this._model.getRootdata());

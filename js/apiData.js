@@ -474,6 +474,7 @@ var getProjectData = (function() {
         parseAllCSVData();
 
         console.log(projectData);
+
         return projectData;
     }
 
