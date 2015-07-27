@@ -306,7 +306,7 @@ var MasterplanView = (function() {
                     var aptType = data.unitInfo[j];
                     var availabilityClass = config.availabilityClass.available + availabilityClassSuffix;
                     var availabilityText = aptType.available + " Av";
-                    if (aptType.available == 0) {
+                    if (aptType.available === 0) {
                         availabilityClass = config.availabilityClass.unavailable + availabilityClassSuffix;
                         availabilityText = 'Sold';
                     }
@@ -325,7 +325,7 @@ var MasterplanView = (function() {
             }
 
             // animate
-            window.getComputedStyle(document.getElementById('container-detail')).opacity;
+            window.getComputedStyle(document.getElementById('container-detail')).opacity; // jshint ignore:line
             document.getElementById('container-detail').style.opacity = "1";
         },
         amenitiesContainer: function(data) {

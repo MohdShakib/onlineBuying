@@ -84,7 +84,7 @@ var UnitplaninfoView = (function() {
                 $('#' + config.mainContainerId).append("<div class='selected-unit-container' id='" + config.selectedUnitContainerId + "'></div>");
                 // Add resize event listener
                 utils.addResizeEventListener(this.dynamicResizeContainers);
-                window.getComputedStyle(document.getElementById(config.selectedUnitContainerId)).right;
+                window.getComputedStyle(document.getElementById(config.selectedUnitContainerId)).right; // jshint ignore:line
                 $('#' + config.selectedUnitContainerId).animate({
                     right: 0
                 }, 900);

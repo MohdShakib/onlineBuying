@@ -11,7 +11,7 @@ var getProjectData = (function() {
 
         for (var i = 1; i < allTextLines.length; i++) {
             var data = allTextLines[i].split(',');
-            if (data.length == headers.length) {
+            if (data.length === headers.length) {
 
                 var tarr = {};
                 for (var j = 0; j < headers.length; j++) {
@@ -30,7 +30,7 @@ var getProjectData = (function() {
 
         for (var i = 1; i < allTextLines.length; i++) {
             var data = allTextLines[i].split(',');
-            if (data.length == headers.length) {
+            if (data.length === headers.length) {
 
                 var tarr = {};
                 for (var j = 0; j < headers.length; j++) {
@@ -48,7 +48,7 @@ var getProjectData = (function() {
 
     function useTowerUnitsCSVData(listing) {
         var i, towerIdentifier, unitInfo, tower, unitTowerIdentifier, unitIdentifier, unit;
-        for (var towerIdentifier in projectData.towers) {
+        for (towerIdentifier in projectData.towers) {
             if (hasOwnProperty.call(projectData.towers, towerIdentifier)) {
                 for (i = 0; i < listing.length; i++) {
                     unitInfo = listing[i];
@@ -135,7 +135,7 @@ var getProjectData = (function() {
                     svgPath: unitInfo[partial + 'svg'],
                     svg2dPath: unitInfo[partial + 'svg-2d'],
                     type: unitInfo[partial + 'type']
-                }
+                };
 
                 if (type == 'link' && item.type == 'link') {
                     item.details = zipImagePath + details;
@@ -216,8 +216,8 @@ var getProjectData = (function() {
         });
 
         utils.getSvgData(zipPath + '/' + config.csv.unitplanInfo).success(function(data) {
-            var data = processCsvDataToObject(data, 'unitName');
-            useUnitplanInfoCSVData(data);
+            var svgData = processCsvDataToObject(data, 'unitName');
+            useUnitplanInfoCSVData(svgData);
         });
 
     }
@@ -245,10 +245,10 @@ var getProjectData = (function() {
             },
             towerMap = {},
             _getPropertyById = function(data, propertyId) {
-                var i, length = data.length,
+                var length = data.length,
                     response = {};
                 if (data && data.length) {
-                    for (i = 0; i < length; i += 1) {
+                    for (var i = 0; i < length; i += 1) {
                         if (data[i] && data[i].propertyId == propertyId) {
                             return data[i];
                         }
@@ -278,7 +278,7 @@ var getProjectData = (function() {
 
         // Project Ameneties
         projectData.projectAmeneties = {};
-        for (var i in projectDetail.projectAmenities) {
+        for (i in projectDetail.projectAmenities) {
             var projectAmenity = projectDetail.projectAmenities[i],
                 amenity = {};
                 amenity.displayName = projectAmenity.amenityDisplayName;
@@ -289,18 +289,17 @@ var getProjectData = (function() {
         }
 
         // Payment plan image
-        for(var i in projectDetail.images) {
+        for(i in projectDetail.images) {
             if(projectDetail.images[i].imageType.type == 'paymentPlan') {
                 projectData.paymentPlanImage = projectDetail.images[i].absolutePath;
             }
         }
 
-        var towersUnitInfo = {},
-            towerIdentifier;
+        var towersUnitInfo = {};
         for (i = 0; i < towers_length; i += 1) {
 
             tower = projectDetail.towers[i];
-            towerIdentifier = utils.getIdentifier(tower.towerName);
+            var towerIdentifier = utils.getIdentifier(tower.towerName);
             towers[towerIdentifier] = {};
             towerMap[tower.towerId] = tower.towerName;
             towers[towerIdentifier].towerId = tower.towerId;
@@ -345,13 +344,14 @@ var getProjectData = (function() {
             
             // Walkthrough video
             flatUnit.walkthrough = {};
-            for (var i in propertyDetail.video) {
+            for (i in propertyDetail.video) {
                 var video = propertyDetail.video[i];
                 if (video.objectMediaType.type == "VideoWalkthrough") {
                     flatUnit.walkthrough.video = video.url;
                     flatUnit.walkthrough.image = video.imageUrl;
                 }
             }
+
             if (!flatUnit.walkthrough.video) {
                 flatUnit.walkthrough.video = "http://d1vh6m45iog96e.cloudfront.net/4/2/5000168/106/2/supertech-capetown-floor-plan-2bhk-2t-930-sq-ft-5000168.mp4";
                 flatUnit.walkthrough.image = "https://im.proptiger.com/4/2/5000168/106/2/supertech-capetown-floor-plan-2bhk-2t-930-sq-ft-5000168.jpg";
@@ -448,12 +448,12 @@ var getProjectData = (function() {
                     isAvailable = true;
                     totalAvailableCount += 1;
                 }
-            };
+            }
             tower.isAvailable = isAvailable;
             tower.totalAvailableCount = totalAvailableCount; // keeps count for flats available after applying fitler etc
         }
 
-    }
+    };
 
 
     function getProjectData(projectId) {
@@ -474,7 +474,7 @@ var getProjectData = (function() {
 
         console.log(projectData);
         return projectData;
-    };
+    }
 
     return getProjectData;
 })();

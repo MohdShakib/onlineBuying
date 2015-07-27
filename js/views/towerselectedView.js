@@ -132,7 +132,7 @@ var TowerselectedView = (function() {
                 if (hasOwnProperty.call(listings, unitIdentifier) &&
                     hasOwnProperty.call(unitInfo, 'isAvailable') &&
                     unitInfo.unitSvgOnTower &&
-                    (filteredListingKeys == null || filteredListingKeys.indexOf(unitIdentifier) > -1)
+                    (filteredListingKeys === null || filteredListingKeys.indexOf(unitIdentifier) > -1)
                 ) {
                     var rotationAngle = this._model.getCurrentRotationAngle(),
                         url = listings[unitIdentifier].isAvailable ? baseUrl + rotationAngle + '/' + unitIdentifier : "undefined",
@@ -247,8 +247,8 @@ var TowerselectedView = (function() {
             towerCode += '<div>' + details.price + '</div>';
             towerCode += '<div>Floor ' + details.floor + '</div>';
             towerCode += '<div class="' + details.color + '">' + details.availability + '</div>';
-            towerCode += '</div></div>'
-            towerCode += '</div></div>'
+            towerCode += '</div></div>';
+            towerCode += '</div></div>';
 
 
             if (this._elements && this._elements.towerDetailContainer) {
@@ -258,7 +258,7 @@ var TowerselectedView = (function() {
             }
 
             // animate
-            window.getComputedStyle(document.getElementById('container-detail')).opacity;
+            window.getComputedStyle(document.getElementById('container-detail')).opacity; // jshint ignore:line
             document.getElementById('container-detail').style.opacity = "1";
         },
         rotateTower: function() {
@@ -330,7 +330,7 @@ var TowerselectedView = (function() {
         displayFilterCount: function(type, count) {
             var style = "";
             if (count <= 0) {
-                style += "display:none;"
+                style += "display:none;";
             }
             var code = "<div id='" + type + "-filter-count' class='filter-count' style='" + style + "'>" + count + "</div>";
             return code;
@@ -415,7 +415,7 @@ var TowerselectedView = (function() {
                 var bhk = sortedBhks[i],
                     id = config.filters.bhk + i;
                 var availabilityClass = "apt-available-border-color";
-                if (bhks[bhk] == 0) {
+                if (bhks[bhk] === 0) {
                     availabilityClass = "apt-unavailable-border-color";
                 }
 
@@ -435,7 +435,7 @@ var TowerselectedView = (function() {
             var bhks = {};
             for (var i in units) {
                 var unit = units[i];
-                if (bhks[unit.bedrooms] == null) {
+                if (bhks[unit.bedrooms] === null) {
                     bhks[unit.bedrooms] = 0;
                 }
                 if (unit.isAvailable) {
@@ -452,7 +452,7 @@ var TowerselectedView = (function() {
                 var floorGroup = sortedFloors[i],
                     id = config.filters.floor + i;
                 var availabilityClass = "apt-available-border-color";
-                if (floors[floorGroup].availability == 0) {
+                if (floors[floorGroup].availability === 0) {
                     availabilityClass = "apt-unavailable-border-color";
                 }
 
@@ -476,7 +476,7 @@ var TowerselectedView = (function() {
                 var sfloor = groupInterval.start;
                 var efloor = groupInterval.end - 1;
                 var floorGroup = utils.addLeadingZeros(sfloor, 3) + " " + utils.addLeadingZeros(efloor, 3);
-                if (floors[floorGroup] == null) {
+                if (floors[floorGroup] === null) {
                     floors[floorGroup] = {
                         'sfloor': sfloor,
                         'efloor': efloor,
@@ -497,7 +497,7 @@ var TowerselectedView = (function() {
                 var entrance = sortedEntrances[i],
                     id = config.filters.entrance + i;
                 var availabilityClass = "apt-available-border-color";
-                if (entrances[entrance] == 0) {
+                if (entrances[entrance] === 0) {
                     availabilityClass = "apt-unavailable-border-color";
                 }
 
@@ -517,7 +517,7 @@ var TowerselectedView = (function() {
             var entrances = {};
             for (var i in units) {
                 var unit = units[i];
-                if (entrances[unit.facing] == null) {
+                if (entrances[unit.facing] === null) {
                     entrances[unit.facing] = 0;
                 }
                 if (unit.isAvailable) {
@@ -534,7 +534,7 @@ var TowerselectedView = (function() {
                 var price = sortedPrices[i],
                     id = config.filters.price + i;
                 var availabilityClass = "apt-available-border-color";
-                if (prices[price].availability == 0) {
+                if (prices[price].availability === 0) {
                     availabilityClass = "apt-unavailable-border-color";
                 }
 
@@ -560,7 +560,7 @@ var TowerselectedView = (function() {
                 var sPrice = groupInterval.start;
                 var ePrice = groupInterval.end;
                 var priceGroup = utils.addLeadingZeros(sPrice, 12) + ' ' + utils.addLeadingZeros(ePrice, 12);
-                if (prices[priceGroup] == null) {
+                if (prices[priceGroup] === null) {
                     prices[priceGroup] = {
                         'sprice': sPrice,
                         'eprice': ePrice,

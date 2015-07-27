@@ -197,7 +197,7 @@ var BookingView = (function() {
 
             _this._elements.paymentScreen.off('focusout').on('focusout', '.' + config.bookingInputDivClass, function(event) {
                 var value = $('#' + this.id + ' input').val();
-                if (value == null || value == "") {
+                if (value === null || value === "") {
                     $('#' + this.id).removeClass(config.activeBookingInputClass);
                 }
             });

@@ -58,7 +58,7 @@ var initializeRoutes = (function() {
                 // Add resize event listener
                 utils.addResizeEventListener(utils.defaultDynamicResizeContainers);
             }
-        }
+        };
 
         routes[towerRoute] = {
             on: function(projectName, projectId, towerName) {
@@ -70,7 +70,7 @@ var initializeRoutes = (function() {
                 utils.addResizeEventListener(utils.defaultDynamicResizeContainers);
                 reloadTowerSelectedView = false;
             }
-        }
+        };
 
         routes[unitRoute] = {
             on: function(projectName, projectId, towerName, towerAngle, unitAddress) {
@@ -88,7 +88,7 @@ var initializeRoutes = (function() {
                 unitplaninfoController = new UnitplaninfoController(unitplaninfoModel, unitplaninfoView);
                 unitplaninfoController.generateTemplate();
             }
-        }
+        };
 
         routes[bookingRoute] = {
             on: function(projectName, projectId, towerName, towerAngle, unitAddress) {
@@ -104,7 +104,7 @@ var initializeRoutes = (function() {
                 // Reload tower selected container or not on closing this view
                 reloadTowerSelectedView = true;
             }
-        }
+        };
 
         routes[errorRoute] = {
             on: function() {
@@ -112,10 +112,10 @@ var initializeRoutes = (function() {
                 errorPageController = new ErrorPageController(errorPageView);
                 errorPageController.generateTemplate();
             }
-        }
+        };
 
         // instantiate the router
-        router = Router(routes);
+        router = new Router(routes);
         router.configure({ // a global configuration setting.
             strict: false,
             on: function(projectName, projectId) {
