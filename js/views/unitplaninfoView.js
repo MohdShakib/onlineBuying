@@ -464,15 +464,16 @@ var UnitplaninfoView = (function() {
             this.selectMenuOptionUI(document.getElementById('floor-plan'), config.floorPlanMenuOptionClass);
             this.selectMenuOption(null, config.sunlightMenuOptionClass, config.sunlightImageClass);
         },
-        selectMenuOption: function(element, optionClass, containerClass) {
+        selectMenuOption: function(element, optionClass, containerClass, toggle) {
             var isSelected = $(element).hasClass(config.selectedClass);
             this.selectMenuOptionUI(element, optionClass);
             $('.' + containerClass).addClass(config.hideClass);
-            if (element && !isSelected) {
+            
+            if(toggle && isSelected){
+                $('.' + optionClass).removeClass(config.selectedClass);
+            }else if(element){
                 var target = $(element).data('target');
                 $('.' + target).removeClass(config.hideClass);
-            }else if(isSelected){
-                $('.' + optionClass).removeClass(config.selectedClass);
             }
         },
         selectMenuOptionUI: function(element, optionClass) {

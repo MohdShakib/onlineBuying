@@ -41,7 +41,7 @@ var UnitplaninfoController = (function() {
 
             // Sunlight menu Events
             this._view._sunlightMenuClick.attach(function(sender, element) {
-                _this._view.selectMenuOption(element, config.sunlightMenuOptionClass, config.sunlightImageClass);
+                _this._view.selectMenuOption(element, config.sunlightMenuOptionClass, config.sunlightImageClass, true);
             });
 
             // Floor plan menu Event
