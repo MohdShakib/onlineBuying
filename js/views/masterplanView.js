@@ -269,7 +269,6 @@ var MasterplanView = (function() {
             menuElement.addClass(availabilityStatusClass);
         },
         towerMouseLeaveEvent: function(element) {
-            var index = element.dataset.index;
             $('.detail-box').removeClass('show-details');
             $('.detail-box').addClass('hide-details');
             $('img.' + config.imgContainerClass).stop().fadeTo("500", 1, function() {});

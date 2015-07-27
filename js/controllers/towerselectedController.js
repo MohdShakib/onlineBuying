@@ -30,7 +30,8 @@ var TowerselectedController = (function() {
                 _this._view.towerUnitMouseLeaveEvent(element);
             });
             this._view._towerUnitSvgClick.attach(function(sender, element) {
-                _this._model.setSelectedListing(element.dataset.index);
+                var index = $(element).data('index');
+                _this._model.setSelectedListing(index);
                 _this._view.towerUnitMouseClickEvent(element);
                 utils.changeUrl(element);
             });
