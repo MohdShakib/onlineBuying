@@ -8,8 +8,8 @@
 var TowerselectedView = (function() {
 
     var containerMap = {
-        'towerImgContainer': '<div class="img-container ' + config.dynamicResizeClass + ' ' + config.slowTransitionClass + '" id="img-container"></div>',
-        'towerSvgContainer': '<svg class="svg-container ' + config.dynamicResizeClass + ' ' + config.slowTransitionClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
+        'towerImgContainer': '<div class="img-container opacity-control ' + config.dynamicResizeClass + ' '+config.slowTransitionClass+'" id="img-container"></div>',
+        'towerSvgContainer': '<svg class="svg-container opacity-control ' + config.dynamicResizeClass + ' '+config.slowTransitionClass+'" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'towerDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>',
         'towerRotationContainer': '<div class="tower-rotation-container ' + config.slowTransitionClass + '" id="' + config.towerRotationContainerId + '"></div>',
         'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>'
@@ -84,17 +84,19 @@ var TowerselectedView = (function() {
                 if (!$('#' + config.selectedUnitContainerId).length) {
                     $('.tower-menu-container').css({left: '0px', visibility: 'visible'});
                 }
-            }, 200);
+            }, 700);
+			
+			$('.opacity-control').animate({opacity:1},700);
 
             // Connect tabs
             setTimeout(function() {
                 $('.pro-contact-actions ul.conect-tab').css({bottom: '0px'});
-            }, 200);
+            }, 700);
         },
         displayWithoutAnimation: function() {
             // Tower Menu
             $('.tower-menu-container').css({left: '0px', visibility: 'visible'});
-
+			$('.opacity-control').animate({opacity:1},700);
             // Connect tabs
             $('.pro-contact-actions ul.conect-tab').css({bottom: '0px'});
         },
