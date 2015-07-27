@@ -8,8 +8,8 @@
 var TowerselectedView = (function() {
 
     var containerMap = {
-        'towerImgContainer': '<div class="img-container opacity-control ' + config.dynamicResizeClass + ' '+config.slowTransitionClass+'" id="img-container"></div>',
-        'towerSvgContainer': '<svg class="svg-container opacity-control ' + config.dynamicResizeClass + ' '+config.slowTransitionClass+'" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
+        'towerImgContainer': '<div class="img-container opacity-control ' + config.dynamicResizeClass + ' ' + config.slowTransitionClass + '" id="img-container"></div>',
+        'towerSvgContainer': '<svg class="svg-container opacity-control ' + config.dynamicResizeClass + ' ' + config.slowTransitionClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'towerDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>',
         'towerRotationContainer': '<div class="tower-rotation-container ' + config.slowTransitionClass + '" id="' + config.towerRotationContainerId + '"></div>',
         'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>'
@@ -69,7 +69,7 @@ var TowerselectedView = (function() {
             document.getElementById(config.mainContainerId).innerHTML = mainContainerHtml;
             this._elements = getElements();
         },
-        updateAvailableCountText: function(){
+        updateAvailableCountText: function() {
             var totalAvailableText = this._model.getFilteredAvailableCountText();
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = totalAvailableText;
         },
@@ -82,23 +82,41 @@ var TowerselectedView = (function() {
             // Tower Menu
             setTimeout(function() {
                 if (!$('#' + config.selectedUnitContainerId).length) {
-                    $('.tower-menu-container').css({left: '0px', visibility: 'visible'});
+                    $('.tower-menu-container').css({
+                        left: '0px',
+                        visibility: 'visible'
+                    });
                 }
             }, 700);
-			
-			$('.opacity-control').animate({opacity:1},700);
+
+            // Images
+            $('.opacity-control').css({
+                opacity: 1
+            });
 
             // Connect tabs
             setTimeout(function() {
-                $('.pro-contact-actions ul.conect-tab').css({bottom: '0px'});
+                $('.pro-contact-actions ul.conect-tab').css({
+                    bottom: '0px'
+                });
             }, 700);
         },
         displayWithoutAnimation: function() {
             // Tower Menu
-            $('.tower-menu-container').css({left: '0px', visibility: 'visible'});
-			$('.opacity-control').animate({opacity:1},700);
+            $('.tower-menu-container').css({
+                left: '0px',
+                visibility: 'visible'
+            });
+
+            // Images
+            $('.opacity-control').css({
+                opacity: 1
+            });
+
             // Connect tabs
-            $('.pro-contact-actions ul.conect-tab').css({bottom: '0px'});
+            $('.pro-contact-actions ul.conect-tab').css({
+                bottom: '0px'
+            });
         },
         overviewImgContainer: function(data, rootdata) {
             var code = "<img src='" + data.image_url + "'/>";
@@ -187,13 +205,13 @@ var TowerselectedView = (function() {
             var toolTipData = data && data.listings ? data.listings[index] : null;
             if (toolTipData) {
                 var svgpathClient = element.getBoundingClientRect();
-                var diff = (window.innerWidth > config.imageResolution.width) ? (window.innerWidth - config.imageResolution.width)/2 : 0;
+                var diff = (window.innerWidth > config.imageResolution.width) ? (window.innerWidth - config.imageResolution.width) / 2 : 0;
                 this.showTowerUnitDetailContainer(toolTipData, (svgpathClient.right - diff), (svgpathClient.top + svgpathClient.height / 2));
             }
         },
         towerUnitMouseLeaveEvent: function(element) {
             var index = $(element).data('index');
-            
+
             // hide svg hover circle
             utils.addSVGClass(index + "-hover-path", config.hideClass);
 
@@ -425,7 +443,7 @@ var TowerselectedView = (function() {
                 if (bhkFiltersData && bhkFiltersData.length && bhkFiltersData.indexOf(checkForValue) > -1) {
                     availabilityClass += ' ' + config.filters.selectedClass;
                 }
-		
+
                 code += "<tr><td class='option-item " + config.filters.bhk + " " + availabilityClass + "' ";
                 code += "id='" + id + "' data-index='" + id + "' data-value='" + bhk + "'><span>" + bhk + " BHK</span></td></tr>";
             }

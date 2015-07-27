@@ -76,7 +76,7 @@ var ajaxUtils = (function() {
 
             console.log(req);
 
-            var url = '/email-notification';
+            var url = 'http://192.168.0.208:5000/email-notification';
             var params = {
                 successCallback: function() {
                     console.log("Hurreeyyyyy");
