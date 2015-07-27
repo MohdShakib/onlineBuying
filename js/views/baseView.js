@@ -228,8 +228,17 @@ var BaseView = (function() {
 
             var _this = this;
 
+            $('#'+config.parentContainerId).off('click').on('click', function(){
+                // close form if opened
+                _this.formPopupCloseClicked();
+            });
+
             this._elements.bottomFormGroupContainer.off('click').on('click', '.' + config.bottomFormGroup.tabLinkClass, function(event) {
                 _this._bottomGroupButtonClick.notify(this); //this refers to element here                
+            });
+
+            this._elements.bottomFormGroupContainer.on('click', function(event) {
+                event.stopPropagation();
             });
 
             this._elements.bottomFormGroupContainer.on('click', '#call-box-submit-id', function(event) {
@@ -295,6 +304,7 @@ var BaseView = (function() {
             ajaxUtils.sendEmail(data);
         },
         formPopupCloseClicked: function() {
+            $('form input').parent('div').removeClass('error');
             $('.' + config.bottomFormGroup.tabLinkClass).removeClass('active');
             $('.' + config.bottomFormGroup.formPopUpClass).removeClass('out');
         },
