@@ -216,7 +216,7 @@ var BookingView = (function() {
                 }
             });
 
-            _this._elements.paymentScreen.off('click').on('click', '.' + config.bookingSelectionDivClass, function(event) {
+            _this._elements.paymentScreen.on('click', '.' + config.bookingSelectionDivClass, function(event) {
                 event.stopPropagation();
                 $('#' + this.id + ' > a').addClass(config.activeBookingInputClass);
                 $('#' + this.id + ' .' + config.bookingDropdownClass).show();
