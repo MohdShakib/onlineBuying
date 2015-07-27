@@ -106,6 +106,10 @@ var BaseView = (function() {
                 _this._bookingClick.notify(this); //this refers to element here                
             });
 
+            this._elements.compareUnitsContainer.on('click', '.close-compare-box', function(event){
+                _this.removeFromCompareBox(this); // this represents to element here
+            });
+
             $('.' + config.compareBottomBox).draggable({
                 helper: 'clone',
                 start: function() {
@@ -125,10 +129,7 @@ var BaseView = (function() {
                 },
                 drop: function(event, ui) {
                     $(this).removeClass('drag-over');
-                    var unitUniqueIdentifier = $(this).find('img.compare-unit-img').data('uniqueidentifier');
-                    if (unitUniqueIdentifier && $('#' + config.compareBottomBox + '-' + unitUniqueIdentifier)) {
-                        $('#' + config.compareBottomBox + '-' + unitUniqueIdentifier + ' ').removeClass('selected');
-                    }
+                    _this.removeSelectedClassFromComProBox(this);
                     var uniqueIdentifier = $(ui.draggable).data('uniqueidentifier');
                     _this.addToCompareBox(this, uniqueIdentifier);
                 }
@@ -151,6 +152,18 @@ var BaseView = (function() {
 
             $(compareBox).html(htmlCode);
             this.unit3dSvgContainer(uniqueIdentifier);
+        },
+        removeFromCompareBox: function(element){
+            var parentElement = $(element).parent();
+            this.removeSelectedClassFromComProBox(parentElement);
+            var htmlCode = '<div class="compare-unit-box-detail top-right-component"><span>Drag & drop to select unit and compare it.</span></div>' + '<div class="img-svg-container drag-drop">' + '<img class="compare-unit-img"  src="images/compare_drag.jpg"/></div>';
+            parentElement.html(htmlCode);
+        },
+        removeSelectedClassFromComProBox: function(parentElement){
+            var unitUniqueIdentifier = $(parentElement).find('img.compare-unit-img').data('uniqueidentifier');
+            if (unitUniqueIdentifier && $('#' + config.compareBottomBox + '-' + unitUniqueIdentifier)) {
+                $('#' + config.compareBottomBox + '-' + unitUniqueIdentifier + ' ').removeClass('selected');
+            }
         },
         unit3dSvgContainer: function(uniqueIdentifier) {
             var compareList = this._model.getCompareList();

@@ -308,6 +308,7 @@ var getProjectData = (function() {
             towers[towerIdentifier].towerName = tower.towerName;
             towers[towerIdentifier].listings = {};
             towers[towerIdentifier].rotationAngle = {};
+            towers[towerIdentifier].totalAvailableCount = 0; //contains count for total flats available in the tower
             towersUnitInfo[towerIdentifier] = {};
             towers[towerIdentifier].unitInfo = [];
         }
@@ -400,6 +401,8 @@ var getProjectData = (function() {
 
         }
 
+
+
         var otherPricingDetailsLength = projectDetail.otherPricingDetails ? projectDetail.otherPricingDetails.length : 0;
         for (var k = 0; k < otherPricingDetailsLength; k++) {
             var pricingDetail = projectDetail.otherPricingDetails[k];
@@ -430,19 +433,24 @@ var getProjectData = (function() {
                         });
                     }
                 }
+
             }
         }
+
 
         var isAvailable = false;
         for (var towerIdentifier in projectData.towers) {
             tower = projectData.towers[towerIdentifier];
             isAvailable = false;
+            var totalAvailableCount = 0;
             for (var unitKey in tower.listings) {
                 if (hasOwnProperty.call(tower.listings, unitKey) && tower.listings[unitKey].bookingStatusId == 1) {
                     isAvailable = true;
+                    totalAvailableCount += 1;
                 }
             };
             tower.isAvailable = isAvailable;
+            tower.totalAvailableCount = totalAvailableCount; // keeps count for flats available after applying fitler etc
         }
 
     }

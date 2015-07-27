@@ -73,6 +73,7 @@ var MasterplanView = (function() {
         renderInitialData: function(data) {
             document.getElementById(config.projectDetail.titleId).innerHTML = data.projectName;
             document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
+            document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
         },
         startAnimation: function() {
             // Clouds

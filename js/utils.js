@@ -324,7 +324,7 @@ var utils = (function() {
                 htmlCode = '<ul>';
 
                 for (var uniqueIdentifier in comparedItems) {
-                    htmlCode += '<li >' + comparedItems[uniqueIdentifier].unitName + '<span class="icon icon-cross fs14' + config.shortlistedUnitRemoveClass + '" data-unitidentifier="' + comparedItems[uniqueIdentifier].unitIdentifier + '" data-uniqueidentifier="' + uniqueIdentifier + '"></span></li>';
+                    htmlCode += '<li >' + comparedItems[uniqueIdentifier].unitName + '<span class="icon icon-cross ' + config.shortlistedUnitRemoveClass + '" data-unitidentifier="' + comparedItems[uniqueIdentifier].unitIdentifier + '" data-uniqueidentifier="' + uniqueIdentifier + '"></span></li>';
                 }
                 htmlCode += '</ul>';
             } else {

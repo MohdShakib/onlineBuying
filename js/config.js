@@ -6,7 +6,8 @@ var config = (function(){
 		backgroundImage: 'masterplan.jpg',
 		projectDetail: {
 			titleId: "project-title",
-			addressId: "project-address"
+			addressId: "project-address",
+			availabilityCountId: "project-count"
 		},
 		imageResolution: {
 			height: 630,

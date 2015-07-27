@@ -69,9 +69,14 @@ var TowerselectedView = (function() {
             document.getElementById(config.mainContainerId).innerHTML = mainContainerHtml;
             this._elements = getElements();
         },
+        updateAvailableCountText: function(){
+            var totalAvailableText = this._model.getFilteredAvailableCountText();
+            document.getElementById(config.projectDetail.availabilityCountId).innerHTML = totalAvailableText;
+        },
         renderInitialData: function(data, rootdata) {
             document.getElementById(config.projectDetail.titleId).innerHTML = rootdata.projectName;
             document.getElementById(config.projectDetail.addressId).innerHTML = data.towerName;
+            this.updateAvailableCountText();
         },
         startAnimation: function() {
             // Tower Menu
@@ -113,7 +118,6 @@ var TowerselectedView = (function() {
             var currentRotationAngle = this._model.getCurrentRotationAngle(),
                 selectedListing = this._model.getSelectedListing();
             var listings = (data && data.rotationAngle[currentRotationAngle] && Object.keys(data.rotationAngle[currentRotationAngle].listing).length) ? data.rotationAngle[currentRotationAngle].listing : null;
-
             if (!listings) {
                 return;
             }

@@ -90,7 +90,9 @@ var TowerselectedController = (function() {
         },
         updateFilteredListings: function() {
             var listings = this._model.getData().listings,
-                filteredListings = [];
+                filteredListings = [], filteredAvailableCount = 0;
+
+            //updateFilteredAvailableCount
             for (var id in listings) {
                 var unit = listings[id];
 
@@ -130,7 +132,16 @@ var TowerselectedController = (function() {
                     continue;
                 }
 
+                if(listings[id].isAvailable){
+                    filteredAvailableCount += 1;
+                }
+
                 filteredListings.push(id);
+            }
+
+            if(filteredListings && filteredListings.length){
+                this._model.updateFilteredAvailableCount(filteredAvailableCount);
+                this._view.updateAvailableCountText();
             }
 
             this._model.updateFilteredListings(filteredListings);

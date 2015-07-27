@@ -12,6 +12,7 @@ var TowerselectedModel = (function() {
 
         this._currentRotationAngle = towerAngle ? '' + towerAngle : '0';
         this._filteredListings = null;
+        this._filteredAvailableCount = data.totalAvailableCount || 0;
         this._selectedListing = null;
         this._firstLoad = true;
 
@@ -56,6 +57,12 @@ var TowerselectedModel = (function() {
         },
         setSelectedListing: function(selectedListing) {
             this._selectedListing = selectedListing;
+        },
+        getFilteredAvailableCountText: function(){
+            return this._filteredAvailableCount+' Available';
+        },
+        updateFilteredAvailableCount: function(count){
+            this._filteredAvailableCount = count;
         },
         updateFilteredListings: function(listings) {
             this._filteredListings = listings;
