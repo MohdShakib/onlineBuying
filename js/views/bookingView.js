@@ -151,22 +151,20 @@ var BookingView = (function() {
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
                 '                        </td>' +
-                '                        <td width="50%">' +
+               /* '                        <td width="50%">' +
                 '                            <div id="booking-nationality" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">nationality</label>' +
                 '                                <input type="text" />' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +                
                 '                            </div>' +
+                '                        </td>' +*/
+                '                        <td width="50%">' +
+                '                            <div id="booking-nationality" class="input-box transition no-paddind  ' + config.bookingSelectionDivClass + '">' +
+                '                                <a class="nationalty-link">Nationality<span class="icon fs18 icon-next transition"></span></a>' +
+                '                                <ul class="nationalty-drop-down transition ' + config.bookingDropdownClass + '" style="display:none;">' +
+                '                                </ul>' +
+                '                            </div>' +
                 '                        </td>' +
-                // '                        <td width="50%">' +
-                // '                            <div id="booking-nationality" class="input-box transition no-paddind  ' + config.bookingSelectionDivClass + '">' +
-                // '                                <a class="nationalty-link">Nationality<span class="icon fs18 icon-next transition"></span></a>' +
-                // '                                <ul class="nationalty-drop-down transition ' + config.bookingDropdownClass + '" style="display:none;">' +
-                // '                                    <li><a class="transition">Indian</a></li>' +
-                // '                                    <li><a class="transition">Other</a></li>' +
-                // '                                </ul>' +
-                // '                            </div>' +
-                // '                        </td>' +
                 '                    </tr>' +
                 '                </table>' +
                 '            </div>' +
@@ -180,8 +178,20 @@ var BookingView = (function() {
                 '        </div>' +
                 '        </div>' +
                 '        </div>';
+
+            
             this._elements.paymentScreen.html(code);
+            ajaxUtils.getCountries({successCallback: this.getCountriesList});
             this.paymentScreenEvents();
+        },
+        getCountriesList: function(countries){
+            var htmlCode = '', totalCountries = countries ? countries.length : 0;
+            if(countries && totalCountries){
+                for(var i=0; i<totalCountries; i++){
+                    htmlCode += '<li data-countrycode="'+countries[i].countryId+'"><a class="transition">'+countries[i].label+'</a></li>';
+                }
+            }
+            $('.nationalty-drop-down').html(htmlCode);
         },
         paymentScreenEvents: function() {
             var _this = this;

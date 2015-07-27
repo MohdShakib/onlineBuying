@@ -475,7 +475,6 @@ var getProjectData = (function() {
 
         console.log(projectData);
 
-        ajaxUtils.getCountries();
         return projectData;
     }
 

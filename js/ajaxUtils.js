@@ -86,9 +86,10 @@ var ajaxUtils = (function() {
             this.ajax(url, params, 'POST', true, JSON.stringify(req));
         },
 
-        getCountries: function(){
+        getCountries: function(params){
+            params = params || null;
             var url = "https://www.proptiger.com/data/v1/entity/country";
-            this.ajax(url, function(data){ console.log('countries are: '); console.log(data); }, 'GET', false, null);
+            this.ajax(url, params, 'GET', false, null);
         },
 
         bookListing: function(data) {
