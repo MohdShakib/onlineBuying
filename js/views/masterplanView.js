@@ -89,7 +89,6 @@ var MasterplanView = (function() {
             $('.bottom-right-cloud').animate({
                 right: '-50%'
             }, 8000);
-
             // Amenities
             var time = 5000;
             $('.amenity-icon span').each(function() {
@@ -160,7 +159,7 @@ var MasterplanView = (function() {
             this._elements.buildingImgContainer.html(imgCode);
         },
         buildingMenuContainer: function(data) {
-            var code = "<table><tr><td class='menu-header menu-icon transition'><span class='icon'><img src='../images/logo.jpg' alt='logo'></span></td></tr>";
+            var code = "<table><tr><td class='menu-header menu-icon transition'><span class='icon'><img src='../images/logo-big.png' alt='logo'></span></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><div class='menu-scroll'><table>";
             for (var towerIdentifier in data.towers) {

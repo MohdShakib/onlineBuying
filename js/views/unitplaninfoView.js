@@ -226,7 +226,7 @@ var UnitplaninfoView = (function() {
             var code = "<table class='floor-plan-menu' cellpadding='0' cellspacind='0' border='0'><tr>";
             code += "<td data-target='fp2d-container' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + "' id='floor-plan2d'>2D</td>";
             code += "<td data-target='fp-container' class='" + config.floorPlanMenuOptionClass + " " + config.selectedClass + " " + config.transitionClass + "' id='floor-plan'>3D</td>";
-            code += "<td data-target='fpwt-container' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + " right' id='walkthrough'>Walkthrough</td>";
+            code += "<td data-target='fpwt-container' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + " right' id='walkthrough'>Vedio Tour</td>";
             code += "</tr></table>";
             this._elements.floorPlanMenuContainer.html(code);
             this.floorPlanMenuContainerEvents();
