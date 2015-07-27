@@ -8,7 +8,7 @@
 var MasterplanView = (function() {
 
     var containerMap = {
-        'buildingImgContainer': '<div class="img-container ' + config.dynamicResizeClass + '" id="img-container"></div>',
+        'buildingImgContainer': '<div class="img-container opacity-control ' + config.dynamicResizeClass + '" id="img-container"></div>',
         'buildingSvgContainer': '<svg class="svg-container ' + config.dynamicResizeClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'buildingMenuContainer': '<div class="tower-menu-container transition" id="tower-menu-container"></div>',
         'towerDetailContainer': '<div class="tower-detail-container" id="tower-detail-container"></div>',
@@ -76,6 +76,7 @@ var MasterplanView = (function() {
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
         },
         startAnimation: function() {
+			$('.opacity-control').animate({opacity:1},700);
             // Clouds
             $('.top-left-cloud').animate({
                 left: '-50%'
@@ -110,6 +111,7 @@ var MasterplanView = (function() {
             }, 7000);
         },
         displayWithoutAnimation: function() {
+			$('.opacity-control').animate({opacity:1},700);
             // Clouds
             $('.top-left-cloud').css({
                 left: '-50%'
