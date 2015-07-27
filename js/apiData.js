@@ -473,6 +473,8 @@ var getProjectData = (function() {
         parseAllCSVData();
 
         console.log(projectData);
+
+        ajaxUtils.getCountries();
         return projectData;
     };
 
