@@ -5,6 +5,7 @@
     "bitwise": true,
     "curly": true,
     "eqeqeq": false,
+    "eqnull": true,
     "es3": true,
     "freeze": true,
     "immed": true,

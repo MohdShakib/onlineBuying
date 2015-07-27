@@ -11,7 +11,7 @@ var getProjectData = (function() {
 
         for (var i = 1; i < allTextLines.length; i++) {
             var data = allTextLines[i].split(',');
-            if (data.length === headers.length) {
+            if (data.length == headers.length) {
 
                 var tarr = {};
                 for (var j = 0; j < headers.length; j++) {
@@ -30,7 +30,7 @@ var getProjectData = (function() {
 
         for (var i = 1; i < allTextLines.length; i++) {
             var data = allTextLines[i].split(',');
-            if (data.length === headers.length) {
+            if (data.length == headers.length) {
 
                 var tarr = {};
                 for (var j = 0; j < headers.length; j++) {
@@ -48,7 +48,7 @@ var getProjectData = (function() {
 
     function useTowerUnitsCSVData(listing) {
         var i, towerIdentifier, unitInfo, tower, unitTowerIdentifier, unitIdentifier, unit;
-        for (towerIdentifier in projectData.towers) {
+        for (var towerIdentifier in projectData.towers) {
             if (hasOwnProperty.call(projectData.towers, towerIdentifier)) {
                 for (i = 0; i < listing.length; i++) {
                     unitInfo = listing[i];
@@ -216,8 +216,8 @@ var getProjectData = (function() {
         });
 
         utils.getSvgData(zipPath + '/' + config.csv.unitplanInfo).success(function(data) {
-            var svgData = processCsvDataToObject(data, 'unitName');
-            useUnitplanInfoCSVData(svgData);
+            var data = processCsvDataToObject(data, 'unitName');
+            useUnitplanInfoCSVData(data);
         });
 
     }
@@ -245,10 +245,10 @@ var getProjectData = (function() {
             },
             towerMap = {},
             _getPropertyById = function(data, propertyId) {
-                var length = data.length,
+                var i, length = data.length,
                     response = {};
                 if (data && data.length) {
-                    for (var i = 0; i < length; i += 1) {
+                    for (i = 0; i < length; i += 1) {
                         if (data[i] && data[i].propertyId == propertyId) {
                             return data[i];
                         }
@@ -278,7 +278,7 @@ var getProjectData = (function() {
 
         // Project Ameneties
         projectData.projectAmeneties = {};
-        for (i in projectDetail.projectAmenities) {
+        for (var i in projectDetail.projectAmenities) {
             var projectAmenity = projectDetail.projectAmenities[i],
                 amenity = {};
                 amenity.displayName = projectAmenity.amenityDisplayName;
@@ -295,11 +295,12 @@ var getProjectData = (function() {
             }
         }
 
-        var towersUnitInfo = {};
-        for (i = 0; i < towers_length; i += 1) {
+        var towersUnitInfo = {},
+            towerIdentifier;
+        for (var i = 0; i < towers_length; i += 1) {
 
             tower = projectDetail.towers[i];
-            var towerIdentifier = utils.getIdentifier(tower.towerName);
+            towerIdentifier = utils.getIdentifier(tower.towerName);
             towers[towerIdentifier] = {};
             towerMap[tower.towerId] = tower.towerName;
             towers[towerIdentifier].towerId = tower.towerId;
@@ -344,7 +345,7 @@ var getProjectData = (function() {
             
             // Walkthrough video
             flatUnit.walkthrough = {};
-            for (i in propertyDetail.video) {
+            for (var i in propertyDetail.video) {
                 var video = propertyDetail.video[i];
                 if (video.objectMediaType.type == "VideoWalkthrough") {
                     flatUnit.walkthrough.video = video.url;
@@ -463,7 +464,7 @@ var getProjectData = (function() {
 
         var apiData,
             params = {
-                success_callback: function(response) {
+                successCallback: function(response) {
                     apiData = response;
                 }
             };

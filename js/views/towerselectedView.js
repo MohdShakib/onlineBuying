@@ -476,7 +476,7 @@ var TowerselectedView = (function() {
                 var sfloor = groupInterval.start;
                 var efloor = groupInterval.end - 1;
                 var floorGroup = utils.addLeadingZeros(sfloor, 3) + " " + utils.addLeadingZeros(efloor, 3);
-                if (floors[floorGroup] === null) {
+                if (floors[floorGroup] == null) {
                     floors[floorGroup] = {
                         'sfloor': sfloor,
                         'efloor': efloor,
@@ -560,7 +560,7 @@ var TowerselectedView = (function() {
                 var sPrice = groupInterval.start;
                 var ePrice = groupInterval.end;
                 var priceGroup = utils.addLeadingZeros(sPrice, 12) + ' ' + utils.addLeadingZeros(ePrice, 12);
-                if (prices[priceGroup] === null) {
+                if (prices[priceGroup] == null) {
                     prices[priceGroup] = {
                         'sprice': sPrice,
                         'eprice': ePrice,
