@@ -145,7 +145,7 @@ var UnitplaninfoView = (function() {
 
             htmlCode += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
             htmlCode += '<a><span class="icon icon-heart fs26"><label></label></span></a></div>';
-            htmlCode += '<div class="book-now" data-url="' + link + '"><a>Book now</a><span>Rs. ' + data.bookingAmount + '/- (Refundable)</span>';
+            htmlCode += '<div class="book-now" data-url="' + link + '"><a>Book now</a><span>Rs. ' + utils.getReadablePrice(data.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
             htmlCode += '</div>';
 
             this._elements.unitViewTabs.html(htmlCode);

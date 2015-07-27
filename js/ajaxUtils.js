@@ -76,7 +76,7 @@ var ajaxUtils = (function() {
 
             console.log(req);
 
-            var url = '/data/v1/entity/notification/sender?debug=true';
+            var url = '/email-notification';
             var params = {
                 successCallback: function() {
                     console.log("Hurreeyyyyy");
