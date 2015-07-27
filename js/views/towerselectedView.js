@@ -232,7 +232,7 @@ var TowerselectedView = (function() {
                 'floor': unitInfo.floor ? unitInfo.floor : 'Ground',
                 'color': unitInfo.isAvailable ? 'apt-available-color' : 'apt-unavailable-color',
                 'availability': unitInfo.isAvailable ? 'Available' : 'Sold',
-                'price': Math.floor(unitInfo.price / 1000) / 100 + ' Lacs',
+                'price': utils.getReadablePriceInWord(unitInfo.price - unitInfo.discount),
                 'type': unitInfo.bedrooms + ' BHK'
             };
 
