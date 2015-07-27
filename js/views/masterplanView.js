@@ -180,7 +180,7 @@ var MasterplanView = (function() {
             this._elements.buildingImgContainer.html(imgCode);
         },
         buildingMenuContainer: function(data) {
-            var code = "<table><tr><td class='menu-header menu-icon transition'><span class='icon'><a href='http://www.proptiger.com' target='_blank'><img src='../images/logo.jpg' alt='proptiger.com'></span></a></td></tr>";
+            var code = "<table><tr><td class='menu-header menu-icon transition'><span class='icon'><a href='http://www.proptiger.com' target='_blank'><img src='images/logo.jpg' alt='proptiger.com'></span></a></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><div class='menu-scroll'><table>";
             for (var towerIdentifier in data.towers) {
