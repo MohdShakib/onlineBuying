@@ -1,5 +1,5 @@
 "use strict";
-var Event = (function(){
+var Event = (function(){  // jshint ignore:line
     
     function Event(sender) {
         this._sender = sender;

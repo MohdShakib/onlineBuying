@@ -135,7 +135,7 @@ var getProjectData = (function() {
                     svgPath: unitInfo[partial + 'svg'],
                     svg2dPath: unitInfo[partial + 'svg-2d'],
                     type: unitInfo[partial + 'type']
-                }
+                };
 
                 if (type == 'link' && item.type == 'link') {
                     item.details = zipImagePath + details;
@@ -289,7 +289,7 @@ var getProjectData = (function() {
         }
 
         // Payment plan image
-        for(var i in projectDetail.images) {
+        for(i in projectDetail.images) {
             if(projectDetail.images[i].imageType.type == 'paymentPlan') {
                 projectData.paymentPlanImage = projectDetail.images[i].absolutePath;
             }
@@ -297,7 +297,7 @@ var getProjectData = (function() {
 
         var towersUnitInfo = {},
             towerIdentifier;
-        for (i = 0; i < towers_length; i += 1) {
+        for (var i = 0; i < towers_length; i += 1) {
 
             tower = projectDetail.towers[i];
             towerIdentifier = utils.getIdentifier(tower.towerName);
@@ -352,6 +352,7 @@ var getProjectData = (function() {
                     flatUnit.walkthrough.image = video.imageUrl;
                 }
             }
+
             if (!flatUnit.walkthrough.video) {
                 flatUnit.walkthrough.video = "http://d1vh6m45iog96e.cloudfront.net/4/2/5000168/106/2/supertech-capetown-floor-plan-2bhk-2t-930-sq-ft-5000168.mp4";
                 flatUnit.walkthrough.image = "https://im.proptiger.com/4/2/5000168/106/2/supertech-capetown-floor-plan-2bhk-2t-930-sq-ft-5000168.jpg";
@@ -448,12 +449,12 @@ var getProjectData = (function() {
                     isAvailable = true;
                     totalAvailableCount += 1;
                 }
-            };
+            }
             tower.isAvailable = isAvailable;
             tower.totalAvailableCount = totalAvailableCount; // keeps count for flats available after applying fitler etc
         }
 
-    }
+    };
 
 
     function getProjectData(projectId) {
@@ -463,7 +464,7 @@ var getProjectData = (function() {
 
         var apiData,
             params = {
-                success_callback: function(response) {
+                successCallback: function(response) {
                     apiData = response;
                 }
             };
@@ -476,7 +477,7 @@ var getProjectData = (function() {
 
         ajaxUtils.getCountries();
         return projectData;
-    };
+    }
 
     return getProjectData;
 })();

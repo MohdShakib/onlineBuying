@@ -98,15 +98,15 @@ var TowerselectedController = (function() {
                 var unit = listings[id];
 
                 // BHK Check
-                if (this._filters.bhk != null &&
-                    this._filters.bhk.length != 0 &&
+                if (this._filters.bhk !== null &&
+                    this._filters.bhk.length !== 0 &&
                     this._filters.bhk.indexOf(unit.bedrooms) < 0) {
                     continue;
                 }
 
                 // Entrance Check
-                if (this._filters.entrance != null &&
-                    this._filters.entrance.length != 0 &&
+                if (this._filters.entrance !== null &&
+                    this._filters.entrance.length !== 0 &&
                     this._filters.entrance.indexOf(unit.facing) < 0) {
                     continue;
                 }
@@ -116,8 +116,8 @@ var TowerselectedController = (function() {
                 var sfloor = floorGroupInterval.start,
                     efloor = floorGroupInterval.end - 1;
                 var floorGroup = sfloor + " " + efloor;
-                if (this._filters.floor != null &&
-                    this._filters.floor.length != 0 &&
+                if (this._filters.floor !== null &&
+                    this._filters.floor.length !== 0 &&
                     this._filters.floor.indexOf(floorGroup) < 0) {
                     continue;
                 }
@@ -127,8 +127,8 @@ var TowerselectedController = (function() {
                 var sprice = priceGroupInterval.start,
                     eprice = priceGroupInterval.end;
                 var priceGroup = sprice + " " + eprice;
-                if (this._filters.price != null &&
-                    this._filters.price.length != 0 &&
+                if (this._filters.price !== null &&
+                    this._filters.price.length !== 0 &&
                     this._filters.price.indexOf(priceGroup) < 0) {
                     continue;
                 }

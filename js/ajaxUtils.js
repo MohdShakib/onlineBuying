@@ -2,9 +2,9 @@ var ajaxUtils = (function() {
 
     return {
         ajax: function(url, params, type, async, data) {
-            var success_callback = typeof(params.success_callback) == 'function' ? params.success_callback : null;
-            var error_callback = typeof(params.error_callback) == 'function' ? params.error_callback : null;
-            var complete_callback = typeof(params.complete_callback) == 'function' ? params.complete_callback : null;
+            var successCallback = typeof(params.successCallback) === 'function' ? params.successCallback : null;
+            var errorCallback = typeof(params.errorCallback) === 'function' ? params.errorCallback : null;
+            var completeCallback = typeof(params.completeCallback) === 'function' ? params.completeCallback : null;
 
             var ajaxObj = {
                 method: type,
@@ -13,32 +13,32 @@ var ajaxUtils = (function() {
                 data: data,
                 success: function(response) {
                     console.log(response);
-                    if (response.statusCode == '2XX') {
-                        if (success_callback == null) {
-                            // default error callback handling
+                    if (response.statusCode === '2XX') {
+                        if (successCallback === null) {
+                            // default errorCallback handling
                         } else {
-                            success_callback(response.data, params);
+                            successCallback(response.data, params);
                         }
                     } else {
-                        if (error_callback == null) {
-                            // default error callback handling
+                        if (errorCallback === null) {
+                            // default errorCallback handling
                         } else {
-                            error_callback(response.data);
+                            errorCallback(response.data);
                         }
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    console.log('ajax in error callback');
+                    console.log('ajax in errorCallback');
                     console.log('error occured ' + errorThrown);
                 },
                 complete: function() {
-                    if (complete_callback != null) {
-                        complete_callback(params);
+                    if (completeCallback !== null) {
+                        completeCallback(params);
                     }
                 }
-            }
+            };
 
-            if (type == "POST") {
+            if (type === "POST") {
                 ajaxObj.contentType = "application/json";
             }
 
@@ -54,8 +54,8 @@ var ajaxUtils = (function() {
         submitLead: function(data) {
             var url = 'https://www.proptiger.com/data/v1/entity/enquiry';
             var params = {
-                success_callback: function() {
-                    $(form)[0].reset();
+                successCallback: function() {
+                    $('form')[0].reset();
                 }
             };
             this.ajax(url, params, 'POST', true, data);
@@ -78,7 +78,7 @@ var ajaxUtils = (function() {
 
             var url = '/data/v1/entity/notification/sender?debug=true';
             var params = {
-                success_callback: function() {
+                successCallback: function() {
                     console.log("Hurreeyyyyy");
                 }
             };
@@ -113,13 +113,13 @@ var ajaxUtils = (function() {
 
             var url = "/data/v1/transaction/coupon?debug=true";
             var params = {
-                success_callback: function(data, params) {
+                successCallback: function(data, params) {
                     window.location.href = data;
                 }
             };
 
             this.ajax(url, params, 'POST', true, JSON.stringify(req));
         }
-    }
+    };
 
 })();

@@ -29,12 +29,12 @@ var BaseModel = (function() {
                     var listingItem = this._rootdata.towers[eachItem.towerIdentifier].listings[eachItem.unitIdentifier] || {};
                     item = this._rootdata.towers[eachItem.towerIdentifier].rotationAngle[eachItem.rotationAngle].listing[eachItem.unitIdentifier];
                     item[item.unitIdentifier] = item;
-                    item['bookingAmount'] = listingItem.bookingAmount;
-                    item['price'] = 'Rs. '+utils.getReadablePriceInWord(listingItem.price);
-                    item['size'] = listingItem.size+' '+listingItem.measure;
-                    item['floor'] = 'Floor '+listingItem.floor;
-                    item['bedrooms'] = listingItem.bedrooms+' BHK';
-                    item['unitTypeData'] = this._rootdata.unitTypes[item.unitTypeIdentifier];
+                    item.bookingAmount = listingItem.bookingAmount;
+                    item.price = 'Rs. '+utils.getReadablePriceInWord(listingItem.price);
+                    item.size = listingItem.size+' '+listingItem.measure;
+                    item.floor = 'Floor '+listingItem.floor;
+                    item.bedrooms = listingItem.bedrooms+' BHK';
+                    item.unitTypeData = this._rootdata.unitTypes[item.unitTypeIdentifier];
                     data[uniqueIdentifier] = item;
                 }
             }

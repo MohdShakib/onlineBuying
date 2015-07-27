@@ -3,7 +3,7 @@ var utils = (function() {
     return {
         projectId: null,
         addResizeEventListener: function(listenerFunction) {
-            listenerFunction();;
+            listenerFunction();
             $(window).off('resize').on('resize', listenerFunction);
         },
         defaultDynamicResizeContainers: function() {
@@ -19,7 +19,7 @@ var utils = (function() {
 
             var dynamicResizeElement = $('.' + config.dynamicResizeClass);
 
-            if (containerWidth == null || containerWidth == 'undefined') {
+            if (containerWidth === null || containerWidth == 'undefined') {
                 containerWidth = window.innerWidth;
             }
             
@@ -48,19 +48,20 @@ var utils = (function() {
         addLeadingZeros: function(n, length) {
             var str = (n > 0 ? n : -n) + "";
             var zeros = "";
-            for (var i = length - str.length; i > 0; i--)
+            for (var i = length - str.length; i > 0; i--) {
                 zeros += "0";
+            }
             zeros += str;
             return n >= 0 ? zeros : "-" + zeros;
         },
         getReadablePrice: function(price) {
             var rem = price % 1000;
             price = Math.floor(price / 1000);
-            var readablePrice = (price == 0) ? rem : this.addLeadingZeros(rem, 3);
+            var readablePrice = (price === 0) ? rem : this.addLeadingZeros(rem, 3);
             while (price > 0) {
                 rem = price % 100;
                 price = Math.floor(price / 100);
-                var prefix = (price == 0) ? rem : this.addLeadingZeros(rem, 2);
+                var prefix = (price === 0) ? rem : this.addLeadingZeros(rem, 2);
                 readablePrice = prefix + "," + readablePrice;
             }
             return readablePrice;
@@ -227,7 +228,7 @@ var utils = (function() {
                 $('#container-detail').css("top", pointY + '%');*/
 
                 // animate
-                window.getComputedStyle(document.getElementById('container-detail')).opacity;
+                window.getComputedStyle(document.getElementById('container-detail')).opacity; // jshint ignore:line
                 document.getElementById('container-detail').style.opacity = "1";
             }
         },
@@ -395,8 +396,9 @@ var utils = (function() {
         changeUrl: function(element) {
             element = $(element);
             var hash = element.data('url') ? element.data('url') : null;
-            if (hash && hash != "undefined")
+            if (hash && hash != "undefined") {
                 router.setRoute(hash);
+            }
             return;
         },
         getTermsConditionsHtml: function() {
@@ -450,7 +452,7 @@ var utils = (function() {
                     code += "<tr><td class='discount-price'>Discount <span>(" + data.discountDescription + ")</span> </td><td class='discount-price right-align'>" + utils.getReadablePrice(data.discount) + "</td></tr>";
                     code += "<tr><td class='total-price'>Total Price</td><td class='total-price right-align'><span class='icon fs14 icon-rupee'></span> " + utils.getReadablePrice(data.price - data.discount) + "</td></tr>";
                 }
-                if (opCode != '') {
+                if (opCode !== '') {
                     code += "<tr><td colspan=2 class='other-options'>Other optional costs</td></tr>" + opCode;
                 }
                 if (showTnc) {
@@ -485,6 +487,6 @@ var utils = (function() {
                     });
             });
         }
-    }
+    };
 
 })();
