@@ -72,6 +72,11 @@ var TowerselectedView = (function() {
         updateAvailableCountText: function() {
             var totalAvailableText = this._model.getFilteredAvailableCountText();
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = totalAvailableText;
+			$('.project-count').addClass(config.textBlinkClass);
+			setTimeout(function(){
+				$('.project-count').removeClass(config.textBlinkClass);
+			}, 500);
+			
         },
         renderInitialData: function(data, rootdata) {
             document.getElementById(config.projectDetail.titleId).innerHTML = rootdata.projectName;
@@ -90,9 +95,7 @@ var TowerselectedView = (function() {
             }, 700);
 
             // Images
-            $('.opacity-control').css({
-                opacity: 1
-            });
+            $('.opacity-control').css('opacity','1');
 
             // Connect tabs
             setTimeout(function() {
@@ -109,9 +112,7 @@ var TowerselectedView = (function() {
             });
 
             // Images
-            $('.opacity-control').css({
-                opacity: 1
-            });
+            $('.opacity-control').css('opacity','1');
 
             // Connect tabs
             $('.pro-contact-actions ul.conect-tab').css({

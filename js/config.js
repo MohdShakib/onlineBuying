@@ -64,6 +64,7 @@ var config = (function(){
 		shortlistedUnitRemoveClass: 'remove-shortlist',
 		smallLeftArea: 'small-left',
 		beepEffectClass:'heart-beep-effect',
+		textBlinkClass:'blink-effect',
 
 		// Masterplan
 		imgContainerClass : "menu-mapped-image",
