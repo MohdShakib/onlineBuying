@@ -51,6 +51,10 @@ var BaseView = (function() {
                     this[i]();
                 }
             }
+
+            $('.'+config.notificationTooltipClass).off('click').on('click', '.icon-cross', function(){
+                utils.hideNotificationTooltip();
+            });
         },
         init: function(rootdata) {
             $('.project-title').html(rootdata.projectName);
@@ -212,11 +216,11 @@ var BaseView = (function() {
                 //+'<a href="#" class="transition">Start Chatting</a>'
                 //+'<a href="#" class="transition active">We will Call</a>'
                 //+'</div>'
-                '<form id="call-box-form"  name="call-box-form" novalidate onSubmit="return false;"  >' + '<div class="form-input-box"><input class="text" id="' + config.callBox.emailId + '" name="email" placeholder="enter email id*" type="email" required />' + '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' + '<div class="form-input-box"><input class="text" id="' + config.callBox.phoneId + '" name="phone*" placeholder="enter cell phone number*" type="text" minlength="10" maxlength="10" required />' + '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' + '<div class="submit" id="call-box-submit-id">Get Call Back <span  class="icon icon-arrow_right"></span>' + '<input type="submit" id="call-box-submit-id" />' + '</div>' + '</form>' + '</div>' + '<div class="compare-box">' + '<p>Shortlisted Units are listed below' + '</p>' + '<div class="unit-box fleft" id="' + config.shortListedUnitListId + '">' + '</div>' + '<div class="clear-fix"></div>' + '<div id="' + config.unitCompareButtonId + '" class="submit"><input type="submit" />Compare Floor Plans <span class="icon icon-arrow_right"></span></div>' + '</div>' + '<div class="share-box">' + '<p>Share details with family / friends via</br> Email / Facebook / Google+</p>' + '<div class="share-social">' + '<a href="javascript:void(0);" onclick="utils.socialClicked(\'facebook\')" ><span class="icon icon-facebook"></span>Facebook</a>' +
+                '<form id="call-box-form"  name="call-box-form" novalidate onSubmit="return false;"  >' + '<div class="form-input-box"><input class="text" id="' + config.callBox.emailId + '" name="email" placeholder="enter your email id*" type="email" required />' + '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' + '<div class="form-input-box"><input class="text" id="' + config.callBox.phoneId + '" name="phone*" placeholder="enter your phone number*" type="text" minlength="10" maxlength="10" required />' + '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' + '<div class="submit" id="call-box-submit-id">Get Call Back <span  class="icon icon-arrow_right"></span>' + '<input type="submit" id="call-box-submit-id" />' + '</div>' + '</form>' + '</div>' + '<div class="compare-box">' + '<p>Shortlisted Units are listed below' + '</p>' + '<div class="unit-box fleft" id="' + config.shortListedUnitListId + '">' + '</div>' + '<div class="clear-fix"></div>' + '<div id="' + config.unitCompareButtonId + '" class="submit"><input type="submit" />Compare Floor Plans <span class="icon icon-arrow_right"></span></div>' + '</div>' + '<div class="share-box">' + '<p>Share details with family / friends</p>' + '<div class="share-social">' + '<a href="javascript:void(0);" onclick="utils.socialClicked(\'facebook\')" ><span class="icon icon-facebook"></span>Facebook</a>' +
                 //+'<div class="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"></div>'
                 '<span>or</span>' + 
                 //+'<div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>'
-                '<a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Goggle+</a>' + '</div>' + '<form id="share-box-form" novalidate name="share-box-form" onSubmit="return false;"  >' + '<div class="form-input-box"><input class="text" id="' + config.emailBox.nameId + '" placeholder="enter name*" type="text" required />' + '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' + '<div class="form-input-box"><input class="text" id="' + config.emailBox.emailId + '" placeholder="enter email id*" type="email" required />' + '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' + '<div class="submit" id="share-box-submit-id"><input type="submit" />Share <span  class="icon icon-arrow_right"></span></div>' + '</form>' + '</div>' + '</div>' + '<ul class="conect-tab transition">' + '<li>' + '<a href="javascript:void(0);"  data-name="call-box">' + '<p>Need Clarification?</br>' + 'Get in touch' + '</p>' + '<span class="icon icon-phone"></span>' + '</a>' + '</li>' + '<li>' + '<a href="javascript:void(0);" data-name="compare-box">' + '<p>Compare among</br> shortlisted flats</p>' + '<span class="icon icon-heart '+config.blinkElementClass+'">' + '<label class="like-count br50" id="' + config.likeCountId + '">0</label>' + '</span>' + '</a>' + '</li>' + '<li>' + '<a href="javascript:void(0);" data-name="share-box">' + '<p>Share with</br> friends' +
+                '<a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Goggle+</a>' + '</div>' + '<form id="share-box-form" novalidate name="share-box-form" onSubmit="return false;"  >' + '<div class="form-input-box"><input class="text" id="' + config.emailBox.nameId + '" placeholder="enter your name*" type="text" required />' + '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' + '<div class="form-input-box"><input class="text" id="' + config.emailBox.emailId + '" placeholder="enter your friend\'s email id*" type="email" required />' + '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' + '<div class="submit" id="share-box-submit-id"><input type="submit" />Share <span  class="icon icon-arrow_right"></span></div>' + '</form>' + '</div>' + '</div>' + '<ul class="conect-tab transition">' + '<li>' + '<a href="javascript:void(0);"  data-name="call-box">' + '<p>Need Clarification?</br>' + 'Get in touch' + '</p>' + '<span class="icon icon-phone"></span>' + '</a>' + '</li>' + '<li>' + '<a href="javascript:void(0);" data-name="compare-box">' + '<p>Compare among</br> shortlisted flats</p>' + '<span class="icon icon-heart '+config.blinkElementClass+'">' + '<label class="like-count br50" id="' + config.likeCountId + '">0</label>' + '</span>' + '</a>' + '</li>' + '<li>' + '<a href="javascript:void(0);" data-name="share-box">' + '<p>Share with</br> friends' +
                 //+'<span>Sign In Now!</span>'
                 '</p>' + '<span class="icon icon-email"></span>' + '</a>' + '</li>' + '</ul>' + '</div>';
 
@@ -285,7 +289,17 @@ var BaseView = (function() {
                 'projectId': utils.projectId
             };
 
-            ajaxUtils.submitLead(data);
+            var params = {successCallback: this.submitLeadSuccessCallback, errorCallback: this.submitLeadErrorCallback, formRef: form};
+            ajaxUtils.submitLead(data, params);
+        },
+        submitLeadSuccessCallback: function(response, params){
+            params.formRef[0].reset();
+            $('.callback-message').remove();
+            $('.call-box').append('<div class="callback-message form-msg-success">You will get a call back shortly.</div>');
+        },
+        submitLeadErrorCallback: function(response, params){
+            $('.callback-message').remove();
+            $('.call-box').append('<div class="callback-message form-msg-failure">Please try again later.</div>');
         },
         shareOnEmailSubmit: function(form) {
             var validationFlag = utils.validateForm(form);
@@ -300,8 +314,18 @@ var BaseView = (function() {
                 'name': name,
                 'email': email
             };
-
-            ajaxUtils.sendEmail(data);
+    
+            var params = {successCallback: this.shareOnEmailSuccessCallback, errorCallback: this.shareOnEmailErrorCallback, formRef: form};
+            ajaxUtils.sendEmail(data, params);
+        },
+        shareOnEmailSuccessCallback: function(response, params){
+            params.formRef[0].reset();
+            $('.share-message').remove();
+            $('.share-box').append('<div class="share-message form-msg-success">Your friend will receive an email shortly.</div>');
+        },
+        shareOnEmailErrorCallback: function(response, params){
+            $('.share-message').remove();
+            $('.share-box').append('<div class="share-message form-msg-failure">Please try again later.</div>');
         },
         formPopupCloseClicked: function() {
             $('form input').parent('div').removeClass('error');

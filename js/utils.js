@@ -1,5 +1,6 @@
 var utils = (function() {
 
+    var notificationTooltipTimeout;
     return {
         projectId: null,
         addResizeEventListener: function(listenerFunction) {
@@ -486,7 +487,28 @@ var utils = (function() {
                         }
                     });
             });
-        }
+        },
+        showNotificationTooltip: function(message){
+            if(!message){
+                return;
+            }
+            
+            if(notificationTooltipTimeout){
+                clearTimeout(notificationTooltipTimeout);
+            }
+
+            $('.'+config.notificationTooltipClass).stop(true,true);
+            $('.'+config.notificationTooltipClass).css('top','-100px');
+            $('.'+config.notificationTooltipClass+' .'+config.notificationMessageClass).text(message);
+            $('.'+config.notificationTooltipClass).animate({'top':0}, 1000, function(){
+                notificationTooltipTimeout = setTimeout(function(){
+                    utils.hideNotificationTooltip();
+                },8000);
+            });
+        },
+        hideNotificationTooltip: function(){
+            $('.'+config.notificationTooltipClass).animate({'top':-100}, 3000);
+        }   
     };
 
 })();

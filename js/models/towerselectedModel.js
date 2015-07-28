@@ -58,8 +58,8 @@ var TowerselectedModel = (function() {
         setSelectedListing: function(selectedListing) {
             this._selectedListing = selectedListing;
         },
-        getFilteredAvailableCountText: function(){
-            return this._filteredAvailableCount+' Available';
+        getFilteredAvailableCount: function(){
+            return this._filteredAvailableCount;
         },
         updateFilteredAvailableCount: function(count){
             this._filteredAvailableCount = count;

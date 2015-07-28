@@ -69,19 +69,23 @@ var TowerselectedView = (function() {
             document.getElementById(config.mainContainerId).innerHTML = mainContainerHtml;
             this._elements = getElements();
         },
-        updateAvailableCountText: function() {
-            var totalAvailableText = this._model.getFilteredAvailableCountText();
-            document.getElementById(config.projectDetail.availabilityCountId).innerHTML = totalAvailableText;
-			$('.project-count').addClass(config.textBlinkClass);
+        updateAvailableCount: function() {
+            var availabilityCountElement = $('#'+config.projectDetail.availabilityCountId);
+            availabilityCountElement.removeClass('apt-unavailable-color');
+            var totalAvailableCount = this._model.getFilteredAvailableCount();
+            if(!totalAvailableCount){
+                availabilityCountElement.addClass('apt-unavailable-color');
+            }
+            availabilityCountElement.find('label').html(totalAvailableCount);
+			$('.count').addClass(config.textBlinkClass);
 			setTimeout(function(){
-				$('.project-count').removeClass(config.textBlinkClass);
+				$('.count').removeClass(config.textBlinkClass);
 			}, 500);
-			
         },
         renderInitialData: function(data, rootdata) {
             document.getElementById(config.projectDetail.titleId).innerHTML = rootdata.projectName;
             document.getElementById(config.projectDetail.addressId).innerHTML = data.towerName;
-            this.updateAvailableCountText();
+            this.updateAvailableCount();
         },
         startAnimation: function() {
             // Tower Menu
@@ -103,6 +107,8 @@ var TowerselectedView = (function() {
                     bottom: '0px'
                 });
             }, 700);
+
+            utils.showNotificationTooltip('Click on unit spot & view its plan');
         },
         displayWithoutAnimation: function() {
             // Tower Menu
@@ -118,6 +124,8 @@ var TowerselectedView = (function() {
             $('.pro-contact-actions ul.conect-tab').css({
                 bottom: '0px'
             });
+
+            utils.showNotificationTooltip('Click on unit spot & view its plan');
         },
         overviewImgContainer: function(data, rootdata) {
             var code = "<img src='" + data.image_url + "'/>";

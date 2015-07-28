@@ -32,7 +32,10 @@ var config = (function(){
 			nameId: 'email-box-name',
 			emailId: 'email-box-email'
 		},
-		
+		notificationTooltipClass: 'notification-tooltip',
+		notificationMessageClass: 'notification-message',
+
+
 		// Common
 		noPointerClass: 'no-pointer',
 		hideClass: 'hidden',

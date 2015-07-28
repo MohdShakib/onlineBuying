@@ -141,7 +141,7 @@ var TowerselectedController = (function() {
             }
 
             this._model.updateFilteredAvailableCount(filteredAvailableCount);
-            this._view.updateAvailableCountText();
+            this._view.updateAvailableCount();
 
             this._model.updateFilteredListings(filteredListings);
             this._view.towerSvgContainer(this._model.getData(), this._model.getRootdata());
