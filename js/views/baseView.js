@@ -305,6 +305,7 @@ var BaseView = (function() {
             $('.call-box').append('<div class="callback-message form-msg-failure">Please try again later.</div>');
         },
         shareOnEmailSubmit: function(form) {
+            var rootdata = this._model.getRootdata();
             var validationFlag = utils.validateForm(form);
             if (!validationFlag) {
                 return false;
@@ -314,8 +315,11 @@ var BaseView = (function() {
             var email = $('#' + config.emailBox.emailId).val();
 
             var data = {
-                'name': name,
-                'email': email
+                senderName: name,
+                email: email,
+                projectName: rootdata.projectName,
+                shareUrl: window.location.href,
+                imageUrl: rootdata.mainImage
             };
     
             var params = {successCallback: this.shareOnEmailSuccessCallback, errorCallback: this.shareOnEmailErrorCallback, formRef: form};
