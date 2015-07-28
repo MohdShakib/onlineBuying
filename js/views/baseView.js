@@ -285,12 +285,16 @@ var BaseView = (function() {
                 'projectId': utils.projectId
             };
 
-            var params = {successCallback: this.submitLeadSuccessCallback};
+            $('.callback-message').remove();
+            var params = {successCallback: this.submitLeadSuccessCallback, errorCallback: this.submitLeadErrorCallback};
             ajaxUtils.submitLead(data, params);
         },
         submitLeadSuccessCallback: function(response){
             $('form')[0].reset();
-            $('.call-box').append('<div style="color:green;font-size:small;margin-top:5px;">Request received you will get a call back shortly</div>');
+            $('.call-box').append('<div class="callback-message" style="color:green;font-size:small;margin-top:5px;">Request received you will get a call back shortly</div>');
+        },
+        submitLeadErrorCallback: function(){
+            $('.call-box').append('<div class="callback-message" style="color:red;font-size:small;margin-top:5px;">Please try again later or call  us on 9999999999.</div>');
         },
         shareOnEmailSubmit: function(form) {
             var validationFlag = utils.validateForm(form);
