@@ -70,8 +70,13 @@ var TowerselectedView = (function() {
             this._elements = getElements();
         },
         updateAvailableCountText: function() {
+            var availabilityCountElement = $('#'+config.projectDetail.availabilityCountId);
+            availabilityCountElement.removeClass('apt-unavailable-color');
             var totalAvailableText = this._model.getFilteredAvailableCountText();
-            document.getElementById(config.projectDetail.availabilityCountId).innerHTML = totalAvailableText;
+            if(totalAvailableText == '0 Available'){
+                availabilityCountElement.addClass('apt-unavailable-color');
+            }
+            availabilityCountElement.html(totalAvailableText);
         },
         renderInitialData: function(data, rootdata) {
             document.getElementById(config.projectDetail.titleId).innerHTML = rootdata.projectName;
@@ -100,6 +105,8 @@ var TowerselectedView = (function() {
                     bottom: '0px'
                 });
             }, 700);
+
+            utils.showNotificationTooltip('Click on unit spot & view its plan');
         },
         displayWithoutAnimation: function() {
             // Tower Menu
@@ -117,6 +124,8 @@ var TowerselectedView = (function() {
             $('.pro-contact-actions ul.conect-tab').css({
                 bottom: '0px'
             });
+
+            utils.showNotificationTooltip('Click on unit spot & view its plan');
         },
         overviewImgContainer: function(data, rootdata) {
             var code = "<img src='" + data.image_url + "'/>";
