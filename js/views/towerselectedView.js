@@ -69,19 +69,19 @@ var TowerselectedView = (function() {
             document.getElementById(config.mainContainerId).innerHTML = mainContainerHtml;
             this._elements = getElements();
         },
-        updateAvailableCountText: function() {
+        updateAvailableCount: function() {
             var availabilityCountElement = $('#'+config.projectDetail.availabilityCountId);
             availabilityCountElement.removeClass('apt-unavailable-color');
-            var totalAvailableText = this._model.getFilteredAvailableCountText();
-            if(totalAvailableText == '0 Available'){
+            var totalAvailableCount = this._model.getFilteredAvailableCount();
+            if(!totalAvailableCount){
                 availabilityCountElement.addClass('apt-unavailable-color');
             }
-            availabilityCountElement.html(totalAvailableText);
+            availabilityCountElement.find('label').html(totalAvailableCount);
         },
         renderInitialData: function(data, rootdata) {
             document.getElementById(config.projectDetail.titleId).innerHTML = rootdata.projectName;
             document.getElementById(config.projectDetail.addressId).innerHTML = data.towerName;
-            this.updateAvailableCountText();
+            this.updateAvailableCount();
         },
         startAnimation: function() {
             // Tower Menu
