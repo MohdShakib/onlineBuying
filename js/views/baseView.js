@@ -51,6 +51,10 @@ var BaseView = (function() {
                     this[i]();
                 }
             }
+
+            $('.'+config.notificationTooltipClass).off('click').on('click', '.icon-cross', function(){
+                utils.hideNotificationTooltip();
+            });
         },
         init: function(rootdata) {
             $('.project-title').html(rootdata.projectName);
