@@ -293,6 +293,9 @@ var getProjectData = (function() {
             if(projectDetail.images[i].imageType.type == 'paymentPlan') {
                 projectData.paymentPlanImage = projectDetail.images[i].absolutePath;
             }
+            if(projectDetail.images[i].imageType.type == 'main') {
+                projectData.mainImage = projectDetail.images[i].absolutePath;
+            }
         }
 
         var towersUnitInfo = {},

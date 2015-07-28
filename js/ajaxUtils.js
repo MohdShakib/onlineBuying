@@ -67,12 +67,12 @@ var ajaxUtils = (function() {
                 emailDetails = {};
             user.email = data.email;
             emailDetails.mediumType = "Email";
-            emailDetails.subject = "this is subject";
-            emailDetails.body = "this is body";
-            emailDetails.from = "PropGuide <no-reply@proptiger.com>";
-            req.notificationType = 'default';
+            emailDetails.from = "PropTiger <no-reply@proptiger.com>";
+
+            req.notificationType = 'online_buying_share';
             req.users = [user];
             req.mediumDetails = [emailDetails];
+            req.payloadMap = data;
 
             console.log(req);
             var url = 'http://192.168.0.208:5000/email-notification';

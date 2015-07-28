@@ -93,6 +93,9 @@ var UnitplaninfoView = (function() {
 
                 // to show unit icon selected on tower
                 utils.removeSVGClass(data.unitIdentifier + "-selected-path", config.hideClass);
+
+                // hide notification tool tip
+                $('.' + config.notificationTooltipClass).css('top', '-100px');
             }
         },
         destroyView: function() {
@@ -468,7 +471,7 @@ var UnitplaninfoView = (function() {
             var isSelected = $(element).hasClass(config.selectedClass);
             this.selectMenuOptionUI(element, optionClass);
             $('.' + containerClass).addClass(config.hideClass);
-            
+
             if(toggle && isSelected){
                 $('.' + optionClass).removeClass(config.selectedClass);
             }else if(element){

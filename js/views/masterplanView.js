@@ -93,7 +93,11 @@ var MasterplanView = (function() {
             }, 8000);
             $('.bottom-right-cloud').animate({
                 right: '-50%'
-            }, 6000);
+            }, 6000, function() {
+                // Show page tool tip
+                utils.showNotificationTooltip('Select a tower to explore further');
+            });
+
             // Amenities
             var time = 5000;
             $('.amenity-icon span').each(function() {
@@ -119,7 +123,6 @@ var MasterplanView = (function() {
                 });
             }, 7000);
 
-            utils.showNotificationTooltip('Select a tower to explore further');
         },
         displayWithoutAnimation: function() {
             // Images
