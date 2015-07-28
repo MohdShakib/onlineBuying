@@ -145,7 +145,7 @@ var UnitplaninfoView = (function() {
 
             htmlCode += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
             htmlCode += '<a><span class="icon icon-heart fs26"><label></label></span></a></div>';
-            htmlCode += '<div class="book-now" data-url="' + link + '"><a>Book now</a><span>Rs. ' + utils.getReadablePrice(data.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
+            htmlCode += '<div class="book-now"><a  data-url="' + link + '">Book now</a><span>Rs. ' + utils.getReadablePrice(data.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
             htmlCode += '</div>';
 
             this._elements.unitViewTabs.html(htmlCode);
@@ -156,7 +156,7 @@ var UnitplaninfoView = (function() {
             $('#' + config.selectedUnitContainerId).off('click').on('click', '.like-box', function() {
                 _this._likeBoxClick.notify(this); //this refers to element
             });
-            $('#' + config.selectedUnitContainerId).on('click', '.book-now', function() {
+            $('#' + config.selectedUnitContainerId).on('click', '.book-now a', function() {
                 _this._bookingClick.notify(this); //this refers to element
             });
         },

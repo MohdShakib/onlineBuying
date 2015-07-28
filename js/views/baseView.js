@@ -106,7 +106,7 @@ var BaseView = (function() {
                 _this._compareBackButtonClick.notify(this); //this refers to element here                
             });
 
-            this._elements.compareUnitsContainer.on('click', '.book-now', function(event) {
+            this._elements.compareUnitsContainer.on('click', '.book-now a', function(event) {
                 _this._bookingClick.notify(this); //this refers to element here                
             });
 
@@ -133,9 +133,12 @@ var BaseView = (function() {
                 },
                 drop: function(event, ui) {
                     $(this).removeClass('drag-over');
-                    _this.removeSelectedClassFromComProBox(this);
                     var uniqueIdentifier = $(ui.draggable).data('uniqueidentifier');
-                    _this.addToCompareBox(this, uniqueIdentifier);
+                    var isSelected = $(ui.draggable).hasClass('selected');
+                    if(!isSelected){ // add if dragged is not selected already
+                        _this.removeSelectedClassFromComProBox(this);
+                        _this.addToCompareBox(this, uniqueIdentifier);
+                    }
                 }
             });
 
@@ -149,7 +152,7 @@ var BaseView = (function() {
                 htmlCode = '<div class="tower-unit-detail-container ' + config.unitDataContainer + '"></div>';
 
             htmlCode += '<span class="icon fs14 icon-cross close-compare-box"></span><div class="compare-unit-box-detail top-right-component"><span>' + item.unitName + '</span> | <span>' + item.bedrooms + '</span> | <span>' + item.size + '</span> | <span>' + item.price + '</span> | <span>' + item.floor + '</span></div>';
-            htmlCode += '<div class="top-right-component">' + '<div class="book-now" data-url="' + link + '">' + '<a>Book now</a><span>Rs. ' + item.bookingAmount + '/- (Refundable)</span>' + '</div>';
+            htmlCode += '<div class="top-right-component">' + '<div class="book-now" >' + '<a data-url="' + link + '">Book now</a><span>Rs. ' + utils.getReadablePrice(item.bookingAmount) + '/- <br>(No Cancellation Charges)</span>' + '</div>';
             htmlCode += '<div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + uniqueIdentifier + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' + '<img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img"  src="' + imageUrl + '"> </div>';
 
             $('#' + config.compareBottomBox + '-' + uniqueIdentifier + ' ').addClass('selected');

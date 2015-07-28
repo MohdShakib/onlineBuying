@@ -336,6 +336,9 @@ table td, table tr {
 .no-pointer{
 	cursor: default;
 }
+.pointer{
+	cursor: pointer;
+}
 .selected {
 	cursor: default !important;
 }
