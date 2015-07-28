@@ -345,6 +345,16 @@ table td, table tr {
 .right-align {
 	text-align: right !important;
 }
+.form-msg-success {
+	color: #37B34A;
+	font-size: 12px;
+    margin: 10px 0px;
+}
+.form-msg-failure {
+	color: #F31818;
+    font-size: 12px;
+    margin: 10px 0px;
+}
 
 /* SVG */
 .svg-container {
