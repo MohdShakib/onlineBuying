@@ -285,7 +285,12 @@ var BaseView = (function() {
                 'projectId': utils.projectId
             };
 
-            ajaxUtils.submitLead(data);
+            var params = {successCallback: this.submitLeadSuccessCallback}
+            ajaxUtils.submitLead(data, params);
+        },
+        submitLeadSuccessCallback: function(response){
+            $('form')[0].reset();
+            $('.call-box').append('<div style="color:green;font-size:small;margin-top:5px;">Request received you will get a call back shortly</div>');
         },
         shareOnEmailSubmit: function(form) {
             var validationFlag = utils.validateForm(form);

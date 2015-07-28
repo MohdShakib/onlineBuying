@@ -51,13 +51,8 @@ var ajaxUtils = (function() {
             this.ajax(apiUrl, params, 'GET', false, null);
         },
 
-        submitLead: function(data) {
-            var url = 'https://www.proptiger.com/data/v1/entity/enquiry';
-            var params = {
-                successCallback: function() {
-                    $('form')[0].reset();
-                }
-            };
+        submitLead: function(data, params) {
+            var url = '/data/v1/entity/enquiry';
             this.ajax(url, params, 'POST', true, data);
         },
 
