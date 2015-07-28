@@ -52,6 +52,15 @@ var TowerselectedModel = (function() {
         getSelectedFiltersData: function() {
             return this._filters;
         },
+        isFilterApplied: function(){
+            var filterApplied = false;
+            for(var filter in this._filters){
+                if(this._filters[filter] && this._filters[filter].length){
+                    filterApplied = true;
+                }
+            }
+            return filterApplied;
+        },
         getSelectedListing: function() {
             return this._selectedListing;
         },

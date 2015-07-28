@@ -68,6 +68,12 @@ var TowerselectedController = (function() {
                 _this.toggleFilterOption(_this._filters.price, priceGroup, element);
             });
             this._view._resetFiltersClick.attach(function(sender, element) {
+                var filtersApplied = _this._model.isFilterApplied();
+
+                if(!filtersApplied){
+                    return;
+                }
+
                 _this._filters = _this._model._filters = {
                     bhk: [],
                     floor: [],

@@ -559,6 +559,7 @@ ellipse.tower-unit-svg-selected-path {
 	background: #333;
 	
 }
+
 .tower-menu-container .menu-item .icon{ padding-top:10px; color:#ccc;}
 .tower-menu-container .menu-icon, .tower-menu-container .menu-items {
 	color: #FFF;
@@ -846,7 +847,7 @@ ellipse.tower-unit-svg-selected-path {
 .com-pro-box p{ font-size:12px; padding:5px 10px; color:#616161; text-align:left;}
 .com-pro-box.selected{ border-color:#f18d18;}
 .com-pro-box img{ display:block; width:94px; height:76px;}
-.drag-over{
+.drag-over, .reset-all-inactive{
 	opacity: 0.5
 }
 .close-compare-box{ position:absolute; color:#616161; right:15px; top:15px; z-index:9999999; cursor:pointer;}
