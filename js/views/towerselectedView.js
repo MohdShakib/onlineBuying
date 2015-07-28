@@ -70,8 +70,13 @@ var TowerselectedView = (function() {
             this._elements = getElements();
         },
         updateAvailableCountText: function() {
+            var availabilityCountElement = $('#'+config.projectDetail.availabilityCountId);
+            availabilityCountElement.removeClass('apt-unavailable-color');
             var totalAvailableText = this._model.getFilteredAvailableCountText();
-            document.getElementById(config.projectDetail.availabilityCountId).innerHTML = totalAvailableText;
+            if(totalAvailableText == '0 Available'){
+                availabilityCountElement.addClass('apt-unavailable-color');
+            }
+            availabilityCountElement.html(totalAvailableText);
         },
         renderInitialData: function(data, rootdata) {
             document.getElementById(config.projectDetail.titleId).innerHTML = rootdata.projectName;
