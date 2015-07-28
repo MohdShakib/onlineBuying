@@ -944,7 +944,7 @@ ellipse.tower-unit-svg-selected-path {
   	width: 100%;
   	text-align: center;
 }
-.uit-header-menu > div{ display:table-cell; width:25%;}
+.uit-header-menu > div{ display:table-cell; width:25%; border-left:1px solid #ccc;}
 .unit-data-container.walkthrough-container video {
 	position: absolute;
     top: 50px;
@@ -1149,7 +1149,6 @@ ellipse.tower-unit-svg-selected-path {
 }
 .compare-units-container .compare-unit-img{
 	width: 100%;
-	height: 100%;
 	/*margin-top: 9%;*/
 }
 .compare-units-container > div{
@@ -1329,12 +1328,12 @@ ellipse.tower-unit-svg-selected-path {
 .payment-left-top h3{ text-align:left;}
 .payment-left-top h3 span{ display:block;}
 .payment-container h5{ font-size:14px; margin:10px 0;}
-.payment-left{ float:left; width:350px; background:#fff; box-shadow:0 0 8px rgba(0,0,0,0.2); height:430px; position: relative; z-index: 1; overflow:hidden;}
+.payment-left{ float:left; width:350px; background:#fff; box-shadow:0 0 8px rgba(0,0,0,0.2); height:490px; position: relative; z-index: 1; overflow:hidden;}
 .payment-left p{font-size:14px; text-transform:uppercase; color:#252525;}
 .payment-left p span{text-transform:none;}
 .payment-left-top{ padding:20px;}
-.payment-photo-box{overflow:hidden; width:100%; height:167px; margin-top:20px;}
-.payment-photo-box img{ display:block; height:100%; width:100%;}
+.payment-photo-box{overflow:hidden; width:100%; max-height:230px; margin-top:20px;}
+.payment-photo-box img{ display:block; width:100%;}
 .booking-amount{ padding:10px 20px; background:#ededed;}
 .booking-amount h3{ color:#414141;}
 .booking-amount h3 span{ font-size:20px; color:#252525;}
@@ -1367,7 +1366,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .nationalty-drop-down li:hover, .nationalty-drop-down li a.active{ background:#DFDFDF; color:#616161;}
 .make-payment{ font-size:14px; text-transform:uppercase; font-weight:600; background:#f28d19; color:#fff; text-align:center; width:220px; line-height:42px; border-radius:3px; margin:15px 0 0 0; cursor: pointer;}
 .make-payment:hover {background: #ECA537;}
-.terms-condition{ margin:85px 0 10px  0; position:relative;}
+.terms-condition{ margin:145px 0 10px  0; position:relative;}
 .terms-condition input{float:left; margin:5px 10px 0 0;}
 .terms-condition  label{font-size:13px; cursor:pointer; color:#252525;}
 .terms-condition  label a, .price-terms{ color:#ECA537; cursor:pointer;}
@@ -1997,13 +1996,13 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 }
 /*---small blink----*/
 @keyframes blink{
-    to { transform: scale(1.5); color:#f18d18;}
+    to { transform: scale(1.5);}
 }
 @-moz-keyframes blink{
-    to { -moz-transform: scale(1.5);color:#f18d18; }
+    to { -moz-transform: scale(1.5);}
 }
 @-webkit-keyframes blink{
-    to { -webkit-transform: scale(1.5); color:#f18d18;}
+    to { -webkit-transform: scale(1.5);}
 }
 .terms-condition-popup{ background:rgba(0,0,0,0.7); position:fixed; top:0; left:0; width:100%; height:100%; z-index:9999999;}
 .tc-container{ background:#fff; height:500px; position:absolute; padding:20px; width:640px; top:50%; left:50%; margin:-240px 0 0 -320px;; overflow:hidden; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;box-sizing:border-box;}
