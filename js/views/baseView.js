@@ -285,7 +285,7 @@ var BaseView = (function() {
                 'projectId': utils.projectId
             };
 
-            var params = {successCallback: this.submitLeadSuccessCallback}
+            var params = {successCallback: this.submitLeadSuccessCallback};
             ajaxUtils.submitLead(data, params);
         },
         submitLeadSuccessCallback: function(response){
