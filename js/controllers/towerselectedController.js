@@ -40,10 +40,10 @@ var TowerselectedController = (function() {
             this._view._towerRotateClicked.attach(function(sender, element) {
 
                 _this._view._elements.towerSvgContainer.html('');
-                var rotationImages = ['tow-a-ang-0.jpg', 'tow-a-ang-180.jpg', 'tow-b-ang-0.jpg', 'tow-b-ang-180.jpg',
-                                'tow-c-ang-0.jpg', 'tow-c-ang-180.jpg', 'tow-d-ang-0.jpg', 'tow-d-ang-180.jpg',
-                                'tow-j-ang-0.jpg', 'tow-j-ang-180.jpg', 'tow-k-ang-0.jpg', 'tow-k-ang-180.jpg',
-                                'tow-l-ang-0.jpg', 'tow-l-ang-180.jpg', 'tow-l-ang-0.jpg', 'tow-l-ang-180.jpg'
+                var rotationImages = [//'tow-a-ang-0.jpg', 'tow-a-ang-180.jpg', 'tow-b-ang-0.jpg', 'tow-b-ang-180.jpg',
+                                /*'tow-c-ang-0.jpg', 'tow-c-ang-180.jpg',*/ 'tow-d-ang-0.jpg', 'tow-d-ang-180.jpg',
+                                /*'tow-j-ang-0.jpg', 'tow-j-ang-180.jpg',*/ 'tow-k-ang-0.jpg', 'tow-k-ang-180.jpg',
+                                //'tow-l-ang-0.jpg', 'tow-l-ang-180.jpg', 'tow-l-ang-0.jpg', 'tow-l-ang-180.jpg'
                             ];
 
                 var imagePath = '';
