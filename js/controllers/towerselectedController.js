@@ -46,10 +46,20 @@ var TowerselectedController = (function() {
                                 //'tow-l-ang-0.jpg', 'tow-l-ang-180.jpg', 'tow-l-ang-0.jpg', 'tow-l-ang-180.jpg'
                             ];
 
+
+                var rotationImages = [
+                        '1_000.jpg', '1_002.jpg', '1_003.jpg', '1_004.jpg', '1_005.jpg',
+                        '1_006.jpg', '1_007.jpg', '1_008.jpg', '1_009.jpg', '1_0010.jpg',
+                        '1_0010.jpg', '1_0012.jpg', '1_0013.jpg', '1_0014.jpg', '1_0015.jpg',
+                        '1_0016.jpg', '1_0017.jpg', '1_0018.jpg', '1_0019.jpg', '1_0020.jpg',
+                        '1_0020.jpg', '1_0022.jpg', '1_0023.jpg', '1_0024.jpg', '1_0025.jpg'
+                    ];
+
                 var imagePath = '';
                 for(var i=1; i<=rotationImages.length; i++){
                     $('#rotate-tower-imgs').removeClass('hidden');
                     imagePath = '/zip-file/img/'+rotationImages[i-1];
+                    imagePath = '/zip-file/rotate/'+rotationImages[i-1];
                     var timeout = i*100;
                     (function(imagePath,timeout){
                         setTimeout(function(){
