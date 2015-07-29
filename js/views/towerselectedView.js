@@ -349,7 +349,7 @@ var TowerselectedView = (function() {
             code += "<div class='menu-item'><span class='icon  icon-rupee_final fs30'></span></div>";
             code += this.getPriceMenuOptions(data, priceFiltersData);
             code += "</td></tr>";
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'><div class='menu-item " + config.filters.resetClass + "'><span class='icon icon-reset-final fs24'></span></div><div class='menu-item-options'><table><tr><td class='filter-title pointer "+config.filters.resetClass+"'>Reset All</td></tr><table></div></td></tr>";
+            code += "<tr class='menu-item-container reset-all-menu-item reset-all-inactive'><td class='menu-item-container-td'><div class='menu-item " + config.filters.resetClass + "'><span class='icon icon-reset-final fs24'></span></div><div class='menu-item-options'><table><tr><td class='filter-title pointer "+config.filters.resetClass+"'>Reset All</td></tr><table></div></td></tr>";
             code += "</table></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "</table>";
@@ -366,25 +366,36 @@ var TowerselectedView = (function() {
         },
         updateFilterCount: function() {
             var filterdata = this._model.getSelectedFiltersData();
+            var filterExist = false; 
             if (filterdata.bhk.length > 0) {
+                filterExist = true;
                 $('#bhk-filter-count').show().html(filterdata.bhk.length);
             } else {
                 $('#bhk-filter-count').hide();
             }
             if (filterdata.floor.length > 0) {
+                filterExist = true;
                 $('#floor-filter-count').show().html(filterdata.floor.length);
             } else {
                 $('#floor-filter-count').hide();
             }
             if (filterdata.entrance.length > 0) {
+                filterExist = true;
                 $('#entrance-filter-count').show().html(filterdata.entrance.length);
             } else {
                 $('#entrance-filter-count').hide();
             }
             if (filterdata.price.length > 0) {
+                filterExist = true;
                 $('#price-filter-count').show().html(filterdata.price.length);
             } else {
                 $('#price-filter-count').hide();
+            }
+
+            if(filterExist){
+                $('.reset-all-menu-item').removeClass('reset-all-inactive');
+            }else{
+                $('.reset-all-menu-item').addClass('reset-all-inactive');
             }
         },
         filterMenuContainerEvents: function() {
