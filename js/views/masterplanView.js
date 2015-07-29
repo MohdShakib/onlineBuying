@@ -321,7 +321,7 @@ var MasterplanView = (function() {
             var towerCode = "",
                 dotClass = !data.isAvailable ? 'sold' : '';
             towerCode += "<div id='container-detail' class='tooltip-detail'>";
-            towerCode += "<div class='detail-box show-details'>" + "<div class='tooltip-title'>" + data.towerName.split(' ')[1] + "</div>" + "<div class='line " + tooltipClass + "''>" + "<div class='dot-one'></div>" + "<div class='dot-two " + dotClass + "'></div>" + "<div class='detail-container'>";
+            towerCode += "<div class='detail-box show-details'>" + "<div class='tooltip-title'>" + data.towerName.split(' ')[1] + "</div>" + "<div class='line " + tooltipClass + "''>" + "<div class='dot-one'></div>" + "<div class='dot-two " + dotClass + "'></div>" + "<div class='detail-container master-details'>";
             towerCode += "<table>";
             if (!data.isAvailable) {
                 towerCode += "<tr><td colspan='2' class='" + config.availabilityClass.unavailable + "'>Sold</td></tr>";
@@ -329,7 +329,7 @@ var MasterplanView = (function() {
                 for (var j in data.unitInfo) {
                     var aptType = data.unitInfo[j];
                     var availabilityClass = config.availabilityClass.available + availabilityClassSuffix;
-                    var availabilityText = aptType.available + " Av";
+                    var availabilityText = aptType.available + " Available";
                     if (aptType.available === 0) {
                         availabilityClass = config.availabilityClass.unavailable + availabilityClassSuffix;
                         availabilityText = 'Sold';

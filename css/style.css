@@ -3,8 +3,10 @@
 	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	outline:none;
 }
 *:focus{ outline:none;}
+img{ border:0; outline:none;}
 @font-face {
     font-family: 'proxima_nova_rgregular';
     src: url('fonts/ProximaNova-Reg-webfont.eot');
@@ -395,6 +397,13 @@ ellipse {
 	stroke: rgba(255,255,255,0.8);
 	stroke-width: 0.1;
 	fill-opacity: 0.8;
+	animation: scale 0.5s ease-in-out alternate;
+	-moz-animation: scale 0.5s ease-in-out alternate;
+	-webkit-animation: scale 0.5s ease-in-out alternate;
+    transform-origin: center;
+	-moz-transform-origin: center;
+	-webkit-transform-origin: center;
+	
 }
 ellipse.apt-available {
 	fill: limegreen;
@@ -471,6 +480,7 @@ ellipse.tower-unit-svg-selected-path {
 	padding: 0;
 	border-bottom: 1px solid #666;
 }
+.tooltip-detail .detail-container.master-details { width:140px;}
 .tooltip-detail .detail-container table{ width:100%; border-collapse: collapse;}
 .tooltip-detail .detail-container table td{ padding:8px 10px; min-width:30px; border-bottom:1px solid #7e7e7e;}
 .tooltip-detail .detail-container table tr:last-child td{ border-bottom:0;}
@@ -827,13 +837,17 @@ ellipse.tower-unit-svg-selected-path {
 .special-offers span{ position:absolute; right:0; top:0; height:100%;}
 .special-offers span:before{ content:''; position:absolute; border-top:0 solid rgba(0,0,0,0);border-bottom:15px solid rgba(0,0,0,0);border-left:15px solid #37b34a; left:0; top:0;}
 .special-offers span:after{ content:''; position:absolute; border-top:15px solid rgba(0,0,0,0);border-bottom:0 solid rgba(0,0,0,0);border-left:15px solid #37b34a; left:0; bottom:0;}
-.like-box{position:absolute; top:60px; right:15px; cursor: pointer;z-index:9999999;}
+.like-box{position:absolute; top:60px; right:35px; cursor: pointer;z-index:9999999;}
 .like-box a{ display:block;position:relative; transition:all 0.3s ease-in-out; -moz-transition:all 0.3s ease-in-out; -webkit-transition:all 0.3s ease-in-out; color:#ccc; cursor:pointer;}
 .like-box a span{ position:relative;}
 .like-box a label{right:-2px; top:7px; cursor: pointer; height:13px; line-height:13px; text-align:center; border-radius:50%; background:#fff; border:1px solid #ccc; color:#ccc; cursor:pointer; position:absolute; font-size:12px; width:13px}
 .like-box a label:before{ content:'+';}
 .like-box.selected a, .like-box a:hover{ color:#f18d18;}
 .like-box.selected a label:before{ content:'-';}
+.like-box a p{ position:absolute; top:30px; left:50%; opacity:0; margin-left:-40px; width:80px; text-align:center;font-size:12px;}
+.like-box a p:before{ content:'Shortlist'}
+.like-box a:hover p{ opacity:1;}
+.like-box.selected a p:before{ content:'Remove from Shortlisted'}
 .book-now{ position:absolute; left:50%; width:182px; text-align:center; margin-left:-91px; bottom:20px;z-index:999999;}
 .book-now a{ color:#fff; padding:11px; display:inline-block; font-size:16px; text-transform:uppercase; font-weight:bold; width:160px; font-weight:bold; background:#f18d18; border-radius:3px; cursor:pointer;}
 .compare-units-container .book-now{ right:20px; left:inherit; margin:0; bottom:10px;}
@@ -999,7 +1013,7 @@ ellipse.tower-unit-svg-selected-path {
 .floor-plan-menu-container .floor-plan-menu {
 	position: absolute;
 	top: 60px;
-	right: 55px;
+	right: 80px;
 	background-color: #fff;
 	color: #333;
 	font-size: 11px;
@@ -1563,7 +1577,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .line .detail-container, 
 .line .tSelected-detail{ 
 	position:absolute; 
-	left:98px; 
+	left:118px; 
 	top:-12px; 
 	transform:rotate(30deg); 
 	-moz-transform:rotate(30deg);
@@ -1638,16 +1652,16 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 	transform:rotate(-160deg); 
 	-moz-transform:rotate(-160deg);
 	-webkit-transform:rotate(-160deg);
-	left:203px;
-	top:50px;
+	left:237px;
+	top:62px;
 }
 .line.bottom-left .detail-container, 
 .line.bottom-left .tSelected-detail{
 	transform:rotate(140deg); 
 	-moz-transform:rotate(140deg);
 	-webkit-transform:rotate(140deg);
-	left:200px;
-	top:-55px;
+	left:228px;
+	top:-78px;
 }
 .line .tSelected-detail{ 
 	left:72px; 
@@ -1728,62 +1742,49 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .show-details .detail-container, 
 .show-details .tSelected-detail{
 	animation: list-in 0.3s ease-in-out both;
-    animation: list-in 0.3s ease-in-out both;
 	animation-delay:0.7s;
 	
 	-moz-animation: list-in 0.3s ease-in-out both;
-    -moz-animation: list-in 0.3s ease-in-out both;
 	-moz-animation-delay:0.7s;
 	
 	-webkit-animation: list-in 0.3s ease-in-out both;
-    -webkit-animation: list-in 0.3s ease-in-out both;
 	-webkit-animation-delay:0.7s;
 }
 .hide-details .detail-container,
 .hide-details  .tSelected-detail{
 	animation: list-out 0.3s ease-in-out both;
-    animation: list-out 0.3s ease-in-out both;
 	animation-delay:0;
 	
 	-moz-animation: list-out 0.3s ease-in-out both;
-    -moz-animation: list-out 0.3s ease-in-out both;
 	-moz-animation-delay:0;
 
 	-webkit-animation: list-out 0.3s ease-in-out both;
-    -webkit-animation: list-out 0.3s ease-in-out both;
 	-webkit-animation-delay:0;
 
 }
 .hide-details .dot-one, 
 .hide-details .tooltip-title{
     animation: point-out 0.3s ease-in-out both;
-    animation: point-out 0.3s ease-in-out both;
 	-moz-animation-delay:1s;
 	
 	-moz-animation: point-out 0.3s ease-in-out both;
-    -moz-animation: point-out 0.3s ease-in-out both;
 	-moz-animation-delay:1s;
 	
 	-webkit-animation: point-out 0.3s ease-in-out both;
-    -webkit-animation: point-out 0.3s ease-in-out both;
 	-webkit-animation-delay:1s;
 }
 .hide-details .tooltip-title{
 	-webkit-animation-delay:1.2s;
 	-moz-animation-delay:1.2s;
-	-moz-animation-delay:1.2s;
 }
 .hide-details .dot-two{
-    animation: point-out 0.3s ease-in-out both;
     animation: point-out 0.3s ease-in-out both;
 	animation-delay:0.5s;
 	
 	-moz-animation: point-out 0.3s ease-in-out both;
-    -moz-animation: point-out 0.3s ease-in-out both;
 	-moz-animation-delay:0.5s;
 	
 	-webkit-animation: point-out 0.3s ease-in-out both;
-    -webkit-animation: point-out 0.3s ease-in-out both;
 	-webkit-animation-delay:0.5s;
 
 }
@@ -2011,6 +2012,19 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 @-webkit-keyframes blink{
     to { -webkit-transform: scale(1.5);}
 }
+/*---small blink----*/
+@keyframes scale{
+    0% { transform: scale(0);}
+	100% { transform: scale(1);}
+}
+@-moz-keyframes scale{
+    0%{ -moz-transform: scale(0);}
+	100%{ -moz-transform: scale(1);}
+}
+@-webkit-keyframes scale{
+    0%{ -webkit-transform: scale(0);}
+	100%{ -webkit-transform: scale(1);}
+}
 .terms-condition-popup{ background:rgba(0,0,0,0.7); position:fixed; top:0; left:0; width:100%; height:100%; z-index:9999999;}
 .tc-container{ background:#fff; height:500px; position:absolute; padding:20px; width:640px; top:50%; left:50%; margin:-240px 0 0 -320px;; overflow:hidden; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;box-sizing:border-box;}
 .tc-container .close-payment{ color:#616161;}
@@ -2088,3 +2102,4 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .common-tol-tip{ position:absolute;top:-100px; left:50%;  z-index:999999; width:500px; margin-left:-250px; text-align:center;}
 .common-tol-tip p{color:#fff; background:rgba(0,0,0,0.8); padding:5px 0 5px 10px;font-size:14px;display:inline-block;}
 .common-tol-tip p span.icon{ margin-left:10px; padding:0 5px; margin-top:2px; cursor:pointer;}
+/*-----*/

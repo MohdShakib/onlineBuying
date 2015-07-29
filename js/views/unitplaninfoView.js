@@ -147,7 +147,7 @@ var UnitplaninfoView = (function() {
                 link = rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier + '/booking';
 
             htmlCode += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
-            htmlCode += '<a><span class="icon icon-heart fs26"><label></label></span></a></div>';
+            htmlCode += '<a><span class="icon icon-heart fs26"><label></label></span><p class="transition"></p></a></div>';
             htmlCode += '<div class="book-now"><a  data-url="' + link + '">Book now</a><span>Rs. ' + utils.getReadablePrice(data.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
             htmlCode += '</div>';
 
@@ -352,8 +352,8 @@ var UnitplaninfoView = (function() {
             var position = "top:" + element.dataset.top + "%; left:" + element.dataset.left + "%;";
             var code = "<div class='" + config.amenityPopupClass + "'><table class='photo-table pop-up-in' style='" + position + "'><tr>";
             code += "<td class='amenity-heading'>" + amenity.name;
-            code += "<span class='icon icon-crossfs14 " + config.amenityPopupCloseClass + "'></span></td></tr>";
-            code += "<tr><td class='amenity-image'><img src='" + amenityImg + "'></td></tr></table>";
+            code += "<span class='icon icon-cross fs14 " + config.amenityPopupCloseClass + "'></span></td></tr>";
+            code += "<tr><td class='amenity-image'><div><img src='" + amenityImg + "'></div></td></tr></table>";
             this._elements.amenitiesContainer.append(code);
             this.amenitiesPopupEvents();
         },
