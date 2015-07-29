@@ -49,7 +49,7 @@ var TowerselectedController = (function() {
                 var imagePath = '';
                 for(var i=1; i<=rotationImages.length; i++){
                     $('#rotate-tower-imgs').removeClass('hidden');
-                    imagePath = '/images/rotate/'+rotationImages[i-1];
+                    imagePath = '/zip-file/img/'+rotationImages[i-1];
                     var timeout = i*100;
                     (function(imagePath,timeout){
                         setTimeout(function(){
