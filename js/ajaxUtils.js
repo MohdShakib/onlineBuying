@@ -10,7 +10,6 @@ var ajaxUtils = (function() {
                 method: type,
                 url: url,
                 async: async,
-                data: data,
                 success: function(response) {
                     console.log(response);
                     if (response.statusCode === '2XX') {
@@ -45,6 +44,7 @@ var ajaxUtils = (function() {
 
             if (type === "POST") {
                 ajaxObj.contentType = "application/json";
+                ajaxObj.data = data;
             }
 
             $.ajax(ajaxObj);
