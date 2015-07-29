@@ -142,6 +142,7 @@ var TowerselectedView = (function() {
                     imgCode += "<img class='" + imageClass + " " + rotationAngle + " " + config.selectedTowerImagesClass + "' width='100%' src='" + towerImageUrl + "' />";
                 }
             }
+            imgCode += "<img  id='rotate-tower-imgs' src='./images/rotate/"+towerImageUrl+"' width='100%' />";
             this._elements.towerImgContainer.html(imgCode);
         },
         towerSvgContainer: function(data, rootdata) {
@@ -297,12 +298,16 @@ var TowerselectedView = (function() {
                 rootdata = this._model.getRootdata(),
                 imageClass = this._model.getCurrentRotationAngle();
             var _this = this;
-            $('.' + config.selectedTowerImagesClass).fadeOut(1000);
+           /* $('.' + config.selectedTowerImagesClass).fadeOut(1000);
             $('.' + imageClass).fadeIn(1000, function() {
                 // change unit availability svgs
                 _this.towerSvgContainer(data, rootdata);
-            });
+            });*/
 
+            $('.' + config.selectedTowerImagesClass).hide();
+            $('.' + imageClass).show();
+             _this.towerSvgContainer(data, rootdata);
+            
         },
         towerRotationContainer: function() {
             var _this = this;

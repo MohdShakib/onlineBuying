@@ -38,12 +38,37 @@ var TowerselectedController = (function() {
 
             // Tower Rotation
             this._view._towerRotateClicked.attach(function(sender, element) {
-                var currentRotationAngle = _this._model.getCurrentRotationAngle();
-                var newRotationAngle = rotateAngleHash[currentRotationAngle] || '0';
 
-                // change rotation angle value
-                _this._model.updateCurrentRotationAngle(newRotationAngle);
-                _this._view.rotateTower();
+                _this._view._elements.towerSvgContainer.html('');
+                var rotationImages = ['tow-a-ang-0.jpg', 'tow-a-ang-180.jpg', 'tow-b-ang-0.jpg', 'tow-b-ang-180.jpg',
+                                'tow-c-ang-0.jpg', 'tow-c-ang-180.jpg', 'tow-d-ang-0.jpg', 'tow-d-ang-180.jpg',
+                                'tow-j-ang-0.jpg', 'tow-j-ang-180.jpg', 'tow-k-ang-0.jpg', 'tow-k-ang-180.jpg',
+                                'tow-l-ang-0.jpg', 'tow-l-ang-180.jpg', 'tow-l-ang-0.jpg', 'tow-l-ang-180.jpg'
+                            ];
+
+                var imagePath = '';
+                for(var i=1; i<=rotationImages.length; i++){
+                    $('#rotate-tower-imgs').removeClass('hidden');
+                    imagePath = '/images/rotate/'+rotationImages[i-1];
+                    var timeout = i*100;
+                    (function(imagePath,timeout){
+                        setTimeout(function(){
+                            $('#rotate-tower-imgs').attr('src',imagePath);
+                        }, timeout)
+                    })(imagePath, timeout);
+                }
+
+
+                setTimeout(function(){
+                    $('#rotate-tower-imgs').addClass('hidden');
+                    var currentRotationAngle = _this._model.getCurrentRotationAngle();
+                    var newRotationAngle = rotateAngleHash[currentRotationAngle] || '0';
+                    // change rotation angle value
+                    _this._model.updateCurrentRotationAngle(newRotationAngle);
+                    _this._view.rotateTower();
+
+                }, (rotationImages.length+1)*100);
+
             });
 
             // Filter Events
