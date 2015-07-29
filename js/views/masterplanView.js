@@ -8,7 +8,7 @@
 var MasterplanView = (function() {
 
     var containerMap = {
-        'buildingImgContainer': '<div class="img-container opacity-control ' + config.dynamicResizeClass + '" id="img-container"></div>',
+        'buildingImgContainer': '<div class="img-container opacity-control ' + config.dynamicResizeClass + '" id="img-container" style="display:none;"></div>',
         'buildingSvgContainer': '<svg class="svg-container ' + config.dynamicResizeClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'buildingMenuContainer': '<div class="tower-menu-container transition" id="tower-menu-container"></div>',
         'towerDetailContainer': '<div class="tower-detail-container" id="tower-detail-container"></div>',
@@ -77,9 +77,7 @@ var MasterplanView = (function() {
         },
         startAnimation: function() {
             // Images
-            $('.opacity-control').animate({
-                opacity: 1
-            }, 700);
+            $('.opacity-control').fadeIn(500);
 
             // Clouds
             $('.top-left-cloud').animate({
@@ -93,10 +91,7 @@ var MasterplanView = (function() {
             }, 8000);
             $('.bottom-right-cloud').animate({
                 right: '-50%'
-            }, 6000, function() {
-                // Show page tool tip
-                utils.showNotificationTooltip('Select a tower to explore further');
-            });
+            }, 6000);
 
             // Amenities
             var time = 5000;
@@ -123,12 +118,15 @@ var MasterplanView = (function() {
                 });
             }, 7000);
 
+            // Notification tooltip
+            setTimeout(function() {
+                utils.showNotificationTooltip('Select a tower to explore further');
+            }, 9000);
+
         },
         displayWithoutAnimation: function() {
             // Images
-            $('.opacity-control').animate({
-                opacity: 1
-            }, 700);
+            $('.opacity-control').fadeIn(500);
 
             // Clouds
             $('.top-left-cloud').css({

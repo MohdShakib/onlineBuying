@@ -419,9 +419,8 @@ ellipse.tower-unit-svg-selected-path {
 	position: absolute;
 	width: 100%;
 	z-index: 1;
-	
 }
-.opacity-control{ opacity:0.3;}
+
 .img-container img {
 	position: absolute;
 }
@@ -1392,6 +1391,14 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 	-ms-transition:all 0.9s ease-in-out;
 	-o-transition:all 0.9s ease-in-out;
 	-webkit-transition:all 0.9s ease-in-out;}
+
+.transition-left{
+	transition:left 0.9s ease-in-out; 
+	-webkit-transition:left 0.9s ease-in-out; 
+	-ms-transition:left 0.9s ease-in-out;
+	-o-transition:left 0.9s ease-in-out;
+	-webkit-transition:left 0.9s ease-in-out;
+}
 /*-------------transition effect for all end-------------*/
 
 /*---image pop up animation---*/

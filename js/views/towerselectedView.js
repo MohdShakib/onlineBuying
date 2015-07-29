@@ -8,8 +8,8 @@
 var TowerselectedView = (function() {
 
     var containerMap = {
-        'towerImgContainer': '<div class="img-container opacity-control ' + config.dynamicResizeClass + ' ' + config.slowTransitionClass + '" id="img-container"></div>',
-        'towerSvgContainer': '<svg class="svg-container opacity-control ' + config.dynamicResizeClass + ' ' + config.slowTransitionClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
+        'towerImgContainer': '<div class="img-container opacity-control transition-left ' + config.dynamicResizeClass + '" id="img-container" style="display:none;"></div>',
+        'towerSvgContainer': '<svg class="svg-container opacity-control transition-left ' + config.dynamicResizeClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none" style="display:none;"></svg>',
         'towerDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>',
         'towerRotationContainer': '<div class="tower-rotation-container ' + config.slowTransitionClass + '" id="' + config.towerRotationContainerId + '"></div>',
         'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>'
@@ -100,7 +100,7 @@ var TowerselectedView = (function() {
             }, 700);
 
             // Images
-            $('.opacity-control').css('opacity','1');
+            $('.opacity-control').fadeIn(500);
 
             // Connect tabs
             setTimeout(function() {
@@ -119,7 +119,7 @@ var TowerselectedView = (function() {
             });
 
             // Images
-            $('.opacity-control').css('opacity','1');
+            $('.opacity-control').stop().fadeIn(500);
 
             // Connect tabs
             $('.pro-contact-actions ul.conect-tab').css({

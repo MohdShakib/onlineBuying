@@ -498,7 +498,7 @@ var utils = (function() {
             }
 
             $('.'+config.notificationTooltipClass).stop(true,true);
-            $('.'+config.notificationTooltipClass).css('top','-100px');
+            this.removeNotificationTooltip();
             $('.'+config.notificationTooltipClass+' .'+config.notificationMessageClass).text(message);
             $('.'+config.notificationTooltipClass).animate({'top':0}, 1000, function(){
                 notificationTooltipTimeout = setTimeout(function(){
@@ -508,7 +508,10 @@ var utils = (function() {
         },
         hideNotificationTooltip: function(){
             $('.'+config.notificationTooltipClass).animate({'top':-100}, 3000);
-        }   
+        },
+        removeNotificationTooltip: function() {
+            $('.'+config.notificationTooltipClass).css('top','-100px');
+        }
     };
 
 })();

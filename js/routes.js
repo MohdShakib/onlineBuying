@@ -132,6 +132,9 @@ var initializeRoutes = (function() {
             },
             before: function(projectName, projectId, towerName, towerAngle, unitAddress) {
 
+                // Animations
+                utils.removeNotificationTooltip();
+
                 rootdata = getProjectData(projectId);
                 var flag = false;
 

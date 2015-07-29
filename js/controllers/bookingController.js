@@ -19,7 +19,10 @@ var BookingController = (function() {
 
             // Close Event
             this._view._closeEvent.attach(function(sender, element) {
-                utils.changeUrl(element);
+                _this._view.endAnimation();
+                setTimeout(function() {
+                    utils.changeUrl(element);
+                }, 500);   
             });
 
             // Make payment Event
@@ -33,6 +36,7 @@ var BookingController = (function() {
         },
         generateTemplate: function(data, rootdata, elements) {
             this._view.buildView();
+            this._view.startAnimation();
         }
     };
 
