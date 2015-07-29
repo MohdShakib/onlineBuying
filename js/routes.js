@@ -22,6 +22,8 @@ var initializeRoutes = (function() {
             bookingRoute = unitRoute + routeRegex.sep + routeRegex.booking,
             errorRoute = routeRegex.sep + routeRegex.error;
 
+        var currentState = null, previousState = null;
+
         var routes = {},
             rootdata = {};
 
@@ -41,11 +43,20 @@ var initializeRoutes = (function() {
             } else {
                 towerselectedModel.init();
             }
-            towerselectedController.generateTemplate();
+
+            var fromUnitInfoView = false;
+            if(previousState == 'unitplaninfoView'){
+                fromUnitInfoView = true;
+            }
+            towerselectedController.generateTemplate(fromUnitInfoView);
         }
 
         routes[projectRoute] = {
             on: function(projectName, projectId) {
+
+                previousState = currentState;
+                currentState = 'masterplanView';
+
                 if(baseController) {
                     baseView.reinit();
                 }
@@ -62,6 +73,10 @@ var initializeRoutes = (function() {
 
         routes[towerRoute] = {
             on: function(projectName, projectId, towerName) {
+
+                previousState = currentState;
+                currentState = 'towerselectedView';
+
                 if(baseController) {
                     baseView.reinit();
                 }
@@ -74,6 +89,9 @@ var initializeRoutes = (function() {
 
         routes[unitRoute] = {
             on: function(projectName, projectId, towerName, towerAngle, unitAddress) {
+
+                previousState = currentState;
+                currentState = 'unitplaninfoView';
 
                 if (reloadTowerSelectedView) {
                     onTowerselectedRoute(projectName, projectId, towerName, towerAngle);
@@ -93,6 +111,10 @@ var initializeRoutes = (function() {
         routes[bookingRoute] = {
             on: function(projectName, projectId, towerName, towerAngle, unitAddress) {
 
+                previousState = currentState;
+                currentState = 'bookingView';
+
+
                 var data = rootdata.towers[towerName].listings[unitAddress],
                     rotationdata = rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress];
 
@@ -108,6 +130,10 @@ var initializeRoutes = (function() {
 
         routes[errorRoute] = {
             on: function() {
+
+                previousState = currentState;
+                currentState = 'errorView';
+
                 errorPageView = new ErrorPageView();
                 errorPageController = new ErrorPageController(errorPageView);
                 errorPageController.generateTemplate();

@@ -110,7 +110,7 @@ var TowerselectedView = (function() {
 
             utils.showNotificationTooltip('Click on unit spot & view its plan');
         },
-        displayWithoutAnimation: function() {
+        displayWithoutAnimation: function(fromUnitInfoView) {
             // Tower Menu
             $('.tower-menu-container').css({
                 left: '0px',
@@ -118,7 +118,11 @@ var TowerselectedView = (function() {
             });
 
             // Images
-            $('.opacity-control').stop().fadeIn(500);
+            if(fromUnitInfoView){
+                $('.opacity-control').show();
+            }else{
+                $('.opacity-control').stop().fadeIn(500);
+            }
 
             // Connect tabs
             $('.pro-contact-actions ul.conect-tab').css({
