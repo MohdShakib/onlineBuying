@@ -9,7 +9,7 @@ var TowerselectedView = (function() {
 
     var containerMap = {
         'towerImgContainer': '<div class="img-container opacity-control transition-left ' + config.dynamicResizeClass + '" id="img-container" style="display:none;"></div>',
-        'towerSvgContainer': '<svg class="svg-container opacity-control transition-left ' + config.dynamicResizeClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none" style="display:none;"></svg>',
+        'towerSvgContainer': '<svg class="svg-container transition-left ' + config.dynamicResizeClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'towerDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>',
         'towerRotationContainer': '<div class="tower-rotation-container ' + config.slowTransitionClass + '" id="' + config.towerRotationContainerId + '"></div>',
         'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>'
@@ -101,7 +101,6 @@ var TowerselectedView = (function() {
 
             // Images
             $('.opacity-control').fadeIn(500);
-
             // Connect tabs
             setTimeout(function() {
                 $('.pro-contact-actions ul.conect-tab').css({
@@ -349,7 +348,7 @@ var TowerselectedView = (function() {
             code += "<div class='menu-item'><span class='icon  icon-rupee_final fs30'></span></div>";
             code += this.getPriceMenuOptions(data, priceFiltersData);
             code += "</td></tr>";
-            code += "<tr class='menu-item-container reset-all-menu-item reset-all-inactive'><td class='menu-item-container-td'><div class='menu-item " + config.filters.resetClass + "'><span class='icon icon-reset-final fs24'></span></div><div class='menu-item-options'><table><tr><td class='filter-title pointer "+config.filters.resetClass+"'>Reset All</td></tr><table></div></td></tr>";
+            code += "<tr class='menu-item-container reset-all-menu-item reset-all-inactive'><td class='menu-item-container-td'><div class='menu-item " + config.filters.resetClass + "'><span class='icon icon-reset-final fs24'></span></div><div class='menu-item-options'><table><tr><td class='filter-title pointer "+config.filters.resetClass+"'>Reset All Filters</td></tr><table></div></td></tr>";
             code += "</table></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "</table>";
