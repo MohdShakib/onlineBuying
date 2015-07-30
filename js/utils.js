@@ -332,7 +332,7 @@ var utils = (function() {
                 }
                 htmlCode += '</ul>';
             } else {
-                htmlCode += '<p>Please shortlist at least two properties to compare</p>';
+                htmlCode += '<p>Please shortlist items to compare</p>';
             }
 
             $('#' + config.unitCompareButtonId).addClass('disable');
