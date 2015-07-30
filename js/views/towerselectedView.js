@@ -175,13 +175,13 @@ var TowerselectedView = (function() {
                     svgClass = listings[unitIdentifier].isAvailable ? 'apt-available' : 'apt-unavailable';
                     var attrs = {}, eachEllipse;
 
-                    attrs = {class:config.towerUnitSvgSelectedClass+" "+selectedClass,  id:unitIdentifier+"-selected-path", cx:unitInfo.unitSvgOnTower[0], cy:unitInfo.unitSvgOnTower[1], ry:'1.7', rx:'.78'};
+                    attrs = {'class':config.towerUnitSvgSelectedClass+" "+selectedClass,  id:unitIdentifier+"-selected-path", cx:unitInfo.unitSvgOnTower[0], cy:unitInfo.unitSvgOnTower[1], ry:'1.7', rx:'.78'};
                     eachEllipse = utils.makeSVG('ellipse', attrs);
                     this._elements.towerSvgContainer.append(eachEllipse);
-                    attrs = {class:config.towerUnitSvgHoverClass+" "+config.hideClass, id:unitIdentifier+"-hover-path", cx:unitInfo.unitSvgOnTower[0], cy:unitInfo.unitSvgOnTower[1], ry:'1.7', rx:'.78'};
+                    attrs = {'class':config.towerUnitSvgHoverClass+" "+config.hideClass, id:unitIdentifier+"-hover-path", cx:unitInfo.unitSvgOnTower[0], cy:unitInfo.unitSvgOnTower[1], ry:'1.7', rx:'.78'};
                     eachEllipse = utils.makeSVG('ellipse', attrs);
                     this._elements.towerSvgContainer.append(eachEllipse);
-                    attrs = {class:config.towerUnitSvgClass+" "+svgClass, id:unitIdentifier+"-path", 'data-index':unitIdentifier, 'data-url':url, cx:unitInfo.unitSvgOnTower[0], cy:unitInfo.unitSvgOnTower[1], ry:'1.2', rx:'0.55'};
+                    attrs = {'class':config.towerUnitSvgClass+" "+svgClass, id:unitIdentifier+"-path", 'data-index':unitIdentifier, 'data-url':url, cx:unitInfo.unitSvgOnTower[0], cy:unitInfo.unitSvgOnTower[1], ry:'1.2', rx:'0.55'};
                     eachEllipse = utils.makeSVG('ellipse', attrs);
                     this._elements.towerSvgContainer.append(eachEllipse);
 

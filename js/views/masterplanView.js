@@ -235,7 +235,7 @@ var MasterplanView = (function() {
                 if (tower.towerHoverSvg) {
                     towerUrl = tower.isAvailable ? data.baseUrl + "/" + tower.towerIdentifier : 'undefined';
                     var svgClass = tower.isAvailable ? '' : 'no-pointer';
-                    var attrs = {class:config.towerImgSvgClass+" "+svgClass, id:tower.towerId+"-path", 'data-index': tower.towerIdentifier, 'data-url': towerUrl, 'data-imageid':tower.towerId,  points: tower.towerHoverSvg };
+                    var attrs = {'class':config.towerImgSvgClass+" "+svgClass, id:tower.towerId+"-path", 'data-index': tower.towerIdentifier, 'data-url': towerUrl, 'data-imageid':tower.towerId,  points: tower.towerHoverSvg };
                     var eachPolygon = utils.makeSVG('polygon', attrs);
                     this._elements.buildingSvgContainer.append(eachPolygon);
                 }

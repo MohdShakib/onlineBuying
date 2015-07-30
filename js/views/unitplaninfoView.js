@@ -290,7 +290,7 @@ var UnitplaninfoView = (function() {
             var eachPolygon = '', attrs;
             for (var i = 0; i < svgs_count; i++) {
                 var svgObj = svgData[i];
-                attrs = {class:config.transitionClass, 'data-name':svgObj.name, 'data-type':svgObj.type, 'data-details':svgObj.details, points:svgObj.svg2dPath};
+                attrs = {'class':config.transitionClass, 'data-name':svgObj.name, 'data-type':svgObj.type, 'data-details':svgObj.details, points:svgObj.svg2dPath};
                 eachPolygon = utils.makeSVG('polygon', attrs);
                 this._elements.unit2dSvgContainer.append(eachPolygon);
             }

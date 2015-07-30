@@ -179,7 +179,7 @@ var utils = (function() {
             for (var i = 0; i < svgs_count; i++) {
                 var svgObj = svgData[i];
                 if (svgObj.type == 'info') {
-                    var attrs = {class:'transition', 'data-name':svgObj.name, 'data-type':svgObj.type, 'data-details':svgObj.details, points:svgObj.svgPath};
+                    var attrs = {'class':'transition', 'data-name':svgObj.name, 'data-type':svgObj.type, 'data-details':svgObj.details, points:svgObj.svgPath};
                     var eachPolygon = utils.makeSVG('polygon', attrs);
                     svgCode.push(eachPolygon);
                 }
@@ -469,8 +469,9 @@ var utils = (function() {
         },
         makeSVG: function(tag, attrs) {
             var el= document.createElementNS('http://www.w3.org/2000/svg', tag);
-            for (var k in attrs)
+            for (var k in attrs){
                 el.setAttribute(k, attrs[k]);
+            }
             return el;
         },
         showLoader: function(startAnimation) {
