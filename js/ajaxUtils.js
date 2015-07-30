@@ -52,7 +52,7 @@ var ajaxUtils = (function() {
 
         getProjectData: function(projectId, params) {
             var apiUrl = "https://dev.proptiger-ws.com/app/v4/project-detail/" + projectId + "?selector={%22paging%22:{%22start%22:0,%22rows%22:100},%22fields%22:[%22projectId%22,%22value%22,%22images%22,%22abbreviation%22,%22imageType%22,%22mediaType%22,%22objectType%22,%22title%22,%22type%22,%22absolutePath%22,%22properties%22,%22projectAmenities%22,%22amenityDisplayName%22,%22verified%22,%22amenityMaster%22,%22amenityId%22,%22towerId%22,%22amenityName%22,%22bedrooms%22,%22bathrooms%22,%22balcony%22,%22name%22,%22hasPrimaryExpandedListing%22,%22propertyId%22,%22towers%22,%22listings%22,%22floor%22,%22size%22,%22measure%22,%22bookingAmount%22,%22viewDirections%22,%22viewType%22,%22facingId%22,%22address%22,%22towerName%22,%22clusterPlans%22,%22id%22,%22flatNumber%22,%22bookingStatusId%22,%22clusterPlanId%22,%22price%22,%22specifications%22,%22floorNumber%22,%22mandatory%22,%22otherPricingSubcategoryId%22,%22effectiveDate%22,%22status%22,%22listingId%22,%22pricePerUnitArea%22,%22objectId%22,%22objectTypeId%22,%22otherPricingDetails%22,%22propertyOtherPricingSubcategoryMappings%22,%22discount%22,%22discountDescription%22,%22otherPricingValueType%22,%22otherPricingValueType%22,%22otherPricingSubcategory%22,%22component%22,%22name%22,%22masterOtherPricingCategory%22,%22currentListingPrice%22]}";
-            apiUrl = "apiData.json";
+            //apiUrl = "apiData.json";
             this.ajax(apiUrl, params, 'GET', false, null);
         },
 

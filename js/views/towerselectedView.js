@@ -156,6 +156,8 @@ var TowerselectedView = (function() {
                 return;
             }
 
+            this._elements.towerSvgContainer.empty(); // need to remove to update for filters applied to re-render
+
             var unitIdentifier, unitInfo, svgClass,
                 filteredListingKeys = this._model.getFilteredListings(),
                 baseUrl = rootdata.baseUrl + "/" + data.towerIdentifier + "/";
