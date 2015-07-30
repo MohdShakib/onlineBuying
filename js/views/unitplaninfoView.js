@@ -75,6 +75,7 @@ var UnitplaninfoView = (function() {
             this.buildSkeleton(Object.keys(containerMap));
             for (i in this._elements) {
                 if (this._elements.hasOwnProperty(i) && this[i]) {
+                    this._elements[i].empty();
                     this[i](data, rotationdata, rootdata);
                 }
             }
@@ -256,9 +257,15 @@ var UnitplaninfoView = (function() {
         },
         unit3dSvgContainer: function() {
             var unitTypeData = this._model.getUnitTypeData(),
-                svgCode = utils.getUnit3dSvgPolygonHtml(unitTypeData);
-            this._elements.unit3dSvgContainer.html(svgCode);
-            this.unit3dSvgContainerEvents();
+                svgElements = utils.getUnit3dSvgPolygonElements(unitTypeData);
+
+            if(svgElements && svgElements.length){
+                for(var i=0; i<svgElements.length; i++){
+                    this._elements.unit3dSvgContainer.append(svgElements[i]);    
+                }
+                this.unit3dSvgContainerEvents();
+            }
+            
         },
         unit3dSvgContainerEvents: function() {
             var _this = this;
@@ -280,13 +287,14 @@ var UnitplaninfoView = (function() {
                 svgData = unitTypeData.svgs,
                 svgs_count = svgData && svgData.length ? svgData.length : 0;
 
-            var svgCode = '';
+            var eachPolygon = '', attrs;
             for (var i = 0; i < svgs_count; i++) {
                 var svgObj = svgData[i];
-                svgCode += "<polygon class='" + config.transitionClass + "' data-name='" + svgObj.name + "' data-type='" + svgObj.type + "' data-details='" + svgObj.details + "'   points=\"" + svgObj.svg2dPath + "\" />";
+                attrs = {class:config.transitionClass, 'data-name':svgObj.name, 'data-type':svgObj.type, 'data-details':svgObj.details, points:svgObj.svg2dPath};
+                eachPolygon = utils.makeSVG('polygon', attrs);
+                this._elements.unit2dSvgContainer.append(eachPolygon);
             }
 
-            this._elements.unit2dSvgContainer.html(svgCode);
             this.unit2dSvgContainerEvents();
         },
         unit2dSvgContainerEvents: function() {

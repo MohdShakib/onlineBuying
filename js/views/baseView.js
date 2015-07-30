@@ -48,6 +48,7 @@ var BaseView = (function() {
             this.init(rootdata);
             for (var i in this._elements) {
                 if (this._elements.hasOwnProperty(i) && this[i]) {
+                    this._elements[i].empty();
                     this[i]();
                 }
             }
@@ -175,9 +176,16 @@ var BaseView = (function() {
         unit3dSvgContainer: function(uniqueIdentifier) {
             var compareList = this._model.getCompareList();
             var unitTypeData = compareList[uniqueIdentifier].unitTypeData;
-            var svgCode = utils.getUnit3dSvgPolygonHtml(unitTypeData);
-            $('#unit-compare-svg-container' + uniqueIdentifier).html(svgCode);
-            this.unit3dSvgContainerEvents();
+            var svgElements = utils.getUnit3dSvgPolygonElements(unitTypeData);
+
+            $('#unit-compare-svg-container' + uniqueIdentifier).empty();
+            if(svgElements && svgElements.length){
+                for(var i=0; i<svgElements.length; i++){
+                    $('#unit-compare-svg-container' + uniqueIdentifier).append(svgElements[i]);  
+                }
+                this.unit3dSvgContainerEvents();
+            }
+    
         },
         unit3dSvgContainerEvents: function() {
             var _this = this;

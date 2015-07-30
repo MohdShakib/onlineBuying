@@ -55,6 +55,7 @@ var TowerselectedView = (function() {
             this.renderInitialData(data, rootdata);
             for (i in this._elements) {
                 if (this._elements.hasOwnProperty(i) && this[i]) {
+                    this._elements[i].empty();
                     this[i](data, rootdata);
                 }
             }
@@ -155,8 +156,7 @@ var TowerselectedView = (function() {
                 return;
             }
 
-            var svgCode = "",
-                unitIdentifier, unitInfo, svgClass,
+            var unitIdentifier, unitInfo, svgClass,
                 filteredListingKeys = this._model.getFilteredListings(),
                 baseUrl = rootdata.baseUrl + "/" + data.towerIdentifier + "/";
 
@@ -171,18 +171,21 @@ var TowerselectedView = (function() {
                         url = listings[unitIdentifier].isAvailable ? baseUrl + rotationAngle + '/' + unitIdentifier : "undefined",
                         selectedClass = (selectedListing == unitIdentifier) ? "" : config.hideClass;
                     svgClass = listings[unitIdentifier].isAvailable ? 'apt-available' : 'apt-unavailable';
-                    svgCode += "<ellipse  class=\"" + config.towerUnitSvgSelectedClass + " " + selectedClass + "\" id=\"" + unitIdentifier + "-selected-path\" " +
-                        "cx='" + unitInfo.unitSvgOnTower[0] + "' cy='" + unitInfo.unitSvgOnTower[1] + "' ry='1.7' rx='.78' />";
-                    svgCode += "<ellipse  class=\"" + config.towerUnitSvgHoverClass + " " + config.hideClass + "\" id=\"" + unitIdentifier + "-hover-path\" " +
-                        "cx='" + unitInfo.unitSvgOnTower[0] + "' cy='" + unitInfo.unitSvgOnTower[1] + "' ry='1.7' rx='.78' />";
-                    svgCode += "<ellipse  class=\"" + config.towerUnitSvgClass + " " + svgClass +
-                        "\" id=\"" + unitIdentifier + "-path\" data-index=\"" + unitIdentifier +
-                        "\" data-url=\"" + url +
-                        "\" cx='" + unitInfo.unitSvgOnTower[0] + "' cy='" + unitInfo.unitSvgOnTower[1] + "' ry='1.2' rx='0.55' />";
+                    var attrs = {}, eachEllipse;
+
+                    attrs = {class:config.towerUnitSvgSelectedClass+" "+selectedClass,  id:unitIdentifier+"-selected-path", cx:unitInfo.unitSvgOnTower[0], cy:unitInfo.unitSvgOnTower[1], ry:'1.7', rx:'.78'};
+                    eachEllipse = utils.makeSVG('ellipse', attrs);
+                    this._elements.towerSvgContainer.append(eachEllipse);
+                    attrs = {class:config.towerUnitSvgHoverClass+" "+config.hideClass, id:unitIdentifier+"-hover-path", cx:unitInfo.unitSvgOnTower[0], cy:unitInfo.unitSvgOnTower[1], ry:'1.7', rx:'.78'};
+                    eachEllipse = utils.makeSVG('ellipse', attrs);
+                    this._elements.towerSvgContainer.append(eachEllipse);
+                    attrs = {class:config.towerUnitSvgClass+" "+svgClass, id:unitIdentifier+"-path", 'data-index':unitIdentifier, 'data-url':url, cx:unitInfo.unitSvgOnTower[0], cy:unitInfo.unitSvgOnTower[1], ry:'1.2', rx:'0.55'};
+                    eachEllipse = utils.makeSVG('ellipse', attrs);
+                    this._elements.towerSvgContainer.append(eachEllipse);
+
                 }
             }
 
-            this._elements.towerSvgContainer.html(svgCode);
             this.towerSvgContainerEvents();
         },
         towerSvgContainerEvents: function() {

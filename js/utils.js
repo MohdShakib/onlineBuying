@@ -171,15 +171,17 @@ var utils = (function() {
 
             return positionClass;
         },
-        getUnit3dSvgPolygonHtml: function(unitTypeData) {
+        getUnit3dSvgPolygonElements: function(unitTypeData) {
             var svgData = unitTypeData ? unitTypeData.svgs : null,
                 svgs_count = svgData && svgData.length ? svgData.length : 0;
 
-            var svgCode = '';
+            var svgCode = [];
             for (var i = 0; i < svgs_count; i++) {
                 var svgObj = svgData[i];
                 if (svgObj.type == 'info') {
-                    svgCode += "<polygon class='transition' data-name='" + svgObj.name + "' data-type='" + svgObj.type + "' data-details='" + svgObj.details + "'   points=\"" + svgObj.svgPath + "\" />";
+                    var attrs = {class:'transition', 'data-name':svgObj.name, 'data-type':svgObj.type, 'data-details':svgObj.details, points:svgObj.svgPath};
+                    var eachPolygon = utils.makeSVG('polygon', attrs);
+                    svgCode.push(eachPolygon);
                 }
             }
 
@@ -464,6 +466,12 @@ var utils = (function() {
             }
             code += "</table>";
             return code;
+        },
+        makeSVG: function(tag, attrs) {
+            var el= document.createElementNS('http://www.w3.org/2000/svg', tag);
+            for (var k in attrs)
+                el.setAttribute(k, attrs[k]);
+            return el;
         },
         showLoader: function(startAnimation) {
             $('.loading-bar span').width('0%');
