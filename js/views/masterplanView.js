@@ -224,6 +224,12 @@ var MasterplanView = (function() {
                 _this._menuMouseLeave.notify(this); // this refers to element here
             });
         },
+        makeSVG: function(tag, attrs) {
+            var el= document.createElementNS('http://www.w3.org/2000/svg', tag);
+            for (var k in attrs)
+                el.setAttribute(k, attrs[k]);
+            return el;
+        },
         buildingSvgContainer: function(data) {
             var svgCode = "",
                 i, tower, towerUrl,
@@ -236,10 +242,13 @@ var MasterplanView = (function() {
                     towerUrl = tower.isAvailable ? data.baseUrl + "/" + tower.towerIdentifier : 'undefined';
                     var svgClass = tower.isAvailable ? '' : 'no-pointer';
                     svgCode += "<polygon  class=\"" + config.towerImgSvgClass + " " + svgClass + "\" id=\"" + tower.towerId + "-path\" data-index=\"" + tower.towerIdentifier + "\" data-url=\"" + towerUrl + "\" data-imageid=\"" + tower.towerId + "\"  points=\"" + tower.towerHoverSvg + "\" />";
+                    var attrs = {class:config.towerImgSvgClass+" "+svgClass, id:tower.towerId+"-path", 'data-index': tower.towerIdentifier, 'data-url': towerUrl, 'data-imageid':tower.towerId,  points: tower.towerHoverSvg }
+                    var eachPolygon = this.makeSVG('polygon', attrs);
+                    this._elements.buildingSvgContainer.append(eachPolygon);
                 }
             }
-
-            this._elements.buildingSvgContainer.html(svgCode);
+            
+            //this._elements.buildingSvgContainer.html(svgCode);
             this.buildingSvgContainerEvents();
         },
         buildingSvgContainerEvents: function() {
