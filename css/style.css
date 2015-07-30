@@ -612,7 +612,6 @@ ellipse.tower-unit-svg-selected-path {
 	position: absolute;
 	line-height: 44px;
 	top: 0px;
-	height: 100%;
 	width: 100px;
 	left:-55px;
 	padding-left:8px;
@@ -861,7 +860,7 @@ ellipse.tower-unit-svg-selected-path {
 .com-pro-box:hover {opacity: 0.8}
 .com-pro-box p{ font-size:12px; padding:5px 10px; color:#616161; text-align:left;}
 .com-pro-box.selected{ border-color:#f18d18;}
-.com-pro-box img{ display:block; width:94px; height:76px;}
+.com-pro-box img{ display:block; width:93px; height:76px;}
 .drag-over, .reset-all-inactive{
 	opacity: 0.5
 }
@@ -1025,6 +1024,7 @@ ellipse.tower-unit-svg-selected-path {
 	z-index: 10001;
 	border-collapse:collapse;
 	box-shadow:0 0 5px rgba(0,0,0,0.25);
+	display:block;
 }
 .floor-plan-menu-container .floor-plan-menu .floor-plan-menu-option {
 	padding: 5px 10px;
@@ -1310,6 +1310,7 @@ ellipse.tower-unit-svg-selected-path {
 	height:360px;
 	overflow:hidden;
 	position:relative;
+	background:url('../images/loader.gif') no-repeat white center;
 }
 .amenity-popup .amenity-image > div img {
 	height: 360px;
