@@ -58,7 +58,7 @@ var BaseView = (function() {
             });
         },
         init: function(rootdata) {
-            $('.project-title').html(rootdata.projectName);
+            $('.project-title').html('<a href="https://www.proptiger.com/'+rootdata.projectUrl+'" target="_blank">'+rootdata.projectName+'</a>');
             $('.project-address').html(rootdata.address);
             $('.project-desc').html(rootdata.description);
         },

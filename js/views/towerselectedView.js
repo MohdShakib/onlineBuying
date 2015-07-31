@@ -84,7 +84,7 @@ var TowerselectedView = (function() {
 			}, 500);
         },
         renderInitialData: function(data, rootdata) {
-            document.getElementById(config.projectDetail.titleId).innerHTML = rootdata.projectName;
+            document.getElementById(config.projectDetail.titleId).innerHTML = '<a href="https://www.proptiger.com/'+rootdata.projectUrl+'" target="_blank">'+rootdata.projectName+'</a>';
             document.getElementById(config.projectDetail.addressId).innerHTML = data.towerName;
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '<label class="count"></label> Available';
             this.updateAvailableCount();

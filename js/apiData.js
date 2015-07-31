@@ -270,6 +270,7 @@ var getProjectData = (function() {
 
         var projectIdentifier = utils.getIdentifier(projectDetail.name);
         projectData.projectId = projectDetail.projectId;
+        projectData.projectUrl = projectDetail.URL;
         projectData.baseUrl = projectIdentifier + '-' + projectDetail.projectId;
         projectData.projectName = projectDetail.name;
         projectData.address = projectDetail.address;
