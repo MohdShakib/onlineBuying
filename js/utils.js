@@ -81,7 +81,7 @@ var utils = (function() {
         getIdentifier: function(string) {
             var identifier = '';
             if (string) {
-                identifier = string.toLowerCase().replace(' ', '-');
+                identifier = string.toLowerCase().replace(/ /g, '-');
             }
             return identifier;
         },
