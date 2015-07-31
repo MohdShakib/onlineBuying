@@ -43,8 +43,9 @@ var ajaxUtils = (function() {
             };
 
             if (type === "POST") {
+                data = data ? data : {};
+                ajaxObj.data = JSON.stringify(data);
                 ajaxObj.contentType = "application/json";
-                ajaxObj.data = data;
             }
 
             $.ajax(ajaxObj);
