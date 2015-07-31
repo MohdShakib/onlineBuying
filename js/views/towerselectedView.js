@@ -142,7 +142,6 @@ var TowerselectedView = (function() {
                     imgCode += "<img class='" + imageClass + " " + rotationAngle + " " + config.selectedTowerImagesClass + "' width='100%' src='" + towerImageUrl + "' />";
                 }
             }
-            imgCode += "<img  id='rotate-tower-imgs'  width='100%' />";
             this._elements.towerImgContainer.html(imgCode);
         },
         towerSvgContainer: function(data, rootdata) {

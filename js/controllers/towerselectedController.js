@@ -40,27 +40,61 @@ var TowerselectedController = (function() {
             this._view._towerRotateClicked.attach(function(sender, element) {
 
                 _this._view._elements.towerSvgContainer.html('');
-                var rotationImages = [//'tow-a-ang-0.jpg', 'tow-a-ang-180.jpg', 'tow-b-ang-0.jpg', 'tow-b-ang-180.jpg',
-                                /*'tow-c-ang-0.jpg', 'tow-c-ang-180.jpg',*/ 'tow-d-ang-0.jpg', 'tow-d-ang-180.jpg',
-                                /*'tow-j-ang-0.jpg', 'tow-j-ang-180.jpg',*/ 'tow-k-ang-0.jpg', 'tow-k-ang-180.jpg',
-                                //'tow-l-ang-0.jpg', 'tow-l-ang-180.jpg', 'tow-l-ang-0.jpg', 'tow-l-ang-180.jpg'
+                var currentRotationAngle = _this._model.getCurrentRotationAngle();
+                var rotationImages = ['tow-d-ang-0.jpg', 'tow-d-ang-180.jpg',
+                                    /*'tow-k-ang-0.jpg', 'tow-k-ang-180.jpg',*/
                             ];
 
 
-                var rotationImages = [
+               /*   var rotationImages = [
                         '1_000.jpg', '1_002.jpg', '1_003.jpg', '1_004.jpg', '1_005.jpg',
                         '1_006.jpg', '1_007.jpg', '1_008.jpg', '1_009.jpg', '1_0010.jpg',
                         '1_0010.jpg', '1_0012.jpg', '1_0013.jpg', '1_0014.jpg', '1_0015.jpg',
                         '1_0016.jpg', '1_0017.jpg', '1_0018.jpg', '1_0019.jpg', '1_0020.jpg',
                         '1_0020.jpg', '1_0022.jpg', '1_0023.jpg', '1_0024.jpg', '1_0025.jpg'
+                    ];*/
+                    
+                $('#rotate-tower-imgs').remove();
+                var imgCode = "<img  id='rotate-tower-imgs'  width='100%' />";
+                _this._view._elements.towerImgContainer.append(imgCode);
+                 var rotationImages = [
+                        'A_0005.jpg', 'A_0006.jpg', 'A_0007.jpg', 'A_0008.jpg', 'A_0009.jpg', 'A_0010.jpg',
+                        'A_0010.jpg', 'A_0012.jpg', 'A_0013.jpg', 'A_0014.jpg', 'A_0015.jpg',
+                        'A_0016.jpg', 'A_0017.jpg', 'A_0018.jpg', 'A_0019.jpg', 'A_0020.jpg',
+                        'A_0020.jpg', 'A_0022.jpg', 'A_0023.jpg', 'A_0024.jpg', 'A_0025.jpg',
+                        'A_0026.jpg', 'A_0027.jpg', 'A_0028.jpg', 
+                        'A_0029.jpg', 'A_0030.jpg', 'A_0031.jpg', 'A_0032.jpg', 'A_0033.jpg', 'A_0034.jpg', 'A_0035.jpg',
+                        'A_0036.jpg', 'A_0037.jpg', 'A_0038.jpg', 'A_0039.jpg', 'A_0040.jpg',
+                        'A_0041.jpg', 'A_0042.jpg', 'A_0043.jpg', 'A_0044.jpg', 'A_0045.jpg',
+                        'A_0046.jpg', 'A_0047.jpg', 'A_0048.jpg'
                     ];
-
-                var imagePath = '';
-                for(var i=1; i<=rotationImages.length; i++){
+                var imagePath = '', startIndex, endIndex, intermediateImagesCount, i, j;
+                /*for(var i=1; i<=rotationImages.length; i++){
                     $('#rotate-tower-imgs').removeClass('hidden');
                     imagePath = '/zip-file/img/'+rotationImages[i-1];
                     imagePath = '/zip-file/rotate/'+rotationImages[i-1];
-                    var timeout = i*100;
+                    var timeout = i*200;
+                    (function(imagePath,timeout){
+                        setTimeout(function(){
+                            $('#rotate-tower-imgs').attr('src',imagePath);
+                        }, timeout)
+                    })(imagePath, timeout);
+                }*/
+                
+                if(currentRotationAngle == '0'){
+                    endIndex = 24;
+                    startIndex = 0;
+                }else{
+                    startIndex = 25;
+                    endIndex = 44;
+                }
+
+                intermediateImagesCount = endIndex - startIndex;
+
+                for(i=startIndex,j=0; i<endIndex; i++){
+                    imagePath = '/zip-file/rotate-latest/'+rotationImages[endIndex-j];
+                    j++;
+                    var timeout = j*200;
                     (function(imagePath,timeout){
                         setTimeout(function(){
                             $('#rotate-tower-imgs').attr('src',imagePath);
@@ -68,16 +102,14 @@ var TowerselectedController = (function() {
                     })(imagePath, timeout);
                 }
 
-
                 setTimeout(function(){
-                    $('#rotate-tower-imgs').addClass('hidden');
-                    var currentRotationAngle = _this._model.getCurrentRotationAngle();
+                    $('#rotate-tower-imgs').remove();
                     var newRotationAngle = rotateAngleHash[currentRotationAngle] || '0';
                     // change rotation angle value
                     _this._model.updateCurrentRotationAngle(newRotationAngle);
                     _this._view.rotateTower();
 
-                }, (rotationImages.length+1)*100);
+                }, (intermediateImagesCount+1)*200);
 
             });
 
