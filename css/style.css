@@ -962,10 +962,10 @@ ellipse.tower-unit-svg-selected-path {
 .uit-header-menu > div{ display:table-cell; width:25%; border-left:1px solid #ccc;}
 .unit-data-container.walkthrough-container video {
 	position: absolute;
-    top: 50px;
+    top: 100px;
     left: 0px;
     width: 100%;
-    height: 73%;
+    height: 67%;
     background-color: #000;
 }
 .unit-data-container .fullView {
