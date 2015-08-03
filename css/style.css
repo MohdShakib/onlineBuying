@@ -293,7 +293,7 @@ header {
 	color: #CCC;
 	margin-left: 60px;
 	line-height: 45px;
-	z-index: 100;
+	z-index: 100000;
 	font-size: 14px;
 	text-shadow: 0px 0px 10px #000;
 	font-weight:bold;
@@ -611,6 +611,7 @@ ellipse.tower-unit-svg-selected-path {
 .tower-menu-container .menu-item {
 	position: absolute;
 	line-height: 44px;
+	height: 44px;
 	top: 0px;
 	width: 100px;
 	left:-55px;
@@ -1270,8 +1271,8 @@ ellipse.tower-unit-svg-selected-path {
 	top: 0px;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0,0,0,0.3);
-	z-index: 100000;
+	background-color: rgba(0,0,0,0.7);
+	z-index: 1000000;
 }
 .selected-unit-container .amenity-popup {
 	z-index: 10000000;
@@ -2080,7 +2081,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .view-box *{ display:inline-block;}
 .view-photo{ width:130px; height:130px; border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50%; margin:0 0 20px 0; box-shadow:0 35px 35px rgba(255,255,255,0.16);}
 .view-photo img{ width:100%; height:100%; display:block;border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50%;}
-.loading-view h2{ width:100%; color:rgba(255,255,255,0.84); font-size:37px; font-weight:normal;}
+.loading-view h2, .loading-view h2 a{ width:100%; color:rgba(255,255,255,0.84); font-size:37px; font-weight:normal;}
 .loading-view h2 span{ display:block; font-size:22px;}
 .loading-pro-details{ width:100%; margin:30px 0 60px 0;}
 .loading-pro-details p{ font-size:12px; color:rgba(255,255,255,0.73);}

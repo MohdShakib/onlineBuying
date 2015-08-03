@@ -273,7 +273,7 @@ var BookingView = (function() {
         termsConditionPopup: function(data, rotationdata, rootdata) {
             var code = '<div class="tc-container">' +
                 '<a class="close-payment"><span class="icon icon-cross fs24"></span></a>' +
-                utils.getTermsConditionsHtml() +
+                utils.getTermsConditionsHtml(data, rootdata) +
                 '</div>';
             this._elements.termsConditionPopup.html(code);
             this.termsConditionPopupEvents();

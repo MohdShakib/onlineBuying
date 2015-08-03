@@ -47,7 +47,7 @@ var ErrorPageView = (function() {
             var htmlCode = '';
             htmlCode = '<div class="error-404">' +
                 '    <p>404 Error<span>The page you request is not found.</span></p>' +
-                '    <a href="#">Back to the Main View</a>' +
+                '    <a href="https://www.proptiger.com">Back to proptiger.com</a>' +
                 '</div>';
             this._elements.errorPageViewContainer.html(htmlCode);
         }
