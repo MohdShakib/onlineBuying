@@ -1965,18 +1965,18 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 /*-------------------------------------*/
 @-webkit-keyframes zoom {
     to {
-    	-webkit-transform: translateX(-120px) ;
+    	-webkit-transform: translateX(-15%) ;
     }
 }
 @-moz-keyframes zoom {
     to {
-    	-moz-transform: translateX(-120px);
+    	-moz-transform: translateX(-15%);
     }
 }
 /* Standard syntax */
 @keyframes zoom {
    to {
-        transform: translateX(-120px);
+        transform: translateX(-15%);
 		
    }
 }
