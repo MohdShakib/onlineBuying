@@ -187,7 +187,7 @@ var MasterplanView = (function() {
         buildingMenuContainer: function(data) {
             var code = "<table><tr><td class='menu-header menu-icon transition'><span class='icon'><a href='http://www.proptiger.com' target='_blank'><img src='images/logo.jpg' alt='proptiger.com'></span></a></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
-            code += "<tr><td class='menu-items'><div class='menu-scroll'><table>";
+            code += "<tr><td class='menu-items'><div class='menu-scroll'><div class='scrollup-menu transition'><span class='icon icon-arrow_btm fs14'></span></div><table>";
             for (var towerIdentifier in data.towers) {
                 var tower = data.towers[towerIdentifier],
                     towerUrl = tower.isAvailable ? data.baseUrl + "/" + tower.towerIdentifier : 'undefined';
@@ -198,8 +198,6 @@ var MasterplanView = (function() {
                     "'><span class='tower-menu-text transition'>Tower</span> " + tower.towerName.split(' ')[1] + "</div></td></tr>";
             }
             code += "</table></div></td></tr>";
-            code += "<tr><td class='menu-sep'></td></tr>";
-            code += "<tr><td class='menu-call menu-icon'>&nbsp;</td></tr>";
             code += "</table>";
             this._elements.buildingMenuContainer.html(code);
             this.buildingMenuContainerEvents();
