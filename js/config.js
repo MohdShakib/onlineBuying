@@ -2,6 +2,9 @@ var config = (function(){
 	
 	var config = {
 
+		// Variables
+		mockProjectData: false,
+
 		// Data
 		backgroundImage: 'masterplan.jpg',
 		projectDetail: {

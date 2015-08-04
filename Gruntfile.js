@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         jshint: {
-            files: ['./js/{,*/}*.js'],
+            files: ['Gruntfile.js', './js/{,*/}*.js'],
             options: {
                 jshintrc: '.jshintrc',
                 reporter: require('jshint-stylish')
@@ -50,6 +50,21 @@ module.exports = function(grunt) {
                 dest: './js/'
             }
         },
+        processhtml: {
+            debug: {
+
+            },
+            live: {
+                options: {
+                    data: {
+                        message: 'This is development environment'
+                    }
+                },
+                files: {
+                    'index.html': ['index.html']
+                }
+            }
+        },
         replace: {
             dist: {
                 src: ['./index.html'],
@@ -68,7 +83,7 @@ module.exports = function(grunt) {
                             file2 = file2[file2.length - 1].split('.')[0];
                             if (file1 === file2) {
                                 found = true;
-                                grunt.log.warn(f)
+                                grunt.log.warn(f);
                                 return f;
                             }
                         }
@@ -86,13 +101,23 @@ module.exports = function(grunt) {
 
     });
 
-    grunt.registerTask('default', [
-        'clean',        
+    grunt.registerTask('base', [
+        'clean',
         'jshint',
         'uglify',
         'cssmin',
         'filerev',
-        'clean:minified',
+        'clean:minified'
+    ]);
+
+    grunt.registerTask('default', [
+        'base',
+        'processhtml:live',
         'replace'
+    ]);
+
+    grunt.registerTask('debug', [
+        'base',
+        'processhtml:debug'
     ]);
 };
