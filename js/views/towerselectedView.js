@@ -361,6 +361,45 @@ var TowerselectedView = (function() {
             code += "</table></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "</table>";
+			/*---car animation start here--*/
+			code += "<div class='car-animation'>";
+			code += "<svg height='350' viewBox='0 0 500 350'>";
+			code += "<path id='motionPath' fill='none' stroke='' stroke-miterlimit='10' d='M-800 100 1000 100'/>";
+			
+			
+			code += "<image class='car' xlink:href='images/1.png' transform='translate(0,-15)' id='car1' width='41' height='17'/>";
+			code += "<animateMotion xlink:href='#car1' from='-150' to='600' dur='6s' begin='0s' repeatCount='indefinite'>";
+			code += "<mpath xlink:href='#motionPath' />";
+			code += "</animateMotion>";
+			
+			
+			code += "<image class='car' xlink:href='images/2.png' transform='translate(0, 30)' id='car2' width='38' height='20'/>";
+			code += "<animateMotion xlink:href='#car2' from='-150' to='500' dur='5s' begin='0s' repeatCount='indefinite'>";
+			code += "<mpath xlink:href='#motionPath' />";
+			code += "</animateMotion>";
+			
+			
+			code += "<image class='car' xlink:href='images/3.png' transform='translate(0, 95)' id='car3' width='45' height='24'/>";
+			code += "<animateMotion xlink:href='#car3' from='-150' to='400' dur='5s' begin='0s' repeatCount='indefinite'>";
+			code += "<mpath xlink:href='#motionPath' />";
+			code += "</animateMotion>";
+			
+			/*code += "<g id='car' transform='translate(-300, -192)'>";
+			code += "<path d='M234.4,182.8c-3.5,0-6.4,2.9-6.4,6.4c0,3.5,2.9,6.4,6.4,6.4c3.5,0,6.4-2.9,6.4-6.4C240.8,185.6,238,182.8,234.4,182.8z'/>";
+			code += "<circle cx='234.4' cy='189.2' r='2.8'/>";
+			code += "<path d='M263,182.8c-3.5,0-6.4,2.9-6.4,6.4c0,3.5,2.9,6.4,6.4,6.4c3.5,0,6.4-2.9,6.4-6.4C269.4,185.6,266.6,182.8,263,182.8z'/>";
+			code += "<circle cx='263' cy='189.2' r='2.8'/>";
+			code += "<path fill='#7cb7ff' d='M275,171.4c-2.8-0.7-5.2-3-6.3-5.1l-3.9-7.4c-1.1-2.1-3.9-3.8-6.3-3.8h-22.6c-2.4,0-5,1.8-5.7,4.1l-2.4,7 c-0.2,0.9-1.8,5.5-5,5.5c-2.4,0-5,3.1-5,5.5v8.2c0,2.4,1.9,4.3,4.3,4.3h4.5c0-0.2,0-0.3,0-0.5c0-4.3,3.5-7.8,7.8-7.8 c4.3,0,7.8,3.5,7.8,7.8c0,0.2,0,0.3,0,0.5h13.1c0-0.2,0-0.3,0-0.5c0-4.3,3.5-7.8,7.8-7.8s7.8,3.5,7.8,7.8c0,0.2,0,0.3,0,0.5h8.1 c2.4,0,4.3-1.9,4.3-4.3v-6.5C283.2,172,277.3,172,275,171.4z'/>";
+			code += "<path fill='grey' d='M241.8,170.3h-12.5c0.7-1.1,1.1-2.2,1.2-2.6l2-5.9c0.6-1.9,2.8-3.5,4.8-3.5h4.5V170.3z'/>";
+			code += "<path fill='grey' d='M246.1,170.3v-12h10.4c2,0,4.4,1.5,5.3,3.3l3.3,6.3c0.4,0.8,1.1,1.7,2,2.4H246.1z'/>";
+			code += "</g>";  
+			code += "<animateMotion xlink:href='#car' dur='3s' begin='0s' repeatCount='indefinite'>";
+			
+			code += "<mpath xlink:href='#motionPath' />";
+			code += "</animateMotion>";*/
+			code += "</svg>";
+			code += "</div>";
+			/*---car animation end here--*/
             this._elements.filterMenuContainer.html(code);
             this.filterMenuContainerEvents();
         },

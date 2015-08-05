@@ -7,6 +7,7 @@
 }
 *:focus{ outline:none;}
 img{ border:0; outline:none;}
+.parent-container{ overflow:hidden;}
 @font-face {
     font-family: 'proxima_nova_rgregular';
     src: url('fonts/ProximaNova-Reg-webfont.eot');
@@ -599,7 +600,9 @@ ellipse.tower-unit-svg-selected-path {
 	vertical-align: top;
 	
 }
-.tower-menu-container .menu-items .menu-scroll{max-height:528px;}
+.tower-menu-container .menu-items .menu-scroll{max-height:484p.tower-menu-container .menu-itemx;}
+.scrollup-menu{ background:rgba(0,0,0,0.8); z-index:99; color:#fff; cursor:pointer; position:absolute; width:45px; height:20px; left:0; bottom:-20px;}
+.scrollup-menu:hover{ background:#333;}
 .tower-menu-container .menu-items table {
 	height: auto;
 }
@@ -614,6 +617,7 @@ ellipse.tower-unit-svg-selected-path {
 	height: 44px;
 	top: 0px;
 	width: 100px;
+	height:44px;
 	left:-55px;
 	padding-left:8px;
 	cursor: pointer;
@@ -2108,3 +2112,4 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .common-tol-tip p{color:#fff; background:rgba(0,0,0,0.8); padding:5px 0 5px 10px;font-size:14px;display:inline-block;}
 .common-tol-tip p span.icon{ margin-left:10px; padding:0 5px; margin-top:2px; cursor:pointer;}
 /*-----*/
+.car-animation{ position:fixed; z-index:99999; right:-180px; width:500px; bottom:-60px; overflow:hidden; transform:rotate(-44deg); transform-origin: center;}
