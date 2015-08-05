@@ -89,7 +89,9 @@ var UnitplaninfoView = (function() {
                 $('#' + config.selectedUnitContainerId).animate({
                     right: 0
                 }, 900);
-                $('#' + config.filterMenuContainerId).css({left: '-65px'});
+                $('#' + config.filterMenuContainerId).css({
+                    left: '-65px'
+                });
                 $('#' + config.towerRotationContainerId).addClass(config.smallLeftArea);
 
                 // to show unit icon selected on tower
@@ -105,7 +107,10 @@ var UnitplaninfoView = (function() {
             $('#' + config.selectedUnitContainerId).animate({
                 right: '-67%'
             }, 900);
-            $('#' + config.filterMenuContainerId).css({left: '0px', visibility: 'visible'});
+            $('#' + config.filterMenuContainerId).css({
+                left: '0px',
+                visibility: 'visible'
+            });
             $('#' + config.towerRotationContainerId).removeClass(config.smallLeftArea);
 
             // hide selected unit
@@ -148,7 +153,7 @@ var UnitplaninfoView = (function() {
                 link = rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier + '/booking';
 
             htmlCode += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
-            htmlCode += '<a><span class="icon icon-heart fs26"><label></label></span><p class="transition"></p></a></div>';
+            htmlCode += '<a><span class="icon icon-heart fs26"><label></label></span><p class="transition click-txt"></p><p class="shortlisted" style="display:none;"></p></a></div>';
             htmlCode += '<div class="book-now"><a  data-url="' + link + '">Book now</a><span>Rs. ' + utils.getReadablePrice(data.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
             htmlCode += '</div>';
 
@@ -163,6 +168,18 @@ var UnitplaninfoView = (function() {
             $('#' + config.selectedUnitContainerId).on('click', '.book-now a', function() {
                 _this._bookingClick.notify(this); //this refers to element
             });
+        },
+        showShortlistText: function() {
+            var _this = this;
+            $('.like-box a p.click-txt').stop().hide();
+            $('.like-box a p.shortlisted').stop().fadeIn(500);
+            setTimeout(function() {
+                _this.hideShortlistText();
+            }, 3000);
+        },
+        hideShortlistText: function() {
+            $('.like-box a p.shortlisted').stop().hide();
+            $('.like-box a p.click-txt').stop().show();
         },
         unitCloseContainer: function(data, rotationdata, rootdata) {
             var code = '<span class="icon icon-cross fs20"></span>';
@@ -185,7 +202,7 @@ var UnitplaninfoView = (function() {
                 "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
                 ", <span>" + data.size + " " + data.measure + "</span> " +
                 ", <span>Floor " + data.floor + "</span> " +
-                "<span class='fright big-size'><span class='icon icon-rupee fs16'></span> " + utils.getReadablePriceInWord(data.price  - data.discount) + "* </span>" + 
+                "<span class='fright big-size'><span class='icon icon-rupee fs16'></span> " + utils.getReadablePriceInWord(data.price - data.discount) + "* </span>" +
                 "<span class='total-amount fright'><span class='icon icon-rupee'></span>" + utils.getReadablePriceInWord(data.price) + "</span></div>" +
                 "<div class='uit-header-menu'><div data-target='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'><span class='icon icon-unitplan fs18'></span></div>Unit Plan</div>" +
                 "<div data-target='cp-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon icon-clusterplan fs18'></span></div>Floor Plan</div>" +
@@ -259,13 +276,13 @@ var UnitplaninfoView = (function() {
             var unitTypeData = this._model.getUnitTypeData(),
                 svgElements = utils.getUnit3dSvgPolygonElements(unitTypeData);
 
-            if(svgElements && svgElements.length){
-                for(var i=0; i<svgElements.length; i++){
-                    this._elements.unit3dSvgContainer.append(svgElements[i]);    
+            if (svgElements && svgElements.length) {
+                for (var i = 0; i < svgElements.length; i++) {
+                    this._elements.unit3dSvgContainer.append(svgElements[i]);
                 }
                 this.unit3dSvgContainerEvents();
             }
-            
+
         },
         unit3dSvgContainerEvents: function() {
             var _this = this;
@@ -287,10 +304,17 @@ var UnitplaninfoView = (function() {
                 svgData = unitTypeData.svgs,
                 svgs_count = svgData && svgData.length ? svgData.length : 0;
 
-            var eachPolygon = '', attrs;
+            var eachPolygon = '',
+                attrs;
             for (var i = 0; i < svgs_count; i++) {
                 var svgObj = svgData[i];
-                attrs = {'class':config.transitionClass, 'data-name':svgObj.name, 'data-type':svgObj.type, 'data-details':svgObj.details, points:svgObj.svg2dPath};
+                attrs = {
+                    'class': config.transitionClass,
+                    'data-name': svgObj.name,
+                    'data-type': svgObj.type,
+                    'data-details': svgObj.details,
+                    points: svgObj.svg2dPath
+                };
                 eachPolygon = utils.makeSVG('polygon', attrs);
                 this._elements.unit2dSvgContainer.append(eachPolygon);
             }
@@ -398,7 +422,8 @@ var UnitplaninfoView = (function() {
             this.priceBreakupContainerEvents();
         },
         priceBreakupContainerEvents: function() {
-            this._elements.priceBreakupContainer.off('click').on('click', '.pricebreakup-tabs li', function() {
+            var _this = this;
+            _this._elements.priceBreakupContainer.off('click').on('click', '.pricebreakup-tabs li', function() {
                 var type = $(this).data('type');
                 $('.pricebreakup-tabs li').removeClass('active');
                 $(this).addClass('active');
@@ -406,8 +431,11 @@ var UnitplaninfoView = (function() {
                 $('.unit-content-wrapper  .pricebreakup-tabs-content').addClass(config.hideClass);
                 $('.unit-content-wrapper  .pricebreakup-tabs-content.' + type).removeClass(config.hideClass);
             });
-            this._elements.priceBreakupContainer.on('click', '.price-terms', function() {
+            _this._elements.priceBreakupContainer.on('click', '.price-terms', function() {
                 $('#' + config.termsConditionPopupId).show();
+            });
+            _this._elements.priceBreakupContainer.on('click', '.' + config.optionalPriceClass, function() {
+                utils.updateTotalPrice(_this._model.getData());
             });
         },
         getAmenityClass: function(rootdata, key) {
@@ -420,7 +448,7 @@ var UnitplaninfoView = (function() {
         },
         specificationContainer: function(data, rotationdata, rootdata) {
             var code = '<ul class="specification-tabs">' +
-				'<li class="active" data-type="project-amenities">Amenities</li>' +
+                '<li class="active" data-type="project-amenities">Amenities</li>' +
                 '<li data-type="specifications">Specification</li>' +
                 '</ul><div class="unit-content-wrapper">' +
                 '<div class="project-amenities specification-tabs-content" >' +
@@ -439,7 +467,7 @@ var UnitplaninfoView = (function() {
                 '<li ' + this.getAmenityClass(rootdata, 'Caf') + '><span class="icon icon-cafe"></span><label>Cafeteria</label></li>' +
                 '</ul>' +
                 '<div class="clear-fix"></div></div>';
-            code += "<table class='base-table "+ config.hideClass +" specification-tabs-content specifications'>";
+            code += "<table class='base-table " + config.hideClass + " specification-tabs-content specifications'>";
             for (var category in rootdata.specifications) {
                 if (rootdata.specifications.hasOwnProperty(category)) {
                     var items = rootdata.specifications[category];
@@ -480,9 +508,9 @@ var UnitplaninfoView = (function() {
             this.selectMenuOptionUI(element, optionClass);
             $('.' + containerClass).addClass(config.hideClass);
 
-            if(toggle && isSelected){
+            if (toggle && isSelected) {
                 $('.' + optionClass).removeClass(config.selectedClass);
-            }else if(element){
+            } else if (element) {
                 var target = $(element).data('target');
                 $('.' + target).removeClass(config.hideClass);
             }

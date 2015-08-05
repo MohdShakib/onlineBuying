@@ -383,7 +383,7 @@ var getProjectData = (function() {
                     var subCategory = listing.propertyOtherPricingSubcategoryMappings[j];
                     flatUnit.unitPricingSubcategories.push({
                         id: subCategory.otherPricingSubcategoryId,
-                        price: utils.getReadablePrice(subCategory.price)
+                        price: subCategory.price
                     });
                 }
             }

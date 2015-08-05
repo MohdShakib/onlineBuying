@@ -23,7 +23,7 @@ var utils = (function() {
             if (containerWidth === null || containerWidth == 'undefined') {
                 containerWidth = window.innerWidth;
             }
-            
+
             // For max height and width of containers
             var height = (window.innerHeight < imageResolutionHeight) ? window.innerHeight : imageResolutionHeight;
             var width = imageResolutionWidth / imageResolutionHeight * height;
@@ -68,12 +68,12 @@ var utils = (function() {
             return readablePrice;
         },
         getReadablePriceInWord: function(price) {
-            if (price/10000000 > 1) {
-                return Math.floor(price/1000000)/10 + " Cr";
-            } else if (price/100000 > 1) {
-                return Math.floor(price/10000)/10 + " L";
-            } else if (price/1000) {
-                return Math.floor(price/100)/10 + " K";
+            if (price / 10000000 > 1) {
+                return Math.floor(price / 1000000) / 10 + " Cr";
+            } else if (price / 100000 > 1) {
+                return Math.floor(price / 10000) / 10 + " L";
+            } else if (price / 1000) {
+                return Math.floor(price / 100) / 10 + " K";
             } else {
                 return price;
             }
@@ -179,7 +179,13 @@ var utils = (function() {
             for (var i = 0; i < svgs_count; i++) {
                 var svgObj = svgData[i];
                 if (svgObj.type == 'info') {
-                    var attrs = {'class':'transition', 'data-name':svgObj.name, 'data-type':svgObj.type, 'data-details':svgObj.details, points:svgObj.svgPath};
+                    var attrs = {
+                        'class': 'transition',
+                        'data-name': svgObj.name,
+                        'data-type': svgObj.type,
+                        'data-details': svgObj.details,
+                        points: svgObj.svgPath
+                    };
                     var eachPolygon = utils.makeSVG('polygon', attrs);
                     svgCode.push(eachPolygon);
                 }
@@ -342,10 +348,10 @@ var utils = (function() {
 
             $('#' + config.shortListedUnitListId).html(htmlCode);
             $('#' + config.likeCountId).html(length);
-			$('.' + config.blinkElementClass).addClass(config.beepEffectClass);
-			setTimeout(function(){
-				$('.' + config.blinkElementClass).removeClass(config.beepEffectClass);
-			}, 500);
+            $('.' + config.blinkElementClass).addClass(config.beepEffectClass);
+            setTimeout(function() {
+                $('.' + config.blinkElementClass).removeClass(config.beepEffectClass);
+            }, 500);
         },
         addSVGClass: function(id, newClass) {
             var originalClasses = document.getElementById(id).getAttribute('class');
@@ -406,58 +412,60 @@ var utils = (function() {
         },
         getTermsConditionsHtml: function(data, rootdata) {
             return '<h3>Terms &amp; Conditions</h3>' +
-                '<p>All details provided about the project is based on information provided by ' + rootdata.builderName + ' to <a href="https://www.proptiger.com" target="_blank">PropTiger</a>. <a href="https://www.proptiger.com" target="_blank">PropTiger</a> is not liable for the changes in facts post buying.</p>' +
-                '<p>Only Indian Residents, Non- Resident Indians (NRIs) &amp; Persons of Indian Origin (PIOs) eligible to enter into contract as per Indian Contract Act, 1881 shall be eligible to apply.</p>' +
+                '<p>All details provided about the project is based on information provided by ' + rootdata.builderName + ' to Proptiger.com. Proptiger.com is not liable for the changes in facts post buying.</p>' +
+                '<p>Only Indian Residents, Non-Resident Indians (NRIs), Overseas Citizens of India (OCIs) &amp; Persons of Indian Origin (PIOs) who are eligible to enter into contract as per Indian Contract Act, 1881 shall be eligible to apply.</p>' +
                 '<p>Payment plan and Prices are subject to change at the sole discretion of the builder. Images displayed are for representational purpose only. Floor plan and the layout dimensions are subject to modification.</p>' +
                 '<p>The booking amount of Rs. ' + data.bookingAmount + '/- paid by the user for booking is only a token advance and it does not confer ownership rights in the chosen property. The booking only ensures blocking of the property temporarily and should not be considered as buying or owning the property.</p>' +
-                '<p>The booking amount is refundable. For cancellation or refunding please contact <a href="https://www.proptiger.com/" target="_blank">PropTiger</a> customer care.</p>' +
+                '<p>Modification or Cancellation of the booking is allowed within the 7 days after booking. Any cancellation charges will not be applied in this period. For cancellation or modifications please contact <a href="https://www.proptiger.com/" target="_blank">Proptiger.com</a> customer care at +919278892788.</p>' +
                 '<p>Any request for customisation or changes are to be handled directly with ' + rootdata.builderName + ' builders.</p>' +
-                '<p>Post booking the builder can provide further information required for the completion of the purchase and further till possession of the property.</p>' +
-                '<p>Please use the Booking ID in all further communication with builder and <a href="https://www.proptiger.com/">PropTiger</a>.</p>' +
+                '<p>Updates regarding the project completion etc shall be provided by the builder post booking of the flat.</p>' +
+                '<p>Please use the Booking ID in all further communication with builder and PropTiger.com</p>' +
                 '<p>Offer prices provided are subject to the payment schedule mentioned in the project.</p>';
         },
         getPriceBreakupHtml: function(data, rotationdata, rootdata, showTnc) {
             var opCode = '';
-            var code = '<ul class="pricebreakup-tabs">' + '<li class="active"  data-type="pricebreakup">Price Breakup</li>' + '<li  data-type="paymentplan">Payment Plan</li>' + '</ul>' + 
-                '<div class="unit-content-wrapper">' + 
+            var code = '<ul class="pricebreakup-tabs">' + '<li class="active"  data-type="pricebreakup">Price Breakup</li>' + '<li  data-type="paymentplan">Payment Plan</li>' + '</ul>' +
+                '<div class="unit-content-wrapper">' +
                 '<div class="payment-pic pricebreakup-tabs-content paymentplan ' + config.hideClass + '">';
-            if(rootdata.paymentPlanImage) {
+            if (rootdata.paymentPlanImage) {
                 code += '<img src="' + rootdata.paymentPlanImage + '" />';
             } else {
                 code += 'No payment plan available';
             }
-                
+
             code += '</div>';
             code += "<table class='base-table pricebreakup-tabs-content pricebreakup' cellpadding='0' cellspacing='0' border='0'>";
             if (data.price) {
-                code += "<tr><td>Base Price</td><td class='right-align'>" + data.basePrice + "</td></tr>";
+                code += "<tr><td>BSP <span>(Basic Selling Price)</span></td><td class='right-align'>" + data.basePrice + "</td></tr>";
 
                 var length = data.unitPricingSubcategories ? data.unitPricingSubcategories.length : 0,
                     pricingSubcategory, unitPricingSubcategory;
                 for (var i = 0; i < length; i++) {
                     unitPricingSubcategory = data.unitPricingSubcategories[i] || {};
                     pricingSubcategory = rootdata.pricingSubcategories[unitPricingSubcategory.id];
-                    
+
                     // Handling floor rise use case
                     if (!pricingSubcategory) {
                         var key = unitPricingSubcategory.id + '-' + data.towerId + '-' + data.floor;
                         pricingSubcategory = rootdata.pricingSubcategories[key];
                     }
-                    
+
                     if (pricingSubcategory && pricingSubcategory.isMandatory) {
-                        code += "<tr><td>" + pricingSubcategory.name + " <span>(" + pricingSubcategory.masterName + ")</span></td><td class='right-align'>" + unitPricingSubcategory.price + "</td></tr>";
+                        code += "<tr><td>" + pricingSubcategory.name + " <span>(" + pricingSubcategory.masterName + ")</span></td><td class='right-align'>" + utils.getReadablePrice(unitPricingSubcategory.price) + "</td></tr>";
                     } else if (pricingSubcategory) {
-                        opCode += "<tr><td>" + pricingSubcategory.name + " <span>(" + pricingSubcategory.masterName + ")</span></td><td class='right-align'>" + unitPricingSubcategory.price + "</td></tr>";
+                        opCode += "<tr class='" + config.optionalPriceClass + "'><td><input type='checkbox' value='" + unitPricingSubcategory.price + "'/> " + pricingSubcategory.name + " <span>(" + pricingSubcategory.masterName + ")</span></td><td class='right-align'>" + utils.getReadablePrice(unitPricingSubcategory.price) + "</td></tr>";
                     }
-                }
-                code += "<tr><td class='sub-total-price'>Sub Total</td><td class='sub-total-price right-align'>" + data.formattedPrice + "</td></tr>";
-                if (data.discount && data.discount > 0) {
-                    code += "<tr><td class='discount-price'>Discount <span>(" + data.discountDescription + ")</span> </td><td class='discount-price right-align'>" + utils.getReadablePrice(data.discount) + "</td></tr>";
-                    code += "<tr><td class='total-price'>Total Price</td><td class='total-price right-align'><span class='icon fs14 icon-rupee'></span> " + utils.getReadablePrice(data.price - data.discount) + "</td></tr>";
                 }
                 if (opCode !== '') {
                     code += "<tr><td colspan=2 class='other-options'>Other optional costs</td></tr>" + opCode;
                 }
+
+                code += "<tr><td class='sub-total-price'>Sub Total</td><td class='sub-total-price right-align'>" + data.formattedPrice + "</td></tr>";
+                if (data.discount && data.discount > 0) {
+                    code += "<tr><td class='discount-price'>Discount <span>(" + data.discountDescription + ")</span> </td><td class='discount-price right-align'>" + utils.getReadablePrice(data.discount) + "</td></tr>";
+                    code += "<tr><td class='total-price'>Total Price</td><td class='total-price right-align' width='100px'><span class='icon fs14 icon-rupee'></span> <label class='" + config.totalAmountClass + "'>" + utils.getReadablePrice(data.price - data.discount) + "</label></td></tr>";
+                }
+
                 if (showTnc) {
                     code += "<tr><td colspan='2'><div class='price-breakup-trems'><a class='price-terms'>Terms &amp; Conditions</a></div></td></tr>";
                 }
@@ -467,9 +475,21 @@ var utils = (function() {
             code += "</table>";
             return code;
         },
+        updateTotalPrice: function(data) {
+            var amount = data.price - data.discount,
+                optionalPrices = $('.' + config.optionalPriceClass);
+
+            for (var i = 0; i < optionalPrices.length; i++) {
+                var checkbox = $(optionalPrices[i]).find('input[type=checkbox]');
+                if (checkbox.is(':checked') === true) {
+                    amount += parseInt(checkbox.val(), 10);
+                }
+            }
+            $('.' + config.totalAmountClass).html(utils.getReadablePrice(amount));
+        },
         makeSVG: function(tag, attrs) {
-            var el= document.createElementNS('http://www.w3.org/2000/svg', tag);
-            for (var k in attrs){
+            var el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+            for (var k in attrs) {
                 el.setAttribute(k, attrs[k]);
             }
             return el;
@@ -497,29 +517,33 @@ var utils = (function() {
                     });
             });
         },
-        showNotificationTooltip: function(message){
-            if(!message){
+        showNotificationTooltip: function(message) {
+            if (!message) {
                 return;
             }
-            
-            if(notificationTooltipTimeout){
+
+            if (notificationTooltipTimeout) {
                 clearTimeout(notificationTooltipTimeout);
             }
 
-            $('.'+config.notificationTooltipClass).stop(true,true);
+            $('.' + config.notificationTooltipClass).stop(true, true);
             this.removeNotificationTooltip();
-            $('.'+config.notificationTooltipClass+' .'+config.notificationMessageClass).text(message);
-            $('.'+config.notificationTooltipClass).animate({'top':0}, 1000, function(){
-                notificationTooltipTimeout = setTimeout(function(){
+            $('.' + config.notificationTooltipClass + ' .' + config.notificationMessageClass).text(message);
+            $('.' + config.notificationTooltipClass).animate({
+                'top': 0
+            }, 1000, function() {
+                notificationTooltipTimeout = setTimeout(function() {
                     utils.hideNotificationTooltip();
-                },8000);
+                }, 8000);
             });
         },
-        hideNotificationTooltip: function(){
-            $('.'+config.notificationTooltipClass).animate({'top':-100}, 3000);
+        hideNotificationTooltip: function() {
+            $('.' + config.notificationTooltipClass).animate({
+                'top': -100
+            }, 3000);
         },
         removeNotificationTooltip: function() {
-            $('.'+config.notificationTooltipClass).css('top','-100px');
+            $('.' + config.notificationTooltipClass).css('top', '-100px');
         }
     };
 
