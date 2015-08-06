@@ -62,15 +62,15 @@ var BookingView = (function() {
         },
         paymentScreen: function(data, rotationdata, rootdata) {
             var url = rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier;
-			var offerDiv = '';
-			if (data.discount) {
-				offerDiv = '<div class="special-offers">' + '<span></span>' + '<p>Save <strong><label 		class="icon fs14 icon-rupee"></label>' + utils.getReadablePrice(data.discount) + '</strong> ' + data.discountDescription + '</p>' + '</div>';
-			}
+            var offerDiv = '';
+            if (data.discount) {
+                offerDiv = '<div class="special-offers">' + '<span></span>' + '<p>Save <strong><label       class="icon fs14 icon-rupee"></label>' + utils.getReadablePrice(data.discount) + '</strong> ' + data.discountDescription + '</p>' + '</div>';
+            }
             var code = '<div class="payment-container">' +
-				'		 <div class="title-text">' +
-				'        	<a class="close-payment transition" data-url="' + url + '"><span class="icon icon-arrow_left fs24"></span></a>' +
-				'			<p>Payment Screen</p>' +
-				' 		 </div>' +
+                '        <div class="title-text">' +
+                '           <a class="close-payment transition" data-url="' + url + '"><span class="icon icon-arrow_left fs24"></span></a>' +
+                '           <p>Payment Screen</p>' +
+                '        </div>' +
                 '        <div class="payment-left">' + offerDiv +
                 '<div class="payment-left-top">' +
                 '                <h3>' + rootdata.projectName + ' <span>Whitefield Bangalore</span></h3>' +
@@ -78,35 +78,35 @@ var BookingView = (function() {
                 '                <img src="' + rootdata.unitTypes[rotationdata.unitTypeIdentifier].unitImageUrl + '" width="100%" alt="">' +
                 '                </div>' +
                 '                <div class="floor-area">' +
-				'                <h5>' + data.listingAddress + '</h5>' +
+                '                <h5>' + data.listingAddress + '</h5>' +
                 '                    <p>' +
                 '                        Area' +
                 '                        <span>' + data.size + ' ' + data.measure + '</span>' +
                 '                    </p>' +
-				'					 <p class="ml5 mr5">|</p>' +
-				'                    <p>' +
+                '                    <p class="ml5 mr5">|</p>' +
+                '                    <p>' +
                 '                        Floor no.' +
                 '                        <span>' + data.floor + '</span>' +
                 '                    </p>' +
                 '                    <div class="clear-fix"></div>' +
                 '            </div>' +
-				'            <div class="clear-fix"></div>' +
-				'                    <p class="fleft width-100">' +
+                '            <div class="clear-fix"></div>' +
+                '                    <p class="fleft width-100">' +
                 '                        <span class="fleft">Total Price</span><span class="fleft"> [</span> <span class="icon icon-rupee_final fleft fs18"></span> <span class="fleft">]</span>' +
-				'						 <span class="fright"><span class="icon icon-rupee_final fleft fs18"></span>'+ utils.getReadablePriceInWord(data.price  - data.discount) + '* </span>' + 
+                '                        <span class="fright"><span class="icon icon-rupee_final fleft fs18"></span>' + utils.getReadablePriceInWord(data.price - data.discount) + '* </span>' +
                 '                        <span class="fright line-through"><span class="icon icon-rupee_final fleft fs18"></span>' + utils.getReadablePriceInWord(data.price) + '</span>' +
                 '                    </p>' +
                 '            </div>' +
-				'            <div class="clear-fix"></div>' +
+                '            <div class="clear-fix"></div>' +
                 '            <a id="payment-breakup" class="view-price-brakup">View Price Breakup &amp; Payment plan</a>' +
                 '            <div class="booking-amount">' +
                 '            <h3>Booking Amount: <span><span class="icon icon-rupee"><span><strong>' + utils.getReadablePrice(data.bookingAmount) + ' </strong><label>only</label></span></h3> ' +
-				'			 <p>( no cancellation charges )</p>' +
+                '            <p>( no cancellation charges )</p>' +
                 '            </div>' +
                 '        </div>' +
                 '        <div class="payment-right">' +
                 '            <div id="booking-user-details" class="payment-right-container">' +
-				'            <h3>Nice Selection!</h3>' +
+                '            <h3>Nice Selection!</h3>' +
                 '            <p>Now Make a tokan payment of <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- to book your choice.</p>' +
                 '            <div class="personal-detail-box">' +
                 '                <table cellpadding="0" cellspacing="0" width="100%">' +
@@ -115,14 +115,14 @@ var BookingView = (function() {
                 '                            <div id="booking-first-name" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">First Name</label>' +
                 '                                <input type="text" required />' +
-                '                                <span class="error ' + config.errorMsgClass + '"></span>' +                
+                '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
                 '                        </td>' +
                 '                        <td width="50%">' +
                 '                            <div id="booking-last-name" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">Last Name</label>' +
                 '                                <input type="text" required />' +
-                '                                <span class="error ' + config.errorMsgClass + '"></span>' +                
+                '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
                 '                        </td>' +
                 '                    </tr>' +
@@ -131,14 +131,14 @@ var BookingView = (function() {
                 '                            <div id="booking-email" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">email</label>' +
                 '                                <input type="email" required />' +
-                '                                <span class="error ' + config.errorMsgClass + '"></span>' +                
+                '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
                 '                        </td>' +
                 '                        <td width="50%">' +
                 '                            <div id="booking-phone" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">phone</label>' +
                 '                                <input type="text" name="phone" required />' +
-                '                                <span class="error ' + config.errorMsgClass + '"></span>' +                
+                '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
                 '                        </td>' +
                 '                    </tr>' +
@@ -150,7 +150,7 @@ var BookingView = (function() {
                 //'                                <span class="error ' + config.errorMsgClass + '"></span>' +                
                 //'                            </div>' +
                 //'                        </td>' +
-				'                        <td width="50%">' +
+                '                        <td width="50%">' +
                 '                            <div id="booking-pan" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">pan number</label>' +
                 '                                <input type="text" />' +
@@ -160,7 +160,7 @@ var BookingView = (function() {
                 '                        <td width="50%">' +
                 '                            <div id="booking-nationality" class="input-box transition no-paddind  ' + config.bookingSelectionDivClass + '">' +
                 '                                <a class="nationalty-link selectedCountry" data-countrycode="0">Nationality<span class="icon fs18 icon-next transition"></span></a>' +
-                '                                <ul class="'+config.nationalityDropdownClass+' transition ' + config.bookingDropdownClass + '" style="display:none;">' +
+                '                                <ul class="' + config.nationalityDropdownClass + ' transition ' + config.bookingDropdownClass + '" style="display:none;">' +
                 '                                </ul>' +
                 '                            </div>' +
                 '                        </td>' +
@@ -170,7 +170,7 @@ var BookingView = (function() {
                 '            <div class="terms-condition">' +
                 '                <input type="checkbox" id="terms" required />' +
                 '                <label for="terms">I have read &amp; agree to <a id="tnc">Terms &amp; Conditions</a></label>' +
-                '                <span class="error ' + config.errorMsgClass + '"></span>' +                
+                '                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '            </div>' +
                 '            <a class="fleft transition make-payment">Continue to Payment</a>' +
                 '            <div class="clear-fix"></div>' +
@@ -178,29 +178,33 @@ var BookingView = (function() {
                 '        </div>' +
                 '        </div>';
 
-            
+
             this._elements.paymentScreen.html(code);
-            ajaxUtils.getCountries({successCallback: this.getCountriesList, self:this});
+            ajaxUtils.getCountries({
+                successCallback: this.getCountriesList,
+                self: this
+            });
             this.paymentScreenEvents();
         },
-        getCountriesList: function(countries, params){
-            var htmlCode = '', totalCountries = countries ? countries.length : 0;
-            if(countries && totalCountries){
-                for(var i=0; i<totalCountries; i++){
-                    htmlCode += '<li class="country-list-item" data-countrycode="'+countries[i].countryId+'"><a class="transition">'+countries[i].label+'</a></li>';
+        getCountriesList: function(countries, params) {
+            var htmlCode = '',
+                totalCountries = countries ? countries.length : 0;
+            if (countries && totalCountries) {
+                for (var i = 0; i < totalCountries; i++) {
+                    htmlCode += '<li class="country-list-item" data-countrycode="' + countries[i].countryId + '"><a class="transition">' + countries[i].label + '</a></li>';
                 }
             }
-            $('.'+config.nationalityDropdownClass).html(htmlCode);
+            $('.' + config.nationalityDropdownClass).html(htmlCode);
             params.self.countryDropdownEvents();
         },
-        countryDropdownEvents: function(){
-            $('.'+config.nationalityDropdownClass).off('click').on('click', '.country-list-item', function(){
-               event.stopPropagation();
-               var countryName = $(this).find('a').text();
-               var countryCode = $(this).data('countrycode');
-               $('.'+config.bookingSelectionDivClass +' .selectedCountry').text(countryName);
-               $('.'+config.bookingSelectionDivClass +' .selectedCountry').data('countrycode', countryCode);
-               $('.'+config.nationalityDropdownClass).css('display', 'none');
+        countryDropdownEvents: function() {
+            $('.' + config.nationalityDropdownClass).off('click').on('click', '.country-list-item', function() {
+                event.stopPropagation();
+                var countryName = $(this).find('a').text();
+                var countryCode = $(this).data('countrycode');
+                $('.' + config.bookingSelectionDivClass + ' .selectedCountry').text(countryName);
+                $('.' + config.bookingSelectionDivClass + ' .selectedCountry').data('countrycode', countryCode);
+                $('.' + config.nationalityDropdownClass).css('display', 'none');
             });
         },
         paymentScreenEvents: function() {
@@ -241,12 +245,12 @@ var BookingView = (function() {
                 $('#' + config.paymentBreakupPopupId).show();
             });
 
-            this._elements.paymentScreen.on('click', function(){
+            _this._elements.paymentScreen.on('click', function() {
                 //close country dropdown when clicked outside anywhere
-                $('.'+config.nationalityDropdownClass).css('display', 'none');
+                $('.' + config.nationalityDropdownClass).css('display', 'none');
             });
 
-            this._elements.paymentScreen.on('click', '.'+config.nationalityDropdownClass, function(){
+            _this._elements.paymentScreen.on('click', '.' + config.nationalityDropdownClass, function() {
                 event.stopPropagation();
             });
         },
@@ -255,7 +259,7 @@ var BookingView = (function() {
                 unitData = this._model.getData(),
                 data = {};
 
-            if(!utils.validateForm(bookingForm)) {
+            if (!utils.validateForm(bookingForm)) {
                 return null;
             }
 
@@ -264,7 +268,7 @@ var BookingView = (function() {
             data.email = $('#booking-email input').val();
             data.phone = $('#booking-phone input').val();
             data.dob = $('#booking-dob input').val();
-            data.countryId = $('.'+config.bookingSelectionDivClass +' .selectedCountry').data('countrycode');
+            data.countryId = $('.' + config.bookingSelectionDivClass + ' .selectedCountry').data('countrycode');
             data.pan = $('#booking-pan input').val();
             data.listingId = unitData.listingId;
             data.amount = unitData.bookingAmount;
@@ -273,7 +277,7 @@ var BookingView = (function() {
         termsConditionPopup: function(data, rotationdata, rootdata) {
             var code = '<div class="tc-container">' +
                 '<a class="close-payment"><span class="icon icon-cross fs24"></span></a>' +
-                utils.getTermsConditionsHtml() +
+                utils.getTermsConditionsHtml(data, rootdata) +
                 '</div>';
             this._elements.termsConditionPopup.html(code);
             this.termsConditionPopupEvents();
@@ -307,6 +311,10 @@ var BookingView = (function() {
 
                 $('.unit-content-wrapper  .pricebreakup-tabs-content').addClass(config.hideClass);
                 $('.unit-content-wrapper  .pricebreakup-tabs-content.' + type).removeClass(config.hideClass);
+            });
+
+            _this._elements.paymentBreakupPopup.on('click', '.' + config.optionalPriceClass, function() {
+                utils.updateTotalPrice(_this._model.getData());
             });
         }
     };

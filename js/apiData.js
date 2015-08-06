@@ -273,6 +273,7 @@ var getProjectData = (function() {
         projectData.projectUrl = projectDetail.URL;
         projectData.baseUrl = projectIdentifier + '-' + projectDetail.projectId;
         projectData.projectName = projectDetail.name;
+        projectData.builderName = projectDetail.builder.name;
         projectData.address = projectDetail.address;
         projectData.bgImage = zipImagePath + config.backgroundImage;
         projectData.description = "With 22 years of experience, 17 successfully completed projects and 14 under construction projects, Paradise Sai has become a reputed name in the industry. Paradise Sai has introduced its new project 'World City' in Panvel, Navi&nbsp; Mumbai. World City is set amidst lush green surroundings and offers 2 and 3 BHK apartments. The apartments will cost you between 75.9 lakh and 1.19 crore.&nbsp; There are 777 units on offer with their sizes ranging between 1,245 and 1,955 sq. ft. Amenities such as jogging track, swimming pool, club house, children&rsquo;s play area, power backup and round the clock security are provided. Situated at a prime location, World City gives easy access to major landmarks in and around the area.";//projectDetail.description;
@@ -382,7 +383,7 @@ var getProjectData = (function() {
                     var subCategory = listing.propertyOtherPricingSubcategoryMappings[j];
                     flatUnit.unitPricingSubcategories.push({
                         id: subCategory.otherPricingSubcategoryId,
-                        price: utils.getReadablePrice(subCategory.price)
+                        price: subCategory.price
                     });
                 }
             }

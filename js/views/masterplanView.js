@@ -85,14 +85,14 @@ var MasterplanView = (function() {
                 left: '-50%'
             }, 8000);
             $('.top-right-cloud').animate({
-                right: '-50%'
-            }, 9000);
+                right: '-40%'
+            }, 8000);
             $('.bottom-left-cloud').animate({
-                left: '-50%'
+                left: '-40%'
             }, 8000);
             $('.bottom-right-cloud').animate({
                 right: '-50%'
-            }, 6000);
+            }, 8000);
 
             // Amenities
             var time = 5000;

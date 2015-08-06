@@ -300,7 +300,7 @@ header {
 	color: #CCC;
 	margin-left: 60px;
 	line-height: 45px;
-	z-index: 100;
+	z-index: 100000;
 	font-size: 14px;
 	text-shadow: 0px 0px 10px #000;
 	font-weight:bold;
@@ -628,6 +628,7 @@ ellipse.tower-unit-svg-selected-path {
 .tower-menu-container .menu-item {
 	position: absolute;
 	line-height: 44px;
+	height: 44px;
 	top: 0px;
 	width: 100px;
 	height:44px;
@@ -864,9 +865,11 @@ ellipse.tower-unit-svg-selected-path {
 .like-box.selected a, .like-box a:hover{ color:#f18d18;}
 .like-box.selected a label:before{ content:'-';}
 .like-box a p{ position:absolute; top:30px; left:50%; opacity:0; margin-left:-40px; width:80px; text-align:center;font-size:12px;}
-.like-box a p:before{ content:'Shortlist'}
-.like-box a:hover p{ opacity:1;}
-.like-box.selected a p:before{ content:'Remove from Shortlisted'}
+.like-box a p:before{ content:'Click to Shortlist'}
+.like-box a:hover p, .like-box a p.shortlisted{ opacity:1;}
+.like-box a p.shortlisted {font-weight: bold;}
+.like-box.selected a p:before{ content:'Click to Remove'}
+.like-box a p.shortlisted:before{ content:'Added to Shortlist'}
 .book-now{ position:absolute; left:50%; width:182px; text-align:center; margin-left:-91px; bottom:20px;z-index:999999;}
 .book-now a{ color:#fff; padding:11px; display:inline-block; font-size:16px; text-transform:uppercase; font-weight:bold; width:160px; font-weight:bold; background:#f18d18; border-radius:3px; cursor:pointer;}
 .compare-units-container .book-now{ right:20px; left:inherit; margin:0; bottom:10px;}
@@ -979,10 +982,11 @@ ellipse.tower-unit-svg-selected-path {
 .uit-header-menu > div{ display:table-cell; width:25%; border-left:1px solid #ccc;}
 .unit-data-container.walkthrough-container video {
 	position: absolute;
-    top: 50px;
+    top: 100px;
     left: 0px;
     width: 100%;
-    height: 73%;
+    height: 67%;
+    background-color: #000;
 }
 .unit-data-container .fullView {
 	position: absolute;
@@ -1123,16 +1127,16 @@ ellipse.tower-unit-svg-selected-path {
 	padding:5px 10px 10px 10px;
 }
 .unit-content-wrapper .pricebreakup-tabs-content.pricebreakup { padding-right: 150px}
-.sub-total-price{ border-top:1px solid #333; color:#252525; font-weight:bold;}
-.discount-price{ border-bottom:1px solid #333; color:#37b34a !important; font-weight:bold;}
-.total-price{color:#252525; font-weight:bold;}
-.total-price:last-child{border-bottom:1px solid #333;}
+.sub-total-price{ border-top:1px solid #CCC; color:#252525; font-weight:bold;}
+.discount-price{ border-bottom:1px solid #CCC; color:#37b34a !important; font-weight:bold;}
+.base-table td.total-price{color:#252525; font-weight:bold; font-size: 14px;}
 .discount-price span{ font-weight:normal; color:#333;}
 .color-green{ color:#37b34a !important;}
 .tc-container .base-table{ padding:0 45px 0 165px;}
-.other-options{text-transform:uppercase; font-size:10px; color:#666;}
+.other-options{font-weight: bold;}
 .tc-container .unit-content-wrapper{ position:static; top:inherit; bottom:inherit;}
 .tc-container .unit-content-wrapper .pricebreakup-tabs-content.pricebreakup{ padding-right:50px;}
+.pricebreakup input {margin-right: 5px;}
 .compare-units-container {
 	position: absolute;
     width: 100%;
@@ -1288,8 +1292,8 @@ ellipse.tower-unit-svg-selected-path {
 	top: 0px;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0,0,0,0.3);
-	z-index: 100000;
+	background-color: rgba(0,0,0,0.7);
+	z-index: 1000000;
 }
 .selected-unit-container .amenity-popup {
 	z-index: 10000000;
@@ -2098,7 +2102,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .view-box *{ display:inline-block;}
 .view-photo{ width:130px; height:130px; border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50%; margin:0 0 20px 0; box-shadow:0 35px 35px rgba(255,255,255,0.16);}
 .view-photo img{ width:100%; height:100%; display:block;border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50%;}
-.loading-view h2{ width:100%; color:rgba(255,255,255,0.84); font-size:37px; font-weight:normal;}
+.loading-view h2, .loading-view h2 a{ width:100%; color:rgba(255,255,255,0.84); font-size:37px; font-weight:normal;}
 .loading-view h2 span{ display:block; font-size:22px;}
 .loading-pro-details{ width:100%; margin:30px 0 60px 0;}
 .loading-pro-details p{ font-size:12px; color:rgba(255,255,255,0.73);}
