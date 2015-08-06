@@ -556,6 +556,7 @@ ellipse.tower-unit-svg-selected-path {
 	max-height: 100%;
 	visibility: hidden;
 }
+.tower-menu-container.master-page{ position:fixed; height:83%;}
 .tower-menu-container table {
 	border-spacing: 0px;
     border-collapse: separate;
@@ -589,6 +590,7 @@ ellipse.tower-unit-svg-selected-path {
 	line-height: 45px;
 	cursor: pointer;
 }
+.tower-menu-container.master-page .menu-icon{ line-height:normal;}
 .tower-menu-container .menu-icon.menu-call{ background:none;}
 .tower-menu-container .menu-icon a {
 	color: white;
@@ -596,7 +598,8 @@ ellipse.tower-unit-svg-selected-path {
 	display: block;
 }
 .tower-menu-container .menu-icon a .icon, .tower-menu-container .menu-icon .icon{float:left;color:#ccc; padding:0 10px;}
-.tower-menu-container .menu-icon a .icon img, .tower-menu-container .menu-icon .icon img{ left:4px; display:block; position:absolute; top:-18px; left:6px;}
+.tower-menu-container.master-page .menu-icon a .icon, .tower-menu-container.master-page .menu-icon .icon{ padding:3px 7px;}
+.tower-menu-container .menu-icon a .icon img, .tower-menu-container .menu-icon .icon img{ display:block;}
 .tower-menu-container .menu-sep {
 	height: 1px;
 	padding: 0px;
@@ -606,8 +609,13 @@ ellipse.tower-unit-svg-selected-path {
 	vertical-align: top;
 	
 }
-.tower-menu-container .menu-items .menu-scroll{max-height:484p.tower-menu-container .menu-itemx;}
-.scrollup-menu{ background:rgba(0,0,0,0.8); z-index:99; color:#fff; cursor:pointer; position:absolute; width:45px; height:20px; left:0; bottom:-20px;}
+.master-menu{position:absolute;height:100%;}
+.master-menu .menu-items{height:91.2%; padding-bottom:20px; box-sizing:border-box; position:relative;}
+.master-menu .menu-items.scroll-dwn{ padding-top:20px;}
+.tower-menu-container .menu-items .menu-scroll{ height:100%;}
+.scroll-box{ height:100%; width:120px;overflow:hidden;}
+.scrollup-menu{ background:rgba(0,0,0,0.8); z-index:99; color:#fff; cursor:pointer; position:absolute; width:45px; height:20px; left:0; bottom:0;}
+.scrollup-menu.top-stick{ top:0;}
 .scrollup-menu:hover{ background:#333;}
 .tower-menu-container .menu-items table {
 	height: auto;
@@ -2116,4 +2124,5 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .common-tol-tip p{color:#fff; background:rgba(0,0,0,0.8); padding:5px 0 5px 10px;font-size:14px;display:inline-block;}
 .common-tol-tip p span.icon{ margin-left:10px; padding:0 5px; margin-top:2px; cursor:pointer;}
 /*-----*/
-.car-animation{ position:fixed; z-index:99999; right:-180px; width:500px; bottom:-60px; overflow:hidden; transform:rotate(-44deg); transform-origin: center;}
+.car-animation{ position:absolute; z-index:99999; right:-160px; width:460px; bottom:-80px; overflow:hidden;}
+.car-animation svg{ transform:rotate(-45deg);transform-origin: center;}

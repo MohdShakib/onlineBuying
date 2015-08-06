@@ -10,7 +10,7 @@ var MasterplanView = (function() {
     var containerMap = {
         'buildingImgContainer': '<div class="img-container opacity-control ' + config.dynamicResizeClass + '" id="img-container" style="display:none;"></div>',
         'buildingSvgContainer': '<svg class="svg-container ' + config.dynamicResizeClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
-        'buildingMenuContainer': '<div class="tower-menu-container transition" id="tower-menu-container"></div>',
+        'buildingMenuContainer': '<div class="tower-menu-container master-page transition" id="tower-menu-container"></div>',
         'towerDetailContainer': '<div class="tower-detail-container" id="tower-detail-container"></div>',
         'amenitiesContainer': '<div class="amenities-container ' + config.dynamicResizeClass + '" id="amenities-container"></div>',
         'cloudContainer': '<div class="cloud-container" id="cloud-container"></div>'
@@ -185,20 +185,20 @@ var MasterplanView = (function() {
             this._elements.buildingImgContainer.html(imgCode);
         },
         buildingMenuContainer: function(data) {
-            var code = "<table><tr><td class='menu-header menu-icon transition'><span class='icon'><a href='http://www.proptiger.com' target='_blank'><img src='images/logo.jpg' alt='proptiger.com'></span></a></td></tr>";
-            code += "<tr><td class='menu-sep'></td></tr>";
-            code += "<tr><td class='menu-items'><div class='menu-scroll'><div class='scrollup-menu transition'><span class='icon icon-arrow_btm fs14'></span></div><table>";
+            var code = "<div class='master-menu'><div class='menu-header menu-icon transition'><span class='icon'><a href='http://www.proptiger.com' target='_blank'><img src='images/logo.jpg' alt='proptiger.com'></span></a></div>";
+            code += "<div class='menu-sep'></div>";
+            code += "<div class='menu-items'><div class='scrollup-menu transition'><span class='icon icon-arrow_btm fs14'></span></div><div class='scrollup-menu top-stick transition'><span class='icon icon-arrow_top fs14'></span></div><div class='scroll-box'><div class='menu-scroll'><div class='master-tower-menu transition'>";
             for (var towerIdentifier in data.towers) {
                 var tower = data.towers[towerIdentifier],
                     towerUrl = tower.isAvailable ? data.baseUrl + "/" + tower.towerIdentifier : 'undefined';
-                code += "<tr><td class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass +
+                code += "<div class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass +
                     "' id='" + towerIdentifier + "-menu' data-index='" + towerIdentifier +
                     "' data-imageid='" + tower.towerId +
                     "' data-url='" + towerUrl +
-                    "'><span class='tower-menu-text transition'>Tower</span> " + tower.towerName.split(' ')[1] + "</div></td></tr>";
+                    "'><span class='tower-menu-text transition'>Tower</span> " + tower.towerName.split(' ')[1] + "</div></div>";
             }
-            code += "</table></div></td></tr>";
-            code += "</table>";
+            code += "</div></div></div></div>";
+            code += "</div>";
             this._elements.buildingMenuContainer.html(code);
             this.buildingMenuContainerEvents();
         },
