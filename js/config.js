@@ -4,6 +4,7 @@ var config = (function() {
 
         // Variables
         mockProjectData: false,
+        showLogs: true,
 
         // Data
         backgroundImage: 'masterplan.jpg',
@@ -28,8 +29,13 @@ var config = (function() {
             'formPopUpClass': 'form-pop-up'
         },
         callBox: {
+            nameId: 'call-box-name',
             emailId: 'call-box-email',
-            phoneId: 'call-box-phone'
+            countryCodeId: 'call-box-country-code',
+            countryId: 'call-box-country-id',
+            phoneId: 'call-box-phone',
+            countryDropdownArrowClass: 'dropdown-arrow',
+            countryDropdownClass: 'country-dropDown'
         },
         emailBox: {
             nameId: 'email-box-name',

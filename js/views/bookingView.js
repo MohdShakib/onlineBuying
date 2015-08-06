@@ -232,9 +232,19 @@ var BookingView = (function() {
                 $('#' + this.id + ' .' + config.bookingDropdownClass).show();
             });
 
+
+            // Form Validations and submit
             _this._elements.paymentScreen.on('click', '.make-payment', function(event) {
                 // notify controller
                 _this._makePayment.notify(this); // this refers to element here
+            });
+            _this._elements.paymentScreen.on('keyup', '#booking-user-details', function(event) {
+                var bookingForm = $('#booking-user-details');
+                utils.validateForm(bookingForm, false);
+            });
+            _this._elements.paymentScreen.on('change', '#terms', function(event) {
+                var bookingForm = $('#booking-user-details');
+                utils.validateForm(bookingForm, false);
             });
 
             _this._elements.paymentScreen.on('click', '#tnc', function(event) {
@@ -259,7 +269,7 @@ var BookingView = (function() {
                 unitData = this._model.getData(),
                 data = {};
 
-            if (!utils.validateForm(bookingForm)) {
+            if (!utils.validateForm(bookingForm, true)) {
                 return null;
             }
 

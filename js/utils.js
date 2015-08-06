@@ -3,6 +3,11 @@ var utils = (function() {
     var notificationTooltipTimeout;
     return {
         projectId: null,
+        log: function(obj) {
+            if (config.showLogs) {
+                console.log(obj);
+            }
+        },
         addResizeEventListener: function(listenerFunction) {
             listenerFunction();
             $(window).off('resize').on('resize', listenerFunction);
@@ -85,14 +90,18 @@ var utils = (function() {
             }
             return identifier;
         },
-        validateForm: function(form) {
+        validateForm: function(form, strict) {
             function validateEmail(email) {
                 var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
                 return re.test(email);
             }
 
-            function validatePhone(phoneNumber) {
-                var re = /^\d{5,15}$/;
+            function validatePhone(phoneNumber, countryCode) {
+                var re = /^\d{5,15}$/,
+                    sre = /^\d{10}$/;
+                if (countryCode == '+91') {
+                    return sre.test(phoneNumber);
+                }
                 return re.test(phoneNumber);
             }
 
@@ -108,11 +117,17 @@ var utils = (function() {
             for (var i = 0; i < total_fields; i++) {
 
                 var this_field = $(fields[i]),
+                    id = $(this_field).attr('id'),
+                    dep_field = $(form).find('input[name=' + id + ']').val(),
                     value = $(this_field).val(),
                     type = $(this_field).attr('type'),
                     name = $(this_field).attr('name'),
-                    isRequired = $(this_field).attr('required');
+                    isRequired = $(this_field).attr('required'),
+                    hasError = false;
 
+                if (!$(this_field).parent('div').hasClass('error') && !strict) {
+                    continue;
+                }
                 $(this_field).parent('div').removeClass('error');
 
                 if (isRequired && !value) {
@@ -127,7 +142,7 @@ var utils = (function() {
                     validationFlag = false;
                     $(this_field).parent('div').addClass('error');
                     $(this_field).siblings('.' + config.errorMsgClass).text(invalidEmailMessage);
-                } else if (isRequired && name == 'phone' && !validatePhone(value)) {
+                } else if (isRequired && name == 'phone' && !validatePhone(value, dep_field)) {
                     validationFlag = false;
                     $(this_field).parent('div').addClass('error');
                     $(this_field).siblings('.' + config.errorMsgClass).text(invalidNumberMessage);

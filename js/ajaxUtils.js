@@ -48,6 +48,7 @@ var ajaxUtils = (function() {
                 ajaxObj.contentType = "application/json";
             }
 
+            utils.log(ajaxObj);
             $.ajax(ajaxObj);
         },
 
