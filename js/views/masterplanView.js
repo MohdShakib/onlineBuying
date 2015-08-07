@@ -317,12 +317,13 @@ var MasterplanView = (function() {
             }
 
             var towerCode = "",
-                dotClass = !data.isAvailable ? 'sold' : '';
+                dotClass = !data.isAvailable ? 'sold' : '',
+                bookingText = (data.bookingStatus == 'OnHold') ? 'On Hold' : 'Sold Out';
             towerCode += "<div id='container-detail' class='tooltip-detail'>";
             towerCode += "<div class='detail-box show-details'>" + "<div class='tooltip-title'>" + data.towerName.split(' ')[1] + "</div>" + "<div class='line " + tooltipClass + "''>" + "<div class='dot-one'></div>" + "<div class='dot-two " + dotClass + "'></div>" + "<div class='detail-container master-details'>";
             towerCode += "<table>";
             if (!data.isAvailable) {
-                towerCode += "<tr><td colspan='2' class='" + config.availabilityClass.unavailable + "'>Sold</td></tr>";
+                towerCode += "<tr><td colspan='2' class='" + config.availabilityClass.unavailable + "'>" + bookingText + "</td></tr>";
             } else {
                 for (var j in data.unitInfo) {
                     var aptType = data.unitInfo[j];
@@ -330,7 +331,7 @@ var MasterplanView = (function() {
                     var availabilityText = aptType.available + " Available";
                     if (aptType.available === 0) {
                         availabilityClass = config.availabilityClass.unavailable + availabilityClassSuffix;
-                        availabilityText = 'Sold';
+                        availabilityText = 'Sold Out';
                     }
                     towerCode += "<tr class='" + availabilityClass + "'>";
                     towerCode += "<td>" + aptType.type + "</td>";

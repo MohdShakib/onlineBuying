@@ -243,6 +243,11 @@ var getProjectData = (function() {
                 "7": "NorthWest",
                 "8": "SouthWest"
             },
+            bookingStatusMap = {
+                "1": "Available",
+                "2": "SoldOut",
+                "3": "OnHold"
+            },
             towerMap = {},
             _getPropertyById = function(data, propertyId) {
                 var i, length = data.length,
@@ -314,6 +319,7 @@ var getProjectData = (function() {
             towers[towerIdentifier].listings = {};
             towers[towerIdentifier].rotationAngle = {};
             towers[towerIdentifier].totalAvailableCount = 0; //contains count for total flats available in the tower
+            towers[towerIdentifier].bookingStatus = bookingStatusMap['1'];
             towersUnitInfo[towerIdentifier] = {};
             towers[towerIdentifier].unitInfo = [];
         }
@@ -325,6 +331,9 @@ var getProjectData = (function() {
         projectData.specifications = projectDetail.specifications || {};
 
         for (i = 0; i < listings_length; i += 1) {
+            if (projectDetail.listings[i].isDeleted) {
+                continue;
+            }
             var towerId = projectDetail.listings[i].towerId;
 
             var towerName = towerMap[towerId];
@@ -340,7 +349,7 @@ var getProjectData = (function() {
             flatUnit.towerId = towerId;
             flatUnit.floor = listing.floor;
             flatUnit.isAvailable = (listing.bookingStatusId == 1 ? true : false); // available if bookingStatusId = 1
-            flatUnit.bookingStatusId = listing.bookingStatusId;
+            flatUnit.bookingStatus = bookingStatusMap[listing.bookingStatusId];
             flatUnit.facing = facingMap[listing.facingId];
             flatUnit.bookingAmount = listing.bookingAmount;
             flatUnit.discount = listing.discount ? listing.discount : undefined;
@@ -442,21 +451,24 @@ var getProjectData = (function() {
 
             }
         }
-
-
-        var isAvailable = false;
+           
         for (var towerIdentifier in projectData.towers) {
             tower = projectData.towers[towerIdentifier];
-            isAvailable = false;
-            var totalAvailableCount = 0;
+            var isAvailable = false,
+                totalAvailableCount = 0,
+                bookingStatus = 'SoldOut';
             for (var unitKey in tower.listings) {
-                if (hasOwnProperty.call(tower.listings, unitKey) && tower.listings[unitKey].bookingStatusId == 1) {
+                if (hasOwnProperty.call(tower.listings, unitKey) && tower.listings[unitKey].bookingStatus == 'Available') {
                     isAvailable = true;
                     totalAvailableCount += 1;
+                    bookingStatus = 'Available';
+                } else if (bookingStatus == 'SoldOut' && tower.listings[unitKey].bookingStatus == 'OnHold') {
+                    bookingStatus = 'OnHold';
                 }
             }
             tower.isAvailable = isAvailable;
             tower.totalAvailableCount = totalAvailableCount; // keeps count for flats available after applying fitler etc
+            tower.bookingStatus = bookingStatus;
         }
 
     };

@@ -254,7 +254,8 @@ var TowerselectedView = (function() {
             towerCode += "<div id='container-detail' class='tooltip-detail'>";
 
             var availabilityClass = 'apt-available',
-                dotClass = '';
+                dotClass = '',
+                bookingText = (unitInfo.bookingStatus == 'OnHold') ? 'On Hold' : 'Sold Out';
             if (!unitInfo.isAvailable) {
                 availabilityClass = 'apt-unavailable';
                 dotClass = 'sold';
@@ -271,7 +272,7 @@ var TowerselectedView = (function() {
                 'size': unitInfo.size + ' ' + unitInfo.measure,
                 'floor': unitInfo.floor ? unitInfo.floor : 'Ground',
                 'color': unitInfo.isAvailable ? 'apt-available-color' : 'apt-unavailable-color',
-                'availability': unitInfo.isAvailable ? 'Available' : 'Sold',
+                'availability': unitInfo.isAvailable ? 'Available' : bookingText,
                 'price': utils.getReadablePriceInWord(unitInfo.price - unitInfo.discount),
                 'type': unitInfo.bedrooms + ' BHK'
             };
