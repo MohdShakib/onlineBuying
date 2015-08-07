@@ -80,9 +80,9 @@ var TowerselectedView = (function() {
                 availabilityCountElement.addClass('apt-unavailable-color');
             }
             availabilityCountElement.find('label').html(totalAvailableCount);
-			$('.count').addClass(config.textBlinkClass);
+			$('.project-count').addClass(config.textBlinkClass);
 			setTimeout(function(){
-				$('.count').removeClass(config.textBlinkClass);
+				$('.project-count').removeClass(config.textBlinkClass);
 			}, 500);
         },
         renderInitialData: function(data, rootdata) {

@@ -293,7 +293,7 @@ var BaseView = (function() {
                 '</a>' +
                 '</li>' +
                 '<li>' +
-                '<a href="javascript:void(0);" data-name="compare-box">' +
+                '<a href="javascript:void(0);" id="heart-added" data-name="compare-box">' +
                 '<p>Compare among</br> shortlisted flats</p>' +
                 '<span class="icon icon-heart ' + config.blinkElementClass + '">' +
                 '<label class="like-count br50" id="' + config.likeCountId + '">0</label>' +
