@@ -369,25 +369,29 @@ var TowerselectedView = (function() {
 		/*---car animation start here--*/
 		carAnimation: function(){
 			var carCode="";
-			carCode += "<svg height='350' viewBox='0 0 500 350'>";
-			carCode += "<path id='motionPath' fill='none' stroke='' stroke-miterlimit='10' d='M0 100 600 100'/>";
+			carCode += "<svg height='100%' width='100%' viewBox='0 0 100 100' preserveAspectRatio='none'>";
+			carCode += "<path id='motionPath' fill='none' stroke='' stroke-miterlimit='10' d='M72 105 105 42'/>";
+			carCode += "<path id='motionPath2' fill='none' stroke='' stroke-miterlimit='10' d='M79 105 105 54'/>";
+			carCode += "<path id='motionPath3' fill='none' stroke='' stroke-miterlimit='10' d='M85 105 105 62'/>";
 			
-			
-			carCode += "<image class='car' xlink:href='images/1.png' transform='translate(0,-15)' id='car1' width='41' height='17'/>";
-			carCode += "<animateMotion xlink:href='#car1' from='-150' to='600' dur='4s' begin='0s' repeatCount='indefinite'>";
+			var ratio = config.imageResolution.height / config.imageResolution.width,
+				height = 36/config.imageResolution.height * 100,
+				width = 2.9;//39/36 * height * ratio;
+			carCode += "<image class='car' xlink:href='images/1.png' id='car1' width='" + width + "' height='" + height + "'/>";
+			carCode += "<animateMotion xlink:href='#car1' from='-150' to='600' dur='4s' begin='0s' fill='freeze' repeatCount='indefinite'>";
 			carCode += "<mpath xlink:href='#motionPath' />";
 			carCode += "</animateMotion>";
 			
 			
-			carCode += "<image class='car' xlink:href='images/2.png' transform='translate(0, 30)' id='car2' width='38' height='20'/>";
+			carCode += "<image class='car' xlink:href='images/2.png' id='car2' width='4.5' height='2.5'/>";
 			carCode += "<animateMotion xlink:href='#car2' from='-150' to='500' dur='3.5s' begin='0s' repeatCount='indefinite'>";
-			carCode += "<mpath xlink:href='#motionPath' />";
+			carCode += "<mpath xlink:href='#motionPath2' />";
 			carCode += "</animateMotion>";
 			
 			
-			carCode += "<image class='car' xlink:href='images/3.png' transform='translate(0, 95)' id='car3' width='45' height='24'/>";
+			carCode += "<image class='car' xlink:href='images/3.png' id='car3' width='4.5' height='3'/>";
 			carCode += "<animateMotion xlink:href='#car3' from='-150' to='400' rever dur='4s' begin='0s' repeatCount='indefinite'>";
-			carCode += "<mpath xlink:href='#motionPath' />";
+			carCode += "<mpath xlink:href='#motionPath3' />";
 			carCode += "</animateMotion>";
 	
 			carCode += "</svg>";
