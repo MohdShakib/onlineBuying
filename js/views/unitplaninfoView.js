@@ -164,7 +164,10 @@ var UnitplaninfoView = (function() {
             var _this = this;
             $('#' + config.selectedUnitContainerId).off('click').on('click', '.like-box', function() {
                 _this._likeBoxClick.notify(this); //this refers to element
-				utils.flyToShortlist(this); //this refers to element
+				if($(this).hasClass('selected')){//this refers to element
+					utils.flyToShortlist(this); //this refers to element
+				}
+				
             });
             $('#' + config.selectedUnitContainerId).on('click', '.book-now a', function() {
                 _this._bookingClick.notify(this); //this refers to element
