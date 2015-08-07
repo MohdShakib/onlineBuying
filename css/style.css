@@ -556,7 +556,7 @@ ellipse.tower-unit-svg-selected-path {
 	max-height: 100%;
 	visibility: hidden;
 }
-.tower-menu-container.master-page{ position:fixed; height:83%;}
+.tower-menu-container.master-page{ position:absolute; height:calc(100% - 85px);}
 .tower-menu-container table {
 	border-spacing: 0px;
     border-collapse: separate;
@@ -2128,5 +2128,20 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .common-tol-tip p{color:#fff; background:rgba(0,0,0,0.8); padding:5px 0 5px 10px;font-size:14px;display:inline-block;}
 .common-tol-tip p span.icon{ margin-left:10px; padding:0 5px; margin-top:2px; cursor:pointer;}
 /*-----*/
-.car-animation{ position:absolute; z-index:99999; right:-160px; width:460px; bottom:-80px; overflow:hidden;}
-.car-animation svg{ transform:rotate(-45deg);transform-origin: center;}
+.car-animation svg{ position:absolute;z-index:99;}
+.car-animation .car{ transform:rotate(-12deg);}
+/*====@media queries====*/
+@media screen and (min-width: 500px) and (max-width: 1023px){
+	.unit-menu-container .header-item{ font-size:0;}
+	.unit-menu-container .header-item .item-icon-box{ display:inline-block; padding-top:15px;}
+	.uit-header-menu{ width:25%;}
+	.unit-menu-container .header-title{ width:74.5%;}
+	.floor-plan-menu-container .floor-plan-menu{ top:130px; right:15px;}
+	.unit-content-wrapper .base-table{ padding:0 20px 0 155px;}
+	.unit-content-wrapper .pricebreakup-tabs-content.pricebreakup{padding-right: 5px;}
+	.terms-condition{ margin:125px 0 10px 0;}
+	.project-amenities li{margin: 0 10px 0 10px;}
+	.payment-pic{ padding:10px 20px 0 160px;}
+	.compare-units-container .compare-unit-img{ height:380px;}
+	.compare-unit-box .img-svg-container.drag-drop img{ height:100%;}
+}
