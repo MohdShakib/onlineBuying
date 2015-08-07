@@ -45,20 +45,6 @@ img{ border:0; outline:none;}
 	-moz-osx-font-smoothing: grayscale;
 }
 .icon{ display:inline-block !important; font-size:25px; position:relative;}
-.fs0{ font-size:0px !important;}
-.fs12{ font-size:12px !important;}
-.fs13{ font-size:13px !important;}
-.fs14{ font-size:14px !important;}
-.fs16{ font-size:16px !important;}
-.fs18{ font-size:18px !important;}
-.fs20{ font-size:20px !important;}
-.fs22{ font-size:22px !important;}
-.fs24{ font-size:24px !important;}
-.fs26{ font-size:26px !important;}
-.fs28{ font-size:28px !important;}
-.fs30{ font-size:30px !important;}
-.fs32{ font-size:32px !important;}
-.fs48{ font-size:48px !important;}
 .icon-1:before {
 	content: "\e600";
 }
@@ -319,8 +305,9 @@ header .project-title a{
 header .project-count {
 	color: limegreen;
 	display:inline-block;
+	padding-left:15px;
 }
-header .project-count .count{ display:inline-block; width:20px; text-align:center;}
+header .project-count .count{ display:inline-block;}
 table td, table tr {
 	padding: 0px;
 	margin: 0px;
@@ -1348,7 +1335,7 @@ ellipse.tower-unit-svg-selected-path {
 /*----------project amenities start here-----------*/
 .project-amenities{ text-align:left; padding:5px 10px 20px 150px;}
 .project-amenities .icon{ width:55px; height:55px; font-size:28px; background:#fff; border-radius:2px; border:1px solid #dedede; color:#666; text-align:center; line-height:55px;}
-.project-amenities li{ float:left; width:85px; height:120px; margin:0 25px 0 40px; text-align:center;}
+.project-amenities li{ float:left; width:25%; height:120px; text-align:center;}
 .project-amenities li.disable{ opacity:0.3;}
 .project-amenities li label{ color:#333; font-size:13px; display:block; margin-top:10px; text-align:center;}
 /*-------payment screen start here-------*/
@@ -2130,6 +2117,21 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 /*-----*/
 .car-animation svg{ position:absolute;z-index:99;}
 .car-animation .car{ transform:rotate(-12deg);}
+.fs0{ font-size:0px !important;}
+.fs12{ font-size:12px !important;}
+.fs13{ font-size:13px !important;}
+.fs14{ font-size:14px !important;}
+.fs16{ font-size:16px !important;}
+.fs18{ font-size:18px !important;}
+.fs20{ font-size:20px !important;}
+.fs22{ font-size:22px !important;}
+.fs24{ font-size:24px !important;}
+.fs26{ font-size:26px;}
+.fs28{ font-size:28px !important;}
+.fs30{ font-size:30px !important;}
+.fs32{ font-size:32px !important;}
+.fs48{ font-size:48px !important;}
+
 /*====@media queries====*/
 @media screen and (min-width: 500px) and (max-width: 1023px){
 	.unit-menu-container .header-item{ font-size:0;}
@@ -2140,7 +2142,6 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 	.unit-content-wrapper .base-table{ padding:0 20px 0 155px;}
 	.unit-content-wrapper .pricebreakup-tabs-content.pricebreakup{padding-right: 5px;}
 	.terms-condition{ margin:125px 0 10px 0;}
-	.project-amenities li{margin: 0 10px 0 10px;}
 	.payment-pic{ padding:10px 20px 0 160px;}
 	.compare-units-container .compare-unit-img{ height:380px;}
 	.compare-unit-box .img-svg-container.drag-drop img{ height:100%;}

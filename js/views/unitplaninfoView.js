@@ -153,7 +153,7 @@ var UnitplaninfoView = (function() {
                 link = rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier + '/booking';
 
             htmlCode += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
-            htmlCode += '<a><span class="icon icon-heart fs26"><label></label></span><p class="transition click-txt"></p><p class="shortlisted" style="display:none;"></p></a></div>';
+            htmlCode += '<a><span class="icon icon-heart fs26 heart-clone"><label></label></span><p class="transition click-txt"></p><p class="shortlisted" style="display:none;"></p></a></div>';
             htmlCode += '<div class="book-now"><a  data-url="' + link + '">Book now</a><span>Rs. ' + utils.getReadablePrice(data.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
             htmlCode += '</div>';
 
@@ -164,6 +164,10 @@ var UnitplaninfoView = (function() {
             var _this = this;
             $('#' + config.selectedUnitContainerId).off('click').on('click', '.like-box', function() {
                 _this._likeBoxClick.notify(this); //this refers to element
+				if($(this).hasClass('selected')){//this refers to element
+					utils.flyToShortlist(this); //this refers to element
+				}
+				
             });
             $('#' + config.selectedUnitContainerId).on('click', '.book-now a', function() {
                 _this._bookingClick.notify(this); //this refers to element

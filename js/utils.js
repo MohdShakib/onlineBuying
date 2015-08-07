@@ -552,6 +552,40 @@ var utils = (function() {
                 }, 8000);
             });
         },
+		//fly to shortlist starts here
+		flyToShortlist : function(element){
+			var cart = $('#heart-added');
+			var imgtodrag = $(element).find('.heart-clone');
+			if (imgtodrag) {
+				var imgclone = imgtodrag.clone()
+					.offset({
+					top: imgtodrag.offset().top,
+					left: imgtodrag.offset().left
+				})
+					.css({
+					'opacity': '0.8',
+						'position': 'absolute',
+						'color' : '#f18d18',
+						'font-size': '50px',
+						'z-index': '999999'
+				})
+					.appendTo($('body'))
+					.animate({
+					'top': cart.offset().top + 10,
+						'left': cart.offset().left + 10,
+						'font-size': '25px',
+						'color' : '#f18d18'
+				}, 1500, 'easeInOutQuint');
+				
+				imgclone.animate({
+					'opacity': '0',
+					'font-size': '14px'
+				}, function () {
+					$(this).detach();
+				});
+			}		
+		},
+		//fly to shortlist ends here
         hideNotificationTooltip: function() {
             $('.' + config.notificationTooltipClass).animate({
                 'top': -100
