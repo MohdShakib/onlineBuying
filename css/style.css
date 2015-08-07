@@ -1335,7 +1335,7 @@ ellipse.tower-unit-svg-selected-path {
 /*----------project amenities start here-----------*/
 .project-amenities{ text-align:left; padding:5px 10px 20px 150px;}
 .project-amenities .icon{ width:55px; height:55px; font-size:28px; background:#fff; border-radius:2px; border:1px solid #dedede; color:#666; text-align:center; line-height:55px;}
-.project-amenities li{ float:left; width:85px; height:120px; margin:0 25px 0 40px; text-align:center;}
+.project-amenities li{ float:left; width:25%; height:120px; text-align:center;}
 .project-amenities li.disable{ opacity:0.3;}
 .project-amenities li label{ color:#333; font-size:13px; display:block; margin-top:10px; text-align:center;}
 /*-------payment screen start here-------*/
@@ -2142,7 +2142,6 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 	.unit-content-wrapper .base-table{ padding:0 20px 0 155px;}
 	.unit-content-wrapper .pricebreakup-tabs-content.pricebreakup{padding-right: 5px;}
 	.terms-condition{ margin:125px 0 10px 0;}
-	.project-amenities li{margin: 0 10px 0 10px;}
 	.payment-pic{ padding:10px 20px 0 160px;}
 	.compare-units-container .compare-unit-img{ height:380px;}
 	.compare-unit-box .img-svg-container.drag-drop img{ height:100%;}
