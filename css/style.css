@@ -2115,8 +2115,8 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .common-tol-tip p{color:#fff; background:rgba(0,0,0,0.8); padding:5px 0 5px 10px;font-size:14px;display:inline-block;}
 .common-tol-tip p span.icon{ margin-left:10px; padding:0 5px; margin-top:2px; cursor:pointer;}
 /*-----*/
-.car-animation svg{ position:absolute;z-index:99;}
-.car-animation .car{ transform:rotate(-12deg);}
+.car-animation { position:absolute;z-index:99;}
+.car-animation .car {visibility: hidden;}
 .fs0{ font-size:0px !important;}
 .fs12{ font-size:12px !important;}
 .fs13{ font-size:13px !important;}

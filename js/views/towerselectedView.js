@@ -13,7 +13,7 @@ var TowerselectedView = (function() {
         'towerDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>',
         'towerRotationContainer': '<div class="tower-rotation-container ' + config.slowTransitionClass + '" id="' + config.towerRotationContainerId + '"></div>',
         'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>',
-		'carAnimation': '<div class="car-animation"></div>'
+        'carAnimation': '<svg class="car-animation transition-left ' + config.dynamicResizeClass + '" id="car-animation" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'
     };
 
     function getElements() {
@@ -23,7 +23,7 @@ var TowerselectedView = (function() {
             'towerDetailContainer': $('#tower-detail-container'),
             'towerRotationContainer': $('#tower-rotation-container'),
             'filterMenuContainer': $('#filter-menu-container'),
-			'carAnimation': $('.car-animation')
+            'carAnimation': $('#car-animation')
         };
         return elements;
     }
@@ -73,20 +73,20 @@ var TowerselectedView = (function() {
             this._elements = getElements();
         },
         updateAvailableCount: function() {
-            var availabilityCountElement = $('#'+config.projectDetail.availabilityCountId);
+            var availabilityCountElement = $('#' + config.projectDetail.availabilityCountId);
             availabilityCountElement.removeClass('apt-unavailable-color');
             var totalAvailableCount = this._model.getFilteredAvailableCount();
-            if(!totalAvailableCount){
+            if (!totalAvailableCount) {
                 availabilityCountElement.addClass('apt-unavailable-color');
             }
             availabilityCountElement.find('label').html(totalAvailableCount);
-			$('.project-count').addClass(config.textBlinkClass);
-			setTimeout(function(){
-				$('.project-count').removeClass(config.textBlinkClass);
-			}, 500);
+            $('.project-count').addClass(config.textBlinkClass);
+            setTimeout(function() {
+                $('.project-count').removeClass(config.textBlinkClass);
+            }, 500);
         },
         renderInitialData: function(data, rootdata) {
-            document.getElementById(config.projectDetail.titleId).innerHTML = '<a href="https://www.proptiger.com/'+rootdata.projectUrl+'" target="_blank">'+rootdata.projectName+'</a>';
+            document.getElementById(config.projectDetail.titleId).innerHTML = '<a href="https://www.proptiger.com/' + rootdata.projectUrl + '" target="_blank">' + rootdata.projectName + '</a>';
             document.getElementById(config.projectDetail.addressId).innerHTML = data.towerName;
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '<label class="count"></label> Available';
             this.updateAvailableCount();
@@ -121,9 +121,9 @@ var TowerselectedView = (function() {
             });
 
             // Images
-            if(fromUnitInfoView){
+            if (fromUnitInfoView) {
                 $('.opacity-control').show();
-            }else{
+            } else {
                 $('.opacity-control').stop().fadeIn(500);
             }
 
@@ -175,15 +175,39 @@ var TowerselectedView = (function() {
                         url = listings[unitIdentifier].isAvailable ? baseUrl + rotationAngle + '/' + unitIdentifier : "undefined",
                         selectedClass = (selectedListing == unitIdentifier) ? "" : config.hideClass;
                     svgClass = listings[unitIdentifier].isAvailable ? 'apt-available' : 'apt-unavailable';
-                    var attrs = {}, eachEllipse;
+                    var attrs = {},
+                        eachEllipse;
 
-                    attrs = {'class':config.towerUnitSvgSelectedClass+" "+selectedClass,  id:unitIdentifier+"-selected-path", cx:unitInfo.unitSvgOnTower[0], cy:unitInfo.unitSvgOnTower[1], ry:'1.7', rx:'.78'};
+                    attrs = {
+                        'class': config.towerUnitSvgSelectedClass + " " + selectedClass,
+                        id: unitIdentifier + "-selected-path",
+                        cx: unitInfo.unitSvgOnTower[0],
+                        cy: unitInfo.unitSvgOnTower[1],
+                        ry: '1.7',
+                        rx: '.78'
+                    };
                     eachEllipse = utils.makeSVG('ellipse', attrs);
                     this._elements.towerSvgContainer.append(eachEllipse);
-                    attrs = {'class':config.towerUnitSvgHoverClass+" "+config.hideClass, id:unitIdentifier+"-hover-path", cx:unitInfo.unitSvgOnTower[0], cy:unitInfo.unitSvgOnTower[1], ry:'1.7', rx:'.78'};
+                    attrs = {
+                        'class': config.towerUnitSvgHoverClass + " " + config.hideClass,
+                        id: unitIdentifier + "-hover-path",
+                        cx: unitInfo.unitSvgOnTower[0],
+                        cy: unitInfo.unitSvgOnTower[1],
+                        ry: '1.7',
+                        rx: '.78'
+                    };
                     eachEllipse = utils.makeSVG('ellipse', attrs);
                     this._elements.towerSvgContainer.append(eachEllipse);
-                    attrs = {'class':config.towerUnitSvgClass+" "+svgClass, id:unitIdentifier+"-path", 'data-index':unitIdentifier, 'data-url':url, cx:unitInfo.unitSvgOnTower[0], cy:unitInfo.unitSvgOnTower[1], ry:'1.2', rx:'0.55'};
+                    attrs = {
+                        'class': config.towerUnitSvgClass + " " + svgClass,
+                        id: unitIdentifier + "-path",
+                        'data-index': unitIdentifier,
+                        'data-url': url,
+                        cx: unitInfo.unitSvgOnTower[0],
+                        cy: unitInfo.unitSvgOnTower[1],
+                        ry: '1.2',
+                        rx: '0.55'
+                    };
                     eachEllipse = utils.makeSVG('ellipse', attrs);
                     this._elements.towerSvgContainer.append(eachEllipse);
 
@@ -314,6 +338,8 @@ var TowerselectedView = (function() {
                 _this.towerSvgContainer(data, rootdata);
             });
 
+            // Hide Car annimation on rotation
+            $('#car-animation').hide();
         },
         towerRotationContainer: function() {
             var _this = this;
@@ -360,47 +386,61 @@ var TowerselectedView = (function() {
             code += "<div class='menu-item'><span class='icon  icon-rupee_final fs30'></span></div>";
             code += this.getPriceMenuOptions(data, priceFiltersData);
             code += "</td></tr>";
-            code += "<tr class='menu-item-container reset-all-menu-item reset-all-inactive'><td class='menu-item-container-td'><div class='menu-item " + config.filters.resetClass + "'><span class='icon icon-reset-final fs24'></span></div><div class='menu-item-options'><table><tr><td class='filter-title pointer "+config.filters.resetClass+"'>Reset All Filters</td></tr><table></div></td></tr>";
+            code += "<tr class='menu-item-container reset-all-menu-item reset-all-inactive'><td class='menu-item-container-td'><div class='menu-item " + config.filters.resetClass + "'><span class='icon icon-reset-final fs24'></span></div><div class='menu-item-options'><table><tr><td class='filter-title pointer " + config.filters.resetClass + "'>Reset All Filters</td></tr><table></div></td></tr>";
             code += "</table></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "</table>";
             this._elements.filterMenuContainer.html(code);
             this.filterMenuContainerEvents();
         },
-		/*---car animation start here--*/
-		carAnimation: function(){
-			var carCode="";
-			carCode += "<svg height='100%' width='100%' viewBox='0 0 100 100' preserveAspectRatio='none'>";
-			carCode += "<path id='motionPath' fill='none' stroke='' stroke-miterlimit='10' d='M72 105 105 42'/>";
-			carCode += "<path id='motionPath2' fill='none' stroke='' stroke-miterlimit='10' d='M79 105 105 54'/>";
-			carCode += "<path id='motionPath3' fill='none' stroke='' stroke-miterlimit='10' d='M85 105 105 62'/>";
-			
-			var ratio = config.imageResolution.height / config.imageResolution.width,
-				height = 36/config.imageResolution.height * 100,
-				width = 2.9;//39/36 * height * ratio;
-			carCode += "<image class='car' xlink:href='images/1.png' id='car1' width='" + width + "' height='" + height + "'/>";
-			carCode += "<animateMotion xlink:href='#car1' from='-150' to='600' dur='4s' begin='0s' fill='freeze' repeatCount='indefinite'>";
-			carCode += "<mpath xlink:href='#motionPath' />";
-			carCode += "</animateMotion>";
-			
-			
-			carCode += "<image class='car' xlink:href='images/2.png' id='car2' width='4.5' height='2.5'/>";
-			carCode += "<animateMotion xlink:href='#car2' from='-150' to='500' dur='3.5s' begin='0s' repeatCount='indefinite'>";
-			carCode += "<mpath xlink:href='#motionPath2' />";
-			carCode += "</animateMotion>";
-			
-			
-			carCode += "<image class='car' xlink:href='images/3.png' id='car3' width='4.5' height='3'/>";
-			carCode += "<animateMotion xlink:href='#car3' from='-150' to='400' rever dur='4s' begin='0s' repeatCount='indefinite'>";
-			carCode += "<mpath xlink:href='#motionPath3' />";
-			carCode += "</animateMotion>";
-	
-			carCode += "</svg>";
-			this._elements.carAnimation.html(carCode);
-			//this.carAnimation();
-		},
-		/*---car animation end here--*/
-		
+        carAnimation: function(data, rootdata) {
+            console.log(data);
+            if (data.towerIdentifier != 'tower-a' || this._model.getCurrentRotationAngle() != '0') {
+                return;
+            }
+            var carCode = "",
+                ratio = config.imageResolution.height / config.imageResolution.width,
+                imageResolutionHeight = config.imageResolution.height,
+                cars = [{
+                    path: 'M77 105 105 43',
+                    imageURL: 'images/car-1.png',
+                    imageWidth: 40,
+                    imageHeight: 41,
+                    begin: 3,
+                    duration: 6
+                }, {
+                    path: 'M77 105 105 44',
+                    imageURL: 'images/car-2.png',
+                    imageWidth: 42,
+                    imageHeight: 38,
+                    begin: 20,
+                    duration: 5
+                }, {
+                    path: 'M105 52 82 105',
+                    imageURL: 'images/car-3.png',
+                    imageWidth: 41,
+                    imageHeight: 44,
+                    begin: 13,
+                    duration: 4
+                }];
+
+            for (var i in cars) {
+                var height = cars[i].imageHeight / imageResolutionHeight * 100,
+                    width = cars[i].imageWidth / cars[i].imageHeight * height * ratio;
+                carCode += "<path d='" + cars[i].path + "' id='path" + i + "'/>";
+                carCode += "<image class='car' id='car" + i + "' xlink:href='" + cars[i].imageURL + "' id='car" + i + "' width='" + width + "' height='" + height + "' preserveAspectRatio='none'/>";
+                carCode += "<animateMotion xlink:href='#car" + i + "' dur='" + cars[i].duration + "s' begin='" + cars[i].begin + "s' repeatCount='1' fill='freeze'>";
+                carCode += "<mpath xlink:href='#path" + i + "'/>";
+                carCode += "</animateMotion>";
+
+                // Hack for hiding cars
+                setTimeout(function(i) {
+                    $('#car' + i).css('visibility', 'visible');
+                }, cars[i].begin * 1000, i);
+            }
+
+            this._elements.carAnimation.html(carCode);
+        },
         displayFilterCount: function(type, count) {
             var style = "";
             if (count <= 0) {
@@ -411,7 +451,7 @@ var TowerselectedView = (function() {
         },
         updateFilterCount: function() {
             var filterdata = this._model.getSelectedFiltersData();
-            var filterExist = false; 
+            var filterExist = false;
             if (filterdata.bhk.length > 0) {
                 filterExist = true;
                 $('#bhk-filter-count').show().html(filterdata.bhk.length);
@@ -437,9 +477,9 @@ var TowerselectedView = (function() {
                 $('#price-filter-count').hide();
             }
 
-            if(filterExist){
+            if (filterExist) {
                 $('.reset-all-menu-item').removeClass('reset-all-inactive');
-            }else{
+            } else {
                 $('.reset-all-menu-item').addClass('reset-all-inactive');
             }
         },
