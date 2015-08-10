@@ -43,5 +43,6 @@
         "UnitplaninfoModel": true,
         "UnitplaninfoView": true,
         "utils": true
-    }
+    },
+    "-W065": true
 }

@@ -66,8 +66,6 @@ var initializeRoutes = (function() {
                     masterplanController = new MasterplanController(masterplanModel, masterplanView);
                 }
                 masterplanController.generateTemplate();
-                // Add resize event listener
-                utils.addResizeEventListener(utils.defaultDynamicResizeContainers);
             }
         };
 

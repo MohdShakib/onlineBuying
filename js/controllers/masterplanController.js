@@ -26,6 +26,12 @@ var MasterplanController = (function() {
             this._view._menuClick.attach(function(sender, element) {
                 utils.changeUrl(element);
             });
+            this._view._menuUp.attach(function(sender, element) {
+                _this._view.menuUpHandler();
+            });
+            this._view._menuDown.attach(function(sender, element) {
+                _this._view.menuDownHandler();
+            });
 
             // Svg Events
             this._view._towerSvgMouseEnter.attach(function(sender, obj) {
@@ -54,6 +60,8 @@ var MasterplanController = (function() {
             } else {
                 this._view.displayWithoutAnimation();
             }
+            // Add resize event listener
+            utils.addResizeEventListener(this._view.dynamicResizeContainers);
         }
     };
 

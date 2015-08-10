@@ -37,6 +37,8 @@ var MasterplanView = (function() {
         this._menuMouseEnter = new Event(this);
         this._menuMouseLeave = new Event(this);
         this._menuClick = new Event(this);
+        this._menuUp = new Event(this);
+        this._menuDown = new Event(this);
 
         // Svg Events
         this._towerSvgMouseEnter = new Event(this);
@@ -46,6 +48,9 @@ var MasterplanView = (function() {
         // Amenity Events
         this._amenityClick = new Event(this);
         this._amenityClose = new Event(this);
+
+        // For dynamic height of tower menu
+        utils.masterPlanModel = this._model;
     }
 
     MasterplanView.prototype = {
@@ -72,7 +77,7 @@ var MasterplanView = (function() {
             this._elements = getElements();
         },
         renderInitialData: function(data) {
-            document.getElementById(config.projectDetail.titleId).innerHTML = '<a href="https://www.proptiger.com/'+data.projectUrl+'" target="_blank">'+data.projectName+'</a>';
+            document.getElementById(config.projectDetail.titleId).innerHTML = '<a href="https://www.proptiger.com/' + data.projectUrl + '" target="_blank">' + data.projectName + '</a>';
             document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
         },
@@ -159,6 +164,14 @@ var MasterplanView = (function() {
 
             utils.showNotificationTooltip('Select a tower to explore further');
         },
+        dynamicResizeContainers: function() {
+            utils.defaultDynamicResizeContainers();
+            var parentHeight = $('#' + config.parentContainerId).height(),
+                count = parseInt((parentHeight - (60 + 91)) / config.towerMenuItemHeight),
+                height = count * config.towerMenuItemHeight + 60;
+            utils.masterPlanModel.updateTowerMenuEnd(count);
+            $('.master-menu .menu-items').css('height', height);
+        },
         sortTowersObject: function(towers) {
             var towerName, towerValues = [];
             for (towerName in towers) {
@@ -187,7 +200,7 @@ var MasterplanView = (function() {
         buildingMenuContainer: function(data) {
             var code = "<div class='master-menu'><div class='menu-header menu-icon transition'><span class='icon'><a href='http://www.proptiger.com' target='_blank'><img src='images/logo.jpg' alt='proptiger.com'></span></a></div>";
             code += "<div class='menu-sep'></div>";
-            code += "<div class='menu-items'><div class='scrollup-menu transition'><span class='icon icon-arrow_btm fs14'></span></div><div class='scrollup-menu top-stick transition'><span class='icon icon-arrow_top fs14'></span></div><div class='scroll-box'><div class='menu-scroll'><div class='master-tower-menu transition'>";
+            code += "<div class='menu-items'><div class='scrollup-menu scroll-down transition'><span class='icon icon-arrow_btm fs14'></span></div><div class='scrollup-menu scroll-up top-stick transition'><span class='icon icon-arrow_top fs14'></span></div><div class='scroll-box'><div class='menu-scroll'><div class='master-tower-menu transition'>";
             for (var towerIdentifier in data.towers) {
                 var tower = data.towers[towerIdentifier],
                     towerUrl = tower.isAvailable ? data.baseUrl + "/" + tower.towerIdentifier : 'undefined';
@@ -222,6 +235,36 @@ var MasterplanView = (function() {
                 // notify controller
                 _this._menuMouseLeave.notify(this); // this refers to element here
             });
+
+            _this._elements.buildingMenuContainer.on('click', '.scroll-up', function(event) {
+                // notify controller
+                _this._menuUp.notify(this); // this refers to element here
+            });
+            _this._elements.buildingMenuContainer.on('click', '.scroll-down', function(event) {
+                // notify controller
+                _this._menuDown.notify(this); // this refers to element here
+            });
+
+        },
+        menuUpHandler: function() {
+            var originalMargin = parseInt($('.' + config.towerMenuClass).css('margin-top'));
+            if ((originalMargin % config.towerMenuItemHeight !== 0) ||
+                (this._model.getTowerMenu().start <= 0)) {
+                return;
+            }
+            var margin = originalMargin + config.towerMenuItemHeight;
+            this._model.slideUpTowerMenu();
+            $('.' + config.towerMenuClass).css('margin-top', margin + 'px');
+        },
+        menuDownHandler: function() {
+            var originalMargin = parseInt($('.' + config.towerMenuClass).css('margin-top'));
+            if ((originalMargin % config.towerMenuItemHeight !== 0) ||
+                (this._model.getTowerMenu().end >= this._model.getTowerCount() - 1)) {
+                return;
+            }
+            var margin = originalMargin - config.towerMenuItemHeight;
+            this._model.slideDownTowerMenu();
+            $('.' + config.towerMenuClass).css('margin-top', margin + 'px');
         },
         buildingSvgContainer: function(data) {
             var i, tower, towerUrl,
@@ -233,7 +276,14 @@ var MasterplanView = (function() {
                 if (tower.towerHoverSvg) {
                     towerUrl = tower.isAvailable ? data.baseUrl + "/" + tower.towerIdentifier : 'undefined';
                     var svgClass = tower.isAvailable ? '' : 'no-pointer';
-                    var attrs = {'class':config.towerImgSvgClass+" "+svgClass, id:tower.towerId+"-path", 'data-index': tower.towerIdentifier, 'data-url': towerUrl, 'data-imageid':tower.towerId,  points: tower.towerHoverSvg };
+                    var attrs = {
+                        'class': config.towerImgSvgClass + " " + svgClass,
+                        id: tower.towerId + "-path",
+                        'data-index': tower.towerIdentifier,
+                        'data-url': towerUrl,
+                        'data-imageid': tower.towerId,
+                        points: tower.towerHoverSvg
+                    };
                     var eachPolygon = utils.makeSVG('polygon', attrs);
                     this._elements.buildingSvgContainer.append(eachPolygon);
                 }
@@ -285,8 +335,6 @@ var MasterplanView = (function() {
             }
 
             var menuElement = $('#' + index + '-menu');
-
-
             menuElement.addClass(config.menuItemHoverClass);
             menuElement.addClass(availabilityStatusClass);
         },

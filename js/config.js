@@ -5,6 +5,7 @@ var config = (function() {
         // Variables
         mockProjectData: false,
         showLogs: true,
+        towerMenuItemHeight: 44,
 
         // Data
         backgroundImage: 'masterplan.jpg',
@@ -88,6 +89,7 @@ var config = (function() {
         amenityPopupClass: "amenity-popup",
         amenityPopupTableClass: "photo-table",
         amenityPopupCloseClass: "amenity-popup-close",
+        towerMenuClass: "master-tower-menu",
 
         // Towerselected
         imgContainerId: 'img-container',
