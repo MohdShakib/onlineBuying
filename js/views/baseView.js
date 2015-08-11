@@ -499,7 +499,7 @@ var BaseView = (function() {
             if (!length) {
                 return;
             }
-
+            utils.removeNotificationTooltip();
             this.formPopupCloseClicked();
             this.compareUnitsContainer();
             $('#' + config.compareUnitscontainerId).fadeIn(900);

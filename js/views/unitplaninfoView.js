@@ -119,7 +119,7 @@ var UnitplaninfoView = (function() {
             utils.addSVGClassToElements(svgElements, config.hideClass);
 
             // show notification tool tip
-            $('.' + config.notificationTooltipClass).css('top', '-100px');
+            utils.removeNotificationTooltip();
             $('.' + config.notificationTooltipClass).show();
         },
         dynamicResizeContainers: function() {
