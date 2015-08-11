@@ -40,10 +40,8 @@ var TowerselectedController = (function() {
             this._view._towerRotateClicked.attach(function(sender, element) {
                 var currentRotationAngle = _this._model.getCurrentRotationAngle();
                 var newRotationAngle = rotateAngleHash[currentRotationAngle] || '0';
-
-                // change rotation angle value
                 _this._model.updateCurrentRotationAngle(newRotationAngle);
-                _this._view.rotateTower();
+                _this._view.rotateTower(currentRotationAngle, newRotationAngle);
             });
 
             // Filter Events
@@ -70,7 +68,7 @@ var TowerselectedController = (function() {
             this._view._resetFiltersClick.attach(function(sender, element) {
                 var filtersApplied = _this._model.isFilterApplied();
 
-                if(!filtersApplied){
+                if (!filtersApplied) {
                     return;
                 }
 
@@ -97,7 +95,8 @@ var TowerselectedController = (function() {
         },
         updateFilteredListings: function() {
             var listings = this._model.getData().listings,
-                filteredListings = [], filteredAvailableCount = 0;
+                filteredListings = [],
+                filteredAvailableCount = 0;
 
             //updateFilteredAvailableCount
             for (var id in listings) {
@@ -139,7 +138,7 @@ var TowerselectedController = (function() {
                     continue;
                 }
 
-                if(listings[id].isAvailable){
+                if (listings[id].isAvailable) {
                     filteredAvailableCount += 1;
                 }
 
@@ -152,7 +151,7 @@ var TowerselectedController = (function() {
             this._model.updateFilteredListings(filteredListings);
             this._view.towerSvgContainer(this._model.getData(), this._model.getRootdata());
         },
-        generateTemplate: function(fromUnitInfoView) { 
+        generateTemplate: function(fromUnitInfoView) {
             this._view.buildView();
             if (this._model.isFirstLoad()) {
                 utils.showLoader(this._view.startAnimation);
