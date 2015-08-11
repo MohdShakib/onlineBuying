@@ -374,7 +374,7 @@ var TowerselectedView = (function() {
                 intermediateImagesCount = endIndex - startIndex;
 
                 for (i = startIndex, j = 0; i < endIndex; i++) {
-                    imagePath = '/zip-file/rotate-latest/' + rotationImages[endIndex - j];
+                    imagePath = './zip-file/rotate-latest/' + rotationImages[endIndex - j];
                     j++;
                     var timeout = j * config.towerRotationSpeed;
                     (function(imagePath, timeout) {

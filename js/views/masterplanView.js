@@ -87,16 +87,16 @@ var MasterplanView = (function() {
 
             // Clouds
             $('.top-left-cloud').animate({
-                left: '-50%'
+                right: '90%'
             }, 8000);
             $('.top-right-cloud').animate({
-                right: '-40%'
+                left: '90%'
             }, 8000);
             $('.bottom-left-cloud').animate({
-                left: '-40%'
+                right: '90%'
             }, 8000);
             $('.bottom-right-cloud').animate({
-                right: '-50%'
+                left: '90%'
             }, 8000);
 
             // Amenities

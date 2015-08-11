@@ -2050,27 +2050,27 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .top-left-cloud {
 	width: 847px; height: 469px;
 	background: url(../images/top-left.png) no-repeat;
-	top:-50px; left:0px;
+	top:-50px; right:40%;
 	position:absolute;
 	z-index:2;
 }
 .top-right-cloud {
 	width: 847px; height: 453px;
-	top:-50px; right:0px;
+	top:-50px; left:40%;
 	background: url(../images/top-right.png) no-repeat;
 	position:absolute;
 	z-index:2;
 }
 .bottom-left-cloud {
 	width: 701px; height: 434px;
-	left:0px; bottom:-50px;
+	bottom:-50px; right:30%;
 	background: url(../images/bottom-left.png) no-repeat;
 	position:absolute;
 	z-index:2;
 }
 .bottom-right-cloud {
 	width: 847px; height: 520px;
-	bottom:-50px; right:0px;
+	bottom:-50px; left:30%;
 	background: url(../images/bottom-right.png) no-repeat;
 	position:absolute;
 	z-index:2;
