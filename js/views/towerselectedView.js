@@ -368,7 +368,7 @@ var TowerselectedView = (function() {
                     startIndex = 0;
                 } else {
                     startIndex = 25;
-                    endIndex = 44;
+                    endIndex = 43;
                 }
 
                 intermediateImagesCount = endIndex - startIndex;
