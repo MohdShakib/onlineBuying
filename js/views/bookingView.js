@@ -45,10 +45,10 @@ var BookingView = (function() {
             }
         },
         startAnimation: function() {
-            $('#payment-screen').fadeIn(500);
+            $('#payment-screen').fadeIn(900);
         },
         endAnimation: function() {
-            $('#payment-screen').fadeOut(500);
+            $('#payment-screen').fadeOut(800);
         },
         buildSkeleton: function(containerList) {
             var key, mainContainerHtml = '';

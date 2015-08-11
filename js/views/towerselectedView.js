@@ -11,7 +11,7 @@ var TowerselectedView = (function() {
         'towerImgContainer': '<div class="img-container opacity-control transition-left ' + config.dynamicResizeClass + '" id="img-container" style="display:none;"></div>',
         'towerSvgContainer': '<svg class="svg-container opacity-control transition-left ' + config.dynamicResizeClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'towerDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>',
-        'towerRotationContainer': '<div class="tower-rotation-container ' + config.slowTransitionClass + '" id="' + config.towerRotationContainerId + '"></div>',
+        'towerRotationContainer': '<div class="tower-rotation-container" id="' + config.towerRotationContainerId + '" style="display:none;"></div>',
         'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>',
         'carAnimation': '<svg class="car-animation transition-left ' + config.dynamicResizeClass + '" id="car-animation" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'
     };
@@ -104,12 +104,18 @@ var TowerselectedView = (function() {
 
             // Images
             $('.opacity-control').fadeIn(500);
+            
             // Connect tabs
             setTimeout(function() {
                 $('.pro-contact-actions ul.conect-tab').css({
                     bottom: '0px'
                 });
             }, 700);
+
+            // Rotation buttons
+            setTimeout(function() {
+                $('.tower-rotation-container').fadeIn(500);
+            }, 1000);
 
             utils.showNotificationTooltip('Click on unit spot & view its plan');
         },
@@ -123,8 +129,10 @@ var TowerselectedView = (function() {
             // Images
             if (fromUnitInfoView) {
                 $('.opacity-control').show();
+                $('.tower-rotation-container').show();
             } else {
                 $('.opacity-control').stop().fadeIn(500);
+                $('.tower-rotation-container').fadeIn(500);
             }
 
             // Connect tabs
@@ -332,11 +340,12 @@ var TowerselectedView = (function() {
                 rootdata = this._model.getRootdata(),
                 imageClass = this._model.getCurrentRotationAngle();
 
+            this._elements.carAnimation.hide(); // Hide Car annimation on rotation
+
             if (config.showTowerRotation) {
 
                 this._elements.towerSvgContainer.hide(); // Hide towerSvgContainer
                 this._elements.towerRotationContainer.hide(); // Hide Rotation buttons
-                this._elements.carAnimation.hide(); // Hide Car annimation on rotation
 
                 $('#rotate-tower-imgs').remove();
                 var imgCode = "<img  id='rotate-tower-imgs'  width='100%' />";

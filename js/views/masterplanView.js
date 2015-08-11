@@ -10,7 +10,7 @@ var MasterplanView = (function() {
     var containerMap = {
         'buildingImgContainer': '<div class="img-container opacity-control ' + config.dynamicResizeClass + '" id="img-container" style="display:none;"></div>',
         'buildingSvgContainer': '<svg class="svg-container ' + config.dynamicResizeClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
-        'buildingMenuContainer': '<div class="tower-menu-container master-page transition" id="tower-menu-container"></div>',
+        'buildingMenuContainer': '<div class="tower-menu-container master-page" id="tower-menu-container"></div>',
         'towerDetailContainer': '<div class="tower-detail-container" id="tower-detail-container"></div>',
         'amenitiesContainer': '<div class="amenities-container ' + config.dynamicResizeClass + '" id="amenities-container"></div>',
         'cloudContainer': '<div class="cloud-container" id="cloud-container"></div>'
@@ -112,9 +112,11 @@ var MasterplanView = (function() {
             // Tower Menu
             setTimeout(function() {
                 $('.tower-menu-container').css({
-                    left: '0px',
                     visibility: 'visible'
                 });
+                $('.tower-menu-container').animate({
+                    left: '0px'
+                }, 500);
             }, 7000);
 
             // Connect tabs

@@ -98,12 +98,13 @@ var UnitplaninfoView = (function() {
                 utils.removeSVGClass(data.unitIdentifier + "-selected-path", config.hideClass);
 
                 // hide notification tool tip
-                $('.' + config.notificationTooltipClass).css('top', '-100px');
+                $('.' + config.notificationTooltipClass).hide();
             }
         },
         destroyView: function() {
             utils.dynamicResizeContainers(window.innerWidth);
-            $('#' + config.towerRotationContainerId).css('width', window.innerWidth + config.imageResolution.unit);
+            var width = window.innerWidth > config.imageResolution.width ? config.imageResolution.width : window.innerWidth;
+            $('#' + config.towerRotationContainerId).css('width', width + config.imageResolution.unit);
             $('#' + config.selectedUnitContainerId).animate({
                 right: '-67%'
             }, 900);
@@ -116,6 +117,10 @@ var UnitplaninfoView = (function() {
             // hide selected unit
             var svgElements = $('.' + config.towerUnitSvgSelectedClass);
             utils.addSVGClassToElements(svgElements, config.hideClass);
+
+            // show notification tool tip
+            $('.' + config.notificationTooltipClass).css('top', '-100px');
+            $('.' + config.notificationTooltipClass).show();
         },
         dynamicResizeContainers: function() {
             var parentContainerHeight = (window.innerHeight > config.imageResolution.height ? config.imageResolution.height : window.innerHeight),
