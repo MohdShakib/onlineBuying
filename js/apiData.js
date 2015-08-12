@@ -2,7 +2,8 @@
 var getProjectData = (function() {
 
     var zipPath = 'zip-file',
-        zipImagePath = './' + zipPath + '/img/';
+        zipImagePath = './' + zipPath + '/img/',
+        rotationImagePath = './' + zipPath + '/rotate-latest/';
 
     function processCsvDataToArray(allText) {
         var allTextLines = allText.split(/\r\n|\n/);
@@ -83,6 +84,65 @@ var getProjectData = (function() {
                         tower.rotationAngle[unitInfo.rotationAngle].listing[unitIdentifier] = unitInfo;
                     }
                     delete unitInfo.towerImageName;
+
+                    // adding tower rotation intermediate images
+                    var rotationImages = {
+                        5: 'A_0031.jpg',
+                        10: 'A_0032.jpg',
+                        15: 'A_0033.jpg',
+                        20: 'A_0034.jpg',
+                        25: 'A_0035.jpg',
+                        30: 'A_0036.jpg',
+                        35: 'A_0037.jpg',
+                        40: 'A_0038.jpg',
+                        45: 'A_0039.jpg',
+                        50: 'A_0040.jpg',
+                        55: 'A_0041.jpg',
+                        60: 'A_0042.jpg',
+                        65: 'A_0043.jpg',
+                        70: 'A_0044.jpg',
+                        75: 'A_0045.jpg',
+                        80: 'A_0046.jpg',
+                        85: 'A_0047.jpg',
+                        90: 'A_0048.jpg',
+                        95: 'A_0000.jpg',
+                        100: 'A_0001.jpg',
+                        105: 'A_0002.jpg',
+                        110: 'A_0003.jpg',
+                        115: 'A_0004.jpg',
+                        
+                        185: 'A_0005.jpg',
+                        190: 'A_0006.jpg',
+                        195: 'A_0007.jpg',
+                        200: 'A_0008.jpg',
+                        205: 'A_0009.jpg',
+                        210: 'A_0010.jpg',
+                        215: 'A_0011.jpg',
+                        220: 'A_0012.jpg',
+                        225: 'A_0013.jpg',
+                        230: 'A_0014.jpg',
+                        235: 'A_0015.jpg',
+                        240: 'A_0016.jpg',
+                        245: 'A_0017.jpg',
+                        250: 'A_0018.jpg',
+                        255: 'A_0019.jpg',
+                        260: 'A_0020.jpg',
+                        265: 'A_0021.jpg',
+                        270: 'A_0022.jpg',
+                        275: 'A_0023.jpg',
+                        280: 'A_0024.jpg',
+                        285: 'A_0025.jpg',
+                        290: 'A_0026.jpg',
+                        295: 'A_0027.jpg',
+                        300: 'A_0028.jpg',
+                        305: 'A_0029.jpg',
+                        310: 'A_0030.jpg'
+                    };
+                    for (var j in rotationImages) {
+                        tower.rotationAngle[j] = {};
+                        tower.rotationAngle[j].towerImageUrl = rotationImagePath + rotationImages[j];
+                    }
+
                 }
             }
         }
@@ -281,26 +341,26 @@ var getProjectData = (function() {
         projectData.builderName = projectDetail.builder.name;
         projectData.address = projectDetail.address;
         projectData.bgImage = zipImagePath + config.backgroundImage;
-        projectData.description = "With 22 years of experience, 17 successfully completed projects and 14 under construction projects, Paradise Sai has become a reputed name in the industry. Paradise Sai has introduced its new project 'World City' in Panvel, Navi&nbsp; Mumbai. World City is set amidst lush green surroundings and offers 2 and 3 BHK apartments. The apartments will cost you between 75.9 lakh and 1.19 crore.&nbsp; There are 777 units on offer with their sizes ranging between 1,245 and 1,955 sq. ft. Amenities such as jogging track, swimming pool, club house, children&rsquo;s play area, power backup and round the clock security are provided. Situated at a prime location, World City gives easy access to major landmarks in and around the area.";//projectDetail.description;
+        projectData.description = "With 22 years of experience, 17 successfully completed projects and 14 under construction projects, Paradise Sai has become a reputed name in the industry. Paradise Sai has introduced its new project 'World City' in Panvel, Navi&nbsp; Mumbai. World City is set amidst lush green surroundings and offers 2 and 3 BHK apartments. The apartments will cost you between 75.9 lakh and 1.19 crore.&nbsp; There are 777 units on offer with their sizes ranging between 1,245 and 1,955 sq. ft. Amenities such as jogging track, swimming pool, club house, children&rsquo;s play area, power backup and round the clock security are provided. Situated at a prime location, World City gives easy access to major landmarks in and around the area."; //projectDetail.description;
 
         // Project Ameneties
         projectData.projectAmeneties = {};
         for (var i in projectDetail.projectAmenities) {
             var projectAmenity = projectDetail.projectAmenities[i],
                 amenity = {};
-                amenity.displayName = projectAmenity.amenityDisplayName;
-                amenity.name = projectAmenity.amenityMaster.amenityName;
-                amenity.abbreviation = projectAmenity.amenityMaster.abbreviation;
-                amenity.isVerified = projectAmenity.verified;
+            amenity.displayName = projectAmenity.amenityDisplayName;
+            amenity.name = projectAmenity.amenityMaster.amenityName;
+            amenity.abbreviation = projectAmenity.amenityMaster.abbreviation;
+            amenity.isVerified = projectAmenity.verified;
             projectData.projectAmeneties[projectAmenity.amenityMaster.abbreviation] = amenity;
         }
 
         // Payment plan image
-        for(i in projectDetail.images) {
-            if(projectDetail.images[i].imageType.type == 'paymentPlan') {
+        for (i in projectDetail.images) {
+            if (projectDetail.images[i].imageType.type == 'paymentPlan') {
                 projectData.paymentPlanImage = projectDetail.images[i].absolutePath;
             }
-            if(projectDetail.images[i].imageType.type == 'main') {
+            if (projectDetail.images[i].imageType.type == 'main') {
                 projectData.mainImage = projectDetail.images[i].absolutePath;
             }
         }
@@ -356,7 +416,7 @@ var getProjectData = (function() {
             flatUnit.discountDescription = listing.discountDescription;
 
             var propertyDetail = _getPropertyById(projectDetail.properties, listing.propertyId);
-            
+
             // Walkthrough video
             flatUnit.walkthrough = {};
             for (var i in propertyDetail.video) {
@@ -371,7 +431,7 @@ var getProjectData = (function() {
                 flatUnit.walkthrough.video = "http://d1vh6m45iog96e.cloudfront.net/4/2/5000168/106/2/supertech-capetown-floor-plan-2bhk-2t-930-sq-ft-5000168.mp4";
                 flatUnit.walkthrough.image = "https://im.proptiger.com/4/2/5000168/106/2/supertech-capetown-floor-plan-2bhk-2t-930-sq-ft-5000168.jpg";
             }
-            
+
             flatUnit.bedrooms = propertyDetail.bedrooms;
             flatUnit.size = propertyDetail.size ? propertyDetail.size : 0;
             flatUnit.measure = propertyDetail.measure;
@@ -451,7 +511,7 @@ var getProjectData = (function() {
 
             }
         }
-           
+
         for (var towerIdentifier in projectData.towers) {
             tower = projectData.towers[towerIdentifier];
             var isAvailable = false,
