@@ -367,8 +367,11 @@ var getProjectData = (function() {
         // Media
         for (i in projectDetail.media) {
             if (projectDetail.media[i].objectMediaType.type == 'ListingOnlineSale') {
-                projectData.assetsUrl = projectDetail.media[i].absolutePath;
-                if (config.loadDynamicAssets) {
+                var url = projectDetail.media[i].absoluteUrl;
+                if (url) {
+                    projectData.assetsUrl = url.substr(0, url.lastIndexOf('/') + 1);
+                }
+                if (config.loadDynamicAssets && projectData.assetsUrl) {
                     zipPath = projectData.assetsUrl;
                     zipImagePath = zipPath + 'img/';
                 }
