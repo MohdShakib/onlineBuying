@@ -1058,8 +1058,8 @@ ellipse.tower-unit-svg-selected-path {
 	width:100%;
 }
 .unit-content-wrapper .base-table{ padding:0 20px 0 180px;}
-.payment-pic{ padding:10px 20px 0 200px; text-align:center;}
-.payment-pic img{ width:100%; display:inline-block;}
+.payment-pic{ padding:10px 20px 0 200px; text-align:left;}
+.payment-pic img{ display:inline-block;}
 .specification-tabs,.pricebreakup-tabs{
 	top:120px;
 	position:absolute; 
