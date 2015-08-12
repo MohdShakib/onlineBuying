@@ -3,9 +3,10 @@ var config = (function() {
     var config = {
 
         // Variables
-        mockProjectData: true,
+        mockProjectData: false,
         showLogs: true,
         showCarAnimation: true,
+        loadDynamicAssets: false,
         showTowerRotation: true,
         towerRotationSpeed: 100, // delay between 2 consecutive frames in miliseconds
         towerMenuItemHeight: 44,

@@ -1,9 +1,8 @@
 "use strict";
 var getProjectData = (function() {
 
-    var zipPath = 'zip-file',
-        zipImagePath = './' + zipPath + '/img/',
-        rotationImagePath = './' + zipPath + '/rotate-latest/';
+    var zipPath = './zip-file/',
+        zipImagePath = zipPath + 'img/';
 
     function processCsvDataToArray(allText) {
         var allTextLines = allText.split(/\r\n|\n/);
@@ -140,7 +139,7 @@ var getProjectData = (function() {
                     };
                     for (var j in rotationImages) {
                         tower.rotationAngle[j] = {};
-                        tower.rotationAngle[j].towerImageUrl = rotationImagePath + rotationImages[j];
+                        tower.rotationAngle[j].towerImageUrl = zipImagePath + rotationImages[j];
                     }
 
                 }
@@ -256,26 +255,26 @@ var getProjectData = (function() {
     }
 
     function parseAllCSVData() {
-        utils.getSvgData(zipPath + '/' + config.csv.masterplanScreen).success(function(data) {
+        utils.getSvgData(zipPath + config.csv.masterplanScreen).success(function(data) {
             var towers = processCsvDataToObject(data, 'towerName');
             if (towers && projectData.towers && Object.keys(projectData.towers).length && Object.keys(towers).length) {
                 useTowersCSVData(towers);
             }
         });
 
-        utils.getSvgData(zipPath + '/' + config.csv.amenitiesHotspots).success(function(data) {
+        utils.getSvgData(zipPath + config.csv.amenitiesHotspots).success(function(data) {
             var amenities = processCsvDataToObject(data, 'amenityName');
             if (amenities && Object.keys(amenities).length) {
                 useAmenitiesCSVData(amenities);
             }
         });
 
-        utils.getSvgData(zipPath + '/' + config.csv.towerselectScreen).success(function(data) {
+        utils.getSvgData(zipPath + config.csv.towerselectScreen).success(function(data) {
             var listing = processCsvDataToArray(data);
             useTowerUnitsCSVData(listing);
         });
 
-        utils.getSvgData(zipPath + '/' + config.csv.unitplanInfo).success(function(data) {
+        utils.getSvgData(zipPath + config.csv.unitplanInfo).success(function(data) {
             var data = processCsvDataToObject(data, 'unitName');
             useUnitplanInfoCSVData(data);
         });
@@ -362,6 +361,17 @@ var getProjectData = (function() {
             }
             if (projectDetail.images[i].imageType.type == 'main') {
                 projectData.mainImage = projectDetail.images[i].absolutePath;
+            }
+        }
+
+        // Media
+        for (i in projectDetail.media) {
+            if (projectDetail.media[i].objectMediaType.type == 'ListingOnlineSale') {
+                projectData.assetsUrl = projectDetail.media[i].absolutePath;
+                if (config.loadDynamicAssets) {
+                    zipPath = projectData.assetsUrl;
+                    zipImagePath = zipPath + 'img/';
+                }
             }
         }
 

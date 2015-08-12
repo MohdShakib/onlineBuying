@@ -612,6 +612,9 @@ ellipse.tower-unit-svg-selected-path {
 	height: 44px;
 	width: 44px;
 }
+.tower-menu-container .menu-items .menu-item-container-td .apt-unavailable {
+	cursor: default !important;
+}
 .tower-menu-container .menu-item {
 	position: absolute;
 	line-height: 44px;
