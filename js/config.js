@@ -2,16 +2,18 @@ var config = (function() {
 
     var config = {
 
-        // Variables
-        mockProjectData: true,
+        // Flags
         showLogs: true,
-        showCarAnimation: true,
+        mockProjectData: true,
+        showCarAnimation: false,
         loadDynamicAssets: false,
         showTowerRotation: true,
+        enablePayment: false,
+
+        // Variables
         towerRotationSpeed: 100, // delay between 2 consecutive frames in miliseconds
         towerMenuItemHeight: 44,
         maxShortlistCount: 6,
-        enablePayment: false,
 
         // Data
         backgroundImage: 'masterplan.jpg',
