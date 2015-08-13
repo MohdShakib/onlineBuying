@@ -396,13 +396,9 @@ ellipse {
 	stroke: rgba(255,255,255,0.8);
 	stroke-width: 0.1;
 	fill-opacity: 0.8;
-	animation: scale 0.5s ease-in-out alternate;
-	-moz-animation: scale 0.5s ease-in-out alternate;
-	-webkit-animation: scale 0.5s ease-in-out alternate;
-    transform-origin: center;
-	-moz-transform-origin: center;
-	-webkit-transform-origin: center;
-	
+	animation: list-in 0.5s ease-in-out alternate;
+	-moz-animation: list-in 0.5s ease-in-out alternate;
+	-webkit-animation: list-in 0.5s ease-in-out alternate;	
 }
 ellipse.apt-available {
 	fill: limegreen;
