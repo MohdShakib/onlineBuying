@@ -62,9 +62,12 @@ var BookingView = (function() {
         },
         paymentScreen: function(data, rotationdata, rootdata) {
             var url = rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier;
-            var offerDiv = '';
+            var offerDiv = '', disableClass = '';
             if (data.discount) {
                 offerDiv = '<div class="special-offers">' + '<span></span>' + '<p>Save <strong><label       class="icon fs14 icon-rupee"></label>' + utils.getReadablePrice(data.discount) + '</strong> ' + data.discountDescription + '</p>' + '</div>';
+            }
+            if (!config.enablePayment) {
+                disableClass = 'disabled';
             }
             var code = '<div class="payment-container">' +
                 '        <div class="title-text">' +
@@ -172,7 +175,7 @@ var BookingView = (function() {
                 '                <label for="terms">I have read &amp; agree to <a id="tnc">Terms &amp; Conditions</a></label>' +
                 '                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '            </div>' +
-                '            <a class="fleft transition make-payment">Continue to Payment</a>' +
+                '            <a class="fleft transition make-payment ' + disableClass + '">Continue to Payment</a>' +
                 '            <div class="clear-fix"></div>' +
                 '        </div>' +
                 '        </div>' +

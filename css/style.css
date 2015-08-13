@@ -281,6 +281,10 @@ body {
 	max-width: 1365px;
 	max-height: 630px;
 }
+.disabled {
+	opacity: 0.5 !important;
+    cursor: default !important;
+}
 header {
 	position: absolute;
 	color: #CCC;
