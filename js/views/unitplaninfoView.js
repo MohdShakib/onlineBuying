@@ -178,18 +178,6 @@ var UnitplaninfoView = (function() {
                 _this._bookingClick.notify(this); //this refers to element
             });
         },
-        showShortlistText: function() {
-            var _this = this;
-            $('.like-box a p.click-txt').stop().hide();
-            $('.like-box a p.shortlisted').stop().fadeIn(500);
-            setTimeout(function() {
-                _this.hideShortlistText();
-            }, 3000);
-        },
-        hideShortlistText: function() {
-            $('.like-box a p.shortlisted').stop().hide();
-            $('.like-box a p.click-txt').stop().show();
-        },
         unitCloseContainer: function(data, rotationdata, rootdata) {
             var code = '<span class="icon icon-cross fs20"></span>';
             this._elements.unitCloseContainer.html(code);
@@ -211,7 +199,7 @@ var UnitplaninfoView = (function() {
                 "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
                 ", <span>" + data.size + " " + data.measure + "</span> " +
                 ", <span>Floor " + data.floor + "</span> " +
-                "<span class='fright big-size'><span class='icon icon-rupee fs16'></span> " + utils.getReadablePriceInWord(data.price - data.discount) + "* </span>" +
+                "<span class='fright big-size'><span class='icon icon-rupee fs16'></span> " + utils.getReadablePriceInWord(data.price - data.discount) + "</span>" +
                 "<span class='total-amount fright'><span class='icon icon-rupee'></span>" + utils.getReadablePriceInWord(data.price) + "</span></div>" +
                 "<div class='uit-header-menu'><div data-target='fp-container' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'><span class='icon icon-unitplan fs18'></span></div>Unit Plan</div>" +
                 "<div data-target='cp-container' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon icon-clusterplan fs18'></span></div>Floor Plan</div>" +

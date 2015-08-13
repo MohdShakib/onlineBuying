@@ -860,6 +860,7 @@ ellipse.tower-unit-svg-selected-path {
 .like-box a p.shortlisted {font-weight: bold;}
 .like-box.selected a p:before{ content:'Click to Remove'}
 .like-box a p.shortlisted:before{ content:'Added to Shortlist'}
+.like-box a p.shortlisted.max:before{ content:'Max shortlist reached'}
 .book-now{ position:absolute; left:50%; width:182px; text-align:center; margin-left:-91px; bottom:20px;z-index:999999;}
 .book-now a{ color:#fff; padding:11px; display:inline-block; font-size:16px; text-transform:uppercase; font-weight:bold; width:160px; font-weight:bold; background:#f18d18; border-radius:3px; cursor:pointer;}
 .compare-units-container .book-now{ right:20px; left:inherit; margin:0; bottom:10px;}

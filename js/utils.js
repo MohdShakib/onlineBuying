@@ -295,10 +295,34 @@ var utils = (function() {
             if ($(element).hasClass('selected')) {
                 $(element).removeClass('selected');
                 utils.removeFromShortListed(unitIdentifier, unitUniqueIdentifier);
+                this.hideShortlistText();
             } else {
-                $(element).addClass('selected');
-                utils.addToShortListed(unitIdentifier, unitName, towerIdentifier, rotationAngle, unitUniqueIdentifier);
+                var comparedItems = utils.getComparedItems('shortlistedItems');
+                if (Object.keys(comparedItems).length < config.maxShortlistCount) {
+                    $(element).addClass('selected');
+                    utils.addToShortListed(unitIdentifier, unitName, towerIdentifier, rotationAngle, unitUniqueIdentifier);
+                    this.showShortlistText(false);
+                } else {
+                    utils.log("Max shortlist count reached.");
+                    this.showShortlistText(true);
+                }
             }
+        },
+        showShortlistText: function(isMaxReached) {
+            var _this = this;
+            $('.like-box a p.click-txt').stop().hide();
+            if (isMaxReached) {
+                $('.like-box a p.shortlisted').addClass('max');
+            }
+            $('.like-box a p.shortlisted').stop().fadeIn(500);
+            setTimeout(function() {
+                _this.hideShortlistText();
+            }, 3000);
+        },
+        hideShortlistText: function() {
+            $('.like-box a p.shortlisted').stop().hide();
+            $('.like-box a p.click-txt').stop().show();
+            $('.like-box a p.shortlisted').removeClass('max');
         },
         removeFromShortListed: function(unitIdentifier, unitUniqueIdentifier) {
             var comparedItems = utils.getComparedItems('shortlistedItems'),

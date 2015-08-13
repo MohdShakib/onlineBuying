@@ -53,11 +53,6 @@ var UnitplaninfoController = (function() {
             this._view._likeBoxClick.attach(function(sender, element){
                 var data = _this._model.getRotationdata();
                 utils.likeBoxClicked(element, data.unitIdentifier, data.unitName, data.towerIdentifier, data.rotationAngle, data.unitUniqueIdentifier);
-                if ($(element).hasClass(config.selectedClass)) {
-                    _this._view.showShortlistText();
-                } else {
-                    _this._view.hideShortlistText();
-                }
             });
 
             // Booking Event

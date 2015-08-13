@@ -81,7 +81,7 @@ var ajaxUtils = (function() {
             req.payloadMap = data;
 
             console.log(req);
-            var url = 'http://192.168.0.208:5000/email-notification';
+            var url = 'https://beta.proptiger-ws.com/email-notification';
             this.ajax(url, params, 'POST', true, JSON.stringify(req));
         },
 
