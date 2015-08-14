@@ -136,6 +136,7 @@ var config = (function() {
         unitSlideInClass: 'unit-slide-in',
         blinkElementClass: 'blink',
         totalAmountClass: 'total-sum',
+        subTotalAmountClass: 'sub-total-sum',
         optionalPriceClass: 'optional-price',
 
         // Booking

@@ -500,7 +500,7 @@ var utils = (function() {
                     code += "<tr><td colspan=2 class='other-options'>Other optional costs</td></tr>" + opCode;
                 }
 
-                code += "<tr><td class='sub-total-price'>Sub Total</td><td class='sub-total-price right-align'>" + data.formattedPrice + "</td></tr>";
+                code += "<tr><td class='sub-total-price'>Sub Total</td><td class='sub-total-price " + config.subTotalAmountClass + " right-align'>" + utils.getReadablePrice(data.price) + "</td></tr>";
                 if (data.discount && data.discount > 0) {
                     code += "<tr><td class='discount-price'>Discount <span>(" + data.discountDescription + ")</span> </td><td class='discount-price right-align'>" + utils.getReadablePrice(data.discount) + "</td></tr>";
                     code += "<tr><td class='total-price'>Total Price</td><td class='total-price right-align' width='100px'><span class='icon fs14 icon-rupee'></span> <label class='" + config.totalAmountClass + "'>" + utils.getReadablePrice(data.price - data.discount) + "</label></td></tr>";
@@ -516,7 +516,7 @@ var utils = (function() {
             return code;
         },
         updateTotalPrice: function(data) {
-            var amount = data.price - data.discount,
+            var amount = data.price,
                 optionalPrices = $('.' + config.optionalPriceClass);
 
             for (var i = 0; i < optionalPrices.length; i++) {
@@ -525,7 +525,9 @@ var utils = (function() {
                     amount += parseInt(checkbox.val(), 10);
                 }
             }
-            $('.' + config.totalAmountClass).html(utils.getReadablePrice(amount));
+
+            $('.' + config.totalAmountClass).html(utils.getReadablePrice(amount - data.discount));
+            $('.' + config.subTotalAmountClass).html(utils.getReadablePrice(amount));
         },
         makeSVG: function(tag, attrs) {
             var el = document.createElementNS('http://www.w3.org/2000/svg', tag);
