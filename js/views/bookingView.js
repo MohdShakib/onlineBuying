@@ -201,7 +201,7 @@ var BookingView = (function() {
             params.self.countryDropdownEvents();
         },
         countryDropdownEvents: function() {
-            $('.' + config.nationalityDropdownClass).off('click').on('click', '.country-list-item', function() {
+            $('.' + config.nationalityDropdownClass).off('click').on('click', '.country-list-item', function(event) {
                 event.stopPropagation();
                 var countryName = $(this).find('a').text();
                 var countryCode = $(this).data('countrycode');
