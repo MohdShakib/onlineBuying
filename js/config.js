@@ -7,7 +7,7 @@ var config = (function() {
         mockProjectData: false,
         showCarAnimation: false,
         loadDynamicAssets: false,
-        showTowerRotation: true,
+        showTowerRotation: false,
         enablePayment: false,
 
         // Variables

@@ -7,7 +7,7 @@ var ajaxUtils = (function() {
             var completeCallback = typeof(params.completeCallback) === 'function' ? params.completeCallback : null;
 
             var ajaxObj = {
-                method: type,
+                type: type,
                 url: url,
                 async: async,
                 success: function(response) {
@@ -81,8 +81,8 @@ var ajaxUtils = (function() {
             req.payloadMap = data;
 
             console.log(req);
-            var url = 'https://beta.proptiger-ws.com/email-notification';
-            this.ajax(url, params, 'POST', true, JSON.stringify(req));
+            var url = '/email-notification';
+            this.ajax(url, params, 'POST', true, req);
         },
 
         getCountries: function(params) {

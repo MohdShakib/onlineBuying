@@ -110,7 +110,7 @@ var BookingView = (function() {
                 '        <div class="payment-right">' +
                 '            <div id="booking-user-details" class="payment-right-container">' +
                 '            <h3>Nice Selection!</h3>' +
-                '            <p>Now Make a tokan payment of <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- to book your choice.</p>' +
+                '            <p>Now, make a token payment of <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- to book your choice.</p>' +
                 '            <div class="personal-detail-box">' +
                 '                <table cellpadding="0" cellspacing="0" width="100%">' +
                 '                    <tr>' +
@@ -162,7 +162,7 @@ var BookingView = (function() {
                 '                        </td>' +
                 '                        <td width="50%">' +
                 '                            <div id="booking-nationality" class="input-box transition no-paddind  ' + config.bookingSelectionDivClass + '">' +
-                '                                <a class="nationalty-link selectedCountry" data-countrycode="0">Nationality<span class="icon fs18 icon-next transition"></span></a>' +
+                '                                <a class="nationalty-link selectedCountry" data-countrycode="0">Country<span class="icon fs18 icon-next transition"></span></a>' +
                 '                                <ul class="' + config.nationalityDropdownClass + ' transition ' + config.bookingDropdownClass + '" style="display:none;">' +
                 '                                </ul>' +
                 '                            </div>' +
