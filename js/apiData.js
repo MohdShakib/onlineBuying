@@ -155,9 +155,9 @@ var getProjectData = (function() {
                     projectData.towers[towerIdentifier].displayOrder = towers[towerName].displayOrder ? parseInt(towers[towerName].displayOrder, 10) : 0;
                     projectData.towers[towerIdentifier].hoverImageUrl = zipImagePath + towers[towerName].hoverImageName;
                     projectData.towers[towerIdentifier].towerHoverSvg = towers[towerName].towerHoverSvg;
+                    projectData.towers[towerIdentifier].towerTooltipSvg = towers[towerName].towerTooltipSvg;
                 }
             }
-
         }
     }
 

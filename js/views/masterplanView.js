@@ -330,10 +330,13 @@ var MasterplanView = (function() {
             $('img.' + config.imgContainerClass).not(targetImage).stop().fadeTo("500", 0.3, function() {});
             $('.' + config.amenityContainerClass).addClass(config.amenityNotOnTopClass);
 
-            if (towerData && svgpath) {
+            if (towerData && towerData.towerTooltipSvg && config.useSpecifiedTowerTooltipSvg) {
+                var point = towerData.towerTooltipSvg.split(' ');
+                this.showTowerDetailContainer(towerData, point[0], point[1], '%');
+            } else if (towerData && svgpath) {
                 var svgpathClient = svgpath.getBoundingClientRect();
                 var diff = (window.innerWidth > config.imageResolution.width) ? (window.innerWidth - config.imageResolution.width) / 2 : 0;
-                this.showTowerDetailContainer(towerData, (svgpathClient.left - diff + svgpathClient.width / 2), svgpathClient.top);
+                this.showTowerDetailContainer(towerData, (svgpathClient.left - diff + svgpathClient.width / 2), svgpathClient.top + 30, 'px');
             }
 
             var menuElement = $('#' + index + '-menu');
@@ -350,7 +353,7 @@ var MasterplanView = (function() {
 
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
         },
-        showTowerDetailContainer: function(data, left, top) {
+        showTowerDetailContainer: function(data, left, top, unit) {
             if (!(data && data.unitInfo)) {
                 return;
             }
@@ -393,8 +396,8 @@ var MasterplanView = (function() {
 
             if (this._elements && this._elements.towerDetailContainer) {
                 this._elements.towerDetailContainer.html(towerCode);
-                $('#container-detail').css("left", left + 'px');
-                $('#container-detail').css("top", (top + 30) + 'px');
+                $('#container-detail').css("left", left + unit);
+                $('#container-detail').css("top", top + unit);
             }
 
             // animate
