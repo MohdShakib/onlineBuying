@@ -6,7 +6,7 @@ var config = (function() {
         showLogs: true,
         mockProjectData: false,
         showCarAnimation: false,
-        loadDynamicAssets: false,
+        loadDynamicAssets: true,
         showTowerRotation: false,
         enablePayment: false,
         useSpecifiedTowerTooltipSvg: false,
