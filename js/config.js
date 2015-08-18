@@ -9,7 +9,7 @@ var config = (function() {
         loadDynamicAssets: false,
         showTowerRotation: false,
         enablePayment: false,
-        useSpecifiedTowerTooltipSvg: false,
+        useSpecifiedTowerTooltipSvg: true,
 
         // Variables
         towerRotationSpeed: 100, // delay between 2 consecutive frames in miliseconds
