@@ -152,7 +152,8 @@ var initializeRoutes = (function() {
                 }
             },
             notfound: function() {
-                console.log('Route not found');
+                utils.log('Route not found');
+                router.setRoute(errorRoute);
             },
             before: function(projectName, projectId, towerName, towerAngle, unitAddress) {
 
@@ -182,7 +183,7 @@ var initializeRoutes = (function() {
                 }
 
                 if (!flag) {
-                    //console.log('data not available for the url');
+                    utils.log('data not available for the url');
                     router.setRoute(errorRoute);
                 }
 
