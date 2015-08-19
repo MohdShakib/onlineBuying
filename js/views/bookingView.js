@@ -95,8 +95,8 @@ var BookingView = (function() {
                 '            </div>' +
                 '            <div class="clear-fix"></div>' +
                 '                    <p class="fleft width-100">' +
-                '                        <span class="fleft">Total Price</span><span class="fleft"> [</span> <span class="icon icon-rupee_final fleft fs18"></span> <span class="fleft">]</span>' +
-                '                        <span class="fright"><span class="icon icon-rupee_final fleft fs18"></span>' + utils.getReadablePriceInWord(data.price - data.discount) + '* </span>' +
+                '                        <span class="fleft">Total Price</span>' +
+                '                        <span class="fright"><span class="icon icon-rupee_final fleft fs18"></span>' + utils.getReadablePriceInWord(data.price - data.discount) + ' </span>' +
                 '                        <span class="fright line-through"><span class="icon icon-rupee_final fleft fs18"></span>' + utils.getReadablePriceInWord(data.price) + '</span>' +
                 '                    </p>' +
                 '            </div>' +

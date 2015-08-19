@@ -75,9 +75,9 @@ var utils = (function() {
         },
         getReadablePriceInWord: function(price) {
             if (price / 10000000 > 1) {
-                return Math.floor(price / 1000000) / 10 + " Cr";
+                return Math.floor(price / 1000000) / 10 + " Crores";
             } else if (price / 100000 > 1) {
-                return Math.floor(price / 10000) / 10 + " L";
+                return Math.floor(price / 10000) / 10 + " Lacs";
             } else if (price / 1000) {
                 return Math.floor(price / 100) / 10 + " K";
             } else {
