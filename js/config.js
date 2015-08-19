@@ -4,7 +4,7 @@ var config = (function() {
 
         // Flags
         showLogs: true,
-        mockProjectData: false,
+        mockProjectData: true,
         showCarAnimation: false,
         loadDynamicAssets: false,
         showTowerRotation: false,
