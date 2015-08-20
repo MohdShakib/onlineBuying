@@ -454,7 +454,7 @@ var utils = (function() {
                 '<p>All details provided about the project is based on information provided by ' + rootdata.builderName + ' to Proptiger.com. Proptiger.com is not liable for the changes in facts post buying.</p>' +
                 '<p>Only Indian Residents, Non-Resident Indians (NRIs), Overseas Citizens of India (OCIs) &amp; Persons of Indian Origin (PIOs) who are eligible to enter into contract as per Indian Contract Act, 1881 shall be eligible to apply.</p>' +
                 '<p>Payment plan and Prices are subject to change at the sole discretion of the builder. Images displayed are for representational purpose only. Floor plan and the layout dimensions are subject to modification.</p>' +
-                '<p>The booking amount of Rs. ' + data.bookingAmount + '/- paid by the user for booking is only a token advance and it does not confer ownership rights in the chosen property. The booking only ensures blocking of the property temporarily and should not be considered as buying or owning the property.</p>' +
+                '<p>The booking amount of <span class="icon icon-rupee fs10"></span> ' + data.bookingAmount + '/- paid by the user for booking is only a token advance and it does not confer ownership rights in the chosen property. The booking only ensures blocking of the property temporarily and should not be considered as buying or owning the property.</p>' +
                 '<p>Modification or Cancellation of the booking is allowed within the 7 days after booking. Any cancellation charges will not be applied in this period. For cancellation or modifications please contact <a href="https://www.proptiger.com/" target="_blank">Proptiger.com</a> customer care at +919278892788.</p>' +
                 '<p>Any request for customisation or changes are to be handled directly with ' + rootdata.builderName + ' builders.</p>' +
                 '<p>Updates regarding the project completion etc shall be provided by the builder post booking of the flat.</p>' +
@@ -541,7 +541,7 @@ var utils = (function() {
             $('.show-loading').show();
             var percentCounter = 0,
                 count = 0,
-                arrayOfImageUrls = $('img').not($('.' + config.lazyloadClass));
+                arrayOfImageUrls = $('img');
             $.each(arrayOfImageUrls, function(index, value) {
                 $('<img>').attr('src', value.src) //load image
                     .load(function() {
@@ -578,40 +578,40 @@ var utils = (function() {
                 }, 8000);
             });
         },
-		//fly to shortlist starts here
-		flyToShortlist : function(element){
-			var cart = $('#heart-added');
-			var imgtodrag = $(element).find('.heart-clone');
-			if (imgtodrag) {
-				var imgclone = imgtodrag.clone()
-					.offset({
-					top: imgtodrag.offset().top,
-					left: imgtodrag.offset().left
-				})
-					.css({
-					'opacity': '0.8',
-						'position': 'absolute',
-						'color' : '#f18d18',
-						'font-size': '50px',
-						'z-index': '999999'
-				})
-					.appendTo($('body'))
-					.animate({
-					'top': cart.offset().top + 10,
-						'left': cart.offset().left + 10,
-						'font-size': '25px',
-						'color' : '#f18d18'
-				}, 1500, 'easeInOutQuint');
-				
-				imgclone.animate({
-					'opacity': '0',
-					'font-size': '14px'
-				}, function () {
-					$(this).detach();
-				});
-			}		
-		},
-		//fly to shortlist ends here
+        //fly to shortlist starts here
+        flyToShortlist: function(element) {
+            var cart = $('#heart-added');
+            var imgtodrag = $(element).find('.heart-clone');
+            if (imgtodrag) {
+                var imgclone = imgtodrag.clone()
+                    .offset({
+                        top: imgtodrag.offset().top,
+                        left: imgtodrag.offset().left
+                    })
+                    .css({
+                        'opacity': '0.8',
+                        'position': 'absolute',
+                        'color': '#f18d18',
+                        'font-size': '50px',
+                        'z-index': '999999'
+                    })
+                    .appendTo($('body'))
+                    .animate({
+                        'top': cart.offset().top + 10,
+                        'left': cart.offset().left + 10,
+                        'font-size': '25px',
+                        'color': '#f18d18'
+                    }, 1500, 'easeInOutQuint');
+
+                imgclone.animate({
+                    'opacity': '0',
+                    'font-size': '14px'
+                }, function() {
+                    $(this).detach();
+                });
+            }
+        },
+        //fly to shortlist ends here
         hideNotificationTooltip: function() {
             $('.' + config.notificationTooltipClass).animate({
                 'top': -100
