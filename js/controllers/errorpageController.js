@@ -12,8 +12,8 @@ var ErrorPageController = (function() {
     }
 
     ErrorPageController.prototype = {
-        attachListeners: function(){
-            
+        attachListeners: function() {
+
         },
         generateTemplate: function() {
             this._view.buildView();

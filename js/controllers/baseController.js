@@ -13,22 +13,22 @@ var BaseController = (function() {
     }
 
     BaseController.prototype = {
-        attachListeners: function(){
+        attachListeners: function() {
             var _this = this;
-            this._view._bottomGroupButtonClick.attach(function(sender, element){
+            this._view._bottomGroupButtonClick.attach(function(sender, element) {
                 _this._view.bottomGroupButtonClicked(element);
             });
 
-            this._view._compareBackButtonClick.attach(function(sender, element){
+            this._view._compareBackButtonClick.attach(function(sender, element) {
                 _this._view.compareBackButtonClicked(element);
             });
 
-            this._view._formPopupCloseClick.attach(function(sender, element){
+            this._view._formPopupCloseClick.attach(function(sender, element) {
                 _this._view.formPopupCloseClicked();
             });
 
-            this._view._unitCompareButtonClick.attach(function(sender, element){
-                _this._view.unitCompareButtonClicked(element); 
+            this._view._unitCompareButtonClick.attach(function(sender, element) {
+                _this._view.unitCompareButtonClicked(element);
             });
 
             // Unit Component
@@ -39,7 +39,7 @@ var BaseController = (function() {
                 _this._view.unitComponentMouseLeave();
             });
 
-            this._view._removeShortlistClick.attach(function(sender, data){
+            this._view._removeShortlistClick.attach(function(sender, data) {
                 utils.removeFromShortListed(data.unitIdentifier, data.unitUniqueIdentifier);
             });
 
@@ -47,7 +47,7 @@ var BaseController = (function() {
             this._view._bookingClick.attach(function(sender, element) {
                 utils.changeUrl(element);
             });
-            
+
         },
         generateTemplate: function() {
             this._view.buildView();

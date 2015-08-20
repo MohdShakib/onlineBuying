@@ -22,7 +22,8 @@ var initializeRoutes = (function() {
             bookingRoute = unitRoute + routeRegex.sep + routeRegex.booking,
             errorRoute = routeRegex.sep + routeRegex.error;
 
-        var currentState = null, previousState = null;
+        var currentState = null,
+            previousState = null;
 
         var routes = {},
             rootdata = {};
@@ -45,7 +46,7 @@ var initializeRoutes = (function() {
             }
 
             var fromUnitInfoView = false;
-            if(previousState == 'unitplaninfoView'){
+            if (previousState == 'unitplaninfoView') {
                 fromUnitInfoView = true;
             }
             towerselectedController.generateTemplate(fromUnitInfoView);
@@ -57,7 +58,7 @@ var initializeRoutes = (function() {
                 previousState = currentState;
                 currentState = 'masterplanView';
 
-                if(baseController) {
+                if (baseController) {
                     baseView.reinit();
                 }
                 if (!masterplanModel) {
@@ -75,7 +76,7 @@ var initializeRoutes = (function() {
                 previousState = currentState;
                 currentState = 'towerselectedView';
 
-                if(baseController) {
+                if (baseController) {
                     baseView.reinit();
                 }
                 onTowerselectedRoute(projectName, projectId, towerName);

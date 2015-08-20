@@ -12,10 +12,10 @@ var UnitplaninfoModel = (function() {
         this._rootdata = rootdata;
 
         var comparedItems = utils.getComparedItems();
-        
+
         this._data.shortListed = false;
-        for(var uniqueIdentifier in comparedItems){
-            if(uniqueIdentifier == this._data.unitUniqueIdentifier){
+        for (var uniqueIdentifier in comparedItems) {
+            if (uniqueIdentifier == this._data.unitUniqueIdentifier) {
                 this._data.shortListed = true;
                 break;
             }
@@ -30,7 +30,7 @@ var UnitplaninfoModel = (function() {
             }
             return this._data;
         },
-        getUnitTypeData: function(){
+        getUnitTypeData: function() {
             var unitType = this._rotationdata.unitTypeIdentifier;
             if (!(this._rootdata.unitTypes && this._rootdata.unitTypes[unitType])) {
                 return {};

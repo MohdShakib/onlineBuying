@@ -62,7 +62,8 @@ var BookingView = (function() {
         },
         paymentScreen: function(data, rotationdata, rootdata) {
             var url = rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier;
-            var offerDiv = '', disableClass = '';
+            var offerDiv = '',
+                disableClass = '';
             if (data.discount) {
                 offerDiv = '<div class="special-offers">' + '<span></span>' + '<p>Save <strong><label       class="icon fs14 icon-rupee"></label>' + utils.getReadablePrice(data.discount) + '</strong> ' + data.discountDescription + '</p>' + '</div>';
             }
