@@ -81,7 +81,7 @@ var MasterplanView = (function() {
             document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
         },
-        startAnimation: function() {
+        startAnimation: function(model) {
             // Images
             $('.opacity-control').fadeIn(500);
 
@@ -374,7 +374,7 @@ var MasterplanView = (function() {
                 bookingText = (data.bookingStatus == 'OnHold') ? 'On Hold' : 'Sold Out';
             towerCode += "<div id='container-detail' class='tooltip-detail'>";
             towerCode += "<div class='detail-box show-details'>" + "<div class='tooltip-title'>" + data.towerName.split(' ')[1] + "</div>" + "<div class='line " + tooltipClass + "''>" + "<div class='dot-one'></div>" + "<div class='dot-two " + dotClass + "'></div>" + "<div class='detail-container master-details'>";
-            towerCode += "<div class='tolltip-tower-name'>Tower " + data.towerName.split(' ')[1] + "</div>";
+            towerCode += "<div class='tolltip-tower-name'>" + data.towerName + "</div>";
             towerCode += "<table>";
             if (!data.isAvailable) {
                 towerCode += "<tr><td colspan='2' class='" + config.availabilityClass.unavailable + "'>" + bookingText + "</td></tr>";

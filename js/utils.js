@@ -535,7 +535,7 @@ var utils = (function() {
             }
             return el;
         },
-        showLoader: function(startAnimation) {
+        showLoader: function(model, startAnimation) {
             $('.loading-bar span').width('0%');
             $('.loading-persentage').html('0%');
             $('.show-loading').show();
@@ -553,7 +553,7 @@ var utils = (function() {
                         //console.log(percentage);
                         if (percentCounter == 100) {
                             $('.show-loading').hide();
-                            startAnimation();
+                            startAnimation(model);
                         }
                     });
             });

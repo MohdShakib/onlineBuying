@@ -91,7 +91,10 @@ var TowerselectedView = (function() {
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '<label class="count"></label> Available';
             this.updateAvailableCount();
         },
-        startAnimation: function() {
+        startAnimation: function(model) {
+            // lazy load rotation images
+            model.lazyLoadContent();
+
             // Tower Menu
             setTimeout(function() {
                 if (!$('#' + config.selectedUnitContainerId).length) {
@@ -112,14 +115,12 @@ var TowerselectedView = (function() {
                 });
             }, 700);
 
-            // Rotation buttons
-            setTimeout(function() {
-                $('.tower-rotation-container').fadeIn(500);
-            }, 1000);
-
             utils.showNotificationTooltip('Click on unit spot & view its plan');
         },
         displayWithoutAnimation: function(fromUnitInfoView) {
+            // lazy load rotation images
+            this.lazyLoadContent();
+
             // Tower Menu
             $('.tower-menu-container').css({
                 left: '0px',
@@ -140,7 +141,7 @@ var TowerselectedView = (function() {
                 bottom: '0px'
             });
 
-            utils.showNotificationTooltip('Click on unit spot & view its plan');
+            utils.showNotificationTooltip('Click on unit spot to view its floor plan');
         },
         overviewImgContainer: function(data, rootdata) {
             var code = "<img src='" + data.image_url + "'/>";
@@ -150,13 +151,45 @@ var TowerselectedView = (function() {
             var currentRotationAngle = this._model.getCurrentRotationAngle(),
                 towerImageUrl, imageClass, imgCode = '';
             for (var rotationAngle in data.rotationAngle) {
-                if (hasOwnProperty.call(data.rotationAngle, rotationAngle)) {
+                var isStableState = false;
+                if (data.rotationAngle[rotationAngle].listing) {
+                    isStableState = true;
+                }
+                if (hasOwnProperty.call(data.rotationAngle, rotationAngle) && isStableState) {
                     towerImageUrl = data.rotationAngle[rotationAngle].towerImageUrl;
                     imageClass = (rotationAngle != this._model.getCurrentRotationAngle()) ? 'hidden' : '';
                     imgCode += "<img class='" + imageClass + " " + rotationAngle + " " + config.selectedTowerImagesClass + "' width='100%' src='" + towerImageUrl + "' />";
                 }
             }
             this._elements.towerImgContainer.html(imgCode);
+        },
+        lazyLoadContent: function() {
+            var currentRotationAngle = this._model.getCurrentRotationAngle(),
+                data = this._model.getData(),
+                towerImageUrl, imageClass, imgCode = '';
+            for (var rotationAngle in data.rotationAngle) {
+                var isStableState = false;
+                if (data.rotationAngle[rotationAngle].listing) {
+                    isStableState = true;
+                }
+                if (hasOwnProperty.call(data.rotationAngle, rotationAngle) && config.showTowerRotation && !isStableState) {
+                    towerImageUrl = data.rotationAngle[rotationAngle].towerImageUrl;
+                    imageClass = (rotationAngle != this._model.getCurrentRotationAngle()) ? 'hidden' : '';
+                    imgCode += "<img class='" + imageClass + " " + rotationAngle + " " + config.selectedTowerImagesClass + " " + config.lazyloadClass + "' width='100%' src='" + towerImageUrl + "' />";
+                }
+            }
+            this._elements.towerImgContainer.append(imgCode);
+            var count = 0,
+                arrayOfImageUrls = $('img.' + config.lazyloadClass);
+            $.each(arrayOfImageUrls, function(index, value) {
+                $('<img>').attr('src', value.src) //load image
+                    .load(function() {
+                        count++;
+                        if (count == arrayOfImageUrls.length) {
+                            $('.tower-rotation-container').fadeIn(500);
+                        }
+                    });
+            });
         },
         towerSvgContainer: function(data, rootdata) {
             var currentRotationAngle = this._model.getCurrentRotationAngle(),
