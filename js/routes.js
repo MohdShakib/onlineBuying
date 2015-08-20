@@ -151,6 +151,7 @@ var initializeRoutes = (function() {
                     baseController.generateTemplate();
                 }
             },
+            html5history: true,
             notfound: function() {
                 utils.log('Route not found');
                 router.setRoute(errorRoute);
