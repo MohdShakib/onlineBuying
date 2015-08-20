@@ -241,8 +241,8 @@ var BaseView = (function() {
                 '<div class="call-box">' +
                 '<p>Get callback from our property advisor<br></p>' +
                 //+'<div class="chat-tab-box">'
-                //+'<a href="#" class="transition">Start Chatting</a>'
-                //+'<a href="#" class="transition active">We will Call</a>'
+                //+'<a href="/" class="transition">Start Chatting</a>'
+                //+'<a href="/" class="transition active">We will Call</a>'
                 //+'</div>'
                 '<form id="call-box-form" name="call-box-form" novalidate onSubmit="return false;"  >' +
                 ' <div class="form-input-box"><input class="text" id="' + config.callBox.nameId + '" name="name" placeholder="enter your name" type="text" required />' +
