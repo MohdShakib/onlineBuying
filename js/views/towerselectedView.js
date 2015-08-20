@@ -191,7 +191,7 @@ var TowerselectedView = (function() {
                     });
             });
 
-            if(arrayOfImageUrls.length == 0) {
+            if(arrayOfImageUrls.length === 0) {
                 setTimeout(function() {
                     $('.tower-rotation-container').fadeIn(500);
                 }, 2000);
