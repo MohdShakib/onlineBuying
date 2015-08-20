@@ -190,6 +190,12 @@ var TowerselectedView = (function() {
                         }
                     });
             });
+
+            if(arrayOfImageUrls.length == 0) {
+                setTimeout(function() {
+                    $('.tower-rotation-container').fadeIn(500);
+                }, 2000);
+            }
         },
         towerSvgContainer: function(data, rootdata) {
             var currentRotationAngle = this._model.getCurrentRotationAngle(),

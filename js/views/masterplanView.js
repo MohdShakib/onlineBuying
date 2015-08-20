@@ -327,7 +327,7 @@ var MasterplanView = (function() {
                 return;
             }
 
-            $('img.' + config.imgContainerClass).not(targetImage).stop().fadeTo("500", 0.3, function() {});
+            $('img.' + config.imgContainerClass).not(targetImage).stop().fadeTo("500", 0.25, function() {});
             $('.' + config.amenityContainerClass).addClass(config.amenityNotOnTopClass);
 
             if (towerData && towerData.towerTooltipSvg && config.useSpecifiedTowerTooltipSvg) {
