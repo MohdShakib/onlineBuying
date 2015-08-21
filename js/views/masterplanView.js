@@ -13,7 +13,8 @@ var MasterplanView = (function() {
         'buildingMenuContainer': '<div class="tower-menu-container master-page" id="tower-menu-container"></div>',
         'towerDetailContainer': '<div class="tower-detail-container" id="tower-detail-container"></div>',
         'amenitiesContainer': '<div class="amenities-container ' + config.dynamicResizeClass + '" id="amenities-container"></div>',
-        'cloudContainer': '<div class="cloud-container" id="cloud-container"></div>'
+        'cloudContainer': '<div class="cloud-container" id="cloud-container"></div>',
+        'carAnimation': '<svg class="car-animation transition-left ' + config.dynamicResizeClass + '" id="car-animation" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'        
     };
 
     function getElements() {
@@ -23,7 +24,8 @@ var MasterplanView = (function() {
             'buildingMenuContainer': $('#tower-menu-container'),
             'towerDetailContainer': $('#tower-detail-container'),
             'amenitiesContainer': $('#amenities-container'),
-            'cloudContainer': $('#cloud-container')
+            'cloudContainer': $('#cloud-container'),
+            'carAnimation': $('#car-animation')            
         };
         return elements;
     }
@@ -81,7 +83,7 @@ var MasterplanView = (function() {
             document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
         },
-        startAnimation: function() {
+        startAnimation: function(model) {
             // Images
             $('.opacity-control').fadeIn(500);
 
@@ -184,6 +186,69 @@ var MasterplanView = (function() {
             return towerValues.sort(function(t1, t2) {
                 return t1.displayOrder - t2.displayOrder;
             });
+        },
+        carAnimation: function(data) {
+            console.log(data);
+            if (!config.showCarAnimation) {
+                return;
+            }
+            var carCode = "",
+                ratio = config.imageResolution.height / config.imageResolution.width,
+                imageResolutionHeight = config.imageResolution.height,
+                sizeMultiplier = 0.3,
+                cars = [{
+                    path: 'M52 105 105 60',
+                    imageURL: 'images/car-a1.png',
+                    imageWidth: 70,
+                    imageHeight: 46,
+                    begin: 8,
+                    duration: 16
+                }, {
+                    path: 'M56 105 105 63',
+                    imageURL: 'images/car-a2.png',
+                    imageWidth: 70,
+                    imageHeight: 46,
+                    begin: 15,
+                    duration: 12
+                }, {
+                    path: 'M105 66 60 105',
+                    imageURL: 'images/car-b1.png',
+                    imageWidth: 72,
+                    imageHeight: 46,
+                    begin: 10,
+                    duration: 12
+                }, {
+                    path: 'M105 68 63 105',
+                    imageURL: 'images/car-b2.png',
+                    imageWidth: 72,
+                    imageHeight: 46,
+                    begin: 15,
+                    duration: 14
+                }, {
+                    path: 'M105 68 63 105',
+                    imageURL: 'images/car-b3.png',
+                    imageWidth: 72,
+                    imageHeight: 46,
+                    begin: 20,
+                    duration: 14
+                }];
+
+            for (var i in cars) {
+                var height = cars[i].imageHeight / imageResolutionHeight * 100 * sizeMultiplier,
+                    width = cars[i].imageWidth / cars[i].imageHeight * height * ratio;
+                carCode += "<path d='" + cars[i].path + "' id='path" + i + "'/>";
+                carCode += "<image class='car' id='car" + i + "' xlink:href='" + cars[i].imageURL + "' id='car" + i + "' width='" + width + "' height='" + height + "' preserveAspectRatio='none'/>";
+                carCode += "<animateMotion xlink:href='#car" + i + "' dur='" + cars[i].duration + "s' begin='" + cars[i].begin + "s' repeatCount='indefinite' fill='freeze'>";
+                carCode += "<mpath xlink:href='#path" + i + "'/>";
+                carCode += "</animateMotion>";
+
+                // Hack for hiding cars
+                setTimeout(function(i) {
+                    $('#car' + i).css('visibility', 'visible');
+                }, cars[i].begin * 1000, i); // jshint ignore:line
+            }
+
+            this._elements.carAnimation.html(carCode);
         },
         buildingImgContainer: function(data) {
             var imgCode = "<img id=\"main-image\" width='100%' src=\"" + data.bgImage + "\"/>";
@@ -327,7 +392,7 @@ var MasterplanView = (function() {
                 return;
             }
 
-            $('img.' + config.imgContainerClass).not(targetImage).stop().fadeTo("500", 0.3, function() {});
+            $('img.' + config.imgContainerClass).not(targetImage).stop().fadeTo("500", 0.25, function() {});
             $('.' + config.amenityContainerClass).addClass(config.amenityNotOnTopClass);
 
             if (towerData && towerData.towerTooltipSvg && config.useSpecifiedTowerTooltipSvg) {
@@ -374,6 +439,7 @@ var MasterplanView = (function() {
                 bookingText = (data.bookingStatus == 'OnHold') ? 'On Hold' : 'Sold Out';
             towerCode += "<div id='container-detail' class='tooltip-detail'>";
             towerCode += "<div class='detail-box show-details'>" + "<div class='tooltip-title'>" + data.towerName.split(' ')[1] + "</div>" + "<div class='line " + tooltipClass + "''>" + "<div class='dot-one'></div>" + "<div class='dot-two " + dotClass + "'></div>" + "<div class='detail-container master-details'>";
+            towerCode += "<div class='tolltip-tower-name'>" + data.towerName + "</div>";
             towerCode += "<table>";
             if (!data.isAvailable) {
                 towerCode += "<tr><td colspan='2' class='" + config.availabilityClass.unavailable + "'>" + bookingText + "</td></tr>";

@@ -12,8 +12,7 @@ var TowerselectedView = (function() {
         'towerSvgContainer': '<svg class="svg-container opacity-control transition-left ' + config.dynamicResizeClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'towerDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>',
         'towerRotationContainer': '<div class="tower-rotation-container" id="' + config.towerRotationContainerId + '" style="display:none;"></div>',
-        'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>',
-        'carAnimation': '<svg class="car-animation transition-left ' + config.dynamicResizeClass + '" id="car-animation" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'
+        'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>'
     };
 
     function getElements() {
@@ -22,8 +21,7 @@ var TowerselectedView = (function() {
             'towerSvgContainer': $('#svg-container'),
             'towerDetailContainer': $('#tower-detail-container'),
             'towerRotationContainer': $('#tower-rotation-container'),
-            'filterMenuContainer': $('#filter-menu-container'),
-            'carAnimation': $('#car-animation')
+            'filterMenuContainer': $('#filter-menu-container')
         };
         return elements;
     }
@@ -41,6 +39,7 @@ var TowerselectedView = (function() {
         this._towerRotateClicked = new Event(this);
 
         // Filter Events
+        this._goBackButtonClick = new Event(this);
         this._bhkFilterOptionClick = new Event(this);
         this._floorFilterOptionClick = new Event(this);
         this._entranceFilterOptionClick = new Event(this);
@@ -91,7 +90,10 @@ var TowerselectedView = (function() {
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '<label class="count"></label> Available';
             this.updateAvailableCount();
         },
-        startAnimation: function() {
+        startAnimation: function(model) {
+            // lazy load rotation images
+            model.lazyLoadContent();
+
             // Tower Menu
             setTimeout(function() {
                 if (!$('#' + config.selectedUnitContainerId).length) {
@@ -112,14 +114,12 @@ var TowerselectedView = (function() {
                 });
             }, 700);
 
-            // Rotation buttons
-            setTimeout(function() {
-                $('.tower-rotation-container').fadeIn(500);
-            }, 1000);
-
             utils.showNotificationTooltip('Click on unit spot & view its plan');
         },
         displayWithoutAnimation: function(fromUnitInfoView) {
+            // lazy load rotation images
+            this.lazyLoadContent();
+
             // Tower Menu
             $('.tower-menu-container').css({
                 left: '0px',
@@ -140,7 +140,7 @@ var TowerselectedView = (function() {
                 bottom: '0px'
             });
 
-            utils.showNotificationTooltip('Click on unit spot & view its plan');
+            utils.showNotificationTooltip('Click on unit spot to view its floor plan');
         },
         overviewImgContainer: function(data, rootdata) {
             var code = "<img src='" + data.image_url + "'/>";
@@ -150,13 +150,51 @@ var TowerselectedView = (function() {
             var currentRotationAngle = this._model.getCurrentRotationAngle(),
                 towerImageUrl, imageClass, imgCode = '';
             for (var rotationAngle in data.rotationAngle) {
-                if (hasOwnProperty.call(data.rotationAngle, rotationAngle)) {
+                var isStableState = false;
+                if (data.rotationAngle[rotationAngle].listing) {
+                    isStableState = true;
+                }
+                if (hasOwnProperty.call(data.rotationAngle, rotationAngle) && isStableState) {
                     towerImageUrl = data.rotationAngle[rotationAngle].towerImageUrl;
                     imageClass = (rotationAngle != this._model.getCurrentRotationAngle()) ? 'hidden' : '';
                     imgCode += "<img class='" + imageClass + " " + rotationAngle + " " + config.selectedTowerImagesClass + "' width='100%' src='" + towerImageUrl + "' />";
                 }
             }
             this._elements.towerImgContainer.html(imgCode);
+        },
+        lazyLoadContent: function() {
+            var currentRotationAngle = this._model.getCurrentRotationAngle(),
+                data = this._model.getData(),
+                towerImageUrl, imageClass, imgCode = '';
+            for (var rotationAngle in data.rotationAngle) {
+                var isStableState = false;
+                if (data.rotationAngle[rotationAngle].listing) {
+                    isStableState = true;
+                }
+                if (hasOwnProperty.call(data.rotationAngle, rotationAngle) && config.showTowerRotation && !isStableState) {
+                    towerImageUrl = data.rotationAngle[rotationAngle].towerImageUrl;
+                    imageClass = (rotationAngle != this._model.getCurrentRotationAngle()) ? 'hidden' : '';
+                    imgCode += "<img class='" + imageClass + " " + rotationAngle + " " + config.selectedTowerImagesClass + " " + config.lazyloadClass + "' width='100%' src='" + towerImageUrl + "' />";
+                }
+            }
+            this._elements.towerImgContainer.append(imgCode);
+            var count = 0,
+                arrayOfImageUrls = $('img.' + config.lazyloadClass);
+            $.each(arrayOfImageUrls, function(index, value) {
+                $('<img>').attr('src', value.src) //load image
+                    .load(function() {
+                        count++;
+                        if (count == arrayOfImageUrls.length) {
+                            $('.tower-rotation-container').fadeIn(500);
+                        }
+                    });
+            });
+
+            if(arrayOfImageUrls.length === 0) {
+                setTimeout(function() {
+                    $('.tower-rotation-container').fadeIn(500);
+                }, 2000);
+            }
         },
         towerSvgContainer: function(data, rootdata) {
             var currentRotationAngle = this._model.getCurrentRotationAngle(),
@@ -317,7 +355,7 @@ var TowerselectedView = (function() {
             towerCode += '<div class="towerunit-name">' + details.address + '</div>';
             towerCode += '<div>' + details.type + '</div>';
             towerCode += '<div>' + details.size + '</div>';
-            towerCode += '<div>' + details.price + '</div>';
+            towerCode += '<div><span class="icon icon-rupee fs10"></span>' + details.price + '</div>';
             towerCode += '<div>Floor ' + details.floor + '</div>';
             towerCode += '<div class="' + details.color + '">' + details.availability + '</div>';
             towerCode += '</div></div>';
@@ -351,8 +389,6 @@ var TowerselectedView = (function() {
                 $.merge(intermediateAngles, rotationAngles.slice(currentIndex + 1, rotationAngles.length));
                 $.merge(intermediateAngles, rotationAngles.slice(0, finalIndex + 1));
             }
-
-            this._elements.carAnimation.hide(); // Hide Car annimation on rotation
 
             if (config.showTowerRotation && intermediateAngles.length > 0) {
 
@@ -407,7 +443,7 @@ var TowerselectedView = (function() {
                 entranceFiltersData = filterdata.entrance,
                 priceFiltersData = filterdata.price;
 
-            var code = "<table><tr><td class='menu-header menu-icon transition'><a href='#" + url + "'><span class='icon icon-arrow_left'></span></a></td></tr>";
+            var code = "<table><tr><td class='menu-header menu-icon transition'><a class='go-back' ><span class='icon icon-arrow_left'></span></a></td></tr>"; //href='#"+url+"'
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><table>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
@@ -537,7 +573,13 @@ var TowerselectedView = (function() {
                 $(this).find('.' + config.menuItemOptionsClass).stop().fadeOut("fast", function() {});
             });
 
-            _this._elements.filterMenuContainer.off('click').on('click', '.' + config.filters.bhk, function(event) {
+
+            _this._elements.filterMenuContainer.off('click').on('click', '.go-back', function(event) {
+                // notify controller
+                _this._goBackButtonClick.notify(this); // this refers to element here
+            });
+
+            _this._elements.filterMenuContainer.on('click', '.' + config.filters.bhk, function(event) {
                 // notify controller
                 _this._bhkFilterOptionClick.notify(this); // this refers to element here
             });

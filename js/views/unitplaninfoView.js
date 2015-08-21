@@ -20,7 +20,7 @@ var UnitplaninfoView = (function() {
         'clusterPlanContainer': '<div class="cluster-plan-container cp-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="cluster-plan-container"></div>',
         'priceBreakupContainer': '<div class="price-breakup-container pb-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="price-breakup-container"></div>',
         'specificationContainer': '<div class="specification-container sf-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="specification-container"></div>',
-        //'amenitiesContainer': '<div class="amenities-container fp-container ' + config.unitDataContainer + '" id="amenities-container"></div>',
+        'amenitiesContainer': '<div class="amenities-container fp-container ' + config.unitDataContainer + '" id="amenities-container"></div>',
         'unitViewTabs': '<div class="unit-view-tabs" id="unit-view-tabs"></div>',
         'termsConditionPopup': '<div class="terms-condition-popup" id="terms-condition-popup" style="display:none;"></div>'
     };
@@ -39,7 +39,7 @@ var UnitplaninfoView = (function() {
             'clusterPlanContainer': $('#cluster-plan-container'),
             'priceBreakupContainer': $('#price-breakup-container'),
             'specificationContainer': $('#specification-container'),
-            //'amenitiesContainer': $('#amenities-container'),
+            'amenitiesContainer': $('#amenities-container'),
             'unitViewTabs': $('#unit-view-tabs'),
             'termsConditionPopup': $('#terms-condition-popup')
         };
@@ -166,7 +166,7 @@ var UnitplaninfoView = (function() {
 
             htmlCode += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
             htmlCode += '<a><span class="icon icon-heart fs26 heart-clone"><label></label></span><p class="transition click-txt"></p><p class="shortlisted" style="display:none;"></p></a></div>';
-            htmlCode += '<div class="book-now"><a  data-url="' + link + '">Book now</a><span>Rs. ' + utils.getReadablePrice(data.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
+            htmlCode += '<div class="book-now"><a  data-url="' + link + '">Book now</a><span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(data.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
             htmlCode += '</div>';
 
             this._elements.unitViewTabs.html(htmlCode);

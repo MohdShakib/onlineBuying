@@ -22,7 +22,7 @@ var BookingController = (function() {
                 _this._view.endAnimation();
                 setTimeout(function() {
                     utils.changeUrl(element);
-                }, 500);   
+                }, 500);
             });
 
             // Make payment Event

@@ -50,7 +50,7 @@ var UnitplaninfoController = (function() {
             });
 
             // Shortlisting button
-            this._view._likeBoxClick.attach(function(sender, element){
+            this._view._likeBoxClick.attach(function(sender, element) {
                 var data = _this._model.getRotationdata();
                 utils.likeBoxClicked(element, data.unitIdentifier, data.unitName, data.towerIdentifier, data.rotationAngle, data.unitUniqueIdentifier);
             });

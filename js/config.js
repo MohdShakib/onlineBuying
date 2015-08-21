@@ -2,10 +2,13 @@ var config = (function() {
 
     var config = {
 
+
+        urlAppName : '', ///thirdeye
+
         // Flags
         showLogs: true,
         mockProjectData: false,
-        showCarAnimation: false,
+        showCarAnimation: true,
         loadDynamicAssets: false,
         showTowerRotation: false,
         enablePayment: false,
@@ -32,7 +35,8 @@ var config = (function() {
             masterplanScreen: 'masterplanScreen.csv',
             towerselectScreen: 'towerselectScreen.csv',
             amenitiesHotspots: 'amenitiesHotspots.csv',
-            unitplanInfo: 'unitplanInfo.csv'
+            unitplanInfo: 'unitplanInfo.csv',
+            towerRotation: 'towerRotation.csv'
         },
         bottomFormGroup: {
             'tabLinkClass': 'conect-tab li a',
@@ -87,6 +91,7 @@ var config = (function() {
         smallLeftArea: 'small-left',
         beepEffectClass: 'heart-beep-effect',
         textBlinkClass: 'blink-effect',
+        lazyloadClass: 'lazy-load',
 
         // Masterplan
         imgContainerClass: "menu-mapped-image",
@@ -149,7 +154,7 @@ var config = (function() {
         nationalityDropdownClass: 'nationalty-drop-down',
         activeBookingInputClass: 'active'
     };
-
+    
     return config;
 
 })();

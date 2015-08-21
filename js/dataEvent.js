@@ -1,16 +1,16 @@
 "use strict";
-var Event = (function(){  // jshint ignore:line
-    
+var Event = (function() { // jshint ignore:line
+
     function Event(sender) {
         this._sender = sender;
         this._listeners = [];
     }
 
     Event.prototype = {
-        attach: function (listener) {
+        attach: function(listener) {
             this._listeners.push(listener);
         },
-        notify: function (args) {
+        notify: function(args) {
             var index;
 
             for (index = 0; index < this._listeners.length; index += 1) {

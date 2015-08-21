@@ -162,7 +162,7 @@ var BaseView = (function() {
             htmlCode += '<span class="icon fs14 icon-cross close-compare-box"></span><div class="compare-unit-box-detail top-right-component"><span>' + item.unitName + '</span> | <span>' + item.bedrooms + '</span> | <span>' + item.size + '</span> | <span>' + item.price + '</span> | <span>' + item.floor + '</span></div>';
             htmlCode += '<div class="top-right-component">' +
                 '<div class="book-now" >' +
-                '<a data-url="' + link + '">Book now</a><span>Rs. ' + utils.getReadablePrice(item.bookingAmount) + '/- <br>(No Cancellation Charges)</span>' +
+                '<a data-url="' + link + '">Book now</a><span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(item.bookingAmount) + '/- <br>(No Cancellation Charges)</span>' +
                 '</div>';
             htmlCode += '<div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + uniqueIdentifier + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' +
                 '<img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img"  src="' + imageUrl + '"> </div>';
@@ -241,8 +241,8 @@ var BaseView = (function() {
                 '<div class="call-box">' +
                 '<p>Get callback from our property advisor<br></p>' +
                 //+'<div class="chat-tab-box">'
-                //+'<a href="#" class="transition">Start Chatting</a>'
-                //+'<a href="#" class="transition active">We will Call</a>'
+                //+'<a href="/" class="transition">Start Chatting</a>'
+                //+'<a href="/" class="transition active">We will Call</a>'
                 //+'</div>'
                 '<form id="call-box-form" name="call-box-form" novalidate onSubmit="return false;"  >' +
                 ' <div class="form-input-box"><input class="text" id="' + config.callBox.nameId + '" name="name" placeholder="enter your name" type="text" required />' +
@@ -250,7 +250,8 @@ var BaseView = (function() {
                 '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
                 '<div class="phone-no-holder"><div class="form-input-box fleft c-code">' +
                 '<input id="' + config.callBox.countryId + '" type="hidden" value="1"/>' +
-                '<input id="' + config.callBox.countryCodeId + '" class="text" name="' + config.callBox.phoneId + '" type="text" value="+91" readonly/><span class="icon icon-arrow_btm fs12 transition dropdown-arrow"></span><ul class="country-dropDown" style="display:none;"></ul></div><div class="form-input-box fright"><input class="text" id="' + config.callBox.phoneId + '" name="phone" placeholder="enter your phone number" type="text" minlength="10" maxlength="15" required />' +
+                '<input id="' + config.callBox.countryCodeId + '" class="text" name="' + config.callBox.phoneId + '" type="text" value="+91" readonly/> ' +
+                '<span class="icon icon-arrow_btm fs12 transition dropdown-arrow"></span><ul class="country-dropDown" style="display:none;"></ul></div><div class="form-input-box fright"><input class="text" id="' + config.callBox.phoneId + '" name="phone" placeholder="enter your phone number" type="text" minlength="10" maxlength="15" required />' +
                 '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div><div class="clear-fix"></div></div>' +
                 '<div class="submit" id="call-box-submit-id">Get Instant Callback' +
                 '<input type="submit" id="call-box-submit-id" />' +

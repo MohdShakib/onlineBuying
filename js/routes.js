@@ -16,13 +16,14 @@ var initializeRoutes = (function() {
             error: "404"
         };
 
-        var projectRoute = routeRegex.sep + routeRegex.projectName + routeRegex.wordSep + routeRegex.projectId,
+        var projectRoute = config.urlAppName+routeRegex.sep + routeRegex.projectName + routeRegex.wordSep + routeRegex.projectId,
             towerRoute = projectRoute + routeRegex.sep + routeRegex.towerName,
             unitRoute = towerRoute + routeRegex.sep + routeRegex.towerAngle + routeRegex.sep + routeRegex.unitAddress,
             bookingRoute = unitRoute + routeRegex.sep + routeRegex.booking,
-            errorRoute = routeRegex.sep + routeRegex.error;
+            errorRoute = config.urlAppName+routeRegex.sep + routeRegex.error;
 
-        var currentState = null, previousState = null;
+        var currentState = null,
+            previousState = null;
 
         var routes = {},
             rootdata = {};
@@ -45,7 +46,7 @@ var initializeRoutes = (function() {
             }
 
             var fromUnitInfoView = false;
-            if(previousState == 'unitplaninfoView'){
+            if (previousState == 'unitplaninfoView') {
                 fromUnitInfoView = true;
             }
             towerselectedController.generateTemplate(fromUnitInfoView);
@@ -57,7 +58,7 @@ var initializeRoutes = (function() {
                 previousState = currentState;
                 currentState = 'masterplanView';
 
-                if(baseController) {
+                if (baseController) {
                     baseView.reinit();
                 }
                 if (!masterplanModel) {
@@ -75,7 +76,7 @@ var initializeRoutes = (function() {
                 previousState = currentState;
                 currentState = 'towerselectedView';
 
-                if(baseController) {
+                if (baseController) {
                     baseView.reinit();
                 }
                 onTowerselectedRoute(projectName, projectId, towerName);
@@ -151,6 +152,7 @@ var initializeRoutes = (function() {
                     baseController.generateTemplate();
                 }
             },
+            //html5history: true,
             notfound: function() {
                 utils.log('Route not found');
                 router.setRoute(errorRoute);

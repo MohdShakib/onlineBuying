@@ -491,9 +491,12 @@ ellipse.tower-unit-svg-selected-path {
 	padding: 3px;
 	color: #c3c3c3;
 }
-.towerunit-detail-container > div.towerunit-name,div.towerunit-detail {
+.towerunit-detail-container > div.towerunit-name, div.towerunit-detail {
 	font-size: 13px;
 	color: white;
+}
+.towerunit-detail-container > div.towerunit-name {
+	text-transform: capitalize;
 }
 .tooltip-detail .container-left {
 	text-align: right;
@@ -1434,16 +1437,14 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 
 /*---image pop up animation---*/
 .pop-up-in{
-	animation-duration: 1s;
-	animation-fill-mode: both;
-	-webkit-animation-name: pop-in;
-    animation-name: pop-in;
+	-webkit-animation: pop-in 1s both;
+	-moz-animation: pop-in 1s both;
+    animation: pop-in 1s both;
  }
 .pop-up-out{
-	animation-duration: 2s;
-	animation-fill-mode: both;
-	-webkit-animation-name: pop-out;
-    animation-name: pop-out;
+	-webkit-animation: pop-out 1s both;
+	-moz-animation: pop-out 1s both;
+    animation: pop-out 1s both;
 } 
 /*-----pop-in-----*/
 @keyframes pop-in {
@@ -1466,7 +1467,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 @-webkit-keyframes pop-in {
   0% {
     opacity: 0;
-    -webkit-transform-origin: 1000 500;
+    -webkit-transform-origin: 0 0;
     -webkit-transform: scale(0) translate(50%, 0%);
   }
 
@@ -2120,9 +2121,11 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .common-tol-tip p{color:#fff; background:rgba(0,0,0,0.8); padding:5px 0 5px 10px;font-size:14px;display:inline-block;}
 .common-tol-tip p span.icon{ margin-left:10px; padding:0 5px; margin-top:2px; cursor:pointer;}
 /*-----*/
+.tolltip-tower-name{ font-size:15px; padding:8px 10px; background:#464646;}
 .car-animation { position:absolute;z-index:99;}
 .car-animation .car {visibility: hidden;}
 .fs0{ font-size:0px !important;}
+.fs10{ font-size:10px !important;}
 .fs12{ font-size:12px !important;}
 .fs13{ font-size:13px !important;}
 .fs14{ font-size:14px !important;}

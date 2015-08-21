@@ -52,10 +52,10 @@ var TowerselectedModel = (function() {
         getSelectedFiltersData: function() {
             return this._filters;
         },
-        isFilterApplied: function(){
+        isFilterApplied: function() {
             var filterApplied = false;
-            for(var filter in this._filters){
-                if(this._filters[filter] && this._filters[filter].length){
+            for (var filter in this._filters) {
+                if (this._filters[filter] && this._filters[filter].length) {
                     filterApplied = true;
                 }
             }
@@ -67,10 +67,10 @@ var TowerselectedModel = (function() {
         setSelectedListing: function(selectedListing) {
             this._selectedListing = selectedListing;
         },
-        getFilteredAvailableCount: function(){
+        getFilteredAvailableCount: function() {
             return this._filteredAvailableCount;
         },
-        updateFilteredAvailableCount: function(count){
+        updateFilteredAvailableCount: function(count) {
             this._filteredAvailableCount = count;
         },
         updateFilteredListings: function(listings) {

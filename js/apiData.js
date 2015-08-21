@@ -109,7 +109,7 @@ var getProjectData = (function() {
                         105: 'A_0002.jpg',
                         110: 'A_0003.jpg',
                         115: 'A_0004.jpg',
-                        
+
                         185: 'A_0005.jpg',
                         190: 'A_0006.jpg',
                         195: 'A_0007.jpg',
@@ -156,6 +156,31 @@ var getProjectData = (function() {
                     projectData.towers[towerIdentifier].hoverImageUrl = zipImagePath + towers[towerName].hoverImageName;
                     projectData.towers[towerIdentifier].towerHoverSvg = towers[towerName].towerHoverSvg;
                     projectData.towers[towerIdentifier].towerTooltipSvg = towers[towerName].towerTooltipSvg;
+                }
+            }
+        }
+    }
+
+    function useTowerRotationData(towers){
+        for (var towerIdentifier in projectData.towers) {
+            if (hasOwnProperty.call(projectData.towers, towerIdentifier)) {
+                var towerName = projectData.towers[towerIdentifier].towerName;
+                if (towerIdentifier && towers[towerName]) {
+                    projectData.towers[towerIdentifier].rotationImages = {};
+                    var towerRotationImages = projectData.towers[towerIdentifier].rotationImages;
+                    towerRotationImages.imageTemplate = zipImagePath+towers[towerName].imageName;
+                    towerRotationImages.numberOfFrames = parseInt(towers[towerName].numberOfFrames);
+                    towerRotationImages.keyFrame = {};
+                    for(var i=1; i<100; i++){
+                        if(towers[towerName]['link'+i] && towers[towerName]['keyframe'+i] && towers[towerName]['link'+i].length && towers[towerName]['keyframe'+i]){
+                            var key = towers[towerName]['link'+i],
+                            frame = parseInt(towers[towerName]['keyframe'+i]);
+                            towerRotationImages.keyFrame['"'+key+'"'] = frame;
+                        }else{
+                            break;
+                        }
+                        
+                    }
                 }
             }
         }
@@ -279,6 +304,11 @@ var getProjectData = (function() {
             useUnitplanInfoCSVData(data);
         });
 
+        utils.getSvgData(zipPath + config.csv.towerRotation).success(function(data) {
+            var data = processCsvDataToObject(data, 'towerName');
+            useTowerRotationData(data);
+        });
+
     }
 
 
@@ -335,7 +365,7 @@ var getProjectData = (function() {
         var projectIdentifier = utils.getIdentifier(projectDetail.name);
         projectData.projectId = projectDetail.projectId;
         projectData.projectUrl = projectDetail.URL;
-        projectData.baseUrl = projectIdentifier + '-' + projectDetail.projectId;
+        projectData.baseUrl =    config.urlAppName+'/'+projectIdentifier + '-' + projectDetail.projectId;
         projectData.projectName = projectDetail.name;
         projectData.builderName = projectDetail.builder.name;
         projectData.address = projectDetail.address;
@@ -432,11 +462,16 @@ var getProjectData = (function() {
 
             // Walkthrough video
             flatUnit.walkthrough = {};
-            for (var i in propertyDetail.video) {
-                var video = propertyDetail.video[i];
+            for (var j in propertyDetail.video) {
+                var video = propertyDetail.video[j];
                 if (video.objectMediaType.type == "VideoWalkthrough") {
-                    flatUnit.walkthrough.video = video.url;
-                    flatUnit.walkthrough.image = video.imageUrl;
+                    var videoUrlDetails = video.mediaExtraAttributes.videoUrlDetails;
+                    for(var k in videoUrlDetails) {
+                        if(videoUrlDetails[k].resolution == 270 && videoUrlDetails[k].bitRate == 300) {
+                            flatUnit.walkthrough.video = videoUrlDetails[k].url;
+                            flatUnit.walkthrough.image = video.imageUrl;
+                        }
+                    }
                 }
             }
 
