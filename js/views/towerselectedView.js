@@ -12,8 +12,7 @@ var TowerselectedView = (function() {
         'towerSvgContainer': '<svg class="svg-container opacity-control transition-left ' + config.dynamicResizeClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'towerDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>',
         'towerRotationContainer': '<div class="tower-rotation-container" id="' + config.towerRotationContainerId + '" style="display:none;"></div>',
-        'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>',
-        'carAnimation': '<svg class="car-animation transition-left ' + config.dynamicResizeClass + '" id="car-animation" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'
+        'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>'
     };
 
     function getElements() {
@@ -22,8 +21,7 @@ var TowerselectedView = (function() {
             'towerSvgContainer': $('#svg-container'),
             'towerDetailContainer': $('#tower-detail-container'),
             'towerRotationContainer': $('#tower-rotation-container'),
-            'filterMenuContainer': $('#filter-menu-container'),
-            'carAnimation': $('#car-animation')
+            'filterMenuContainer': $('#filter-menu-container')
         };
         return elements;
     }
@@ -391,8 +389,6 @@ var TowerselectedView = (function() {
                 $.merge(intermediateAngles, rotationAngles.slice(0, finalIndex + 1));
             }
 
-            this._elements.carAnimation.hide(); // Hide Car annimation on rotation
-
             if (config.showTowerRotation && intermediateAngles.length > 0) {
 
                 this._elements.towerSvgContainer.hide(); // Hide towerSvgContainer
@@ -475,54 +471,6 @@ var TowerselectedView = (function() {
             code += "</table>";
             this._elements.filterMenuContainer.html(code);
             this.filterMenuContainerEvents();
-        },
-        carAnimation: function(data, rootdata) {
-            console.log(data);
-            if (data.towerIdentifier != 'tower-a' || this._model.getCurrentRotationAngle() != '0' || !config.showCarAnimation) {
-                return;
-            }
-            var carCode = "",
-                ratio = config.imageResolution.height / config.imageResolution.width,
-                imageResolutionHeight = config.imageResolution.height,
-                cars = [{
-                    path: 'M77 105 105 43',
-                    imageURL: 'images/car-1.png',
-                    imageWidth: 40,
-                    imageHeight: 41,
-                    begin: 3,
-                    duration: 6
-                }, {
-                    path: 'M77 105 105 44',
-                    imageURL: 'images/car-2.png',
-                    imageWidth: 42,
-                    imageHeight: 38,
-                    begin: 20,
-                    duration: 5
-                }, {
-                    path: 'M105 52 82 105',
-                    imageURL: 'images/car-3.png',
-                    imageWidth: 41,
-                    imageHeight: 44,
-                    begin: 13,
-                    duration: 4
-                }];
-
-            for (var i in cars) {
-                var height = cars[i].imageHeight / imageResolutionHeight * 100,
-                    width = cars[i].imageWidth / cars[i].imageHeight * height * ratio;
-                carCode += "<path d='" + cars[i].path + "' id='path" + i + "'/>";
-                carCode += "<image class='car' id='car" + i + "' xlink:href='" + cars[i].imageURL + "' id='car" + i + "' width='" + width + "' height='" + height + "' preserveAspectRatio='none'/>";
-                carCode += "<animateMotion xlink:href='#car" + i + "' dur='" + cars[i].duration + "s' begin='" + cars[i].begin + "s' repeatCount='1' fill='freeze'>";
-                carCode += "<mpath xlink:href='#path" + i + "'/>";
-                carCode += "</animateMotion>";
-
-                // Hack for hiding cars
-                setTimeout(function(i) {
-                    $('#car' + i).css('visibility', 'visible');
-                }, cars[i].begin * 1000, i); // jshint ignore:line
-            }
-
-            this._elements.carAnimation.html(carCode);
         },
         displayFilterCount: function(type, count) {
             var style = "";

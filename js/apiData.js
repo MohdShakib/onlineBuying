@@ -432,11 +432,16 @@ var getProjectData = (function() {
 
             // Walkthrough video
             flatUnit.walkthrough = {};
-            for (var i in propertyDetail.video) {
-                var video = propertyDetail.video[i];
+            for (var j in propertyDetail.video) {
+                var video = propertyDetail.video[j];
                 if (video.objectMediaType.type == "VideoWalkthrough") {
-                    flatUnit.walkthrough.video = video.url;
-                    flatUnit.walkthrough.image = video.imageUrl;
+                    var videoUrlDetails = video.mediaExtraAttributes.videoUrlDetails;
+                    for(var k in videoUrlDetails) {
+                        if(videoUrlDetails[k].resolution == 270 && videoUrlDetails[k].bitRate == 300) {
+                            flatUnit.walkthrough.video = videoUrlDetails[k].url;
+                            flatUnit.walkthrough.image = video.imageUrl;
+                        }
+                    }
                 }
             }
 
