@@ -35,7 +35,8 @@ var config = (function() {
             masterplanScreen: 'masterplanScreen.csv',
             towerselectScreen: 'towerselectScreen.csv',
             amenitiesHotspots: 'amenitiesHotspots.csv',
-            unitplanInfo: 'unitplanInfo.csv'
+            unitplanInfo: 'unitplanInfo.csv',
+            towerRotation: 'towerRotation.csv'
         },
         bottomFormGroup: {
             'tabLinkClass': 'conect-tab li a',

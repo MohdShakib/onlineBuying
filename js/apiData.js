@@ -161,6 +161,31 @@ var getProjectData = (function() {
         }
     }
 
+    function useTowerRotationData(towers){
+        for (var towerIdentifier in projectData.towers) {
+            if (hasOwnProperty.call(projectData.towers, towerIdentifier)) {
+                var towerName = projectData.towers[towerIdentifier].towerName;
+                if (towerIdentifier && towers[towerName]) {
+                    projectData.towers[towerIdentifier].rotationImages = {};
+                    var towerRotationImages = projectData.towers[towerIdentifier].rotationImages;
+                    towerRotationImages.imageTemplate = zipImagePath+towers[towerName].imageName;
+                    towerRotationImages.numberOfFrames = parseInt(towers[towerName].numberOfFrames);
+                    towerRotationImages.keyFrame = {};
+                    for(var i=1; i<100; i++){
+                        if(towers[towerName]['link'+i] && towers[towerName]['keyframe'+i] && towers[towerName]['link'+i].length && towers[towerName]['keyframe'+i]){
+                            var key = towers[towerName]['link'+i],
+                            frame = parseInt(towers[towerName]['keyframe'+i]);
+                            towerRotationImages.keyFrame['"'+key+'"'] = frame;
+                        }else{
+                            break;
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+
     function htmlEntities(str) {
         return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     }
@@ -277,6 +302,11 @@ var getProjectData = (function() {
         utils.getSvgData(zipPath + config.csv.unitplanInfo).success(function(data) {
             var data = processCsvDataToObject(data, 'unitName');
             useUnitplanInfoCSVData(data);
+        });
+
+        utils.getSvgData(zipPath + config.csv.towerRotation).success(function(data) {
+            var data = processCsvDataToObject(data, 'towerName');
+            useTowerRotationData(data);
         });
 
     }
