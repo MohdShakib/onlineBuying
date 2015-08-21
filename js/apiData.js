@@ -102,61 +102,63 @@ var getProjectData = (function() {
         }
     }
 
-    function useTowerRotationData(towers){
+    function useTowerRotationData(towers) {
         for (var towerIdentifier in projectData.towers) {
             if (hasOwnProperty.call(projectData.towers, towerIdentifier)) {
                 var towerName = projectData.towers[towerIdentifier].towerName;
                 if (towerIdentifier && towers[towerName]) {
                     var numberOfFrames = parseInt(towers[towerName].numberOfFrames);
                     var imageTemplate = towers[towerName].imageName;
-                    
+
                     var keyFrame = {};
-                    for(var i=1; i<100; i++){
-                        if(towers[towerName]['link'+i] && towers[towerName]['keyframe'+i] && towers[towerName]['link'+i].length && towers[towerName]['keyframe'+i]){
-                            var key = parseInt(towers[towerName]['link'+i]),
-                            frame = parseInt(towers[towerName]['keyframe'+i]);
+                    for (var i = 1; i < 100; i++) {
+                        if (towers[towerName]['link' + i] && towers[towerName]['keyframe' + i] && towers[towerName]['link' + i].length && towers[towerName]['keyframe' + i]) {
+                            var key = parseInt(towers[towerName]['link' + i]),
+                                frame = parseInt(towers[towerName]['keyframe' + i]);
                             keyFrame[key] = frame;
-                        }else{
+                        } else {
                             break;
                         }
-                        
+
                     }
-                    
+
                     var keys = Object.keys(keyFrame);
-                    keys.sort(function(a,b){ return a-b });
+                    keys.sort(function(a, b) {
+                        return a - b;
+                    });
 
                     // assign rotation angle and images for them
                     var newKeyFrame = projectData.towers[towerIdentifier].rotationAngle;
-                    for (var j = 0; j<keys.length; j++) {
+                    for (var j = 0; j < keys.length; j++) {
 
                         var max;
-                        if(keyFrame[keys[j+1]] === undefined){
+                        if (keyFrame[keys[j + 1]] === undefined) {
                             max = keyFrame[keys[0]];
-                        }else{
-                            max = keyFrame[keys[j+1]];
+                        } else {
+                            max = keyFrame[keys[j + 1]];
                         }
 
                         var rotateAgainTill = 0;
-                        if(max < keyFrame[keys[j]]){
+                        if (max < keyFrame[keys[j]]) {
                             rotateAgainTill = max;
                             max = numberOfFrames;
                         }
 
                         var l = 1;
-                        for(var k=keyFrame[keys[j]]; k<max; k++){
-                            var angle = parseInt(keys[j])+l;
+                        for (var k = keyFrame[keys[j]]; k < max; k++) {
+                            var angle = parseInt(keys[j]) + l;
                             newKeyFrame[angle] = {
-                                towerImageUrl: zipImagePath+imageTemplate.replace(/##/,utils.addLeadingZeros(k+1, 2))
-                            }
+                                towerImageUrl: zipImagePath + imageTemplate.replace(/##/, utils.addLeadingZeros(k + 1, 2))
+                            };
                             l++;
                         }
 
-                        if(rotateAgainTill){
-                            for(var k=0; k<rotateAgainTill; k++){
-                                var angle = parseInt(keys[j])+l;
+                        if (rotateAgainTill) {
+                            for (var k = 0; k < rotateAgainTill; k++) {
+                                var angle = parseInt(keys[j]) + l;
                                 newKeyFrame[angle] = {
-                                    towerImageUrl: zipImagePath+imageTemplate.replace(/##/,utils.addLeadingZeros(k+1, 2))
-                                }
+                                    towerImageUrl: zipImagePath + imageTemplate.replace(/##/, utils.addLeadingZeros(k + 1, 2))
+                                };
                                 l++;
                             }
                         }
@@ -164,7 +166,7 @@ var getProjectData = (function() {
                     }
 
                     projectData.towers[towerIdentifier].rotationAngle = newKeyFrame;
-                 
+
                 }
             }
         }
@@ -350,7 +352,7 @@ var getProjectData = (function() {
         var projectIdentifier = utils.getIdentifier(projectDetail.name);
         projectData.projectId = projectDetail.projectId;
         projectData.projectUrl = projectDetail.URL;
-        projectData.baseUrl =    config.urlAppName+'/'+projectIdentifier + '-' + projectDetail.projectId;
+        projectData.baseUrl = config.urlAppName + '/' + projectIdentifier + '-' + projectDetail.projectId;
         projectData.projectName = projectDetail.name;
         projectData.builderName = projectDetail.builder.name;
         projectData.address = projectDetail.address;
@@ -451,8 +453,8 @@ var getProjectData = (function() {
                 var video = propertyDetail.video[j];
                 if (video.objectMediaType.type == "VideoWalkthrough") {
                     var videoUrlDetails = video.mediaExtraAttributes.videoUrlDetails;
-                    for(var k in videoUrlDetails) {
-                        if(videoUrlDetails[k].resolution == 270 && videoUrlDetails[k].bitRate == 300) {
+                    for (var k in videoUrlDetails) {
+                        if (videoUrlDetails[k].resolution == 270 && videoUrlDetails[k].bitRate == 300) {
                             flatUnit.walkthrough.video = videoUrlDetails[k].url;
                             flatUnit.walkthrough.image = video.imageUrl;
                         }
