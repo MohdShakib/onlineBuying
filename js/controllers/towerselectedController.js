@@ -44,6 +44,13 @@ var TowerselectedController = (function() {
                 _this._view.rotateTower(currentRotationAngle, newRotationAngle);
             });
 
+            // Go back Event
+            this._view._goBackButtonClick.attach(function(sender, element) {
+                var rootData = _this._model.getRootdata();
+                router.setRoute(rootData.baseUrl);
+                return;
+            });
+
             // Filter Events
             this._view._bhkFilterOptionClick.attach(function(sender, element) {
                 var dataset = $(element).data();

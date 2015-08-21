@@ -41,6 +41,7 @@ var TowerselectedView = (function() {
         this._towerRotateClicked = new Event(this);
 
         // Filter Events
+        this._goBackButtonClick = new Event(this);
         this._bhkFilterOptionClick = new Event(this);
         this._floorFilterOptionClick = new Event(this);
         this._entranceFilterOptionClick = new Event(this);
@@ -446,7 +447,7 @@ var TowerselectedView = (function() {
                 entranceFiltersData = filterdata.entrance,
                 priceFiltersData = filterdata.price;
 
-            var code = "<table><tr><td class='menu-header menu-icon transition'><a href='#"+url+"'><span class='icon icon-arrow_left'></span></a></td></tr>";
+            var code = "<table><tr><td class='menu-header menu-icon transition'><a class='go-back' ><span class='icon icon-arrow_left'></span></a></td></tr>"; //href='#"+url+"'
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><table>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
@@ -577,7 +578,13 @@ var TowerselectedView = (function() {
                 $(this).find('.' + config.menuItemOptionsClass).stop().fadeOut("fast", function() {});
             });
 
-            _this._elements.filterMenuContainer.off('click').on('click', '.' + config.filters.bhk, function(event) {
+
+            _this._elements.filterMenuContainer.off('click').on('click', '.go-back', function(event) {
+                // notify controller
+                _this._goBackButtonClick.notify(this); // this refers to element here
+            });
+
+            _this._elements.filterMenuContainer.on('click', '.' + config.filters.bhk, function(event) {
                 // notify controller
                 _this._bhkFilterOptionClick.notify(this); // this refers to element here
             });
