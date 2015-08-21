@@ -84,64 +84,6 @@ var getProjectData = (function() {
                     }
                     delete unitInfo.towerImageName;
 
-                    // adding tower rotation intermediate images
-                    var rotationImages = {
-                        5: 'A_0031.jpg',
-                        10: 'A_0032.jpg',
-                        15: 'A_0033.jpg',
-                        20: 'A_0034.jpg',
-                        25: 'A_0035.jpg',
-                        30: 'A_0036.jpg',
-                        35: 'A_0037.jpg',
-                        40: 'A_0038.jpg',
-                        45: 'A_0039.jpg',
-                        50: 'A_0040.jpg',
-                        55: 'A_0041.jpg',
-                        60: 'A_0042.jpg',
-                        65: 'A_0043.jpg',
-                        70: 'A_0044.jpg',
-                        75: 'A_0045.jpg',
-                        80: 'A_0046.jpg',
-                        85: 'A_0047.jpg',
-                        90: 'A_0048.jpg',
-                        95: 'A_0000.jpg',
-                        100: 'A_0001.jpg',
-                        105: 'A_0002.jpg',
-                        110: 'A_0003.jpg',
-                        115: 'A_0004.jpg',
-
-                        185: 'A_0005.jpg',
-                        190: 'A_0006.jpg',
-                        195: 'A_0007.jpg',
-                        200: 'A_0008.jpg',
-                        205: 'A_0009.jpg',
-                        210: 'A_0010.jpg',
-                        215: 'A_0011.jpg',
-                        220: 'A_0012.jpg',
-                        225: 'A_0013.jpg',
-                        230: 'A_0014.jpg',
-                        235: 'A_0015.jpg',
-                        240: 'A_0016.jpg',
-                        245: 'A_0017.jpg',
-                        250: 'A_0018.jpg',
-                        255: 'A_0019.jpg',
-                        260: 'A_0020.jpg',
-                        265: 'A_0021.jpg',
-                        270: 'A_0022.jpg',
-                        275: 'A_0023.jpg',
-                        280: 'A_0024.jpg',
-                        285: 'A_0025.jpg',
-                        290: 'A_0026.jpg',
-                        295: 'A_0027.jpg',
-                        300: 'A_0028.jpg',
-                        305: 'A_0029.jpg',
-                        310: 'A_0030.jpg'
-                    };
-                    for (var j in rotationImages) {
-                        tower.rotationAngle[j] = {};
-                        tower.rotationAngle[j].towerImageUrl = zipImagePath + rotationImages[j];
-                    }
-
                 }
             }
         }
@@ -166,21 +108,40 @@ var getProjectData = (function() {
             if (hasOwnProperty.call(projectData.towers, towerIdentifier)) {
                 var towerName = projectData.towers[towerIdentifier].towerName;
                 if (towerIdentifier && towers[towerName]) {
-                    projectData.towers[towerIdentifier].rotationImages = {};
-                    var towerRotationImages = projectData.towers[towerIdentifier].rotationImages;
-                    towerRotationImages.imageTemplate = zipImagePath+towers[towerName].imageName;
-                    towerRotationImages.numberOfFrames = parseInt(towers[towerName].numberOfFrames);
-                    towerRotationImages.keyFrame = {};
+                    var numberOfFrames = parseInt(towers[towerName].numberOfFrames);
+                    var imageTemplate = towers[towerName].imageName;
+                    
+                    var keyFrame = {};
                     for(var i=1; i<100; i++){
                         if(towers[towerName]['link'+i] && towers[towerName]['keyframe'+i] && towers[towerName]['link'+i].length && towers[towerName]['keyframe'+i]){
-                            var key = towers[towerName]['link'+i],
+                            var key = parseInt(towers[towerName]['link'+i]),
                             frame = parseInt(towers[towerName]['keyframe'+i]);
-                            towerRotationImages.keyFrame['"'+key+'"'] = frame;
+                            keyFrame[key] = frame;
                         }else{
                             break;
                         }
                         
                     }
+                    
+                    var keys = Object.keys(keyFrame);
+                    keys.sort(function(a,b){ return a-b });
+
+                    // assign rotation angle and images for them
+                    var newKeyFrame = projectData.towers[towerIdentifier].rotationAngle;
+                    for (var j = 0; j<keys.length; j++) {
+                        var max = j+1 == keys.length ? numberOfFrames : keyFrame[keys[j+1]];
+                        var l = 1;
+                        for(var k=keyFrame[keys[j]]; k<max; k++){
+                            var angle = parseInt(keys[j])+l;
+                            newKeyFrame[angle] = {
+                                towerImageUrl: zipImagePath+imageTemplate.replace(/##/,k+1)
+                            }
+                            l++;
+                        }
+                    }
+
+                    projectData.towers[towerIdentifier].rotationAngle = newKeyFrame;
+                 
                 }
             }
         }
@@ -280,6 +241,7 @@ var getProjectData = (function() {
     }
 
     function parseAllCSVData() {
+
         utils.getSvgData(zipPath + config.csv.masterplanScreen).success(function(data) {
             var towers = processCsvDataToObject(data, 'towerName');
             if (towers && projectData.towers && Object.keys(projectData.towers).length && Object.keys(towers).length) {
