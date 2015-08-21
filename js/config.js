@@ -2,7 +2,8 @@ var config = (function() {
 
     var config = {
 
-        urlAppName : '/thirdeye',
+
+        urlAppName : '', ///thirdeye
 
         // Flags
         showLogs: true,
