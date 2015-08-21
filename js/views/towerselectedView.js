@@ -438,7 +438,6 @@ var TowerselectedView = (function() {
             this.filterMenuContainerEvents();
         },
         carAnimation: function(data, rootdata) {
-            console.log(data);
             if (data.towerIdentifier != 'tower-a' || this._model.getCurrentRotationAngle() != '0' || !config.showCarAnimation) {
                 return;
             }
