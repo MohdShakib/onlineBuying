@@ -410,6 +410,8 @@ var TowerselectedView = (function() {
                 }
 
                 setTimeout(function() {
+                    $('.' + nextImageClass).hide();
+                    $('.' + rotationAngles[finalIndex]).show();
                     _this._elements.towerSvgContainer.show();
                     _this._elements.towerRotationContainer.show();
                     _this.towerSvgContainer(data, rootdata);
