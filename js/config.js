@@ -10,7 +10,7 @@ var config = (function() {
         mockProjectData: false,
         showCarAnimation: true,
         loadDynamicAssets: false,
-        showTowerRotation: false,
+        showTowerRotation: true,
         enablePayment: false,
         useSpecifiedTowerTooltipSvg: true,
 

@@ -83,7 +83,6 @@ var getProjectData = (function() {
                         tower.rotationAngle[unitInfo.rotationAngle].listing[unitIdentifier] = unitInfo;
                     }
                     delete unitInfo.towerImageName;
-
                 }
             }
         }
@@ -129,15 +128,39 @@ var getProjectData = (function() {
                     // assign rotation angle and images for them
                     var newKeyFrame = projectData.towers[towerIdentifier].rotationAngle;
                     for (var j = 0; j<keys.length; j++) {
-                        var max = j+1 == keys.length ? numberOfFrames : keyFrame[keys[j+1]];
+
+                        var max;
+                        if(keyFrame[keys[j+1]] === undefined){
+                            max = keyFrame[keys[0]];
+                        }else{
+                            max = keyFrame[keys[j+1]];
+                        }
+
+                        var rotateAgainTill = 0;
+                        if(max < keyFrame[keys[j]]){
+                            rotateAgainTill = max;
+                            max = numberOfFrames;
+                        }
+
                         var l = 1;
                         for(var k=keyFrame[keys[j]]; k<max; k++){
                             var angle = parseInt(keys[j])+l;
                             newKeyFrame[angle] = {
-                                towerImageUrl: zipImagePath+imageTemplate.replace(/##/,k+1)
+                                towerImageUrl: zipImagePath+imageTemplate.replace(/##/,utils.addLeadingZeros(k+1, 2))
                             }
                             l++;
                         }
+
+                        if(rotateAgainTill){
+                            for(var k=0; k<rotateAgainTill; k++){
+                                var angle = parseInt(keys[j])+l;
+                                newKeyFrame[angle] = {
+                                    towerImageUrl: zipImagePath+imageTemplate.replace(/##/,utils.addLeadingZeros(k+1, 2))
+                                }
+                                l++;
+                            }
+                        }
+
                     }
 
                     projectData.towers[towerIdentifier].rotationAngle = newKeyFrame;

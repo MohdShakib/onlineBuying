@@ -384,10 +384,12 @@ var TowerselectedView = (function() {
                 currentIndex = rotationAngles.indexOf(currentRotationAngle),
                 finalIndex = rotationAngles.indexOf(newRotationAngle);
             if (currentIndex < finalIndex) {
-                $.merge(intermediateAngles, rotationAngles.slice(currentIndex + 1, finalIndex + 1));
+                $.merge(intermediateAngles, rotationAngles.slice(currentIndex + 1, finalIndex - 1));
             } else {
                 $.merge(intermediateAngles, rotationAngles.slice(currentIndex + 1, rotationAngles.length));
-                $.merge(intermediateAngles, rotationAngles.slice(0, finalIndex + 1));
+                if (finalIndex - 1 >= 0) {
+                    $.merge(intermediateAngles, rotationAngles.slice(0, finalIndex - 1));
+                }
             }
 
             if (config.showTowerRotation && intermediateAngles.length > 0) {
