@@ -16,11 +16,11 @@ var initializeRoutes = (function() {
             error: "404"
         };
 
-        var projectRoute = routeRegex.sep + routeRegex.projectName + routeRegex.wordSep + routeRegex.projectId,
+        var projectRoute = config.urlAppName+routeRegex.sep + routeRegex.projectName + routeRegex.wordSep + routeRegex.projectId,
             towerRoute = projectRoute + routeRegex.sep + routeRegex.towerName,
             unitRoute = towerRoute + routeRegex.sep + routeRegex.towerAngle + routeRegex.sep + routeRegex.unitAddress,
             bookingRoute = unitRoute + routeRegex.sep + routeRegex.booking,
-            errorRoute = routeRegex.sep + routeRegex.error;
+            errorRoute = config.urlAppName+routeRegex.sep + routeRegex.error;
 
         var currentState = null,
             previousState = null;

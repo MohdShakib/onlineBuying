@@ -2,6 +2,8 @@ var config = (function() {
 
     var config = {
 
+        urlAppName : '/thirdeye',
+
         // Flags
         showLogs: true,
         mockProjectData: false,
@@ -150,7 +152,7 @@ var config = (function() {
         nationalityDropdownClass: 'nationalty-drop-down',
         activeBookingInputClass: 'active'
     };
-
+    
     return config;
 
 })();
