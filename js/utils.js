@@ -181,7 +181,6 @@ var utils = (function() {
                 y = event.pageY;
             x = (x / screenWidth) * 100;
             y = (y / screenHeight) * 100;
-
             positionClass = y < 50 ? 'top-' : 'bottom-';
             positionClass += x > 50 ? 'left' : 'right';
 
@@ -197,6 +196,7 @@ var utils = (function() {
                 if (svgObj.type == 'info') {
                     var attrs = {
                         'class': 'transition',
+                        'id': this.getIdentifier('comp-' + svgObj.name),
                         'data-name': svgObj.name,
                         'data-type': svgObj.type,
                         'data-details': svgObj.details,
@@ -213,10 +213,16 @@ var utils = (function() {
             var dataset = $(params.element).data(),
                 towerCode = "<div id='container-detail' class='tooltip-detail'>";
 
-            var tooltipClass = utils.getTooltipPosition({
-                pageX: params.event.clientX,
-                pageY: params.event.clientY
-            });
+            var tooltipCoordinates = {};
+            if(params.event){
+                tooltipCoordinates.pageX = params.event.clientX;
+                tooltipCoordinates.pageY = params.event.clientY;
+            } else {
+                var x_diff = $("svg#svg-container.svg-container.opacity-control.transition-left.dynamic-resize").width() - $("svg#unit-3d-svg-container.svg-container.unit-svg-container").width();
+                tooltipCoordinates.pageX = (params.element.animatedPoints[0].x)*$("svg#unit-3d-svg-container.svg-container.unit-svg-container").width()/100 + x_diff - 70;
+                tooltipCoordinates.pageY = (params.element.animatedPoints[0].y)*$("svg#unit-3d-svg-container.svg-container.unit-svg-container").height()/100 + 50;
+            }
+            var tooltipClass = utils.getTooltipPosition(tooltipCoordinates);
             tooltipClass = tooltipClass ? tooltipClass : 'bottom-right';
 
             towerCode += "<div class='detail-box show-details tSelected-view unit-view'>";
@@ -240,8 +246,8 @@ var utils = (function() {
             if (containerReference) {
                 containerReference.html(towerCode);
                 var offset = containerReference.offset();
-                var left = params.event.clientX - offset.left;
-                var top = params.event.clientY - offset.top;
+                var left = tooltipCoordinates.pageX - offset.left;
+                var top = tooltipCoordinates.pageY - offset.top;
 
                 $('#container-detail').css("left", left + 'px');
                 $('#container-detail').css("top", top + 'px');
