@@ -502,7 +502,7 @@ var utils = (function() {
                 code += "<tr><td class='sub-total-price'>Sub Total</td><td class='sub-total-price " + config.subTotalAmountClass + " right-align'>" + utils.getReadablePrice(data.price) + "</td></tr>";
                 if (data.discount && data.discount > 0) {
                     code += "<tr><td class='discount-price'>Discount <span>(" + data.discountDescription + ")</span> </td><td class='discount-price right-align'>" + utils.getReadablePrice(data.discount) + "</td></tr>";
-                    code += "<tr><td class='total-price'>Total Price</td><td class='total-price right-align' width='100px'><span class='icon fs14 icon-rupee'></span> <label class='" + config.totalAmountClass + "'>" + utils.getReadablePrice(data.price - data.discount) + "</label></td></tr>";
+                    code += "<tr><td class='total-price'>Price after Discount</td><td class='total-price right-align' width='100px'><span class='icon fs14 icon-rupee'></span> <label class='" + config.totalAmountClass + "'>" + utils.getReadablePrice(data.price - data.discount) + "</label></td></tr>";
                 }
 
                 if (showTnc) {
