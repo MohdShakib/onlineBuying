@@ -80,11 +80,9 @@ var UnitplaninfoView = (function() {
                 }
             }
 
-            var firstComp = $("#unit-3d-svg-container.svg-container.unit-svg-container").children("polygon:first")[0];
             setTimeout(function() {
-            utils.addSVGClass(firstComp.id,'hover');
             _this.unitComponentMouseEnter({
-                    element: firstComp,
+                    element: $("#unit-3d-svg-container.svg-container.unit-svg-container polygon:first")[0],
                     event: null
                 });
             }, 1000);
@@ -349,8 +347,10 @@ var UnitplaninfoView = (function() {
             });
         },
         unitComponentMouseEnter: function(params) {
-            var defaultComp = $("#unit-3d-svg-container.svg-container.unit-svg-container").children("polygon:first")[0];
-            utils.removeSVGClass(defaultComp.id,'hover');
+            var hoveredComp = $("#unit-3d-svg-container.svg-container.unit-svg-container .hover")[0];
+            if(hoveredComp){
+                utils.removeSVGClass(hoveredComp.id,'hover');
+            }
             utils.addSVGClass(params.element.id, 'hover');
             if (this._elements && this._elements.unitComponentDetailContainer) {
                 var pointX = $(params.element).attr('points').split(' ')[0];
