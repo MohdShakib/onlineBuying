@@ -429,7 +429,7 @@ var utils = (function() {
                 for (var i = svgElementsArray.length - 1; i >= 0; i--) {
                     // element should have a unique id
                     utils.removeSVGClass(svgElementsArray[i].id,removeClass);
-                };
+                }
             }
         },
         addSVGClassToElements: function(svgElements, newClass) {
