@@ -106,7 +106,6 @@ var ajaxUtils = (function() {
                 attrib = {},
                 contact = {};
             contact.contactNumber = data.phone;
-            attrib.id = 0;
             attrib.attributeName = "PAN";
             attrib.attributeValue = data.pan;
             user.fullName = data.firstName + ' ' + data.lastName;
