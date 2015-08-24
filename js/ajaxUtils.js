@@ -128,7 +128,7 @@ var ajaxUtils = (function() {
                 }
             };
 
-            this.ajax(url, params, 'POST', true, JSON.stringify(req));
+            this.ajax(url, params, 'POST', true, req);
         }
     };
 
