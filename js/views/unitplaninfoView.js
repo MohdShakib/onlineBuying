@@ -347,10 +347,8 @@ var UnitplaninfoView = (function() {
             });
         },
         unitComponentMouseEnter: function(params) {
-            var hoveredComp = $("#unit-3d-svg-container.svg-container.unit-svg-container .hover")[0];
-            if(hoveredComp){
-                utils.removeSVGClass(hoveredComp.id,'hover');
-            }
+            var hoveredComps = $("#unit-3d-svg-container.svg-container.unit-svg-container .hover");
+            utils.removeSVGClasses(hoveredComps,'hover');
             utils.addSVGClass(params.element.id, 'hover');
             if (this._elements && this._elements.unitComponentDetailContainer) {
                 var pointX = $(params.element).attr('points').split(' ')[0];
