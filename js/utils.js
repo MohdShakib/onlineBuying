@@ -425,6 +425,14 @@ var utils = (function() {
             }
             document.getElementById(id).setAttribute('class', classArray.join(' '));
         },
+        removeSVGClasses: function(svgElementsArray, removeClass){
+            if(svgElementsArray && svgElementsArray.length > 0){
+                for (var i = svgElementsArray.length - 1; i >= 0; i--) {
+                    // element should have a unique id
+                    utils.removeSVGClass(svgElementsArray[i].id,removeClass);
+                };
+            }
+        },
         addSVGClassToElements: function(svgElements, newClass) {
             for (var i = 0; i < svgElements.length; i++) {
                 var svgElement = svgElements[i];

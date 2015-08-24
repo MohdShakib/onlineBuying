@@ -15,7 +15,7 @@ var config = (function() {
         showCarAnimation: true,
         loadDynamicAssets: false,
         showTowerRotation: true,
-        enablePayment: false,
+        enablePayment: true,
         useSpecifiedTowerTooltipSvg: true,
         allUnitsAvailable: false, // keep it true only for testing purpose
 
