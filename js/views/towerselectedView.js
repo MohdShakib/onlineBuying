@@ -447,7 +447,7 @@ var TowerselectedView = (function() {
                 entranceFiltersData = filterdata.entrance,
                 priceFiltersData = filterdata.price;
 
-            var code = "<table><tr><td class='menu-header menu-icon transition'><a class='go-back' ><span class='icon icon-arrow_left'></span></a></td></tr>"; //href='#"+url+"'
+            var code = "<table><tr><td class='menu-header menu-icon transition go-back'><a><span class='icon icon-arrow_left'></span></a></td></tr>"; //href='#"+url+"'
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><table>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
