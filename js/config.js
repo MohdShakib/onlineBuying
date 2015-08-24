@@ -11,7 +11,7 @@ var config = (function() {
         showCarAnimation: true,
         loadDynamicAssets: false,
         showTowerRotation: true,
-        enablePayment: false,
+        enablePayment: true,
         useSpecifiedTowerTooltipSvg: true,
 
         // Variables
