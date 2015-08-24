@@ -80,12 +80,12 @@ var UnitplaninfoView = (function() {
                 }
             }
 
-            // setTimeout(function() {
-            // _this.unitComponentMouseEnter({
-            //         element: $("#unit-3d-svg-container.svg-container.unit-svg-container").children("polygon:first")[0],
-            //         event: null
-            //     });
-            // }, 1000);
+            setTimeout(function() {
+            _this.unitComponentMouseEnter({
+                    element: $("#unit-3d-svg-container.svg-container.unit-svg-container polygon:first")[0],
+                    event: null
+                });
+            }, 1000);
         },
         initView: function(data, rotationdata, rootdata) {
             if (!$('#' + config.selectedUnitContainerId).length) {
@@ -300,7 +300,10 @@ var UnitplaninfoView = (function() {
 
             this._elements.unit3dSvgContainer.off('mouseleave').on('mouseleave', 'polygon', function(event) {
                 //here this refers to element
-                _this._unitComponentMouseLeave.notify();
+                _this._unitComponentMouseLeave.notify({
+                    element: this,
+                    event: event
+                });
             });
         },
         unit2dSvgContainer: function() {
@@ -337,11 +340,16 @@ var UnitplaninfoView = (function() {
 
             this._elements.unit2dSvgContainer.off('mouseleave').on('mouseleave', 'polygon', function(event) {
                 //here this refers to element
-                _this._unitComponentMouseLeave.notify(this);
+                _this._unitComponentMouseLeave.notify({
+                    element: this,
+                    event: event
+                });
             });
         },
         unitComponentMouseEnter: function(params) {
-            //utils.addSVGClass(params.element.id, 'hover');
+            var hoveredComps = $("#unit-3d-svg-container.svg-container.unit-svg-container .hover");
+            utils.removeSVGClasses(hoveredComps,'hover');
+            utils.addSVGClass(params.element.id, 'hover');
             if (this._elements && this._elements.unitComponentDetailContainer) {
                 var pointX = $(params.element).attr('points').split(' ')[0];
                 var pointY = $(params.element).attr('points').split(' ')[1];
@@ -350,8 +358,8 @@ var UnitplaninfoView = (function() {
                 utils.unitComponentMouseEnter(params, this._elements.unitComponentDetailContainer);
             }
         },
-        unitComponentMouseLeave: function(element) {
-            //utils.removeSVGClass(element.id, 'hover');
+        unitComponentMouseLeave: function(params) {
+            utils.removeSVGClass(params.element.id, 'hover');
             document.getElementById(config.unitDetailContainerId).innerHTML = '';
         },
         amenitiesContainer: function(data, rotationdata, rootdata) {
