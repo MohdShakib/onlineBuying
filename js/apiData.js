@@ -431,6 +431,11 @@ var getProjectData = (function() {
             var listing = projectDetail.listings[i],
                 unitIdentifier = utils.getIdentifier(listing.flatNumber),
                 flatUnit = {};
+
+            if(config.allUnitsAvailable){
+                listing.bookingStatusId = 1;
+            }
+
             flatUnit.listingAddress = listing.flatNumber;
             flatUnit.unitIdentifier = unitIdentifier;
             flatUnit.unitUniqueIdentifier = unitUniqueIdentifier(unitIdentifier, towerIdentifier);

@@ -5,14 +5,19 @@ var config = (function() {
 
         urlAppName : '', ///thirdeye
 
+        //to read api related data from json
+        apisJson: false,
+        // end
+
+
         // Flags
         showLogs: true,
-        mockProjectData: false,
         showCarAnimation: true,
         loadDynamicAssets: false,
         showTowerRotation: true,
         enablePayment: false,
         useSpecifiedTowerTooltipSvg: true,
+        allUnitsAvailable: false, // keep it true only for testing purpose
 
         // Variables
         towerRotationSpeed: 100, // delay between 2 consecutive frames in miliseconds
