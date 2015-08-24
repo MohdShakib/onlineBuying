@@ -302,7 +302,10 @@ var UnitplaninfoView = (function() {
 
             this._elements.unit3dSvgContainer.off('mouseleave').on('mouseleave', 'polygon', function(event) {
                 //here this refers to element
-                _this._unitComponentMouseLeave.notify();
+                _this._unitComponentMouseLeave.notify({
+                    element: this,
+                    event: event
+                });
             });
         },
         unit2dSvgContainer: function() {
@@ -339,7 +342,10 @@ var UnitplaninfoView = (function() {
 
             this._elements.unit2dSvgContainer.off('mouseleave').on('mouseleave', 'polygon', function(event) {
                 //here this refers to element
-                _this._unitComponentMouseLeave.notify(this);
+                _this._unitComponentMouseLeave.notify({
+                    element: this,
+                    event: event
+                });
             });
         },
         unitComponentMouseEnter: function(params) {
@@ -354,8 +360,8 @@ var UnitplaninfoView = (function() {
                 utils.unitComponentMouseEnter(params, this._elements.unitComponentDetailContainer);
             }
         },
-        unitComponentMouseLeave: function(element) {
-            utils.removeSVGClass(params.id, 'hover');
+        unitComponentMouseLeave: function(params) {
+            utils.removeSVGClass(params.element.id, 'hover');
             document.getElementById(config.unitDetailContainerId).innerHTML = '';
         },
         amenitiesContainer: function(data, rotationdata, rootdata) {
