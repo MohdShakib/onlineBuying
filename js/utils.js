@@ -218,9 +218,8 @@ var utils = (function() {
                 tooltipCoordinates.pageX = params.event.clientX;
                 tooltipCoordinates.pageY = params.event.clientY;
             } else {
-                var x_diff = $("svg#svg-container.svg-container.opacity-control.transition-left.dynamic-resize").width() - $("svg#unit-3d-svg-container.svg-container.unit-svg-container").width();
-                tooltipCoordinates.pageX = (params.element.animatedPoints[0].x)*$("svg#unit-3d-svg-container.svg-container.unit-svg-container").width()/100 + x_diff - 70;
-                tooltipCoordinates.pageY = (params.element.animatedPoints[0].y)*$("svg#unit-3d-svg-container.svg-container.unit-svg-container").height()/100 + 50;
+                tooltipCoordinates.pageX = $('#' + config.selectedUnitContainerId).offset().left + (params.pointX * $('#' + config.selectedUnitContainerId).width()/100) + 10;
+                tooltipCoordinates.pageY = $('#' + config.selectedUnitContainerId).offset().top + (params.pointY * $('#' + config.selectedUnitContainerId).height()/100) + 10;
             }
             var tooltipClass = utils.getTooltipPosition(tooltipCoordinates);
             tooltipClass = tooltipClass ? tooltipClass : 'bottom-right';

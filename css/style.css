@@ -1172,6 +1172,6 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .common-tol-tip p span.icon{ margin-left:10px; padding:0 5px; margin-top:2px; cursor:pointer;}
 /*-----*/
 .tolltip-tower-name{ font-size:15px; padding:8px 10px; background:#464646;}
-.car-animation { position:absolute;z-index:99;}
+.car-animation { position:absolute;z-index:1;}
 .car-animation .car {visibility: hidden;}
 
