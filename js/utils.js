@@ -35,10 +35,12 @@ var utils = (function() {
             var width = imageResolutionWidth / imageResolutionHeight * height;
             var diff = (width - containerWidth) / -2;
             var parentDiff = (width - window.innerWidth) / -2;
+            var parentContainerElementTop = (window.innerHeight / 2) - (height/ 2);
 
             parentContainerElement.style.width = (width > parentContainerWidth) ? (parentContainerWidth + imageResolutionUnit) : (width + imageResolutionUnit);
             parentContainerElement.style.height = height + imageResolutionUnit;
             parentContainerElement.style.left = (parentDiff > 0) ? (parentDiff + imageResolutionUnit) : 0;
+            parentContainerElement.style.top = (parentContainerElementTop > 0) ? parentContainerElementTop+'px' : 0+'px';
 
             dynamicResizeElement.css('height', height + imageResolutionUnit);
             dynamicResizeElement.css('width', width + imageResolutionUnit);
