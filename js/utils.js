@@ -556,7 +556,7 @@ var utils = (function() {
             $('.show-loading').show();
             var percentCounter = 0,
                 count = 0,
-                arrayOfImageUrls = $('img');
+                arrayOfImageUrls = $('img').not(config.lazyloadClass);
             $.each(arrayOfImageUrls, function(index, value) {
                 $('<img>').attr('src', value.src) //load image
                     .load(function() {
