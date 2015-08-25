@@ -51,14 +51,48 @@ module.exports = function(grunt) {
             }
         },
         processhtml: {
-            debug: {
-
+            local: {
+                // Do Nothing
             },
-            live: {
+            dev: {
                 options: {
                     data: {
-                        message: 'This is development environment'
-                    }
+                        cdn: ''
+                    },
+                    process: true
+                },
+                files: {
+                    'index.html': ['index.html']
+                }
+            },
+            qa: {
+                options: {
+                    data: {
+                        cdn: ''
+                    },
+                    process: true
+                },
+                files: {
+                    'index.html': ['index.html']
+                }
+            },
+            beta: {
+                options: {
+                    data: {
+                        cdn: 'https://d12eibkmyydrmn.cloudfront.net/'
+                    },
+                    process: true
+                },
+                files: {
+                    'index.html': ['index.html']
+                }
+            },
+            prod: {
+                options: {
+                    data: {
+                        cdn: 'https://d3ce3d057nh52e.cloudfront.net/'
+                    },
+                    process: true
                 },
                 files: {
                     'index.html': ['index.html']
@@ -112,12 +146,30 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', [
         'base',
-        'processhtml:live',
+        'processhtml:local'
+    ]);
+
+    grunt.registerTask('dev', [
+        'base',
+        'processhtml:dev',
         'replace'
     ]);
 
-    grunt.registerTask('debug', [
+    grunt.registerTask('qa', [
         'base',
-        'processhtml:debug'
+        'processhtml:qa',
+        'replace'
+    ]);
+
+    grunt.registerTask('beta', [
+        'base',
+        'processhtml:beta',
+        'replace'
+    ]);
+
+    grunt.registerTask('prod', [
+        'base',
+        'processhtml:prod',
+        'replace'
     ]);
 };
