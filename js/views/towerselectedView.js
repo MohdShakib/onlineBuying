@@ -26,9 +26,10 @@ var TowerselectedView = (function() {
         return elements;
     }
 
-    function TowerselectedView(model) {
+    function TowerselectedView(model, baseView) {
         this._model = model;
         this._elements = null;
+        this._baseView = baseView;
         var _this = this;
 
         // Svg Events
@@ -91,6 +92,9 @@ var TowerselectedView = (function() {
             this.updateAvailableCount();
         },
         startAnimation: function(model) {
+
+            model._baseView._showLoaderComplete.notify();
+
             // lazy load rotation images
             model.lazyLoadContent();
 
@@ -293,8 +297,10 @@ var TowerselectedView = (function() {
             var toolTipData = data && data.listings ? data.listings[index] : null;
             if (toolTipData) {
                 var svgpathClient = element.getBoundingClientRect();
+                var parentContainer = $('#' + config.parentContainerId).offset();
                 var diff = (window.innerWidth > config.imageResolution.width) ? (window.innerWidth - config.imageResolution.width) / 2 : 0;
-                this.showTowerUnitDetailContainer(toolTipData, (svgpathClient.right - diff), (svgpathClient.top + svgpathClient.height / 2));
+                var topOffset = parentContainer.top || 0;
+                this.showTowerUnitDetailContainer(toolTipData, (svgpathClient.right - diff), (svgpathClient.top + svgpathClient.height / 2 - topOffset));
             }
         },
         towerUnitMouseLeaveEvent: function(element) {

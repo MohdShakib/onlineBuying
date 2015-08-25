@@ -29,6 +29,7 @@ var BaseView = (function() {
     function BaseView(model) {
         this._model = model;
         this._elements = null;
+        this._showLoaderComplete = new Event(this);
         this._bottomGroupButtonClick = new Event(this);
         this._compareBackButtonClick = new Event(this);
         this._unitCompareButtonClick = new Event(this);
@@ -67,7 +68,13 @@ var BaseView = (function() {
                 bottom: '-45px'
             });
         },
-        compareUnitsContainer: function() {
+        compareUnitsContainerReady: false,
+        prepareCompareUnitsContainer: function() {
+
+            if(this.compareUnitsContainerReady){
+                return;
+            }
+
             var compareList = this._model.getCompareList(),
                 compareList_length = Object.keys(compareList).length;
             var rootdata = this._model.getRootdata();
@@ -107,6 +114,7 @@ var BaseView = (function() {
                 this.addToCompareBox($('.compare-unit-box')[1], Object.keys(compareList)[1]);
             }
             this.compareUnitsContainerEvents();
+            this.compareUnitsContainerReady = true;
         },
         compareUnitsContainerEvents: function() {
             var _this = this;
@@ -502,7 +510,6 @@ var BaseView = (function() {
             }
             utils.removeNotificationTooltip();
             this.formPopupCloseClicked();
-            this.compareUnitsContainer();
             $('#' + config.compareUnitscontainerId).fadeIn(900);
         },
         buildSkeleton: function(containerList) {

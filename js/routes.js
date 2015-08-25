@@ -39,7 +39,7 @@ var initializeRoutes = (function() {
         function onTowerselectedRoute(projectName, projectId, towerName, towerAngle) {
             if (!(towerselectedModel && towerselectedModel._data.towerIdentifier == towerName)) {
                 towerselectedModel = new TowerselectedModel(rootdata.towers[towerName], rootdata, towerAngle);
-                towerselectedView = new TowerselectedView(towerselectedModel);
+                towerselectedView = new TowerselectedView(towerselectedModel, baseView);
                 towerselectedController = new TowerselectedController(towerselectedModel, towerselectedView);
             } else {
                 towerselectedModel.init();
@@ -63,7 +63,7 @@ var initializeRoutes = (function() {
                 }
                 if (!masterplanModel) {
                     masterplanModel = new MasterplanModel(rootdata);
-                    masterplanView = new MasterplanView(masterplanModel);
+                    masterplanView = new MasterplanView(masterplanModel, baseView);
                     masterplanController = new MasterplanController(masterplanModel, masterplanView);
                 }
                 masterplanController.generateTemplate();
@@ -145,12 +145,6 @@ var initializeRoutes = (function() {
             strict: false,
             on: function(projectName, projectId) {
 
-                if (!baseController) {
-                    baseModel = new BaseModel(rootdata);
-                    baseView = new BaseView(baseModel);
-                    baseController = new BaseController(baseModel, baseView);
-                    baseController.generateTemplate();
-                }
             },
             //html5history: true,
             notfound: function() {
@@ -184,9 +178,17 @@ var initializeRoutes = (function() {
                     return true;
                 }
 
+
                 if (!flag) {
                     utils.log('data not available for the url');
                     router.setRoute(errorRoute);
+                }
+
+                if (!baseController) {
+                    baseModel = new BaseModel(rootdata);
+                    baseView = new BaseView(baseModel);
+                    baseController = new BaseController(baseModel, baseView);
+                    baseController.generateTemplate();
                 }
 
                 return flag;

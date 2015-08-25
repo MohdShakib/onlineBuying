@@ -30,9 +30,10 @@ var MasterplanView = (function() {
         return elements;
     }
 
-    function MasterplanView(model) {
+    function MasterplanView(model, baseView) {
         this._model = model;
         this._elements = null;
+        this._baseView = baseView;
         var _this = this;
 
         // Menu Events
@@ -84,6 +85,9 @@ var MasterplanView = (function() {
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
         },
         startAnimation: function(model) {
+
+            model._baseView._showLoaderComplete.notify();
+            
             // Images
             $('.opacity-control').fadeIn(500);
 
@@ -188,7 +192,6 @@ var MasterplanView = (function() {
             });
         },
         carAnimation: function(data) {
-            console.log(data);
             if (!config.showCarAnimation) {
                 return;
             }

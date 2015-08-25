@@ -11,7 +11,6 @@ var ajaxUtils = (function() {
                 url: url,
                 async: async,
                 success: function(response) {
-                    console.log(response);
                     if (response.statusCode === '2XX') {
                         if (successCallback === null) {
                             // default successCallback handling
@@ -32,8 +31,8 @@ var ajaxUtils = (function() {
                     } else {
                         errorCallback(textStatus, params);
                     }
-                    console.log('ajax in errorCallback');
-                    console.log('error occured ' + errorThrown);
+                    utils.log('ajax in errorCallback');
+                    utils.log('error occured ' + errorThrown);
                 },
                 complete: function() {
                     if (completeCallback !== null) {
@@ -90,7 +89,7 @@ var ajaxUtils = (function() {
             req.mediumDetails = [emailDetails];
             req.payloadMap = data;
 
-            console.log(req);
+            utils.log(req);
             var url = '/email-notification';
             this.ajax(url, params, 'POST', true, req);
         },

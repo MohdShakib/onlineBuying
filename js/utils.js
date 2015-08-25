@@ -164,8 +164,8 @@ var utils = (function() {
                     // register success callback in return promise
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    console.log('read csv error callback for: ' + url);
-                    console.log('error occured ' + errorThrown);
+                    utils.log('read csv error callback for: ' + url);
+                    utils.log('error occured ' + errorThrown);
                     return false;
                 }
             });
@@ -557,6 +557,13 @@ var utils = (function() {
             var percentCounter = 0,
                 count = 0,
                 arrayOfImageUrls = $('img').not(config.lazyloadClass);
+
+            if(!(arrayOfImageUrls && arrayOfImageUrls.length)){
+                $('.show-loading').hide();
+                startAnimation(model);
+                return;
+            }
+
             $.each(arrayOfImageUrls, function(index, value) {
                 $('<img>').attr('src', value.src) //load image
                     .load(function() {
@@ -565,7 +572,6 @@ var utils = (function() {
                         var percentage = Math.floor(percentCounter) + '%';
                         $('.loading-bar span').width(percentage);
                         $('.loading-persentage').html(percentage);
-                        //console.log(percentage);
                         if (percentCounter == 100) {
                             $('.show-loading').hide();
                             startAnimation(model);
