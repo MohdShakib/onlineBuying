@@ -79,7 +79,7 @@ module.exports = function(grunt) {
             beta: {
                 options: {
                     data: {
-                        cdn: 'https://www.d12eibkmyydrmn.cloudfront.net/'
+                        cdn: 'https://d12eibkmyydrmn.cloudfront.net/'
                     },
                     process: true
                 },
@@ -90,7 +90,7 @@ module.exports = function(grunt) {
             prod: {
                 options: {
                     data: {
-                        cdn: 'https://www.d3ce3d057nh52e.cloudfront.net/'
+                        cdn: 'https://d3ce3d057nh52e.cloudfront.net/'
                     },
                     process: true
                 },
