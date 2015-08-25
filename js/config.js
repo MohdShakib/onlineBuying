@@ -97,6 +97,7 @@ var config = (function() {
         beepEffectClass: 'heart-beep-effect',
         textBlinkClass: 'blink-effect',
         lazyloadClass: 'lazy-load',
+        imageLazyloadedClass: 'lazy-loaded',
 
         // Masterplan
         imgContainerClass: "menu-mapped-image",
