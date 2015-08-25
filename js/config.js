@@ -18,6 +18,7 @@ var config = (function() {
         enablePayment: true,
         useSpecifiedTowerTooltipSvg: true,
         allUnitsAvailable: false, // keep it true only for testing purpose
+        polyHoverFlag: false,
 
         // Variables
         towerRotationSpeed: 100, // delay between 2 consecutive frames in miliseconds

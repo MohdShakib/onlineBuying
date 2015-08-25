@@ -205,7 +205,6 @@ var TowerselectedView = (function() {
             if (!listings) {
                 return;
             }
-
             this._elements.towerSvgContainer.empty(); // need to remove to update for filters applied to re-render
 
             var unitIdentifier, unitInfo, svgClass,
@@ -224,7 +223,8 @@ var TowerselectedView = (function() {
                         selectedClass = (selectedListing == unitIdentifier) ? "" : config.hideClass;
                     svgClass = listings[unitIdentifier].isAvailable ? 'apt-available' : 'apt-unavailable';
                     var attrs = {},
-                        eachEllipse;
+                        eachEllipse,
+                        eachPolygon;
 
                     attrs = {
                         'class': config.towerUnitSvgSelectedClass + " " + selectedClass,
@@ -246,6 +246,19 @@ var TowerselectedView = (function() {
                     };
                     eachEllipse = utils.makeSVG('ellipse', attrs);
                     this._elements.towerSvgContainer.append(eachEllipse);
+
+                    if(config.polyHoverFlag){
+                        attrs = {
+                        'class': config.towerUnitSvgClass + " " + svgClass,
+                        'data-index': unitIdentifier,
+                        'data-url': url,
+                        id: unitIdentifier + "-poly-path",
+                        points: unitInfo.unitHoverSvg
+                        };
+                        eachPolygon = utils.makeSVG('polygon', attrs);
+                        this._elements.towerSvgContainer.append(eachPolygon);
+                    }
+
                     attrs = {
                         'class': config.towerUnitSvgClass + " " + svgClass,
                         id: unitIdentifier + "-path",
@@ -289,7 +302,6 @@ var TowerselectedView = (function() {
             var element = obj.element;
             var data = this._model.getData();
             var index = $(element).data('index');
-
             // show svg hover circle
             utils.removeSVGClass(index + "-hover-path", config.hideClass);
 
