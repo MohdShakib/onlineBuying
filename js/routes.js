@@ -152,13 +152,18 @@ var initializeRoutes = (function() {
                     baseController.generateTemplate();
                 }
             },
-            //html5history: true,
+            html5history: true,
             notfound: function() {
                 utils.log('Route not found');
+                console.log('hash: '+location.hash);
+                console.log('href: '+location.href);
                 router.setRoute(errorRoute);
             },
             before: function(projectName, projectId, towerName, towerAngle, unitAddress) {
 
+                console.log('Route found');
+                console.log('hash: '+location.hash);
+                console.log('href: '+location.href);
                 // Animations
                 utils.removeNotificationTooltip();
 

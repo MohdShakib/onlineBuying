@@ -3,7 +3,7 @@ var config = (function() {
     var config = {
 
 
-        urlAppName : '', ///thirdeye
+        urlAppName : '/online', ///thirdeye
 
         // Flags
         showLogs: true,

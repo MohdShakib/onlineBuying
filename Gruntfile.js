@@ -110,6 +110,10 @@ module.exports = function(grunt) {
         'clean:minified'
     ]);
 
+    grunt.registerTask('qa', [
+        'default'
+    ]);
+
     grunt.registerTask('default', [
         'base',
         'processhtml:live',
