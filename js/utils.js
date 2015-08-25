@@ -556,7 +556,7 @@ var utils = (function() {
             $('.show-loading').show();
             var percentCounter = 0,
                 count = 0,
-                arrayOfImageUrls = $('img');
+                arrayOfImageUrls = $('img').not(config.lazyloadClass);
             $.each(arrayOfImageUrls, function(index, value) {
                 $('<img>').attr('src', value.src) //load image
                     .load(function() {
@@ -634,6 +634,35 @@ var utils = (function() {
         },
         removeNotificationTooltip: function() {
             $('.' + config.notificationTooltipClass).css('top', '-100px');
+        },
+        reOrderFrames: function(angles){
+            var arr = [];
+            var queue = [];
+            
+
+            function queuepush(start,end){
+                if(start<=end){
+                    queue.push({
+                        start: start,
+                        end: end
+                    });
+                }
+            }
+
+            function findMiddleElement(que){
+                var middleIndex = parseInt((que.end+que.start)/2);
+                arr.push(angles[middleIndex]);
+                queuepush(que.start, middleIndex-1);
+                queuepush(middleIndex+1, que.end);
+            }
+
+            queuepush(0,angles.length-1);
+            while(queue.length){
+                var obj = queue.shift();
+                findMiddleElement(obj);
+            }
+
+            return arr;
         }
     };
 

@@ -83,7 +83,7 @@ var BaseView = (function() {
                 var imageUrl = compareList[uniqueIdentifier].unitTypeData.unitImageUrl;
                 htmlCode += '<div class="' + config.compareBottomBox + '" id="' + config.compareBottomBox + '-' + uniqueIdentifier + '" data-uniqueidentifier="' + uniqueIdentifier + '">' +
                     '<p >' + compareList[uniqueIdentifier].unitName + '</p>' +
-                    '<img src="' + imageUrl + '" />' +
+                    '<img class="'+config.lazyloadClass+'" src="' + imageUrl + '" />' +
                     '</div>';
             }
             htmlCode += '</div>';
@@ -94,7 +94,7 @@ var BaseView = (function() {
 
                 htmlCode += '<div class="compare-unit-box-detail top-right-component"><span>Drag & drop to select unit and compare it.</span></div>' +
                     '<div class="img-svg-container drag-drop">' +
-                    '<img class="compare-unit-img"  src="images/compare_drag.jpg"/></div>';
+                    '<img class="compare-unit-img '+config.lazyloadClass+'"  src="images/compare_drag.jpg"/></div>';
 
                 htmlCode += '</div>';
             }
@@ -165,7 +165,7 @@ var BaseView = (function() {
                 '<a data-url="' + link + '">Book now</a><span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(item.bookingAmount) + '/- <br>(No Cancellation Charges)</span>' +
                 '</div>';
             htmlCode += '<div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + uniqueIdentifier + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' +
-                '<img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img"  src="' + imageUrl + '"> </div>';
+                '<img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img '+config.lazyloadClass+'"  src="' + imageUrl + '"> </div>';
 
             $('#' + config.compareBottomBox + '-' + uniqueIdentifier + ' ').addClass('selected');
 

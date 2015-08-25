@@ -106,6 +106,10 @@ var TowerselectedView = (function() {
 
             // Images
             $('.opacity-control').fadeIn(500);
+            
+            setTimeout(function() {
+                $('.tower-rotation-container').fadeIn(500);
+            },1000);
 
             // Connect tabs
             setTimeout(function() {
@@ -166,7 +170,10 @@ var TowerselectedView = (function() {
             var currentRotationAngle = this._model.getCurrentRotationAngle(),
                 data = this._model.getData(),
                 towerImageUrl, imageClass, imgCode = '';
-            for (var rotationAngle in data.rotationAngle) {
+            var allAngles = Object.keys(data.rotationAngle);
+            var lazyLoadSequence = utils.reOrderFrames(allAngles);
+            for(var i=0; i<lazyLoadSequence.length; i++){
+                var rotationAngle = lazyLoadSequence[i];
                 var isStableState = false;
                 if (data.rotationAngle[rotationAngle].listing) {
                     isStableState = true;
@@ -178,23 +185,14 @@ var TowerselectedView = (function() {
                 }
             }
             this._elements.towerImgContainer.append(imgCode);
-            var count = 0,
-                arrayOfImageUrls = $('img.' + config.lazyloadClass);
+            var arrayOfImageUrls = $('img.' + config.lazyloadClass);
             $.each(arrayOfImageUrls, function(index, value) {
                 $('<img>').attr('src', value.src) //load image
                     .load(function() {
-                        count++;
-                        if (count == arrayOfImageUrls.length) {
-                            $('.tower-rotation-container').fadeIn(500);
-                        }
-                    });
+                        $(value).addClass(config.imageLazyloadedClass);
+                    }); 
             });
 
-            if(arrayOfImageUrls.length === 0) {
-                setTimeout(function() {
-                    $('.tower-rotation-container').fadeIn(500);
-                }, 2000);
-            }
         },
         towerSvgContainer: function(data, rootdata) {
             var currentRotationAngle = this._model.getCurrentRotationAngle(),
@@ -397,25 +395,36 @@ var TowerselectedView = (function() {
                 this._elements.towerSvgContainer.hide(); // Hide towerSvgContainer
                 this._elements.towerRotationContainer.hide(); // Hide Rotation buttons
 
+                var totalFramesLoaded = 0, lastShownImageRef;
                 for (var i = 0; i < intermediateAngles.length; i++) {
                     var nextImageClass = intermediateAngles[i],
-                        timeout = (i + 1) * config.towerRotationSpeed;
+                        timeout, nextImageRef = $('.' + nextImageClass);
 
-                    (function(nextImageClass, timeout) {
+                    if(!nextImageRef.hasClass(config.imageLazyloadedClass)){ // if image not loaded skip
+                        continue;
+                    }   
+
+                    lastShownImageRef = nextImageRef;
+                    timeout = (totalFramesLoaded + 1) * config.towerRotationSpeed;
+                    totalFramesLoaded++;
+                    (function(nextImageRef, timeout) {
                         setTimeout(function() {
                             $('.' + config.selectedTowerImagesClass).hide();
-                            $('.' + nextImageClass).show();
+                            nextImageRef.show();
                         }, timeout);
-                    })(nextImageClass, timeout); // jshint ignore:line
+                    })(nextImageRef, timeout); // jshint ignore:line
                 }
 
                 setTimeout(function() {
-                    $('.' + nextImageClass).hide();
+                    if(lastShownImageRef){
+                        lastShownImageRef.hide();
+                    }
+                    $('.' + config.selectedTowerImagesClass).hide();
                     $('.' + rotationAngles[finalIndex]).show();
                     _this._elements.towerSvgContainer.show();
                     _this._elements.towerRotationContainer.show();
                     _this.towerSvgContainer(data, rootdata);
-                }, (intermediateAngles.length + 1) * config.towerRotationSpeed);
+                }, (totalFramesLoaded + 1) * config.towerRotationSpeed);
 
             } else {
                 this._elements.towerSvgContainer.empty();
