@@ -9,7 +9,6 @@ var config = (function() {
         apisJson: false,
         // end
 
-
         // Flags
         showLogs: true,
         showCarAnimation: true,

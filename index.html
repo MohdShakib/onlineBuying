@@ -3,7 +3,7 @@
 	<title>Proptiger Third Eye</title>
     
     <!-- build:[href] <%=cdn%> -->
-    <base href="./">
+    <!-- <base href="./"> -->
     <!-- /build -->
 
     <!-- build:css css/style-all.min.css -->
@@ -21,7 +21,9 @@
 
 </head>
 <body>
-<!-- <div class="blur-bg"></div> -->
+<!-- build:template 
+<div id="env" class="env"><%=env%></div>
+/build -->  
 
     <!-- parent container start here-->
     <div class="parent-container" id="parent-container">
@@ -85,9 +87,10 @@
 	<script src="vendors/directorRoutes.min.js" ></script>
 
     <!-- build:js js/script-all.min.js -->
-    <script src="js/config.js" ></script>
-    <script src="js/ajaxUtils.js" ></script>
-    <script src="js/utils.js" ></script>
+    <script src="js/configs/config.js"></script>
+    <script src="js/configs/envConfig.js"></script>    
+    <script src="js/utils/ajaxUtils.js"></script>
+    <script src="js/utils/utils.js"></script>
     <script src="js/apiData.js"></script>
     <script src="js/dataEvent.js"></script>
     <script src="js/controllers/masterplanController.js"></script>
@@ -110,8 +113,6 @@
     <script src="js/init.js"></script>
     <!-- /build -->
 
-    <!-- google share button plugin -->
-    <!-- facebook share button plugin -->
     <div id="fb-root"></div>
     <!-- Loaded fb and google sdk from init.js -->
 	

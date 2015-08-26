@@ -57,6 +57,7 @@ module.exports = function(grunt) {
             dev: {
                 options: {
                     data: {
+                        env: 'dev',
                         cdn: ''
                     },
                     process: true
@@ -68,6 +69,7 @@ module.exports = function(grunt) {
             qa: {
                 options: {
                     data: {
+                        env: 'qa',
                         cdn: ''
                     },
                     process: true
@@ -79,6 +81,7 @@ module.exports = function(grunt) {
             beta: {
                 options: {
                     data: {
+                        env: 'beta',
                         cdn: 'https://d12eibkmyydrmn.cloudfront.net/'
                     },
                     process: true
@@ -90,6 +93,7 @@ module.exports = function(grunt) {
             prod: {
                 options: {
                     data: {
+                        env: 'prod',
                         cdn: 'https://d3ce3d057nh52e.cloudfront.net/'
                     },
                     process: true
@@ -134,7 +138,7 @@ module.exports = function(grunt) {
         }
 
     });
-
+    
     grunt.registerTask('base', [
         'clean',
         'jshint',

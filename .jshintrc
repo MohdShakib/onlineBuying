@@ -27,6 +27,7 @@
         "BookingController": true,
         "BookingView": true,
         "config": true,
+        "envConfig": true,
         "ErrorPageController": true,
         "ErrorPageView": true,
         "getProjectData": true,

@@ -3,6 +3,7 @@
 
     d.addEventListener('DOMContentLoaded', function() {
         initializeRoutes();
+        
         //lazy loading facebook sdk and google platform file
         var lazyLoadScript = function(id, src){
           (function(d, s, id, src) {
