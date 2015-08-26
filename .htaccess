@@ -4,3 +4,7 @@ Header always set Access-Control-Allow-Headers "X-Accept-Charset,X-Accept,Conten
 RewriteEngine On                  
 RewriteCond %{REQUEST_METHOD} OPTIONS 
 RewriteRule ^(.*)$ $1 [R=200,L,E=HTTP_ORIGIN:%{HTTP:ORIGIN}]]
+
+<FilesMatch ".(eot|ttf|otf|woff|csv)">
+  Header set Access-Control-Allow-Origin "*"
+</FilesMatch>
