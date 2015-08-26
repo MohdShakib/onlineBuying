@@ -114,6 +114,10 @@ module.exports = function(grunt) {
         'default'
     ]);
 
+    grunt.registerTask('dev', [
+        'default'
+    ]);
+
     grunt.registerTask('default', [
         'base',
         'processhtml:live',
