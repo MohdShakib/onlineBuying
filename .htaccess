@@ -1,2 +1,2 @@
-Header set Access-Control-Allow-Origin "*"
+Header add Access-Control-Allow-Origin "*"
 Header set Access-Control-Allow-Headers "X-Accept-Charset,X-Accept,Content-Type,X-Requested-With"
