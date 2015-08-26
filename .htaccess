@@ -1,4 +1,2 @@
+Header set Access-Control-Allow-Origin "*"
 Header set Access-Control-Allow-Headers "X-Accept-Charset,X-Accept,Content-Type,X-Requested-With"
-<FilesMatch ".(eot|ttf|otf|woff)">
-	Header set Access-Control-Allow-Origin "*"
-</FilesMatch>
