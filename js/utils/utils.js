@@ -3,6 +3,8 @@ var utils = (function() {
     var notificationTooltipTimeout;
     return {
         projectId: null,
+        utilsAddress: null,
+        towerName: null,
         masterPlanModel: null, // For dynamic height of tower menu
         log: function(obj) {
             if (config.showLogs) {
@@ -644,7 +646,7 @@ var utils = (function() {
         reOrderFrames: function(angles){
             var arr = [];
             var queue = [];
-            
+
 
             function queuepush(start,end){
                 if(start<=end){
