@@ -65,7 +65,7 @@ var ajaxUtils = (function() {
         },
 
         submitLead: function(data, params) {
-            var url = '/data/v1/entity/enquiry';
+            var url = envConfig.apiURL + 'data/v1/entity/enquiry';
             this.ajax(url, params, 'POST', true, data);
         },
 
@@ -83,7 +83,7 @@ var ajaxUtils = (function() {
             req.payloadMap = data;
 
             utils.log(req);
-            var url = '/email-notification';
+            var url = envConfig.apiURL + 'email-notification';
             this.ajax(url, params, 'POST', true, req);
         },
 
@@ -114,7 +114,7 @@ var ajaxUtils = (function() {
             req.amount = data.amount;
             req.user = user;
 
-            var url = "/data/v1/transaction/coupon?debug=true";
+            var url = envConfig.apiURL + "data/v1/transaction/coupon?debug=true";
             var params = {
                 successCallback: function(data, params) {
                     window.location.href = data;
