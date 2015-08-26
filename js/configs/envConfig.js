@@ -22,7 +22,7 @@ var envConfig = (function() {
         },
         beta: {
             env: env,
-            apiURL: 'https://beta.proptiger-ws.com/'
+            apiURL: 'http://beta.proptiger-ws.com/'
         },
         prod: {
             env: env,
