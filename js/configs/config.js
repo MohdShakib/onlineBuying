@@ -12,7 +12,7 @@ var config = (function() {
         // Flags
         showLogs: true,
         showCarAnimation: true,
-        loadDynamicAssets: true,
+        loadDynamicAssets: false,
         showTowerRotation: true,
         enablePayment: true,
         useSpecifiedTowerTooltipSvg: true,
