@@ -644,7 +644,7 @@ var utils = (function() {
         reOrderFrames: function(angles){
             var arr = [];
             var queue = [];
-            
+
 
             function queuepush(start,end){
                 if(start<=end){

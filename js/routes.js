@@ -170,6 +170,9 @@ var initializeRoutes = (function() {
 
                 if (towerAngle && unitAddress) {
                     flag = rootdata.towers && rootdata.towers[towerName] && rootdata.towers[towerName].rotationAngle && rootdata.towers[towerName].rotationAngle[towerAngle] && rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress] ? true : false;
+                    if(flag){
+                      utils.unitUniqueAdd = rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress].unitUniqueIdentifier;
+                    }
                 } else if (towerName) {
                     flag = rootdata.towers && rootdata.towers[towerName] ? true : false;
                 } else if (projectId) {

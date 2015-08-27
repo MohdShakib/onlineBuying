@@ -69,15 +69,16 @@ var BaseView = (function() {
             });
         },
         compareUnitsContainerReady: false,
-        prepareCompareUnitsContainer: function() {
-
-            if(this.compareUnitsContainerReady){
+        prepareCompareUnitsContainer: function(flag) {
+            if(this.compareUnitsContainerReady && !flag){
                 return;
             }
 
             var compareList = this._model.getCompareList(),
                 compareList_length = Object.keys(compareList).length;
             var rootdata = this._model.getRootdata();
+            var compareKeys = Object.keys(compareList);
+            var indexOfCurrentUnit = compareKeys.indexOf(utils.unitUniqueAdd);
 
             var htmlCode = '',
                 firstUniqueIdentifier;
@@ -107,23 +108,32 @@ var BaseView = (function() {
             }
 
             this._elements.compareUnitsContainer.html(htmlCode);
-            if (compareList_length > 1) {
-                this.addToCompareBox($('.compare-unit-box')[0], Object.keys(compareList)[0]);
-            }
             if (compareList_length == 2) {
-                this.addToCompareBox($('.compare-unit-box')[1], Object.keys(compareList)[1]);
+                this.addToCompareBox($('.compare-unit-box')[1], compareKeys[1]);
+                this.addToCompareBox($('.compare-unit-box')[0], compareKeys[0]);
+
+            } else {
+              if (indexOfCurrentUnit && indexOfCurrentUnit > -1) {
+                  this.addToCompareBox($('.compare-unit-box')[0], compareKeys[indexOfCurrentUnit]);
+              } else if (compareList_length > 1) {
+                    this.addToCompareBox($('.compare-unit-box')[0], compareKeys[0]);
+                }
             }
+
+
+
+
             this.compareUnitsContainerEvents();
             this.compareUnitsContainerReady = true;
         },
         compareUnitsContainerEvents: function() {
             var _this = this;
             this._elements.compareUnitsContainer.off('click').on('click', '.' + config.compareBackButtonClass, function(event) {
-                _this._compareBackButtonClick.notify(this); //this refers to element here                
+                _this._compareBackButtonClick.notify(this); //this refers to element here
             });
 
             this._elements.compareUnitsContainer.on('click', '.book-now a', function(event) {
-                _this._bookingClick.notify(this); //this refers to element here                
+                _this._bookingClick.notify(this); //this refers to element here
             });
 
             this._elements.compareUnitsContainer.on('click', '.close-compare-box', function(event) {
@@ -358,7 +368,7 @@ var BaseView = (function() {
             });
 
             this._elements.bottomFormGroupContainer.off('click').on('click', '.' + config.bottomFormGroup.tabLinkClass, function(event) {
-                _this._bottomGroupButtonClick.notify(this); //this refers to element here                
+                _this._bottomGroupButtonClick.notify(this); //this refers to element here
             });
 
             this._elements.bottomFormGroupContainer.on('click', function(event) {
@@ -510,6 +520,7 @@ var BaseView = (function() {
             }
             utils.removeNotificationTooltip();
             this.formPopupCloseClicked();
+            this.prepareCompareUnitsContainer(true);
             $('#' + config.compareUnitscontainerId).fadeIn(900);
         },
         buildSkeleton: function(containerList) {
