@@ -151,7 +151,7 @@ var BookingView = (function() {
                 //'                            <div id="booking-dob" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 //'                                <label class="transition">date of birth (DD/MM/YYY)</label>' +
                 //'                                <input type="text" />' +
-                //'                                <span class="error ' + config.errorMsgClass + '"></span>' +                
+                //'                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 //'                            </div>' +
                 //'                        </td>' +
                 '                        <td width="50%">' +
@@ -175,12 +175,16 @@ var BookingView = (function() {
                 '                <input type="checkbox" id="terms" required />' +
                 '                <label for="terms">I have read &amp; agree to <a id="tnc">Terms &amp; Conditions</a></label>' +
                 '                <span class="error ' + config.errorMsgClass + '"></span>' +
-                '            </div>' +
-                '            <a class="fleft transition make-payment ' + disableClass + '">Continue to Payment</a>' +
-                '            <div class="clear-fix"></div>' +
-                '        </div>' +
-                '        </div>' +
-                '        </div>';
+                '            </div>';
+            if(data.bookingStatus == 'Available'){
+              code += '<a class="fleft transition make-payment ' + disableClass + '">Continue to Payment</a>';
+            } else {
+              code += '<a class="fleft transition already-sold' + disableClass + '">Sold out</a>';
+            }
+            code += '<div class="clear-fix"></div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
 
 
             this._elements.paymentScreen.html(code);
