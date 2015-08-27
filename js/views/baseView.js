@@ -78,11 +78,7 @@ var BaseView = (function() {
                 compareList_length = Object.keys(compareList).length;
             var rootdata = this._model.getRootdata();
             var compareKeys = Object.keys(compareList);
-            var currentUnitSelected = null;
-            if(utils.unitAddress && utils.towerName) {
-              currentUnitSelected = utils.unitAddress+"-"+utils.towerName;
-            }
-            var indexOfCurrentUnit = compareKeys.indexOf(currentUnitSelected);
+            var indexOfCurrentUnit = compareKeys.indexOf(utils.unitUniqueAdd);
 
             var htmlCode = '',
                 firstUniqueIdentifier;
@@ -112,15 +108,21 @@ var BaseView = (function() {
             }
 
             this._elements.compareUnitsContainer.html(htmlCode);
-            if (compareList_length > 1) {
-                this.addToCompareBox($('.compare-unit-box')[0], compareKeys[0]);
-            }
             if (compareList_length == 2) {
                 this.addToCompareBox($('.compare-unit-box')[1], compareKeys[1]);
+                this.addToCompareBox($('.compare-unit-box')[0], compareKeys[0]);
+
+            } else {
+              if (indexOfCurrentUnit && indexOfCurrentUnit > -1) {
+                  this.addToCompareBox($('.compare-unit-box')[0], compareKeys[indexOfCurrentUnit]);
+              } else if (compareList_length > 1) {
+                    this.addToCompareBox($('.compare-unit-box')[0], compareKeys[0]);
+                }
             }
-            if (indexOfCurrentUnit && indexOfCurrentUnit > -1) {
-                this.addToCompareBox($('.compare-unit-box')[1], compareKeys[indexOfCurrentUnit]);
-            }
+
+
+
+
             this.compareUnitsContainerEvents();
             this.compareUnitsContainerReady = true;
         },
