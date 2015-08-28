@@ -305,6 +305,10 @@ var getProjectData = (function() {
             useTowerRotationData(data);
         });
 
+        utils.getJsonData("https://im.proptiger-ws.com/2/1/501660/108/260684/data3.json").success(function(data) {
+            console.log("Yooo");
+        });
+
     }
 
 

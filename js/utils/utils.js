@@ -170,6 +170,25 @@ var utils = (function() {
                 }
             });
         },
+        getJsonData: function(url) {
+            return $.ajax({
+                type: 'GET',
+                url: url,
+                async: false,
+                jsonpCallback: 'callback',
+                contentType: "application/json",
+                dataType: "jsonp",
+                success: function(data) {
+                    // register success callback in return promise
+                    console.log(data);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    utils.log('read csv error callback for: ' + url);
+                    utils.log('error occured ' + errorThrown);
+                    return false;
+                }
+            });
+        },
         getTooltipPosition: function(event) {
 
             if (!event) {
