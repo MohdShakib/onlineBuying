@@ -1,2 +1,7 @@
+# CORS Configs
 Header set Access-Control-Allow-Origin "*"
 Header set Access-Control-Allow-Headers "X-Accept-Charset,X-Accept,Content-Type,X-Requested-With"
+
+# HTTPS redirection
+RewriteCond %{HTTPS} off
+RewriteRule . https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

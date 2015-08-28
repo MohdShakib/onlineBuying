@@ -515,7 +515,7 @@ var getProjectData = (function() {
             // keep unitInfo in local variable towersUnitInfo
             if (towersUnitInfo[towerIdentifier] && flatUnit.bedrooms) {
                 var unitTypeIndex = flatUnit.bedrooms + 'BHK';
-                if (flatUnit.isAvailable && hasOwnProperty.call(towersUnitInfo[towerIdentifier], unitTypeIndex)) { //
+                if (flatUnit.isAvailable && hasOwnProperty.call(towersUnitInfo[towerIdentifier], unitTypeIndex)) { 
                     towersUnitInfo[towerIdentifier][unitTypeIndex] += 1;
                 } else if (flatUnit.isAvailable) {
                     towersUnitInfo[towerIdentifier][unitTypeIndex] = 1;

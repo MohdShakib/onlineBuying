@@ -82,7 +82,7 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         env: 'beta',
-                        cdn: 'https://d12eibkmyydrmn.cloudfront.net/'
+                        cdn: 'https://beta-thirdeyestatic.proptiger-ws.com/'
                     },
                     process: true
                 },

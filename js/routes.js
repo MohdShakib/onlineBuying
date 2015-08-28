@@ -152,7 +152,6 @@ var initializeRoutes = (function() {
             on: function(projectName, projectId) {
 
             },
-            //html5history: true,
             notfound: function() {
                 utils.log('Route not found');
                 router.setRoute(errorRoute);
