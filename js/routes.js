@@ -174,11 +174,10 @@ var initializeRoutes = (function() {
                 }
 
                 if (towerAngle && unitAddress) {
-                    flag = rootdata.towers && rootdata.towers[towerName] && rootdata.towers[towerName].rotationAngle && rootdata.towers[towerName].rotationAngle[towerAngle] && rootdata.towers[towerName].rotationAngle[towerAngle].listing && rootdata.towers[towerName].rotationAngle[towerAngle] && rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress] ? true : false;
+                    flag = rootdata.towers && rootdata.towers[towerName] && rootdata.towers[towerName].rotationAngle && rootdata.towers[towerName].rotationAngle[towerAngle] && rootdata.towers[towerName].rotationAngle[towerAngle].listing && rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress] ? true : false;
                     if(flag){
                       utils.unitUniqueAdd = rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress].unitUniqueIdentifier;
-                    }
-                    if(rootdata.towers[towerName] && rootdata.towers[towerName].listings && rootdata.towers[towerName].listings[unitAddress].rotationAnglesAvailable.indexOf(towerAngle) == -1){
+                    } else {
                       towerAngle = rootdata.towers[towerName].listings[unitAddress].rotationAnglesAvailable[0];
                       redirectToCorrectAngle(window.location.hash,towerAngle,router);
                       return false;
