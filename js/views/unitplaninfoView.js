@@ -319,6 +319,7 @@ var UnitplaninfoView = (function() {
             for (var i = 0; i < svgs_count; i++) {
                 var svgObj = svgData[i];
                 attrs = {
+                    'id': utils.getIdentifier('comp-' + svgObj.name),
                     'class': config.transitionClass,
                     'data-name': svgObj.name,
                     'data-type': svgObj.type,
