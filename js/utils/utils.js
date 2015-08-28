@@ -35,12 +35,12 @@ var utils = (function() {
             var width = imageResolutionWidth / imageResolutionHeight * height;
             var diff = (width - containerWidth) / -2;
             var parentDiff = (width - window.innerWidth) / -2;
-            var parentContainerElementTop = (window.innerHeight / 2) - (height/ 2);
+            var parentContainerElementTop = (window.innerHeight / 2) - (height / 2);
 
             parentContainerElement.style.width = (width > parentContainerWidth) ? (parentContainerWidth + imageResolutionUnit) : (width + imageResolutionUnit);
             parentContainerElement.style.height = height + imageResolutionUnit;
             parentContainerElement.style.left = (parentDiff > 0) ? (parentDiff + imageResolutionUnit) : 0;
-            parentContainerElement.style.top = (parentContainerElementTop > 0) ? parentContainerElementTop+'px' : 0+'px';
+            parentContainerElement.style.top = (parentContainerElementTop > 0) ? parentContainerElementTop + 'px' : 0 + 'px';
 
             dynamicResizeElement.css('height', height + imageResolutionUnit);
             dynamicResizeElement.css('width', width + imageResolutionUnit);
@@ -216,12 +216,12 @@ var utils = (function() {
                 towerCode = "<div id='container-detail' class='tooltip-detail'>";
 
             var tooltipCoordinates = {};
-            if(params.event){
+            if (params.event) {
                 tooltipCoordinates.pageX = params.event.clientX;
                 tooltipCoordinates.pageY = params.event.clientY;
             } else {
-                tooltipCoordinates.pageX = $('#' + config.selectedUnitContainerId).offset().left + (params.pointX * $('#' + config.selectedUnitContainerId).width()/100) + 10;
-                tooltipCoordinates.pageY = $('#' + config.selectedUnitContainerId).offset().top + (params.pointY * $('#' + config.selectedUnitContainerId).height()/100) + 10;
+                tooltipCoordinates.pageX = $('#' + config.selectedUnitContainerId).offset().left + (params.pointX * $('#' + config.selectedUnitContainerId).width() / 100) + 10;
+                tooltipCoordinates.pageY = $('#' + config.selectedUnitContainerId).offset().top + (params.pointY * $('#' + config.selectedUnitContainerId).height() / 100) + 10;
             }
             var tooltipClass = utils.getTooltipPosition(tooltipCoordinates);
             tooltipClass = tooltipClass ? tooltipClass : 'bottom-right';
@@ -424,11 +424,11 @@ var utils = (function() {
             }
             document.getElementById(id).setAttribute('class', classArray.join(' '));
         },
-        removeSVGClasses: function(svgElementsArray, removeClass){
-            if(svgElementsArray && svgElementsArray.length > 0){
+        removeSVGClasses: function(svgElementsArray, removeClass) {
+            if (svgElementsArray && svgElementsArray.length > 0) {
                 for (var i = svgElementsArray.length - 1; i >= 0; i--) {
                     // element should have a unique id
-                    utils.removeSVGClass(svgElementsArray[i].id,removeClass);
+                    utils.removeSVGClass(svgElementsArray[i].id, removeClass);
                 }
             }
         },
@@ -466,15 +466,19 @@ var utils = (function() {
         },
         getTermsConditionsHtml: function(data, rootdata) {
             return '<h3>Terms &amp; Conditions</h3>' +
-                '<p>All details provided about the project is based on information provided by ' + rootdata.builderName + ' to Proptiger.com. Proptiger.com is not liable for the changes in facts post buying.</p>' +
-                '<p>Only Indian Residents, Non-Resident Indians (NRIs), Overseas Citizens of India (OCIs) &amp; Persons of Indian Origin (PIOs) who are eligible to enter into contract as per Indian Contract Act, 1881 shall be eligible to apply.</p>' +
-                '<p>Payment plan and Prices are subject to change at the sole discretion of the builder. Images displayed are for representational purpose only. Floor plan and the layout dimensions are subject to modification.</p>' +
-                '<p>The booking amount of <span class="icon icon-rupee fs10"></span> ' + data.bookingAmount + '/- paid by the user for booking is only a token advance and it does not confer ownership rights in the chosen property. The booking only ensures blocking of the property temporarily and should not be considered as buying or owning the property.</p>' +
-                '<p>Modification or Cancellation of the booking is allowed within the 7 days after booking. Any cancellation charges will not be applied in this period. For cancellation or modifications please contact <a href="https://www.proptiger.com/" target="_blank">Proptiger.com</a> customer care at +919278892788.</p>' +
-                '<p>Any request for customisation or changes are to be handled directly with ' + rootdata.builderName + ' builders.</p>' +
-                '<p>Updates regarding the project completion etc shall be provided by the builder post booking of the flat.</p>' +
-                '<p>Please use the Booking ID in all further communication with builder and PropTiger.com</p>' +
-                '<p>Offer prices provided are subject to the payment schedule mentioned in the project.</p>';
+                '<p>All details provided about the project are based on information provided by the builder to PropTiger.com. No warranty of the accuracy of the details as provided by the builder. PropTiger.com is not liable for any change in specifications post buying.</p>' +
+                '<p>All the commitments on the delivery and quality of material used for the proposed flat/property are from the developer and PropTiger cannot be held accountable for any variations or non-delivery of any such committed things.</p>' +
+                '<p>Developer reserves the right to change the specifications of the flats at its own discretion as mentioned herein and PropTiger shall not be held responsible for any such change in specifications in future.</p>' +
+                '<p>Only Indian Residents, Non-Resident Indians (NRIs), OCI (Overseas Citizens of India) and Persons of Indian Origin (PIOs) who are eligible to enter into contract as per Indian Contract Act, 1881 shall be eligible to apply.</p>' +
+                '<p>Images shown here are artistic view only and the actual project/property may be different from this. Payment plan and prices are subject to change at the sole discretion of the builder. Floor plan and the layout dimensions are subject to modification.</p>' +
+                '<p>Token amount of <span class="icon icon-rupee fs10"></span> ' + data.bookingAmount + '/- will be forfeited in case the Client does not complete all booking formalities including filling up application form and payment of the balance booking amount (5% or 10% as the case may be) within 30 days of the booking. No claim whatsoever will be entertained in this regard after 1 month.</p>' +
+                '<p>Liability of the PropTiger in all circumstances shall not exceed the booking amount paid on this website for booking this property.</p>' +
+                '<p>The booking amount paid by the user for booking is only a token advance and it does not confer ownership rights of the chosen property. The booking only ensures blocking of the property temporarily and should not be considered as buying or owning the property.</p>' +
+                '<p>Modification of the booking is allowed within the <strong>7 days</strong> of booking. Any service charges will not be applied during this period. For modifications please contact Proptiger.com customer care at <strong>+919278892788</strong>.</p>' +
+                '<p>Any request for customization or changes is to be handled directly with the builders. PropTiger will not be responsible for any such request not entertained by Builder.</p>' +
+                '<p>Updates regarding the project completion etc. shall be provided by the builder directly post booking of the flat.</p>' +
+                '<p>Please use the Booking ID allotted in all further communication with the builder and Proptiger.com.</p>' +
+                '<p>Offer prices provided are subject to adhering the payment schedule mentioned in the project.</p>';
         },
         getPriceBreakupHtml: function(data, rotationdata, rootdata, showTnc) {
             var opCode = '';
@@ -558,7 +562,7 @@ var utils = (function() {
                 count = 0,
                 arrayOfImageUrls = $('img').not(config.lazyloadClass);
 
-            if(!(arrayOfImageUrls && arrayOfImageUrls.length)){
+            if (!(arrayOfImageUrls && arrayOfImageUrls.length)) {
                 $('.show-loading').hide();
                 startAnimation(model);
                 return;
@@ -641,13 +645,13 @@ var utils = (function() {
         removeNotificationTooltip: function() {
             $('.' + config.notificationTooltipClass).css('top', '-100px');
         },
-        reOrderFrames: function(angles){
+        reOrderFrames: function(angles) {
             var arr = [];
             var queue = [];
 
 
-            function queuepush(start,end){
-                if(start<=end){
+            function queuepush(start, end) {
+                if (start <= end) {
                     queue.push({
                         start: start,
                         end: end
@@ -655,15 +659,15 @@ var utils = (function() {
                 }
             }
 
-            function findMiddleElement(que){
-                var middleIndex = parseInt((que.end+que.start)/2);
+            function findMiddleElement(que) {
+                var middleIndex = parseInt((que.end + que.start) / 2);
                 arr.push(angles[middleIndex]);
-                queuepush(que.start, middleIndex-1);
-                queuepush(middleIndex+1, que.end);
+                queuepush(que.start, middleIndex - 1);
+                queuepush(middleIndex + 1, que.end);
             }
 
-            queuepush(0,angles.length-1);
-            while(queue.length){
+            queuepush(0, angles.length - 1);
+            while (queue.length) {
                 var obj = queue.shift();
                 findMiddleElement(obj);
             }
