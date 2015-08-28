@@ -174,10 +174,11 @@ var initializeRoutes = (function() {
                 }
 
                 if (towerAngle && unitAddress) {
+                  console.log(rootdata.towers[towerName]);
                     flag = rootdata.towers && rootdata.towers[towerName] && rootdata.towers[towerName].rotationAngle && rootdata.towers[towerName].rotationAngle[towerAngle] && rootdata.towers[towerName].rotationAngle[towerAngle].listing && rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress] ? true : false;
                     if(flag){
                       utils.unitUniqueAdd = rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress].unitUniqueIdentifier;
-                    } else {
+                    } else if(rootdata.towers[towerName] && rootdata.towers[towerName].listings[unitAddress]){
                       towerAngle = rootdata.towers[towerName].listings[unitAddress].rotationAnglesAvailable[0];
                       redirectToCorrectAngle(window.location.hash,towerAngle,router);
                       return false;
