@@ -10,7 +10,7 @@ var initializeRoutes = (function() {
             projectName: "([a-z0-9-]+)",
             projectId: "([0-9]{6})",
             towerName: "([a-z0-9-]+)",
-            towerAngle: "(0|180)",
+            towerAngle: "([0-9]{1,3})",
             unitAddress: "([a-z0-9-]+)",
             booking: "booking",
             error: "404"
@@ -35,7 +35,13 @@ var initializeRoutes = (function() {
             baseController, baseModel, baseView,
             errorPageController, errorPageView,
             bookingController, bookingModel, bookingView;
-
+        function redirectToCorrectAngle(data,angle,router){
+            var data = data.split('/');
+            data[3] = angle;
+            data = data.slice(1,data.length);
+            data = data.join('/');
+            router.setRoute(data);
+        }
         function onTowerselectedRoute(projectName, projectId, towerName, towerAngle) {
             if (!(towerselectedModel && towerselectedModel._data.towerIdentifier == towerName)) {
                 towerselectedModel = new TowerselectedModel(rootdata.towers[towerName], rootdata, towerAngle);
@@ -152,7 +158,6 @@ var initializeRoutes = (function() {
                 router.setRoute(errorRoute);
             },
             before: function(projectName, projectId, towerName, towerAngle, unitAddress) {
-
                 // Animations
                 utils.removeNotificationTooltip();
 
@@ -169,9 +174,13 @@ var initializeRoutes = (function() {
                 }
 
                 if (towerAngle && unitAddress) {
-                    flag = rootdata.towers && rootdata.towers[towerName] && rootdata.towers[towerName].rotationAngle && rootdata.towers[towerName].rotationAngle[towerAngle] && rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress] ? true : false;
+                    flag = rootdata.towers && rootdata.towers[towerName] && rootdata.towers[towerName].rotationAngle && rootdata.towers[towerName].rotationAngle[towerAngle] && rootdata.towers[towerName].rotationAngle[towerAngle].listing && rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress] ? true : false;
                     if(flag){
                       utils.unitUniqueAdd = rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress].unitUniqueIdentifier;
+                    } else {
+                      towerAngle = rootdata.towers[towerName].listings[unitAddress].rotationAnglesAvailable[0];
+                      redirectToCorrectAngle(window.location.hash,towerAngle,router);
+                      return false;
                     }
                 } else if (towerName) {
                     flag = rootdata.towers && rootdata.towers[towerName] ? true : false;
@@ -180,7 +189,6 @@ var initializeRoutes = (function() {
                 } else {
                     return true;
                 }
-
 
                 if (!flag) {
                     utils.log('data not available for the url');

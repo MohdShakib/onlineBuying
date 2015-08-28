@@ -73,15 +73,24 @@ var getProjectData = (function() {
                     }
 
                     var unitSvgOnTower = unitInfo.unitSvgOnTower ? unitInfo.unitSvgOnTower.split(' ') : null;
+                    var validUnitFlag = false;
                     unitInfo.unitSvgOnTower = unitSvgOnTower;
                     if (tower && tower.rotationAngle[unitInfo.rotationAngle] && unitInfo.rotationAngle) {
                         tower.rotationAngle[unitInfo.rotationAngle].listing[unitIdentifier] = unitInfo;
+                        validUnitFlag = true;
                     } else if (tower && tower.rotationAngle && unitInfo.rotationAngle) {
                         tower.rotationAngle[unitInfo.rotationAngle] = {};
                         tower.rotationAngle[unitInfo.rotationAngle].towerImageUrl = zipImagePath + unitInfo.towerImageName;
                         tower.rotationAngle[unitInfo.rotationAngle].listing = {};
                         tower.rotationAngle[unitInfo.rotationAngle].listing[unitIdentifier] = unitInfo;
+                        validUnitFlag = true;
                     }
+
+                    if(tower.listings[unitIdentifier] && validUnitFlag){
+                      tower.listings[unitIdentifier].rotationAnglesAvailable = tower.listings[unitIdentifier].rotationAnglesAvailable;
+                      tower.listings[unitIdentifier].rotationAnglesAvailable.push(unitInfo.rotationAngle);
+                    }
+
                     delete unitInfo.towerImageName;
                 }
             }
@@ -449,6 +458,8 @@ var getProjectData = (function() {
             flatUnit.bookingAmount = listing.bookingAmount;
             flatUnit.discount = listing.discount ? listing.discount : undefined;
             flatUnit.discountDescription = listing.discountDescription;
+            flatUnit.rotationAnglesAvailable = [];
+
 
             var propertyDetail = _getPropertyById(projectDetail.properties, listing.propertyId);
 
@@ -504,7 +515,7 @@ var getProjectData = (function() {
             // keep unitInfo in local variable towersUnitInfo
             if (towersUnitInfo[towerIdentifier] && flatUnit.bedrooms) {
                 var unitTypeIndex = flatUnit.bedrooms + 'BHK';
-                if (flatUnit.isAvailable && hasOwnProperty.call(towersUnitInfo[towerIdentifier], unitTypeIndex)) { // 
+                if (flatUnit.isAvailable && hasOwnProperty.call(towersUnitInfo[towerIdentifier], unitTypeIndex)) { //
                     towersUnitInfo[towerIdentifier][unitTypeIndex] += 1;
                 } else if (flatUnit.isAvailable) {
                     towersUnitInfo[towerIdentifier][unitTypeIndex] = 1;
