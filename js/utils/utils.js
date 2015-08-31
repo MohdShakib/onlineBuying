@@ -177,7 +177,7 @@ var utils = (function() {
         getJsonData: function(url) {
             return $.ajax({
                 type: 'GET',
-                url: url,
+                url: url + '?callback=?',
                 async: false,
                 jsonpCallback: 'callback',
                 contentType: "application/json",
@@ -187,7 +187,7 @@ var utils = (function() {
                     console.log(data);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    utils.log('read csv error callback for: ' + url);
+                    utils.log('read json error callback for: ' + url);
                     utils.log('error occured ' + errorThrown);
                     return false;
                 }
