@@ -177,8 +177,8 @@ var utils = (function() {
         getJsonData: function(url) {
             return $.ajax({
                 type: 'GET',
-                url: url,
-                async: true,
+                url: url + '?callback=?',
+                async: false,
                 jsonpCallback: 'callback',
                 contentType: "application/json",
                 dataType: "jsonp",
