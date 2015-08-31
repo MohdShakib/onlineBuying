@@ -173,11 +173,12 @@ var initializeRoutes = (function() {
                 }
 
                 if (towerAngle && unitAddress) {
-                    flag = rootdata.towers && rootdata.towers[towerName] && rootdata.towers[towerName].rotationAngle && rootdata.towers[towerName].rotationAngle[towerAngle] && rootdata.towers[towerName].rotationAngle[towerAngle].listing && rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress] ? true : false;
+                    var towerData = rootdata.towers && rootdata.towers[towerName] ? rootdata.towers[towerName] : undefined;
+                    flag = towerData && towerData.listings && towerData.listings[unitAddress] && towerData.rotationAngle && towerData.rotationAngle[towerAngle] && towerData.rotationAngle[towerAngle].listing && towerData.rotationAngle[towerAngle].listing[unitAddress] ? true : false;
                     if(flag){
-                      utils.unitUniqueAdd = rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress].unitUniqueIdentifier;
-                    } else if(rootdata.towers[towerName] && rootdata.towers[towerName].listings[unitAddress]){
-                      towerAngle = rootdata.towers[towerName].listings[unitAddress].rotationAnglesAvailable[0];
+                      utils.unitUniqueAdd = towerData.rotationAngle[towerAngle].listing[unitAddress].unitUniqueIdentifier;
+                    } else if(towerData && towerData.listings[unitAddress]){
+                      towerAngle = towerData.listings[unitAddress].rotationAnglesAvailable[0];
                       redirectToCorrectAngle(window.location.hash,towerAngle,router);
                       return false;
                     }

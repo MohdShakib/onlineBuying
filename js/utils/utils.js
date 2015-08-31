@@ -37,6 +37,10 @@ var utils = (function() {
             var parentDiff = (width - window.innerWidth) / -2;
             var parentContainerElementTop = (window.innerHeight / 2) - (height / 2);
 
+            if(!(parentContainerElement && parentContainerElement.style)){
+                return;
+            }
+
             parentContainerElement.style.width = (width > parentContainerWidth) ? (parentContainerWidth + imageResolutionUnit) : (width + imageResolutionUnit);
             parentContainerElement.style.height = height + imageResolutionUnit;
             parentContainerElement.style.left = (parentDiff > 0) ? (parentDiff + imageResolutionUnit) : 0;
