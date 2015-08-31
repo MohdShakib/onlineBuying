@@ -178,7 +178,7 @@ var utils = (function() {
             return $.ajax({
                 type: 'GET',
                 url: url,
-                async: false,
+                async: true,
                 jsonpCallback: 'callback',
                 contentType: "application/json",
                 dataType: "jsonp",
