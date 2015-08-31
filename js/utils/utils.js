@@ -187,7 +187,7 @@ var utils = (function() {
                     console.log(data);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    utils.log('read csv error callback for: ' + url);
+                    utils.log('read json error callback for: ' + url);
                     utils.log('error occured ' + errorThrown);
                     return false;
                 }

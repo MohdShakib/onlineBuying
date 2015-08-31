@@ -1,0 +1,41 @@
+callback([
+  {
+    "towerName":"Tower A",
+    "imageName":"UmangA_00##.jpg",
+    "numberOfFrames":"48",
+    "keyframe1":"15",
+    "link1":"0",
+    "keyframe2":"0",
+    "link2":"180",
+    "keyframe3":"",
+    "link3":"",
+    "keyframe4":"",
+    "link4":""
+  },
+  {
+    "towerName":"Tower B",
+    "imageName":"tower_b00##.jpg",
+    "numberOfFrames":"48",
+    "keyframe1":"24",
+    "link1":"0",
+    "keyframe2":"0",
+    "link2":"180",
+    "keyframe3":"",
+    "link3":"",
+    "keyframe4":"",
+    "link4":""
+  },
+  {
+    "towerName":"Tower C",
+    "imageName":"100##.jpg",
+    "numberOfFrames":"48",
+    "keyframe1":"24",
+    "link1":"0",
+    "keyframe2":"0",
+    "link2":"180",
+    "keyframe3":"",
+    "link3":"",
+    "keyframe4":"",
+    "link4":""
+  }
+]);
