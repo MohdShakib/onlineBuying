@@ -436,7 +436,7 @@ var getProjectData = (function() {
                 if (url) {
                     projectData.assetsUrl = url.substr(0, url.lastIndexOf('/') + 1);
                 }
-                if (config.localZip && projectData.assetsUrl) {
+                if (!config.localZip && projectData.assetsUrl) {
                     zipPath = projectData.assetsUrl;
                     zipImagePath = zipPath + 'img/';
                 }
