@@ -40,8 +40,9 @@ var TowerselectedController = (function() {
             this._view._towerRotateClicked.attach(function(sender, element) {
                 var currentRotationAngle = _this._model.getCurrentRotationAngle();
                 var newRotationAngle = rotateAngleHash[currentRotationAngle] || '0';
+                var isAnticlockwise = $(element).data('anticlockwise');
                 _this._model.updateCurrentRotationAngle(newRotationAngle);
-                _this._view.rotateTower(currentRotationAngle, newRotationAngle);
+                _this._view.rotateTower(currentRotationAngle, newRotationAngle, isAnticlockwise);
             });
 
             // Go back Event
