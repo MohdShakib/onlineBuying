@@ -318,17 +318,17 @@ var getProjectData = (function() {
     function parseAllJSONData() {
         var json = '.json';
 
-        var csv1 = utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.masterplanScreen + json, config.dataFiles.masterplanScreen);
+        var json1 = utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.masterplanScreen + json, config.dataFiles.masterplanScreen);
 
-        var csv2 = utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.amenitiesHotspots + json, config.dataFiles.amenitiesHotspots);
+        var json2 = utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.amenitiesHotspots + json, config.dataFiles.amenitiesHotspots);
 
-        var csv3 = utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.towerselectScreen + json, config.dataFiles.towerselectScreen);
+        var json3 = utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.towerselectScreen + json, config.dataFiles.towerselectScreen);
 
-        var csv4 = utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.unitplanInfo + json, config.dataFiles.unitplanInfo);
+        var json4 = utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.unitplanInfo + json, config.dataFiles.unitplanInfo);
 
-        var csv5 = utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.towerRotation + json, config.dataFiles.towerRotation);
+        var json5 = utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.towerRotation + json, config.dataFiles.towerRotation);
 
-        return $.when(csv1, csv2, csv3, csv4, csv5).done(function(data1, data2, data3, data4, data5){
+        return $.when(json1, json2, json3, json4, json5).done(function(data1, data2, data3, data4, data5){
             
             var towers = processJsonArrayToObject(data1[0], 'towerName');
             if (towers && projectData.towers && Object.keys(projectData.towers).length && Object.keys(towers).length) {
