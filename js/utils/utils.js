@@ -37,6 +37,10 @@ var utils = (function() {
             var parentDiff = (width - window.innerWidth) / -2;
             var parentContainerElementTop = (window.innerHeight / 2) - (height / 2);
 
+            if(!(parentContainerElement && parentContainerElement.style)){
+                return;
+            }
+
             parentContainerElement.style.width = (width > parentContainerWidth) ? (parentContainerWidth + imageResolutionUnit) : (width + imageResolutionUnit);
             parentContainerElement.style.height = height + imageResolutionUnit;
             parentContainerElement.style.left = (parentDiff > 0) ? (parentDiff + imageResolutionUnit) : 0;
@@ -167,6 +171,25 @@ var utils = (function() {
                     utils.log('read csv error callback for: ' + url);
                     utils.log('error occured ' + errorThrown);
                     return false;
+                }
+            });
+        },
+        getJsonData: function(url, callback) {
+            return $.ajax({
+                type: 'GET',
+                url: url,
+                async: false,
+                jsonpCallback: callback,
+                contentType: "application/json",
+                dataType: "jsonp",
+                success: function(data) {
+                    // register success callback in return promise
+                    console.log(url);
+                    console.log(data);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    utils.log('read json error callback for: ' + url);
+                    utils.log('error occured ' + errorThrown);
                 }
             });
         },

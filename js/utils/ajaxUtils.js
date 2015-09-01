@@ -120,7 +120,7 @@ var ajaxUtils = (function() {
                     window.location.href = data;
                 },
                 errorCallback: function(data,params){
-                  window.location.reload();
+                    //window.location.reload();
                 }
             };
 

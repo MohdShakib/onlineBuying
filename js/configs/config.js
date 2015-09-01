@@ -5,19 +5,19 @@ var config = (function() {
 
         urlAppName : '', ///thirdeye
 
-        //to read api related data from json
+        // Independent App
         apisJson: false,
-        // end
+        localZip: true,
 
         // Flags
         showLogs: true,
         showCarAnimation: true,
-        loadDynamicAssets: true,
         showTowerRotation: true,
         enablePayment: true,
         useSpecifiedTowerTooltipSvg: true,
         allUnitsAvailable: false, // keep it true only for testing purpose
         polyHoverFlag: false,
+        readDataFromJson: false,
 
         // Variables
         towerRotationSpeed: 100, // delay between 2 consecutive frames in miliseconds
@@ -36,12 +36,12 @@ var config = (function() {
             width: 1365,
             unit: 'px'
         },
-        csv: {
-            masterplanScreen: 'masterplanScreen.csv',
-            towerselectScreen: 'towerselectScreen.csv',
-            amenitiesHotspots: 'amenitiesHotspots.csv',
-            unitplanInfo: 'unitplanInfo.csv',
-            towerRotation: 'towerRotation.csv'
+        dataFiles: {
+            masterplanScreen: 'masterplanScreen',
+            towerselectScreen: 'towerselectScreen',
+            amenitiesHotspots: 'amenitiesHotspots',
+            unitplanInfo: 'unitplanInfo',
+            towerRotation: 'towerRotation'
         },
         bottomFormGroup: {
             'tabLinkClass': 'conect-tab li a',
