@@ -358,7 +358,7 @@ var getProjectData = (function() {
     var hasOwnProperty = Object.prototype.hasOwnProperty,
         projectData = {};
 
-    projectData.wait = 0;
+    //projectData.wait = 0;
 
     var parseApiData = function(projectDetail) {
 
