@@ -22,11 +22,11 @@ img{ border:0; outline:none;}
 }
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?1v6pyt');
-	src:url('fonts/icomoon.eot?#iefix1v6pyt') format('embedded-opentype'),
-		url('fonts/icomoon.ttf?1v6pyt') format('truetype'),
-		url('fonts/icomoon.woff?1v6pyt') format('woff'),
-		url('fonts/icomoon.svg?1v6pyt#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?dvdpqx');
+	src:url('fonts/icomoon.eot?#iefixdvdpqx') format('embedded-opentype'),
+		url('fonts/icomoon.ttf?dvdpqx') format('truetype'),
+		url('fonts/icomoon.woff?dvdpqx') format('woff'),
+		url('fonts/icomoon.svg?dvdpqx#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -45,6 +45,16 @@ img{ border:0; outline:none;}
 	-moz-osx-font-smoothing: grayscale;
 }
 .icon{ display:inline-block !important; font-size:25px; position:relative;}
+
+.icon-chat:before {
+	content: "\e63e";
+}
+.icon-assuredprivacy:before {
+	content: "\e63f";
+}
+.icon-bestprice:before {
+	content: "\e640";
+}
 .icon-1:before {
 	content: "\e600";
 }

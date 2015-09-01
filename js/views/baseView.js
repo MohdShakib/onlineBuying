@@ -334,7 +334,7 @@ var BaseView = (function() {
                 '<a href="javascript:void(0);" data-name="live-chat" onclick="Tawk_API.showWidget();">' +
                 '<p>Live support' +
                 '</p>' +
-                '<span class="icon icon-intercom"></span>' +
+                '<span class="icon icon-chat"></span>' +
                 '</a>' +
                 '</li>' +
                 '</ul>' +
