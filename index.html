@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <head>
-	<title>Proptiger Third Eye</title>
-    
-    <!-- build:[href]:live /online/ -->
+
+	<title>Proptiger 4D View</title>
+
+    <!-- build:[href] <%=cdn%> -->
     <base href="/">
     <!-- /build -->
 
-    <!-- build:css:live css/style-all.min.css -->
+    <!-- build:css css/style-all.min.css -->
     <link href="css/globel.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="css/animations.css" rel="stylesheet" type="text/css">
@@ -21,12 +22,14 @@
 
 </head>
 <body>
-<!-- <div class="blur-bg"></div> -->
+<!-- build:template 
+<div id="env" class="env"><%=env%></div>
+/build -->  
 
     <!-- parent container start here-->
     <div class="parent-container" id="parent-container">
 
-        <!--project lodiing start here-->
+        <!--project loading start here-->
     	<div class="show-loading">
             <div class="blur-bg"></div>
             <div class="loading-view">
@@ -81,13 +84,14 @@
     <!-- parent container ends here-->
     
 	<script src="vendors/jquery-2.1.4.min.js"></script>
-	<script src="vendors/jquery-ui.min.js"></script>	
+	<script src="vendors/jquery-ui-1.11.4.custom.min.js"></script>	
 	<script src="vendors/directorRoutes.min.js" ></script>
 
-    <!-- build:js:live js/script-all.min.js -->
-    <script src="js/config.js" ></script>
-    <script src="js/ajaxUtils.js" ></script>
-    <script src="js/utils.js" ></script>
+    <!-- build:js js/script-all.min.js -->
+    <script src="js/configs/config.js"></script>
+    <script src="js/configs/envConfig.js"></script>    
+    <script src="js/utils/ajaxUtils.js"></script>
+    <script src="js/utils/utils.js"></script>
     <script src="js/apiData.js"></script>
     <script src="js/dataEvent.js"></script>
     <script src="js/controllers/masterplanController.js"></script>
@@ -110,18 +114,9 @@
     <script src="js/init.js"></script>
     <!-- /build -->
 
-    <!-- google share button plugin -->
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-
-     <!-- facebook share button plugin -->
     <div id="fb-root"></div>
-	<script>(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
+    <!-- Loaded fb and google sdk from init.js -->
+	
 
 </body>
 </html>

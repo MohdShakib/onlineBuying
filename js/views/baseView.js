@@ -29,6 +29,7 @@ var BaseView = (function() {
     function BaseView(model) {
         this._model = model;
         this._elements = null;
+        this._showLoaderComplete = new Event(this);
         this._bottomGroupButtonClick = new Event(this);
         this._compareBackButtonClick = new Event(this);
         this._unitCompareButtonClick = new Event(this);
@@ -67,10 +68,17 @@ var BaseView = (function() {
                 bottom: '-45px'
             });
         },
-        compareUnitsContainer: function() {
+        compareUnitsContainerReady: false,
+        prepareCompareUnitsContainer: function(flag) {
+            if(this.compareUnitsContainerReady && !flag){
+                return;
+            }
+
             var compareList = this._model.getCompareList(),
                 compareList_length = Object.keys(compareList).length;
             var rootdata = this._model.getRootdata();
+            var compareKeys = Object.keys(compareList);
+            var indexOfCurrentUnit = compareKeys.indexOf(utils.unitUniqueAdd);
 
             var htmlCode = '',
                 firstUniqueIdentifier;
@@ -83,7 +91,7 @@ var BaseView = (function() {
                 var imageUrl = compareList[uniqueIdentifier].unitTypeData.unitImageUrl;
                 htmlCode += '<div class="' + config.compareBottomBox + '" id="' + config.compareBottomBox + '-' + uniqueIdentifier + '" data-uniqueidentifier="' + uniqueIdentifier + '">' +
                     '<p >' + compareList[uniqueIdentifier].unitName + '</p>' +
-                    '<img src="' + imageUrl + '" />' +
+                    '<img class="'+config.lazyloadClass+'" src="' + imageUrl + '" />' +
                     '</div>';
             }
             htmlCode += '</div>';
@@ -94,28 +102,38 @@ var BaseView = (function() {
 
                 htmlCode += '<div class="compare-unit-box-detail top-right-component"><span>Drag & drop to select unit and compare it.</span></div>' +
                     '<div class="img-svg-container drag-drop">' +
-                    '<img class="compare-unit-img"  src="images/compare_drag.jpg"/></div>';
+                    '<img class="compare-unit-img '+config.lazyloadClass+'"  src="images/compare_drag.jpg"/></div>';
 
                 htmlCode += '</div>';
             }
 
             this._elements.compareUnitsContainer.html(htmlCode);
-            if (compareList_length > 1) {
-                this.addToCompareBox($('.compare-unit-box')[0], Object.keys(compareList)[0]);
-            }
             if (compareList_length == 2) {
-                this.addToCompareBox($('.compare-unit-box')[1], Object.keys(compareList)[1]);
+                this.addToCompareBox($('.compare-unit-box')[1], compareKeys[1]);
+                this.addToCompareBox($('.compare-unit-box')[0], compareKeys[0]);
+
+            } else {
+              if (indexOfCurrentUnit && indexOfCurrentUnit > -1) {
+                  this.addToCompareBox($('.compare-unit-box')[0], compareKeys[indexOfCurrentUnit]);
+              } else if (compareList_length > 1) {
+                    this.addToCompareBox($('.compare-unit-box')[0], compareKeys[0]);
+                }
             }
+
+
+
+
             this.compareUnitsContainerEvents();
+            this.compareUnitsContainerReady = true;
         },
         compareUnitsContainerEvents: function() {
             var _this = this;
             this._elements.compareUnitsContainer.off('click').on('click', '.' + config.compareBackButtonClass, function(event) {
-                _this._compareBackButtonClick.notify(this); //this refers to element here                
+                _this._compareBackButtonClick.notify(this); //this refers to element here
             });
 
             this._elements.compareUnitsContainer.on('click', '.book-now a', function(event) {
-                _this._bookingClick.notify(this); //this refers to element here                
+                _this._bookingClick.notify(this); //this refers to element here
             });
 
             this._elements.compareUnitsContainer.on('click', '.close-compare-box', function(event) {
@@ -165,7 +183,7 @@ var BaseView = (function() {
                 '<a data-url="' + link + '">Book now</a><span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(item.bookingAmount) + '/- <br>(No Cancellation Charges)</span>' +
                 '</div>';
             htmlCode += '<div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + uniqueIdentifier + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' +
-                '<img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img"  src="' + imageUrl + '"> </div>';
+                '<img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img '+config.lazyloadClass+'"  src="' + imageUrl + '"> </div>';
 
             $('#' + config.compareBottomBox + '-' + uniqueIdentifier + ' ').addClass('selected');
 
@@ -350,7 +368,7 @@ var BaseView = (function() {
             });
 
             this._elements.bottomFormGroupContainer.off('click').on('click', '.' + config.bottomFormGroup.tabLinkClass, function(event) {
-                _this._bottomGroupButtonClick.notify(this); //this refers to element here                
+                _this._bottomGroupButtonClick.notify(this); //this refers to element here
             });
 
             this._elements.bottomFormGroupContainer.on('click', function(event) {
@@ -502,7 +520,7 @@ var BaseView = (function() {
             }
             utils.removeNotificationTooltip();
             this.formPopupCloseClicked();
-            this.compareUnitsContainer();
+            this.prepareCompareUnitsContainer(true);
             $('#' + config.compareUnitscontainerId).fadeIn(900);
         },
         buildSkeleton: function(containerList) {

@@ -12,8 +12,7 @@ var TowerselectedView = (function() {
         'towerSvgContainer': '<svg class="svg-container opacity-control transition-left ' + config.dynamicResizeClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'towerDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>',
         'towerRotationContainer': '<div class="tower-rotation-container" id="' + config.towerRotationContainerId + '" style="display:none;"></div>',
-        'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>',
-        'carAnimation': '<svg class="car-animation transition-left ' + config.dynamicResizeClass + '" id="car-animation" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'
+        'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>'
     };
 
     function getElements() {
@@ -22,15 +21,15 @@ var TowerselectedView = (function() {
             'towerSvgContainer': $('#svg-container'),
             'towerDetailContainer': $('#tower-detail-container'),
             'towerRotationContainer': $('#tower-rotation-container'),
-            'filterMenuContainer': $('#filter-menu-container'),
-            'carAnimation': $('#car-animation')
+            'filterMenuContainer': $('#filter-menu-container')
         };
         return elements;
     }
 
-    function TowerselectedView(model) {
+    function TowerselectedView(model, baseView) {
         this._model = model;
         this._elements = null;
+        this._baseView = baseView;
         var _this = this;
 
         // Svg Events
@@ -93,6 +92,9 @@ var TowerselectedView = (function() {
             this.updateAvailableCount();
         },
         startAnimation: function(model) {
+
+            model._baseView._showLoaderComplete.notify();
+
             // lazy load rotation images
             model.lazyLoadContent();
 
@@ -108,6 +110,10 @@ var TowerselectedView = (function() {
 
             // Images
             $('.opacity-control').fadeIn(500);
+            
+            setTimeout(function() {
+                $('.tower-rotation-container').fadeIn(500);
+            },1000);
 
             // Connect tabs
             setTimeout(function() {
@@ -168,7 +174,10 @@ var TowerselectedView = (function() {
             var currentRotationAngle = this._model.getCurrentRotationAngle(),
                 data = this._model.getData(),
                 towerImageUrl, imageClass, imgCode = '';
-            for (var rotationAngle in data.rotationAngle) {
+            var allAngles = Object.keys(data.rotationAngle);
+            var lazyLoadSequence = utils.reOrderFrames(allAngles);
+            for(var i=0; i<lazyLoadSequence.length; i++){
+                var rotationAngle = lazyLoadSequence[i];
                 var isStableState = false;
                 if (data.rotationAngle[rotationAngle].listing) {
                     isStableState = true;
@@ -180,23 +189,14 @@ var TowerselectedView = (function() {
                 }
             }
             this._elements.towerImgContainer.append(imgCode);
-            var count = 0,
-                arrayOfImageUrls = $('img.' + config.lazyloadClass);
+            var arrayOfImageUrls = $('img.' + config.lazyloadClass);
             $.each(arrayOfImageUrls, function(index, value) {
                 $('<img>').attr('src', value.src) //load image
                     .load(function() {
-                        count++;
-                        if (count == arrayOfImageUrls.length) {
-                            $('.tower-rotation-container').fadeIn(500);
-                        }
-                    });
+                        $(value).addClass(config.imageLazyloadedClass);
+                    }); 
             });
 
-            if(arrayOfImageUrls.length === 0) {
-                setTimeout(function() {
-                    $('.tower-rotation-container').fadeIn(500);
-                }, 2000);
-            }
         },
         towerSvgContainer: function(data, rootdata) {
             var currentRotationAngle = this._model.getCurrentRotationAngle(),
@@ -205,7 +205,6 @@ var TowerselectedView = (function() {
             if (!listings) {
                 return;
             }
-
             this._elements.towerSvgContainer.empty(); // need to remove to update for filters applied to re-render
 
             var unitIdentifier, unitInfo, svgClass,
@@ -224,7 +223,8 @@ var TowerselectedView = (function() {
                         selectedClass = (selectedListing == unitIdentifier) ? "" : config.hideClass;
                     svgClass = listings[unitIdentifier].isAvailable ? 'apt-available' : 'apt-unavailable';
                     var attrs = {},
-                        eachEllipse;
+                        eachEllipse,
+                        eachPolygon;
 
                     attrs = {
                         'class': config.towerUnitSvgSelectedClass + " " + selectedClass,
@@ -246,6 +246,19 @@ var TowerselectedView = (function() {
                     };
                     eachEllipse = utils.makeSVG('ellipse', attrs);
                     this._elements.towerSvgContainer.append(eachEllipse);
+
+                    if(config.polyHoverFlag){
+                        attrs = {
+                        'class': config.towerUnitSvgClass + " " + svgClass,
+                        'data-index': unitIdentifier,
+                        'data-url': url,
+                        id: unitIdentifier + "-poly-path",
+                        points: unitInfo.unitHoverSvg
+                        };
+                        eachPolygon = utils.makeSVG('polygon', attrs);
+                        this._elements.towerSvgContainer.append(eachPolygon);
+                    }
+
                     attrs = {
                         'class': config.towerUnitSvgClass + " " + svgClass,
                         id: unitIdentifier + "-path",
@@ -289,7 +302,6 @@ var TowerselectedView = (function() {
             var element = obj.element;
             var data = this._model.getData();
             var index = $(element).data('index');
-
             // show svg hover circle
             utils.removeSVGClass(index + "-hover-path", config.hideClass);
 
@@ -297,8 +309,10 @@ var TowerselectedView = (function() {
             var toolTipData = data && data.listings ? data.listings[index] : null;
             if (toolTipData) {
                 var svgpathClient = element.getBoundingClientRect();
+                var parentContainer = $('#' + config.parentContainerId).offset();
                 var diff = (window.innerWidth > config.imageResolution.width) ? (window.innerWidth - config.imageResolution.width) / 2 : 0;
-                this.showTowerUnitDetailContainer(toolTipData, (svgpathClient.right - diff), (svgpathClient.top + svgpathClient.height / 2));
+                var topOffset = parentContainer.top || 0;
+                this.showTowerUnitDetailContainer(toolTipData, (svgpathClient.right - diff), (svgpathClient.top + svgpathClient.height / 2 - topOffset));
             }
         },
         towerUnitMouseLeaveEvent: function(element) {
@@ -374,7 +388,8 @@ var TowerselectedView = (function() {
             window.getComputedStyle(document.getElementById('container-detail')).opacity; // jshint ignore:line
             document.getElementById('container-detail').style.opacity = "1";
         },
-        rotateTower: function(currentRotationAngle, newRotationAngle) {
+        rotateTower: function(currentRotationAngle, newRotationAngle, isAntiClockwise) {
+     
             var _this = this,
                 data = this._model.getData(),
                 rootdata = this._model.getRootdata(),
@@ -385,37 +400,65 @@ var TowerselectedView = (function() {
                 rotationAngles = Object.keys(data.rotationAngle),
                 currentIndex = rotationAngles.indexOf(currentRotationAngle),
                 finalIndex = rotationAngles.indexOf(newRotationAngle);
-            if (currentIndex < finalIndex) {
-                $.merge(intermediateAngles, rotationAngles.slice(currentIndex + 1, finalIndex + 1));
+            if(!isAntiClockwise) {
+                if (currentIndex < finalIndex) {
+                    $.merge(intermediateAngles, rotationAngles.slice(currentIndex + 1, finalIndex - 1));
+                } else {
+                    if (currentIndex + 1 <= rotationAngles.length) {
+                        $.merge(intermediateAngles, rotationAngles.slice(currentIndex + 1, rotationAngles.length));
+                    }
+                    if (finalIndex - 1 >= 0) {
+                        $.merge(intermediateAngles, rotationAngles.slice(0, finalIndex - 1));
+                    }
+                }
             } else {
-                $.merge(intermediateAngles, rotationAngles.slice(currentIndex + 1, rotationAngles.length));
-                $.merge(intermediateAngles, rotationAngles.slice(0, finalIndex + 1));
+                if (currentIndex < finalIndex) {
+                    if (currentIndex - 1 >= 0) {
+                        $.merge(intermediateAngles, rotationAngles.slice(0, currentIndex - 1).reverse());
+                    }
+                    if (finalIndex + 1 <= rotationAngles.length) {
+                        $.merge(intermediateAngles, rotationAngles.slice(finalIndex + 1, rotationAngles.length).reverse());
+                    }
+                } else {
+                    $.merge(intermediateAngles, rotationAngles.slice(finalIndex + 1, currentIndex - 1).reverse());
+                }
             }
-
-            this._elements.carAnimation.hide(); // Hide Car annimation on rotation
 
             if (config.showTowerRotation && intermediateAngles.length > 0) {
 
                 this._elements.towerSvgContainer.hide(); // Hide towerSvgContainer
                 this._elements.towerRotationContainer.hide(); // Hide Rotation buttons
 
+                var totalFramesLoaded = 0, lastShownImageRef;
                 for (var i = 0; i < intermediateAngles.length; i++) {
                     var nextImageClass = intermediateAngles[i],
-                        timeout = (i + 1) * config.towerRotationSpeed;
+                        timeout, nextImageRef = $('.' + nextImageClass);
 
-                    (function(nextImageClass, timeout) {
+                    if(!nextImageRef.hasClass(config.imageLazyloadedClass)){ // if image not loaded skip
+                        continue;
+                    }   
+
+                    lastShownImageRef = nextImageRef;
+                    timeout = (totalFramesLoaded + 1) * config.towerRotationSpeed;
+                    totalFramesLoaded++;
+                    (function(nextImageRef, timeout) {
                         setTimeout(function() {
                             $('.' + config.selectedTowerImagesClass).hide();
-                            $('.' + nextImageClass).show();
+                            nextImageRef.show();
                         }, timeout);
-                    })(nextImageClass, timeout); // jshint ignore:line
+                    })(nextImageRef, timeout); // jshint ignore:line
                 }
 
                 setTimeout(function() {
+                    if(lastShownImageRef){
+                        lastShownImageRef.hide();
+                    }
+                    $('.' + config.selectedTowerImagesClass).hide();
+                    $('.' + rotationAngles[finalIndex]).show();
                     _this._elements.towerSvgContainer.show();
                     _this._elements.towerRotationContainer.show();
                     _this.towerSvgContainer(data, rootdata);
-                }, (intermediateAngles.length + 1) * config.towerRotationSpeed);
+                }, (totalFramesLoaded + 1) * config.towerRotationSpeed);
 
             } else {
                 this._elements.towerSvgContainer.empty();
@@ -429,12 +472,12 @@ var TowerselectedView = (function() {
             var _this = this;
             _this._elements.towerRotationContainer.off('click').on('click', '.' + config.rotationButtonClass, function(event) {
                 // notify controller about rotatebutton click
-                _this._towerRotateClicked.notify();
+                _this._towerRotateClicked.notify(this);
 
             });
 
             var code = '<div class="rotation-btn-container left-btn transition"><div class="photo-thumb br50"><img src="images/tower-thumb.jpg" class="br50"></div><button class="' + config.rotationButtonClass + '  tower-rotation-left-button br50" ><span class="icon icon-rotate-1 fs48"></span></button><div class="rotation-title transition">Rotate Left</div></div>';
-            code += '<div class="rotation-btn-container right-btn transition"><div class="photo-thumb br50"><img src="images/tower-thumb.jpg" class="br50"></div><button class="' + config.rotationButtonClass + ' tower-rotation-right-button br50" ><span class="icon icon-rotate-2 fs48"></span></button><div class="rotation-title transition">Rotate Right</div></div>';
+            code += '<div class="rotation-btn-container right-btn transition"><div class="photo-thumb br50"><img src="images/tower-thumb.jpg" class="br50"></div><button class="' + config.rotationButtonClass + ' tower-rotation-right-button br50" data-anticlockwise="true" ><span class="icon icon-rotate-2 fs48"></span></button><div class="rotation-title transition">Rotate Right</div></div>';
             if (this._elements && this._elements.towerRotationContainer) {
                 this._elements.towerRotationContainer.html(code);
             }
@@ -447,7 +490,7 @@ var TowerselectedView = (function() {
                 entranceFiltersData = filterdata.entrance,
                 priceFiltersData = filterdata.price;
 
-            var code = "<table><tr><td class='menu-header menu-icon transition'><a class='go-back' ><span class='icon icon-arrow_left'></span></a></td></tr>"; //href='#"+url+"'
+            var code = "<table><tr><td class='menu-header menu-icon transition go-back'><a><span class='icon icon-arrow_left'></span></a></td></tr>"; //href='#"+url+"'
             code += "<tr><td class='menu-sep'></td></tr>";
             code += "<tr><td class='menu-items'><table>";
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
@@ -476,54 +519,6 @@ var TowerselectedView = (function() {
             code += "</table>";
             this._elements.filterMenuContainer.html(code);
             this.filterMenuContainerEvents();
-        },
-        carAnimation: function(data, rootdata) {
-            console.log(data);
-            if (data.towerIdentifier != 'tower-a' || this._model.getCurrentRotationAngle() != '0' || !config.showCarAnimation) {
-                return;
-            }
-            var carCode = "",
-                ratio = config.imageResolution.height / config.imageResolution.width,
-                imageResolutionHeight = config.imageResolution.height,
-                cars = [{
-                    path: 'M77 105 105 43',
-                    imageURL: 'images/car-1.png',
-                    imageWidth: 40,
-                    imageHeight: 41,
-                    begin: 3,
-                    duration: 6
-                }, {
-                    path: 'M77 105 105 44',
-                    imageURL: 'images/car-2.png',
-                    imageWidth: 42,
-                    imageHeight: 38,
-                    begin: 20,
-                    duration: 5
-                }, {
-                    path: 'M105 52 82 105',
-                    imageURL: 'images/car-3.png',
-                    imageWidth: 41,
-                    imageHeight: 44,
-                    begin: 13,
-                    duration: 4
-                }];
-
-            for (var i in cars) {
-                var height = cars[i].imageHeight / imageResolutionHeight * 100,
-                    width = cars[i].imageWidth / cars[i].imageHeight * height * ratio;
-                carCode += "<path d='" + cars[i].path + "' id='path" + i + "'/>";
-                carCode += "<image class='car' id='car" + i + "' xlink:href='" + cars[i].imageURL + "' id='car" + i + "' width='" + width + "' height='" + height + "' preserveAspectRatio='none'/>";
-                carCode += "<animateMotion xlink:href='#car" + i + "' dur='" + cars[i].duration + "s' begin='" + cars[i].begin + "s' repeatCount='1' fill='freeze'>";
-                carCode += "<mpath xlink:href='#path" + i + "'/>";
-                carCode += "</animateMotion>";
-
-                // Hack for hiding cars
-                setTimeout(function(i) {
-                    $('#car' + i).css('visibility', 'visible');
-                }, cars[i].begin * 1000, i); // jshint ignore:line
-            }
-
-            this._elements.carAnimation.html(carCode);
         },
         displayFilterCount: function(type, count) {
             var style = "";

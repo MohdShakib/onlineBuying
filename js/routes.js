@@ -10,7 +10,7 @@ var initializeRoutes = (function() {
             projectName: "([a-z0-9-]+)",
             projectId: "([0-9]{6})",
             towerName: "([a-z0-9-]+)",
-            towerAngle: "(0|180)",
+            towerAngle: "([0-9]{1,3})",
             unitAddress: "([a-z0-9-]+)",
             booking: "booking",
             error: "404"
@@ -26,7 +26,8 @@ var initializeRoutes = (function() {
             previousState = null;
 
         var routes = {},
-            rootdata = {};
+            rootdata = {},
+            configBeforeFlag;
 
         var masterplanController, masterplanModel, masterplanView,
             towerselectedController, towerselectedModel, towerselectedView,
@@ -36,10 +37,20 @@ var initializeRoutes = (function() {
             errorPageController, errorPageView,
             bookingController, bookingModel, bookingView;
 
+        function redirectToCorrectAngle(data,angle,router){
+            var data = data.split('/');
+            data[3] = angle;
+            data = data.slice(1,data.length);
+            data = data.join('/');
+            router.setRoute(data);
+        }
+
+
+
         function onTowerselectedRoute(projectName, projectId, towerName, towerAngle) {
             if (!(towerselectedModel && towerselectedModel._data.towerIdentifier == towerName)) {
                 towerselectedModel = new TowerselectedModel(rootdata.towers[towerName], rootdata, towerAngle);
-                towerselectedView = new TowerselectedView(towerselectedModel);
+                towerselectedView = new TowerselectedView(towerselectedModel, baseView);
                 towerselectedController = new TowerselectedController(towerselectedModel, towerselectedView);
             } else {
                 towerselectedModel.init();
@@ -63,7 +74,7 @@ var initializeRoutes = (function() {
                 }
                 if (!masterplanModel) {
                     masterplanModel = new MasterplanModel(rootdata);
-                    masterplanView = new MasterplanView(masterplanModel);
+                    masterplanView = new MasterplanView(masterplanModel, baseView);
                     masterplanController = new MasterplanController(masterplanModel, masterplanView);
                 }
                 masterplanController.generateTemplate();
@@ -145,12 +156,6 @@ var initializeRoutes = (function() {
             strict: false,
             on: function(projectName, projectId) {
 
-                if (!baseController) {
-                    baseModel = new BaseModel(rootdata);
-                    baseView = new BaseView(baseModel);
-                    baseController = new BaseController(baseModel, baseView);
-                    baseController.generateTemplate();
-                }
             },
             html5history: true,
             notfound: function() {
@@ -160,41 +165,77 @@ var initializeRoutes = (function() {
                 router.setRoute(errorRoute);
             },
             before: function(projectName, projectId, towerName, towerAngle, unitAddress) {
-
-                console.log('Route found');
-                console.log('hash: '+location.hash);
-                console.log('href: '+location.href);
+                
                 // Animations
                 utils.removeNotificationTooltip();
+            
+                function beforeCallback(response){
 
-                rootdata = getProjectData(projectId);
-                var flag = false;
+                    if(!configBeforeFlag){ // hack
+                        configBeforeFlag = true;
+                       /* var hash = location.hash;
+                        hash = hash.split('/');
+                        if(hash[0] == '#'){
+                            hash = hash.slice(1,hash.length);
+                            hash = hash.join('/');
+                            hash = 'a'+hash;
+                        }*/
+                        
+                        var hash = location.pathname;
+                        router.setRoute(hash);
+                    }
 
-                var projectIdentifier = utils.getIdentifier(rootdata.projectName);
-                utils.projectId = projectId;
+                    rootdata = response;
 
-                if (projectIdentifier != projectName) {
-                    var hash = window.location.hash;
-                    hash = hash.replace(projectName, projectIdentifier);
-                    window.location.hash = hash;
+                    var flag = false;
+                    var projectIdentifier = utils.getIdentifier(rootdata.projectName);
+                    utils.projectId = projectId;
+
+                    if (projectIdentifier != projectName) {
+                        var hash = window.location.hash;
+                        hash = hash.replace(projectName, projectIdentifier);
+                        window.location.hash = hash;
+                    }
+
+                    if (towerAngle && unitAddress) {
+                        var towerData = rootdata.towers && rootdata.towers[towerName] ? rootdata.towers[towerName] : undefined;
+                        flag = towerData && towerData.listings && towerData.listings[unitAddress] && towerData.rotationAngle && towerData.rotationAngle[towerAngle] && towerData.rotationAngle[towerAngle].listing && towerData.rotationAngle[towerAngle].listing[unitAddress] ? true : false;
+                        if(flag){
+                          utils.unitUniqueAdd = towerData.rotationAngle[towerAngle].listing[unitAddress].unitUniqueIdentifier;
+                        } else if(towerData && towerData.listings[unitAddress]){
+                          towerAngle = towerData.listings[unitAddress].rotationAnglesAvailable[0];
+                          redirectToCorrectAngle(window.location.hash,towerAngle,router);
+                          return false;
+                        }
+                    } else if (towerName) {
+                        flag = rootdata.towers && rootdata.towers[towerName] ? true : false;
+                    } else if (projectId) {
+                        flag = rootdata && rootdata.towers ? true : false;
+                    } else {
+                        return true;
+                    }
+
+                    if (!flag) {
+                        utils.log('data not available for the url');
+                        router.setRoute(errorRoute);
+                    }
+
+                    if (!baseController) {
+                        baseModel = new BaseModel(rootdata);
+                        baseView = new BaseView(baseModel);
+                        baseController = new BaseController(baseModel, baseView);
+                        baseController.generateTemplate();
+                    }
+
+                    return flag;
+
                 }
 
-                if (towerAngle && unitAddress) {
-                    flag = rootdata.towers && rootdata.towers[towerName] && rootdata.towers[towerName].rotationAngle && rootdata.towers[towerName].rotationAngle[towerAngle] && rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress] ? true : false;
-                } else if (towerName) {
-                    flag = rootdata.towers && rootdata.towers[towerName] ? true : false;
-                } else if (projectId) {
-                    flag = rootdata && rootdata.towers ? true : false;
-                } else {
-                    return true;
-                }
+                getProjectData(projectId, beforeCallback);
 
-                if (!flag) {
-                    utils.log('data not available for the url');
-                    router.setRoute(errorRoute);
+                if(!configBeforeFlag){
+                    return false;
                 }
-
-                return flag;
 
             }
         });

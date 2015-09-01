@@ -79,6 +79,13 @@ var UnitplaninfoView = (function() {
                     this[i](data, rotationdata, rootdata);
                 }
             }
+
+            setTimeout(function() {
+            _this.unitComponentMouseEnter({
+                    element: $("#unit-3d-svg-container.svg-container.unit-svg-container polygon:first")[0],
+                    event: null
+                });
+            }, 1000);
         },
         initView: function(data, rotationdata, rootdata) {
             if (!$('#' + config.selectedUnitContainerId).length) {
@@ -156,10 +163,13 @@ var UnitplaninfoView = (function() {
             var htmlCode = offerDiv,
                 selectedClass = data.shortListed ? 'selected' : '',
                 link = rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier + '/booking';
-
             htmlCode += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
             htmlCode += '<a><span class="icon icon-heart fs26 heart-clone"><label></label></span><p class="transition click-txt"></p><p class="shortlisted" style="display:none;"></p></a></div>';
-            htmlCode += '<div class="book-now"><a  data-url="' + link + '">Book now</a><span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(data.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
+            if(data.bookingStatus == 'Available') {
+              htmlCode += '<div class="book-now"><a  data-url="' + link + '">Book now</a><span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(data.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
+            } else {
+              htmlCode += '<div class="book-now fade-image"><a>Sold out</a>';
+            }
             htmlCode += '</div>';
 
             this._elements.unitViewTabs.html(htmlCode);
@@ -172,7 +182,7 @@ var UnitplaninfoView = (function() {
 				if($(this).hasClass('selected')){//this refers to element
 					utils.flyToShortlist(this); //this refers to element
 				}
-				
+
             });
             $('#' + config.selectedUnitContainerId).on('click', '.book-now a', function() {
                 _this._bookingClick.notify(this); //this refers to element
@@ -221,9 +231,9 @@ var UnitplaninfoView = (function() {
             var code = "<img class='fullView' src='" + imageUrl + "'>";
 
             if (unitTypeData.morningSunlightImageUrl) {
-                code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " mor-image' src='" + unitTypeData.morningSunlightImageUrl + "'>"; 
-                code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " aft-image' src='" + unitTypeData.afternoonSunlightImageUrl + "'>"; 
-                code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " eve-image' src='" + unitTypeData.eveningSunlightImageUrl + "'>"; 
+                code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " mor-image' src='" + unitTypeData.morningSunlightImageUrl + "'>";
+                code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " aft-image' src='" + unitTypeData.afternoonSunlightImageUrl + "'>";
+                code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " eve-image' src='" + unitTypeData.eveningSunlightImageUrl + "'>";
 
                 code += "<div class='sunlight-menu'>";
                 code += "<div data-target='mor-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-morning fs16'></span><label>Morning View</label></div>";
@@ -293,7 +303,10 @@ var UnitplaninfoView = (function() {
 
             this._elements.unit3dSvgContainer.off('mouseleave').on('mouseleave', 'polygon', function(event) {
                 //here this refers to element
-                _this._unitComponentMouseLeave.notify();
+                _this._unitComponentMouseLeave.notify({
+                    element: this,
+                    event: event
+                });
             });
         },
         unit2dSvgContainer: function() {
@@ -306,6 +319,7 @@ var UnitplaninfoView = (function() {
             for (var i = 0; i < svgs_count; i++) {
                 var svgObj = svgData[i];
                 attrs = {
+                    'id': utils.getIdentifier('comp-' + svgObj.name),
                     'class': config.transitionClass,
                     'data-name': svgObj.name,
                     'data-type': svgObj.type,
@@ -330,10 +344,16 @@ var UnitplaninfoView = (function() {
 
             this._elements.unit2dSvgContainer.off('mouseleave').on('mouseleave', 'polygon', function(event) {
                 //here this refers to element
-                _this._unitComponentMouseLeave.notify();
+                _this._unitComponentMouseLeave.notify({
+                    element: this,
+                    event: event
+                });
             });
         },
         unitComponentMouseEnter: function(params) {
+            var hoveredComps = $("#unit-3d-svg-container.svg-container.unit-svg-container .hover");
+            utils.removeSVGClasses(hoveredComps,'hover');
+            utils.addSVGClass(params.element.id, 'hover');
             if (this._elements && this._elements.unitComponentDetailContainer) {
                 var pointX = $(params.element).attr('points').split(' ')[0];
                 var pointY = $(params.element).attr('points').split(' ')[1];
@@ -342,7 +362,8 @@ var UnitplaninfoView = (function() {
                 utils.unitComponentMouseEnter(params, this._elements.unitComponentDetailContainer);
             }
         },
-        unitComponentMouseLeave: function() {
+        unitComponentMouseLeave: function(params) {
+            utils.removeSVGClass(params.element.id, 'hover');
             document.getElementById(config.unitDetailContainerId).innerHTML = '';
         },
         amenitiesContainer: function(data, rotationdata, rootdata) {
