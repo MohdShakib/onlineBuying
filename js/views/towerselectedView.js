@@ -388,7 +388,8 @@ var TowerselectedView = (function() {
             window.getComputedStyle(document.getElementById('container-detail')).opacity; // jshint ignore:line
             document.getElementById('container-detail').style.opacity = "1";
         },
-        rotateTower: function(currentRotationAngle, newRotationAngle) {
+        rotateTower: function(currentRotationAngle, newRotationAngle, isAntiClockwise) {
+     
             var _this = this,
                 data = this._model.getData(),
                 rootdata = this._model.getRootdata(),
@@ -399,12 +400,27 @@ var TowerselectedView = (function() {
                 rotationAngles = Object.keys(data.rotationAngle),
                 currentIndex = rotationAngles.indexOf(currentRotationAngle),
                 finalIndex = rotationAngles.indexOf(newRotationAngle);
-            if (currentIndex < finalIndex) {
-                $.merge(intermediateAngles, rotationAngles.slice(currentIndex + 1, finalIndex - 1));
+            if(!isAntiClockwise) {
+                if (currentIndex < finalIndex) {
+                    $.merge(intermediateAngles, rotationAngles.slice(currentIndex + 1, finalIndex - 1));
+                } else {
+                    if (currentIndex + 1 <= rotationAngles.length) {
+                        $.merge(intermediateAngles, rotationAngles.slice(currentIndex + 1, rotationAngles.length));
+                    }
+                    if (finalIndex - 1 >= 0) {
+                        $.merge(intermediateAngles, rotationAngles.slice(0, finalIndex - 1));
+                    }
+                }
             } else {
-                $.merge(intermediateAngles, rotationAngles.slice(currentIndex + 1, rotationAngles.length));
-                if (finalIndex - 1 >= 0) {
-                    $.merge(intermediateAngles, rotationAngles.slice(0, finalIndex - 1));
+                if (currentIndex < finalIndex) {
+                    if (currentIndex - 1 >= 0) {
+                        $.merge(intermediateAngles, rotationAngles.slice(0, currentIndex - 1).reverse());
+                    }
+                    if (finalIndex + 1 <= rotationAngles.length) {
+                        $.merge(intermediateAngles, rotationAngles.slice(finalIndex + 1, rotationAngles.length).reverse());
+                    }
+                } else {
+                    $.merge(intermediateAngles, rotationAngles.slice(finalIndex + 1, currentIndex - 1).reverse());
                 }
             }
 
@@ -456,12 +472,12 @@ var TowerselectedView = (function() {
             var _this = this;
             _this._elements.towerRotationContainer.off('click').on('click', '.' + config.rotationButtonClass, function(event) {
                 // notify controller about rotatebutton click
-                _this._towerRotateClicked.notify();
+                _this._towerRotateClicked.notify(this);
 
             });
 
             var code = '<div class="rotation-btn-container left-btn transition"><div class="photo-thumb br50"><img src="images/tower-thumb.jpg" class="br50"></div><button class="' + config.rotationButtonClass + '  tower-rotation-left-button br50" ><span class="icon icon-rotate-1 fs48"></span></button><div class="rotation-title transition">Rotate Left</div></div>';
-            code += '<div class="rotation-btn-container right-btn transition"><div class="photo-thumb br50"><img src="images/tower-thumb.jpg" class="br50"></div><button class="' + config.rotationButtonClass + ' tower-rotation-right-button br50" ><span class="icon icon-rotate-2 fs48"></span></button><div class="rotation-title transition">Rotate Right</div></div>';
+            code += '<div class="rotation-btn-container right-btn transition"><div class="photo-thumb br50"><img src="images/tower-thumb.jpg" class="br50"></div><button class="' + config.rotationButtonClass + ' tower-rotation-right-button br50" data-anticlockwise="true" ><span class="icon icon-rotate-2 fs48"></span></button><div class="rotation-title transition">Rotate Right</div></div>';
             if (this._elements && this._elements.towerRotationContainer) {
                 this._elements.towerRotationContainer.html(code);
             }

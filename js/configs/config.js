@@ -7,7 +7,7 @@ var config = (function() {
 
         // Independent App
         apisJson: false,
-        localZip: true,
+        localZip: false,
 
         // Flags
         showLogs: true,
@@ -17,7 +17,7 @@ var config = (function() {
         useSpecifiedTowerTooltipSvg: true,
         allUnitsAvailable: false, // keep it true only for testing purpose
         polyHoverFlag: false,
-        readDataFromJson: false,
+        readDataFromJson: true,
 
         // Variables
         towerRotationSpeed: 100, // delay between 2 consecutive frames in miliseconds

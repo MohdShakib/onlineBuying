@@ -26,7 +26,8 @@ var initializeRoutes = (function() {
             previousState = null;
 
         var routes = {},
-            rootdata = {};
+            rootdata = {},
+            configBeforeFlag;
 
         var masterplanController, masterplanModel, masterplanView,
             towerselectedController, towerselectedModel, towerselectedView,
@@ -35,6 +36,7 @@ var initializeRoutes = (function() {
             baseController, baseModel, baseView,
             errorPageController, errorPageView,
             bookingController, bookingModel, bookingView;
+
         function redirectToCorrectAngle(data,angle,router){
             var data = data.split('/');
             data[3] = angle;
@@ -42,6 +44,9 @@ var initializeRoutes = (function() {
             data = data.join('/');
             router.setRoute(data);
         }
+
+
+
         function onTowerselectedRoute(projectName, projectId, towerName, towerAngle) {
             if (!(towerselectedModel && towerselectedModel._data.towerIdentifier == towerName)) {
                 towerselectedModel = new TowerselectedModel(rootdata.towers[towerName], rootdata, towerAngle);
@@ -159,50 +164,72 @@ var initializeRoutes = (function() {
             before: function(projectName, projectId, towerName, towerAngle, unitAddress) {
                 // Animations
                 utils.removeNotificationTooltip();
+            
+                function beforeCallback(response){
 
-                rootdata = getProjectData(projectId);
-                var flag = false;
-
-                var projectIdentifier = utils.getIdentifier(rootdata.projectName);
-                utils.projectId = projectId;
-
-                if (projectIdentifier != projectName) {
-                    var hash = window.location.hash;
-                    hash = hash.replace(projectName, projectIdentifier);
-                    window.location.hash = hash;
-                }
-
-                if (towerAngle && unitAddress) {
-                    var towerData = rootdata.towers && rootdata.towers[towerName] ? rootdata.towers[towerName] : undefined;
-                    flag = towerData && towerData.listings && towerData.listings[unitAddress] && towerData.rotationAngle && towerData.rotationAngle[towerAngle] && towerData.rotationAngle[towerAngle].listing && towerData.rotationAngle[towerAngle].listing[unitAddress] ? true : false;
-                    if(flag){
-                      utils.unitUniqueAdd = towerData.rotationAngle[towerAngle].listing[unitAddress].unitUniqueIdentifier;
-                    } else if(towerData && towerData.listings[unitAddress]){
-                      towerAngle = towerData.listings[unitAddress].rotationAnglesAvailable[0];
-                      redirectToCorrectAngle(window.location.hash,towerAngle,router);
-                      return false;
+                    if(!configBeforeFlag){ // hack
+                        configBeforeFlag = true;
+                        var hash = location.hash;
+                        hash = hash.split('/');
+                        if(hash[0] == '#'){
+                            hash = hash.slice(1,hash.length);
+                        }
+                        hash = hash.join('/');
+                        hash = 'a'+hash;
+                        router.setRoute(hash);
                     }
-                } else if (towerName) {
-                    flag = rootdata.towers && rootdata.towers[towerName] ? true : false;
-                } else if (projectId) {
-                    flag = rootdata && rootdata.towers ? true : false;
-                } else {
-                    return true;
+
+                    rootdata = response;
+
+                    var flag = false;
+                    var projectIdentifier = utils.getIdentifier(rootdata.projectName);
+                    utils.projectId = projectId;
+
+                    if (projectIdentifier != projectName) {
+                        var hash = window.location.hash;
+                        hash = hash.replace(projectName, projectIdentifier);
+                        window.location.hash = hash;
+                    }
+
+                    if (towerAngle && unitAddress) {
+                        var towerData = rootdata.towers && rootdata.towers[towerName] ? rootdata.towers[towerName] : undefined;
+                        flag = towerData && towerData.listings && towerData.listings[unitAddress] && towerData.rotationAngle && towerData.rotationAngle[towerAngle] && towerData.rotationAngle[towerAngle].listing && towerData.rotationAngle[towerAngle].listing[unitAddress] ? true : false;
+                        if(flag){
+                          utils.unitUniqueAdd = towerData.rotationAngle[towerAngle].listing[unitAddress].unitUniqueIdentifier;
+                        } else if(towerData && towerData.listings[unitAddress]){
+                          towerAngle = towerData.listings[unitAddress].rotationAnglesAvailable[0];
+                          redirectToCorrectAngle(window.location.hash,towerAngle,router);
+                          return false;
+                        }
+                    } else if (towerName) {
+                        flag = rootdata.towers && rootdata.towers[towerName] ? true : false;
+                    } else if (projectId) {
+                        flag = rootdata && rootdata.towers ? true : false;
+                    } else {
+                        return true;
+                    }
+
+                    if (!flag) {
+                        utils.log('data not available for the url');
+                        router.setRoute(errorRoute);
+                    }
+
+                    if (!baseController) {
+                        baseModel = new BaseModel(rootdata);
+                        baseView = new BaseView(baseModel);
+                        baseController = new BaseController(baseModel, baseView);
+                        baseController.generateTemplate();
+                    }
+
+                    return flag;
+
                 }
 
-                if (!flag) {
-                    utils.log('data not available for the url');
-                    router.setRoute(errorRoute);
-                }
+                getProjectData(projectId, beforeCallback);
 
-                if (!baseController) {
-                    baseModel = new BaseModel(rootdata);
-                    baseView = new BaseView(baseModel);
-                    baseController = new BaseController(baseModel, baseView);
-                    baseController.generateTemplate();
+                if(!configBeforeFlag){
+                    return false;
                 }
-
-                return flag;
 
             }
         });
