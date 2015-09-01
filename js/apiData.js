@@ -227,7 +227,7 @@ var getProjectData = (function() {
 
                 if (type == 'link' && item.type == 'link') {
                     item.details = zipImagePath + details;
-                    var identifier = utils.getIdentifier(item.name);
+                    var identifier = utils.getIdentifier(item.name + i);
                     response[identifier] = item;
                 } else if (type != 'link' && item.type != 'link') {
                     item.details = details; //parseDetailsField(details);
