@@ -317,48 +317,47 @@ var getProjectData = (function() {
 
     function parseAllJSONData() {
         var json = '.json';
-        projectData.wait = 5;
 
-        utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.masterplanScreen + json, config.dataFiles.masterplanScreen).success(function(data) {
-            var towers = processJsonArrayToObject(data, 'towerName');
+        var csv1 = utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.masterplanScreen + json, config.dataFiles.masterplanScreen);
+
+        var csv2 = utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.amenitiesHotspots + json, config.dataFiles.amenitiesHotspots);
+
+        var csv3 = utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.towerselectScreen + json, config.dataFiles.towerselectScreen);
+
+        var csv4 = utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.unitplanInfo + json, config.dataFiles.unitplanInfo);
+
+        var csv5 = utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.towerRotation + json, config.dataFiles.towerRotation);
+
+        return $.when(csv1, csv2, csv3, csv4, csv5).done(function(data1, data2, data3, data4, data5){
+            
+            var towers = processJsonArrayToObject(data1[0], 'towerName');
             if (towers && projectData.towers && Object.keys(projectData.towers).length && Object.keys(towers).length) {
                 useTowersCSVData(towers);
             }
-            projectData.wait--;
-        });
 
-        utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.amenitiesHotspots + json, config.dataFiles.amenitiesHotspots).success(function(data) {
-            var amenities = processJsonArrayToObject(data, 'amenityName');
+            var amenities = processJsonArrayToObject(data2[0], 'amenityName');
             if (amenities && Object.keys(amenities).length) {
                 useAmenitiesCSVData(amenities);
             }
-            projectData.wait--;
-        });
 
-        utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.towerselectScreen + json, config.dataFiles.towerselectScreen).success(function(data) {
-            var listing = data;
+            var listing = data3[0];
             useTowerUnitsCSVData(listing);
-            projectData.wait--;
-        });
 
-        utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.unitplanInfo + json, config.dataFiles.unitplanInfo).success(function(data) {
-            var data = processJsonArrayToObject(data, 'unitName');
+            var data = processJsonArrayToObject(data4[0], 'unitName');
             useUnitplanInfoCSVData(data);
-            projectData.wait--;
+
+            var data = processJsonArrayToObject(data5[0], 'towerName');
+            useTowerRotationData(data);
+
+            return projectData;
+        
         });
 
-        utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.towerRotation + json, config.dataFiles.towerRotation).success(function(data) {
-            var data = processJsonArrayToObject(data, 'towerName');
-            useTowerRotationData(data);
-            projectData.wait--;
-        });
     }
 
 
     var hasOwnProperty = Object.prototype.hasOwnProperty,
         projectData = {};
-
-    projectData.wait = 0;
 
     var parseApiData = function(projectDetail) {
 
@@ -633,9 +632,9 @@ var getProjectData = (function() {
     };
 
 
-    function getProjectData(projectId) {
+    function getProjectData(projectId, callback) {
         if (projectData && Object.keys(projectData).length) {
-            return projectData;
+            return callback(projectData);
         }
 
         var apiData,
@@ -648,17 +647,15 @@ var getProjectData = (function() {
         ajaxUtils.getProjectData(projectId, params);
         parseApiData(apiData);
         if (config.readDataFromJson) {
-            parseAllJSONData();
+            return parseAllJSONData().done(function(){
+                callback(projectData);
+                return;
+            });
         } else {
             parseAllCSVData();
+            callback(projectData);
         }
-
-        // while (wait) {
-        //     // wait
-        //     console.log(wait);
-        // }
-
-        console.log(projectData);
+       
         return projectData;
     }
 
