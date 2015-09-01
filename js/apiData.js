@@ -284,72 +284,81 @@ var getProjectData = (function() {
     }
 
     function parseAllCSVData() {
-
-        utils.getSvgData(zipPath + config.csv.masterplanScreen).success(function(data) {
+        var csv = '.csv';
+        utils.getSvgData(zipPath + config.dataFiles.masterplanScreen + csv).success(function(data) {
             var towers = processCsvDataToObject(data, 'towerName');
             if (towers && projectData.towers && Object.keys(projectData.towers).length && Object.keys(towers).length) {
                 useTowersCSVData(towers);
             }
         });
 
-        utils.getSvgData(zipPath + config.csv.amenitiesHotspots).success(function(data) {
+        utils.getSvgData(zipPath + config.dataFiles.amenitiesHotspots + csv).success(function(data) {
             var amenities = processCsvDataToObject(data, 'amenityName');
             if (amenities && Object.keys(amenities).length) {
                 useAmenitiesCSVData(amenities);
             }
         });
 
-        utils.getSvgData(zipPath + config.csv.towerselectScreen).success(function(data) {
+        utils.getSvgData(zipPath + config.dataFiles.towerselectScreen + csv).success(function(data) {
             var listing = processCsvDataToArray(data);
             useTowerUnitsCSVData(listing);
         });
 
-        utils.getSvgData(zipPath + config.csv.unitplanInfo).success(function(data) {
+        utils.getSvgData(zipPath + config.dataFiles.unitplanInfo + csv).success(function(data) {
             var data = processCsvDataToObject(data, 'unitName');
             useUnitplanInfoCSVData(data);
         });
 
-        utils.getSvgData(zipPath + config.csv.towerRotation).success(function(data) {
+        utils.getSvgData(zipPath + config.dataFiles.towerRotation + csv).success(function(data) {
             var data = processCsvDataToObject(data, 'towerName');
             useTowerRotationData(data);
         });
     }
 
     function parseAllJSONData() {
+        var json = '.json';
+        projectData.wait = 5;
 
-        utils.getJsonData(zipPath + config.json.masterplanScreen).success(function(data) {
+        utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.masterplanScreen + json, config.dataFiles.masterplanScreen).success(function(data) {
             var towers = processJsonArrayToObject(data, 'towerName');
             if (towers && projectData.towers && Object.keys(projectData.towers).length && Object.keys(towers).length) {
                 useTowersCSVData(towers);
             }
+            projectData.wait--;
         });
 
-        utils.getJsonData(zipPath + config.json.amenitiesHotspots).success(function(data) {
+        utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.amenitiesHotspots + json, config.dataFiles.amenitiesHotspots).success(function(data) {
             var amenities = processJsonArrayToObject(data, 'amenityName');
             if (amenities && Object.keys(amenities).length) {
                 useAmenitiesCSVData(amenities);
             }
+            projectData.wait--;
         });
 
-        utils.getJsonData(zipPath + config.json.towerselectScreen).success(function(data) {
+        utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.towerselectScreen + json, config.dataFiles.towerselectScreen).success(function(data) {
             var listing = data;
             useTowerUnitsCSVData(listing);
+            projectData.wait--;
         });
 
-        utils.getJsonData(zipPath + config.json.unitplanInfo).success(function(data) {
+        utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.unitplanInfo + json, config.dataFiles.unitplanInfo).success(function(data) {
             var data = processJsonArrayToObject(data, 'unitName');
             useUnitplanInfoCSVData(data);
+            projectData.wait--;
         });
 
-        utils.getJsonData(zipPath + config.json.towerRotation).success(function(data) {
+        utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.towerRotation + json, config.dataFiles.towerRotation).success(function(data) {
             var data = processJsonArrayToObject(data, 'towerName');
             useTowerRotationData(data);
+            projectData.wait--;
         });
     }
 
 
     var hasOwnProperty = Object.prototype.hasOwnProperty,
         projectData = {};
+
+    projectData.wait = 0;
 
     var parseApiData = function(projectDetail) {
 
@@ -644,8 +653,12 @@ var getProjectData = (function() {
             parseAllCSVData();
         }
 
-        console.log(projectData);
+        // while (wait) {
+        //     // wait
+        //     console.log(wait);
+        // }
 
+        console.log(projectData);
         return projectData;
     }
 
