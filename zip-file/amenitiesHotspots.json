@@ -1,4 +1,4 @@
-callback([{
+amenitiesHotspots([{
     "amenityName": "Swimming Pool",
     "amenitySvg": "42.19 39.84",
     "imageName": "swimming_pool.jpg"

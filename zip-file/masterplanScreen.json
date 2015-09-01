@@ -1,4 +1,4 @@
-callback([{
+masterplanScreen([{
     "towerName": "Tower A",
     "displayOrder": "8",
     "hoverImageName": "tow-a-lay-8.png",

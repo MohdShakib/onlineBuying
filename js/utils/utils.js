@@ -174,22 +174,22 @@ var utils = (function() {
                 }
             });
         },
-        getJsonData: function(url) {
+        getJsonData: function(url, callback) {
             return $.ajax({
                 type: 'GET',
-                url: url + '?callback=?',
+                url: url,
                 async: false,
-                jsonpCallback: 'callback',
+                jsonpCallback: callback,
                 contentType: "application/json",
                 dataType: "jsonp",
                 success: function(data) {
                     // register success callback in return promise
+                    console.log(url);
                     console.log(data);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     utils.log('read json error callback for: ' + url);
                     utils.log('error occured ' + errorThrown);
-                    return false;
                 }
             });
         },

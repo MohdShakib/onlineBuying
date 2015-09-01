@@ -36,19 +36,12 @@ var config = (function() {
             width: 1365,
             unit: 'px'
         },
-        csv: {
-            masterplanScreen: 'masterplanScreen.csv',
-            towerselectScreen: 'towerselectScreen.csv',
-            amenitiesHotspots: 'amenitiesHotspots.csv',
-            unitplanInfo: 'unitplanInfo.csv',
-            towerRotation: 'towerRotation.csv'
-        },
-        json: {
-            masterplanScreen: 'masterplanScreen.json',
-            towerselectScreen: 'towerselectScreen.json',
-            amenitiesHotspots: 'amenitiesHotspots.json',
-            unitplanInfo: 'unitplanInfo.json',
-            towerRotation: 'towerRotation.json'
+        dataFiles: {
+            masterplanScreen: 'masterplanScreen',
+            towerselectScreen: 'towerselectScreen',
+            amenitiesHotspots: 'amenitiesHotspots',
+            unitplanInfo: 'unitplanInfo',
+            towerRotation: 'towerRotation'
         },
         bottomFormGroup: {
             'tabLinkClass': 'conect-tab li a',
