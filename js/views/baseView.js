@@ -301,6 +301,9 @@ var BaseView = (function() {
                 '<div class="submit" id="share-box-submit-id"><input type="submit" />Share</div>' +
                 '</form>' +
                 '</div>' +
+                '<div class="live-chat">'+
+                '<div id="tawk_55e5498bfc2b363371225aaa"></div>'+
+                '</div>'+
                 '</div>' +
                 '<ul class="conect-tab transition">' +
                 '<li>' +
@@ -325,6 +328,13 @@ var BaseView = (function() {
                 //+'<span>Sign In Now!</span>'
                 '</p>' +
                 '<span class="icon icon-share"></span>' +
+                '</a>' +
+                '</li>' +
+                '<li>' +
+                '<a href="javascript:void(0);" data-name="live-chat" onclick="Tawk_API.showWidget();">' +
+                '<p>Live support' +
+                '</p>' +
+                '<span class="icon icon-intercom"></span>' +
                 '</a>' +
                 '</li>' +
                 '</ul>' +
@@ -397,6 +407,9 @@ var BaseView = (function() {
 
             this._elements.bottomFormGroupContainer.on('click', '.close-form', function() {
                 _this._formPopupCloseClick.notify(this);
+                if(Tawk_API){
+                  Tawk_API.hideWidget();
+                }
             });
 
             this._elements.bottomFormGroupContainer.on('click', '#' + config.unitCompareButtonId, function(event) {
