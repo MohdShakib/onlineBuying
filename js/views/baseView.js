@@ -509,6 +509,11 @@ var BaseView = (function() {
             $('form input').parent('div').removeClass('error');
             $('.' + config.bottomFormGroup.tabLinkClass).removeClass('active');
             $('.' + config.bottomFormGroup.formPopUpClass).removeClass('out');
+            if(Tawk_API){
+              setTimeout(function(){
+                Tawk_API.hideWidget();
+              },400)
+            }
         },
         bottomGroupButtonClicked: function(element) {
             if ($(element).hasClass('active')) { // if opened return to stop flickr
