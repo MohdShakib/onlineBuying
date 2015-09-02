@@ -169,14 +169,15 @@ var initializeRoutes = (function() {
 
                     if(!configBeforeFlag){ // hack
                         configBeforeFlag = true;
-                        var hash = location.hash;
-                        hash = hash.split('/');
-                        if(hash[0] == '#'){
-                            hash = hash.slice(1,hash.length);
+                        var route = router.getRoute();
+                        route = route.join('/');
+                        if(!router.history){
+                            route = '#/'+route;
                         }
-                        hash = hash.join('/');
-                        hash = 'a'+hash;
-                        router.setRoute(hash);
+                        window.history.replaceState({}, '', route);
+                        // Run router
+                        Router.listeners[0]();
+                        return;
                     }
 
                     rootdata = response;
