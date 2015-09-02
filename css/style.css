@@ -914,7 +914,7 @@ ellipse.tower-unit-svg-selected-path {
 	margin:15px 50px 15px 10px;
 }
 .compare-units-container .compare-unit-img{
-	width: 100%;
+	margin: auto; display: block;
 	/*margin-top: 9%;*/
 }
 .compare-units-container > div{
@@ -1082,13 +1082,13 @@ ellipse.tower-unit-svg-selected-path {
 .project-amenities li.disable{ opacity:0.3;}
 .project-amenities li label{ color:#333; font-size:13px; display:block; margin-top:10px; text-align:center;}
 /*-------payment screen start here-------*/
-.payment-screen{ width:100%; background:rgba(0,0,0,1); box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; position:fixed; top:0; left:0; height:100%; z-index:999999;}
+.payment-screen{ width:100%; background:#fff; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; position:fixed; top:0; left:0; height:100%; z-index:999999; overflow: auto;}
 .close-payment{ position:absolute; right:20px; top:0px; z-index:3; color: #999; cursor: pointer;}
 .title-text .close-payment{right:inherit; left:0; color:#fff; top:0; padding:0 20px;}
 .title-text .close-payment span{ margin-top:14px;}
 .close-payment:hover {color: #666;}
 .title-text .close-payment:hover{ color:#C3C1C1;}
-.payment-container{ position:relative; height:100%; width:100%; padding:100px 45px 50px 45px; background:#fff; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
+.payment-container{ position:relative; overflow: hidden; width:100%; padding:100px 45px 50px 45px; background:#fff; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
 .title-text{ position:absolute; top:0; left:0; text-align:center; background:#323232; color:#fff; width:100%; height:50px; line-height:50px; font-size:20px; overflow:hidden;}
 .payment-container h3{ font-size:18px; color:#252525;}
 .payment-left h3{ text-align:center; font-size:16px;}
@@ -1098,7 +1098,15 @@ ellipse.tower-unit-svg-selected-path {
 .payment-container h5{ font-size:14px; margin:10px 0;}
 .payment-container .property-detail {font-weight: bold; margin-top: 5px;}
 .payment-container .property-detail .right {float: right}
-.payment-left{ float:left; width:350px; background:#fff; box-shadow:0 0 8px rgba(0,0,0,0.2); height:490px; position: relative; z-index: 1; overflow:hidden;}
+.payment-container .offers { margin: 20px; margin-top: 0; border: 1px dashed #6fba54; }
+.payment-container .offers h4 { margin: 0; padding: 7px 15px; text-transform: uppercase; font-size: 18px; color: #6fba54; }
+.payment-container .offers li { padding: 7px 15px; overflow: hidden; font-size: 14px; border-top: 1px dashed #6fba54; }
+.payment-container .offers li p { padding-left: 15px; position: relative; text-transform: none; }
+.payment-container .offers li p span { color: #999; display: block; }
+.payment-container .offers li p:before { content: ''; position: absolute; left: 0; top: 4px; width: 8px; height: 8px; border-radius: 50%; background-color: #999; }
+.payment-container .offers li a { color: #f18d18; float: right; font-size: 12px; text-transform: none; }
+.payment-container .offers li a:hover { text-decoration: underline; }
+.payment-left{ padding-bottom: 10px; float:left; width:350px; background:#fff; box-shadow:0 0 8px rgba(0,0,0,0.2); position: relative; z-index: 1; overflow:hidden;}
 .payment-left p{font-size:14px; text-transform:uppercase; color:#252525;}
 .payment-left p span{text-transform:none;}
 .payment-left-top{ padding:20px;}

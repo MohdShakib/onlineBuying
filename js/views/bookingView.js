@@ -78,6 +78,17 @@ var BookingView = (function() {
                 data.bookingAmount = 20000;
                 data.bookingStatus = "Available";
                 imageUrl = data.floorPlanImage;
+				offerList = '<div class="offers">'+
+					'<h4>2 Offers</h4>'+
+					'<ul>'+
+						'<li><p>Free open car parking<span>Lorem impsume text will come here.</span></p>'+
+							'<a href="#">View Details</a>'+
+						'</li>'+
+						'<li><p>Free Modular Kitchen</p>'+
+							'<a href="#">View Details</a>'+
+						'</li>'+
+					'</ul>'+
+				'</div>';
                 propertyDetail = "<div class='property-detail'><span>" + data.bedrooms + " BHK + " + data.bathrooms +" T, " + data.size + " " + data.measure + "</span><span class='right'><span class='icon icon-rupee_final fleft fs18'></span>" + utils.getReadablePriceInWord(data.price) + "</span></div>";
                 titleText = "<br>You will have the flexibility to change your selection later.";
                 getCallbackCode = '<a class="fleft transition callback-btn ' + paymentBtnClass + '">Get Call Back</a>';
@@ -93,6 +104,7 @@ var BookingView = (function() {
                             '</p>';
                 paymentBreakup = '<div class="clear-fix"></div><a id="payment-breakup" class="view-price-brakup">View Price Breakup &amp; Payment plan</a>';
                 titleText = "";
+				offerList = "";
                 getCallbackCode = "";
             }
 
@@ -111,7 +123,7 @@ var BookingView = (function() {
                 '                <div class="payment-photo-box">' +
                 '                   <img src="' + imageUrl + '" width="100%" alt="">' +
                 '                </div>' + unitDetails +
-                '        </div>' + paymentBreakup +
+                '        </div>' + paymentBreakup + offerList +
                 '            <div class="booking-amount">' +
                 '            <h3>Booking Amount: <span><span class="icon icon-rupee"><span><strong>' + utils.getReadablePrice(data.bookingAmount) + ' </strong><label>only</label></span></h3> ' +
                 '            <p>( no cancellation charges )</p>' +
