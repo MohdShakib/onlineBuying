@@ -164,7 +164,7 @@ var initializeRoutes = (function() {
             before: function(projectName, projectId, towerName, towerAngle, unitAddress) {
                 // Animations
                 utils.removeNotificationTooltip();
-            
+
                 function beforeCallback(response){
 
                     if(!configBeforeFlag){ // hack
@@ -220,6 +220,14 @@ var initializeRoutes = (function() {
                         baseView = new BaseView(baseModel);
                         baseController = new BaseController(baseModel, baseView);
                         baseController.generateTemplate();
+                          window.Tawk_API=window.Tawk_API||{}, window.Tawk_LoadStart=new Date(); window.Tawk_API.embedded=config.tawkApiId;
+                          (function(){
+                          var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+                          s1.async=true;
+                          s1.src='https://embed.tawk.to/55e5498bfc2b363371225aaa/19u4o3af4';
+                          s1.charset='UTF-8';
+                          s1.setAttribute('crossorigin','*');
+                          s0.parentNode.insertBefore(s1,s0);})();
                     }
 
                     return flag;
