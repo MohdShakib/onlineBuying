@@ -329,7 +329,11 @@ var BookingView = (function() {
             data.phone = $('#booking-phone input').val();
             data.countryId = $('.' + config.bookingSelectionDivClass + ' .selectedCountry').data('countrycode');
             data.pan = $('#booking-pan input').val();
-            data.listingId = unitData.listingId;
+            if(this._model.getPropertyBooking()) {
+                data.listingId = unitData.propertyId;
+            } else {
+                data.listingId = unitData.listingId;
+            }
             data.amount = unitData.bookingAmount;
             return data;
         },
