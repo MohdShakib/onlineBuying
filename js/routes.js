@@ -219,7 +219,7 @@ var initializeRoutes = (function() {
                         baseView = new BaseView(baseModel);
                         baseController = new BaseController(baseModel, baseView);
                         baseController.generateTemplate();
-                          window.Tawk_API=window.Tawk_API||{}, window.Tawk_LoadStart=new Date(); window.Tawk_API.embedded='tawk_55e5498bfc2b363371225aaa';
+                          window.Tawk_API=window.Tawk_API||{}, window.Tawk_LoadStart=new Date(); window.Tawk_API.embedded=config.tawkApiId;
                           (function(){
                           var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
                           s1.async=true;
