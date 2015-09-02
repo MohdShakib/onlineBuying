@@ -184,8 +184,6 @@ var utils = (function() {
                 dataType: "jsonp",
                 success: function(data) {
                     // register success callback in return promise
-                    console.log(url);
-                    console.log(data);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     utils.log('read json error callback for: ' + url);
