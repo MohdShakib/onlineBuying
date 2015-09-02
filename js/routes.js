@@ -181,13 +181,7 @@ var initializeRoutes = (function() {
 
                     if (!configBeforeFlag) { // hack
                         configBeforeFlag = true;
-                        var route = router.getRoute();
-                        route = route.join('/');
-                        if (!router.history) {
-                            route = '#/' + route;
-                        }
-                        window.history.replaceState({}, '', route);
-                        Router.listeners[0](); // Run router
+                        router.handler();
                         return;
                     }
 
