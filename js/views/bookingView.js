@@ -13,6 +13,19 @@ var BookingView = (function() {
         'paymentBreakupPopup': '<div id="payment-breakup-popup" class="terms-condition-popup" style="display:none;"></div>'
     };
 
+    var offersMap = {
+        '672916-5302409': [{
+            title: "Free open car parking1",
+            desc: "Lorem impsume text will come here. Lorem impsume text will come here."
+        }, {
+            title: "Free open car parking2",
+            desc: "Lorem impsume text will come here."
+        }, {
+            title: "Free open car parking3",
+            desc: "Lorem impsume text will come here."
+        }]
+    };
+
     function getElements() {
         var elements = {
             'paymentScreen': $('#payment-screen'),
@@ -29,6 +42,7 @@ var BookingView = (function() {
 
         this._closeEvent = new Event(this);
         this._makePayment = new Event(this);
+        this._getCallBack = new Event(this);
     }
 
     BookingView.prototype = {
@@ -61,16 +75,11 @@ var BookingView = (function() {
             this._elements = getElements();
         },
         paymentScreen: function(data, rotationdata, rootdata) {
-            var url = rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier;
-            var offerDiv = '',
-                paymentBtnClass = 'make-payment',
+            var paymentBtnClass = 'make-payment',
                 propertyBooking = this._model.getPropertyBooking();
-            
-            if (data.discount) {
-                offerDiv = '<div class="special-offers">' + '<span></span>' + '<p>Save <strong><label       class="icon fs14 icon-rupee"></label>' + utils.getReadablePrice(data.discount) + '</strong> ' + data.discountDescription + '</p>' + '</div>';
-            }
 
-            var imageUrl, propertyDetail, unitDetails, offerList, paymentBreakup, titleText, getCallbackCode;
+            var offerDiv, propertyDetail, titleText, offerList, getCallbackCode, url, imageUrl, unitDetails, paymentBreakup;
+
             if (propertyBooking) {
                 offerDiv = "";
                 unitDetails = "";
@@ -78,34 +87,38 @@ var BookingView = (function() {
                 data.bookingAmount = 20000;
                 data.bookingStatus = "Available";
                 imageUrl = data.floorPlanImage;
-				offerList = '<div class="offers">'+
-					'<h4>2 Offers</h4>'+
-					'<ul>'+
-						'<li><p>Free open car parking<span>Lorem impsume text will come here.</span></p>'+
-							'<a href="#">View Details</a>'+
-						'</li>'+
-						'<li><p>Free Modular Kitchen</p>'+
-							'<a href="#">View Details</a>'+
-						'</li>'+
-					'</ul>'+
-				'</div>';
-                propertyDetail = "<div class='property-detail'><span>" + data.bedrooms + " BHK + " + data.bathrooms +" T, " + data.size + " " + data.measure + "</span><span class='right'><span class='icon icon-rupee_final fleft fs18'></span>" + utils.getReadablePriceInWord(data.price) + "</span></div>";
+
+                var offerData = offersMap[rootdata.projectId + '-' + data.propertyId];
+                offerList = '<div class="offers"><h4>' + offerData.length + ' Offers</h4><ul>';
+                for (var i in offerData) {
+                    offerList += '<li><p>' + offerData[i].title + '<span>' + offerData[i].desc + '</span></p></li>';
+                }
+                offerList += '</ul></div>';
+
+                propertyDetail = "<div class='property-detail'><span>" + data.bedrooms + " BHK + " + data.bathrooms + " T, " + data.size + " " + data.measure + "</span><span class='right'><span class='icon icon-rupee_final fleft fs18'></span>" + utils.getReadablePriceInWord(data.price) + "</span></div>";
                 titleText = "<br>You will have the flexibility to change your selection later.";
-                getCallbackCode = '<a class="fleft transition callback-btn ' + paymentBtnClass + '">Get Call Back</a>';
+                getCallbackCode = '<a class="fleft transition callback-btn get-callback">Get Call Back</a>';
+                url = "/online-buying/" + utils.getIdentifier(rootdata.city) + '/' + utils.getIdentifier(rootdata.builderName) + '/' + utils.getIdentifier(rootdata.projectName) + '-' + rootdata.projectId;
             } else {
-                propertyDetail = "";
+                offerDiv = '';
+                propertyDetail = '';
+                titleText = '';
+                offerList = '';
+                getCallbackCode = '';
+                url = rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier;
                 imageUrl = rootdata.unitTypes[rotationdata.unitTypeIdentifier].unitImageUrl;
                 unitDetails = '<div class="floor-area"><h5>' + data.listingAddress + '</h5> <p>Area <span>' + data.size + ' ' + data.measure + '</span></p> <p class="ml5 mr5">|</p> <p>Floor no. <span>' + data.floor + '</span></p><div class="clear-fix"></div></div>' +
-                            '<div class="clear-fix"></div>' +
-                            '<p class="fleft width-100">' +
-                            '<span class="fleft">Total Price</span>' +
-                            '<span class="fright"><span class="icon icon-rupee_final fleft fs18"></span>' + utils.getReadablePriceInWord(data.price - data.discount) + ' </span>' +
-                            '<span class="fright line-through"><span class="icon icon-rupee_final fleft fs18"></span>' + utils.getReadablePriceInWord(data.price) + '</span>' +
-                            '</p>';
+                    '<div class="clear-fix"></div>' +
+                    '<p class="fleft width-100">' +
+                    '<span class="fleft">Total Price</span>' +
+                    '<span class="fright"><span class="icon icon-rupee_final fleft fs18"></span>' + utils.getReadablePriceInWord(data.price - data.discount) + ' </span>' +
+                    '<span class="fright line-through"><span class="icon icon-rupee_final fleft fs18"></span>' + utils.getReadablePriceInWord(data.price) + '</span>' +
+                    '</p>';
                 paymentBreakup = '<div class="clear-fix"></div><a id="payment-breakup" class="view-price-brakup">View Price Breakup &amp; Payment plan</a>';
-                titleText = "";
-				offerList = "";
-                getCallbackCode = "";
+
+                if (data.discount) {
+                    offerDiv = '<div class="special-offers">' + '<span></span>' + '<p>Save <strong><label       class="icon fs14 icon-rupee"></label>' + utils.getReadablePrice(data.discount) + '</strong> ' + data.discountDescription + '</p>' + '</div>';
+                }
             }
 
             if (!config.enablePayment || data.bookingStatus != 'Available') {
@@ -197,16 +210,16 @@ var BookingView = (function() {
                 '                <label for="terms">I have read &amp; agree to <a id="tnc">Terms &amp; Conditions</a></label>' +
                 '                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '            </div>';
-            if(data.bookingStatus == 'Available'){
-              code += '<a class="fleft transition payment-btn ' + paymentBtnClass + '">Continue to Payment</a>';
+            if (data.bookingStatus == 'Available') {
+                code += '<a class="fleft transition payment-btn ' + paymentBtnClass + '">Continue to Payment</a>';
             } else {
-              code += '<a class="fleft transition payment-btn ' + paymentBtnClass + '">Sold out</a>';
+                code += '<a class="fleft transition payment-btn ' + paymentBtnClass + '">Sold out</a>';
             }
             code += getCallbackCode;
             code += '<div class="clear-fix"></div>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>';
+                '</div>' +
+                '</div>' +
+                '</div>';
 
 
             this._elements.paymentScreen.html(code);
@@ -268,6 +281,13 @@ var BookingView = (function() {
                 // notify controller
                 _this._makePayment.notify(this); // this refers to element here
             });
+
+            // Form Validations and get call back
+            _this._elements.paymentScreen.on('click', '.get-callback', function(event) {
+                // notify controller
+                _this._getCallBack.notify(this); // this refers to element here
+            });
+
             _this._elements.paymentScreen.on('keyup', '#booking-user-details', function(event) {
                 var bookingForm = $('#booking-user-details');
                 utils.validateForm(bookingForm, false);
@@ -307,12 +327,48 @@ var BookingView = (function() {
             data.lastName = $('#booking-last-name input').val();
             data.email = $('#booking-email input').val();
             data.phone = $('#booking-phone input').val();
-            data.dob = $('#booking-dob input').val();
             data.countryId = $('.' + config.bookingSelectionDivClass + ' .selectedCountry').data('countrycode');
             data.pan = $('#booking-pan input').val();
             data.listingId = unitData.listingId;
             data.amount = unitData.bookingAmount;
             return data;
+        },
+        validateAndSendEmail: function() {
+            var bookingForm = $('#booking-user-details'),
+                rootdata = this._model.getRootdata(),
+                property = this._model.getData();
+
+            if (!utils.validateForm(bookingForm, true)) {
+                return;
+            }
+
+            var data = {
+                notificationType: 'get_callback',
+                email: 'vijay.kumar@proptiger.com',
+                mailCC: ['rohit.arora@proptiger.com', 'sumit.sikri@proptiger.com'],
+                payloadMap: {
+                    projectName: rootdata.projectName,
+                    city: rootdata.city,
+                    firstName: $('#booking-first-name input').val(),
+                    lastName: $('#booking-last-name input').val(),
+                    email: $('#booking-email input').val(),
+                    phone: $('#booking-phone input').val(),
+                    nationality: $('.' + config.bookingSelectionDivClass + ' .selectedCountry').text(),
+                    pan: $('#booking-pan input').val(),
+                    configuration: property.bedrooms + " BHK + " + property.bathrooms + " T",
+                    area: property.size + " " + property.measure
+                }
+            };
+
+            var params = {
+                successCallback: function(response, params) {
+                    $('.callback-btn').text("Thanks");
+                },
+                errorCallback: function(response, params) {
+                    $('.callback-btn').text("Try Again");
+                }
+            };
+            ajaxUtils.sendEmail(data, params);
         },
         termsConditionPopup: function(data, rotationdata, rootdata) {
             var code = '<div class="tc-container">' +

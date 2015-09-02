@@ -33,6 +33,11 @@ var BookingController = (function() {
                 }
             });
 
+            // Get Call Back
+            this._view._getCallBack.attach(function(sender, element) {
+                _this._view.validateAndSendEmail();
+            });
+
         },
         generateTemplate: function() {
             this._view.buildView();
