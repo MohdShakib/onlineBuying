@@ -269,7 +269,7 @@ var BaseView = (function() {
                 '<div class="phone-no-holder"><div class="form-input-box fleft c-code">' +
                 '<input id="' + config.callBox.countryId + '" type="hidden" value="1"/>' +
                 '<input id="' + config.callBox.countryCodeId + '" class="text" name="' + config.callBox.phoneId + '" type="text" value="+91" readonly/> ' +
-                '<span class="icon icon-arrow_btm fs12 transition dropdown-arrow"></span><ul class="country-dropDown" style="display:none;"></ul></div><div class="form-input-box fright"><input class="text" id="' + config.callBox.phoneId + '" name="phone" placeholder="enter your phone number" type="text" minlength="10" maxlength="15" required />' +
+                '<span class="icon icon-arrow_btm fs12 transition dropdown-arrow"></span><ul class="country-dropDown" style="display:none;"></ul></div><div class="form-input-box fright mobile-number-field"><input class="text" id="' + config.callBox.phoneId + '" name="phone" placeholder="enter your phone number" type="text" minlength="10" maxlength="15" required />' +
                 '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div><div class="clear-fix"></div></div>' +
                 '<div class="submit" id="call-box-submit-id">Get Instant Callback' +
                 '<input type="submit" id="call-box-submit-id" />' +
@@ -289,7 +289,7 @@ var BaseView = (function() {
                 '<div class="share-social">' +
                 '<a href="javascript:void(0);" onclick="utils.socialClicked(\'facebook\')" ><span class="icon icon-facebook"></span>Facebook</a>' +
                 //+'<div class="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"></div>'
-                '<span>or</span>' +
+                '<span class="social-or">or</span>' +
                 //+'<div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>'
                 '<a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Goggle+</a>' +
                 '</div>' +
@@ -331,7 +331,7 @@ var BaseView = (function() {
                 '</a>' +
                 '</li>' +
                 '<li>' +
-                '<a href="javascript:void(0);" data-name="live-chat" onclick="Tawk_API.showWidget();">' +
+                '<a href="javascript:void(0);" data-name="live-chat" class="chat-widget">' +
                 '<p>Live support' +
                 '</p>' +
                 '<span class="icon icon-chat"></span>' +
@@ -407,9 +407,6 @@ var BaseView = (function() {
 
             this._elements.bottomFormGroupContainer.on('click', '.close-form', function() {
                 _this._formPopupCloseClick.notify(this);
-                if(Tawk_API){
-                  Tawk_API.hideWidget();
-                }
             });
 
             this._elements.bottomFormGroupContainer.on('click', '#' + config.unitCompareButtonId, function(event) {
@@ -434,6 +431,10 @@ var BaseView = (function() {
             _this._elements.bottomFormGroupContainer.on('click', function() {
                 //close country dropdown when clicked outside anywhere
                 $('.' + config.callBox.countryDropdownClass).hide();
+            });
+
+            this._elements.bottomFormGroupContainer.on('click', '.chat-widget', function(event) {
+                Tawk_API.showWidget();
             });
         },
         callBackFormSubmit: function(form) {
@@ -509,9 +510,9 @@ var BaseView = (function() {
             $('form input').parent('div').removeClass('error');
             $('.' + config.bottomFormGroup.tabLinkClass).removeClass('active');
             $('.' + config.bottomFormGroup.formPopUpClass).removeClass('out');
-            if(Tawk_API){
+            if(window.Tawk_API){
               setTimeout(function(){
-                Tawk_API.hideWidget();
+                window.Tawk_API.hideWidget();
               },400)
             }
         },

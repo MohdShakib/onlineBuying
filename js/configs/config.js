@@ -160,7 +160,7 @@ var config = (function() {
         nationalityDropdownClass: 'nationalty-drop-down',
         activeBookingInputClass: 'active'
     };
-    
+
     return config;
 
 })();
