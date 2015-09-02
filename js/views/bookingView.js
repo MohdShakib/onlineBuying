@@ -63,46 +63,55 @@ var BookingView = (function() {
         paymentScreen: function(data, rotationdata, rootdata) {
             var url = rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier;
             var offerDiv = '',
-                disableClass = '';
+                paymentBtnClass = 'make-payment',
+                propertyBooking = this._model.getPropertyBooking();
+            
             if (data.discount) {
                 offerDiv = '<div class="special-offers">' + '<span></span>' + '<p>Save <strong><label       class="icon fs14 icon-rupee"></label>' + utils.getReadablePrice(data.discount) + '</strong> ' + data.discountDescription + '</p>' + '</div>';
             }
-            if (!config.enablePayment) {
-                disableClass = 'disabled';
+
+            var imageUrl, propertyDetail, unitDetails, offerList, paymentBreakup, titleText, getCallbackCode;
+            if (propertyBooking) {
+                offerDiv = "";
+                unitDetails = "";
+                paymentBreakup = "";
+                data.bookingAmount = 20000;
+                data.bookingStatus = "Available";
+                imageUrl = data.floorPlanImage;
+                propertyDetail = "<div class='property-detail'><span>" + data.bedrooms + " BHK + " + data.bathrooms +" T, " + data.size + " " + data.measure + "</span><span class='right'><span class='icon icon-rupee_final fleft fs18'></span>" + utils.getReadablePriceInWord(data.price) + "</span></div>";
+                titleText = "<br>You will have the flexibility to change your selection later.";
+                getCallbackCode = '<a class="fleft transition callback-btn ' + paymentBtnClass + '">Get Call Back</a>';
+            } else {
+                propertyDetail = "";
+                imageUrl = rootdata.unitTypes[rotationdata.unitTypeIdentifier].unitImageUrl;
+                unitDetails = '<div class="floor-area"><h5>' + data.listingAddress + '</h5> <p>Area <span>' + data.size + ' ' + data.measure + '</span></p> <p class="ml5 mr5">|</p> <p>Floor no. <span>' + data.floor + '</span></p><div class="clear-fix"></div></div>' +
+                            '<div class="clear-fix"></div>' +
+                            '<p class="fleft width-100">' +
+                            '<span class="fleft">Total Price</span>' +
+                            '<span class="fright"><span class="icon icon-rupee_final fleft fs18"></span>' + utils.getReadablePriceInWord(data.price - data.discount) + ' </span>' +
+                            '<span class="fright line-through"><span class="icon icon-rupee_final fleft fs18"></span>' + utils.getReadablePriceInWord(data.price) + '</span>' +
+                            '</p>';
+                paymentBreakup = '<div class="clear-fix"></div><a id="payment-breakup" class="view-price-brakup">View Price Breakup &amp; Payment plan</a>';
+                titleText = "";
+                getCallbackCode = "";
             }
+
+            if (!config.enablePayment || data.bookingStatus != 'Available') {
+                paymentBtnClass = 'disabled';
+            }
+
             var code = '<div class="payment-container">' +
                 '        <div class="title-text">' +
                 '           <a class="close-payment transition" data-url="' + url + '"><span class="icon icon-arrow_left fs24"></span></a>' +
                 '           <p>Payment Screen</p>' +
                 '        </div>' +
                 '        <div class="payment-left">' + offerDiv +
-                '<div class="payment-left-top">' +
-                '                <h3>' + rootdata.projectName + ' <span>Whitefield Bangalore</span></h3>' +
+                '        <div class="payment-left-top">' +
+                '                <h3>' + rootdata.projectName + ' <span>Whitefield Bangalore</span></h3>' + propertyDetail +
                 '                <div class="payment-photo-box">' +
-                '                <img src="' + rootdata.unitTypes[rotationdata.unitTypeIdentifier].unitImageUrl + '" width="100%" alt="">' +
-                '                </div>' +
-                '                <div class="floor-area">' +
-                '                <h5>' + data.listingAddress + '</h5>' +
-                '                    <p>' +
-                '                        Area' +
-                '                        <span>' + data.size + ' ' + data.measure + '</span>' +
-                '                    </p>' +
-                '                    <p class="ml5 mr5">|</p>' +
-                '                    <p>' +
-                '                        Floor no.' +
-                '                        <span>' + data.floor + '</span>' +
-                '                    </p>' +
-                '                    <div class="clear-fix"></div>' +
-                '            </div>' +
-                '            <div class="clear-fix"></div>' +
-                '                    <p class="fleft width-100">' +
-                '                        <span class="fleft">Total Price</span>' +
-                '                        <span class="fright"><span class="icon icon-rupee_final fleft fs18"></span>' + utils.getReadablePriceInWord(data.price - data.discount) + ' </span>' +
-                '                        <span class="fright line-through"><span class="icon icon-rupee_final fleft fs18"></span>' + utils.getReadablePriceInWord(data.price) + '</span>' +
-                '                    </p>' +
-                '            </div>' +
-                '            <div class="clear-fix"></div>' +
-                '            <a id="payment-breakup" class="view-price-brakup">View Price Breakup &amp; Payment plan</a>' +
+                '                   <img src="' + imageUrl + '" width="100%" alt="">' +
+                '                </div>' + unitDetails +
+                '        </div>' + paymentBreakup +
                 '            <div class="booking-amount">' +
                 '            <h3>Booking Amount: <span><span class="icon icon-rupee"><span><strong>' + utils.getReadablePrice(data.bookingAmount) + ' </strong><label>only</label></span></h3> ' +
                 '            <p>( no cancellation charges )</p>' +
@@ -111,7 +120,7 @@ var BookingView = (function() {
                 '        <div class="payment-right">' +
                 '            <div id="booking-user-details" class="payment-right-container">' +
                 '            <h3>Nice Selection!</h3>' +
-                '            <p>Now, make a token payment of <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- to book your choice.</p>' +
+                '            <p>Now, make a token payment of <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- to book your choice.' + titleText + '</p>' +
                 '            <div class="personal-detail-box">' +
                 '                <table cellpadding="0" cellspacing="0" width="100%">' +
                 '                    <tr>' +
@@ -177,10 +186,11 @@ var BookingView = (function() {
                 '                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '            </div>';
             if(data.bookingStatus == 'Available'){
-              code += '<a class="fleft transition make-payment ' + disableClass + '">Continue to Payment</a>';
+              code += '<a class="fleft transition payment-btn ' + paymentBtnClass + '">Continue to Payment</a>';
             } else {
-              code += '<a class="fleft transition already-sold' + disableClass + '">Sold out</a>';
+              code += '<a class="fleft transition payment-btn ' + paymentBtnClass + '">Sold out</a>';
             }
+            code += getCallbackCode;
             code += '<div class="clear-fix"></div>' +
                     '</div>' +
                     '</div>' +

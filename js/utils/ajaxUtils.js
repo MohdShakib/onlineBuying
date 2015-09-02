@@ -70,21 +70,8 @@ var ajaxUtils = (function() {
         },
 
         sendEmail: function(data, params) {
-            var req = {},
-                user = {},
-                emailDetails = {};
-            user.email = data.email;
-            emailDetails.mediumType = "Email";
-            emailDetails.from = "PropTiger <no-reply@proptiger.com>";
-
-            req.notificationType = 'online_buying_share';
-            req.users = [user];
-            req.mediumDetails = [emailDetails];
-            req.payloadMap = data;
-
-            utils.log(req);
             var url = envConfig.apiURL + 'email-notification';
-            this.ajax(url, params, 'POST', true, req);
+            this.ajax(url, params, 'POST', true, data);
         },
 
         getCountries: function(params) {

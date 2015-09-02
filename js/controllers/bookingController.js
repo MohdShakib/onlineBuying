@@ -34,7 +34,7 @@ var BookingController = (function() {
             });
 
         },
-        generateTemplate: function(data, rootdata, elements) {
+        generateTemplate: function() {
             this._view.buildView();
             this._view.startAnimation();
         }

@@ -434,7 +434,7 @@ var BaseView = (function() {
             });
 
             this._elements.bottomFormGroupContainer.on('click', '.chat-widget', function(event) {
-                Tawk_API.showWidget();
+                window.Tawk_API.showWidget();
             });
         },
         callBackFormSubmit: function(form) {
@@ -513,7 +513,7 @@ var BaseView = (function() {
             if(window.Tawk_API){
               setTimeout(function(){
                 window.Tawk_API.hideWidget();
-              },400)
+              },400);
             }
         },
         bottomGroupButtonClicked: function(element) {

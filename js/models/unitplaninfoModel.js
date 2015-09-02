@@ -10,6 +10,7 @@ var UnitplaninfoModel = (function() {
         this._data = data;
         this._rotationdata = rotationdata;
         this._rootdata = rootdata;
+        this._propertyBooking = false;
 
         var comparedItems = utils.getComparedItems();
 
@@ -48,6 +49,12 @@ var UnitplaninfoModel = (function() {
                 return {};
             }
             return this._rootdata;
+        },
+        getPropertyBooking: function() {
+            return this._propertyBooking;
+        },
+        setPropertyBooking: function() {
+            this._propertyBooking = true;
         },
         updateData: function(data, rotationdata, rootdata) {
             this._data = data;
