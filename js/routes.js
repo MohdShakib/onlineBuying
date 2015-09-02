@@ -9,6 +9,7 @@ var initializeRoutes = (function() {
             wordSep: "-",
             projectName: "([a-z0-9-]+)",
             projectId: "([0-9]{6})",
+            propertyId: "(5[0-9]{6})",
             towerName: "([a-z0-9-]+)",
             towerAngle: "([0-9]{1,3})",
             unitAddress: "([a-z0-9-]+)",
@@ -19,6 +20,7 @@ var initializeRoutes = (function() {
         var projectRoute = config.urlAppName+routeRegex.sep + routeRegex.projectName + routeRegex.wordSep + routeRegex.projectId,
             towerRoute = projectRoute + routeRegex.sep + routeRegex.towerName,
             unitRoute = towerRoute + routeRegex.sep + routeRegex.towerAngle + routeRegex.sep + routeRegex.unitAddress,
+            propertyBookingRoute = projectRoute + routeRegex.sep + routeRegex.propertyId + routeRegex.sep + routeRegex.booking,
             bookingRoute = unitRoute + routeRegex.sep + routeRegex.booking,
             errorRoute = config.urlAppName+routeRegex.sep + routeRegex.error;
 
@@ -117,13 +119,31 @@ var initializeRoutes = (function() {
                 unitplaninfoController.generateTemplate();
             }
         };
+        
+        routes[propertyBookingRoute] = {
+            on: function(projectName, projectId, propertyId) {
+
+                previousState = currentState;
+                currentState = 'bookingView';
+
+                // var data = rootdata.towers[towerName].listings[unitAddress],
+                //     rotationdata = rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress];
+
+                // bookingModel = new UnitplaninfoModel(data, rotationdata, rootdata); // using same model as unitPlanInfo
+                // bookingView = new BookingView(bookingModel);
+                // bookingController = new BookingController(bookingModel, bookingView);
+                // bookingController.generateTemplate();
+
+                // // Reload tower selected container or not on closing this view
+                // reloadTowerSelectedView = true;
+            }
+        };
 
         routes[bookingRoute] = {
             on: function(projectName, projectId, towerName, towerAngle, unitAddress) {
 
                 previousState = currentState;
                 currentState = 'bookingView';
-
 
                 var data = rootdata.towers[towerName].listings[unitAddress],
                     rotationdata = rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress];
@@ -169,16 +189,17 @@ var initializeRoutes = (function() {
 
                     if(!configBeforeFlag){ // hack
                         configBeforeFlag = true;
-                        var hash = location.hash;
-                        hash = hash.split('/');
-                        if(hash[0] == '#'){
-                            hash = hash.slice(1,hash.length);
+                        var route = router.getRoute();
+                        route = route.join('/');
+                        if(!router.history){
+                            route = '#/'+route;
                         }
-                        hash = hash.join('/');
-                        hash = 'a'+hash;
-                        router.setRoute(hash);
+                        window.history.replaceState({}, '', route);
+                        Router.listeners[0](); // Run router
+                        return;
                     }
 
+                    utils.log(response);
                     rootdata = response;
 
                     var flag = false;
@@ -212,6 +233,7 @@ var initializeRoutes = (function() {
                     if (!flag) {
                         utils.log('data not available for the url');
                         router.setRoute(errorRoute);
+                        return true;
                     }
 
                     if (!baseController) {
