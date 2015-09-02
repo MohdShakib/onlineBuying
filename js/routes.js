@@ -173,16 +173,8 @@ var initializeRoutes = (function() {
 
                     if(!configBeforeFlag){ // hack
                         configBeforeFlag = true;
-                       /* var hash = location.hash;
-                        hash = hash.split('/');
-                        if(hash[0] == '#'){
-                            hash = hash.slice(1,hash.length);
-                            hash = hash.join('/');
-                            hash = 'a'+hash;
-                        }*/
-                        
-                        var hash = location.pathname;
-                        router.setRoute(hash);
+                        router.handler();
+                        return;
                     }
 
                     rootdata = response;

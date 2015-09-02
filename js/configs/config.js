@@ -3,7 +3,7 @@ var config = (function() {
     var config = {
 
 
-        urlAppName : '/online', ///thirdeye
+        urlAppName : '', ///thirdeye
 
         // Independent App
         apisJson: false,
