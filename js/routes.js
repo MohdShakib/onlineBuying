@@ -42,7 +42,7 @@ var initializeRoutes = (function() {
         var reloadTowerSelectedView = true;
 
         function redirectToCorrectAngle(data, angle, router) {
-            data[2] = angle;
+            data[3] = angle;
             data = data.join('/');
             router.setRoute(data);
         }
@@ -231,7 +231,7 @@ var initializeRoutes = (function() {
                     }
 
                     if (projectName && projectId && projectIdentifier != projectName) {
-                        currentRoute[0] = projectIdentifier+'-'+projectId;
+                        currentRoute[1] = projectIdentifier+'-'+projectId;
                         proceedRoute = false;
                         currentRoute = currentRoute.join('/');
                         router.setRoute(currentRoute);
