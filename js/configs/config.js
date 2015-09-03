@@ -18,7 +18,7 @@ var config = (function() {
         allUnitsAvailable: false, // keep it true only for testing purpose
         polyHoverFlag: false,
         readDataFromJson: true,
-        chatEnabled: false,
+        chatEnabled: true,
 
         // Variables
         towerRotationSpeed: 100, // delay between 2 consecutive frames in miliseconds
