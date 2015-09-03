@@ -10,7 +10,7 @@ var config = (function() {
         localZip: false,
 
         // Flags
-        showLogs: true,
+        showLogs: false,
         showCarAnimation: true,
         showTowerRotation: true,
         enablePayment: true,
@@ -18,11 +18,13 @@ var config = (function() {
         allUnitsAvailable: false, // keep it true only for testing purpose
         polyHoverFlag: false,
         readDataFromJson: true,
+        chatEnabled: false,
 
         // Variables
         towerRotationSpeed: 100, // delay between 2 consecutive frames in miliseconds
         towerMenuItemHeight: 44,
         maxShortlistCount: 6,
+        tawkApiId: 'tawk_55e5498bfc2b363371225aaa',
 
         // Data
         backgroundImage: 'masterplan.jpg',
@@ -65,8 +67,6 @@ var config = (function() {
 
 
         // Common
-        chatEnabled:  true,
-        tawkApiId: 'tawk_55e5498bfc2b363371225aaa',
         noPointerClass: 'no-pointer',
         hideClass: 'hidden',
         fadeInClass: 'fade-in',
