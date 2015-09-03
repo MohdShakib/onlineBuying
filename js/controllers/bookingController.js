@@ -29,7 +29,7 @@ var BookingController = (function() {
             this._view._makePayment.attach(function(sender, element) {
                 var data = _this._view.getValidatedPaymentData();
                 if (data !== null && config.enablePayment) {
-                    ajaxUtils.bookListing(data);
+                    _this._view.bookListing(data);
                 }
             });
 
