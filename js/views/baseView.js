@@ -251,7 +251,6 @@ var BaseView = (function() {
         bottomFormGroupContainer: function() {
             var _this = this;
             var chatdisabled = config.chatEnabled ? '' : 'disabled';
-            var liveChatEnabled = config.chatEnabled ? 'live-chat' : '';
             var htmlCode = '<div class="pro-contact-actions">' +
                 '<div class="form-pop-up transition">' +
                 '<span class="close-form icon icon-cross fs12"></span>' +
@@ -330,7 +329,7 @@ var BaseView = (function() {
                 '</a>' +
                 '</li>' +
                 '<li>' +
-                '<a href="javascript:void(0);" data-name="'+liveChatEnabled+'" class="chat-widget '+ chatdisabled +'">' +
+                '<a href="javascript:void(0);" data-name="live-chat" class="chat-widget '+ chatdisabled +'">' +
                 '<p>Live support' +
                 '</p>' +
                 '<span class="icon icon-chat"></span>' +
@@ -522,7 +521,7 @@ var BaseView = (function() {
             }
         },
         bottomGroupButtonClicked: function(element) {
-            if ($(element).hasClass('active')) { // if opened return to stop flickr
+            if ($(element).hasClass('active') || $(element).hasClass('disabled')) { // if opened return to stop flickr
                 return;
             }
 

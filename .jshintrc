@@ -35,6 +35,7 @@
         "MasterplanController": true,
         "MasterplanModel": true,
         "MasterplanView": true,
+        "offerData": true,
         "router": true,
         "Router": true,
         "TowerselectedController": true,

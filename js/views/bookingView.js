@@ -13,19 +13,6 @@ var BookingView = (function() {
         'paymentBreakupPopup': '<div id="payment-breakup-popup" class="terms-condition-popup" style="display:none;"></div>'
     };
 
-    var offersMap = {
-        '672916-5302409': [{
-            title: "Free open car parking1",
-            desc: "Lorem impsume text will come here. Lorem impsume text will come here."
-        }, {
-            title: "Free open car parking2",
-            desc: "Lorem impsume text will come here."
-        }, {
-            title: "Free open car parking3",
-            desc: "Lorem impsume text will come here."
-        }]
-    };
-
     function getElements() {
         var elements = {
             'paymentScreen': $('#payment-screen'),
@@ -85,15 +72,13 @@ var BookingView = (function() {
                 unitDetails = "";
                 paymentBreakup = "";
                 offerList = "";
-                data.bookingAmount = 20000;
-                data.bookingStatus = "Available";
                 imageUrl = data.floorPlanImage;
 
-                if (data.showOffers) {
-                    var offerData = offersMap[rootdata.projectId + '-' + data.propertyId];
-                    offerList += '<div class="offers"><h4>' + offerData.length + ' Offers</h4><ul>';
-                    for (var i in offerData) {
-                        offerList += '<li><p>' + offerData[i].title + '<span>' + offerData[i].desc + '</span></p></li>';
+                var offers = offerData[rootdata.projectId] ? offerData[rootdata.projectId][data.propertyId] : null;
+                if (offers) {
+                    offerList += '<div class="offers"><h4>' + offers.length + ' Offers</h4><ul>';
+                    for (var i in offers) {
+                        offerList += '<li><p>' + offers[i] + '</p></li>';
                     }
                     offerList += '</ul></div>';
                 }
@@ -332,10 +317,12 @@ var BookingView = (function() {
             data.phone = $('#booking-phone input').val();
             data.countryId = $('.' + config.bookingSelectionDivClass + ' .selectedCountry').data('countrycode');
             data.pan = $('#booking-pan input').val();
-            if(this._model.getPropertyBooking()) {
-                data.listingId = unitData.propertyId;
+            if (this._model.getPropertyBooking()) {
+                data.productId = unitData.couponId;
+                data.productType = 'Non4DSale';
             } else {
-                data.listingId = unitData.listingId;
+                data.productId = unitData.listingId;
+                data.productType = 'PrimaryOnline';
             }
             data.amount = unitData.bookingAmount;
             return data;
@@ -420,41 +407,23 @@ var BookingView = (function() {
                 utils.updateTotalPrice(_this._model.getData());
             });
         },
-        bookListing : function(data) {
-            var req = {},
-                user = {},
-                attrib = {},
-                contact = {};
-            contact.contactNumber = data.phone;
-            attrib.attributeName = "PAN";
-            attrib.attributeValue = data.pan;
-            user.fullName = data.firstName + ' ' + data.lastName;
-            user.email = data.email;
-            user.attributes = [attrib];
-            user.contactNumbers = [contact];
-            user.countryId = data.countryId;
-            req.productId = data.listingId;
-            req.productType = 'PrimaryOnline';
-            req.amount = data.amount;
-            req.user = user;
-
-            var url = envConfig.apiURL + "data/v1/transaction/coupon?debug=true";
-
+        bookListing: function() {
+            var data = this.getValidatedPaymentData();
             var params = {
                 successCallback: function(data, params) {
                     window.location.href = data;
                 },
-                errorCallback: function(data,params,statusCode) {
-                    if(statusCode && statusCode == 499){
+                errorCallback: function(data, params, statusCode) {
+                    if (statusCode && statusCode == 499) {
                         window.location.reload();
                     } else {
                         $("#paymentButton").text("Please try again");
                     }
                 }
             };
-
-            utils.log(req);
-            ajaxUtils.ajax(url, params, 'POST', true, req);
+            if (data !== null && config.enablePayment && this._model.getData().bookingStatus == "Available") {
+                ajaxUtils.bookListing(data, params);
+            }
         }
     };
 
