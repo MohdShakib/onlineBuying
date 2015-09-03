@@ -220,6 +220,9 @@ var initializeRoutes = (function() {
                         window.Tawk_API = window.Tawk_API || {};
                         window.Tawk_LoadStart = new Date();
                         window.Tawk_API.embedded = config.tawkApiId;
+                        window.Tawk_API.onLoad = function(){
+                            baseView.changeChatCss(window.chatCss);
+                        };
                         (function() {
                             var s1 = document.createElement("script"),
                                 s0 = document.getElementsByTagName("script")[0];
