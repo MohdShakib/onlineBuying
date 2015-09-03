@@ -17,6 +17,7 @@
     "grunt-filerev": "^0.2.1",
     "grunt-processhtml": "^0.3.8",
     "grunt-text-replace": "^0.3.12",
+    "js-obfuscator": "^0.1.0",
     "jshint-stylish": "^0.2.0",
     "load-grunt-tasks": "^0.4.0",
     "time-grunt": "^0.3.1"

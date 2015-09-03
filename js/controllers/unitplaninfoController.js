@@ -68,7 +68,7 @@ var UnitplaninfoController = (function() {
                 _this._view.amenityCloseEvent();
             });
         },
-        generateTemplate: function(data, rootdata, elements) {
+        generateTemplate: function() {
             this._view.buildView();
         }
     };

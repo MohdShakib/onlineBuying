@@ -22,11 +22,11 @@ img{ border:0; outline:none;}
 }
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?1v6pyt');
-	src:url('fonts/icomoon.eot?#iefix1v6pyt') format('embedded-opentype'),
-		url('fonts/icomoon.ttf?1v6pyt') format('truetype'),
-		url('fonts/icomoon.woff?1v6pyt') format('woff'),
-		url('fonts/icomoon.svg?1v6pyt#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?1u2n5j');
+	src:url('fonts/icomoon.eot?#iefix1u2n5j') format('embedded-opentype'),
+		url('fonts/icomoon.ttf?1u2n5j') format('truetype'),
+		url('fonts/icomoon.woff?1u2n5j') format('woff'),
+		url('fonts/icomoon.svg?1u2n5j#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -45,6 +45,19 @@ img{ border:0; outline:none;}
 	-moz-osx-font-smoothing: grayscale;
 }
 .icon{ display:inline-block !important; font-size:25px; position:relative;}
+
+.icon-rotate-1:before {
+	content: "\e632";
+}
+.icon-chat:before {
+	content: "\e63e";
+}
+.icon-assuredprivacy:before {
+	content: "\e63f";
+}
+.icon-bestprice:before {
+	content: "\e640";
+}
 .icon-1:before {
 	content: "\e600";
 }
@@ -210,9 +223,6 @@ img{ border:0; outline:none;}
 .icon-reset-final:before {
 	content: "\e631";
 }
-.icon-rotate-1:before {
-	content: "\e632";
-}
 .icon-rotate-2:before {
 	content: "\e633";
 }
@@ -246,6 +256,7 @@ img{ border:0; outline:none;}
 .icon-unitplan:before {
 	content: "\e63d";
 }
+
 
 
 body {

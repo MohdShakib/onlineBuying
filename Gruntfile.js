@@ -30,6 +30,23 @@ module.exports = function(grunt) {
                 dest: './js/script-all.min.js'
             }
         },
+        jsObfuscate: {
+            dist: {
+                options: {
+                    concurrency: 2,
+                    keepLinefeeds: false,
+                    keepIndentations: false,
+                    encodeStrings: true,
+                    encodeNumbers: true,
+                    moveStrings: true,
+                    replaceNames: true,
+                    variableExclusions: ['^_get_', '^_set_', '^_mtd_']
+                },
+                files: {
+                    './js/script-all-final.min.js': ['<%= uglify.dist.dest %>']
+                }
+            }
+        },
         cssmin: {
             options: {
                 shorthandCompacting: false,
@@ -94,7 +111,7 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         env: 'prod',
-                        cdn: 'https://d3ce3d057nh52e.cloudfront.net/'
+                        cdn: 'https://thirdeyestatic.proptiger.com/'
                     },
                     process: true
                 },
@@ -138,7 +155,9 @@ module.exports = function(grunt) {
         }
 
     });
-    
+
+    //grunt.loadNpmTasks('js-obfuscator');
+
     grunt.registerTask('base', [
         'clean',
         'jshint',

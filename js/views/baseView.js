@@ -70,7 +70,7 @@ var BaseView = (function() {
         },
         compareUnitsContainerReady: false,
         prepareCompareUnitsContainer: function(flag) {
-            if(this.compareUnitsContainerReady && !flag){
+            if (this.compareUnitsContainerReady && !flag) {
                 return;
             }
 
@@ -91,7 +91,7 @@ var BaseView = (function() {
                 var imageUrl = compareList[uniqueIdentifier].unitTypeData.unitImageUrl;
                 htmlCode += '<div class="' + config.compareBottomBox + '" id="' + config.compareBottomBox + '-' + uniqueIdentifier + '" data-uniqueidentifier="' + uniqueIdentifier + '">' +
                     '<p >' + compareList[uniqueIdentifier].unitName + '</p>' +
-                    '<img class="'+config.lazyloadClass+'" src="' + imageUrl + '" />' +
+                    '<img class="' + config.lazyloadClass + '" src="' + imageUrl + '" />' +
                     '</div>';
             }
             htmlCode += '</div>';
@@ -102,7 +102,7 @@ var BaseView = (function() {
 
                 htmlCode += '<div class="compare-unit-box-detail top-right-component"><span>Drag & drop to select unit and compare it.</span></div>' +
                     '<div class="img-svg-container drag-drop">' +
-                    '<img class="compare-unit-img '+config.lazyloadClass+'"  src="images/compare_drag.jpg"/></div>';
+                    '<img class="compare-unit-img ' + config.lazyloadClass + '"  src="images/compare_drag.jpg"/></div>';
 
                 htmlCode += '</div>';
             }
@@ -113,15 +113,12 @@ var BaseView = (function() {
                 this.addToCompareBox($('.compare-unit-box')[0], compareKeys[0]);
 
             } else {
-              if (indexOfCurrentUnit && indexOfCurrentUnit > -1) {
-                  this.addToCompareBox($('.compare-unit-box')[0], compareKeys[indexOfCurrentUnit]);
-              } else if (compareList_length > 1) {
+                if (indexOfCurrentUnit && indexOfCurrentUnit > -1) {
+                    this.addToCompareBox($('.compare-unit-box')[0], compareKeys[indexOfCurrentUnit]);
+                } else if (compareList_length > 1) {
                     this.addToCompareBox($('.compare-unit-box')[0], compareKeys[0]);
                 }
             }
-
-
-
 
             this.compareUnitsContainerEvents();
             this.compareUnitsContainerReady = true;
@@ -183,7 +180,7 @@ var BaseView = (function() {
                 '<a data-url="' + link + '">Book now</a><span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(item.bookingAmount) + '/- <br>(No Cancellation Charges)</span>' +
                 '</div>';
             htmlCode += '<div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + uniqueIdentifier + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' +
-                '<img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img '+config.lazyloadClass+'"  src="' + imageUrl + '"> </div>';
+                '<img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img ' + config.lazyloadClass + '"  src="' + imageUrl + '"> </div>';
 
             $('#' + config.compareBottomBox + '-' + uniqueIdentifier + ' ').addClass('selected');
 
@@ -269,7 +266,7 @@ var BaseView = (function() {
                 '<div class="phone-no-holder"><div class="form-input-box fleft c-code">' +
                 '<input id="' + config.callBox.countryId + '" type="hidden" value="1"/>' +
                 '<input id="' + config.callBox.countryCodeId + '" class="text" name="' + config.callBox.phoneId + '" type="text" value="+91" readonly/> ' +
-                '<span class="icon icon-arrow_btm fs12 transition dropdown-arrow"></span><ul class="country-dropDown" style="display:none;"></ul></div><div class="form-input-box fright"><input class="text" id="' + config.callBox.phoneId + '" name="phone" placeholder="enter your phone number" type="text" minlength="10" maxlength="15" required />' +
+                '<span class="icon icon-arrow_btm fs12 transition dropdown-arrow"></span><ul class="country-dropDown" style="display:none;"></ul></div><div class="form-input-box fright mobile-number-field"><input class="text" id="' + config.callBox.phoneId + '" name="phone" placeholder="enter your phone number" type="text" minlength="10" maxlength="15" required />' +
                 '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div><div class="clear-fix"></div></div>' +
                 '<div class="submit" id="call-box-submit-id">Get Instant Callback' +
                 '<input type="submit" id="call-box-submit-id" />' +
@@ -289,7 +286,7 @@ var BaseView = (function() {
                 '<div class="share-social">' +
                 '<a href="javascript:void(0);" onclick="utils.socialClicked(\'facebook\')" ><span class="icon icon-facebook"></span>Facebook</a>' +
                 //+'<div class="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"></div>'
-                '<span>or</span>' +
+                '<span class="social-or">or</span>' +
                 //+'<div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>'
                 '<a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Goggle+</a>' +
                 '</div>' +
@@ -300,6 +297,9 @@ var BaseView = (function() {
                 '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
                 '<div class="submit" id="share-box-submit-id"><input type="submit" />Share</div>' +
                 '</form>' +
+                '</div>' +
+                '<div class="live-chat">' +
+                '<div id="' + config.tawkApiId + '"></div>' +
                 '</div>' +
                 '</div>' +
                 '<ul class="conect-tab transition">' +
@@ -325,6 +325,13 @@ var BaseView = (function() {
                 //+'<span>Sign In Now!</span>'
                 '</p>' +
                 '<span class="icon icon-share"></span>' +
+                '</a>' +
+                '</li>' +
+                '<li>' +
+                '<a href="javascript:void(0);" data-name="live-chat" class="chat-widget">' +
+                '<p>Live support' +
+                '</p>' +
+                '<span class="icon icon-chat"></span>' +
                 '</a>' +
                 '</li>' +
                 '</ul>' +
@@ -422,6 +429,10 @@ var BaseView = (function() {
                 //close country dropdown when clicked outside anywhere
                 $('.' + config.callBox.countryDropdownClass).hide();
             });
+
+            this._elements.bottomFormGroupContainer.on('click', '.chat-widget', function(event) {
+                window.Tawk_API.showWidget();
+            });
         },
         callBackFormSubmit: function(form) {
             var validationFlag = utils.validateForm(form, true);
@@ -469,11 +480,15 @@ var BaseView = (function() {
             var email = $('#' + config.emailBox.emailId).val();
 
             var data = {
-                senderName: name,
+                notificationType: 'online_buying_share',
                 email: email,
-                projectName: rootdata.projectName,
-                shareUrl: window.location.href,
-                imageUrl: rootdata.mainImage
+                payloadMap: {
+                    senderName: name,
+                    email: email,
+                    projectName: rootdata.projectName,
+                    shareUrl: window.location.href,
+                    imageUrl: rootdata.mainImage
+                }
             };
 
             var params = {
@@ -496,6 +511,11 @@ var BaseView = (function() {
             $('form input').parent('div').removeClass('error');
             $('.' + config.bottomFormGroup.tabLinkClass).removeClass('active');
             $('.' + config.bottomFormGroup.formPopUpClass).removeClass('out');
+            if (window.Tawk_API) {
+                setTimeout(function() {
+                    window.Tawk_API.hideWidget();
+                }, 400);
+            }
         },
         bottomGroupButtonClicked: function(element) {
             if ($(element).hasClass('active')) { // if opened return to stop flickr

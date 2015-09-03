@@ -427,6 +427,30 @@ var getProjectData = (function() {
             projectData.projectAmeneties[projectAmenity.amenityMaster.abbreviation] = amenity;
         }
 
+        // Project Properties
+        projectData.properties = {};
+        for (var i in projectDetail.properties) {
+            var projectProperty = projectDetail.properties[i],
+                property = {};
+            property.propertyId = projectProperty.propertyId;
+            property.bedrooms = projectProperty.bedrooms;
+            property.bathrooms = projectProperty.bathrooms;
+            property.size = projectProperty.size;
+            property.measure = projectProperty.measure;
+            property.price = projectProperty.pricePerUnitArea * projectProperty.size;
+            property.URL = projectProperty.URL;
+            property.isPropertySoldOut = projectProperty.isPropertySoldOut;
+
+            // Floor plan
+            for (var j in projectProperty.images) {
+                if (projectProperty.images[j].imageType.type == 'floorPlan') {
+                    property.floorPlanImage = projectProperty.images[j].absolutePath;
+                }
+            }
+
+            projectData.properties[projectProperty.propertyId] = property;
+        }
+
         // Payment plan image
         for (i in projectDetail.images) {
             if (projectDetail.images[i].imageType.type == 'paymentPlan') {
@@ -450,6 +474,9 @@ var getProjectData = (function() {
                 }
             }
         }
+
+        // City
+        projectData.city = projectDetail.locality.suburb.city.label;
 
         var towersUnitInfo = {},
             towerIdentifier;
