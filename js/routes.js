@@ -17,12 +17,12 @@ var initializeRoutes = (function() {
             error: "404"
         };
 
-        var projectRoute = config.urlAppName+routeRegex.sep + routeRegex.projectName + routeRegex.wordSep + routeRegex.projectId,
+        var projectRoute = config.urlAppName + routeRegex.sep + routeRegex.projectName + routeRegex.wordSep + routeRegex.projectId,
             towerRoute = projectRoute + routeRegex.sep + routeRegex.towerName,
             unitRoute = towerRoute + routeRegex.sep + routeRegex.towerAngle + routeRegex.sep + routeRegex.unitAddress,
             propertyBookingRoute = projectRoute + routeRegex.sep + routeRegex.propertyId + routeRegex.sep + routeRegex.booking,
             bookingRoute = unitRoute + routeRegex.sep + routeRegex.booking,
-            errorRoute = config.urlAppName+routeRegex.sep + routeRegex.error;
+            errorRoute = config.urlAppName + routeRegex.sep + routeRegex.error;
 
         var currentState = null,
             previousState = null;
@@ -33,21 +33,21 @@ var initializeRoutes = (function() {
 
         var masterplanController, masterplanModel, masterplanView,
             towerselectedController, towerselectedModel, towerselectedView,
-            reloadTowerSelectedView = true,
             unitplaninfoController, unitplaninfoModel, unitplaninfoView,
             baseController, baseModel, baseView,
             errorPageController, errorPageView,
-            bookingController, bookingModel, bookingView;
+            bookingController, bookingModel, bookingView,
+            propertyBookingController, propertyBookingModel, propertyBookingView;
 
-        function redirectToCorrectAngle(data,angle,router){
+        var reloadTowerSelectedView = true;
+
+        function redirectToCorrectAngle(data, angle, router) {
             var data = data.split('/');
             data[3] = angle;
-            data = data.slice(1,data.length);
+            data = data.slice(1, data.length);
             data = data.join('/');
             router.setRoute(data);
         }
-
-
 
         function onTowerselectedRoute(projectName, projectId, towerName, towerAngle) {
             if (!(towerselectedModel && towerselectedModel._data.towerIdentifier == towerName)) {
@@ -80,6 +80,17 @@ var initializeRoutes = (function() {
                     masterplanController = new MasterplanController(masterplanModel, masterplanView);
                 }
                 masterplanController.generateTemplate();
+            }
+        };
+
+        routes[propertyBookingRoute] = {
+            on: function(projectName, projectId, propertyId) {
+                var data = rootdata.properties[propertyId];
+                propertyBookingModel = new UnitplaninfoModel(data, data, rootdata); // using same model as unitPlanInfo
+                propertyBookingModel.setPropertyBooking();
+                propertyBookingView = new BookingView(propertyBookingModel);
+                propertyBookingController = new BookingController(propertyBookingModel, propertyBookingView);
+                propertyBookingController.generateTemplate();
             }
         };
 
@@ -117,25 +128,6 @@ var initializeRoutes = (function() {
                 unitplaninfoView = new UnitplaninfoView(unitplaninfoModel);
                 unitplaninfoController = new UnitplaninfoController(unitplaninfoModel, unitplaninfoView);
                 unitplaninfoController.generateTemplate();
-            }
-        };
-        
-        routes[propertyBookingRoute] = {
-            on: function(projectName, projectId, propertyId) {
-
-                previousState = currentState;
-                currentState = 'bookingView';
-
-                // var data = rootdata.towers[towerName].listings[unitAddress],
-                //     rotationdata = rootdata.towers[towerName].rotationAngle[towerAngle].listing[unitAddress];
-
-                // bookingModel = new UnitplaninfoModel(data, rotationdata, rootdata); // using same model as unitPlanInfo
-                // bookingView = new BookingView(bookingModel);
-                // bookingController = new BookingController(bookingModel, bookingView);
-                // bookingController.generateTemplate();
-
-                // // Reload tower selected container or not on closing this view
-                // reloadTowerSelectedView = true;
             }
         };
 
@@ -185,17 +177,11 @@ var initializeRoutes = (function() {
                 // Animations
                 utils.removeNotificationTooltip();
 
-                function beforeCallback(response){
+                function beforeCallback(response) {
 
-                    if(!configBeforeFlag){ // hack
+                    if (!configBeforeFlag) { // hack
                         configBeforeFlag = true;
-                        var route = router.getRoute();
-                        route = route.join('/');
-                        if(!router.history){
-                            route = '#/'+route;
-                        }
-                        window.history.replaceState({}, '', route);
-                        Router.listeners[0](); // Run router
+                        router.handler();
                         return;
                     }
 
@@ -215,15 +201,19 @@ var initializeRoutes = (function() {
                     if (towerAngle && unitAddress) {
                         var towerData = rootdata.towers && rootdata.towers[towerName] ? rootdata.towers[towerName] : undefined;
                         flag = towerData && towerData.listings && towerData.listings[unitAddress] && towerData.rotationAngle && towerData.rotationAngle[towerAngle] && towerData.rotationAngle[towerAngle].listing && towerData.rotationAngle[towerAngle].listing[unitAddress] ? true : false;
-                        if(flag){
-                          utils.unitUniqueAdd = towerData.rotationAngle[towerAngle].listing[unitAddress].unitUniqueIdentifier;
-                        } else if(towerData && towerData.listings[unitAddress]){
-                          towerAngle = towerData.listings[unitAddress].rotationAnglesAvailable[0];
-                          redirectToCorrectAngle(window.location.hash,towerAngle,router);
-                          return false;
+                        if (flag) {
+                            utils.unitUniqueAdd = towerData.rotationAngle[towerAngle].listing[unitAddress].unitUniqueIdentifier;
+                        } else if (towerData && towerData.listings[unitAddress]) {
+                            towerAngle = towerData.listings[unitAddress].rotationAnglesAvailable[0];
+                            redirectToCorrectAngle(window.location.hash, towerAngle, router);
+                            return false;
                         }
                     } else if (towerName) {
                         flag = rootdata.towers && rootdata.towers[towerName] ? true : false;
+                        // hack for propertyId check
+                        if (!flag) {
+                            flag = rootdata.properties && rootdata.properties[towerName] ? true : false;
+                        }
                     } else if (projectId) {
                         flag = rootdata && rootdata.towers ? true : false;
                     } else {
@@ -241,14 +231,18 @@ var initializeRoutes = (function() {
                         baseView = new BaseView(baseModel);
                         baseController = new BaseController(baseModel, baseView);
                         baseController.generateTemplate();
-                          window.Tawk_API=window.Tawk_API||{}, window.Tawk_LoadStart=new Date(); window.Tawk_API.embedded=config.tawkApiId;
-                          (function(){
-                          var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-                          s1.async=true;
-                          s1.src='https://embed.tawk.to/55e5498bfc2b363371225aaa/19u4o3af4';
-                          s1.charset='UTF-8';
-                          s1.setAttribute('crossorigin','*');
-                          s0.parentNode.insertBefore(s1,s0);})();
+                        window.Tawk_API = window.Tawk_API || {};
+                        window.Tawk_LoadStart = new Date();
+                        window.Tawk_API.embedded = config.tawkApiId;
+                        (function() {
+                            var s1 = document.createElement("script"),
+                                s0 = document.getElementsByTagName("script")[0];
+                            s1.async = true;
+                            s1.src = 'https://embed.tawk.to/55e5498bfc2b363371225aaa/19u4o3af4';
+                            s1.charset = 'UTF-8';
+                            s1.setAttribute('crossorigin', '*');
+                            s0.parentNode.insertBefore(s1, s0);
+                        })();
                     }
 
                     return flag;
@@ -257,7 +251,7 @@ var initializeRoutes = (function() {
 
                 getProjectData(projectId, beforeCallback);
 
-                if(!configBeforeFlag){
+                if (!configBeforeFlag) {
                     return false;
                 }
 

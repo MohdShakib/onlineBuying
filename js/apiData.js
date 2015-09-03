@@ -475,6 +475,9 @@ var getProjectData = (function() {
             }
         }
 
+        // City
+        projectData.city = projectDetail.locality.suburb.city.label;
+
         var towersUnitInfo = {},
             towerIdentifier;
         for (var i = 0; i < towers_length; i += 1) {
