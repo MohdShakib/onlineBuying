@@ -78,29 +78,32 @@ var BookingView = (function() {
             var paymentBtnClass = 'make-payment',
                 propertyBooking = this._model.getPropertyBooking();
 
-            var offerDiv, propertyDetail, titleText, offerList, getCallbackCode, url, imageUrl, unitDetails, paymentBreakup;
+            var offerBanner, propertyDetail, titleText, offerList, getCallbackCode, url, imageUrl, unitDetails, paymentBreakup;
 
             if (propertyBooking) {
-                offerDiv = "";
+                offerBanner = "";
                 unitDetails = "";
                 paymentBreakup = "";
+                offerList = "";
                 data.bookingAmount = 20000;
                 data.bookingStatus = "Available";
                 imageUrl = data.floorPlanImage;
 
-                var offerData = offersMap[rootdata.projectId + '-' + data.propertyId];
-                offerList = '<div class="offers"><h4>' + offerData.length + ' Offers</h4><ul>';
-                for (var i in offerData) {
-                    offerList += '<li><p>' + offerData[i].title + '<span>' + offerData[i].desc + '</span></p></li>';
+                if (data.showOffers) {
+                    var offerData = offersMap[rootdata.projectId + '-' + data.propertyId];
+                    offerList += '<div class="offers"><h4>' + offerData.length + ' Offers</h4><ul>';
+                    for (var i in offerData) {
+                        offerList += '<li><p>' + offerData[i].title + '<span>' + offerData[i].desc + '</span></p></li>';
+                    }
+                    offerList += '</ul></div>';
                 }
-                offerList += '</ul></div>';
 
                 propertyDetail = "<div class='property-detail'><span>" + data.bedrooms + " BHK + " + data.bathrooms + " T, " + data.size + " " + data.measure + "</span><span class='right'><span class='icon icon-rupee_final fleft fs18'></span>" + utils.getReadablePriceInWord(data.price) + "</span></div>";
                 titleText = "<br>You will have the flexibility to change your selection later.";
                 getCallbackCode = '<a class="fleft transition callback-btn get-callback">Get Call Back</a>';
                 url = "/online-buying/" + utils.getIdentifier(rootdata.city) + '/' + utils.getIdentifier(rootdata.builderName) + '/' + utils.getIdentifier(rootdata.projectName) + '-' + rootdata.projectId;
             } else {
-                offerDiv = '';
+                offerBanner = '';
                 propertyDetail = '';
                 titleText = '';
                 offerList = '';
@@ -117,7 +120,7 @@ var BookingView = (function() {
                 paymentBreakup = '<div class="clear-fix"></div><a id="payment-breakup" class="view-price-brakup">View Price Breakup &amp; Payment plan</a>';
 
                 if (data.discount) {
-                    offerDiv = '<div class="special-offers">' + '<span></span>' + '<p>Save <strong><label       class="icon fs14 icon-rupee"></label>' + utils.getReadablePrice(data.discount) + '</strong> ' + data.discountDescription + '</p>' + '</div>';
+                    offerBanner = '<div class="special-offers">' + '<span></span>' + '<p>Save <strong><label       class="icon fs14 icon-rupee"></label>' + utils.getReadablePrice(data.discount) + '</strong> ' + data.discountDescription + '</p>' + '</div>';
                 }
             }
 
@@ -130,7 +133,7 @@ var BookingView = (function() {
                 '           <a class="close-payment transition" data-url="' + url + '"><span class="icon icon-arrow_left fs24"></span></a>' +
                 '           <p>Payment Screen</p>' +
                 '        </div>' +
-                '        <div class="payment-left">' + offerDiv +
+                '        <div class="payment-left">' + offerBanner +
                 '        <div class="payment-left-top">' +
                 '                <h3>' + rootdata.projectName + ' <span>Whitefield Bangalore</span></h3>' + propertyDetail +
                 '                <div class="payment-photo-box">' +
@@ -211,7 +214,7 @@ var BookingView = (function() {
                 '                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '            </div>';
             if (data.bookingStatus == 'Available') {
-                code += '<a class="fleft transition payment-btn ' + paymentBtnClass + '">Continue to Payment</a>';
+                code += '<a class="fleft transition payment-btn ' + paymentBtnClass + '"  id="paymentButton" >Continue to Payment</a>';
             } else {
                 code += '<a class="fleft transition payment-btn ' + paymentBtnClass + '">Sold out</a>';
             }
@@ -416,6 +419,42 @@ var BookingView = (function() {
             _this._elements.paymentBreakupPopup.on('click', '.' + config.optionalPriceClass, function() {
                 utils.updateTotalPrice(_this._model.getData());
             });
+        },
+        bookListing : function(data) {
+            var req = {},
+                user = {},
+                attrib = {},
+                contact = {};
+            contact.contactNumber = data.phone;
+            attrib.attributeName = "PAN";
+            attrib.attributeValue = data.pan;
+            user.fullName = data.firstName + ' ' + data.lastName;
+            user.email = data.email;
+            user.attributes = [attrib];
+            user.contactNumbers = [contact];
+            user.countryId = data.countryId;
+            req.productId = data.listingId;
+            req.productType = 'PrimaryOnline';
+            req.amount = data.amount;
+            req.user = user;
+
+            var url = envConfig.apiURL + "data/v1/transaction/coupon?debug=true";
+
+            var params = {
+                successCallback: function(data, params) {
+                    window.location.href = data;
+                },
+                errorCallback: function(data,params,statusCode) {
+                    if(statusCode && statusCode == 499){
+                        window.location.reload();
+                    } else {
+                        $("#paymentButton").text("Please try again");
+                    }
+                }
+            };
+
+            utils.log(req);
+            ajaxUtils.ajax(url, params, 'POST', true, req);
         }
     };
 

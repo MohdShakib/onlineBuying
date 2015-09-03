@@ -110,7 +110,7 @@ var TowerselectedView = (function() {
 
             // Images
             $('.opacity-control').fadeIn(500);
-            
+
             setTimeout(function() {
                 $('.tower-rotation-container').fadeIn(500);
             },1000);
@@ -194,7 +194,7 @@ var TowerselectedView = (function() {
                 $('<img>').attr('src', value.src) //load image
                     .load(function() {
                         $(value).addClass(config.imageLazyloadedClass);
-                    }); 
+                    });
             });
 
         },
@@ -389,7 +389,7 @@ var TowerselectedView = (function() {
             document.getElementById('container-detail').style.opacity = "1";
         },
         rotateTower: function(currentRotationAngle, newRotationAngle, isAntiClockwise) {
-     
+
             var _this = this,
                 data = this._model.getData(),
                 rootdata = this._model.getRootdata(),
@@ -436,7 +436,7 @@ var TowerselectedView = (function() {
 
                     if(!nextImageRef.hasClass(config.imageLazyloadedClass)){ // if image not loaded skip
                         continue;
-                    }   
+                    }
 
                     lastShownImageRef = nextImageRef;
                     timeout = (totalFramesLoaded + 1) * config.towerRotationSpeed;
@@ -476,8 +476,8 @@ var TowerselectedView = (function() {
 
             });
 
-            var code = '<div class="rotation-btn-container left-btn transition"><div class="photo-thumb br50"><img src="images/tower-thumb.jpg" class="br50"></div><button class="' + config.rotationButtonClass + '  tower-rotation-left-button br50" ><span class="icon icon-rotate-1 fs48"></span></button><div class="rotation-title transition">Rotate Left</div></div>';
-            code += '<div class="rotation-btn-container right-btn transition"><div class="photo-thumb br50"><img src="images/tower-thumb.jpg" class="br50"></div><button class="' + config.rotationButtonClass + ' tower-rotation-right-button br50" data-anticlockwise="true" ><span class="icon icon-rotate-2 fs48"></span></button><div class="rotation-title transition">Rotate Right</div></div>';
+            var code = '<div class="rotation-btn-container left-btn transition"><div class="photo-thumb br50"><img src="images/tower-thumb.jpg" class="br50"></div><button class="' + config.rotationButtonClass + '  tower-rotation-left-button br50" data-anticlockwise="true"><span class="icon icon-rotate-1 fs48"></span></button><div class="rotation-title transition">Rotate Left</div></div>';
+            code += '<div class="rotation-btn-container right-btn transition"><div class="photo-thumb br50"><img src="images/tower-thumb.jpg" class="br50"></div><button class="' + config.rotationButtonClass + ' tower-rotation-right-button br50"  ><span class="icon icon-rotate-2 fs48"></span></button><div class="rotation-title transition">Rotate Right</div></div>';
             if (this._elements && this._elements.towerRotationContainer) {
                 this._elements.towerRotationContainer.html(code);
             }
