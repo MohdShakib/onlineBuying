@@ -448,6 +448,12 @@ var getProjectData = (function() {
                 }
             }
 
+            // Coupon
+            property.showOffers = false;
+            if (projectProperty.couponCatalogue && projectProperty.couponCatalogue.inventoryLeft) {
+                property.showOffers = true;
+            }
+
             projectData.properties[projectProperty.propertyId] = property;
         }
 
