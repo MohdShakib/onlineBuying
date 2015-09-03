@@ -29,7 +29,7 @@ var initializeRoutes = (function() {
 
         var routes = {},
             rootdata = {},
-            configBeforeFlag;
+            proceedRouteCallback = false;
 
         var masterplanController, masterplanModel, masterplanView,
             towerselectedController, towerselectedModel, towerselectedView,
@@ -42,9 +42,7 @@ var initializeRoutes = (function() {
         var reloadTowerSelectedView = true;
 
         function redirectToCorrectAngle(data, angle, router) {
-            var data = data.split('/');
-            data[3] = angle;
-            data = data.slice(1, data.length);
+            data[2] = angle;
             data = data.join('/');
             router.setRoute(data);
         }
@@ -183,23 +181,13 @@ var initializeRoutes = (function() {
 
                 function beforeCallback(response) {
 
-                    if (!configBeforeFlag) { // hack
-                        configBeforeFlag = true;
-                        router.handler();
-                        return;
-                    }
-
                     rootdata = response;
 
-                    var flag = false;
+                    var flag = false, proceedRoute = true;
                     var projectIdentifier = utils.getIdentifier(rootdata.projectName);
                     utils.projectId = projectId;
 
-                    if (projectIdentifier != projectName) {
-                        var hash = window.location.hash;
-                        hash = hash.replace(projectName, projectIdentifier);
-                        window.location.hash = hash;
-                    }
+                    var currentRoute = router.getRoute();
 
                     if (towerAngle && unitAddress) {
                         var towerData = rootdata.towers && rootdata.towers[towerName] ? rootdata.towers[towerName] : undefined;
@@ -208,8 +196,8 @@ var initializeRoutes = (function() {
                             utils.unitUniqueAdd = towerData.rotationAngle[towerAngle].listing[unitAddress].unitUniqueIdentifier;
                         } else if (towerData && towerData.listings[unitAddress]) {
                             towerAngle = towerData.listings[unitAddress].rotationAnglesAvailable[0];
-                            redirectToCorrectAngle(window.location.hash, towerAngle, router);
-                            return false;
+                            proceedRoute = false;
+                            redirectToCorrectAngle(currentRoute, towerAngle, router);
                         }
                     } else if (towerName) {
                         flag = rootdata.towers && rootdata.towers[towerName] ? true : false;
@@ -220,13 +208,7 @@ var initializeRoutes = (function() {
                     } else if (projectId) {
                         flag = rootdata && rootdata.towers ? true : false;
                     } else {
-                        return true;
-                    }
-
-                    if (!flag) {
-                        utils.log('data not available for the url');
-                        router.setRoute(errorRoute);
-                        return true;
+                        flag = true;
                     }
 
                     if (!baseController) {
@@ -248,16 +230,31 @@ var initializeRoutes = (function() {
                         })();
                     }
 
-                    return flag;
+                    if (projectName && projectId && projectIdentifier != projectName) {
+                        currentRoute[0] = projectIdentifier+'-'+projectId;
+                        proceedRoute = false;
+                        currentRoute = currentRoute.join('/');
+                        router.setRoute(currentRoute);
+                    }
+
+                    if (!flag && proceedRoute) {
+                        utils.log('data not available for the url');
+                        proceedRouteCallback = true;
+                        router.setRoute(errorRoute);
+                        return true;
+                    }
+
+                    if (!proceedRouteCallback && proceedRoute) { // hack
+                        proceedRouteCallback = true;
+                        router.handler();
+                        return;
+                    }
+
 
                 }
 
                 getProjectData(projectId, beforeCallback);
-
-                if (!configBeforeFlag) {
-                    return false;
-                }
-
+                return proceedRouteCallback;
             }
         });
 
