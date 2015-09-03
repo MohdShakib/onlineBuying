@@ -250,6 +250,8 @@ var BaseView = (function() {
         },
         bottomFormGroupContainer: function() {
             var _this = this;
+            var chatdisabled = config.chatEnabled ? '' : 'disabled';
+            var liveChatEnabled = config.chatEnabled ? 'live-chat' : '';
             var htmlCode = '<div class="pro-contact-actions">' +
                 '<div class="form-pop-up transition">' +
                 '<span class="close-form icon icon-cross fs12"></span>' +
@@ -328,7 +330,7 @@ var BaseView = (function() {
                 '</a>' +
                 '</li>' +
                 '<li>' +
-                '<a href="javascript:void(0);" data-name="live-chat" class="chat-widget">' +
+                '<a href="javascript:void(0);" data-name="'+liveChatEnabled+'" class="chat-widget '+ chatdisabled +'">' +
                 '<p>Live support' +
                 '</p>' +
                 '<span class="icon icon-chat"></span>' +
@@ -431,7 +433,9 @@ var BaseView = (function() {
             });
 
             this._elements.bottomFormGroupContainer.on('click', '.chat-widget', function(event) {
-                window.Tawk_API.showWidget();
+                if(config.chatEnabled) {
+                  window.Tawk_API.showWidget();
+                }
             });
         },
         callBackFormSubmit: function(form) {
