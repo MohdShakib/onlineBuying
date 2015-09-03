@@ -98,7 +98,7 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         env: 'dev',
-                        cdn: '/online/'
+                        cdn: '/4d-view/'
                     },
                     process: true
                 },
@@ -110,7 +110,7 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         env: 'qa',
-                        cdn: '/online/'
+                        cdn: '/4d-view/'
                     },
                     process: true
                 },
@@ -122,11 +122,11 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         env: 'beta',
-                        cdn: 'https://beta-thirdeyestatic.proptiger-ws.com/'
+                        cdn: 'https://beta-thirdeyestatic.proptiger-ws.com/4d-view/'
                     },
                     process: true
                 },
-                files: {
+                files: {4d-view/
                     'index.html': ['index.html']
                 }
             },
@@ -134,7 +134,7 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         env: 'prod',
-                        cdn: 'https://thirdeyestatic.proptiger.com/'
+                        cdn: 'https://thirdeyestatic.proptiger.com/4d-view/'
                     },
                     process: true
                 },

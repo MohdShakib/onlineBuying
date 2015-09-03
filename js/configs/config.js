@@ -3,7 +3,7 @@ var config = (function() {
     var config = {
 
 
-        urlAppName : '', ///thirdeye
+        urlAppName : '/4d-view', ///thirdeye
 
         // Independent App
         apisJson: false,
