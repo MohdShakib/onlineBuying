@@ -17,18 +17,25 @@ module.exports = function(grunt) {
         clean: {
             revisions: [
                 './js/{,*/}*.min.*.js',
+                './vendors/vendors-all.min.*.js',
                 './css/*.min.*.css'
             ],
             minified: [
                 './js/{,*/}*.min.js',
+                './vendors/vendors-all.min.js',
                 './css/*.min.css'
             ]
         },
         uglify: {
-            dist: {
+            js: {
                 src: ['./js/{,*/}*.js'],
                 dest: './js/script-all.min.js'
+            },
+            vendors: {
+                src: ['./vendors/*.js'],
+                dest: './vendors/vendors-all.min.js'
             }
+
         },
         jsObfuscate: {
             dist: {
@@ -63,13 +70,29 @@ module.exports = function(grunt) {
                 dest: './css/'
             },
             js: {
-                src: ['<%= uglify.dist.dest %>'],
+                src: ['<%= uglify.js.dest %>'],
                 dest: './js/'
+            },
+            vendors: {
+                src: ['<%= uglify.vendors.dest %>'],
+                dest: './vendors/'
             }
         },
         processhtml: {
             local: {
                 // Do Nothing
+            },
+            test: {
+                options: {
+                    data: {
+                        env: 'prod',
+                        cdn: ''
+                    },
+                    process: true
+                },
+                files: {
+                    'index.html': ['index.html']
+                }
             },
             dev: {
                 options: {
@@ -170,6 +193,12 @@ module.exports = function(grunt) {
     grunt.registerTask('default', [
         'base',
         'processhtml:local'
+    ]);
+
+    grunt.registerTask('local', [
+        'base',
+        'processhtml:test',
+        'replace'
     ]);
 
     grunt.registerTask('dev', [
