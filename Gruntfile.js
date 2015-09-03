@@ -126,7 +126,7 @@ module.exports = function(grunt) {
                     },
                     process: true
                 },
-                files: {4d-view/
+                files: {
                     'index.html': ['index.html']
                 }
             },
