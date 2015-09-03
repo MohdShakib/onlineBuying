@@ -84,6 +84,30 @@ var ajaxUtils = (function() {
                 url = "apis-json/countries.json";
             }
             this.ajax(url, params, 'GET', false, null);
+        },
+
+        bookListing: function(data, params) {
+            var req = {},
+                user = {},
+                attrib = {},
+                contact = {};
+            contact.contactNumber = data.phone;
+            attrib.attributeName = "PAN";
+            attrib.attributeValue = data.pan;
+            user.fullName = data.firstName + ' ' + data.lastName;
+            user.email = data.email;
+            user.attributes = [attrib];
+            user.contactNumbers = [contact];
+            user.countryId = data.countryId;
+            req.productId = data.productId;
+            req.productType = data.productType;
+            req.amount = data.amount;
+            req.user = user;
+
+            var url = envConfig.apiURL + "data/v1/transaction/coupon?debug=true";
+
+            utils.log(req);
+            this.ajax(url, params, 'POST', true, req);
         }
     };
 

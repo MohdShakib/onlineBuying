@@ -448,10 +448,16 @@ var getProjectData = (function() {
                 }
             }
 
-            // Coupon
-            property.showOffers = false;
-            if (projectProperty.couponCatalogue && projectProperty.couponCatalogue.inventoryLeft) {
-                property.showOffers = true;
+            // Coupon Invetory
+            property.bookingStatus = "Available";
+            property.bookingAmount = 20000;
+            property.couponId = 0;
+            if (projectProperty.couponCatalogue) {
+                if(projectProperty.couponCatalogue.inventoryLeft) {
+                    property.bookingStatus = "Available";
+                }
+                property.couponId = projectProperty.couponCatalogue.id;
+                property.bookingAmount = projectProperty.couponCatalogue.couponPrice;
             }
 
             projectData.properties[projectProperty.propertyId] = property;
