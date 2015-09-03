@@ -65,6 +65,7 @@ var config = (function() {
 
 
         // Common
+        chatEnabled:  true,
         tawkApiId: 'tawk_55e5498bfc2b363371225aaa',
         noPointerClass: 'no-pointer',
         hideClass: 'hidden',

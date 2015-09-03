@@ -214,7 +214,7 @@ var BookingView = (function() {
                 '                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '            </div>';
             if (data.bookingStatus == 'Available') {
-                code += '<a class="fleft transition payment-btn ' + paymentBtnClass + '">Continue to Payment</a>';
+                code += '<a class="fleft transition payment-btn ' + paymentBtnClass + '"  id="paymentButton" >Continue to Payment</a>';
             } else {
                 code += '<a class="fleft transition payment-btn ' + paymentBtnClass + '">Sold out</a>';
             }
@@ -419,6 +419,42 @@ var BookingView = (function() {
             _this._elements.paymentBreakupPopup.on('click', '.' + config.optionalPriceClass, function() {
                 utils.updateTotalPrice(_this._model.getData());
             });
+        },
+        bookListing : function(data) {
+            var req = {},
+                user = {},
+                attrib = {},
+                contact = {};
+            contact.contactNumber = data.phone;
+            attrib.attributeName = "PAN";
+            attrib.attributeValue = data.pan;
+            user.fullName = data.firstName + ' ' + data.lastName;
+            user.email = data.email;
+            user.attributes = [attrib];
+            user.contactNumbers = [contact];
+            user.countryId = data.countryId;
+            req.productId = data.listingId;
+            req.productType = 'PrimaryOnline';
+            req.amount = data.amount;
+            req.user = user;
+
+            var url = envConfig.apiURL + "data/v1/transaction/coupon?debug=true";
+
+            var params = {
+                successCallback: function(data, params) {
+                    window.location.href = data;
+                },
+                errorCallback: function(data,params,statusCode) {
+                    if(statusCode && statusCode == 499){
+                        window.location.reload();
+                    } else {
+                        $("#paymentButton").text("Please try again");
+                    }
+                }
+            };
+
+            utils.log(req);
+            ajaxUtils.ajax(url, params, 'POST', true, req);
         }
     };
 

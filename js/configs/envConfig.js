@@ -1,12 +1,12 @@
 var envConfig = (function() {
 
-    var envElement = document.getElementById('env'), 
+    var envElement = document.getElementById('env'),
         env = 'local';
-    
+
     if(envElement) {
         env = envElement.innerHTML;
     }
-    
+
     var envConfig = {
         local: {
             env: env,
@@ -29,7 +29,7 @@ var envConfig = (function() {
             apiURL: 'https://www.proptiger.com/'
         }
     };
-    
+
     return envConfig[env];
 
 })();
