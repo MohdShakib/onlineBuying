@@ -118,6 +118,18 @@ module.exports = function(grunt) {
                     'index.html': ['index.html']
                 }
             },
+            qaui: {
+                options: {
+                    data: {
+                        env: 'qaui',
+                        cdn: ''
+                    },
+                    process: true
+                },
+                files: {
+                    'index.html': ['index.html']
+                }
+            },
             beta: {
                 options: {
                     data: {
@@ -210,6 +222,12 @@ module.exports = function(grunt) {
     grunt.registerTask('qa', [
         'base',
         'processhtml:qa',
+        'replace'
+    ]);
+
+    grunt.registerTask('qaui', [
+        'base',
+        'processhtml:qaui',
         'replace'
     ]);
 
