@@ -20,6 +20,10 @@ var envConfig = (function() {
             env: env,
             apiURL: 'https://www.proptiger.com/'
         },
+        qaui: {
+            env: env,
+            apiURL: 'https://qa-ui.proptiger-ws.com/'
+        },
         beta: {
             env: env,
             apiURL: 'https://beta.proptiger-ws.com/'
