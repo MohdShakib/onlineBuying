@@ -449,8 +449,8 @@ var getProjectData = (function() {
                 }
             }
 
-            // Coupon Invetory
-            property.bookingStatus = "Available";
+            // Coupon Inventory
+            property.bookingStatus = "SoldOut";
             property.bookingAmount = 20000;
             property.couponId = 0;
             if (projectProperty.couponCatalogue) {
