@@ -98,7 +98,7 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         env: 'dev',
-                        cdn: ''
+                        cdn: '/4d-view/'
                     },
                     process: true
                 },
@@ -110,6 +110,18 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         env: 'qa',
+                        cdn: '/4d-view/'
+                    },
+                    process: true
+                },
+                files: {
+                    'index.html': ['index.html']
+                }
+            },
+            qaui: {
+                options: {
+                    data: {
+                        env: 'qaui',
                         cdn: ''
                     },
                     process: true
@@ -122,7 +134,7 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         env: 'beta',
-                        cdn: 'https://beta-thirdeyestatic.proptiger-ws.com/'
+                        cdn: 'https://beta-thirdeyestatic.proptiger-ws.com/4d-view/'
                     },
                     process: true
                 },
@@ -134,7 +146,7 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         env: 'prod',
-                        cdn: 'https://thirdeyestatic.proptiger.com/'
+                        cdn: 'https://thirdeyestatic.proptiger.com/4d-view/'
                     },
                     process: true
                 },
@@ -210,6 +222,12 @@ module.exports = function(grunt) {
     grunt.registerTask('qa', [
         'base',
         'processhtml:qa',
+        'replace'
+    ]);
+
+    grunt.registerTask('qaui', [
+        'base',
+        'processhtml:qaui',
         'replace'
     ]);
 

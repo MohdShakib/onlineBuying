@@ -349,6 +349,7 @@ var getProjectData = (function() {
             var data = processJsonArrayToObject(data5[0], 'towerName');
             useTowerRotationData(data);
 
+            utils.log(projectData);
             return projectData;
         
         });
@@ -408,7 +409,7 @@ var getProjectData = (function() {
         var projectIdentifier = utils.getIdentifier(projectDetail.name);
         projectData.projectId = projectDetail.projectId;
         projectData.projectUrl = projectDetail.URL;
-        projectData.baseUrl = config.urlAppName + '/' + projectIdentifier + '-' + projectDetail.projectId;
+        projectData.baseUrl =    config.urlAppName+'/'+projectIdentifier + '-' + projectDetail.projectId;
         projectData.projectName = projectDetail.name;
         projectData.builderName = projectDetail.builder.name;
         projectData.address = projectDetail.address;
@@ -693,6 +694,7 @@ var getProjectData = (function() {
         } else {
             parseAllCSVData();
             callback(projectData);
+            utils.log(projectData);
         }
        
         return projectData;
