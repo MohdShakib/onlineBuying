@@ -44,6 +44,7 @@ var initializeRoutes = (function() {
         function redirectToCorrectAngle(data, angle, router) {
             data[3] = angle;
             data = data.join('/');
+            data = '/'+data;
             router.setRoute(data);
         }
 
@@ -234,6 +235,7 @@ var initializeRoutes = (function() {
                         currentRoute[1] = projectIdentifier+'-'+projectId;
                         proceedRoute = false;
                         currentRoute = currentRoute.join('/');
+                        currentRoute = '/'+currentRoute;
                         router.setRoute(currentRoute);
                     }
 
