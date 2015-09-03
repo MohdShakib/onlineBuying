@@ -349,6 +349,7 @@ var getProjectData = (function() {
             var data = processJsonArrayToObject(data5[0], 'towerName');
             useTowerRotationData(data);
 
+            utils.log(projectData);
             return projectData;
         
         });
@@ -681,6 +682,7 @@ var getProjectData = (function() {
         } else {
             parseAllCSVData();
             callback(projectData);
+            utils.log(projectData);
         }
        
         return projectData;

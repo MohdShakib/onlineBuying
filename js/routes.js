@@ -189,7 +189,6 @@ var initializeRoutes = (function() {
                         return;
                     }
 
-                    utils.log(response);
                     rootdata = response;
 
                     var flag = false;
