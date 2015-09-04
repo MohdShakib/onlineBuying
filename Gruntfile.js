@@ -1,4 +1,4 @@
-var obfuscator = require('./obfuscator.js');
+var obfuscator = require('./grunt/obfuscator.js');
 
 module.exports = function(grunt) {
 
@@ -191,8 +191,8 @@ module.exports = function(grunt) {
         'obfuscator',
         'uglify:dist',
         'cssmin',
-        'filerev'
-        // 'clean:minified'
+        'filerev',
+        'clean:minified'
     ]);
 
     grunt.registerTask('obfuscator', function() {
