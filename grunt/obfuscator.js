@@ -18,7 +18,6 @@ function returnConfusion(codestring) {
 
     var ast = parse(codestring);
     var obfuscated = confusion.transformAst(ast, confusion.createVariableName);
-    console.log(toString(obfuscated));
     callbacks.success(toString(obfuscated));
 }
 
