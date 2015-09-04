@@ -122,7 +122,7 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         env: 'qaui',
-                        cdn: ''
+                        cdn: '/4d-view/'
                     },
                     process: true
                 },
@@ -134,7 +134,7 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         env: 'beta',
-                        cdn: 'https://beta-thirdeyestatic.proptiger-ws.com/4d-view/'
+                        cdn: 'https://beta-thirdeyestatic.proptiger-ws.com/'
                     },
                     process: true
                 },
@@ -146,7 +146,7 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         env: 'prod',
-                        cdn: 'https://thirdeyestatic.proptiger.com/4d-view/'
+                        cdn: 'https://thirdeyestatic.proptiger.com/'
                     },
                     process: true
                 },
