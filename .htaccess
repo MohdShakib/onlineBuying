@@ -568,8 +568,3 @@ AddOutputFilterByType DEFLATE application/x-javascript
 # CORS Configs
 Header set Access-Control-Allow-Origin "*"
 Header set Access-Control-Allow-Headers "X-Accept-Charset,X-Accept,Content-Type,X-Requested-With"
-
-# Http to Https
-RewriteEngine On
-RewriteCond %{HTTPS} off
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
