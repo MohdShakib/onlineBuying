@@ -11,6 +11,7 @@ var ajaxUtils = (function() {
                 url: url,
                 async: async,
                 success: function(response) {
+                    utils.log(response);
                     if (response.statusCode === '2XX') {
                         if (successCallback === null) {
                             // default successCallback handling
