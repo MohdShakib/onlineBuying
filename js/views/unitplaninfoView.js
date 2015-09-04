@@ -225,7 +225,7 @@ var UnitplaninfoView = (function() {
                 _this._unitMenuClick.notify(this); // this refers to element here
             });
         },
-        floorPlanContainer: function(data, rotationdata, rootdata) {
+		floorPlanContainer: function(data, rotationdata, rootdata) {
             var unitTypeData = rootdata.unitTypes[rotationdata.unitTypeIdentifier];
             var imageUrl = unitTypeData.unitImageUrl;
             var code = "<img class='fullView' src='" + imageUrl + "'>";
@@ -239,6 +239,12 @@ var UnitplaninfoView = (function() {
                 code += "<div data-target='mor-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-morning fs16'></span><label>Morning View</label></div>";
                 code += "<div data-target='aft-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-afternoon fs16'></span><label>Noon View</label></div>";
                 code += "<div data-target='eve-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-night fs16'></span><label>Evening View</label></div></div>";
+				//code +="<div class='duplexBox'><h4>Duplex</h4>";
+//				code +="<ul>";
+//				code +="<li><span>Upper</span><div class='thumb'></div></li>";
+//				code +="<li><span>Lower</span><div class='thumb'></div></li>";
+//				code +="</ul></div>";
+				
             }
             this._elements.floorPlanContainer.html(code);
             this.floorPlanContainerEvents();
