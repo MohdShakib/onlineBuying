@@ -4,9 +4,9 @@ var initializeRoutes = (function() {
 
     window.onpopstate = function () {
         window.onpopstate = function (event) {
-            act(d.location);
-        }
-    }
+            act(document.location);   // jshint ignore:line
+        };
+    };
 
     function initializeRoutes() {
 
