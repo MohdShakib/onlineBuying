@@ -1,4 +1,4 @@
-var closure =  require('./closure.js');
+var obfuscator = require('./obfuscator.js');
 
 module.exports = function(grunt) {
 
@@ -31,34 +31,20 @@ module.exports = function(grunt) {
         uglify: {
             js: {
                 src: ['./js/{,*/}*.js'],
+                dest: './js/script-ugly.min.js'
+            },
+            dist: {
+                src: ['<%= obfuscator.dest %>'],
                 dest: './js/script-all.min.js'
             },
             vendors: {
                 src: ['./vendors/*.js'],
                 dest: './vendors/vendors-all.min.js'
             }
-
         },
-        jsObfuscate: {
-            dist: {
-                options: {
-                    concurrency: 2,
-                    keepLinefeeds: false,
-                    keepIndentations: false,
-                    encodeStrings: true,
-                    encodeNumbers: true,
-                    moveStrings: true,
-                    replaceNames: true,
-                    variableExclusions: ['^_get_', '^_set_', '^_mtd_']
-                },
-                files: {
-                    './js/script-all-final.min.js': ['<%= uglify.js.dest %>']
-                }
-            }
-        },
-        closure: {
+        obfuscator: {
             src: '<%= uglify.js.dest %>',
-            dest: '<%= uglify.js.dest %>'
+            dest: './js/script-obfuscate.min.js'
         },
         cssmin: {
             options: {
@@ -76,7 +62,7 @@ module.exports = function(grunt) {
                 dest: './css/'
             },
             js: {
-                src: ['<%= uglify.js.dest %>'],
+                src: ['<%= uglify.dist.dest %>'],
                 dest: './js/'
             },
             vendors: {
@@ -197,27 +183,25 @@ module.exports = function(grunt) {
 
     });
 
-    grunt.loadNpmTasks('js-obfuscator');
-
     grunt.registerTask('base', [
         'clean',
         'jshint',
-        'uglify',
-        'jsObfuscate',
-        'closure',
+        'uglify:js',
+        'uglify:vendors',
+        'obfuscator',
+        'uglify:dist',
         'cssmin',
-        'filerev',
-        'clean:minified'
+        'filerev'
+        // 'clean:minified'
     ]);
 
-    grunt.registerTask('closure', function() {
+    grunt.registerTask('obfuscator', function() {
         var done = this.async();
-        closure(grunt.config.get('closure').src,function(res){
-            grunt.file.write(grunt.config.get('closure').dest, res);
+        obfuscator(grunt.config.get('obfuscator').src,function(res){
+            grunt.file.write(grunt.config.get('obfuscator').dest, res);
             done();
         }, function(){ console.log('Could not obfuscate'); });
     });
-
 
     grunt.registerTask('default', [
         'base',
