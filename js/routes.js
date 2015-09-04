@@ -4,7 +4,7 @@ var initializeRoutes = (function() {
 
     window.onpopstate = function () {
         window.onpopstate = function (event) {
-            act(document.location);   // jshint ignore:line
+            //act(document.location);   // jshint ignore:line
         };
     };
 
@@ -180,7 +180,10 @@ var initializeRoutes = (function() {
                 console.log('hash: '+location.hash);
                 console.log('href: '+location.href);
                 var currentRoute = router.getRoute();
-                if(routeRegex.sep+currentRoute[0] != config.urlAppName){
+                if(currentRoute.length && currentRoute[0].length && (routeRegex.sep+currentRoute[0] != config.urlAppName)){
+                    if(['online','thirdeye'].indexOf(currentRoute[0])>-1){
+                        currentRoute.splice(0,1);
+                    }   
                     currentRoute = currentRoute.join('/');
                     currentRoute = config.urlAppName+routeRegex.sep+currentRoute;
                     router.setRoute(currentRoute);
