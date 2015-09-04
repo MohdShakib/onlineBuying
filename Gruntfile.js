@@ -1,3 +1,5 @@
+var closure =  require('./closure.js');
+
 module.exports = function(grunt) {
 
     // show elapsed time at the end
@@ -50,9 +52,13 @@ module.exports = function(grunt) {
                     variableExclusions: ['^_get_', '^_set_', '^_mtd_']
                 },
                 files: {
-                    './js/script-all-final.min.js': ['<%= uglify.dist.dest %>']
+                    './js/script-all-final.min.js': ['<%= uglify.js.dest %>']
                 }
             }
+        },
+        closure: {
+            src: '<%= uglify.js.dest %>',
+            dest: '<%= uglify.js.dest %>'
         },
         cssmin: {
             options: {
@@ -191,16 +197,27 @@ module.exports = function(grunt) {
 
     });
 
-    //grunt.loadNpmTasks('js-obfuscator');
+    grunt.loadNpmTasks('js-obfuscator');
 
     grunt.registerTask('base', [
         'clean',
         'jshint',
         'uglify',
+        'jsObfuscate',
+        'closure',
         'cssmin',
         'filerev',
         'clean:minified'
     ]);
+
+    grunt.registerTask('closure', function() {
+        var done = this.async();
+        closure(grunt.config.get('closure').src,function(res){
+            grunt.file.write(grunt.config.get('closure').dest, res);
+            done();
+        }, function(){ console.log('Could not obfuscate'); });
+    });
+
 
     grunt.registerTask('default', [
         'base',

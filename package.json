@@ -20,6 +20,7 @@
     "js-obfuscator": "^0.1.0",
     "jshint-stylish": "^0.2.0",
     "load-grunt-tasks": "^0.4.0",
-    "time-grunt": "^0.3.1"
+    "time-grunt": "^0.3.1",
+    "request" : "*"
   }
 }
