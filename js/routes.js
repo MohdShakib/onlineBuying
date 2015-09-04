@@ -2,6 +2,12 @@
 var router;
 var initializeRoutes = (function() {
 
+    window.onpopstate = function () {
+        window.onpopstate = function (event) {
+            act(d.location);
+        }
+    }
+
     function initializeRoutes() {
 
         var routeRegex = {
@@ -170,9 +176,17 @@ var initializeRoutes = (function() {
             },
             html5history: true,
             notfound: function() {
-                utils.log('Route not found');
+                console.log('Route not found');
                 console.log('hash: '+location.hash);
                 console.log('href: '+location.href);
+                var currentRoute = router.getRoute();
+                if(routeRegex.sep+currentRoute[0] != config.urlAppName){
+                    currentRoute = currentRoute.join('/');
+                    currentRoute = config.urlAppName+routeRegex.sep+currentRoute;
+                    router.setRoute(currentRoute);
+                    router.handler();
+                    return;
+                }
                 router.setRoute(errorRoute);
             },
             before: function(projectName, projectId, towerName, towerAngle, unitAddress) {

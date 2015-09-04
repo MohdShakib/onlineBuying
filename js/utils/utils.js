@@ -5,7 +5,7 @@ var utils = (function() {
         projectId: null,
         masterPlanModel: null, // For dynamic height of tower menu
         log: function(obj) {
-            if (config.showLogs) {
+            if (envConfig.showLogs) {
                 console.log(obj);
             }
         },

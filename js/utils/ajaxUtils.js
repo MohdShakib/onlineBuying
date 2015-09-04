@@ -32,8 +32,8 @@ var ajaxUtils = (function() {
                     } else {
                         errorCallback(textStatus, params);
                     }
-                    utils.log('ajax in errorCallback');
-                    utils.log('error occured ' + errorThrown);
+                    console.log('ajax in errorCallback');
+                    console.log('error occured ' + errorThrown);
                 },
                 complete: function() {
                     if (completeCallback !== null) {

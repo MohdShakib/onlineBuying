@@ -449,8 +449,8 @@ var getProjectData = (function() {
                 }
             }
 
-            // Coupon Invetory
-            property.bookingStatus = "Available";
+            // Coupon Inventory
+            property.bookingStatus = "SoldOut";
             property.bookingAmount = 20000;
             property.couponId = 0;
             if (projectProperty.couponCatalogue) {
@@ -688,15 +688,16 @@ var getProjectData = (function() {
         parseApiData(apiData);
         if (config.readDataFromJson) {
             return parseAllJSONData().done(function(){
+                console.log(projectData);
                 callback(projectData);
                 return;
             });
         } else {
             parseAllCSVData();
             callback(projectData);
-            utils.log(projectData);
+            console.log(projectData);
         }
-       
+        
         return projectData;
     }
 

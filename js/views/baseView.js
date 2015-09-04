@@ -558,7 +558,7 @@ var BaseView = (function() {
         },
         changeChatCss : function(data) {
             $('.live-chat').find('iframe').contents().find('style').append(data);
-            var chatWidget = $('.live-chat').find('iframe').contents()
+            var chatWidget = $('.live-chat').find('iframe').contents();
             $(chatWidget).find('#formInnerHeight').find("fieldset").each(function(index,d){
               var label = $(d).find("label").text();
               $(d).find("input").attr("placeholder",label);
