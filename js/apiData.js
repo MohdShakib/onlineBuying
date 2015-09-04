@@ -318,15 +318,15 @@ var getProjectData = (function() {
     function parseAllJSONData() {
         var json = '.json';
 
-        var json1 = utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.masterplanScreen + json, config.dataFiles.masterplanScreen);
+        var json1 = utils.getJsonData(zipPath + config.dataFiles.masterplanScreen + json, config.dataFiles.masterplanScreen);
 
-        var json2 = utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.amenitiesHotspots + json, config.dataFiles.amenitiesHotspots);
+        var json2 = utils.getJsonData(zipPath + config.dataFiles.amenitiesHotspots + json, config.dataFiles.amenitiesHotspots);
 
-        var json3 = utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.towerselectScreen + json, config.dataFiles.towerselectScreen);
+        var json3 = utils.getJsonData(zipPath + config.dataFiles.towerselectScreen + json, config.dataFiles.towerselectScreen);
 
-        var json4 = utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.unitplanInfo + json, config.dataFiles.unitplanInfo);
+        var json4 = utils.getJsonData(zipPath + config.dataFiles.unitplanInfo + json, config.dataFiles.unitplanInfo);
 
-        var json5 = utils.getJsonData('https://im.proptiger-ws.com/2/1/501660/108/260692/' + config.dataFiles.towerRotation + json, config.dataFiles.towerRotation);
+        var json5 = utils.getJsonData(zipPath + config.dataFiles.towerRotation + json, config.dataFiles.towerRotation);
 
         return $.when(json1, json2, json3, json4, json5).done(function(data1, data2, data3, data4, data5){
             
