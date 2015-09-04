@@ -10,7 +10,6 @@ var config = (function() {
         localZip: false,
 
         // Flags
-        showLogs: false,
         showCarAnimation: true,
         showTowerRotation: true,
         enablePayment: true,

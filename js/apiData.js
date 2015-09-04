@@ -688,15 +688,16 @@ var getProjectData = (function() {
         parseApiData(apiData);
         if (config.readDataFromJson) {
             return parseAllJSONData().done(function(){
+                console.log(projectData);
                 callback(projectData);
                 return;
             });
         } else {
             parseAllCSVData();
             callback(projectData);
-            utils.log(projectData);
+            console.log(projectData);
         }
-       
+        
         return projectData;
     }
 
