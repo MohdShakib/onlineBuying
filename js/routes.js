@@ -194,6 +194,11 @@ var initializeRoutes = (function() {
             },
             before: function(projectName, projectId, towerName, towerAngle, unitAddress) {
                 
+                if(!(towerName && towerName.match(/(5[0-9]{6})/g))){
+                    $('.loading-bar-container').show();
+                    $('.default-loading').hide();
+                }
+
                 // Animations
                 utils.removeNotificationTooltip();
 
