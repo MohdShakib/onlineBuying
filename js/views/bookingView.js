@@ -420,12 +420,13 @@ var BookingView = (function() {
                     if (statusCode && statusCode == 499) {
                         window.location.reload();
                     } else {
+                        $(".payment-error").remove();
                         $("#paymentButton").addClass("disabled");
                         $("#paymentButton").parent().append("<span class='payment-error'>Something went wrong. Please contact +91-11-66764181 for assistance.</span>");
                     }
                 }
             };
-            if (data !== null && config.enablePayment && this._model.getData().bookingStatus == "Available") {
+            if (data !== null && config.enablePayment && this._model.getData().bookingStatus == "Available" && !$("#paymentButton").hasClass("disabled")) {
                 ajaxUtils.bookListing(data, params);
             }
         }
