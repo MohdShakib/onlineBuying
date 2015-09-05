@@ -120,7 +120,7 @@ var BookingView = (function() {
                 '        </div>' +
                 '        <div class="payment-left">' + offerBanner +
                 '        <div class="payment-left-top">' +
-                '                <h3>' + rootdata.projectName + ' <span>Whitefield Bangalore</span></h3>' + propertyDetail +
+                '                <h3>' + rootdata.builderName + ' ' + rootdata.projectName + ' <span>' + rootdata.address + '</span></h3>' + propertyDetail +
                 '                <div class="payment-photo-box">' +
                 '                   <img src="' + imageUrl + '" width="100%" alt="">' +
                 '                </div>' + unitDetails +
@@ -147,7 +147,7 @@ var BookingView = (function() {
                 '                        <td width="50%">' +
                 '                            <div id="booking-last-name" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">Last Name</label>' +
-                '                                <input type="text" required />' +
+                '                                <input type="text" />' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
                 '                        </td>' +
@@ -163,7 +163,8 @@ var BookingView = (function() {
                 '                        <td width="50%">' +
                 '                            <div id="booking-phone" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">phone</label>' +
-                '                                <input type="text" name="phone" required />' +
+                '                                <input type="text" name="phone" id="phone-number" required />' +
+                '                                <input type="hidden" id="country-code" name="phone-number" />' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
                 '                        </td>' +
@@ -222,7 +223,7 @@ var BookingView = (function() {
                 totalCountries = countries ? countries.length : 0;
             if (countries && totalCountries) {
                 for (var i = 0; i < totalCountries; i++) {
-                    htmlCode += '<li class="country-list-item" data-countrycode="' + countries[i].countryId + '"><a class="transition">' + countries[i].label + '</a></li>';
+                    htmlCode += '<li class="country-list-item" data-countryid="' + countries[i].countryId + '" data-countrycode="' + countries[i].countryCode + '"><a class="transition">' + countries[i].label + '</a></li>';
                 }
             }
             $('.' + config.nationalityDropdownClass).html(htmlCode);
@@ -232,10 +233,12 @@ var BookingView = (function() {
             $('.' + config.nationalityDropdownClass).off('click').on('click', '.country-list-item', function(event) {
                 event.stopPropagation();
                 var countryName = $(this).find('a').text();
+                var countryId = $(this).data('countryid');
                 var countryCode = $(this).data('countrycode');
                 $('.' + config.bookingSelectionDivClass + ' .selectedCountry').text(countryName);
-                $('.' + config.bookingSelectionDivClass + ' .selectedCountry').data('countrycode', countryCode);
+                $('.' + config.bookingSelectionDivClass + ' .selectedCountry').data('countryid', countryId);
                 $('.' + config.nationalityDropdownClass).css('display', 'none');
+                $('#country-code').val(countryCode);
             });
         },
         paymentScreenEvents: function() {
@@ -315,7 +318,7 @@ var BookingView = (function() {
             data.lastName = $('#booking-last-name input').val();
             data.email = $('#booking-email input').val();
             data.phone = $('#booking-phone input').val();
-            data.countryId = $('.' + config.bookingSelectionDivClass + ' .selectedCountry').data('countrycode');
+            data.countryId = $('.' + config.bookingSelectionDivClass + ' .selectedCountry').data('countryid');
             data.pan = $('#booking-pan input').val();
             if (this._model.getPropertyBooking()) {
                 data.productId = unitData.couponId;
