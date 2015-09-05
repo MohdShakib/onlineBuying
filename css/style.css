@@ -1122,6 +1122,7 @@ ellipse.tower-unit-svg-selected-path {
 .payment-right p{ font-size:16px; color:#252525; margin-bottom:30px; padding-right:40px}
 .payment-right h3{ margin-bottom:5px; font-size:24px; font-weight:normal;}
 .payment-right-container{ width:100%; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;height:410px;}
+.payment-error {font-size: 13px; margin-top: 10px; color: red; float: left;}
 .personal-detail-box table{border-collapse:collapse;}
 .personal-detail-box table tr td:first-child{padding-right:8px;}
 .personal-detail-box table tr td:last-child{padding-left:8px}

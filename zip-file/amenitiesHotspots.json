@@ -1,41 +1,53 @@
-amenitiesHotspots([{
-    "amenityName": "Swimming Pool",
-    "amenitySvg": "42.19 39.84",
-    "imageName": "swimming_pool.jpg"
-}, {
-    "amenityName": "Kids Play",
-    "amenitySvg": "75.6 53.96",
-    "imageName": "kids_play.jpg"
-}, {
-    "amenityName": "Garden View ",
-    "amenitySvg": "58.09 49.68",
-    "imageName": "garden_view.jpg"
-}, {
-    "amenityName": "Entrance ",
-    "amenitySvg": "83.29 73.8",
-    "imageName": "entrance.jpg"
-}, {
-    "amenityName": "Club House",
-    "amenitySvg": "42.19 34.76",
-    "imageName": "club_house.jpg"
-}, {
-    "amenityName": "Terrace Units",
-    "amenitySvg": "55.38 21.42",
-    "imageName": "terrace_unit.jpg"
-}, {
-    "amenityName": "Tennis Court",
-    "amenitySvg": "42.27 8.41",
-    "imageName": "tennis_court.jpg"
-}, {
-    "amenityName": "Amphitheater",
-    "amenitySvg": "66.52 72.85",
-    "imageName": "amphitheater.jpg"
-}, {
-    "amenityName": "Jogging ",
-    "amenitySvg": "21.9 37.46",
-    "imageName": "jogging_park.jpg"
-}, {
-    "amenityName": "Hill View",
-    "amenitySvg": "20.29 19.68",
-    "imageName": "hill_view.jpg"
-}]);
+amenitiesHotspots(
+[
+  {
+    "amenityName":"Swimming Pool",
+    "amenitySvg":"42.19 39.84",
+    "imageName":"swimming_pool.jpg"
+  },
+  {
+    "amenityName":"Kids Play",
+    "amenitySvg":"75.6 53.96",
+    "imageName":"kids_play.jpg"
+  },
+  {
+    "amenityName":"Garden View ",
+    "amenitySvg":"58.09 49.68",
+    "imageName":"garden_view.jpg"
+  },
+  {
+    "amenityName":"Entrance ",
+    "amenitySvg":"83.29 73.8",
+    "imageName":"entrance.jpg"
+  },
+  {
+    "amenityName":"Club House",
+    "amenitySvg":"42.19 34.76",
+    "imageName":"club_house.jpg"
+  },
+  {
+    "amenityName":"Terrace Units",
+    "amenitySvg":"55.38 21.42",
+    "imageName":"terrace_unit.jpg"
+  },
+  {
+    "amenityName":"Tennis Court",
+    "amenitySvg":"42.27 8.41",
+    "imageName":"tennis_court.jpg"
+  },
+  {
+    "amenityName":"Amphitheater",
+    "amenitySvg":"66.52 72.85",
+    "imageName":"amphitheater.jpg"
+  },
+  {
+    "amenityName":"Jogging ",
+    "amenitySvg":"21.9 37.46",
+    "imageName":"jogging_park.jpg"
+  },
+  {
+    "amenityName":"Hill View",
+    "amenitySvg":"20.29 19.68",
+    "imageName":"hill_view.jpg"
+  }
+]);

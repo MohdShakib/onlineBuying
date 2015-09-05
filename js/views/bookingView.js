@@ -420,7 +420,8 @@ var BookingView = (function() {
                     if (statusCode && statusCode == 499) {
                         window.location.reload();
                     } else {
-                        $("#paymentButton").text("Please try again");
+                        $("#paymentButton").addClass("disabled");
+                        $("#paymentButton").parent().append("<span class='payment-error'>Something went wrong. Please contact +91-11-66764181 for assistance.</span>");
                     }
                 }
             };

@@ -2,3 +2,7 @@ towerName,imageName,numberOfFrames,keyframe1,link1,keyframe2,link2,keyframe3,lin
 Tower A,UmangA_00##.jpg,48,15,0,0,180,,,,
 Tower B,tower_b00##.jpg,48,24,0,0,180,,,,
 Tower C,100##.jpg,48,24,0,0,180,,,,
+Tower E,E_00##.jpg,48,0,0,24,180,,,,
+Tower G,G_00##.jpg,48,24,0,0,180,,,,
+Tower I,i_00##.jpg,48,24,0,0,180,,,,
+Tower L,Tower-L_00##.jpg,48,24,0,0,180,,,,
