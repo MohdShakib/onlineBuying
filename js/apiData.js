@@ -672,7 +672,7 @@ var getProjectData = (function() {
     };
 
 
-    function getProjectData(projectId, callback) {
+    function getProjectData(projectId, isPropertyPaymentUrl, callback) {
         if (projectData && Object.keys(projectData).length) {
             return callback(projectData);
         }
@@ -686,6 +686,12 @@ var getProjectData = (function() {
 
         ajaxUtils.getProjectData(projectId, params);
         parseApiData(apiData);
+
+        if(isPropertyPaymentUrl){ // to skip json read for property buying
+            console.log(projectData);
+           return callback(projectData);
+        }
+
         if (config.readDataFromJson) {
             return parseAllJSONData().done(function(){
                 console.log(projectData);

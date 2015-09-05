@@ -194,7 +194,9 @@ var initializeRoutes = (function() {
             },
             before: function(projectName, projectId, towerName, towerAngle, unitAddress) {
                 
+                var isPropertyPaymentUrl = true;
                 if(!(towerName && towerName.match(/(5[0-9]{6})/g))){
+                    isPropertyPaymentUrl = false;
                     $('.loading-bar-container').show();
                     $('.default-loading').hide();
                 }
@@ -225,7 +227,7 @@ var initializeRoutes = (function() {
                     } else if (towerName) {
                         flag = rootdata.towers && rootdata.towers[towerName] ? true : false;
                         // hack for propertyId check
-                        if (!flag) {
+                        if (isPropertyPaymentUrl) {
                             flag = rootdata.properties && rootdata.properties[towerName] ? true : false;
                         }
                     } else if (projectId) {
@@ -280,7 +282,7 @@ var initializeRoutes = (function() {
 
                 }
 
-                getProjectData(projectId, beforeCallback);
+                getProjectData(projectId, isPropertyPaymentUrl, beforeCallback);
                 return proceedRouteCallback;
             }
         });
