@@ -357,12 +357,18 @@ var BookingView = (function() {
                 }
             };
 
+            $('.callback-btn').addClass("disabled");
+            $('.action-message').remove();
             var params = {
                 successCallback: function(response, params) {
-                    $('.callback-btn').text("Thanks");
+                    $('.callback-btn').removeClass("disabled");
+                    $('.action-message').remove();
+                    $('.callback-btn').parent().append('<span class="form-msg-success action-message">Thank you for your interest. Our property advisors will get in touch shortly.</span>');
                 },
                 errorCallback: function(response, params) {
-                    $('.callback-btn').text("Try Again");
+                    $('.callback-btn').removeClass("disabled");
+                    $('.action-message').remove();
+                    $('.callback-btn').parent().append('<span class="form-msg-failure action-message">Something went wrong. Please contact +91-11-66764181 for assistance.</span>');
                 }
             };
             ajaxUtils.sendEmail(data, params);
@@ -414,19 +420,26 @@ var BookingView = (function() {
             var data = this.getValidatedPaymentData();
             var params = {
                 successCallback: function(data, params) {
+                    $('#paymentButton').removeClass('disabled');
+                    $('.action-message').remove();
                     window.location.href = data;
                 },
                 errorCallback: function(data, params, statusCode) {
+                    $('.action-message').remove();
+                    $('#paymentButton').removeClass('disabled');
                     if (statusCode && statusCode == 499) {
                         window.location.reload();
                     } else {
                         $(".payment-error").remove();
                         $("#paymentButton").addClass("disabled");
-                        $("#paymentButton").parent().append("<span class='payment-error'>Something went wrong. Please contact +91-11-66764181 for assistance.</span>");
+                        $("#paymentButton").parent().append("<span class='form-msg-failure action-message'>Something went wrong. Please contact +91-11-66764181 for assistance.</span>");
                     }
                 }
             };
+
             if (data !== null && config.enablePayment && this._model.getData().bookingStatus == "Available" && !$("#paymentButton").hasClass("disabled")) {
+                $('.action-message').remove();
+                $('#paymentButton').addClass('disabled');
                 ajaxUtils.bookListing(data, params);
             }
         }
