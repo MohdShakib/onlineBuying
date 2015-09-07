@@ -29,6 +29,7 @@ table td, table tr {
 	padding: 0px;
 	margin: 0px;
 }
+input{ box-shadow: none; }
 .env {
 	display: none;
 }
@@ -1131,7 +1132,7 @@ ellipse.tower-unit-svg-selected-path {
 .view-price-brakup{ font-size:12px; color:#ECA537; display:block; width:200px; margin:10px auto; text-align:center; padding:0; cursor:pointer;}
 .view-price-brakup:hover{ text-decoration:underline;}
 .input-box.active label{ font-size:11px; top:18px; color:#f28d19;}
-.input-box input{ box-shadow: none; background:none;width:100%; outline:none; border:none; padding:10px 0 5px 0; font-size:14px; color:#616161;box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; position:relative; z-index:2; resize:none;}
+.input-box input{ background:none;width:100%; outline:none; border:none; padding:10px 0 5px 0; font-size:14px; color:#616161;box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; position:relative; z-index:2; resize:none;}
 span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:none;}
 .error span.error{ display:block;}
 .input-box.active{ border-color:white !important; box-shadow:0 -2px 0 #f28d19 inset;}
