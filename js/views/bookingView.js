@@ -333,9 +333,10 @@ var BookingView = (function() {
         validateAndSendEmail: function() {
             var bookingForm = $('#booking-user-details'),
                 rootdata = this._model.getRootdata(),
-                property = this._model.getData();
+                property = this._model.getData(),
+                ignoreFields = ['terms'];
 
-            if (!utils.validateForm(bookingForm, true)) {
+            if (!utils.validateForm(bookingForm, true, ignoreFields)) {
                 return;
             }
 
