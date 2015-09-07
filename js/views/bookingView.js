@@ -353,7 +353,8 @@ var BookingView = (function() {
                     nationality: $('.' + config.bookingSelectionDivClass + ' .selectedCountry').text(),
                     pan: $('#booking-pan input').val(),
                     configuration: property.bedrooms + " BHK + " + property.bathrooms + " T",
-                    area: property.size + " " + property.measure
+                    area: property.size + " " + property.measure,
+                    propertyId: property.propertyId
                 }
             };
 
