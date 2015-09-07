@@ -333,9 +333,10 @@ var BookingView = (function() {
         validateAndSendEmail: function() {
             var bookingForm = $('#booking-user-details'),
                 rootdata = this._model.getRootdata(),
-                property = this._model.getData();
+                property = this._model.getData(),
+                ignoreFields = ['terms'];
 
-            if (!utils.validateForm(bookingForm, true)) {
+            if (!utils.validateForm(bookingForm, true, ignoreFields)) {
                 return;
             }
 
@@ -353,7 +354,8 @@ var BookingView = (function() {
                     nationality: $('.' + config.bookingSelectionDivClass + ' .selectedCountry').text(),
                     pan: $('#booking-pan input').val(),
                     configuration: property.bedrooms + " BHK + " + property.bathrooms + " T",
-                    area: property.size + " " + property.measure
+                    area: property.size + " " + property.measure,
+                    propertyId: property.propertyId
                 }
             };
 

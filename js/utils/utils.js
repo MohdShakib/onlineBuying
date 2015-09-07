@@ -97,7 +97,7 @@ var utils = (function() {
             }
             return identifier;
         },
-        validateForm: function(form, strict) {
+        validateForm: function(form, strict, ignoreFields) {
             function validateEmail(email) {
                 var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
                 return re.test(email);
@@ -131,6 +131,10 @@ var utils = (function() {
                     name = $(this_field).attr('name'),
                     isRequired = $(this_field).attr('required'),
                     hasError = false;
+
+                if (ignoreFields && ignoreFields.indexOf(id) >= 0) {
+                    continue;
+                }
 
                 if (!$(this_field).parent('div').hasClass('error') && !strict) {
                     continue;
