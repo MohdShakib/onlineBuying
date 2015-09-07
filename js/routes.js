@@ -183,7 +183,7 @@ var initializeRoutes = (function() {
                 if(currentRoute.length && currentRoute[0].length && (routeRegex.sep+currentRoute[0] != config.urlAppName)){
                     if(['online','thirdeye'].indexOf(currentRoute[0])>-1){
                         currentRoute.splice(0,1);
-                    }   
+                    }
                     currentRoute = currentRoute.join('/');
                     currentRoute = config.urlAppName+routeRegex.sep+currentRoute;
                     router.setRoute(currentRoute);
@@ -193,7 +193,7 @@ var initializeRoutes = (function() {
                 router.setRoute(errorRoute);
             },
             before: function(projectName, projectId, towerName, towerAngle, unitAddress) {
-                
+
                 var isPropertyPaymentUrl = true;
                 if(!(towerName && towerName.match(/(5[0-9]{6})/g))){
                     isPropertyPaymentUrl = false;

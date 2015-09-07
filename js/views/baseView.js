@@ -433,7 +433,7 @@ var BaseView = (function() {
 
             this._elements.bottomFormGroupContainer.on('click', '.chat-widget', function(event) {
                 if(config.chatEnabled) {
-                  window.Tawk_API.showWidget();
+                  // window.Tawk_API.maximize();
                 }
             });
         },
@@ -514,11 +514,6 @@ var BaseView = (function() {
             $('form input').parent('div').removeClass('error');
             $('.' + config.bottomFormGroup.tabLinkClass).removeClass('active');
             $('.' + config.bottomFormGroup.formPopUpClass).removeClass('out');
-            if (window.Tawk_API) {
-                setTimeout(function() {
-                    window.Tawk_API.hideWidget();
-                }, 400);
-            }
         },
         bottomGroupButtonClicked: function(element) {
             if ($(element).hasClass('active') || $(element).hasClass('disabled')) { // if opened return to stop flickr
