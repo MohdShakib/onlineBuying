@@ -199,12 +199,15 @@ var BookingView = (function() {
                 '                <label for="terms">I have read &amp; agree to <a id="tnc">Terms &amp; Conditions</a></label>' +
                 '                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '            </div>';
-            if (data.bookingStatus == 'Available') {
-                code += '<a class="fleft transition payment-btn ' + paymentBtnClass + '"  id="paymentButton" >Continue to Payment</a>';
-            } else {
-                code += '<a class="fleft transition payment-btn ' + paymentBtnClass + '">Sold out</a>';
+
+            var defaultMsg = '';
+            if (data.bookingStatus != 'Available') {
+                defaultMsg = '<span class="form-msg-failure">This unit is currently sold out.</span>';
             }
+            code += '<div class="btn-container"><div class="action-message">' + defaultMsg + '</div>';
+            code += '<a class="fleft transition payment-btn ' + paymentBtnClass + '"  id="paymentButton" >Continue to Payment</a>';
             code += getCallbackCode;
+            code += '</div>';
             code += '<div class="clear-fix"></div>' +
                 '</div>' +
                 '</div>' +
@@ -336,6 +339,18 @@ var BookingView = (function() {
                 property = this._model.getData(),
                 ignoreFields = ['terms'];
 
+            function resetFields() {
+                $('.personal-detail-box').find('input').val(null).blur();
+                $('.personal-detail-box').find('input:hidden').val('');
+                $('input[type="checkbox"]').prop('checked', false);
+                $('.' + config.bookingSelectionDivClass + ' .selectedCountry').text('COUNTRY');
+                $('.' + config.bookingSelectionDivClass + ' .selectedCountry').data('countryid', 0);
+            }
+
+            if ($('.callback-btn').hasClass("disabled")) {
+                return;
+            }
+
             if (!utils.validateForm(bookingForm, true, ignoreFields)) {
                 return;
             }
@@ -360,17 +375,16 @@ var BookingView = (function() {
             };
 
             $('.callback-btn').addClass("disabled");
-            $('.action-message').remove();
+            $('.action-message').empty();
             var params = {
                 successCallback: function(response, params) {
                     $('.callback-btn').removeClass("disabled");
-                    $('.action-message').remove();
-                    $('.callback-btn').parent().append('<span class="form-msg-success action-message">Thank you for your interest. Our property advisors will get in touch shortly.</span>');
+                    resetFields();
+                    $('.action-message').html('<span class="form-msg-success">Thank you for your interest. Our property advisors will get in touch shortly.</span>');
                 },
                 errorCallback: function(response, params) {
                     $('.callback-btn').removeClass("disabled");
-                    $('.action-message').remove();
-                    $('.callback-btn').parent().append('<span class="form-msg-failure action-message">Something went wrong. Please contact +91-11-66764181 for assistance.</span>');
+                    $('.action-message').html('<span class="form-msg-failure">Something went wrong. Please contact +91-11-66764181 for assistance.</span>');
                 }
             };
             ajaxUtils.sendEmail(data, params);
@@ -419,30 +433,36 @@ var BookingView = (function() {
             });
         },
         bookListing: function() {
+            if ($("#paymentButton").hasClass("disabled")) {
+                return;
+            }
+
             var data = this.getValidatedPaymentData();
+
+            if (data == null) {
+                return;
+            }
+
             var params = {
                 successCallback: function(data, params) {
-                    $('#paymentButton').removeClass('disabled');
-                    $('.action-message').remove();
                     window.location.href = data;
                 },
                 errorCallback: function(data, params, statusCode) {
-                    $('.action-message').remove();
-                    $('#paymentButton').removeClass('disabled');
                     if (statusCode && statusCode == 499) {
                         window.location.reload();
                     } else {
-                        $(".payment-error").remove();
-                        $("#paymentButton").addClass("disabled");
-                        $("#paymentButton").parent().append("<span class='form-msg-failure action-message'>Something went wrong. Please contact +91-11-66764181 for assistance.</span>");
+                        $("#paymentButton").removeClass("disabled");
+                        $(".action-message").html("<span class='form-msg-failure'>Something went wrong. Please contact +91-11-66764181 for assistance.</span>");
                     }
                 }
             };
 
-            if (data !== null && config.enablePayment && this._model.getData().bookingStatus == "Available" && !$("#paymentButton").hasClass("disabled")) {
-                $('.action-message').remove();
+            if (config.enablePayment && this._model.getData().bookingStatus == "Available") {
                 $('#paymentButton').addClass('disabled');
                 ajaxUtils.bookListing(data, params);
+            } else {
+                $('#paymentButton').removeClass('disabled');
+                $(".action-message").html("<span class='form-msg-failure'>Something went wrong. Please contact +91-11-66764181 for assistance.</span>");
             }
         }
     };
