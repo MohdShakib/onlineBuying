@@ -89,40 +89,40 @@ var offerData = {
     },
     "501639": {
         "5005107": [
-            "Free open car parking & club membership on selective units"
+            "Free open car parking & Modular Kitchen on selective units"
         ],
         "5005108": [
-            "Free open car parking & club membership on selective units"
+            "Free open car parking & Modular Kitchen on selective units"
         ],
         "5003195": [
-            "Free open car parking & club membership on selective units"
+            "Free open car parking & Modular Kitchen on selective units"
         ],
         "5003196": [
-            "Free open car parking & club membership on selective units"
+            "Free open car parking & Modular Kitchen on selective units"
         ],
         "5007224": [
-            "Free open car parking & club membership on selective units"
+            "Free open car parking & Modular Kitchen on selective units"
         ],
         "5007221": [
-            "Free open car parking & club membership on selective units"
+            "Free open car parking & Modular Kitchen on selective units"
         ],
         "5007225": [
-            "Free open car parking & club membership on selective units"
+            "Free open car parking & Modular Kitchen on selective units"
         ],
         "5007226": [
-            "Free open car parking & club membership on selective units"
+            "Free open car parking & Modular Kitchen on selective units"
         ],
         "5007222": [
-            "Free open car parking & club membership on selective units"
+            "Free open car parking & Modular Kitchen on selective units"
         ],
         "5007223": [
-            "Free open car parking & club membership on selective units"
+            "Free open car parking & Modular Kitchen on selective units"
         ],
         "5003150": [
-            "Free open car parking & club membership on selective units"
+            "Free open car parking & Modular Kitchen on selective units"
         ],
         "5005106": [
-            "Free open car parking & club membership on selective units"
+            "Free open car parking & Modular Kitchen on selective units"
         ]
     },
     "656047": {
@@ -220,6 +220,14 @@ var offerData = {
         "5273692": [
             "Discount of Rs.200/sq.ft on construction linked payment plan",
             "Pay 10% now & No EMI for 24 Months"
+        ],
+        "5305430": [
+            "Discount of Rs.200/sq.ft on construction linked payment plan",
+            "Pay 10% now & No EMI for 24 Months"
+        ],
+        "5305431": [
+            "Discount of Rs.200/sq.ft on construction linked payment plan",
+            "Pay 10% now & No EMI for 24 Months"
         ]
     },
     "640926": {
@@ -229,16 +237,19 @@ var offerData = {
     },
     "655929": {
         "5189543": [
+            "Gift Voucher Worth Rs. 25,000/-",
             "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
             "Pay 10% now & No EMI till Possession",
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ],
         "5285093": [
+            "Gift Voucher Worth Rs. 25,000/-",
             "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
             "Pay 10% now & No EMI till Possession",
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ],
         "5189544": [
+            "Gift Voucher Worth Rs. 25,000/-",
             "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
             "Pay 10% now & No EMI till Possession",
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
@@ -250,9 +261,10 @@ var offerData = {
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ],
         "5285094": [
-            "Gift voucher worth Rs.25000/- ",
-            "Two Construction Linked Payment plans available- 20:30:30:20 or 10:80:14",
-            "Rs.200/sq.ft.  discount for non construction linked plans"
+            "Gift Voucher Worth Rs. 25,000/-",
+            "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
+            "Pay 10% now & No EMI till Possession",
+            "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ],
         "5189546": [
             "Gift Voucher Worth Rs. 25,000/-",
@@ -373,6 +385,18 @@ var offerData = {
             "Pay 10% now and No EMI till Possession"
         ],
         "5267974": [
+            "Discount of Rs.200/sq.ft",
+            "Pay 10% now and No EMI till Possession"
+        ],
+        "5268870": [
+            "Discount of Rs.200/sq.ft",
+            "Pay 10% now and No EMI till Possession"
+        ],
+        "5271807": [
+            "Discount of Rs.200/sq.ft",
+            "Pay 10% now and No EMI till Possession"
+        ],
+        "5267973": [
             "Discount of Rs.200/sq.ft",
             "Pay 10% now and No EMI till Possession"
         ]
