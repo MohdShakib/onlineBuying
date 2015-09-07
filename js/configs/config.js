@@ -7,6 +7,7 @@ var config = (function() {
 
         // Independent App
         apisJson: false,
+        cityJson: true, // to read cities from json
         localZip: false,
 
         // Flags

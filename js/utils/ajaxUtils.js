@@ -81,7 +81,7 @@ var ajaxUtils = (function() {
         getCountries: function(params) {
             params = params || null;
             var url = "https://www.proptiger.com/data/v1/entity/country";
-            if (config.apisJson) {
+            if (config.apisJson || config.cityJson) {
                 url = "apis-json/countries.json";
             }
             this.ajax(url, params, 'GET', false, null);
