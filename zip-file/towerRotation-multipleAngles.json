@@ -1,0 +1,94 @@
+towerRotation(
+[
+  {
+    "towerName":"Tower A",
+    "imageName":"UmangA_00##.jpg",
+    "numberOfFrames":"48",
+    "keyframe1":"15",
+    "link1":"0",
+    "keyframe2":"30",
+    "link2":"120",
+    "keyframe3":"0",
+    "link3":"240",
+    "keyframe4":"",
+    "link4":""
+  },
+  {
+    "towerName":"Tower B",
+    "imageName":"tower_b00##.jpg",
+    "numberOfFrames":"48",
+    "keyframe1":"24",
+    "link1":"0",
+    "keyframe2":"0",
+    "link2":"180",
+    "keyframe3":"",
+    "link3":"",
+    "keyframe4":"",
+    "link4":""
+  },
+  {
+    "towerName":"Tower C",
+    "imageName":"100##.jpg",
+    "numberOfFrames":"48",
+    "keyframe1":"24",
+    "link1":"0",
+    "keyframe2":"0",
+    "link2":"180",
+    "keyframe3":"",
+    "link3":"",
+    "keyframe4":"",
+    "link4":""
+  },
+  {
+    "towerName":"Tower E",
+    "imageName":"E_00##.jpg",
+    "numberOfFrames":"48",
+    "keyframe1":"0",
+    "link1":"0",
+    "keyframe2":"24",
+    "link2":"180",
+    "keyframe3":"",
+    "link3":"",
+    "keyframe4":"",
+    "link4":""
+  },
+  {
+    "towerName":"Tower G",
+    "imageName":"G_00##.jpg",
+    "numberOfFrames":"48",
+    "keyframe1":"24",
+    "link1":"0",
+    "keyframe2":"0",
+    "link2":"180",
+    "keyframe3":"",
+    "link3":"",
+    "keyframe4":"",
+    "link4":""
+  },
+  {
+    "towerName":"Tower I",
+    "imageName":"i_00##.jpg",
+    "numberOfFrames":"48",
+    "keyframe1":"24",
+    "link1":"0",
+    "keyframe2":"0",
+    "link2":"180",
+    "keyframe3":"",
+    "link3":"",
+    "keyframe4":"",
+    "link4":""
+  },
+  {
+    "towerName":"Tower L",
+    "imageName":"Tower-L_00##.jpg",
+    "numberOfFrames":"48",
+    "keyframe1":"24",
+    "link1":"0",
+    "keyframe2":"0",
+    "link2":"180",
+    "keyframe3":"",
+    "link3":"",
+    "keyframe4":"",
+    "link4":""
+  }
+]);

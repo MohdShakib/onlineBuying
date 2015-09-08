@@ -95,6 +95,13 @@ var getProjectData = (function() {
                         validUnitFlag = true;
                     }
 
+                    if(tower.stableViewAngles && (tower.stableViewAngles.indexOf(unitInfo.rotationAngle) == -1) && unitInfo.rotationAngle){
+                        tower.stableViewAngles.push(unitInfo.rotationAngle);
+                        tower.stableViewAngles.sort(function(a, b) {
+                            return a - b;
+                        });
+                    }
+                    
                     if (tower.listings[unitIdentifier] && validUnitFlag) {
                         tower.listings[unitIdentifier].rotationAnglesAvailable = tower.listings[unitIdentifier].rotationAnglesAvailable;
                         tower.listings[unitIdentifier].rotationAnglesAvailable.push(unitInfo.rotationAngle);
@@ -505,6 +512,7 @@ var getProjectData = (function() {
             towers[towerIdentifier].listings = {};
             towers[towerIdentifier].rotationAngle = {};
             towers[towerIdentifier].totalAvailableCount = 0; //contains count for total flats available in the tower
+            towers[towerIdentifier].stableViewAngles = [];
             towers[towerIdentifier].bookingStatus = bookingStatusMap['1'];
             towersUnitInfo[towerIdentifier] = {};
             towers[towerIdentifier].unitInfo = [];
