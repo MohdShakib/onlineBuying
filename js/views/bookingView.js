@@ -401,7 +401,7 @@ var BookingView = (function() {
                 successCallback: function(response, params) {
                     $('.callback-btn').removeClass("disabled");
                     resetFields();
-                    $('.action-message').html('<span class="form-msg-success">Thank you for your interest. Our property advisors will get in touch shortly.</span>');
+                    //$('.action-message').html('<span class="form-msg-success">Thank you for your interest. Our property advisors will get in touch shortly.</span>');
                 },
                 errorCallback: function(response, params) {
                     $('.callback-btn').removeClass("disabled");
