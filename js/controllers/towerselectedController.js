@@ -76,11 +76,15 @@ var TowerselectedController = (function() {
                 var floorGroup = dataset.svalue + " " + dataset.evalue;
                 _this.toggleFilterOption(_this._filters.floor, floorGroup, element);
             });
-            this._view._entranceFilterOptionClick.attach(function(sender, element) {
-                var dataset = $(element).data();
-                var entrance = dataset.value;
-                _this.toggleFilterOption(_this._filters.entrance, entrance, element);
-            });
+
+            if(!config.removeFacingFilter){
+                this._view._entranceFilterOptionClick.attach(function(sender, element) {
+                    var dataset = $(element).data();
+                    var entrance = dataset.value;
+                    _this.toggleFilterOption(_this._filters.entrance, entrance, element);
+                });
+            }
+
             this._view._priceFilterOptionClick.attach(function(sender, element) {
                 var dataset = $(element).data();
                 var priceGroup = dataset.svalue + " " + dataset.evalue;

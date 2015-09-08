@@ -19,6 +19,7 @@ var config = (function() {
         polyHoverFlag: false,
         readDataFromJson: true,
         chatEnabled: true,
+        removeFacingFilter: true,
 
         // Variables
         towerRotationSpeed: 100, // delay between 2 consecutive frames in miliseconds
