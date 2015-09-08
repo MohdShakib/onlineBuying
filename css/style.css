@@ -1225,3 +1225,23 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .duplexBox li:hover span { color: #FFBB46; }
 .duplexBox li .thumb { width: 88px; height: 68px; border: 1px solid #dcdcdc; background-color: #fff; }
 .duplexBox li .thumb img { width: 100%; height: 100%; }
+
+/* css for prompt lead form box */
+.promptLeadFormBox { opacity: 0; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 999999; transition: all .9s ease-in-out; -webkit-transition: all .9s ease-in-out; -o-transition: all .9s ease-in-out; -moz-transition: all .9s ease-in-out; color: #fff; background-color: rgba(0,0,0,.75); }
+.promptLeadFormBox.open { opacity: 1; }
+.promptLeadFormBox.open .form { top: 0; }
+.promptLeadFormBox .form { padding: 50px; padding-top: 30px; margin: auto; margin-top: 5%; transition: all .9s ease-in-out; -webkit-transition: all .9s ease-in-out; -o-transition: all .9s ease-in-out; -moz-transition: all .9s ease-in-out; position: relative; box-sizing: border-box; position: relative; top: -100%; border-radius: 5px; max-width: 475px; width: 100%; text-align: center; background-color: #242b33; }
+.promptLeadFormBox h1 { margin: 10px 0 30px; text-transform: uppercase; font-weight: normal; font-size: 30px; }
+.promptLeadFormBox h1:after { margin: auto; margin-top: 5px; display: block; content: ''; width: 80px; height: 3px; background-color: #fd8814; }
+.promptLeadFormBox p { margin-bottom: 20px; font-size: 24px; }
+.promptLeadFormBox p span { margin-top: 5px; font-size: 18px; display: block; }
+.promptLeadFormBox .formField { margin-bottom: 10px; position: relative; }
+.promptLeadFormBox input[type="text"], .promptLeadFormBox select { padding: 15px; color: #999; height: 43px; font-size: 14px; box-sizing: border-box; border: none; border-radius: 5px; width: 100%; background-color: #fff; }
+.promptLeadFormBox .mobile { position: relative; }
+.promptLeadFormBox .mobile input[type] { padding-left: 65px; }
+.promptLeadFormBox .mobile span { padding-right: 10px; line-height: 30px; position: absolute; top: 7px; border-right: 1px solid #dcdcdc; left: 20px; font-size: 16px; color: #999; }
+.promptLeadFormBox .mobile span i { font-size: 10px; color: #666; }
+.promptLeadFormBox .payment-btn { margin-top: 0; line-height: 52px; font-size: 14px; width: 100%; border: none; border-radius: 5px; }
+.promptLeadFormBox .close { border: 1px solid #242b33; cursor: pointer; position: absolute; right: -15px; top: -15px; color: #fff; width: 30px; height: 30px; line-height: 30px; text-align: center; color: #fff; font-size: 15px; border-radius: 50%; background-color: #000; }
+.promptLeadFormBox .col { width: 30%; float: left; box-sizing: border-box; }
+.promptLeadFormBox .col + .col { padding-left: 10px; width: 70%; }

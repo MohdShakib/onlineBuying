@@ -14,14 +14,16 @@ var BaseView = (function() {
 
     var containerMap = {
         'bottomFormGroupContainer': '<div class="bottom-form-group" id="bottom-form-group"></div>',
-        'compareUnitsContainer': '<div  class="compare-units-container" id="' + config.compareUnitscontainerId + '"></div>'
+        'compareUnitsContainer': '<div  class="compare-units-container" id="' + config.compareUnitscontainerId + '"></div>',
+		'promptLeadFormContainer': '<div class="promptLeadFormBox" id="prompt-lead-form"></div>'
     };
 
 
     function getElements() {
         var elements = {
             'bottomFormGroupContainer': $('#bottom-form-group'),
-            'compareUnitsContainer': $('#' + config.compareUnitscontainerId)
+            'compareUnitsContainer': $('#' + config.compareUnitscontainerId),
+			'promptLeadFormContainer': $('#prompt-lead-form')
         };
         return elements;
     }
@@ -347,6 +349,33 @@ var BaseView = (function() {
                 self: this
             });
         },
+		
+		promptLeadFormContainer: function() {
+            var _this = this;
+            var htmlCode = '<div class="form">' +
+                	'<img src="images/form-gift-icon.jpg" alt="">'+
+                	'<h1>Hurry! 2 days left</h1>'+
+                    '<p>Looking for more details?<span>Get expert opinion</span></p>'+
+                    '<form action="">'+
+                    	'<div class="formField"><input type="text" placeholder="Name..."></div>'+
+                        '<div class="formField"><input type="text" placeholder="Email ID..."></div>'+
+                        '<div class="formField">'+
+                        	'<div class="col">'+
+                            	'<select>'+
+                                	'<option>India</option>'+
+                                    '<option>United Arab Emirates</option>'+
+                                '</select>'+
+                            '</div>'+
+                        	'<div class="mobile col"><input type="text" placeholder="Mobile No..."><span>+91 <i class="icon icon-arrow_btm"></i></span></div><div class="clear-fix"></div>'+
+                        '</div>'+
+                        '<input type="button" class="payment-btn" value="Get Call Back">'+
+                    '</form>'+
+                    '<span class="close">X</span>'+
+                '</div>';
+
+            this._elements.promptLeadFormContainer.html(htmlCode);
+        },
+		
         getCountriesList: function(countries, params) {
             var htmlCode = '',
                 totalCountries = countries ? countries.length : 0;
