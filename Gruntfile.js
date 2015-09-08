@@ -77,7 +77,7 @@ module.exports = function(grunt) {
             test: {
                 options: {
                     data: {
-                        env: 'prod',
+                        env: 'local',
                         cdn: '',
                         ga: {
                             key: "UA-22638191-12",
@@ -240,7 +240,7 @@ module.exports = function(grunt) {
         'processhtml:local'
     ]);
 
-    grunt.registerTask('local', [
+    grunt.registerTask('test', [
         'base',
         'processhtml:test',
         'replace'

@@ -412,6 +412,19 @@ var getProjectData = (function() {
             towers = {},
             tower;
 
+        // Media
+        for (i in projectDetail.media) {
+            if (projectDetail.media[i].objectMediaType.type == 'ListingOnlineSale') {
+                var url = projectDetail.media[i].absoluteUrl;
+                if (url) {
+                    projectData.assetsUrl = url.substr(0, url.lastIndexOf('/') + 1);
+                }
+                if (!config.localZip && projectData.assetsUrl) {
+                    zipPath = projectData.assetsUrl;
+                    zipImagePath = zipPath + 'img/';
+                }
+            }
+        }
 
         var projectIdentifier = utils.getIdentifier(projectDetail.name);
         projectData.projectId = projectDetail.projectId;
@@ -478,20 +491,6 @@ var getProjectData = (function() {
             }
             if (projectDetail.images[i].imageType.type == 'main') {
                 projectData.mainImage = projectDetail.images[i].absolutePath;
-            }
-        }
-
-        // Media
-        for (i in projectDetail.media) {
-            if (projectDetail.media[i].objectMediaType.type == 'ListingOnlineSale') {
-                var url = projectDetail.media[i].absoluteUrl;
-                if (url) {
-                    projectData.assetsUrl = url.substr(0, url.lastIndexOf('/') + 1);
-                }
-                if (!config.localZip && projectData.assetsUrl) {
-                    zipPath = projectData.assetsUrl;
-                    zipImagePath = zipPath + 'img/';
-                }
             }
         }
 
