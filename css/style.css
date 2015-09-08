@@ -1227,8 +1227,8 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .duplexBox li .thumb img { width: 100%; height: 100%; }
 
 /* css for prompt lead form box */
-.promptLeadFormBox { opacity: 0; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 999999; transition: all .9s ease-in-out; -webkit-transition: all .9s ease-in-out; -o-transition: all .9s ease-in-out; -moz-transition: all .9s ease-in-out; color: #fff; background-color: rgba(0,0,0,.75); }
-.promptLeadFormBox.open { opacity: 1; }
+.promptLeadFormBox { opacity: 0; position: fixed; top: 0; left: 0; width: 100%; height: 100%; transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; color: #fff; background-color: rgba(0,0,0,.75); }
+.promptLeadFormBox.open { opacity: 1; z-index: 999999; }
 .promptLeadFormBox.open .form { top: 0; }
 .promptLeadFormBox .form { padding: 50px; padding-top: 30px; margin: auto; margin-top: 5%; transition: all .9s ease-in-out; -webkit-transition: all .9s ease-in-out; -o-transition: all .9s ease-in-out; -moz-transition: all .9s ease-in-out; position: relative; box-sizing: border-box; position: relative; top: -100%; border-radius: 5px; max-width: 475px; width: 100%; text-align: center; background-color: #242b33; }
 .promptLeadFormBox h1 { margin: 10px 0 30px; text-transform: uppercase; font-weight: normal; font-size: 30px; }
