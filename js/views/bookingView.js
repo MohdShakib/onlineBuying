@@ -353,7 +353,7 @@ var BookingView = (function() {
             data.amount = unitData.bookingAmount;
             return data;
         },
-        validateAndSendEmail: function() {
+        validateAndSendEmail: function(buttonClicked) {
             var bookingForm = $('#booking-user-details'),
                 rootdata = this._model.getRootdata(),
                 property = this._model.getData(),
@@ -390,7 +390,8 @@ var BookingView = (function() {
                     pan: $('#booking-pan input').val(),
                     configuration: property.bedrooms + " BHK + " + property.bathrooms + " T",
                     area: property.size + " " + property.measure,
-                    propertyId: property.propertyId
+                    propertyId: property.propertyId,
+                    buttonClicked: buttonClicked
                 }
             };
 
