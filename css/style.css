@@ -1087,6 +1087,8 @@ ellipse.tower-unit-svg-selected-path {
 .close-payment{ position:absolute; right:20px; top:0px; z-index:3; color: #999; cursor: pointer;}
 .title-text .close-payment{right:inherit; left:0; color:#fff; top:0; padding:0 20px;}
 .title-text .close-payment span{ margin-top:14px;}
+.title-text .phoneNumber i { margin-right: 5px; vertical-align: middle; }
+.title-text .phoneNumber { position: absolute; right: 20px; top: 0; color: #fff; font-size: 20px; }
 .close-payment:hover {color: #666;}
 .title-text .close-payment:hover{ color:#C3C1C1;}
 .payment-container{ position:relative; width:100%; padding:100px 45px 50px 45px; background:#fff; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}

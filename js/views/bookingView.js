@@ -117,6 +117,7 @@ var BookingView = (function() {
                 '        <div class="title-text">' +
                 '           <a class="close-payment transition" ' + url + '><span class="icon icon-arrow_left fs24"></span></a>' +
                 '           <p>Payment Screen</p>' +
+				'			<span class="phoneNumber"><i class="icon icon-phone"></i> +91-11-66764181</span>'+
                 '        </div>' +
                 '        <div class="payment-left">' + offerBanner +
                 '        <div class="payment-left-top">' +
