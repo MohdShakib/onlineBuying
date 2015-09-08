@@ -1159,7 +1159,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .floor-area:after{ width:80%; content:''; position:absolute; bottom:0; height:1px; background:#ccc; left:50%; margin-left:-40%;}
 .floor-area > *{ display:inline-block;}
 .line-through{ opacity:0.5; text-decoration:line-through; margin-right:5px;}
-.btn-container {margin-top: 60px;}
+.btn-container {margin-top: 20px;}
 .btn-container .action-message { height: 20px;}
 .btn-container .action-message span {font-size: 15px;}
 /*-------payment screen start here-------*/
