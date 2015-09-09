@@ -43,7 +43,9 @@ var TowerselectedView = (function() {
         this._goBackButtonClick = new Event(this);
         this._bhkFilterOptionClick = new Event(this);
         this._floorFilterOptionClick = new Event(this);
-        this._entranceFilterOptionClick = new Event(this);
+        if(!config.removeFacingFilter){
+            this._entranceFilterOptionClick = new Event(this);
+        }
         this._priceFilterOptionClick = new Event(this);
         this._resetFiltersClick = new Event(this);
     }
@@ -503,11 +505,13 @@ var TowerselectedView = (function() {
             code += "<div class='menu-item'><span class='icon icon-floor'></span></div>";
             code += this.getFloorMenuOptions(data, floorFiltersData);
             code += "</td></tr>";
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
-            code += this.displayFilterCount('entrance', entranceFiltersData.length);
-            code += "<div class='menu-item'><span class='icon icon-compass fs28'></span></div>";
-            code += this.getEntranceMenuOptions(data, entranceFiltersData);
-            code += "</td></tr>";
+            if(!config.removeFacingFilter){
+                code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
+                code += this.displayFilterCount('entrance', entranceFiltersData.length);
+                code += "<div class='menu-item'><span class='icon icon-compass fs28'></span></div>";
+                code += this.getEntranceMenuOptions(data, entranceFiltersData);
+                code += "</td></tr>";
+            }
             code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
             code += this.displayFilterCount('price', priceFiltersData.length);
             code += "<div class='menu-item'><span class='icon  icon-rupee_final fs30'></span></div>";
@@ -589,10 +593,12 @@ var TowerselectedView = (function() {
                 _this._floorFilterOptionClick.notify(this); // this refers to element here
             });
 
-            _this._elements.filterMenuContainer.on('click', '.' + config.filters.entrance, function(event) {
-                // notify controller
-                _this._entranceFilterOptionClick.notify(this); // this refers to element here
-            });
+            if(!config.removeFacingFilter){
+                _this._elements.filterMenuContainer.on('click', '.' + config.filters.entrance, function(event) {
+                    // notify controller
+                    _this._entranceFilterOptionClick.notify(this); // this refers to element here
+                });
+            }
 
             _this._elements.filterMenuContainer.on('click', '.' + config.filters.price, function(event) {
                 // notify controller

@@ -22,6 +22,19 @@ var BookingView = (function() {
         return elements;
     }
 
+    var ivrsData = {
+        "501448": "+91-7930641590",
+        "640926": "+91-7930641590",
+        "513534": "+91-8049202151",
+        "656047": "+91-8049202151",
+        "668509": "+91-4439942696",
+        "672575": "+91-1166764112",
+        "501639": "+91-3330566486",
+        "669434": "+91-2261739689",
+        "655929": "+91-2039520706",
+        "667404": "+91-2039520706"
+    };
+
     function BookingView(model) {
         this._model = model;
         this._elements = null;
@@ -39,11 +52,15 @@ var BookingView = (function() {
                 rootdata = this._model.getRootdata(),
                 _this = this;
             this.buildSkeleton(Object.keys(containerMap));
+            this.renderInitialData(data);
             for (i in this._elements) {
                 if (this._elements.hasOwnProperty(i) && this[i]) {
                     this[i](data, rotationdata, rootdata);
                 }
             }
+        },
+        renderInitialData: function(data) {
+            document.title = "Proptiger Payment";
         },
         startAnimation: function() {
             $('#payment-screen').fadeIn(900);
@@ -116,8 +133,11 @@ var BookingView = (function() {
             var code = '<div class="payment-container">' +
                 '        <div class="title-text">' +
                 '           <a class="close-payment transition" ' + url + '><span class="icon icon-arrow_left fs24"></span></a>' +
-                '           <p>Payment Screen</p>' +
-                '        </div>' +
+                '           <p>Payment Screen</p>';
+                if (ivrsData[rootdata.projectId] !== undefined) {
+                    code += '<span class="phoneNumber"><i class="icon icon-phone"></i> ' + ivrsData[rootdata.projectId] + '</span>';
+                }
+                code += '        </div>' +
                 '        <div class="payment-left">' + offerBanner +
                 '        <div class="payment-left-top">' +
                 '                <h3>' + rootdata.builderName + ' ' + rootdata.projectName + ' <span>' + rootdata.address + '</span></h3>' + propertyDetail +
@@ -206,7 +226,7 @@ var BookingView = (function() {
             }
             code += '<div class="btn-container"><div class="action-message">' + defaultMsg + '</div>';
             code += '<a class="fleft transition payment-btn ' + paymentBtnClass + '"  id="paymentButton" >Continue to Payment</a>';
-            code += getCallbackCode;
+            //code += getCallbackCode;
             code += '</div>';
             code += '<div class="clear-fix"></div>' +
                 '</div>' +
@@ -333,7 +353,7 @@ var BookingView = (function() {
             data.amount = unitData.bookingAmount;
             return data;
         },
-        validateAndSendEmail: function() {
+        validateAndSendEmail: function(buttonClicked) {
             var bookingForm = $('#booking-user-details'),
                 rootdata = this._model.getRootdata(),
                 property = this._model.getData(),
@@ -370,7 +390,8 @@ var BookingView = (function() {
                     pan: $('#booking-pan input').val(),
                     configuration: property.bedrooms + " BHK + " + property.bathrooms + " T",
                     area: property.size + " " + property.measure,
-                    propertyId: property.propertyId
+                    propertyId: property.propertyId,
+                    buttonClicked: buttonClicked
                 }
             };
 
@@ -380,7 +401,7 @@ var BookingView = (function() {
                 successCallback: function(response, params) {
                     $('.callback-btn').removeClass("disabled");
                     resetFields();
-                    $('.action-message').html('<span class="form-msg-success">Thank you for your interest. Our property advisors will get in touch shortly.</span>');
+                    //$('.action-message').html('<span class="form-msg-success">Thank you for your interest. Our property advisors will get in touch shortly.</span>');
                 },
                 errorCallback: function(response, params) {
                     $('.callback-btn').removeClass("disabled");
@@ -459,6 +480,7 @@ var BookingView = (function() {
 
             if (config.enablePayment && this._model.getData().bookingStatus == "Available") {
                 $('#paymentButton').addClass('disabled');
+                utils.tracking('button', 'clicked', 'continue-to-payment');
                 ajaxUtils.bookListing(data, params);
             } else {
                 $('#paymentButton').removeClass('disabled');

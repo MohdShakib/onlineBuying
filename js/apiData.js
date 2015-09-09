@@ -95,6 +95,13 @@ var getProjectData = (function() {
                         validUnitFlag = true;
                     }
 
+                    if(tower.stableViewAngles && (tower.stableViewAngles.indexOf(unitInfo.rotationAngle) == -1) && unitInfo.rotationAngle){
+                        tower.stableViewAngles.push(unitInfo.rotationAngle);
+                        tower.stableViewAngles.sort(function(a, b) {
+                            return a - b;
+                        });
+                    }
+                    
                     if (tower.listings[unitIdentifier] && validUnitFlag) {
                         tower.listings[unitIdentifier].rotationAnglesAvailable = tower.listings[unitIdentifier].rotationAnglesAvailable;
                         tower.listings[unitIdentifier].rotationAnglesAvailable.push(unitInfo.rotationAngle);
@@ -405,6 +412,19 @@ var getProjectData = (function() {
             towers = {},
             tower;
 
+        // Media
+        for (i in projectDetail.media) {
+            if (projectDetail.media[i].objectMediaType.type == 'ListingOnlineSale') {
+                var url = projectDetail.media[i].absoluteUrl;
+                if (url) {
+                    projectData.assetsUrl = url.substr(0, url.lastIndexOf('/') + 1);
+                }
+                if (!config.localZip && projectData.assetsUrl) {
+                    zipPath = projectData.assetsUrl;
+                    zipImagePath = zipPath + 'img/';
+                }
+            }
+        }
 
         var projectIdentifier = utils.getIdentifier(projectDetail.name);
         projectData.projectId = projectDetail.projectId;
@@ -474,20 +494,6 @@ var getProjectData = (function() {
             }
         }
 
-        // Media
-        for (i in projectDetail.media) {
-            if (projectDetail.media[i].objectMediaType.type == 'ListingOnlineSale') {
-                var url = projectDetail.media[i].absoluteUrl;
-                if (url) {
-                    projectData.assetsUrl = url.substr(0, url.lastIndexOf('/') + 1);
-                }
-                if (!config.localZip && projectData.assetsUrl) {
-                    zipPath = projectData.assetsUrl;
-                    zipImagePath = zipPath + 'img/';
-                }
-            }
-        }
-
         // City
         projectData.city = projectDetail.locality.suburb.city.label;
 
@@ -505,6 +511,7 @@ var getProjectData = (function() {
             towers[towerIdentifier].listings = {};
             towers[towerIdentifier].rotationAngle = {};
             towers[towerIdentifier].totalAvailableCount = 0; //contains count for total flats available in the tower
+            towers[towerIdentifier].stableViewAngles = [];
             towers[towerIdentifier].bookingStatus = bookingStatusMap['1'];
             towersUnitInfo[towerIdentifier] = {};
             towers[towerIdentifier].unitInfo = [];

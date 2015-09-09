@@ -26,10 +26,12 @@
         "BaseView": true,
         "BookingController": true,
         "BookingView": true,
+        "chatCss" : true,
         "config": true,
         "envConfig": true,
         "ErrorPageController": true,
         "ErrorPageView": true,
+        "ga": true,
         "getProjectData": true,
         "initializeRoutes": true,
         "MasterplanController": true,
@@ -44,8 +46,7 @@
         "UnitplaninfoController": true,
         "UnitplaninfoModel": true,
         "UnitplaninfoView": true,
-        "utils": true,
-        "chatCss" : true
+        "utils": true
     },
     "-W065": true
 }

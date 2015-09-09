@@ -11,6 +11,7 @@ var TowerselectedModel = (function() {
         this._rootdata = rootdata;
 
         this._currentRotationAngle = towerAngle ? '' + towerAngle : '0';
+        this._stableViewAngles = data.stableViewAngles || [];
         this._filteredListings = null;
         this._filteredAvailableCount = data.totalAvailableCount || 0;
         this._selectedListing = null;
@@ -39,6 +40,9 @@ var TowerselectedModel = (function() {
                 return {};
             }
             return this._rootdata;
+        },
+        getStableViewAngles: function(){
+            return this._stableViewAngles;
         },
         getCurrentRotationAngle: function() {
             return this._currentRotationAngle;

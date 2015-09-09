@@ -6,11 +6,6 @@
 "use strict";
 var TowerselectedController = (function() {
 
-    var rotateAngleHash = {
-        '0': '180',
-        '180': '0'
-    };
-
     function TowerselectedController(model, view) {
         this._model = model;
         this._view = view;
@@ -19,6 +14,24 @@ var TowerselectedController = (function() {
     }
 
     TowerselectedController.prototype = {
+        getNewRotationAngle: function(currentRotationAngle, anticlockwise){
+            var stableAngles = this._model.getStableViewAngles(),
+            totalStableAngles = stableAngles.length,
+            currentAngleIndex = stableAngles.indexOf(currentRotationAngle);
+            var nextAngle = currentRotationAngle;
+            if(totalStableAngles > 1 && currentAngleIndex > -1){
+                if(!currentAngleIndex){ // when 0 index
+                    nextAngle = anticlockwise ? stableAngles[totalStableAngles-1] : stableAngles[1];
+                }else if(currentAngleIndex == totalStableAngles-1){
+                    nextAngle = anticlockwise ? stableAngles[currentAngleIndex-1] : stableAngles[0];
+                }else{
+                    nextAngle = anticlockwise ? stableAngles[currentAngleIndex-1] : stableAngles[currentAngleIndex+1];
+                }
+
+            }
+
+            return nextAngle;
+        },
         attachListeners: function() {
             var _this = this;
 
@@ -39,8 +52,8 @@ var TowerselectedController = (function() {
             // Tower Rotation
             this._view._towerRotateClicked.attach(function(sender, element) {
                 var currentRotationAngle = _this._model.getCurrentRotationAngle();
-                var newRotationAngle = rotateAngleHash[currentRotationAngle] || '0';
                 var isAnticlockwise = $(element).data('anticlockwise');
+                var newRotationAngle = _this.getNewRotationAngle(currentRotationAngle, isAnticlockwise);
                 _this._model.updateCurrentRotationAngle(newRotationAngle);
                 _this._view.rotateTower(currentRotationAngle, newRotationAngle, isAnticlockwise);
             });
@@ -63,11 +76,15 @@ var TowerselectedController = (function() {
                 var floorGroup = dataset.svalue + " " + dataset.evalue;
                 _this.toggleFilterOption(_this._filters.floor, floorGroup, element);
             });
-            this._view._entranceFilterOptionClick.attach(function(sender, element) {
-                var dataset = $(element).data();
-                var entrance = dataset.value;
-                _this.toggleFilterOption(_this._filters.entrance, entrance, element);
-            });
+
+            if(!config.removeFacingFilter){
+                this._view._entranceFilterOptionClick.attach(function(sender, element) {
+                    var dataset = $(element).data();
+                    var entrance = dataset.value;
+                    _this.toggleFilterOption(_this._filters.entrance, entrance, element);
+                });
+            }
+
             this._view._priceFilterOptionClick.attach(function(sender, element) {
                 var dataset = $(element).data();
                 var priceGroup = dataset.svalue + " " + dataset.evalue;

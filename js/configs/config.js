@@ -7,6 +7,7 @@ var config = (function() {
 
         // Independent App
         apisJson: false,
+        cityJson: true, // to read cities from json
         localZip: false,
 
         // Flags
@@ -18,6 +19,7 @@ var config = (function() {
         polyHoverFlag: false,
         readDataFromJson: true,
         chatEnabled: true,
+        removeFacingFilter: true,
 
         // Variables
         towerRotationSpeed: 100, // delay between 2 consecutive frames in miliseconds

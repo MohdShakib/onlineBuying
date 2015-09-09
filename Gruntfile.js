@@ -77,8 +77,13 @@ module.exports = function(grunt) {
             test: {
                 options: {
                     data: {
-                        env: 'prod',
-                        cdn: ''
+                        env: 'local',
+                        cdn: '',
+                        ga: {
+                            key: "UA-22638191-12",
+                            gtmKey1: "GTM-W9KBLB",
+                            gtmKey2: "GTM-W99WHH"
+                        }
                     },
                     process: true
                 },
@@ -90,7 +95,12 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         env: 'dev',
-                        cdn: '/4d-view/'
+                        cdn: '/4d-view/',
+                        ga: {
+                            key: "UA-22638191-12",
+                            gtmKey1: "GTM-W9KBLB",
+                            gtmKey2: "GTM-W99WHH"
+                        }
                     },
                     process: true
                 },
@@ -102,7 +112,12 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         env: 'qa',
-                        cdn: '/4d-view/'
+                        cdn: '/4d-view/',
+                        ga: {
+                            key: "UA-22638191-12",
+                            gtmKey1: "GTM-W9KBLB",
+                            gtmKey2: "GTM-W99WHH"
+                        }
                     },
                     process: true
                 },
@@ -114,7 +129,12 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         env: 'qaui',
-                        cdn: '/4d-view/'
+                        cdn: '/4d-view/',
+                        ga: {
+                            key: "UA-22638191-12",
+                            gtmKey1: "GTM-W9KBLB",
+                            gtmKey2: "GTM-W99WHH"
+                        }
                     },
                     process: true
                 },
@@ -126,7 +146,12 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         env: 'beta',
-                        cdn: 'https://beta-thirdeyestatic.proptiger-ws.com/'
+                        cdn: 'https://beta-thirdeyestatic.proptiger-ws.com/',
+                        ga: {
+                            key: "UA-22638191-12",
+                            gtmKey1: "GTM-W9KBLB",
+                            gtmKey2: "GTM-W99WHH"
+                        }
                     },
                     process: true
                 },
@@ -138,7 +163,12 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         env: 'prod',
-                        cdn: 'https://thirdeyestatic.proptiger.com/'
+                        cdn: 'https://thirdeyestatic.proptiger.com/',
+                        ga: {
+                            key: "UA-22638191-1",
+                            gtmKey1: "GTM-NPQ9LQ",
+                            gtmKey2: "GTM-PSHVM6"
+                        }
                     },
                     process: true
                 },
@@ -197,10 +227,12 @@ module.exports = function(grunt) {
 
     grunt.registerTask('obfuscator', function() {
         var done = this.async();
-        obfuscator(grunt.config.get('obfuscator').src,function(res){
+        obfuscator(grunt.config.get('obfuscator').src, function(res) {
             grunt.file.write(grunt.config.get('obfuscator').dest, res);
             done();
-        }, function(){ console.log('Could not obfuscate'); });
+        }, function() {
+            console.log('Could not obfuscate');
+        });
     });
 
     grunt.registerTask('default', [
@@ -208,7 +240,7 @@ module.exports = function(grunt) {
         'processhtml:local'
     ]);
 
-    grunt.registerTask('local', [
+    grunt.registerTask('test', [
         'base',
         'processhtml:test',
         'replace'
