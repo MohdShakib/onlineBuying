@@ -15,15 +15,14 @@ var BaseView = (function() {
     var containerMap = {
         'bottomFormGroupContainer': '<div class="bottom-form-group" id="bottom-form-group"></div>',
         'compareUnitsContainer': '<div  class="compare-units-container" id="' + config.compareUnitscontainerId + '"></div>',
-		'promptLeadFormContainer': '<div class="promptLeadFormBox" id="prompt-lead-form"></div>'
+        'promptLeadFormContainer': '<div class="promptLeadFormBox" id="prompt-lead-form"></div>'
     };
-
 
     function getElements() {
         var elements = {
             'bottomFormGroupContainer': $('#bottom-form-group'),
             'compareUnitsContainer': $('#' + config.compareUnitscontainerId),
-			'promptLeadFormContainer': $('#prompt-lead-form')
+            'promptLeadFormContainer': $('#prompt-lead-form')
         };
         return elements;
     }
@@ -31,16 +30,23 @@ var BaseView = (function() {
     function BaseView(model) {
         this._model = model;
         this._elements = null;
-        this._showLoaderComplete = new Event(this);
+
         this._bottomGroupButtonClick = new Event(this);
-        this._compareBackButtonClick = new Event(this);
-        this._unitCompareButtonClick = new Event(this);
         this._formPopupCloseClick = new Event(this);
+        this._showLoaderComplete = new Event(this);
+
+        // Get Call back
+        this._getCallbackClick = new Event(this);
+
+        // Compare popup
+        this._unitCompareButtonClick = new Event(this);
+        this._removeShortlistClick = new Event(this);
+
+        // Compare page
+        this._compareBackButtonClick = new Event(this);
         this._unitComponentMouseEnter = new Event(this);
         this._unitComponentMouseLeave = new Event(this);
-        this._removeShortlistClick = new Event(this);
         this._bookingClick = new Event(this);
-        this._closeClick = new Event(this);
     }
 
     BaseView.prototype = {
@@ -69,6 +75,16 @@ var BaseView = (function() {
             $('.pro-contact-actions ul.conect-tab').css({
                 bottom: '-45px'
             });
+        },
+        buildSkeleton: function(containerList) {
+            var key, htmlCode = '';
+            for (key in containerList) {
+                if (containerList.hasOwnProperty(key) && containerMap[containerList[key]]) {
+                    htmlCode += containerMap[containerList[key]];
+                }
+            }
+            $('#' + config.baseContainerId).html(htmlCode);
+            this._elements = getElements();
         },
         compareUnitsContainerReady: false,
         prepareCompareUnitsContainer: function(flag) {
@@ -255,87 +271,81 @@ var BaseView = (function() {
             var chatdisabled = config.chatEnabled ? '' : 'disabled';
             var htmlCode = '<div class="pro-contact-actions">' +
                 '<div class="form-pop-up transition">' +
-                '<span class="close-form icon icon-cross fs12"></span>' +
-                '<div class="call-box">' +
-                '<p>Get callback from our property advisor<br></p>' +
-                //+'<div class="chat-tab-box">'
-                //+'<a href="/" class="transition">Start Chatting</a>'
-                //+'<a href="/" class="transition active">We will Call</a>'
-                //+'</div>'
-                '<form id="call-box-form" name="call-box-form" novalidate onSubmit="return false;"  >' +
-                ' <div class="form-input-box"><input class="text" id="' + config.callBox.nameId + '" name="name" placeholder="enter your name" type="text" required />' +
-                '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div> ' + ' <div class="form-input-box"><input class="text" id="' + config.callBox.emailId + '" name="email" placeholder="enter your email id" type="email" required />' +
-                '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
-                '<div class="phone-no-holder"><div class="form-input-box fleft c-code">' +
-                '<input id="' + config.callBox.countryId + '" type="hidden" value="1"/>' +
-                '<input id="' + config.callBox.countryCodeId + '" class="text" name="' + config.callBox.phoneId + '" type="text" value="+91" readonly/> ' +
-                '<span class="icon icon-arrow_btm fs12 transition dropdown-arrow"></span><ul class="country-dropDown" style="display:none;"></ul></div><div class="form-input-box fright mobile-number-field"><input class="text" id="' + config.callBox.phoneId + '" name="phone" placeholder="enter your phone number" type="text" minlength="10" maxlength="15" required />' +
-                '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div><div class="clear-fix"></div></div>' +
-                '<div class="submit" id="call-box-submit-id">Get Instant Callback' +
-                '<input type="submit" id="call-box-submit-id" />' +
-                '</div>' +
-                '</form>' +
-                '</div>' +
-                '<div class="compare-box">' +
-                '<p>Shortlisted Units are listed below' +
-                '</p>' +
-                '<div class="unit-box fleft" id="' + config.shortListedUnitListId + '">' +
-                '</div>' +
-                '<div class="clear-fix"></div>' +
-                '<div id="' + config.unitCompareButtonId + '" class="submit"><input type="submit" />Compare Unit Plans</div>' +
-                '</div>' +
-                '<div class="share-box">' +
-                '<p>Share details with family / friends</p>' +
-                '<div class="share-social">' +
-                '<a href="javascript:void(0);" onclick="utils.socialClicked(\'facebook\')" ><span class="icon icon-facebook"></span>Facebook</a>' +
-                //+'<div class="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"></div>'
-                '<span class="social-or">or</span>' +
-                //+'<div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>'
-                '<a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Goggle+</a>' +
-                '</div>' +
-                '<form id="share-box-form" novalidate name="share-box-form" onSubmit="return false;"  >' +
-                '<div class="form-input-box"><input class="text" id="' + config.emailBox.nameId + '" placeholder="enter your name" type="text" required />' +
-                '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
-                '<div class="form-input-box"><input class="text" id="' + config.emailBox.emailId + '" placeholder="enter your friend\'s email id" type="email" required />' +
-                '<div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
-                '<div class="submit" id="share-box-submit-id"><input type="submit" />Share</div>' +
-                '</form>' +
-                '</div>' +
-                '<div class="live-chat">' +
-                '<div id="' + config.tawkApiId + '"></div>' +
-                '</div>' +
+                '   <span class="close-form icon icon-cross fs12"></span>' +
+                '   <div class="call-box">' +
+                '       <p>Get callback from our property advisor<br></p>' +
+                //'     <div class="chat-tab-box">' +
+                //'         <a href="/" class="transition">Start Chatting</a>' +
+                //'         <a href="/" class="transition active">We will Call</a>' +
+                //'     </div>' +
+                '       <form id="call-box-form" name="call-box-form" novalidate onSubmit="return false;"  >' +
+                '           <div class="form-input-box"><input class="text" id="' + config.callBox.nameId + '" name="name" placeholder="enter your name" type="text" required /><div class="error-box ' + config.errorMsgClass + '">This field is required</div></div> ' +
+                '           <div class="form-input-box"><input class="text" id="' + config.callBox.emailId + '" name="email" placeholder="enter your email id" type="email" required /><div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
+                '           <div class="phone-no-holder"><div class="form-input-box fleft c-code">' +
+                '           <input id="' + config.callBox.countryCodeId + '" class="text" name="' + config.callBox.phoneId + '" type="text" value="+91" readonly/> ' +
+                '           <span class="icon icon-arrow_btm fs12 transition dropdown-arrow"></span><ul class="country-dropDown" style="display:none;"></ul></div> ' +
+                '           <div class="form-input-box fright mobile-number-field"><input class="text" id="' + config.callBox.phoneId + '" name="phone" placeholder="enter your phone number" type="text" minlength="10" maxlength="15" required data-countryid="1" data-countrycode="+91"/>' +
+                '           <div class="error-box ' + config.errorMsgClass + '">This field is required</div></div><div class="clear-fix"></div></div>' +
+                '           <div class="submit" id="' + config.callBox.submitButtonId + '">Get Instant Callback' +
+                '           <input type="submit" />' +
+                '           </div>' +
+                '       </form>' +
+                '   </div>' +
+                '   <div class="compare-box">' +
+                '       <p>Shortlisted Units are listed below</p>' +
+                '       <div class="unit-box fleft" id="' + config.shortListedUnitListId + '"></div>' +
+                '       <div class="clear-fix"></div>' +
+                '       <div id="' + config.unitCompareButtonId + '" class="submit"><input type="submit" />Compare Unit Plans</div>' +
+                '   </div>' +
+                '   <div class="share-box">' +
+                '       <p>Share details with family / friends</p>' +
+                '       <div class="share-social">' +
+                '           <a href="javascript:void(0);" onclick="utils.socialClicked(\'facebook\')" ><span class="icon icon-facebook"></span>Facebook</a>' +
+                //'         <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"></div>' +
+                '           <span class="social-or">or</span>' +
+                //'         <div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>' +
+                '           <a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Goggle+</a>' +
+                '       </div>' +
+                '       <form id="share-box-form" novalidate name="share-box-form" onSubmit="return false;"  >' +
+                '           <div class="form-input-box"><input class="text" id="' + config.emailBox.nameId + '" placeholder="enter your name" type="text" required />' +
+                '           <div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
+                '           <div class="form-input-box"><input class="text" id="' + config.emailBox.emailId + '" placeholder="enter your friend\'s email id" type="email" required />' +
+                '           <div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
+                '           <div class="submit" id="share-box-submit-id"><input type="submit" />Share</div>' +
+                '       </form>' +
+                '   </div>' +
+                '   <div class="live-chat">' +
+                '       <div id="' + config.tawkApiId + '"></div>' +
+                '   </div>' +
                 '</div>' +
                 '<ul class="conect-tab transition">' +
-                '<li>' +
-                '<a href="javascript:void(0);"  data-name="call-box">' +
-                '<p>Need Clarification?</br>' +
-                'Get in touch' +
-                '</p>' +
-                '<span class="icon icon-phone"></span>' +
-                '</a>' +
+                '<li><a href="javascript:void(0);"  data-name="call-box">' +
+                '   <p>Need Clarification?</br>Get in touch</p>' +
+                '   <span class="icon icon-phone"></span>' +
+                '   </a>' +
                 '</li>' +
                 '<li>' +
-                '<a href="javascript:void(0);" id="heart-added" data-name="compare-box">' +
-                '<p>Compare among</br> shortlisted flats</p>' +
-                '<span class="icon icon-heart ' + config.blinkElementClass + '">' +
-                '<label class="like-count br50" id="' + config.likeCountId + '">0</label>' +
-                '</span>' +
-                '</a>' +
+                '   <a href="javascript:void(0);" id="heart-added" data-name="compare-box">' +
+                '   <p>Compare among</br> shortlisted flats</p>' +
+                '   <span class="icon icon-heart ' + config.blinkElementClass + '">' +
+                '   <label class="like-count br50" id="' + config.likeCountId + '">0</label>' +
+                '   </span>' +
+                '   </a>' +
                 '</li>' +
                 '<li>' +
-                '<a href="javascript:void(0);" data-name="share-box">' +
-                '<p>Share with</br> friends' +
-                //+'<span>Sign In Now!</span>'
-                '</p>' +
-                '<span class="icon icon-share"></span>' +
-                '</a>' +
+                '   <a href="javascript:void(0);" data-name="share-box">' +
+                '   <p>Share with</br> friends' +
+                //' <span>Sign In Now!</span>'+
+                '   </p>' +
+                '   <span class="icon icon-share"></span>' +
+                '   </a>' +
                 '</li>' +
                 '<li>' +
-                '<a href="javascript:void(0);" data-name="live-chat" class="chat-widget '+ chatdisabled +'">' +
-                '<p>Live support' +
-                '</p>' +
-                '<span class="icon icon-chat"></span>' +
-                '</a>' +
+                '   <a href="javascript:void(0);" data-name="live-chat" class="chat-widget ' + chatdisabled + '">' +
+                '   <p>Live support' +
+                '   </p>' +
+                '   <span class="icon icon-chat"></span>' +
+                '   </a>' +
                 '</li>' +
                 '</ul>' +
                 '</div>';
@@ -349,33 +359,33 @@ var BaseView = (function() {
                 self: this
             });
         },
-		
-		promptLeadFormContainer: function() {
+
+        promptLeadFormContainer: function() {
             var _this = this;
             var htmlCode = '<div class="form">' +
-                	'<img src="images/form-gift-icon.jpg" alt="">'+
-                	'<h1>Hurry! 2 days left</h1>'+
-                    '<p>Looking for more details?<span>Get expert opinion</span></p>'+
-                    '<form action="">'+
-                    	'<div class="formField"><input type="text" placeholder="Name..."></div>'+
-                        '<div class="formField"><input type="text" placeholder="Email ID..."></div>'+
-                        '<div class="formField">'+
-                        	'<div class="col">'+
-                            	'<select>'+
-                                	'<option>India</option>'+
-                                    '<option>United Arab Emirates</option>'+
-                                '</select>'+
-                            '</div>'+
-                        	'<div class="mobile col"><input type="text" placeholder="Mobile No..."><span>+91 <i class="icon icon-arrow_btm"></i></span></div><div class="clear-fix"></div>'+
-                        '</div>'+
-                        '<input type="button" class="payment-btn" value="Get Call Back">'+
-                    '</form>'+
-                    '<span class="close">X</span>'+
+                '<img src="images/form-gift-icon.jpg" alt="">' +
+                '<h1>Hurry! 2 days left</h1>' +
+                '<p>Looking for more details?<span>Get expert opinion</span></p>' +
+                '<form action="">' +
+                '   <div class="formField"><input type="text" placeholder="Name..."></div>' +
+                '   <div class="formField"><input type="text" placeholder="Email ID..."></div>' +
+                '   <div class="formField">' +
+                '       <div class="col">' +
+                '           <select>' +
+                '               <option>India</option>' +
+                '               <option>United Arab Emirates</option>' +
+                '           </select>' +
+                '       </div>' +
+                '       <div class="mobile col"><input type="text" placeholder="Mobile No..."><span>+91 <i class="icon icon-arrow_btm"></i></span></div><div class="clear-fix"></div>' +
+                '   </div>' +
+                '   <input type="button" class="payment-btn" value="Get Call Back">' +
+                '</form>' +
+                '<span class="close">X</span>' +
                 '</div>';
 
             this._elements.promptLeadFormContainer.html(htmlCode);
         },
-		
+
         getCountriesList: function(countries, params) {
             var htmlCode = '',
                 totalCountries = countries ? countries.length : 0;
@@ -391,8 +401,11 @@ var BaseView = (function() {
             $('.phone-no-holder').off('click').on('click', '.country-list-item', function() {
                 var countryId = $(this).data('countryid');
                 var countryCode = $(this).data('countrycode');
-                $('#' + config.callBox.countryId).val(countryId);
                 $('#' + config.callBox.countryCodeId).attr('value', countryCode);
+
+                // For validation
+                $('#' + config.callBox.phoneId).data('countryid', countryId);
+                $('#' + config.callBox.phoneId).data('countrycode', countryCode);
             });
         },
         bottomFormGroupContainerEvents: function() {
@@ -412,9 +425,10 @@ var BaseView = (function() {
                 event.stopPropagation();
             });
 
-            this._elements.bottomFormGroupContainer.on('click', '#call-box-submit-id', function(event) {
-                var callBoxForm = $('#call-box-form');
-                _this.callBackFormSubmit(callBoxForm);
+            this._elements.bottomFormGroupContainer.on('click', '#' + config.callBox.submitButtonId, function(event) {
+                if (!$(this).hasClass(config.disabledClass)) {
+                    _this._getCallbackClick.notify(this);
+                }
             });
 
             this._elements.bottomFormGroupContainer.on('keyup', '#call-box-form', function(event) {
@@ -461,15 +475,16 @@ var BaseView = (function() {
             });
 
             this._elements.bottomFormGroupContainer.on('click', '.chat-widget', function(event) {
-                if(config.chatEnabled) {
-                  // window.Tawk_API.maximize();
+                if (config.chatEnabled) {
+                    // window.Tawk_API.maximize();
                 }
             });
         },
-        callBackFormSubmit: function(form) {
+        getValidatedCallBackData: function() {
+            var form = $('#call-box-form');
             var validationFlag = utils.validateForm(form, true);
             if (!validationFlag) {
-                return false;
+                return null;
             }
 
             var name = $('#' + config.callBox.nameId).val(),
@@ -485,6 +500,14 @@ var BaseView = (function() {
                 'projectId': utils.projectId
             };
 
+            return data;
+        },
+        callBackFormSubmit: function(data) {
+            var form = $('#call-box-form');
+
+            // Disable submit button until we get a response from api
+            $('#' + config.callBox.submitButtonId).addClass(config.disabledClass);
+
             var params = {
                 successCallback: this.submitLeadSuccessCallback,
                 errorCallback: this.submitLeadErrorCallback,
@@ -494,12 +517,14 @@ var BaseView = (function() {
         },
         submitLeadSuccessCallback: function(response, params) {
             params.formRef[0].reset();
+            $('#' + config.callBox.submitButtonId).removeClass(config.disabledClass);
             $('.callback-message').remove();
             $('.call-box').append('<div class="callback-message form-msg-success">You will get a call back shortly.</div>');
         },
         submitLeadErrorCallback: function(response, params) {
+            $('#' + config.callBox.submitButtonId).removeClass(config.disabledClass);
             $('.callback-message').remove();
-            $('.call-box').append('<div class="callback-message form-msg-failure">Please try again later.</div>');
+            $('.call-box').append('<div class="callback-message form-msg-failure">Something went wrong. Please contact +91-11-66764181 for assistance.</div>');
         },
         shareOnEmailSubmit: function(form) {
             var rootdata = this._model.getRootdata();
@@ -570,24 +595,14 @@ var BaseView = (function() {
             this.prepareCompareUnitsContainer(true);
             $('#' + config.compareUnitscontainerId).fadeIn(900);
         },
-        buildSkeleton: function(containerList) {
-            var key, htmlCode = '';
-            for (key in containerList) {
-                if (containerList.hasOwnProperty(key) && containerMap[containerList[key]]) {
-                    htmlCode += containerMap[containerList[key]];
-                }
-            }
-            $('#' + config.baseContainerId).html(htmlCode);
-            this._elements = getElements();
-        },
-        changeChatCss : function(data) {
+        changeChatCss: function(data) {
             $('.live-chat').find('iframe').contents().find('style').append(data);
             var chatWidget = $('.live-chat').find('iframe').contents();
-            $(chatWidget).find('#formInnerHeight').find("fieldset").each(function(index,d){
-              var label = $(d).find("label").text();
-              $(d).find("input").attr("placeholder",label);
-              $(d).find("textarea").attr("placeholder",label);
-             });
+            $(chatWidget).find('#formInnerHeight').find("fieldset").each(function(index, d) {
+                var label = $(d).find("label").text();
+                $(d).find("input").attr("placeholder", label);
+                $(d).find("textarea").attr("placeholder", label);
+            });
         }
     };
 

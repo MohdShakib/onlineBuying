@@ -79,6 +79,7 @@ module.exports = function(grunt) {
                     data: {
                         env: 'local',
                         cdn: '',
+                        baseHref: '/',
                         ga: {
                             key: "UA-22638191-12",
                             gtmKey1: "GTM-W9KBLB",
@@ -96,6 +97,7 @@ module.exports = function(grunt) {
                     data: {
                         env: 'dev',
                         cdn: '/4d-view/',
+                        baseHref: '/4d-view/',
                         ga: {
                             key: "UA-22638191-12",
                             gtmKey1: "GTM-W9KBLB",
@@ -113,6 +115,7 @@ module.exports = function(grunt) {
                     data: {
                         env: 'qa',
                         cdn: '/4d-view/',
+                        baseHref: '/4d-view/',
                         ga: {
                             key: "UA-22638191-12",
                             gtmKey1: "GTM-W9KBLB",
@@ -130,6 +133,7 @@ module.exports = function(grunt) {
                     data: {
                         env: 'qaui',
                         cdn: '/4d-view/',
+                        baseHref: '/4d-view/',
                         ga: {
                             key: "UA-22638191-12",
                             gtmKey1: "GTM-W9KBLB",
@@ -147,6 +151,7 @@ module.exports = function(grunt) {
                     data: {
                         env: 'beta',
                         cdn: 'https://beta-thirdeyestatic.proptiger-ws.com/',
+                        baseHref: '/4d-view/',
                         ga: {
                             key: "UA-22638191-12",
                             gtmKey1: "GTM-W9KBLB",
@@ -164,6 +169,7 @@ module.exports = function(grunt) {
                     data: {
                         env: 'prod',
                         cdn: 'https://thirdeyestatic.proptiger.com/',
+                        baseHref: '/4d-view/',
                         ga: {
                             key: "UA-22638191-1",
                             gtmKey1: "GTM-NPQ9LQ",

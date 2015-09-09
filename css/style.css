@@ -1139,9 +1139,9 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .error span.error{ display:block;}
 .input-box.active{ border-color:white !important; box-shadow:0 -2px 0 #f28d19 inset;}
 .input-box a.nationalty-link{padding:36px 17px 5px 17px; z-index:2; display:block; position:relative;font-size:13px; text-transform:uppercase; color:#9e9e9e; z-index:2; cursor: pointer;}
-.input-box a.nationalty-link .icon{ transform:rotate(90deg); -moz-transform:rotate(90deg); -webkit-transform:rotate(90deg); float:right; color:#494949;}
+.input-box a.nationalty-link .icon{ transform:rotate(-90deg); -moz-transform:rotate(-90deg); -webkit-transform:rotate(-90deg); float:right; color:#494949;}
 .input-box a.nationalty-link.active{ color:#f28d19;}
-.input-box a.nationalty-link.active .icon{transform:rotate(-90deg); -moz-transform:rotate(-90deg); -webkit-transform:rotate(-90deg);}
+.input-box a.nationalty-link.active .icon{transform:rotate(90deg); -moz-transform:rotate(90deg); -webkit-transform:rotate(90deg);}
 .nationalty-drop-down{ margin:0; padding:44px 0 0 0; max-height:150px; overflow:auto; list-style:none; border:1px solid #ccc; position:absolute; right:0; top:12px; width:100%; z-index:3;}
 .nationalty-drop-down li{ background:#fff; cursor: pointer;}
 .nationalty-drop-down li a{ font-size:13px; display:block; color:#9e9e9e; padding:10px 20px;}

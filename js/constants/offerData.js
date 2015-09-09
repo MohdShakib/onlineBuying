@@ -239,166 +239,166 @@ var offerData = {
         "5189543": [
             "Gift Voucher Worth Rs. 25,000/-",
             "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
-            "Pay 10% now & No EMI till Possession",
+            "Pay 10% On booking & Get 10:70:10:10 Scheme",
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ],
         "5285093": [
             "Gift Voucher Worth Rs. 25,000/-",
             "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
-            "Pay 10% now & No EMI till Possession",
+            "Pay 10% On booking & Get 10:70:10:10 Scheme",
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ],
         "5189544": [
             "Gift Voucher Worth Rs. 25,000/-",
             "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
-            "Pay 10% now & No EMI till Possession",
+            "Pay 10% On booking & Get 10:70:10:10 Scheme",
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ],
         "5189545": [
             "Gift Voucher Worth Rs. 25,000/-",
             "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
-            "Pay 10% now & No EMI till Possession",
+            "Pay 10% On booking & Get 10:70:10:10 Scheme",
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ],
         "5285094": [
             "Gift Voucher Worth Rs. 25,000/-",
             "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
-            "Pay 10% now & No EMI till Possession",
+            "Pay 10% On booking & Get 10:70:10:10 Scheme",
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ],
         "5189546": [
             "Gift Voucher Worth Rs. 25,000/-",
             "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
-            "Pay 10% now & No EMI till Possession",
+            "Pay 10% On booking & Get 10:70:10:10 Scheme",
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ],
         "5238056": [
             "Gift Voucher Worth Rs. 25,000/-",
             "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
-            "Pay 10% now & No EMI till Possession",
+            "Pay 10% On booking & Get 10:70:10:10 Scheme",
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ],
         "5238057": [
             "Gift Voucher Worth Rs. 25,000/-",
             "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
-            "Pay 10% now & No EMI till Possession",
+            "Pay 10% On booking & Get 10:70:10:10 Scheme",
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ],
         "5238058": [
             "Gift Voucher Worth Rs. 25,000/-",
             "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
-            "Pay 10% now & No EMI till Possession",
+            "Pay 10% On booking & Get 10:70:10:10 Scheme",
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ],
         "5238059": [
             "Gift Voucher Worth Rs. 25,000/-",
             "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
-            "Pay 10% now & No EMI till Possession",
+            "Pay 10% On booking & Get 10:70:10:10 Scheme",
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ],
         "5238060": [
             "Gift Voucher Worth Rs. 40,000/-",
             "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
-            "Pay 10% now & No EMI till Possession",
+            "Pay 10% On booking & Get 10:70:10:10 Scheme",
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ],
         "5238061": [
             "Gift Voucher Worth Rs. 40,000/-",
             "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
-            "Pay 10% now & No EMI till Possession",
+            "Pay 10% On booking & Get 10:70:10:10 Scheme",
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ],
         "5241244": [
             "Gift Voucher Worth Rs. 40,000/-",
             "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
-            "Pay 10% now & No EMI till Possession",
+            "Pay 10% On booking & Get 10:70:10:10 Scheme",
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ],
         "5241229": [
             "Gift Voucher Worth Rs. 40,000/-",
             "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
-            "Pay 10% now & No EMI till Possession",
+            "Pay 10% On booking & Get 10:70:10:10 Scheme",
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ],
         "5238062": [
             "Gift Voucher Worth Rs. 40,000/-",
             "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
-            "Pay 10% now & No EMI till Possession",
+            "Pay 10% On booking & Get 10:70:10:10 Scheme",
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ],
         "5238063": [
             "Gift Voucher Worth Rs. 40,000/-",
             "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
-            "Pay 10% now & No EMI till Possession",
+            "Pay 10% On booking & Get 10:70:10:10 Scheme",
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ],
         "5241230": [
             "Gift Voucher Worth Rs. 40,000/-",
             "Discount of Rs.200/sq.ft on Construction Linked Payment Plan",
-            "Pay 10% now & No EMI till Possession",
+            "Pay 10% On booking & Get 10:70:10:10 Scheme",
             "Flexible Possession Linked Payment Plan - 20:30:30:20"
         ]
     },
     "667404": {
         "5260736": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5271829": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5260739": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5268869": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5271806": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5260737": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5269283": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5260740": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5269282": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5260738": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5262780": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5267974": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5268870": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5271807": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5267973": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ]
     },
     "669434": {

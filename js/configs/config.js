@@ -57,7 +57,8 @@ var config = (function() {
             countryId: 'call-box-country-id',
             phoneId: 'call-box-phone',
             countryDropdownArrowClass: 'dropdown-arrow',
-            countryDropdownClass: 'country-dropDown'
+            countryDropdownClass: 'country-dropDown',
+            submitButtonId: 'call-box-submit-id'
         },
         emailBox: {
             nameId: 'email-box-name',
@@ -84,6 +85,7 @@ var config = (function() {
         baseContainerId: "base-container",
         dynamicResizeClass: "dynamic-resize",
         errorMsgClass: "error-msg",
+        disabledClass: "disabled",
 
         towerDetailContainerId: "tower-detail-container",
         leftPanelButtonClass: 'left-panel-button',
