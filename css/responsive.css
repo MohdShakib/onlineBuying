@@ -12,3 +12,20 @@
 	.compare-units-container .compare-unit-img{ height:380px;}
 	.compare-unit-box .img-svg-container.drag-drop img{ height:100%;}
 }
+
+@media screen and (max-width: 768px) {
+	.payment-container { padding: 30px; padding-top: 80px; }
+	.payment-right-container { height: auto; }
+	.payment-right p { margin-bottom: 0; padding-right: 0; }
+	.payment-left { width: 100%; float: none; }
+	.payment-right { padding-left: 0; padding-top: 30px; position: static; }
+	.terms-condition { margin: 0; margin-top: 30px; }
+}
+
+@media screen and (max-width: 480px) {
+	.title-text, .title-text .phoneNumber { font-size: 14px; }
+	.title-text .phoneNumber .icon { font-size: 15px; }
+	.title-text p { padding-left: 50px; text-align: left; }
+	.personal-detail-box table tr td { padding: 0!important; width: 100%; display: block; }
+	.payment-container .property-detail { font-size: 12px; }
+}
