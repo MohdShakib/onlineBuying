@@ -135,37 +135,37 @@ var offerData = {
     },
     "513534": {
         "5086135": [
-            "Pay 10% On booking & Get 10:70:10:10 Scheme"
+            "Pay 10% now & No EMI till Possession"
         ],
         "5030858": [
-            "Pay 10% On booking & Get 10:70:10:10 Scheme"
+            "Pay 10% now & No EMI till Possession"
         ],
         "5277375": [
-            "Pay 10% On booking & Get 10:70:10:10 Scheme"
+            "Pay 10% now & No EMI till Possession"
         ],
         "5030859": [
-            "Pay 10% On booking & Get 10:70:10:10 Scheme"
+            "Pay 10% now & No EMI till Possession"
         ],
         "5032216": [
-            "Pay 10% On booking & Get 10:70:10:10 Scheme"
+            "Pay 10% now & No EMI till Possession"
         ],
         "5287272": [
-            "Pay 10% On booking & Get 10:70:10:10 Scheme"
+            "Pay 10% now & No EMI till Possession"
         ],
         "5031165": [
-            "Pay 10% On booking & Get 10:70:10:10 Scheme"
+            "Pay 10% now & No EMI till Possession"
         ],
         "5030860": [
-            "Pay 10% On booking & Get 10:70:10:10 Scheme"
+            "Pay 10% now & No EMI till Possession"
         ],
         "5277376": [
-            "Pay 10% On booking & Get 10:70:10:10 Scheme"
+            "Pay 10% now & No EMI till Possession"
         ],
         "5032217": [
-            "Pay 10% On booking & Get 10:70:10:10 Scheme"
+            "Pay 10% now & No EMI till Possession"
         ],
         "5268096": [
-            "Pay 10% On booking & Get 10:70:10:10 Scheme"
+            "Pay 10% now & No EMI till Possession"
         ]
     },
     "668509": {
@@ -342,63 +342,63 @@ var offerData = {
     "667404": {
         "5260736": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5271829": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5260739": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5268869": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5271806": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5260737": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5269283": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5260740": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5269282": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5260738": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5262780": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5267974": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5268870": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5271807": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ],
         "5267973": [
             "Discount of Rs.200/sq.ft",
-            "Pay 10% now and No EMI till Possession"
+            "Pay 10% On booking & Get 10:70:10:10 Scheme"
         ]
     },
     "669434": {

@@ -18,7 +18,6 @@ var BaseView = (function() {
         'promptLeadFormContainer': '<div class="promptLeadFormBox" id="prompt-lead-form"></div>'
     };
 
-
     function getElements() {
         var elements = {
             'bottomFormGroupContainer': $('#bottom-form-group'),
