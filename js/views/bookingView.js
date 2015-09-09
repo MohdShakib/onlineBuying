@@ -159,25 +159,32 @@ var BookingView = (function() {
                 '                    <tr>' +
                 '                        <td width="50%">' +
                 '                            <div id="booking-first-name" class="input-box transition ' + config.bookingInputDivClass + '">' +
-                '                                <label class="transition">First Name</label>' +
+                '                                <label class="transition">Full Name</label>' +
                 '                                <input type="text" required />' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
                 '                        </td>' +
-                '                        <td width="50%">' +
+				'                        <td width="50%" style="display: none;">' +
                 '                            <div id="booking-last-name" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">Last Name</label>' +
                 '                                <input type="text" />' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
                 '                        </td>' +
-                '                    </tr>' +
-                '                    <tr>' +
-                '                        <td width="50%">' +
+				'						<td width="50%">' +
                 '                            <div id="booking-email" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">email</label>' +
                 '                                <input type="email" required />' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
+                '                            </div>' +
+                '                        </td>' +
+                '                    </tr>' +
+                '                    <tr>' +
+                '                        <td width="50%">' +
+                '                            <div id="booking-nationality" class="input-box transition no-paddind  ' + config.bookingSelectionDivClass + '">' +
+                '                                <a class="nationalty-link selectedCountry" data-countrycode="0">Country<span class="icon fs18 icon-next transition"></span></a>' +
+                '                                <ul class="' + config.nationalityDropdownClass + ' transition ' + config.bookingDropdownClass + '" style="display:none;">' +
+                '                                </ul>' +
                 '                            </div>' +
                 '                        </td>' +
                 '                        <td width="50%">' +
@@ -202,13 +209,6 @@ var BookingView = (function() {
                 '                                <label class="transition">pan number</label>' +
                 '                                <input type="text" />' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
-                '                            </div>' +
-                '                        </td>' +
-                '                        <td width="50%">' +
-                '                            <div id="booking-nationality" class="input-box transition no-paddind  ' + config.bookingSelectionDivClass + '">' +
-                '                                <a class="nationalty-link selectedCountry" data-countrycode="0">Country<span class="icon fs18 icon-next transition"></span></a>' +
-                '                                <ul class="' + config.nationalityDropdownClass + ' transition ' + config.bookingDropdownClass + '" style="display:none;">' +
-                '                                </ul>' +
                 '                            </div>' +
                 '                        </td>' +
                 '                    </tr>' +
