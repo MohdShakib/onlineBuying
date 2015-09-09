@@ -280,7 +280,7 @@ var getProjectData = (function() {
         for (var amenity in amenities) {
             if (hasOwnProperty.call(amenities, amenity)) {
                 var amenityData = amenities[amenity];
-                projectData.amenities[amenityData.amenityName] = {
+                projectData.amenities[utils.getIdentifier(amenityData.amenityName)] = {
                     amenityName: amenityData.amenityName,
                     imageUrl: zipImagePath + amenityData.imageName,
                     amenitySvg: amenityData.amenitySvg
@@ -431,6 +431,7 @@ var getProjectData = (function() {
         projectData.projectUrl = projectDetail.URL;
         projectData.baseUrl =    config.urlAppName+'/'+projectIdentifier + '-' + projectDetail.projectId;
         projectData.projectName = projectDetail.name;
+        projectData.projectIdentifier = utils.getIdentifier(projectDetail.name);
         projectData.builderName = projectDetail.builder.name;
         projectData.address = projectDetail.address;
         projectData.bgImage = zipImagePath + config.backgroundImage;

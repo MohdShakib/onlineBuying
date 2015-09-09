@@ -16,42 +16,53 @@ var BaseController = (function() {
         attachListeners: function() {
             var _this = this;
             this._view._bottomGroupButtonClick.attach(function(sender, element) {
+                var data = _this._model.getRootdata(),
+                    elementData = element.dataset,
+                    label = data.projectIdentifier + '-' + data.projectId + '-' + elementData.name;
+                utils.tracking('bottomPanel', 'clicked', label);
                 _this._view.bottomGroupButtonClicked(element);
-            });
-
-            this._view._compareBackButtonClick.attach(function(sender, element) {
-                _this._view.compareBackButtonClicked(element);
             });
 
             this._view._formPopupCloseClick.attach(function(sender, element) {
                 _this._view.formPopupCloseClicked();
             });
 
+            this._view._showLoaderComplete.attach(function(sender, element) {
+                _this._view.prepareCompareUnitsContainer();
+            });
+
+            // Get Call back
+            this._view._getCallbackClick.attach(function(sender, element) {
+                var data = _this._model.getRootdata(),
+                    label = data.projectIdentifier + '-' + data.projectId + '-callbackButton',
+                    callbackData = _this._view.getValidatedCallBackData();
+                if(callbackData != null) {
+                    utils.tracking('button', 'clicked', label);
+                    _this._view.callBackFormSubmit(callbackData);
+                }
+            });
+
+            // Compare popup
             this._view._unitCompareButtonClick.attach(function(sender, element) {
                 _this._view.unitCompareButtonClicked(element);
             });
+            this._view._removeShortlistClick.attach(function(sender, data) {
+                utils.removeFromShortListed(data.unitIdentifier, data.unitUniqueIdentifier);
+            });
 
-            // Unit Component
+            // Compare page
+            this._view._compareBackButtonClick.attach(function(sender, element) {
+                _this._view.compareBackButtonClicked(element);
+            });
             this._view._unitComponentMouseEnter.attach(function(sender, params) {
                 _this._view.unitComponentMouseEnter(params);
             });
             this._view._unitComponentMouseLeave.attach(function() {
                 _this._view.unitComponentMouseLeave();
             });
-
-            this._view._removeShortlistClick.attach(function(sender, data) {
-                utils.removeFromShortListed(data.unitIdentifier, data.unitUniqueIdentifier);
-            });
-
-            // Booking Event
             this._view._bookingClick.attach(function(sender, element) {
                 utils.changeUrl(element);
             });
-
-            this._view._showLoaderComplete.attach(function(sender, element) {
-                _this._view.prepareCompareUnitsContainer();
-            });
-            
 
         },
         generateTemplate: function() {
