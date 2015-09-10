@@ -100,7 +100,6 @@ var BaseView = (function() {
             var rootdata = this._model.getRootdata();
             var compareKeys = Object.keys(compareList);
             var indexOfCurrentUnit = compareKeys.indexOf(utils.unitUniqueAdd);
-
             var htmlCode = '',
                 firstUniqueIdentifier;
 
@@ -108,8 +107,9 @@ var BaseView = (function() {
 
             htmlCode += '<div class="compare-container"><div class="drag-info">Please Drag &amp; Drop from the list into the box to compare unit plans</div>';
             for (var uniqueIdentifier in compareList) {
+                var item = compareList[uniqueIdentifier];
                 firstUniqueIdentifier = uniqueIdentifier;
-                var imageUrl = compareList[uniqueIdentifier].unitTypeData.unitImageUrl;
+                var imageUrl = item[item.unitTypeIdentifier].unitImageUrl;
                 htmlCode += '<div class="' + config.compareBottomBox + '" id="' + config.compareBottomBox + '-' + uniqueIdentifier + '" data-uniqueidentifier="' + uniqueIdentifier + '">' +
                     '<p >' + compareList[uniqueIdentifier].unitName + '</p>' +
                     '<img class="' + config.lazyloadClass + '" src="' + imageUrl + '" />' +
@@ -191,22 +191,73 @@ var BaseView = (function() {
             var compareList = this._model.getCompareList(),
                 rootdata = this._model.getRootdata(),
                 item = compareList[uniqueIdentifier],
-                imageUrl = item ? item.unitTypeData.unitImageUrl : undefined,
+                unitTypeArr = item.unitTypeIdentifierArr || [],
+                isDuplex = (unitTypeArr.length == 2) ? true : false,
+                imageUrl = item ? (isDuplex ? [item[unitTypeArr[0]].unitImageUrl, item[unitTypeArr[1]].unitImageUrl] : item[item.unitTypeIdentifier].unitImageUrl ) : undefined,
                 link = rootdata.baseUrl + '/' + item.towerIdentifier + '/' + item.rotationAngle + '/' + item.unitIdentifier + '/booking',
                 htmlCode = '<div class="tower-unit-detail-container ' + config.unitDataContainer + '"></div>';
-
             htmlCode += '<span class="icon fs14 icon-cross close-compare-box"></span><div class="compare-unit-box-detail top-right-component"><span>' + item.unitName + '</span> | <span>' + item.bedrooms + '</span> | <span>' + item.size + '</span> | <span>' + item.price + '</span> | <span>' + item.floor + '</span></div>';
             htmlCode += '<div class="top-right-component">' +
-                '<div class="book-now" >' +
-                '<a data-url="' + link + '">Book now</a><span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(item.bookingAmount) + '/- <br>(No Cancellation Charges)</span>' +
-                '</div>';
-            htmlCode += '<div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + uniqueIdentifier + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' +
-                '<img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img ' + config.lazyloadClass + '"  src="' + imageUrl + '"> </div>';
+                        '<div class="book-now" >' +
+                        '<a data-url="' + link + '">Book now</a><span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(item.bookingAmount) + '/- <br>(No Cancellation Charges)</span>' +
+                        '</div>';
+
+            if(isDuplex) {
+                    htmlCode += '<div id="slider" class="slider"><a class="control_next">></a> <a class="control_prev"><</a>'+
+                                '<ul>'+
+                                ' <li> <div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + unitTypeArr[0] + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' +
+                                '     <img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img ' + config.lazyloadClass + '"  src="' + imageUrl[0] + '"> </div></li>'+
+                                ' <li> <div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + unitTypeArr[1] + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' +
+                                '     <img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img ' + config.lazyloadClass + '"  src="' + imageUrl[1] + '"> </div></li>'+
+                                '</ul></div>';
+            } else {
+              htmlCode += '<div class="slider"><ul><li><div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + item.unitTypeIdentifier + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' +
+                  '<img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img ' + config.lazyloadClass + '"  src="' + imageUrl + '"> </div></li></ul></div>';
+
+            }
 
             $('#' + config.compareBottomBox + '-' + uniqueIdentifier + ' ').addClass('selected');
 
             $(compareBox).html(htmlCode);
-            this.unit3dSvgContainer(uniqueIdentifier);
+            this.compareBoxSliderEvents();
+            if(isDuplex) {
+              this.unit3dSvgContainer(uniqueIdentifier, unitTypeArr[0], unitTypeArr[0]);
+              this.unit3dSvgContainer(uniqueIdentifier, unitTypeArr[1], unitTypeArr[1]);
+            } else {
+              this.unit3dSvgContainer(uniqueIdentifier, item.unitTypeIdentifier, item.unitTypeIdentifier);
+            }
+        },
+        compareBoxSliderEvents: function() {
+          var slideCount = $('#slider ul li').length;
+          var slideWidth = $('#slider ul li div').width();
+          var slideHeight = $('#slider ul li div').height();
+          var sliderUlWidth = slideCount * slideWidth;
+
+          function moveLeft() {
+              $('#slider ul').animate({
+                  left: + slideWidth
+              }, 200, function () {
+                  $('#slider ul li:last-child').prependTo('#slider ul');
+                  $('#slider ul').css('left', '');
+              });
+          }
+
+          function moveRight() {
+              $('#slider ul').animate({
+                  left: - slideWidth
+              }, 200, function () {
+                  $('#slider ul li:first-child').appendTo('#slider ul');
+                  $('#slider ul').css('left', '');
+              });
+          }
+
+          $('a.control_prev').click(function () {
+              moveLeft();
+          });
+
+          $('a.control_next').click(function () {
+              moveRight();
+          });
         },
         removeFromCompareBox: function(element) {
             var parentElement = $(element).parent();
@@ -222,15 +273,20 @@ var BaseView = (function() {
                 $('#' + config.compareBottomBox + '-' + unitUniqueIdentifier + ' ').removeClass('selected');
             }
         },
-        unit3dSvgContainer: function(uniqueIdentifier) {
+        unit3dSvgContainer: function(uniqueIdentifier, unitTypeDataName, idName) {
             var compareList = this._model.getCompareList();
-            var unitTypeData = compareList[uniqueIdentifier].unitTypeData;
+            var unitTypeData;
+            if(unitTypeDataName) {
+               unitTypeData = compareList[uniqueIdentifier][unitTypeDataName];
+            } else {
+               unitTypeData = compareList[uniqueIdentifier].unitTypeData;
+            }
             var svgElements = utils.getUnit3dSvgPolygonElements(unitTypeData);
-
-            $('#unit-compare-svg-container' + uniqueIdentifier).empty();
+            var id = idName || uniqueIdentifier;
+            $('#unit-compare-svg-container' + id).empty();
             if (svgElements && svgElements.length) {
                 for (var i = 0; i < svgElements.length; i++) {
-                    $('#unit-compare-svg-container' + uniqueIdentifier).append(svgElements[i]);
+                    $('#unit-compare-svg-container' + id).append(svgElements[i]);
                 }
                 this.unit3dSvgContainerEvents();
             }
