@@ -28,6 +28,7 @@
         "BookingView": true,
         "chatCss" : true,
         "config": true,
+        "cookieUtils": true,
         "envConfig": true,
         "ErrorPageController": true,
         "ErrorPageView": true,

@@ -80,7 +80,8 @@ var BookingView = (function() {
         },
         paymentScreen: function(data, rotationdata, rootdata) {
             var paymentBtnClass = 'make-payment',
-                propertyBooking = this._model.getPropertyBooking();
+                propertyBooking = this._model.getPropertyBooking(),
+                cookie = this._model.getCookie();
             var offerBanner, propertyDetail, titleText, offerList, getCallbackCode, url, imageUrl, unitDetails, paymentBreakup;
 
             if (propertyBooking) {
@@ -100,7 +101,7 @@ var BookingView = (function() {
                 }
 
                 propertyDetail = "<div class='property-detail'><span>" + data.bedrooms + " BHK + " + data.bathrooms + " T, " + data.size + " " + data.measure + "</span><span class='right'><span class='icon icon-rupee_final fleft fs18'></span>" + utils.getReadablePriceInWord(data.price) + "</span></div>";
-                titleText = "<br>You will have the flexibility to change your selection later.";
+                titleText = "<br>Your amount will be fully refunded in case you cancel the booking within 15 days.";
                 getCallbackCode = '<a class="fleft transition callback-btn get-callback">Get Call Back</a>';
                 url = 'href= "' + envConfig.apiURL + 'online-buying/' + utils.getIdentifier(rootdata.city) + '/' + utils.getIdentifier(rootdata.builderName) + '/' + utils.getIdentifier(rootdata.projectName) + '-' + rootdata.projectId + '"';
             } else {
@@ -125,44 +126,70 @@ var BookingView = (function() {
                 }
             }
             var isDuplex = false;
-            if(rotationdata.unitTypeIdentifierArr) {
-              isDuplex = (rotationdata.unitTypeIdentifierArr.length == 2) ? true : false;
+            if (rotationdata.unitTypeIdentifierArr) {
+                isDuplex = (rotationdata.unitTypeIdentifierArr.length == 2) ? true : false;
             }
-            if(isDuplex) {
-              imageUrl = [];
-              for(var i =0; i < rotationdata.unitTypeIdentifierArr.length; i++) {
-                var img = rootdata.unitTypes[rotationdata.unitTypeIdentifierArr[i]].unitImageUrl;
-                imageUrl.push(img);
-              }
+            if (isDuplex) {
+                imageUrl = [];
+                for (var i = 0; i < rotationdata.unitTypeIdentifierArr.length; i++) {
+                    var img = rootdata.unitTypes[rotationdata.unitTypeIdentifierArr[i]].unitImageUrl;
+                    imageUrl.push(img);
+                }
             }
             if (!config.enablePayment || data.bookingStatus != 'Available') {
                 paymentBtnClass = 'disabled';
+            }
+
+            // Default Cookie Values
+            var nameCookie = "",
+                nameActiveClass = "",
+                phoneCookie = "",
+                phoneActiveClass = "",
+                emailCookie = "",
+                emailActiveClass = "",
+                countryIdCookie = 1,
+                countryNameCookie = "India",
+                countryCodeCookie = "+91";
+            if (cookie.name) {
+                nameCookie = cookie.name;
+                nameActiveClass = 'active';
+            }
+            if (cookie.phone) {
+                phoneCookie = cookie.phone;
+                phoneActiveClass = 'active';
+            }
+            if (cookie.email) {
+                emailCookie = cookie.email;
+                emailActiveClass = 'active';
+            }
+            if (cookie.countryId) {
+                countryIdCookie = cookie.countryId;
             }
 
             var code = '<div class="payment-container">' +
                 '        <div class="title-text">' +
                 '           <a class="close-payment transition" ' + url + '><span class="icon icon-arrow_left fs24"></span></a>' +
                 '           <p>Payment Screen</p>';
-                if (ivrsData[rootdata.projectId] !== undefined) {
-                    code += '<span class="phoneNumber"><i class="icon icon-phone"></i> ' + ivrsData[rootdata.projectId] + '</span>';
-                }
-                code += '        </div>' +
+            if (ivrsData[rootdata.projectId] !== undefined) {
+                code += '<span class="phoneNumber"><i class="icon icon-phone"></i> ' + ivrsData[rootdata.projectId] + '</span>';
+            }
+            code += '        </div>' +
                 '        <div class="payment-left">' + offerBanner +
                 '        <div class="payment-left-top">' +
                 '                <h3>' + rootdata.builderName + ' ' + rootdata.projectName + ' <span>' + rootdata.address + '</span></h3>' + propertyDetail +
                 '                <div class="payment-photo-box">';
-                if(isDuplex) {
-                  code += '   <div id="slider" class="slider"> <a class="control_next">></a> <a class="control_prev"><</a>'+
-                          '     <ul>'+
-                          '     <li><img src="' + imageUrl[0] + '" width="100%" alt=""></li>'+
-                          '     <li><img src="' + imageUrl[1] + '" width="100%" alt=""></li>'+
-                          '     </ul>'+
-                          '   </div>';
-                } else {
-                    code += '<img src="' + imageUrl + '" width="100%" alt="">';
+            if (isDuplex) {
+                code += '   <div id="slider" class="slider"> <a class="control_next">></a> <a class="control_prev"><</a>' +
+                    '     <ul>' +
+                    '     <li><img src="' + imageUrl[0] + '" width="100%" alt=""></li>' +
+                    '     <li><img src="' + imageUrl[1] + '" width="100%" alt=""></li>' +
+                    '     </ul>' +
+                    '   </div>';
+            } else {
+                code += '<img src="' + imageUrl + '" width="100%" alt="">';
 
-                }
-                code += '</div>' + unitDetails +
+            }
+            code += '</div>' + unitDetails +
                 '        </div>' + paymentBreakup + offerList +
                 '            <div class="booking-amount">' +
                 '            <h3>Booking Amount: <span><span class="icon icon-rupee"><span><strong>' + utils.getReadablePrice(data.bookingAmount) + ' </strong><label>only</label></span></h3> ' +
@@ -172,49 +199,49 @@ var BookingView = (function() {
                 '        <div class="payment-right">' +
                 '            <div id="booking-user-details" class="payment-right-container">' +
                 '            <h3>Nice Selection!</h3>' +
-                '            <p>Now, make a token payment of <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- to book your choice.' + titleText + '</p>' +
+                '            <p>Now, pay just <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- as token payment to block your selection.' + titleText + '</p>' +
                 '            <div class="personal-detail-box">' +
                 '                <div class="table">' +
-				'					<div class="tr">'+
+                '                   <div class="tr">' +
                 '                        <div class="td">' +
-                '                            <div id="booking-first-name" class="input-box transition ' + config.bookingInputDivClass + '">' +
-                '                                <label class="transition">Full Name</label>' +
-                '                                <input type="text" required />' +
+                '                            <div id="booking-first-name" class="input-box transition ' + config.bookingInputDivClass + ' ' + nameActiveClass + '">' +
+                '                                <label class="transition">Name</label>' +
+                '                                <input type="text" required value="' + nameCookie + '">' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
                 '                        </div>' +
-				'                        <div class="td" style="display: none;">' +
+                '                        <div class="td" style="display: none;">' +
                 '                            <div id="booking-last-name" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">Last Name</label>' +
                 '                                <input type="text" />' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
                 '                        </div>' +
-				'						<div class="td">' +
-                '                            <div id="booking-email" class="input-box transition ' + config.bookingInputDivClass + '">' +
+                '                       <div class="td">' +
+                '                            <div id="booking-email" class="input-box transition ' + config.bookingInputDivClass + ' ' + emailActiveClass + '">' +
                 '                                <label class="transition">email</label>' +
-                '                                <input type="email" required />' +
+                '                                <input type="email" required value="' + emailCookie + '"/>' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
                 '                        </div>' +
-				'						<div class="clear-fix"></div>'+
+                '                       <div class="clear-fix"></div>' +
                 '                    </div>' +
                 '                    <div class="tr">' +
                 '                        <div class="td">' +
                 '                            <div id="booking-nationality" class="input-box transition no-paddind  ' + config.bookingSelectionDivClass + '">' +
-                '                                <a class="nationalty-link selectedCountry active" data-countryid="1">India<span class="icon fs18 icon-next transition"></span></a>' +
+                '                                <a class="nationalty-link selectedCountry active" data-countryid="' + countryIdCookie + '">' + countryNameCookie + '<span class="icon fs18 icon-next transition"></span></a>' +
                 '                                <ul class="' + config.nationalityDropdownClass + ' transition ' + config.bookingDropdownClass + '" style="display:none;">' +
                 '                                </ul>' +
                 '                            </div>' +
                 '                        </div>' +
                 '                        <div class="td">' +
-                '                            <div id="booking-phone" class="input-box transition ' + config.bookingInputDivClass + '">' +
+                '                            <div id="booking-phone" class="input-box transition ' + config.bookingInputDivClass + ' ' + phoneActiveClass + '">' +
                 '                                <label class="transition">phone</label>' +
-                '                                <input type="text" name="phone" id="phone-number" data-countrycode="+91" data-countryid="1" data-countryname="India" required />' +
+                '                                <input type="text" name="phone" id="phone-number" data-countrycode="' + countryCodeCookie + '" data-countryid="' + countryIdCookie + '" data-countryname="' + countryNameCookie + '" required value="' + phoneCookie + '"/>' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
                 '                        </div>' +
-				'						<div class="clear-fix"></div>'+
+                '                       <div class="clear-fix"></div>' +
                 '                    </div>' +
                 '                    <div class="tr">' +
                 //'                        <div class="td">' +
@@ -233,8 +260,8 @@ var BookingView = (function() {
                 '                        </div>' +
                 '                        <div class="td">&nbsp;' +
                 '                        </div>' +
-				'						<div class="clear-fix"></div>'+
-				'					</div>'+
+                '                       <div class="clear-fix"></div>' +
+                '                   </div>' +
                 '                </div>' +
                 '            </div>' +
                 '            <div class="terms-condition">' +
@@ -260,21 +287,33 @@ var BookingView = (function() {
             this._elements.paymentScreen.html(code);
             ajaxUtils.getCountries({
                 successCallback: this.getCountriesList,
-                self: this
+                self: this,
+                countryId: countryIdCookie
             });
             this.paymentScreenEvents();
             utils.slideIt();
         },
         getCountriesList: function(countries, params) {
             var htmlCode = '',
-                totalCountries = countries ? countries.length : 0;
+                totalCountries = countries ? countries.length : 0,
+                country = {};
             if (countries && totalCountries) {
                 for (var i = 0; i < totalCountries; i++) {
                     htmlCode += '<li class="country-list-item" data-countryid="' + countries[i].countryId + '" data-countrycode="' + countries[i].countryCode + '"><a class="transition">' + countries[i].label + '</a></li>';
+
+                    // Getting Cookie country
+                    if (countries[i].countryId == params.countryId) {
+                        country = countries[i];
+                    }
                 }
             }
             $('.' + config.nationalityDropdownClass).html(htmlCode);
             params.self.countryDropdownEvents();
+
+            // Populating values as per cookies
+            $('#phone-number').data('countrycode', country.countryCode);
+            $('#phone-number').data('countryname', country.label);
+            $('.' + config.bookingSelectionDivClass + ' .selectedCountry').text(country.label);
         },
         countryDropdownEvents: function() {
             $('.' + config.nationalityDropdownClass).off('click').on('click', '.country-list-item', function(event) {
