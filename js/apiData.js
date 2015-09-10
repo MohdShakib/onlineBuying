@@ -2,10 +2,6 @@
 var getProjectData = (function() {
 
     var zipPath = './zip-file/';
-    if(config.setJsonDataPriorityForTest){
-        zipPath = './zip-file-test/';
-    }
-
     var zipImagePath = zipPath + 'img/';
 
     function processCsvDataToArray(allText) {
@@ -735,6 +731,12 @@ var getProjectData = (function() {
 
 
     function getProjectData(projectId, isPropertyPaymentUrl, callback) {
+
+        if(config.setJsonDataPriorityForTest){
+            zipPath = './zip-file-test/';
+        }
+        zipImagePath = zipPath + 'img/';
+
         if (projectData && Object.keys(projectData).length) {
             return callback(projectData);
         }
