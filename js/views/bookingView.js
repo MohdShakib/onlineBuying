@@ -82,7 +82,6 @@ var BookingView = (function() {
             var paymentBtnClass = 'make-payment',
                 propertyBooking = this._model.getPropertyBooking(),
                 cookie = this._model.getCookie();
-
             var offerBanner, propertyDetail, titleText, offerList, getCallbackCode, url, imageUrl, unitDetails, paymentBreakup;
 
             if (propertyBooking) {
@@ -126,16 +125,31 @@ var BookingView = (function() {
                     offerBanner = '<div class="special-offers">' + '<span></span>' + '<p>Save <strong><label       class="icon fs14 icon-rupee"></label>' + utils.getReadablePrice(data.discount) + '</strong> ' + data.discountDescription + '</p>' + '</div>';
                 }
             }
-
+            var isDuplex = false;
+            if (rotationdata.unitTypeIdentifierArr) {
+                isDuplex = (rotationdata.unitTypeIdentifierArr.length == 2) ? true : false;
+            }
+            if (isDuplex) {
+                imageUrl = [];
+                for (var i = 0; i < rotationdata.unitTypeIdentifierArr.length; i++) {
+                    var img = rootdata.unitTypes[rotationdata.unitTypeIdentifierArr[i]].unitImageUrl;
+                    imageUrl.push(img);
+                }
+            }
             if (!config.enablePayment || data.bookingStatus != 'Available') {
                 paymentBtnClass = 'disabled';
             }
 
             // Default Cookie Values
-            var nameCookie="", nameActiveClass="",
-                phoneCookie="", phoneActiveClass="",
-                emailCookie="", emailActiveClass="",
-                countryIdCookie=1, countryNameCookie="India", countryCodeCookie="+91";
+            var nameCookie = "",
+                nameActiveClass = "",
+                phoneCookie = "",
+                phoneActiveClass = "",
+                emailCookie = "",
+                emailActiveClass = "",
+                countryIdCookie = 1,
+                countryNameCookie = "India",
+                countryCodeCookie = "+91";
             if (cookie.name) {
                 nameCookie = cookie.name;
                 nameActiveClass = 'active';
@@ -148,7 +162,7 @@ var BookingView = (function() {
                 emailCookie = cookie.email;
                 emailActiveClass = 'active';
             }
-            if(cookie.countryId) {
+            if (cookie.countryId) {
                 countryIdCookie = cookie.countryId;
             }
 
@@ -156,16 +170,26 @@ var BookingView = (function() {
                 '        <div class="title-text">' +
                 '           <a class="close-payment transition" ' + url + '><span class="icon icon-arrow_left fs24"></span></a>' +
                 '           <p>Payment Screen</p>';
-                if (ivrsData[rootdata.projectId] !== undefined) {
-                    code += '<span class="phoneNumber"><i class="icon icon-phone"></i> ' + ivrsData[rootdata.projectId] + '</span>';
-                }
-                code += '        </div>' +
+            if (ivrsData[rootdata.projectId] !== undefined) {
+                code += '<span class="phoneNumber"><i class="icon icon-phone"></i> ' + ivrsData[rootdata.projectId] + '</span>';
+            }
+            code += '        </div>' +
                 '        <div class="payment-left">' + offerBanner +
                 '        <div class="payment-left-top">' +
                 '                <h3>' + rootdata.builderName + ' ' + rootdata.projectName + ' <span>' + rootdata.address + '</span></h3>' + propertyDetail +
-                '                <div class="payment-photo-box">' +
-                '                   <img src="' + imageUrl + '" width="100%" alt="">' +
-                '                </div>' + unitDetails +
+                '                <div class="payment-photo-box">';
+            if (isDuplex) {
+                code += '   <div id="slider" class="slider"> <a class="control_next">></a> <a class="control_prev"><</a>' +
+                    '     <ul>' +
+                    '     <li><img src="' + imageUrl[0] + '" width="100%" alt=""></li>' +
+                    '     <li><img src="' + imageUrl[1] + '" width="100%" alt=""></li>' +
+                    '     </ul>' +
+                    '   </div>';
+            } else {
+                code += '<img src="' + imageUrl + '" width="100%" alt="">';
+
+            }
+            code += '</div>' + unitDetails +
                 '        </div>' + paymentBreakup + offerList +
                 '            <div class="booking-amount">' +
                 '            <h3>Booking Amount: <span><span class="icon icon-rupee"><span><strong>' + utils.getReadablePrice(data.bookingAmount) + ' </strong><label>only</label></span></h3> ' +
@@ -177,65 +201,68 @@ var BookingView = (function() {
                 '            <h3>Nice Selection!</h3>' +
                 '            <p>Now, pay just <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- as token payment to block your selection.' + titleText + '</p>' +
                 '            <div class="personal-detail-box">' +
-                '                <table cellpadding="0" cellspacing="0" width="100%">' +
-                '                    <tr>' +
-                '                        <td width="50%">' +
+                '                <div class="table">' +
+                '                   <div class="tr">' +
+                '                        <div class="td">' +
                 '                            <div id="booking-first-name" class="input-box transition ' + config.bookingInputDivClass + ' ' + nameActiveClass + '">' +
                 '                                <label class="transition">Name</label>' +
                 '                                <input type="text" required value="' + nameCookie + '">' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
-                '                        </td>' +
-				'                        <td width="50%" style="display: none;">' +
+                '                        </div>' +
+                '                        <div class="td" style="display: none;">' +
                 '                            <div id="booking-last-name" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">Last Name</label>' +
                 '                                <input type="text" />' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
-                '                        </td>' +
-				'						<td width="50%">' +
+                '                        </div>' +
+                '                       <div class="td">' +
                 '                            <div id="booking-email" class="input-box transition ' + config.bookingInputDivClass + ' ' + emailActiveClass + '">' +
                 '                                <label class="transition">email</label>' +
                 '                                <input type="email" required value="' + emailCookie + '"/>' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
-                '                        </td>' +
-                '                    </tr>' +
-                '                    <tr>' +
-                '                        <td width="50%">' +
+                '                        </div>' +
+                '                       <div class="clear-fix"></div>' +
+                '                    </div>' +
+                '                    <div class="tr">' +
+                '                        <div class="td">' +
                 '                            <div id="booking-nationality" class="input-box transition no-paddind  ' + config.bookingSelectionDivClass + '">' +
                 '                                <a class="nationalty-link selectedCountry active" data-countryid="' + countryIdCookie + '">' + countryNameCookie + '<span class="icon fs18 icon-next transition"></span></a>' +
                 '                                <ul class="' + config.nationalityDropdownClass + ' transition ' + config.bookingDropdownClass + '" style="display:none;">' +
                 '                                </ul>' +
                 '                            </div>' +
-                '                        </td>' +
-                '                        <td width="50%">' +
+                '                        </div>' +
+                '                        <div class="td">' +
                 '                            <div id="booking-phone" class="input-box transition ' + config.bookingInputDivClass + ' ' + phoneActiveClass + '">' +
                 '                                <label class="transition">phone</label>' +
                 '                                <input type="text" name="phone" id="phone-number" data-countrycode="' + countryCodeCookie + '" data-countryid="' + countryIdCookie + '" data-countryname="' + countryNameCookie + '" required value="' + phoneCookie + '"/>' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
-                '                        </td>' +
-                '                    </tr>' +
-                '                    <tr>' +
-                //'                        <td width="50%">' +
+                '                        </div>' +
+                '                       <div class="clear-fix"></div>' +
+                '                    </div>' +
+                '                    <div class="tr">' +
+                //'                        <div class="td">' +
                 //'                            <div id="booking-dob" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 //'                                <label class="transition">date of birth (DD/MM/YYY)</label>' +
                 //'                                <input type="text" />' +
                 //'                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 //'                            </div>' +
-                //'                        </td>' +
-                '                        <td width="50%">' +
+                //'                        </div>' +
+                '                        <div class="td">' +
                 '                            <div id="booking-pan" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">pan number</label>' +
                 '                                <input type="text" />' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
-                '                        </td>' +
-                '                        <td width="50%">&nbsp;' +
-                '                        </td>' +
-                '                    </tr>' +
-                '                </table>' +
+                '                        </div>' +
+                '                        <div class="td">&nbsp;' +
+                '                        </div>' +
+                '                       <div class="clear-fix"></div>' +
+                '                   </div>' +
+                '                </div>' +
                 '            </div>' +
                 '            <div class="terms-condition">' +
                 '                <input type="checkbox" id="terms" required />' +
@@ -264,6 +291,7 @@ var BookingView = (function() {
                 countryId: countryIdCookie
             });
             this.paymentScreenEvents();
+            utils.slideIt();
         },
         getCountriesList: function(countries, params) {
             var htmlCode = '',
