@@ -1,8 +1,12 @@
 "use strict";
 var getProjectData = (function() {
 
-    var zipPath = './zip-file/',
-        zipImagePath = zipPath + 'img/';
+    var zipPath = './zip-file/';
+    if(config.setJsonDataPriorityForTest){
+        zipPath = './zip-file-test/';
+    }
+
+    var zipImagePath = zipPath + 'img/';
 
     function processCsvDataToArray(allText) {
         var allTextLines = allText.split(/\r\n|\n/);
@@ -504,13 +508,31 @@ var getProjectData = (function() {
         }
 
         // City
-        projectData.city = projectDetail.locality.suburb.city.label;
+        projectData.city = projectDetail.locality && projectDetail.locality.suburb && projectDetail.locality.suburb.city ? projectDetail.locality.suburb.city.label : '';
+
+
 
         var towersUnitInfo = {},
             towerIdentifier;
+
+        var allTowers = [];
+        if(config.setJsonDataPriorityForTest){
+            utils.getJsonData(zipPath+config.dataFiles.masterplanScreen+ '.json', config.dataFiles.masterplanScreen).then(function(data){
+                allTowers = data;
+                towers_length = data.length;      
+            });
+        }
+
         for (var i = 0; i < towers_length; i += 1) {
 
-            tower = projectDetail.towers[i];
+            if(config.setJsonDataPriorityForTest){
+                tower = projectDetail.towers[0];
+                tower.towerName = allTowers[i].towerName;
+                tower.towerId = i+1;
+            }else{
+                tower = projectDetail.towers[i];
+            }
+            
             towerIdentifier = utils.getIdentifier(tower.towerName);
             towers[towerIdentifier] = {};
             towerMap[tower.towerId] = tower.towerName;
@@ -532,17 +554,41 @@ var getProjectData = (function() {
         projectData.pricingSubcategories = {};
         projectData.specifications = projectDetail.specifications || {};
 
+
+        var allUnits = [];
+        if(config.setJsonDataPriorityForTest){
+            utils.getJsonData(zipPath+config.dataFiles.towerselectScreen+'.json', config.dataFiles.towerselectScreen).then(function(data){
+               allUnits = data;
+               listings_length = data.length;
+            });
+        }
+
+
         for (i = 0; i < listings_length; i += 1) {
-            if (projectDetail.listings[i].isDeleted) {
+            if (!config.setJsonDataPriorityForTest && projectDetail.listings[i].isDeleted) {
                 continue;
             }
-            var towerId = projectDetail.listings[i].towerId;
+            
 
-            var towerName = towerMap[towerId];
+            var towerName, listing, towerId;
+            if(config.setJsonDataPriorityForTest){
+                towerId = allUnits[i].towerId;
+                towerName = allUnits[i].towerName;
+                listing = projectDetail.listings[0];
+                listing.flatNumber = allUnits[i].unitName;
+            }else{
+                towerId = projectDetail.listings[i].towerId;
+                towerName = towerMap[towerId];
+                listing = projectDetail.listings[i];
+            }
+            
+
+
             var towerIdentifier = utils.getIdentifier(towerName);
-            var listing = projectDetail.listings[i],
-                unitIdentifier = utils.getIdentifier(listing.flatNumber),
+            var unitIdentifier = utils.getIdentifier(listing.flatNumber),
                 flatUnit = {};
+
+            
 
             if (config.allUnitsAvailable) {
                 listing.bookingStatusId = 1;
