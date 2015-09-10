@@ -24,6 +24,10 @@ var MasterplanController = (function() {
                 _this._view.towerMouseLeaveEvent(element);
             });
             this._view._menuClick.attach(function(sender, element) {
+                var data = _this._model.getData(),
+                    elementData = element.dataset,
+                    label = data.projectIdentifier + '-' + data.projectId + '-' + elementData.index + '-' + elementData.imageid;
+                utils.tracking('masterPlanTowerMenu', 'clicked', label);
                 utils.changeUrl(element);
             });
             this._view._menuUp.attach(function(sender, element) {
@@ -41,11 +45,18 @@ var MasterplanController = (function() {
                 _this._view.towerMouseLeaveEvent(element);
             });
             this._view._towerSvgClick.attach(function(sender, element) {
+                var data = _this._model.getData(),
+                    elementData = $(element).data(),
+                    label = data.projectIdentifier + '-' + data.projectId + '-' + elementData.index + '-' + elementData.imageid;
+                utils.tracking('masterPlanTowerSvg', 'clicked', label);
                 utils.changeUrl(element);
             });
 
             // Amenity Events
             this._view._amenityClick.attach(function(sender, element) {
+                var data = _this._model.getData(),
+                    label = data.projectIdentifier + '-' + data.projectId + '-' + $(element).attr('id');
+                utils.tracking('masterPlanAmenities', 'clicked', label);
                 _this._view.amenityClickEvent(element);
             });
             this._view._amenityClose.attach(function(sender, element) {

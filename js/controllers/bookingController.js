@@ -28,7 +28,6 @@ var BookingController = (function() {
             // Make payment Event
             this._view._makePayment.attach(function(sender, element) {
                 _this._view.bookListing();
-                _this._view.validateAndSendEmail("ContinueToPayment");
             });
 
             // Get Call Back

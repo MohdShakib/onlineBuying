@@ -125,7 +125,7 @@ var utils = (function() {
 
                 var this_field = $(fields[i]),
                     id = $(this_field).attr('id'),
-                    dep_field = $(form).find('input[name=' + id + ']').val(),
+                    data = $(this_field).data(),
                     value = $(this_field).val(),
                     type = $(this_field).attr('type'),
                     name = $(this_field).attr('name'),
@@ -153,10 +153,14 @@ var utils = (function() {
                     validationFlag = false;
                     $(this_field).parent('div').addClass('error');
                     $(this_field).siblings('.' + config.errorMsgClass).text(invalidEmailMessage);
-                } else if (isRequired && name == 'phone' && !validatePhone(value, dep_field)) {
+                } else if (isRequired && name == 'phone' && !validatePhone(value, data.countrycode)) {
                     validationFlag = false;
                     $(this_field).parent('div').addClass('error');
-                    $(this_field).siblings('.' + config.errorMsgClass).text(invalidNumberMessage);
+                    var updatedNumberMessage = invalidNumberMessage;
+                    if(data.countryname) {
+                        updatedNumberMessage += " for " + data.countryname;
+                    }
+                    $(this_field).siblings('.' + config.errorMsgClass).text(updatedNumberMessage);
                 }
 
             }

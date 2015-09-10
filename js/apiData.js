@@ -68,6 +68,14 @@ var getProjectData = (function() {
                     unitIdentifier = utils.getIdentifier(unitInfo.unitName);
                     unitInfo.unitIdentifier = unitIdentifier;
                     unitInfo.unitTypeIdentifier = unitInfo.unitType ? utils.getIdentifier(unitInfo.unitType) : null;
+                    unitInfo.unitTypeIdentifierArr = [];
+                    unitInfo.unitTypeIdentifierArr.push(unitInfo.unitTypeIdentifier);
+                    for(var k in unitInfo){
+                      if(k.indexOf('unitType-') >  -1 && unitInfo[k] !== "") {
+                        var unitTypeIdentifierI = utils.getIdentifier(unitInfo[k]);
+                        unitInfo.unitTypeIdentifierArr.push(unitTypeIdentifierI);
+                      }
+                    }
                     unitTowerIdentifier = utils.getIdentifier(unitInfo.towerName);
 
                     if (unitTowerIdentifier !== towerIdentifier) { // If listing does not belong to towerIdentifier then skip
@@ -105,7 +113,7 @@ var getProjectData = (function() {
                             return a - b;
                         });
                     }
-                    
+
                     if (tower.listings[unitIdentifier] && validUnitFlag) {
                         tower.listings[unitIdentifier].rotationAnglesAvailable = tower.listings[unitIdentifier].rotationAnglesAvailable;
                         tower.listings[unitIdentifier].rotationAnglesAvailable.push(unitInfo.rotationAngle);
@@ -284,7 +292,7 @@ var getProjectData = (function() {
         for (var amenity in amenities) {
             if (hasOwnProperty.call(amenities, amenity)) {
                 var amenityData = amenities[amenity];
-                projectData.amenities[amenityData.amenityName] = {
+                projectData.amenities[utils.getIdentifier(amenityData.amenityName)] = {
                     amenityName: amenityData.amenityName,
                     imageUrl: zipImagePath + amenityData.imageName,
                     amenitySvg: amenityData.amenitySvg
@@ -340,7 +348,7 @@ var getProjectData = (function() {
         var json5 = utils.getJsonData(zipPath + config.dataFiles.towerRotation + json, config.dataFiles.towerRotation);
 
         return $.when(json1, json2, json3, json4, json5).done(function(data1, data2, data3, data4, data5){
-            
+
             var towers = processJsonArrayToObject(data1[0], 'towerName');
             if (towers && projectData.towers && Object.keys(projectData.towers).length && Object.keys(towers).length) {
                 useTowersCSVData(towers);
@@ -362,7 +370,7 @@ var getProjectData = (function() {
 
             utils.log(projectData);
             return projectData;
-        
+
         });
 
     }
@@ -435,6 +443,7 @@ var getProjectData = (function() {
         projectData.projectUrl = projectDetail.URL;
         projectData.baseUrl =    config.urlAppName+'/'+projectIdentifier + '-' + projectDetail.projectId;
         projectData.projectName = projectDetail.name;
+        projectData.projectIdentifier = utils.getIdentifier(projectDetail.name);
         projectData.builderName = projectDetail.builder.name;
         projectData.address = projectDetail.address;
         projectData.bgImage = zipImagePath + config.backgroundImage;
@@ -739,7 +748,6 @@ var getProjectData = (function() {
         parseApiData(apiData);
 
         if(isPropertyPaymentUrl){ // to skip json read for property buying
-            console.log(projectData);
            return callback(projectData);
         }
 
@@ -754,7 +762,7 @@ var getProjectData = (function() {
             callback(projectData);
             console.log(projectData);
         }
-        
+
         return projectData;
     }
 
