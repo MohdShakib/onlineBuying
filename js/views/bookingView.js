@@ -176,21 +176,21 @@ var BookingView = (function() {
                 '            <div class="personal-detail-box">' +
                 '                <table cellpadding="0" cellspacing="0" width="100%">' +
                 '                    <tr>' +
-                '                        <td width="50%">' +
+                '                        <td width="50%" class="full">' +
                 '                            <div id="booking-first-name" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">Full Name</label>' +
                 '                                <input type="text" required />' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
                 '                        </td>' +
-				'                        <td width="50%" style="display: none;">' +
+				'                        <td width="50%" class="full" style="display: none;">' +
                 '                            <div id="booking-last-name" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">Last Name</label>' +
                 '                                <input type="text" />' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
                 '                        </td>' +
-				'						<td width="50%">' +
+				'						<td width="50%" class="full">' +
                 '                            <div id="booking-email" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">email</label>' +
                 '                                <input type="email" required />' +
@@ -199,14 +199,14 @@ var BookingView = (function() {
                 '                        </td>' +
                 '                    </tr>' +
                 '                    <tr>' +
-                '                        <td width="50%">' +
+                '                        <td width="50%" class="full">' +
                 '                            <div id="booking-nationality" class="input-box transition no-paddind  ' + config.bookingSelectionDivClass + '">' +
                 '                                <a class="nationalty-link selectedCountry active" data-countryid="1">India<span class="icon fs18 icon-next transition"></span></a>' +
                 '                                <ul class="' + config.nationalityDropdownClass + ' transition ' + config.bookingDropdownClass + '" style="display:none;">' +
                 '                                </ul>' +
                 '                            </div>' +
                 '                        </td>' +
-                '                        <td width="50%">' +
+                '                        <td width="50%" class="full">' +
                 '                            <div id="booking-phone" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">phone</label>' +
                 '                                <input type="text" name="phone" id="phone-number" data-countrycode="+91" data-countryid="1" data-countryname="India" required />' +
@@ -222,14 +222,14 @@ var BookingView = (function() {
                 //'                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 //'                            </div>' +
                 //'                        </td>' +
-                '                        <td width="50%">' +
+                '                        <td width="50%" class="full">' +
                 '                            <div id="booking-pan" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">pan number</label>' +
                 '                                <input type="text" />' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
                 '                        </td>' +
-                '                        <td width="50%">&nbsp;' +
+                '                        <td width="50%" class="full">&nbsp;' +
                 '                        </td>' +
                 '                    </tr>' +
                 '                </table>' +
