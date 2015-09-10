@@ -410,7 +410,7 @@ var BookingView = (function() {
                 },
                 errorCallback: function(response, params) {
                     $('.callback-btn').removeClass("disabled");
-                    //$('.action-message').html('<span class="form-msg-failure">Something went wrong. Please contact +91-11-66764181 for assistance.</span>');
+                    //$('.action-message').html('<span class="form-msg-failure">' + config.errorMsg + '</span>');
                 }
             };
             ajaxUtils.sendEmail(data, params);
@@ -478,7 +478,7 @@ var BookingView = (function() {
                         window.location.reload();
                     } else {
                         $("#paymentButton").removeClass("disabled");
-                        $(".action-message").html("<span class='form-msg-failure'>Something went wrong. Please contact +91-11-66764181 for assistance.</span>");
+                        $(".action-message").html("<span class='form-msg-failure'>" + config.errorMsg + "</span>");
                     }
                 }
             };
@@ -490,7 +490,7 @@ var BookingView = (function() {
                 ajaxUtils.bookListing(data, params);
             } else {
                 $('#paymentButton').removeClass('disabled');
-                $(".action-message").html("<span class='form-msg-failure'>Something went wrong. Please contact +91-11-66764181 for assistance.</span>");
+                $(".action-message").html("<span class='form-msg-failure'>" + config.errorMsg + "</span>");
             }
         }
     };

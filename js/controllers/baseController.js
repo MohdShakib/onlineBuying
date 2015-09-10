@@ -42,6 +42,17 @@ var BaseController = (function() {
                 }
             });
 
+            // Share with friends
+            this._view._shareOnEmailClick.attach(function(sender, element) {
+                var data = _this._model.getRootdata(),
+                    label = data.projectIdentifier + '-' + data.projectId + '-bottomPanel-shareOnEmailButton',
+                    callbackData = _this._view.getValidatedShareData();
+                if(callbackData != null) {
+                    utils.tracking('button', 'clicked', label);
+                    _this._view.shareOnEmailSubmit(callbackData);
+                }
+            });
+
             // Compare popup
             this._view._unitCompareButtonClick.attach(function(sender, element) {
                 var data = _this._model.getRootdata(),
