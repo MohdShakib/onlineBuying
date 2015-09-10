@@ -131,7 +131,7 @@ var BookingView = (function() {
             if(isDuplex) {
               imageUrl = [];
               for(var i =0; i < rotationdata.unitTypeIdentifierArr.length; i++) {
-                var img = rootdata.unitTypes[rotationdata.unitTypeIdentifierArr[i]].unitImageUrl
+                var img = rootdata.unitTypes[rotationdata.unitTypeIdentifierArr[i]].unitImageUrl;
                 imageUrl.push(img);
               }
             }
