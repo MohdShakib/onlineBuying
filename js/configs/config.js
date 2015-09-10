@@ -9,6 +9,7 @@ var config = (function() {
         apisJson: false,
         cityJson: true, // to read cities from json
         localZip: false,
+        setJsonDataPriorityForTest: false,
 
         // Flags
         showCarAnimation: true,

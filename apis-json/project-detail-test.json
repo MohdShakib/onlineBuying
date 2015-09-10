@@ -1,0 +1,908 @@
+{
+  "statusCode": "2XX",
+  "version": "A",
+  "data": {
+    "projectId": 672916,
+    "isHotProject": false,
+    "authorized": true,
+    "localityId": 0,
+    "builderId": 0,
+    "builder": {
+      "id": 102867,
+      "name": "Umang Realtech",
+      "description": "<p style=\"text-align: justify;\">Umang Realtech is a leading realty company founded by Mr. B.K. Uppal who holds office as the Chairman of the company while Mr. Manish Uppal serves as its Managing Director. The company specializes in luxurious and high quality projects and delivers exquisitely designed residential units to buyers. The company is headquartered at Nehru Place in New Delhi and also has another office at Bangalore. The portfolio of completed property by Umang Realtech covers almost 5.7 and 5 million sq ft in Delhi and Bangalore respectively. The company also has many other projects in the pipeline which cover a total area of 13.2 million sq ft cumulatively.</p>\n<p style=\"text-align: justify;\">Umang Realtech is a joint venture between Uppal Housing Pvt Limited and Indus Capital Partners, LLC (USA) which is one of Asia&rsquo;s leading investment firms. The name of the company itself translates into enthusiasm and this philosophy is directly visible through its approach to project planning and execution where the company&rsquo;s passion to satisfy customers with life&rsquo;s finest thing is aptly manifested through its ventures. The company has a customer base exceeding 2500 at present and operates in several areas like Delhi, Faridabad, Gurgaon and Bahadurgarh.</p>\n<strong>Unique Selling Point: </strong>\n<p style=\"text-align: justify;\">The company operates on the basis of several core values and these include commitment towards customer satisfaction and continual innovation and evolution. The company&rsquo;s USPs includes architectural brilliance, innovation, professionalism and efficiency in addition to contemporary, cost competitive real estate solutions. The company is focused on maximizing returns to all its customers, investors and associates with a conscientious and value based approach to projects.</p>\n<strong>Landmark Projects: </strong>\n<p style=\"text-align: justify;\">The landmark projects helmed by the company include Summer Palms at Sector 86 Faridabad which offers 2 and 3 BHK apartments and Monsoon Breeze at Sector 78 in Gurgaon. Other premium projects include Monsoon Breeze Phase 2 at Sector 78 in Gurgaon, Winter Hills at Shanti Park, Dwarka which offers 2, 3 and 4 BHK apartments and also Summer Palms at Bahadurgarh.</p>",
+      "url": "umang-realtech-102867",
+      "images": [
+        {
+          "id": 1384,
+          "imageTypeId": 0,
+          "objectId": 102867,
+          "sizeInBytes": 0,
+          "width": 0,
+          "height": 0,
+          "active": false,
+          "activeStatus": 0,
+          "absolutePath": "https://im.proptiger.com/3/2867/13/umang-realtech-1384.jpg",
+          "imageType": {
+            "id": 13,
+            "objectType": {
+              "id": 3,
+              "type": "builder"
+            },
+            "mediaType": {
+              "id": 1,
+              "name": "Image"
+            },
+            "objectTypeId": 3,
+            "mediaTypeId": 0,
+            "type": "logo",
+            "priority": 0,
+            "imageSitemapEnabled": 0
+          }
+        }
+      ],
+      "mainImage": {
+        "id": 0,
+        "imageTypeId": 0,
+        "objectId": 0,
+        "sizeInBytes": 0,
+        "width": 0,
+        "height": 0,
+        "active": false,
+        "activeStatus": 0
+      },
+      "isBuilderListed": false
+    },
+    "properties": [
+      {
+        "propertyId": 5302409,
+        "projectId": 672916,
+        "bedrooms": 2,
+        "bathrooms": 2,
+        "pricePerUnitArea": 6500,
+        "size": 1342,
+        "measure": "sq ft",
+        "URL": "gurgaon/umang-realtech-umang-thirdeye-demo-sector-77-5302409/2bhk-2t-1342-sqft-apartment",
+        "images": [
+          {
+            "id": 754873,
+            "imageTypeId": 0,
+            "objectId": 5302409,
+            "sizeInBytes": 0,
+            "width": 0,
+            "height": 0,
+            "title": "Floor Plan (2BHK+2T 1342 sq ft)",
+            "description": "Floor Plan",
+            "active": false,
+            "activeStatus": 0,
+            "absolutePath": "https://im.proptiger.com/2/5302409/12/pr-builders-umang-thirdeye-demo-floor-plan-floor-plan-754873.jpeg",
+            "imageType": {
+              "id": 12,
+              "objectType": {
+                "id": 2,
+                "type": "property"
+              },
+              "mediaType": {
+                "id": 1,
+                "name": "Image"
+              },
+              "objectTypeId": 2,
+              "mediaTypeId": 0,
+              "type": "floorPlan",
+              "priority": 0,
+              "imageSitemapEnabled": 0
+            }
+          }
+        ],
+        "studyRoom": 0,
+        "balcony": 2,
+        "displayCarpetArea": 0,
+        "penthouse": false,
+        "studio": false,
+        "video": [
+          {
+            "id": 85,
+            "objectMediaType": {
+              "id": 106,
+              "objectType": {
+                "id": 2,
+                "type": "property"
+              },
+              "mediaType": {
+                "id": 4,
+                "name": "Video"
+              },
+              "objectTypeId": 2,
+              "mediaTypeId": 0,
+              "type": "VideoWalkthrough",
+              "priority": 0,
+              "imageSitemapEnabled": 0
+            },
+            "objectId": 5302409,
+            "priority": 1,
+            "description": "facebook1",
+            "active": false,
+            "createdAt": 1440398412382,
+            "updatedAt": 1440398412382,
+            "mediaExtraAttributes": {
+              "extractPath": "4/2/5302409/106/85/5302409.mp4",
+              "videoUrlDetails": [
+                {
+                  "resolution": 720,
+                  "bitRate": "700",
+                  "url": "http://d1vh6m45iog96e.cloudfront.net/4/2/5302409/106/85/720/700/5302409.mp4"
+                },
+                {
+                  "resolution": 720,
+                  "bitRate": "1000",
+                  "url": "http://d1vh6m45iog96e.cloudfront.net/4/2/5302409/106/85/720/1000/5302409.mp4"
+                },
+                {
+                  "resolution": 540,
+                  "bitRate": "500",
+                  "url": "http://d1vh6m45iog96e.cloudfront.net/4/2/5302409/106/85/540/500/5302409.mp4"
+                },
+                {
+                  "resolution": 540,
+                  "bitRate": "1000",
+                  "url": "http://d1vh6m45iog96e.cloudfront.net/4/2/5302409/106/85/540/1000/5302409.mp4"
+                },
+                {
+                  "resolution": 360,
+                  "bitRate": "300",
+                  "url": "http://d1vh6m45iog96e.cloudfront.net/4/2/5302409/106/85/360/300/5302409.mp4"
+                },
+                {
+                  "resolution": 270,
+                  "bitRate": "300",
+                  "url": "http://d1vh6m45iog96e.cloudfront.net/4/2/5302409/106/85/270/300/5302409.mp4"
+                }
+              ]
+            },
+            "imageUrl": "https://im.proptiger.com/18/85/111/761498.jpeg",
+            "resolution": "1280×720",
+            "bitRate": 10829,
+            "status": "Processed",
+            "url": "http://d1vh6m45iog96e.cloudfront.net/4/2/5302409/106/85/5302409.mp4"
+          }
+        ],
+        "isPropertySoldOut": false
+      },
+      {
+        "propertyId": 5302410,
+        "projectId": 672916,
+        "bedrooms": 3,
+        "bathrooms": 3,
+        "pricePerUnitArea": 6500,
+        "size": 1616,
+        "measure": "sq ft",
+        "URL": "gurgaon/umang-realtech-umang-thirdeye-demo-sector-77-5302410/3bhk-3t-1616-sqft-apartment",
+        "images": [
+          {
+            "id": 754872,
+            "imageTypeId": 0,
+            "objectId": 5302410,
+            "sizeInBytes": 0,
+            "width": 0,
+            "height": 0,
+            "title": "Floor Plan (3BHK+3T 1616 sq ft)",
+            "description": "Floor Plan",
+            "active": false,
+            "activeStatus": 0,
+            "absolutePath": "https://im.proptiger.com/2/5302410/12/pr-builders-umang-thirdeye-demo-floor-plan-floor-plan-754872.jpeg",
+            "imageType": {
+              "id": 12,
+              "objectType": {
+                "id": 2,
+                "type": "property"
+              },
+              "mediaType": {
+                "id": 1,
+                "name": "Image"
+              },
+              "objectTypeId": 2,
+              "mediaTypeId": 0,
+              "type": "floorPlan",
+              "priority": 0,
+              "imageSitemapEnabled": 0
+            }
+          }
+        ],
+        "studyRoom": 0,
+        "balcony": 2,
+        "displayCarpetArea": 0,
+        "penthouse": false,
+        "studio": false,
+        "isPropertySoldOut": false
+      },
+      {
+        "propertyId": 5302411,
+        "projectId": 672916,
+        "bedrooms": 4,
+        "bathrooms": 4,
+        "pricePerUnitArea": 6300,
+        "size": 2077,
+        "measure": "sq ft",
+        "URL": "gurgaon/umang-realtech-umang-thirdeye-demo-sector-77-5302411/4bhk-4t-2077-sqft-apartment",
+        "images": [
+          {
+            "id": 754871,
+            "imageTypeId": 0,
+            "objectId": 5302411,
+            "sizeInBytes": 0,
+            "width": 0,
+            "height": 0,
+            "title": "Floor Plan (4BHK+4T 2077 sq ft)",
+            "description": "Floor Plan",
+            "active": false,
+            "activeStatus": 0,
+            "absolutePath": "https://im.proptiger.com/2/5302411/12/pr-builders-umang-thirdeye-demo-floor-plan-floor-plan-754871.jpeg",
+            "imageType": {
+              "id": 12,
+              "objectType": {
+                "id": 2,
+                "type": "property"
+              },
+              "mediaType": {
+                "id": 1,
+                "name": "Image"
+              },
+              "objectTypeId": 2,
+              "mediaTypeId": 0,
+              "type": "floorPlan",
+              "priority": 0,
+              "imageSitemapEnabled": 0
+            }
+          }
+        ],
+        "studyRoom": 0,
+        "balcony": 3,
+        "displayCarpetArea": 0,
+        "penthouse": false,
+        "studio": false,
+        "isPropertySoldOut": false
+      }
+    ],
+    "name": "Umang ThirdEye Demo",
+    "projectTypeId": 0,
+    "address": "Sector 77, Gurgaon",
+    "computedPriority": 0.0,
+    "assignedPriority": 0,
+    "imageURL": "",
+    "URL": "gurgaon/sector-77/umang-realtech-umang-thirdeye-demo-672916",
+    "forceResale": 0,
+    "minBedrooms": 0,
+    "maxBedrooms": 0,
+    "isResale": false,
+    "isPrimary": false,
+    "isSoldOut": false,
+    "description": "Umang Realtech Winter Hills is a residential complex in Sector 77 in Gurgaon. The complex has 2 and 3BHK apartments on offer that cost between Rs87.2 lakh and 1.3 crore. The complex is awaiting completion shortly and has 724 units available through resale and the developer. The size of the flats range from 1342 to 2077 sq. ft. Spread over 16 acres, the community shall have numerous amenities on offer which include swimming pool, gymnasium, sports facilities, car parking, jogging track and landscaped gardens. Umang Realtech is a reputed property developer of Gurgaon, having worked on six properties so far. Five of their projects are under construction. Sector 77 is positioned quite strategically as the Hero Honda and IFFCO Chowk are 7 and 14 kilometres from here respectively",
+    "propertySizeMeasure": "sq ft",
+    "propertyUnitTypes": [
+      
+    ],
+    "images": [
+      {
+        "id": 754864,
+        "imageTypeId": 0,
+        "objectId": 672916,
+        "sizeInBytes": 0,
+        "width": 0,
+        "height": 0,
+        "title": "Elevation",
+        "active": false,
+        "activeStatus": 0,
+        "absolutePath": "https://im.proptiger.com/1/672916/6/pr-builders-umang-thirdeye-demo-elevation-754864.jpeg",
+        "imageType": {
+          "id": 6,
+          "objectType": {
+            "id": 1,
+            "type": "project"
+          },
+          "mediaType": {
+            "id": 1,
+            "name": "Image"
+          },
+          "objectTypeId": 1,
+          "mediaTypeId": 0,
+          "type": "main",
+          "priority": 0,
+          "imageSitemapEnabled": 0
+        }
+      },
+      {
+        "id": 754865,
+        "imageTypeId": 0,
+        "objectId": 672916,
+        "sizeInBytes": 0,
+        "width": 0,
+        "height": 0,
+        "title": "Elevation",
+        "active": false,
+        "activeStatus": 0,
+        "absolutePath": "https://im.proptiger.com/1/672916/6/pr-builders-umang-thirdeye-demo-elevation-754865.jpeg",
+        "imageType": {
+          "id": 6,
+          "objectType": {
+            "id": 1,
+            "type": "project"
+          },
+          "mediaType": {
+            "id": 1,
+            "name": "Image"
+          },
+          "objectTypeId": 1,
+          "mediaTypeId": 0,
+          "type": "main",
+          "priority": 0,
+          "imageSitemapEnabled": 0
+        }
+      },
+      {
+        "id": 754866,
+        "imageTypeId": 0,
+        "objectId": 672916,
+        "sizeInBytes": 0,
+        "width": 0,
+        "height": 0,
+        "title": "Location Plan",
+        "active": false,
+        "activeStatus": 0,
+        "absolutePath": "https://im.proptiger.com/1/672916/5/pr-builders-umang-thirdeye-demo-location-plan-754866.jpeg",
+        "imageType": {
+          "id": 5,
+          "objectType": {
+            "id": 1,
+            "type": "project"
+          },
+          "mediaType": {
+            "id": 1,
+            "name": "Image"
+          },
+          "objectTypeId": 1,
+          "mediaTypeId": 0,
+          "type": "locationPlan",
+          "priority": 0,
+          "imageSitemapEnabled": 0
+        }
+      },
+      {
+        "id": 754867,
+        "imageTypeId": 0,
+        "objectId": 672916,
+        "sizeInBytes": 0,
+        "width": 0,
+        "height": 0,
+        "title": "Master Plan",
+        "active": false,
+        "activeStatus": 0,
+        "absolutePath": "https://im.proptiger.com/1/672916/7/pr-builders-umang-thirdeye-demo-master-plan-754867.jpeg",
+        "imageType": {
+          "id": 7,
+          "objectType": {
+            "id": 1,
+            "type": "project"
+          },
+          "mediaType": {
+            "id": 1,
+            "name": "Image"
+          },
+          "objectTypeId": 1,
+          "mediaTypeId": 0,
+          "type": "masterPlan",
+          "priority": 0,
+          "imageSitemapEnabled": 0
+        }
+      },
+      {
+        "id": 754870,
+        "imageTypeId": 0,
+        "objectId": 672916,
+        "sizeInBytes": 0,
+        "width": 0,
+        "height": 0,
+        "title": "Cluster Plan from 1st to 20th Floor",
+        "active": false,
+        "activeStatus": 0,
+        "absolutePath": "https://im.proptiger.com/1/672916/2/pr-builders-umang-thirdeye-demo-cluster-plan-from-1st-to-20th-floor-754870.jpeg",
+        "imageType": {
+          "id": 2,
+          "objectType": {
+            "id": 1,
+            "type": "project"
+          },
+          "mediaType": {
+            "id": 1,
+            "name": "Image"
+          },
+          "objectTypeId": 1,
+          "mediaTypeId": 0,
+          "type": "clusterPlan",
+          "priority": 0,
+          "imageSitemapEnabled": 0
+        }
+      },
+      {
+        "id": 754869,
+        "imageTypeId": 0,
+        "objectId": 672916,
+        "sizeInBytes": 0,
+        "width": 0,
+        "height": 0,
+        "title": "Cluster Plan from 1st to 20th Floor",
+        "active": false,
+        "activeStatus": 0,
+        "absolutePath": "https://im.proptiger.com/1/672916/2/pr-builders-umang-thirdeye-demo-cluster-plan-from-1st-to-20th-floor-754869.jpeg",
+        "imageType": {
+          "id": 2,
+          "objectType": {
+            "id": 1,
+            "type": "project"
+          },
+          "mediaType": {
+            "id": 1,
+            "name": "Image"
+          },
+          "objectTypeId": 1,
+          "mediaTypeId": 0,
+          "type": "clusterPlan",
+          "priority": 0,
+          "imageSitemapEnabled": 0
+        }
+      },
+      {
+        "id": 755468,
+        "imageTypeId": 0,
+        "objectId": 672916,
+        "sizeInBytes": 0,
+        "width": 0,
+        "height": 0,
+        "title": "Payment Plan",
+        "active": false,
+        "activeStatus": 0,
+        "absolutePath": "https://im.proptiger.com/1/672916/8/pr-builders-umang-thirdeye-demo-payment-plan-755468.png",
+        "imageType": {
+          "id": 8,
+          "objectType": {
+            "id": 1,
+            "type": "project"
+          },
+          "mediaType": {
+            "id": 1,
+            "name": "Image"
+          },
+          "objectTypeId": 1,
+          "mediaTypeId": 0,
+          "type": "paymentPlan",
+          "priority": 0,
+          "imageSitemapEnabled": 0
+        }
+      }
+    ],
+    "distinctBedrooms": [
+      
+    ],
+    "projectAmenities": [
+      {
+        "id": 1057560,
+        "amenityDisplayName": "Gymnasium",
+        "amenityMaster": {
+          "amenityId": 1,
+          "amenityName": "Gymnasium",
+          "abbreviation": "Gym"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057561,
+        "amenityDisplayName": "Swimming Pool",
+        "amenityMaster": {
+          "amenityId": 2,
+          "amenityName": "Swimming Pool",
+          "abbreviation": "Swi"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057562,
+        "amenityDisplayName": "Children's play area",
+        "amenityMaster": {
+          "amenityId": 3,
+          "amenityName": "Children's play area",
+          "abbreviation": "Chi"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057563,
+        "amenityDisplayName": "Club House",
+        "amenityMaster": {
+          "amenityId": 4,
+          "amenityName": "Club House",
+          "abbreviation": "Clu"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057564,
+        "amenityDisplayName": "Sports Facility",
+        "amenityMaster": {
+          "amenityId": 8,
+          "amenityName": "Sports Facility",
+          "abbreviation": "Spo"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057565,
+        "amenityDisplayName": "Jogging Track",
+        "amenityMaster": {
+          "amenityId": 12,
+          "amenityName": "Jogging Track",
+          "abbreviation": "Jog"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057566,
+        "amenityDisplayName": "Landscaped Gardens",
+        "amenityMaster": {
+          "amenityId": 14,
+          "amenityName": "Landscaped Gardens",
+          "abbreviation": "Lan"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057567,
+        "amenityDisplayName": "Car Parking",
+        "amenityMaster": {
+          "amenityId": 17,
+          "amenityName": "Car Parking",
+          "abbreviation": "Car"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057568,
+        "amenityDisplayName": "Multipurpose Hall",
+        "amenityMaster": {
+          "amenityId": 99,
+          "amenityName": "Others",
+          "abbreviation": "Oth"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057569,
+        "amenityDisplayName": "Sauna",
+        "amenityMaster": {
+          "amenityId": 99,
+          "amenityName": "Others",
+          "abbreviation": "Oth"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057570,
+        "amenityDisplayName": "Recreational Facilities",
+        "amenityMaster": {
+          "amenityId": 99,
+          "amenityName": "Others",
+          "abbreviation": "Oth"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057571,
+        "amenityDisplayName": "Play Court",
+        "amenityMaster": {
+          "amenityId": 99,
+          "amenityName": "Others",
+          "abbreviation": "Oth"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057572,
+        "amenityDisplayName": "Tennis Court",
+        "amenityMaster": {
+          "amenityId": 99,
+          "amenityName": "Others",
+          "abbreviation": "Oth"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057573,
+        "amenityDisplayName": "Change Room",
+        "amenityMaster": {
+          "amenityId": 99,
+          "amenityName": "Others",
+          "abbreviation": "Oth"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057574,
+        "amenityDisplayName": "Volleyball Court",
+        "amenityMaster": {
+          "amenityId": 99,
+          "amenityName": "Others",
+          "abbreviation": "Oth"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057575,
+        "amenityDisplayName": "Badminton Court",
+        "amenityMaster": {
+          "amenityId": 99,
+          "amenityName": "Others",
+          "abbreviation": "Oth"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057576,
+        "amenityDisplayName": "Amphitheatre",
+        "amenityMaster": {
+          "amenityId": 99,
+          "amenityName": "Others",
+          "abbreviation": "Oth"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057577,
+        "amenityDisplayName": "Cricket Pitch",
+        "amenityMaster": {
+          "amenityId": 99,
+          "amenityName": "Others",
+          "abbreviation": "Oth"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057578,
+        "amenityDisplayName": "Volleyball Courts",
+        "amenityMaster": {
+          "amenityId": 99,
+          "amenityName": "Others",
+          "abbreviation": "Oth"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057579,
+        "amenityDisplayName": "Badminton Courts",
+        "amenityMaster": {
+          "amenityId": 99,
+          "amenityName": "Others",
+          "abbreviation": "Oth"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057580,
+        "amenityDisplayName": "Tennis Court",
+        "amenityMaster": {
+          "amenityId": 99,
+          "amenityName": "Others",
+          "abbreviation": "Oth"
+        },
+        "verified": true
+      },
+      {
+        "id": 1057581,
+        "amenityDisplayName": "Skating Ring",
+        "amenityMaster": {
+          "amenityId": 99,
+          "amenityName": "Others",
+          "abbreviation": "Oth"
+        },
+        "verified": true
+      }
+    ],
+    "has3DImages": false,
+    "resaleEnquiry": false,
+    "media": [
+      
+    ],
+    "hasProjectInsightReport": false,
+    "towers": [
+      {
+        "towerId": 98860,
+        "projectId": 672916,
+        "towerName": "Tower A",
+        "verified": 1
+      },
+      {
+        "towerId": 98861,
+        "projectId": 672916,
+        "towerName": "Tower B",
+        "verified": 1
+      },
+      {
+        "towerId": 98862,
+        "projectId": 672916,
+        "towerName": "Tower C",
+        "verified": 1
+      },
+      {
+        "towerId": 98863,
+        "projectId": 672916,
+        "towerName": "Tower D",
+        "verified": 1
+      },
+      {
+        "towerId": 98864,
+        "projectId": 672916,
+        "towerName": "Tower E",
+        "verified": 1
+      },
+      {
+        "towerId": 98865,
+        "projectId": 672916,
+        "towerName": "Tower F",
+        "verified": 1
+      },
+      {
+        "towerId": 98866,
+        "projectId": 672916,
+        "towerName": "Tower G",
+        "verified": 1
+      },
+      {
+        "towerId": 98867,
+        "projectId": 672916,
+        "towerName": "Tower H",
+        "verified": 1
+      },
+      {
+        "towerId": 98868,
+        "projectId": 672916,
+        "towerName": "Tower I",
+        "verified": 1
+      },
+      {
+        "towerId": 98869,
+        "projectId": 672916,
+        "towerName": "Tower J",
+        "verified": 1
+      },
+      {
+        "towerId": 98870,
+        "projectId": 672916,
+        "towerName": "Tower K",
+        "verified": 1
+      },
+      {
+        "towerId": 98871,
+        "projectId": 672916,
+        "towerName": "Tower L",
+        "verified": 1
+      }
+    ],
+    "listings": [
+      {
+        "id": 357557,
+        "propertyId": 5302411,
+        "towerId": 98871,
+        "floor": 11,
+        "status": "Active",
+        "bookingStatusId": 1,
+        "flatNumber": "L-1102",
+        "isDeleted": false,
+        "currentListingPrice": {
+          "id": 4353367,
+          "listingId": 357557,
+          "effectiveDate": 1438367400000,
+          "pricePerUnitArea": 3000,
+          "price": 6291000,
+          "status": "Active",
+          "updatedBy": 0
+        }
+      }
+    ],
+    "otherPricingDetails": [
+      {
+        "id": 25221,
+        "projectId": 672916,
+        "mandatory": true,
+        "value": 60000.0,
+        "otherPricingValueType": {
+          "id": 2,
+          "type": "Fixed"
+        },
+        "otherPricingSubcategory": {
+          "id": 15,
+          "component": "Power Backup Charges",
+          "masterOtherPricingCategory": {
+            "id": 9,
+            "name": "Power Backup Charges"
+          }
+        }
+      },
+      {
+        "id": 25222,
+        "projectId": 672916,
+        "mandatory": false,
+        "value": 75000.0,
+        "otherPricingValueType": {
+          "id": 2,
+          "type": "Fixed"
+        },
+        "otherPricingSubcategory": {
+          "id": 4,
+          "component": "Club House",
+          "masterOtherPricingCategory": {
+            "id": 2,
+            "name": "Club House"
+          }
+        }
+      },
+      {
+        "id": 25223,
+        "projectId": 672916,
+        "mandatory": false,
+        "value": 150000.0,
+        "otherPricingValueType": {
+          "id": 2,
+          "type": "Fixed"
+        },
+        "otherPricingSubcategory": {
+          "id": 1,
+          "component": "Open Car Parking",
+          "masterOtherPricingCategory": {
+            "id": 1,
+            "name": "Car Parking"
+          }
+        }
+      },
+      {
+        "id": 25224,
+        "projectId": 672916,
+        "mandatory": false,
+        "value": 250000.0,
+        "otherPricingValueType": {
+          "id": 2,
+          "type": "Fixed"
+        },
+        "otherPricingSubcategory": {
+          "id": 2,
+          "component": "Closed Car Parking",
+          "masterOtherPricingCategory": {
+            "id": 1,
+            "name": "Car Parking"
+          }
+        }
+      }
+    ],
+    "hasPrimaryExpandedListing": true,
+    "specifications": {
+      "Fittings": {
+        "Kitchen": "Granite Platform with Stainless Steel Sink",
+        "Toilets": "CP Fittings"
+      },
+      "Doors": {
+        "Main": "Decorative with Wooden Frame"
+      },
+      "Flooring": {
+        "Master Bedroom": "RAK/Laminated Wooden Flooring",
+        "Balcony": "Anti Skid Tiles",
+        "Kitchen": "Anti Skid Tiles",
+        "Other Bedroom": "RAK/Laminated Wooden Flooring",
+        "Living/Dining": "Marble Granite Tiles",
+        "Toilets": "Anti Skid Tiles"
+      },
+      "Windows": "UPVC",
+      "Walls": {
+        "Kitchen": "Ceramic Tiles Dado up to 2 Feet Height Above Platform",
+        "Toilets": "Ceramic Tiles Dado up to 7 Feet Height Above Platform",
+        "Interior": "Plastic Emulsion Paint",
+        "Exterior": "Texture Paint"
+      }
+    }
+  }
+}
