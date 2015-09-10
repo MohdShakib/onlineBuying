@@ -33,9 +33,9 @@ var BaseController = (function() {
 
             // Get Call back
             this._view._getCallbackClick.attach(function(sender, element) {
-                var data = _this._model.getRootdata(),
-                    label = data.projectIdentifier + '-' + data.projectId + '-callbackButton',
-                    callbackData = _this._view.getValidatedCallBackData();
+                // var data = _this._model.getRootdata(),
+                //     label = data.projectIdentifier + '-' + data.projectId + '-callbackButton',
+                //     callbackData = _this._view.getValidatedCallBackData();
                 if(callbackData != null) {
                     utils.tracking('button', 'clicked', label);
                     _this._view.callBackFormSubmit(callbackData);
@@ -44,6 +44,9 @@ var BaseController = (function() {
 
             // Compare popup
             this._view._unitCompareButtonClick.attach(function(sender, element) {
+                var data = _this._model.getRootdata(),
+                    label = data.projectIdentifier + '-' + data.projectId + '-callbackButton',
+                    callbackData = _this._view.getValidatedCallBackData();
                 _this._view.unitCompareButtonClicked(element);
             });
             this._view._removeShortlistClick.attach(function(sender, data) {
