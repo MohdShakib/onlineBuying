@@ -704,7 +704,9 @@ var utils = (function() {
             return arr;
         },
         tracking: function(category, action, label) {
-            ga('send', 'event', category, action, label);
+            if(envConfig.env !== 'local'){
+                ga('send', 'event', category, action, label);
+            }
         }
     };
 
