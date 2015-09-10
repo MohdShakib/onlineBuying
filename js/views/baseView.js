@@ -231,7 +231,6 @@ var BaseView = (function() {
           var sliderUlWidth = slideCount * slideWidth;
 
           function moveLeft() {
-            console.log("mocing left");
               $('#slider ul').animate({
                   left: + slideWidth
               }, 200, function () {
@@ -283,7 +282,6 @@ var BaseView = (function() {
             var id = idName || uniqueIdentifier;
             $('#unit-compare-svg-container' + id).empty();
             if (svgElements && svgElements.length) {
-                console.log(idName);
                 for (var i = 0; i < svgElements.length; i++) {
                     $('#unit-compare-svg-container' + id).append(svgElements[i]);
                 }
