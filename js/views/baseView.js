@@ -38,6 +38,9 @@ var BaseView = (function() {
         // Get Call back
         this._getCallbackClick = new Event(this);
 
+        // Share with friends
+        this._shareOnEmailClick = new Event(this);
+
         // Compare popup
         this._unitCompareButtonClick = new Event(this);
         this._removeShortlistClick = new Event(this);
@@ -367,7 +370,7 @@ var BaseView = (function() {
                 '           <div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
                 '           <div class="form-input-box"><input class="text" id="' + config.emailBox.emailId + '" placeholder="enter your friend\'s email id" type="email" required />' +
                 '           <div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
-                '           <div class="submit" id="share-box-submit-id"><input type="submit" />Share</div>' +
+                '           <div class="submit" id="' + config.emailBox.submitButtonId + '"><input type="submit" />Share</div>' +
                 '       </form>' +
                 '   </div>' +
                 '   <div class="live-chat">' +
@@ -492,9 +495,10 @@ var BaseView = (function() {
                 utils.validateForm(callBoxForm, false);
             });
 
-            this._elements.bottomFormGroupContainer.on('click', '#share-box-submit-id', function(event) {
-                var shareBoxForm = $('#share-box-form');
-                _this.shareOnEmailSubmit(shareBoxForm);
+            this._elements.bottomFormGroupContainer.on('click', '#' + config.emailBox.submitButtonId, function(event) {
+                if (!$(this).hasClass(config.disabledClass)) {
+                    _this._shareOnEmailClick.notify(this);
+                }                
             });
 
             this._elements.bottomFormGroupContainer.on('keyup', '#share-box-form', function(event) {
@@ -560,15 +564,15 @@ var BaseView = (function() {
         },
         callBackFormSubmit: function(data) {
             var form = $('#call-box-form');
-
-            // Disable submit button until we get a response from api
-            $('#' + config.callBox.submitButtonId).addClass(config.disabledClass);
-
             var params = {
                 successCallback: this.submitLeadSuccessCallback,
                 errorCallback: this.submitLeadErrorCallback,
                 formRef: form
             };
+
+            // Disable submit button until we get a response from api
+            $('#' + config.callBox.submitButtonId).addClass(config.disabledClass);
+
             ajaxUtils.submitLead(data, params);
         },
         submitLeadSuccessCallback: function(response, params) {
@@ -580,13 +584,14 @@ var BaseView = (function() {
         submitLeadErrorCallback: function(response, params) {
             $('#' + config.callBox.submitButtonId).removeClass(config.disabledClass);
             $('.callback-message').remove();
-            $('.call-box').append('<div class="callback-message form-msg-failure">Something went wrong. Please contact +91-11-66764181 for assistance.</div>');
+            $('.call-box').append('<div class="callback-message form-msg-failure">' + config.errorMsg + '</div>');
         },
-        shareOnEmailSubmit: function(form) {
+        getValidatedShareData: function() {
+            var form = $('#share-box-form');
             var rootdata = this._model.getRootdata();
             var validationFlag = utils.validateForm(form, true);
             if (!validationFlag) {
-                return false;
+                return null;
             }
 
             var name = $('#' + config.emailBox.nameId).val();
@@ -604,21 +609,31 @@ var BaseView = (function() {
                 }
             };
 
+            return data;
+        },
+        shareOnEmailSubmit: function(data) {
+            var form = $('#share-box-form');
             var params = {
                 successCallback: this.shareOnEmailSuccessCallback,
                 errorCallback: this.shareOnEmailErrorCallback,
                 formRef: form
             };
+
+            // Disable submit button until we get a response from api
+            $('#' + config.emailBox.submitButtonId).addClass(config.disabledClass);
+
             ajaxUtils.sendEmail(data, params);
         },
         shareOnEmailSuccessCallback: function(response, params) {
             params.formRef[0].reset();
+            $('#' + config.emailBox.submitButtonId).removeClass(config.disabledClass);
             $('.share-message').remove();
             $('.share-box').append('<div class="share-message form-msg-success">Your friend will receive an email shortly.</div>');
         },
         shareOnEmailErrorCallback: function(response, params) {
+            $('#' + config.emailBox.submitButtonId).removeClass(config.disabledClass);
             $('.share-message').remove();
-            $('.share-box').append('<div class="share-message form-msg-failure">Please try again later.</div>');
+            $('.share-box').append('<div class="share-message form-msg-failure">' + config.errorMsg + '</div>');
         },
         formPopupCloseClicked: function() {
             $('form input').parent('div').removeClass('error');
