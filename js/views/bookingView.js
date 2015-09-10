@@ -81,7 +81,6 @@ var BookingView = (function() {
         paymentScreen: function(data, rotationdata, rootdata) {
             var paymentBtnClass = 'make-payment',
                 propertyBooking = this._model.getPropertyBooking();
-
             var offerBanner, propertyDetail, titleText, offerList, getCallbackCode, url, imageUrl, unitDetails, paymentBreakup;
 
             if (propertyBooking) {
@@ -125,7 +124,17 @@ var BookingView = (function() {
                     offerBanner = '<div class="special-offers">' + '<span></span>' + '<p>Save <strong><label       class="icon fs14 icon-rupee"></label>' + utils.getReadablePrice(data.discount) + '</strong> ' + data.discountDescription + '</p>' + '</div>';
                 }
             }
-
+            var isDuplex = false;
+            if(rotationdata.unitTypeIdentifierArr) {
+              isDuplex = (rotationdata.unitTypeIdentifierArr.length == 2) ? true : false;
+            }
+            if(isDuplex) {
+              imageUrl = [];
+              for(var i =0; i < rotationdata.unitTypeIdentifierArr.length; i++) {
+                var img = rootdata.unitTypes[rotationdata.unitTypeIdentifierArr[i]].unitImageUrl
+                imageUrl.push(img);
+              }
+            }
             if (!config.enablePayment || data.bookingStatus != 'Available') {
                 paymentBtnClass = 'disabled';
             }
@@ -141,9 +150,19 @@ var BookingView = (function() {
                 '        <div class="payment-left">' + offerBanner +
                 '        <div class="payment-left-top">' +
                 '                <h3>' + rootdata.builderName + ' ' + rootdata.projectName + ' <span>' + rootdata.address + '</span></h3>' + propertyDetail +
-                '                <div class="payment-photo-box">' +
-                '                   <img src="' + imageUrl + '" width="100%" alt="">' +
-                '                </div>' + unitDetails +
+                '                <div class="payment-photo-box">';
+                if(isDuplex) {
+                  code += '   <div id="slider" class="slider"> <a class="control_next">></a> <a class="control_prev"><</a>'+
+                          '     <ul>'+
+                          '     <li><img src="' + imageUrl[0] + '" width="100%" alt=""></li>'+
+                          '     <li><img src="' + imageUrl[1] + '" width="100%" alt=""></li>'+
+                          '     </ul>'+
+                          '   </div>';
+                } else {
+                    code += '<img src="' + imageUrl + '" width="100%" alt="">';
+
+                }
+                code += '</div>' + unitDetails +
                 '        </div>' + paymentBreakup + offerList +
                 '            <div class="booking-amount">' +
                 '            <h3>Booking Amount: <span><span class="icon icon-rupee"><span><strong>' + utils.getReadablePrice(data.bookingAmount) + ' </strong><label>only</label></span></h3> ' +
@@ -241,6 +260,7 @@ var BookingView = (function() {
                 self: this
             });
             this.paymentScreenEvents();
+            utils.slideIt();
         },
         getCountriesList: function(countries, params) {
             var htmlCode = '',
@@ -410,7 +430,7 @@ var BookingView = (function() {
                 },
                 errorCallback: function(response, params) {
                     $('.callback-btn').removeClass("disabled");
-                    //$('.action-message').html('<span class="form-msg-failure">Something went wrong. Please contact +91-11-66764181 for assistance.</span>');
+                    //$('.action-message').html('<span class="form-msg-failure">' + config.errorMsg + '</span>');
                 }
             };
             ajaxUtils.sendEmail(data, params);
@@ -478,7 +498,7 @@ var BookingView = (function() {
                         window.location.reload();
                     } else {
                         $("#paymentButton").removeClass("disabled");
-                        $(".action-message").html("<span class='form-msg-failure'>Something went wrong. Please contact +91-11-66764181 for assistance.</span>");
+                        $(".action-message").html("<span class='form-msg-failure'>" + config.errorMsg + "</span>");
                     }
                 }
             };
@@ -490,7 +510,7 @@ var BookingView = (function() {
                 ajaxUtils.bookListing(data, params);
             } else {
                 $('#paymentButton').removeClass('disabled');
-                $(".action-message").html("<span class='form-msg-failure'>Something went wrong. Please contact +91-11-66764181 for assistance.</span>");
+                $(".action-message").html("<span class='form-msg-failure'>" + config.errorMsg + "</span>");
             }
         }
     };

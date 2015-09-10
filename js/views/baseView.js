@@ -38,6 +38,9 @@ var BaseView = (function() {
         // Get Call back
         this._getCallbackClick = new Event(this);
 
+        // Share with friends
+        this._shareOnEmailClick = new Event(this);
+
         // Compare popup
         this._unitCompareButtonClick = new Event(this);
         this._removeShortlistClick = new Event(this);
@@ -97,7 +100,6 @@ var BaseView = (function() {
             var rootdata = this._model.getRootdata();
             var compareKeys = Object.keys(compareList);
             var indexOfCurrentUnit = compareKeys.indexOf(utils.unitUniqueAdd);
-
             var htmlCode = '',
                 firstUniqueIdentifier;
 
@@ -105,8 +107,9 @@ var BaseView = (function() {
 
             htmlCode += '<div class="compare-container"><div class="drag-info">Please Drag &amp; Drop from the list into the box to compare unit plans</div>';
             for (var uniqueIdentifier in compareList) {
+                var item = compareList[uniqueIdentifier];
                 firstUniqueIdentifier = uniqueIdentifier;
-                var imageUrl = compareList[uniqueIdentifier].unitTypeData.unitImageUrl;
+                var imageUrl = item[item.unitTypeIdentifier].unitImageUrl;
                 htmlCode += '<div class="' + config.compareBottomBox + '" id="' + config.compareBottomBox + '-' + uniqueIdentifier + '" data-uniqueidentifier="' + uniqueIdentifier + '">' +
                     '<p >' + compareList[uniqueIdentifier].unitName + '</p>' +
                     '<img class="' + config.lazyloadClass + '" src="' + imageUrl + '" />' +
@@ -188,22 +191,73 @@ var BaseView = (function() {
             var compareList = this._model.getCompareList(),
                 rootdata = this._model.getRootdata(),
                 item = compareList[uniqueIdentifier],
-                imageUrl = item ? item.unitTypeData.unitImageUrl : undefined,
+                unitTypeArr = item.unitTypeIdentifierArr || [],
+                isDuplex = (unitTypeArr.length == 2) ? true : false,
+                imageUrl = item ? (isDuplex ? [item[unitTypeArr[0]].unitImageUrl, item[unitTypeArr[1]].unitImageUrl] : item[item.unitTypeIdentifier].unitImageUrl ) : undefined,
                 link = rootdata.baseUrl + '/' + item.towerIdentifier + '/' + item.rotationAngle + '/' + item.unitIdentifier + '/booking',
                 htmlCode = '<div class="tower-unit-detail-container ' + config.unitDataContainer + '"></div>';
-
             htmlCode += '<span class="icon fs14 icon-cross close-compare-box"></span><div class="compare-unit-box-detail top-right-component"><span>' + item.unitName + '</span> | <span>' + item.bedrooms + '</span> | <span>' + item.size + '</span> | <span>' + item.price + '</span> | <span>' + item.floor + '</span></div>';
             htmlCode += '<div class="top-right-component">' +
-                '<div class="book-now" >' +
-                '<a data-url="' + link + '">Book now</a><span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(item.bookingAmount) + '/- <br>(No Cancellation Charges)</span>' +
-                '</div>';
-            htmlCode += '<div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + uniqueIdentifier + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' +
-                '<img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img ' + config.lazyloadClass + '"  src="' + imageUrl + '"> </div>';
+                        '<div class="book-now" >' +
+                        '<a data-url="' + link + '">Book now</a><span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(item.bookingAmount) + '/- <br>(No Cancellation Charges)</span>' +
+                        '</div>';
+
+            if(isDuplex) {
+                    htmlCode += '<div id="slider" class="slider"><a class="control_next">></a> <a class="control_prev"><</a>'+
+                                '<ul>'+
+                                ' <li> <div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + unitTypeArr[0] + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' +
+                                '     <img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img ' + config.lazyloadClass + '"  src="' + imageUrl[0] + '"> </div></li>'+
+                                ' <li> <div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + unitTypeArr[1] + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' +
+                                '     <img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img ' + config.lazyloadClass + '"  src="' + imageUrl[1] + '"> </div></li>'+
+                                '</ul></div>';
+            } else {
+              htmlCode += '<div class="slider"><ul><li><div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + item.unitTypeIdentifier + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' +
+                  '<img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img ' + config.lazyloadClass + '"  src="' + imageUrl + '"> </div></li></ul></div>';
+
+            }
 
             $('#' + config.compareBottomBox + '-' + uniqueIdentifier + ' ').addClass('selected');
 
             $(compareBox).html(htmlCode);
-            this.unit3dSvgContainer(uniqueIdentifier);
+            this.compareBoxSliderEvents();
+            if(isDuplex) {
+              this.unit3dSvgContainer(uniqueIdentifier, unitTypeArr[0], unitTypeArr[0]);
+              this.unit3dSvgContainer(uniqueIdentifier, unitTypeArr[1], unitTypeArr[1]);
+            } else {
+              this.unit3dSvgContainer(uniqueIdentifier, item.unitTypeIdentifier, item.unitTypeIdentifier);
+            }
+        },
+        compareBoxSliderEvents: function() {
+          var slideCount = $('#slider ul li').length;
+          var slideWidth = $('#slider ul li div').width();
+          var slideHeight = $('#slider ul li div').height();
+          var sliderUlWidth = slideCount * slideWidth;
+
+          function moveLeft() {
+              $('#slider ul').animate({
+                  left: + slideWidth
+              }, 200, function () {
+                  $('#slider ul li:last-child').prependTo('#slider ul');
+                  $('#slider ul').css('left', '');
+              });
+          }
+
+          function moveRight() {
+              $('#slider ul').animate({
+                  left: - slideWidth
+              }, 200, function () {
+                  $('#slider ul li:first-child').appendTo('#slider ul');
+                  $('#slider ul').css('left', '');
+              });
+          }
+
+          $('a.control_prev').click(function () {
+              moveLeft();
+          });
+
+          $('a.control_next').click(function () {
+              moveRight();
+          });
         },
         removeFromCompareBox: function(element) {
             var parentElement = $(element).parent();
@@ -219,15 +273,20 @@ var BaseView = (function() {
                 $('#' + config.compareBottomBox + '-' + unitUniqueIdentifier + ' ').removeClass('selected');
             }
         },
-        unit3dSvgContainer: function(uniqueIdentifier) {
+        unit3dSvgContainer: function(uniqueIdentifier, unitTypeDataName, idName) {
             var compareList = this._model.getCompareList();
-            var unitTypeData = compareList[uniqueIdentifier].unitTypeData;
+            var unitTypeData;
+            if(unitTypeDataName) {
+               unitTypeData = compareList[uniqueIdentifier][unitTypeDataName];
+            } else {
+               unitTypeData = compareList[uniqueIdentifier].unitTypeData;
+            }
             var svgElements = utils.getUnit3dSvgPolygonElements(unitTypeData);
-
-            $('#unit-compare-svg-container' + uniqueIdentifier).empty();
+            var id = idName || uniqueIdentifier;
+            $('#unit-compare-svg-container' + id).empty();
             if (svgElements && svgElements.length) {
                 for (var i = 0; i < svgElements.length; i++) {
-                    $('#unit-compare-svg-container' + uniqueIdentifier).append(svgElements[i]);
+                    $('#unit-compare-svg-container' + id).append(svgElements[i]);
                 }
                 this.unit3dSvgContainerEvents();
             }
@@ -311,7 +370,7 @@ var BaseView = (function() {
                 '           <div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
                 '           <div class="form-input-box"><input class="text" id="' + config.emailBox.emailId + '" placeholder="enter your friend\'s email id" type="email" required />' +
                 '           <div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
-                '           <div class="submit" id="share-box-submit-id"><input type="submit" />Share</div>' +
+                '           <div class="submit" id="' + config.emailBox.submitButtonId + '"><input type="submit" />Share</div>' +
                 '       </form>' +
                 '   </div>' +
                 '   <div class="live-chat">' +
@@ -436,9 +495,10 @@ var BaseView = (function() {
                 utils.validateForm(callBoxForm, false);
             });
 
-            this._elements.bottomFormGroupContainer.on('click', '#share-box-submit-id', function(event) {
-                var shareBoxForm = $('#share-box-form');
-                _this.shareOnEmailSubmit(shareBoxForm);
+            this._elements.bottomFormGroupContainer.on('click', '#' + config.emailBox.submitButtonId, function(event) {
+                if (!$(this).hasClass(config.disabledClass)) {
+                    _this._shareOnEmailClick.notify(this);
+                }                
             });
 
             this._elements.bottomFormGroupContainer.on('keyup', '#share-box-form', function(event) {
@@ -504,15 +564,15 @@ var BaseView = (function() {
         },
         callBackFormSubmit: function(data) {
             var form = $('#call-box-form');
-
-            // Disable submit button until we get a response from api
-            $('#' + config.callBox.submitButtonId).addClass(config.disabledClass);
-
             var params = {
                 successCallback: this.submitLeadSuccessCallback,
                 errorCallback: this.submitLeadErrorCallback,
                 formRef: form
             };
+
+            // Disable submit button until we get a response from api
+            $('#' + config.callBox.submitButtonId).addClass(config.disabledClass);
+
             ajaxUtils.submitLead(data, params);
         },
         submitLeadSuccessCallback: function(response, params) {
@@ -524,13 +584,14 @@ var BaseView = (function() {
         submitLeadErrorCallback: function(response, params) {
             $('#' + config.callBox.submitButtonId).removeClass(config.disabledClass);
             $('.callback-message').remove();
-            $('.call-box').append('<div class="callback-message form-msg-failure">Something went wrong. Please contact +91-11-66764181 for assistance.</div>');
+            $('.call-box').append('<div class="callback-message form-msg-failure">' + config.errorMsg + '</div>');
         },
-        shareOnEmailSubmit: function(form) {
+        getValidatedShareData: function() {
+            var form = $('#share-box-form');
             var rootdata = this._model.getRootdata();
             var validationFlag = utils.validateForm(form, true);
             if (!validationFlag) {
-                return false;
+                return null;
             }
 
             var name = $('#' + config.emailBox.nameId).val();
@@ -548,21 +609,31 @@ var BaseView = (function() {
                 }
             };
 
+            return data;
+        },
+        shareOnEmailSubmit: function(data) {
+            var form = $('#share-box-form');
             var params = {
                 successCallback: this.shareOnEmailSuccessCallback,
                 errorCallback: this.shareOnEmailErrorCallback,
                 formRef: form
             };
+
+            // Disable submit button until we get a response from api
+            $('#' + config.emailBox.submitButtonId).addClass(config.disabledClass);
+
             ajaxUtils.sendEmail(data, params);
         },
         shareOnEmailSuccessCallback: function(response, params) {
             params.formRef[0].reset();
+            $('#' + config.emailBox.submitButtonId).removeClass(config.disabledClass);
             $('.share-message').remove();
             $('.share-box').append('<div class="share-message form-msg-success">Your friend will receive an email shortly.</div>');
         },
         shareOnEmailErrorCallback: function(response, params) {
+            $('#' + config.emailBox.submitButtonId).removeClass(config.disabledClass);
             $('.share-message').remove();
-            $('.share-box').append('<div class="share-message form-msg-failure">Please try again later.</div>');
+            $('.share-box').append('<div class="share-message form-msg-failure">' + config.errorMsg + '</div>');
         },
         formPopupCloseClicked: function() {
             $('form input').parent('div').removeClass('error');

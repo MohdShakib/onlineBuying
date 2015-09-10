@@ -27,6 +27,7 @@ var config = (function() {
         towerMenuItemHeight: 44,
         maxShortlistCount: 6,
         tawkApiId: 'tawk_55e5498bfc2b363371225aaa',
+        errorMsg: 'Something went wrong. Please contact +91-11-66764181 for assistance.',
 
         // Data
         backgroundImage: 'masterplan.jpg',
@@ -63,7 +64,8 @@ var config = (function() {
         },
         emailBox: {
             nameId: 'email-box-name',
-            emailId: 'email-box-email'
+            emailId: 'email-box-email',
+            submitButtonId: 'share-box-submit-id'
         },
         notificationTooltipClass: 'notification-tooltip',
         notificationMessageClass: 'notification-message',
