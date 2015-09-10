@@ -20,6 +20,9 @@
 	.payment-left { width: 100%; float: none; }
 	.payment-right { padding-left: 0; padding-top: 30px; position: static; }
 	.terms-condition { margin: 0; margin-top: 30px; }
+	.terms-condition-popup { padding: 20px; box-sizing: border-box; }
+	.tc-container { width: auto; position: static; margin: 0; height: 300px; }
+	.close-payment { top: 30px; right: 30px; }
 }
 
 @media only screen and (max-device-width: 480px) {
