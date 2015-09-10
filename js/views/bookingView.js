@@ -162,8 +162,8 @@ var BookingView = (function() {
                 emailCookie = cookie.email;
                 emailActiveClass = 'active';
             }
-            if (cookie.countryId) {
-                countryIdCookie = cookie.countryId;
+            if (cookie.country) {
+                countryIdCookie = cookie.country;
             }
 
             var code = '<div class="payment-container">' +

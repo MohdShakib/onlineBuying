@@ -22,12 +22,12 @@ var UnitplaninfoModel = (function() {
             }
         }
 
-        this._cookie = {
-            name: cookieUtils.readCookie("name"),
-            email: cookieUtils.readCookie("email"),
-            phone: cookieUtils.readCookie("phone"),
-            countryId: cookieUtils.readCookie("country")
-        };
+        var enquiryCookie = cookieUtils.readCookie("enquiry_info");
+        if (enquiryCookie !== null && enquiryCookie.length > 0) {
+            enquiryCookie = decodeURIComponent(enquiryCookie);
+            enquiryCookie = JSON.parse(enquiryCookie);
+        }
+        this._cookie = enquiryCookie ? enquiryCookie : {};
     }
 
     UnitplaninfoModel.prototype = {
