@@ -13,7 +13,7 @@
 	.compare-unit-box .img-svg-container.drag-drop img{ height:100%;}
 }
 
-@media only screen and (max-device-width: 768px) {
+@media only screen and (max-width: 768px) {
 	.payment-container { padding: 30px; padding-top: 80px; }
 	.payment-right-container { height: auto; }
 	.payment-right p { margin-bottom: 0; padding-right: 0; }
@@ -25,7 +25,7 @@
 	.close-payment { top: 30px; right: 30px; }
 }
 
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-width: 480px) {
 	.title-text, .title-text .phoneNumber { font-size: 14px; }
 	.title-text .phoneNumber .icon { font-size: 15px; }
 	.title-text p { padding-left: 50px; text-align: left; }
