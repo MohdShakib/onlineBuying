@@ -570,14 +570,16 @@ var getProjectData = (function() {
             }
             
 
+            var towerName, listing, towerId;
             if(config.setJsonDataPriorityForTest){
+                towerId = allUnits[i].towerId;
                 towerName = allUnits[i].towerName;
-                var listing = projectDetail.listings[0];
+                listing = projectDetail.listings[0];
                 listing.flatNumber = allUnits[i].unitName;
             }else{
-                var towerId = projectDetail.listings[i].towerId;
-                var towerName = towerMap[towerId];
-                var listing = projectDetail.listings[i];
+                towerId = projectDetail.listings[i].towerId;
+                towerName = towerMap[towerId];
+                listing = projectDetail.listings[i];
             }
             
 
