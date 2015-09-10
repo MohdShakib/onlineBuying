@@ -29,6 +29,6 @@
 	.title-text, .title-text .phoneNumber { font-size: 14px; }
 	.title-text .phoneNumber .icon { font-size: 15px; }
 	.title-text p { padding-left: 50px; text-align: left; }
-	.personal-detail-box table tr td { padding: 0!important; width: 100%; display: block; }
+	.personal-detail-box table tr td { padding: 0!important; width: 100%; clear: both; display: block; }
 	.payment-container .property-detail { font-size: 12px; }
 }
