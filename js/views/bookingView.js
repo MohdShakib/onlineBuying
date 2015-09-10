@@ -174,65 +174,68 @@ var BookingView = (function() {
                 '            <h3>Nice Selection!</h3>' +
                 '            <p>Now, make a token payment of <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- to book your choice.' + titleText + '</p>' +
                 '            <div class="personal-detail-box">' +
-                '                <table cellpadding="0" cellspacing="0" width="100%">' +
-                '                    <tr>' +
-                '                        <td width="50%" class="full">' +
+                '                <div class="table">' +
+				'					<div class="tr">'+
+                '                        <div class="td">' +
                 '                            <div id="booking-first-name" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">Full Name</label>' +
                 '                                <input type="text" required />' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
-                '                        </td>' +
-				'                        <td width="50%" class="full" style="display: none;">' +
+                '                        </div>' +
+				'                        <div class="td" style="display: none;">' +
                 '                            <div id="booking-last-name" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">Last Name</label>' +
                 '                                <input type="text" />' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
-                '                        </td>' +
-				'						<td width="50%" class="full">' +
+                '                        </div>' +
+				'						<div class="td">' +
                 '                            <div id="booking-email" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">email</label>' +
                 '                                <input type="email" required />' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
-                '                        </td>' +
-                '                    </tr>' +
-                '                    <tr>' +
-                '                        <td width="50%" class="full">' +
+                '                        </div>' +
+				'						<div class="clear-fix"></div>'+
+                '                    </div>' +
+                '                    <div class="tr">' +
+                '                        <div class="td">' +
                 '                            <div id="booking-nationality" class="input-box transition no-paddind  ' + config.bookingSelectionDivClass + '">' +
                 '                                <a class="nationalty-link selectedCountry active" data-countryid="1">India<span class="icon fs18 icon-next transition"></span></a>' +
                 '                                <ul class="' + config.nationalityDropdownClass + ' transition ' + config.bookingDropdownClass + '" style="display:none;">' +
                 '                                </ul>' +
                 '                            </div>' +
-                '                        </td>' +
-                '                        <td width="50%" class="full">' +
+                '                        </div>' +
+                '                        <div class="td">' +
                 '                            <div id="booking-phone" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">phone</label>' +
                 '                                <input type="text" name="phone" id="phone-number" data-countrycode="+91" data-countryid="1" data-countryname="India" required />' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
-                '                        </td>' +
-                '                    </tr>' +
-                '                    <tr>' +
-                //'                        <td width="50%">' +
+                '                        </div>' +
+				'						<div class="clear-fix"></div>'+
+                '                    </div>' +
+                '                    <div class="tr">' +
+                //'                        <div class="td">' +
                 //'                            <div id="booking-dob" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 //'                                <label class="transition">date of birth (DD/MM/YYY)</label>' +
                 //'                                <input type="text" />' +
                 //'                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 //'                            </div>' +
-                //'                        </td>' +
-                '                        <td width="50%" class="full">' +
+                //'                        </div>' +
+                '                        <div class="td">' +
                 '                            <div id="booking-pan" class="input-box transition ' + config.bookingInputDivClass + '">' +
                 '                                <label class="transition">pan number</label>' +
                 '                                <input type="text" />' +
                 '                                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '                            </div>' +
-                '                        </td>' +
-                '                        <td width="50%" class="full">&nbsp;' +
-                '                        </td>' +
-                '                    </tr>' +
-                '                </table>' +
+                '                        </div>' +
+                '                        <div class="td">&nbsp;' +
+                '                        </div>' +
+				'						<div class="clear-fix"></div>'+
+				'					</div>'+
+                '                </div>' +
                 '            </div>' +
                 '            <div class="terms-condition">' +
                 '                <input type="checkbox" id="terms" required />' +
