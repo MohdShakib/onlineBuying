@@ -46,8 +46,8 @@ var MasterplanController = (function() {
             });
             this._view._towerSvgClick.attach(function(sender, element) {
                 var data = _this._model.getData(),
-                    elementData = element.dataset,
-                    label = data.projectIdentifier + '-' + data.projectId + '-' + elementData.name;
+                    elementData = $(element).data(),
+                    label = data.projectIdentifier + '-' + data.projectId + '-' + elementData.index + '-' + elementData.imageid;
                 utils.tracking('masterPlanTowerSvg', 'clicked', label);
                 utils.changeUrl(element);
             });
