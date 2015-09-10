@@ -63,10 +63,14 @@ var UnitplaninfoView = (function() {
         // Amenity Events
         this._amenityClick = new Event(this);
         this._amenityClose = new Event(this);
+
+        //Selected floor view
+        this._selectedFloor = 0;
+
     }
 
     UnitplaninfoView.prototype = {
-        buildView: function() {
+        buildView: function(is2d) {
             var i, data = this._model.getData(),
                 rotationdata = this._model.getRotationdata(),
                 rootdata = this._model.getRootdata(),
@@ -76,7 +80,7 @@ var UnitplaninfoView = (function() {
             for (i in this._elements) {
                 if (this._elements.hasOwnProperty(i) && this[i]) {
                     this._elements[i].empty();
-                    this[i](data, rotationdata, rootdata);
+                    this[i](data, rotationdata, rootdata, is2d);
                 }
             }
 
@@ -179,9 +183,9 @@ var UnitplaninfoView = (function() {
             var _this = this;
             $('#' + config.selectedUnitContainerId).off('click').on('click', '.like-box', function() {
                 _this._likeBoxClick.notify(this); //this refers to element
-				if($(this).hasClass('selected')){//this refers to element
-					utils.flyToShortlist(this); //this refers to element
-				}
+    				if($(this).hasClass('selected')){//this refers to element
+    					utils.flyToShortlist(this); //this refers to element
+    				}
 
             });
             $('#' + config.selectedUnitContainerId).on('click', '.book-now a', function() {
@@ -225,11 +229,24 @@ var UnitplaninfoView = (function() {
                 _this._unitMenuClick.notify(this); // this refers to element here
             });
         },
-		floorPlanContainer: function(data, rotationdata, rootdata) {
-            var unitTypeData = rootdata.unitTypes[rotationdata.unitTypeIdentifier];
+		    floorPlanContainer: function(data, rotationdata, rootdata) {
+            var unitTypeIdentifierArr = rotationdata.unitTypeIdentifierArr;
+            var unitTypeData = rootdata.unitTypes[unitTypeIdentifierArr[this._selectedFloor]];
+            var _this = this;
+            var isActive = function(floor) {
+              if(floor == _this._selectedFloor){
+                return "active";
+              } else {
+                return "";
+              }
+            };
+            var unitTypeDataArr = [];
+            for(var i =0; i < unitTypeIdentifierArr.length; i++) {
+              unitTypeDataArr[i] = rootdata.unitTypes[rotationdata.unitTypeIdentifierArr[i]];
+            }
+            var isDuplex = (unitTypeIdentifierArr && unitTypeIdentifierArr.length && unitTypeIdentifierArr.length == 2) ? true : false;
             var imageUrl = unitTypeData.unitImageUrl;
             var code = "<img class='fullView' src='" + imageUrl + "'>";
-
             if (unitTypeData.morningSunlightImageUrl) {
                 code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " mor-image' src='" + unitTypeData.morningSunlightImageUrl + "'>";
                 code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " aft-image' src='" + unitTypeData.afternoonSunlightImageUrl + "'>";
@@ -239,12 +256,14 @@ var UnitplaninfoView = (function() {
                 code += "<div data-target='mor-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-morning fs16'></span><label>Morning View</label></div>";
                 code += "<div data-target='aft-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-afternoon fs16'></span><label>Noon View</label></div>";
                 code += "<div data-target='eve-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-night fs16'></span><label>Evening View</label></div></div>";
-				//code +="<div class='duplexBox'><h4>Duplex</h4>";
-//				code +="<ul>";
-//				code +="<li><span>Upper</span><div class='thumb'></div></li>";
-//				code +="<li><span>Lower</span><div class='thumb'></div></li>";
-//				code +="</ul></div>";
-				
+
+            }
+            if(isDuplex) {
+              code +="<div class='duplexBox'><h4>Duplex</h4>";
+              code +="<ul>";
+              code +="<li class='"+isActive(1)+"'><span>Upper</span><div class='thumb' data-floor='1'><img class='minmap' src='" + unitTypeDataArr[1].unitImageUrl + "'></div></li>";
+              code +="<li class='"+isActive(0)+"'><span>Lower</span><div class='thumb' data-floor='0'><img class='minmap' src='" + unitTypeDataArr[0].unitImageUrl + "'></div></li>";
+              code +="</ul></div>";
             }
             this._elements.floorPlanContainer.html(code);
             this.floorPlanContainerEvents();
@@ -254,6 +273,10 @@ var UnitplaninfoView = (function() {
             _this._elements.floorPlanContainer.off('click').on('click', '.' + config.sunlightMenuOptionClass, function(event) {
                 // notify controller
                 _this._sunlightMenuClick.notify(this); // this refers to element here
+            });
+            _this._elements.floorPlanContainer.on('click', '.thumb', function(event){
+                _this._selectedFloor = $(this).data('floor');
+                _this.buildView();
             });
         },
         floorPlanMenuContainer: function(data, rotationdata, rootdata) {
@@ -272,10 +295,43 @@ var UnitplaninfoView = (function() {
                 _this._floorPlanMenuClick.notify(this); // this refers to element here
             });
         },
-        floorPlan2dContainer: function(data, rotationdata, rootdata) {
-            var imageUrl = rootdata.unitTypes[rotationdata.unitTypeIdentifier].unitImage2dUrl;
+        floorPlan2dContainer: function(data, rotationdata, rootdata, is2d) {
+            var unitTypeIdentifierArr = rotationdata.unitTypeIdentifierArr;
+            var _this = this;
+            var isActive = function(floor) {
+              if(floor == _this._selectedFloor){
+                return "active";
+              } else {
+                return "";
+              }
+            };
+            var unitTypeDataArr = [];
+            for(var i =0; i < unitTypeIdentifierArr.length; i++) {
+              unitTypeDataArr[i] = rootdata.unitTypes[rotationdata.unitTypeIdentifierArr[i]];
+            }
+            var isDuplex = (unitTypeIdentifierArr && unitTypeIdentifierArr.length && unitTypeIdentifierArr.length == 2) ? true : false;
+
+            var imageUrl = rootdata.unitTypes[unitTypeIdentifierArr[this._selectedFloor]].unitImage2dUrl;
             var code = "<img class='fullView' src='" + imageUrl + "'>";
+            if(isDuplex) {
+              code +="<div class='duplexBox'><h4>Duplex</h4>";
+              code +="<ul>";
+              code +="<li class='"+isActive(1)+"'><span>Upper</span><div class='thumb' data-floor='1'><img class='minmap' src='" + unitTypeDataArr[1].unitImageUrl + "'></div></li>";
+              code +="<li class='"+isActive(0)+"'><span>Lower</span><div class='thumb' data-floor='0'><img class='minmap' src='" + unitTypeDataArr[0].unitImageUrl + "'></div></li>";
+              code +="</ul></div>";
+            }
             this._elements.floorPlan2dContainer.html(code);
+            this.floorPlan2dContainerEvents(data, rotationdata, rootdata);
+            if(is2d) {
+              $("#floor-plan2d").trigger('click');
+            }
+        },
+        floorPlan2dContainerEvents: function(data, rotationdata, rootdata) {
+            var _this = this;
+            _this._elements.floorPlan2dContainer.off('click').on('click', '.thumb', function(event){
+                _this._selectedFloor = $(this).data('floor');
+                _this.buildView(true);
+            });
         },
         walkthroughContainer: function(data, rotationdata, rootdata) {
             var videoUrl = data.walkthrough.video;
@@ -286,7 +342,7 @@ var UnitplaninfoView = (function() {
             this._elements.walkthroughContainer.html(code);
         },
         unit3dSvgContainer: function() {
-            var unitTypeData = this._model.getUnitTypeData(),
+            var unitTypeData = this._model.getUnitTypeData(this._selectedFloor),
                 svgElements = utils.getUnit3dSvgPolygonElements(unitTypeData);
 
             if (svgElements && svgElements.length) {
@@ -316,7 +372,7 @@ var UnitplaninfoView = (function() {
             });
         },
         unit2dSvgContainer: function() {
-            var unitTypeData = this._model.getUnitTypeData(),
+            var unitTypeData = this._model.getUnitTypeData(this._selectedFloor),
                 svgData = unitTypeData.svgs,
                 svgs_count = svgData && svgData.length ? svgData.length : 0;
 
@@ -373,7 +429,7 @@ var UnitplaninfoView = (function() {
             document.getElementById(config.unitDetailContainerId).innerHTML = '';
         },
         amenitiesContainer: function(data, rotationdata, rootdata) {
-            var unitTypeData = this._model.getUnitTypeData(),
+            var unitTypeData = this._model.getUnitTypeData(this._selectedFloor),
                 svgData = unitTypeData ? unitTypeData.linkSvgs : null;
 
             var code = '';
@@ -436,7 +492,8 @@ var UnitplaninfoView = (function() {
             this.amenitiesContainerEvents();
         },
         clusterPlanContainer: function(data, rotationdata, rootdata) {
-            var imageUrl = rootdata.unitTypes[rotationdata.unitTypeIdentifier].clusterplanImageUrl;
+            var unitTypeIdentifierArr = rotationdata.unitTypeIdentifierArr;
+            var imageUrl = rootdata.unitTypes[unitTypeIdentifierArr[this._selectedFloor]].clusterplanImageUrl;
             var code = "<img class='fullView' src='" + imageUrl + "'>";
             this._elements.clusterPlanContainer.html(code);
         },

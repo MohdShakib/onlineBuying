@@ -31,8 +31,10 @@ var UnitplaninfoModel = (function() {
             }
             return this._data;
         },
-        getUnitTypeData: function() {
-            var unitType = this._rotationdata.unitTypeIdentifier;
+        getUnitTypeData: function(selectedFloor) {
+            selectedFloor = selectedFloor || 0;
+            var unitTypeIdentifierArr = this._rotationdata.unitTypeIdentifierArr;
+            var unitType = unitTypeIdentifierArr[selectedFloor];
             if (!(this._rootdata.unitTypes && this._rootdata.unitTypes[unitType])) {
                 return {};
             }
