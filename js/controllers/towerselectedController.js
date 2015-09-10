@@ -43,6 +43,12 @@ var TowerselectedController = (function() {
                 _this._view.towerUnitMouseLeaveEvent(element);
             });
             this._view._towerUnitSvgClick.attach(function(sender, element) {
+                var rootdata = _this._model.getRootdata(),
+                    data = _this._model.getData(),
+                    elementData = $(element).data(),
+                    label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-' + elementData.index + '-svg';
+                utils.tracking('towerUnitSvg', 'clicked', label);
+
                 var index = $(element).data('index');
                 _this._model.setSelectedListing(index);
                 _this._view.towerUnitMouseClickEvent(element);
@@ -51,6 +57,11 @@ var TowerselectedController = (function() {
 
             // Tower Rotation
             this._view._towerRotateClicked.attach(function(sender, element) {
+                var rootdata = _this._model.getRootdata(),
+                    data = _this._model.getData(),
+                    label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-rotation';
+                utils.tracking('towerRotationButton', 'clicked', label);
+
                 var currentRotationAngle = _this._model.getCurrentRotationAngle();
                 var isAnticlockwise = $(element).data('anticlockwise');
                 var newRotationAngle = _this.getNewRotationAngle(currentRotationAngle, isAnticlockwise);

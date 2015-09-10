@@ -22,6 +22,12 @@ var UnitplaninfoModel = (function() {
             }
         }
 
+        this._cookie = {
+            name: cookieUtils.readCookie("name"),
+            email: cookieUtils.readCookie("email"),
+            phone: cookieUtils.readCookie("phone"),
+            countryId: cookieUtils.readCookie("country")
+        };
     }
 
     UnitplaninfoModel.prototype = {
@@ -30,6 +36,12 @@ var UnitplaninfoModel = (function() {
                 return {};
             }
             return this._data;
+        },
+        getCookie: function() {
+            if (!this._cookie) {
+                return {};
+            }
+            return this._cookie;
         },
         getUnitTypeData: function(selectedFloor) {
             selectedFloor = selectedFloor || 0;
