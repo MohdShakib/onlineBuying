@@ -14,18 +14,18 @@ var TowerselectedController = (function() {
     }
 
     TowerselectedController.prototype = {
-        getNewRotationAngle: function(currentRotationAngle, anticlockwise){
+        getNewRotationAngle: function(currentRotationAngle, anticlockwise) {
             var stableAngles = this._model.getStableViewAngles(),
-            totalStableAngles = stableAngles.length,
-            currentAngleIndex = stableAngles.indexOf(currentRotationAngle);
+                totalStableAngles = stableAngles.length,
+                currentAngleIndex = stableAngles.indexOf(currentRotationAngle);
             var nextAngle = currentRotationAngle;
-            if(totalStableAngles > 1 && currentAngleIndex > -1){
-                if(!currentAngleIndex){ // when 0 index
-                    nextAngle = anticlockwise ? stableAngles[totalStableAngles-1] : stableAngles[1];
-                }else if(currentAngleIndex == totalStableAngles-1){
-                    nextAngle = anticlockwise ? stableAngles[currentAngleIndex-1] : stableAngles[0];
-                }else{
-                    nextAngle = anticlockwise ? stableAngles[currentAngleIndex-1] : stableAngles[currentAngleIndex+1];
+            if (totalStableAngles > 1 && currentAngleIndex > -1) {
+                if (!currentAngleIndex) { // when 0 index
+                    nextAngle = anticlockwise ? stableAngles[totalStableAngles - 1] : stableAngles[1];
+                } else if (currentAngleIndex == totalStableAngles - 1) {
+                    nextAngle = anticlockwise ? stableAngles[currentAngleIndex - 1] : stableAngles[0];
+                } else {
+                    nextAngle = anticlockwise ? stableAngles[currentAngleIndex - 1] : stableAngles[currentAngleIndex + 1];
                 }
 
             }
@@ -69,18 +69,27 @@ var TowerselectedController = (function() {
             this._view._bhkFilterOptionClick.attach(function(sender, element) {
                 var dataset = $(element).data();
                 var bhk = dataset.value;
+                var data = _this._model.getRootdata(),
+                    label = data.projectIdentifier + '-' + data.projectId + '-bedroomFilter';
+                utils.tracking('filterPanel', 'clicked', label);
                 _this.toggleFilterOption(_this._filters.bhk, bhk, element);
             });
             this._view._floorFilterOptionClick.attach(function(sender, element) {
                 var dataset = $(element).data();
                 var floorGroup = dataset.svalue + " " + dataset.evalue;
+                var data = _this._model.getRootdata(),
+                    label = data.projectIdentifier + '-' + data.projectId + '-floorFilter';
+                utils.tracking('floorPanel', 'clicked', label);
                 _this.toggleFilterOption(_this._filters.floor, floorGroup, element);
             });
 
-            if(!config.removeFacingFilter){
+            if (!config.removeFacingFilter) {
                 this._view._entranceFilterOptionClick.attach(function(sender, element) {
                     var dataset = $(element).data();
                     var entrance = dataset.value;
+                    var data = _this._model.getRootdata(),
+                        label = data.projectIdentifier + '-' + data.projectId + '-entranceFilter';
+                    utils.tracking('filterPanel', 'clicked', label);
                     _this.toggleFilterOption(_this._filters.entrance, entrance, element);
                 });
             }
@@ -88,6 +97,9 @@ var TowerselectedController = (function() {
             this._view._priceFilterOptionClick.attach(function(sender, element) {
                 var dataset = $(element).data();
                 var priceGroup = dataset.svalue + " " + dataset.evalue;
+                var data = _this._model.getRootdata(),
+                    label = data.projectIdentifier + '-' + data.projectId + '-priceFilter';
+                utils.tracking('filterPanel', 'clicked', label);
                 _this.toggleFilterOption(_this._filters.price, priceGroup, element);
             });
             this._view._resetFiltersClick.attach(function(sender, element) {
