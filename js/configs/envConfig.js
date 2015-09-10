@@ -10,7 +10,7 @@ var envConfig = (function() {
     var envConfig = {
         local: {
             env: env,
-            apiURL: 'https://beta.proptiger-ws.com/',
+            apiURL: 'https://qa-ui.proptiger-ws.com/',
             showLogs: true
         },
         dev: {
