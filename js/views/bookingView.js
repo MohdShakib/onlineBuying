@@ -279,6 +279,7 @@ var BookingView = (function() {
             //code += getCallbackCode;
             code += '</div>';
             code += '<div class="clear-fix"></div>' +
+			'	<p class="cancellationMsg">( no cancellation charges )</p>'+
                 '</div>' +
                 '</div>' +
                 '</div>';
