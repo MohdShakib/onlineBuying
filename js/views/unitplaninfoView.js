@@ -100,10 +100,18 @@ var UnitplaninfoView = (function() {
                 $('#' + config.selectedUnitContainerId).animate({
                     right: 0
                 }, 900);
+                $('#' + config.svgContainerId).hide();
+
                 $('#' + config.filterMenuContainerId).css({
                     left: '-65px'
                 });
                 $('#' + config.towerRotationContainerId).addClass(config.smallLeftArea);
+                $('#' + config.towerRotationContainerId).find('.rotation-btn-container').hide();
+                setTimeout(function(){
+                  $('#' + config.towerRotationContainerId).find('.rotation-btn-container').show();
+                  $('#' + config.svgContainerId).show();
+                },900);
+
 
                 // to show unit icon selected on tower
                 utils.removeSVGClass(data.unitIdentifier + "-selected-path", config.hideClass);
@@ -124,6 +132,8 @@ var UnitplaninfoView = (function() {
                 visibility: 'visible'
             });
             $('#' + config.towerRotationContainerId).removeClass(config.smallLeftArea);
+            $('#' + config.towerRotationContainerId).find('.rotation-btn-container').hide();
+
 
             // hide selected unit
             var svgElements = $('.' + config.towerUnitSvgSelectedClass);
