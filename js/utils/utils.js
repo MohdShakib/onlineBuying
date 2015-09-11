@@ -79,16 +79,29 @@ var utils = (function() {
             }
             return readablePrice;
         },
-        getReadablePriceInWord: function(price) {
+        getReadablePriceInWord: function(price, upto2Decimal) {
+            var returnValue = price;
+            var units = '';
             if (price / 10000000 > 1) {
-                return Math.floor(price / 1000000) / 10 + " Crores";
+                returnValue = (price / 1000000)/10;
+                returnValue = upto2Decimal ? returnValue.toFixed(2) : returnValue;
+                units = " Crores";
+                //return Math.floor(price / 1000000) / 10 + " Crores";
             } else if (price / 100000 > 1) {
-                return Math.floor(price / 10000) / 10 + " Lacs";
+
+                returnValue = (price / 10000) / 10;
+                returnValue = upto2Decimal ? returnValue.toFixed(2) : returnValue;
+                units = " Lacs";
+                //return Math.floor(price / 10000) / 10 + " Lacs";
             } else if (price / 1000) {
-                return Math.floor(price / 100) / 10 + " K";
-            } else {
+                returnValue = (price / 100) / 10;
+                returnValue = upto2Decimal ? returnValue.toFixed(2) : returnValue;
+                units = " K";
+                //return Math.floor(price / 100) / 10 + " K";
+            } /*else {
                 return price;
-            }
+            }*/
+            return returnValue+units;
         },
         getIdentifier: function(string) {
             var identifier = '';
