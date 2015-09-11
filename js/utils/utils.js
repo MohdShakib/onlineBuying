@@ -79,23 +79,23 @@ var utils = (function() {
             }
             return readablePrice;
         },
-        getReadablePriceInWord: function(price, upto2Decimal) {
+        getReadablePriceInWord: function(price) {
             var returnValue = price;
             var units = '';
             if (price / 10000000 > 1) {
                 returnValue = (price / 1000000)/10;
-                returnValue = upto2Decimal ? returnValue.toFixed(2) : returnValue;
+                returnValue = returnValue.toFixed(2);
                 units = " Crores";
                 //return Math.floor(price / 1000000) / 10 + " Crores";
             } else if (price / 100000 > 1) {
 
                 returnValue = (price / 10000) / 10;
-                returnValue = upto2Decimal ? returnValue.toFixed(2) : returnValue;
+                returnValue = returnValue.toFixed(2);
                 units = " Lacs";
                 //return Math.floor(price / 10000) / 10 + " Lacs";
             } else if (price / 1000) {
                 returnValue = (price / 100) / 10;
-                returnValue = upto2Decimal ? returnValue.toFixed(2) : returnValue;
+                returnValue = returnValue.toFixed(2);
                 units = " K";
                 //return Math.floor(price / 100) / 10 + " K";
             } /*else {
