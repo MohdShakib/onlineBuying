@@ -80,15 +80,28 @@ var utils = (function() {
             return readablePrice;
         },
         getReadablePriceInWord: function(price) {
+            var returnValue = price;
+            var units = '';
             if (price / 10000000 > 1) {
-                return Math.floor(price / 1000000) / 10 + " Crores";
+                returnValue = (price / 1000000)/10;
+                returnValue = returnValue.toFixed(2);
+                units = " Crores";
+                //return Math.floor(price / 1000000) / 10 + " Crores";
             } else if (price / 100000 > 1) {
-                return Math.floor(price / 10000) / 10 + " Lacs";
+
+                returnValue = (price / 10000) / 10;
+                returnValue = returnValue.toFixed(2);
+                units = " Lacs";
+                //return Math.floor(price / 10000) / 10 + " Lacs";
             } else if (price / 1000) {
-                return Math.floor(price / 100) / 10 + " K";
-            } else {
+                returnValue = (price / 100) / 10;
+                returnValue = returnValue.toFixed(2);
+                units = " K";
+                //return Math.floor(price / 100) / 10 + " K";
+            } /*else {
                 return price;
-            }
+            }*/
+            return returnValue+units;
         },
         getIdentifier: function(string) {
             var identifier = '';
@@ -210,8 +223,14 @@ var utils = (function() {
                 screenHeight = $(window).height(),
                 x = event.pageX,
                 y = event.pageY;
-            x = (x / screenWidth) * 100;
-            y = (y / screenHeight) * 100;
+
+            x = parseFloat(x);
+            y = parseFloat(y);
+
+            if(!(event.unit && event.unit == '%')){
+                x = (x / screenWidth) * 100;
+                y = (y / screenHeight) * 100;
+            }
             positionClass = y < 50 ? 'top-' : 'bottom-';
             positionClass += x > 50 ? 'left' : 'right';
 

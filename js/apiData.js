@@ -670,7 +670,7 @@ var getProjectData = (function() {
                 }
             }
 
-            if (towerIdentifier) {
+            if (towerIdentifier && projectData.towers[towerIdentifier]) {
                 projectData.towers[towerIdentifier].listings[unitIdentifier] = flatUnit;
             }
 
