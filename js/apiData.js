@@ -529,9 +529,26 @@ var getProjectData = (function() {
                 tower = projectDetail.towers[i];
             }
             
+            /** towername short and long name logic start **/
+            var longName =  tower.towerName;
+            var nameArray = tower.towerName.split(' ');
+            var shortName = nameArray.reduce(function (a, b) { return a.length < b.length ? a : b; });
+            
+            if(shortName && shortName.length > 2){
+                shortName = tower.towerName.substr(0,2);
+                longName = tower.towerName;
+            }   
+
+            if(longName.length <= 2){
+                longName =  'Tower '+tower.towerName;
+            }
+            /** long short name  logic ends **/
+
             towerIdentifier = utils.getIdentifier(tower.towerName);
             towers[towerIdentifier] = {};
             towerMap[tower.towerId] = tower.towerName;
+            towers[towerIdentifier].shortName = shortName;
+            towers[towerIdentifier].longName = longName;
             towers[towerIdentifier].towerId = tower.towerId;
             towers[towerIdentifier].towerIdentifier = towerIdentifier;
             towers[towerIdentifier].towerName = tower.towerName;
