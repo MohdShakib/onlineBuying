@@ -37,32 +37,65 @@ var UnitplaninfoController = (function() {
             // Menu Events
             this._view._unitMenuClick.attach(function(sender, element) {
                 _this._view.selectUnitMenuOption(element, config.unitMenuLinkClass, config.unitDataContainer);
+
+                var rootdata = _this._model.getRootdata(),
+                    data = _this._model.getData(),
+                    dataset = $(element).data(),
+                    label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-' + data.unitIdentifier + '-' + dataset.menu;
+                utils.tracking('towerUnitTopMenu', 'clicked', label);
             });
 
             // Sunlight menu Events
             this._view._sunlightMenuClick.attach(function(sender, element) {
                 _this._view.selectMenuOption(element, config.sunlightMenuOptionClass, config.sunlightImageClass, true);
+
+                var rootdata = _this._model.getRootdata(),
+                    data = _this._model.getData(),
+                    dataset = $(element).data(),
+                    label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-' + data.unitIdentifier + '-sunlight-' + dataset.target;
+                utils.tracking('sunlightMenu', 'clicked', label);
             });
 
             // Floor plan menu Event
             this._view._floorPlanMenuClick.attach(function(sender, element) {
                 _this._view.selectMenuOption(element, config.floorPlanMenuOptionClass, config.unitDataContainer);
+
+                var rootdata = _this._model.getRootdata(),
+                    data = _this._model.getData(),
+                    dataset = $(element).data(),
+                    label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-' + data.unitIdentifier + '-' + dataset.menu;
+                utils.tracking('unitPlanMenu', 'clicked', label);
             });
 
             // Shortlisting button
             this._view._likeBoxClick.attach(function(sender, element) {
-                var data = _this._model.getRotationdata();
-                utils.likeBoxClicked(element, data.unitIdentifier, data.unitName, data.towerIdentifier, data.rotationAngle, data.unitUniqueIdentifier);
+                var rootdata = _this._model.getRootdata(),
+                    data = _this._model.getData(),
+                    rotationData = _this._model.getRotationdata();
+                utils.likeBoxClicked(element, rotationData.unitIdentifier, rotationData.unitName, rotationData.towerIdentifier, rotationData.rotationAngle, rotationData.unitUniqueIdentifier);
+
+                var dataset = $(element).data(),
+                    label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-' + data.unitIdentifier + '-shortlistButton';
+                utils.tracking('button', 'clicked', label);
             });
 
             // Booking Event
             this._view._bookingClick.attach(function(sender, element) {
                 utils.changeUrl(element);
+                var rootdata = _this._model.getRootdata(),
+                    data = _this._model.getData(),
+                    label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-' + data.unitIdentifier + '-bookNowButton';
+                utils.tracking('button', 'clicked', label);
             });
 
             // Amenity Events
             this._view._amenityClick.attach(function(sender, element) {
                 _this._view.amenityClickEvent(element);
+                var rootdata = _this._model.getRootdata(),
+                    data = _this._model.getData(),
+                    viewId = $(element).attr('id'),
+                    label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-' + data.unitIdentifier + '-' + viewId;
+                utils.tracking('balconyViews', 'clicked', label);
             });
             this._view._amenityClose.attach(function(sender, element) {
                 _this._view.amenityCloseEvent();

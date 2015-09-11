@@ -278,7 +278,7 @@ var MasterplanView = (function() {
                     "' id='" + towerIdentifier + "-menu' data-index='" + towerIdentifier +
                     "' data-imageid='" + tower.towerId +
                     "' data-url='" + towerUrl +
-                    "'><span class='tower-menu-text transition'>"+tower.longName+"</span> " +tower.shortName+ "</div></div>";
+                    "'><span class='tower-menu-text transition'>"+tower.longName+"</span> <label class='transition'>" +tower.shortName+ "</label></div></div>";
             }
             code += "</div></div></div></div>";
             code += "</div>";
@@ -407,9 +407,8 @@ var MasterplanView = (function() {
                 this.showTowerDetailContainer(towerData, (svgpathClient.left - diff + svgpathClient.width / 2), svgpathClient.top + 30, 'px');
             }
 
-            var menuElement = $('#' + index + '-menu');
-            menuElement.addClass(config.menuItemHoverClass);
-            menuElement.addClass(availabilityStatusClass);
+            $('#' + index + '-menu').addClass(config.menuItemHoverClass);
+            $('#' + index + '-menu span').addClass(availabilityStatusClass);
         },
         towerMouseLeaveEvent: function(element) {
             $('.detail-box').removeClass('show-details');
