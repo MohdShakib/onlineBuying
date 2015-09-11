@@ -66,15 +66,15 @@ var MasterplanController = (function() {
         generateTemplate: function() {
             this._view.buildView();
             if (this._model.isFirstLoad()) {
-              var _this = this;
-              var animationStart = undefined;
-              if(animationStart) {
-                clearTimeout(animationStart);
-              }
-              var animationStart = setTimeout(function(){
-                utils.showLoader(_this._view, _this._view.startAnimation);
-                _this._model.toggleFirstLoad();
-              },200);
+                var _this = this,
+                    animationStart;
+                if (animationStart) {
+                    clearTimeout(animationStart);
+                }
+                var animationStart = setTimeout(function() {
+                    utils.showLoader(_this._view, _this._view.startAnimation);
+                    _this._model.toggleFirstLoad();
+                }, 200);
             } else {
                 this._view.displayWithoutAnimation();
             }
