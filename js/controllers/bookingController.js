@@ -27,7 +27,14 @@ var BookingController = (function() {
 
             // Make payment Event
             this._view._makePayment.attach(function(sender, element) {
-                _this._view.bookListing();
+                var paymentData = _this._view.getValidatedPaymentData(),
+                    rootdata = _this._model.getRootdata(),
+                    data = _this._model.getData(),
+                    label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-' + data.unitIdentifier + '-continueToPaymentButton';
+                if (paymentData != null && config.enablePayment && data.bookingStatus == "Available") {
+                    utils.tracking('button', 'clicked', label);
+                    _this._view.bookListing(paymentData);
+                }
             });
 
             // Get Call Back

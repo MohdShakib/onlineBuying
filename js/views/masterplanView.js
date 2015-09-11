@@ -192,7 +192,7 @@ var MasterplanView = (function() {
             });
         },
         carAnimation: function(data) {
-            if (!config.showCarAnimation || data.projectId != "672916") {
+            if (!config.showCarAnimation) {
                 return;
             }
             var carCode = "",
@@ -278,7 +278,7 @@ var MasterplanView = (function() {
                     "' id='" + towerIdentifier + "-menu' data-index='" + towerIdentifier +
                     "' data-imageid='" + tower.towerId +
                     "' data-url='" + towerUrl +
-                    "'><span class='tower-menu-text transition'>Tower</span> " + tower.towerName.split(' ')[1] + "</div></div>";
+                    "'><span class='tower-menu-text transition'>"+tower.longName+"</span> <label class='transition'>" +tower.shortName+ "</label></div></div>";
             }
             code += "</div></div></div></div>";
             code += "</div>";
@@ -407,9 +407,8 @@ var MasterplanView = (function() {
                 this.showTowerDetailContainer(towerData, (svgpathClient.left - diff + svgpathClient.width / 2), svgpathClient.top + 30, 'px');
             }
 
-            var menuElement = $('#' + index + '-menu');
-            menuElement.addClass(config.menuItemHoverClass);
-            menuElement.addClass(availabilityStatusClass);
+            $('#' + index + '-menu').addClass(config.menuItemHoverClass);
+            $('#' + index + '-menu span').addClass(availabilityStatusClass);
         },
         towerMouseLeaveEvent: function(element) {
             $('.detail-box').removeClass('show-details');
@@ -426,11 +425,12 @@ var MasterplanView = (function() {
                 return;
             }
 
+            tooltipClass = tooltipClass ? tooltipClass : 'bottom-right';
             var tooltipClass = utils.getTooltipPosition({
                 pageX: left,
-                pageY: top
+                pageY: top,
+                unit: unit
             });
-            tooltipClass = tooltipClass ? tooltipClass : 'bottom-right';
 
             var availabilityClassSuffix = '-border-right';
             if (tooltipClass == 'top-left' || tooltipClass == 'bottom-left') {
@@ -441,8 +441,8 @@ var MasterplanView = (function() {
                 dotClass = !data.isAvailable ? 'sold' : '',
                 bookingText = (data.bookingStatus == 'OnHold') ? 'On Hold' : 'Sold Out';
             towerCode += "<div id='container-detail' class='tooltip-detail'>";
-            towerCode += "<div class='detail-box show-details'>" + "<div class='tooltip-title'>" + data.towerName.split(' ')[1] + "</div>" + "<div class='line " + tooltipClass + "''>" + "<div class='dot-one'></div>" + "<div class='dot-two " + dotClass + "'></div>" + "<div class='detail-container master-details'>";
-            towerCode += "<div class='tolltip-tower-name'>" + data.towerName + "</div>";
+            towerCode += "<div class='detail-box show-details'>" + "<div class='tooltip-title'>" + data.shortName + "</div>" + "<div class='line " + tooltipClass + "''>" + "<div class='dot-one'></div>" + "<div class='dot-two " + dotClass + "'></div>" + "<div class='detail-container master-details'>";
+            towerCode += "<div class='tolltip-tower-name'>" + data.longName + "</div>";
             towerCode += "<table>";
             if (!data.isAvailable) {
                 towerCode += "<tr><td colspan='2' class='" + config.availabilityClass.unavailable + "'>" + bookingText + "</td></tr>";

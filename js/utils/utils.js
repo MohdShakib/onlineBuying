@@ -80,15 +80,28 @@ var utils = (function() {
             return readablePrice;
         },
         getReadablePriceInWord: function(price) {
+            var returnValue = price;
+            var units = '';
             if (price / 10000000 > 1) {
-                return Math.floor(price / 1000000) / 10 + " Crores";
+                returnValue = (price / 1000000)/10;
+                returnValue = returnValue.toFixed(2);
+                units = " Crores";
+                //return Math.floor(price / 1000000) / 10 + " Crores";
             } else if (price / 100000 > 1) {
-                return Math.floor(price / 10000) / 10 + " Lacs";
+
+                returnValue = (price / 10000) / 10;
+                returnValue = returnValue.toFixed(2);
+                units = " Lacs";
+                //return Math.floor(price / 10000) / 10 + " Lacs";
             } else if (price / 1000) {
-                return Math.floor(price / 100) / 10 + " K";
-            } else {
+                returnValue = (price / 100) / 10;
+                returnValue = returnValue.toFixed(2);
+                units = " K";
+                //return Math.floor(price / 100) / 10 + " K";
+            } /*else {
                 return price;
-            }
+            }*/
+            return returnValue+units;
         },
         getIdentifier: function(string) {
             var identifier = '';
@@ -157,7 +170,7 @@ var utils = (function() {
                     validationFlag = false;
                     $(this_field).parent('div').addClass('error');
                     var updatedNumberMessage = invalidNumberMessage;
-                    if(data.countryname) {
+                    if (data.countryname) {
                         updatedNumberMessage += " for " + data.countryname;
                     }
                     $(this_field).siblings('.' + config.errorMsgClass).text(updatedNumberMessage);
@@ -210,8 +223,14 @@ var utils = (function() {
                 screenHeight = $(window).height(),
                 x = event.pageX,
                 y = event.pageY;
-            x = (x / screenWidth) * 100;
-            y = (y / screenHeight) * 100;
+
+            x = parseFloat(x);
+            y = parseFloat(y);
+
+            if(!(event.unit && event.unit == '%')){
+                x = (x / screenWidth) * 100;
+                y = (y / screenHeight) * 100;
+            }
             positionClass = y < 50 ? 'top-' : 'bottom-';
             positionClass += x > 50 ? 'left' : 'right';
 
@@ -289,8 +308,10 @@ var utils = (function() {
                 $('#container-detail').css("top", pointY + '%');*/
 
                 // animate
-                window.getComputedStyle(document.getElementById('container-detail')).opacity; // jshint ignore:line
-                document.getElementById('container-detail').style.opacity = "1";
+                if (document.getElementById('container-detail')) {
+                    window.getComputedStyle(document.getElementById('container-detail')).opacity; // jshint ignore:line
+                    document.getElementById('container-detail').style.opacity = "1";
+                }
             }
         },
         getComparedItems: function() {
@@ -704,41 +725,41 @@ var utils = (function() {
             return arr;
         },
         tracking: function(category, action, label) {
-            if(envConfig.env !== 'local'){
+            if (envConfig.env !== 'local') {
                 ga('send', 'event', category, action, label);
             }
         },
         slideIt: function() {
-          var slideCount = $('#slider ul li').length;
-          var slideWidth = $('#slider ul li div').width();
-          var slideHeight = $('#slider ul li div').height();
-          var sliderUlWidth = slideCount * slideWidth;
+            var slideCount = $('#slider ul li').length;
+            var slideWidth = $('#slider ul li div').width();
+            var slideHeight = $('#slider ul li div').height();
+            var sliderUlWidth = slideCount * slideWidth;
 
-          function moveLeft() {
-              $('#slider ul').animate({
-                  left: + slideWidth
-              }, 200, function () {
-                  $('#slider ul li:last-child').prependTo('#slider ul');
-                  $('#slider ul').css('left', '');
-              });
-          }
+            function moveLeft() {
+                $('#slider ul').animate({
+                    left: +slideWidth
+                }, 200, function() {
+                    $('#slider ul li:last-child').prependTo('#slider ul');
+                    $('#slider ul').css('left', '');
+                });
+            }
 
-          function moveRight() {
-              $('#slider ul').animate({
-                  left: - slideWidth
-              }, 200, function () {
-                  $('#slider ul li:first-child').appendTo('#slider ul');
-                  $('#slider ul').css('left', '');
-              });
-          }
+            function moveRight() {
+                $('#slider ul').animate({
+                    left: -slideWidth
+                }, 200, function() {
+                    $('#slider ul li:first-child').appendTo('#slider ul');
+                    $('#slider ul').css('left', '');
+                });
+            }
 
-          $('a.control_prev').click(function () {
-              moveLeft();
-          });
+            $('a.control_prev').click(function() {
+                moveLeft();
+            });
 
-          $('a.control_next').click(function () {
-              moveRight();
-          });
+            $('a.control_next').click(function() {
+                moveRight();
+            });
         }
     };
 

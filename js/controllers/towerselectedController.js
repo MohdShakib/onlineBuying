@@ -46,7 +46,8 @@ var TowerselectedController = (function() {
                 var rootdata = _this._model.getRootdata(),
                     data = _this._model.getData(),
                     elementData = $(element).data(),
-                    label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-' + elementData.index + '-svg';
+                    avalibility = elementData.url == "undefined" ? "-sold" : "-available",
+                    label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-' + elementData.index + '-svg' + avalibility;
                 utils.tracking('towerUnitSvg', 'clicked', label);
 
                 var index = $(element).data('index');

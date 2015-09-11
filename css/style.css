@@ -354,14 +354,12 @@ ellipse.tower-unit-svg-selected-path {
 	cursor: default !important;
 }
 .tower-menu-container .menu-item {
-	position: absolute;
+	position: relative;
 	line-height: 44px;
 	height: 44px;
 	top: 0px;
-	width: 100px;
-	height:44px;
-	left:-55px;
-	padding-left:8px;
+	width: 44px;
+	left:0px;
 	cursor: pointer;
 	box-sizing:border-box;
 	-moz-box-sizing:border-box;
@@ -373,13 +371,9 @@ ellipse.tower-unit-svg-selected-path {
 	-webkit-transition:all 0.5s ease-in-out;
 }
 .tower-menu-container.tower-selected-menu .menu-item{width: 45px;left:0; padding-left:0;border-bottom:1px solid #3d3d3d;}
-.tower-menu-container .menu-item-hover {
-	width: 100px;
-	left:0;
-	padding-left:0;
-}
-.tower-menu-container .menu-item .tower-menu-text{display:inline-block; position:relative; left:-18px;}
-.tower-menu-container .menu-item-hover .tower-menu-text{ left:0;}
+.tower-menu-container .menu-item .tower-menu-text{position:absolute; left:-105px; height: 44px; width: 100px;}
+.tower-menu-container .menu-item label{ cursor:pointer;}
+.tower-menu-container .menu-item-hover .tower-menu-text{ left:0; background:#333;}
 .tower-menu-container .menu-items .menu-item-container {
 	transition:all 0.5s ease-in-out;
 	-moz-transition:all 0.5s ease-in-out;
