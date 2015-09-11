@@ -426,11 +426,12 @@ var MasterplanView = (function() {
                 return;
             }
 
+            tooltipClass = tooltipClass ? tooltipClass : 'bottom-right';
             var tooltipClass = utils.getTooltipPosition({
                 pageX: left,
-                pageY: top
+                pageY: top,
+                unit: unit
             });
-            tooltipClass = tooltipClass ? tooltipClass : 'bottom-right';
 
             var availabilityClassSuffix = '-border-right';
             if (tooltipClass == 'top-left' || tooltipClass == 'bottom-left') {

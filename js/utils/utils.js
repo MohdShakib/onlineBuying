@@ -210,8 +210,14 @@ var utils = (function() {
                 screenHeight = $(window).height(),
                 x = event.pageX,
                 y = event.pageY;
-            x = (x / screenWidth) * 100;
-            y = (y / screenHeight) * 100;
+
+            x = parseFloat(x);
+            y = parseFloat(y);
+
+            if(!(event.unit && event.unit == '%')){
+                x = (x / screenWidth) * 100;
+                y = (y / screenHeight) * 100;
+            }
             positionClass = y < 50 ? 'top-' : 'bottom-';
             positionClass += x > 50 ? 'left' : 'right';
 
