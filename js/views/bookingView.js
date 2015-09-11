@@ -360,8 +360,9 @@ var BookingView = (function() {
 
             // Form Validations and submit
             _this._elements.paymentScreen.on('click', '.make-payment', function(event) {
-                // notify controller
-                _this._makePayment.notify(this); // this refers to element here
+                if (!$(this).hasClass(config.disabledClass)) {
+                    _this._makePayment.notify(this); // this refers to element here
+                }
             });
 
             // Form Validations and get call back
@@ -521,17 +522,7 @@ var BookingView = (function() {
                 utils.updateTotalPrice(_this._model.getData());
             });
         },
-        bookListing: function() {
-            if ($("#paymentButton").hasClass("disabled")) {
-                return;
-            }
-
-            var data = this.getValidatedPaymentData();
-
-            if (data == null) {
-                return;
-            }
-
+        bookListing: function(data) {
             var params = {
                 successCallback: function(data, params) {
                     window.location.href = data;
@@ -546,15 +537,9 @@ var BookingView = (function() {
                 }
             };
 
-            if (config.enablePayment && this._model.getData().bookingStatus == "Available") {
-                $('#paymentButton').addClass('disabled');
-                this.validateAndSendEmail("ContinueToPayment");
-                utils.tracking('button', 'clicked', 'continue-to-payment');
-                ajaxUtils.bookListing(data, params);
-            } else {
-                $('#paymentButton').removeClass('disabled');
-                $(".action-message").html("<span class='form-msg-failure'>" + config.errorMsg + "</span>");
-            }
+            $('#paymentButton').addClass('disabled');
+            this.validateAndSendEmail("ContinueToPayment");
+            ajaxUtils.bookListing(data, params);
         }
     };
 

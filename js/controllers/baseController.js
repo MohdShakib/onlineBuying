@@ -16,11 +16,11 @@ var BaseController = (function() {
         attachListeners: function() {
             var _this = this;
             this._view._bottomGroupButtonClick.attach(function(sender, element) {
+                _this._view.bottomGroupButtonClicked(element);
                 var data = _this._model.getRootdata(),
                     elementData = element.dataset,
                     label = data.projectIdentifier + '-' + data.projectId + '-' + elementData.name;
                 utils.tracking('bottomPanel', 'clicked', label);
-                _this._view.bottomGroupButtonClicked(element);
             });
 
             this._view._formPopupCloseClick.attach(function(sender, element) {
@@ -55,10 +55,10 @@ var BaseController = (function() {
 
             // Compare popup
             this._view._unitCompareButtonClick.attach(function(sender, element) {
+                _this._view.unitCompareButtonClicked(element);
                 var data = _this._model.getRootdata(),
                     label = data.projectIdentifier + '-' + data.projectId + '-bottomPanel-compareUnitPlanButton';
                 utils.tracking('button', 'clicked', label);
-                _this._view.unitCompareButtonClicked(element);
             });
             this._view._removeShortlistClick.attach(function(sender, data) {
                 utils.removeFromShortListed(data.unitIdentifier, data.unitUniqueIdentifier);
@@ -76,6 +76,10 @@ var BaseController = (function() {
             });
             this._view._bookingClick.attach(function(sender, element) {
                 utils.changeUrl(element);
+                var data = _this._model.getRootdata(),
+                    elementData = element.dataset,
+                    label = data.projectIdentifier + '-' + data.projectId + '-' + elementData.identifier + '-compareScreen-bookNowButton';
+                utils.tracking('button', 'clicked', label);
             });
 
         },
