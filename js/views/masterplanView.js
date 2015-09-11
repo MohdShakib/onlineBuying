@@ -192,7 +192,7 @@ var MasterplanView = (function() {
             });
         },
         carAnimation: function(data) {
-            if (!config.showCarAnimation) {
+            if (!config.showCarAnimation || data.projectId != "501660") {
                 return;
             }
             var carCode = "",
