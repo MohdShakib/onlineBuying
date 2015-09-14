@@ -80,28 +80,15 @@ var utils = (function() {
             return readablePrice;
         },
         getReadablePriceInWord: function(price) {
-            var returnValue = price;
-            var units = '';
-            if (price / 10000000 > 1) {
-                returnValue = (price / 1000000)/10;
-                returnValue = returnValue.toFixed(2);
-                units = " Crores";
-                //return Math.floor(price / 1000000) / 10 + " Crores";
-            } else if (price / 100000 > 1) {
-
-                returnValue = (price / 10000) / 10;
-                returnValue = returnValue.toFixed(2);
-                units = " Lacs";
-                //return Math.floor(price / 10000) / 10 + " Lacs";
-            } else if (price / 1000) {
-                returnValue = (price / 100) / 10;
-                returnValue = returnValue.toFixed(2);
-                units = " K";
-                //return Math.floor(price / 100) / 10 + " K";
-            } /*else {
+            if (price / 10000000 >= 1) {
+                return Math.floor(price / 100000) / 100 + " Crore";
+            } else if (price / 100000 >= 1) {
+                return Math.floor(price / 1000) / 100 + " Lacs";
+            } else if (price / 1000 >= 1) {
+                return Math.floor(price / 10) / 100 + " K";
+            } else {
                 return price;
-            }*/
-            return returnValue+units;
+            }
         },
         getIdentifier: function(string) {
             var identifier = '';
