@@ -169,7 +169,7 @@ var BookingView = (function() {
             var code = '<div class="payment-container">' +
                 '        <div class="title-text">' +
                 '           <a class="close-payment transition" ' + url + '><span class="icon icon-arrow_left fs24"></span></a>' +
-                '           <p>Payment Screen</p>';
+                '           <p>Checkout</p>';
             if (ivrsData[rootdata.projectId] !== undefined) {
                 code += '<span class="phoneNumber"><i class="icon icon-phone"></i> ' + ivrsData[rootdata.projectId] + '</span>';
             }
