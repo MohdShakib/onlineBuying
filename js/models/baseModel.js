@@ -28,6 +28,10 @@ var BaseModel = (function() {
                 eachItem = this._comparedItems[uniqueIdentifier];
                 if (this._rootdata) {
                     var listingItem = this._rootdata.towers[eachItem.towerIdentifier].listings[eachItem.unitIdentifier] || {};
+                    if(JSON.stringify(listingItem) == '{}') {
+                        utils.removeShortlistedUnit(eachItem.unitUniqueIdentifier);
+                        return {};
+                    }
                     item = this._rootdata.towers[eachItem.towerIdentifier].rotationAngle[eachItem.rotationAngle].listing[eachItem.unitIdentifier];
                     item[item.unitIdentifier] = item;
                     item.bookingAmount = listingItem.bookingAmount;
