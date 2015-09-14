@@ -81,7 +81,7 @@ var utils = (function() {
         },
         getReadablePriceInWord: function(price) {
             if (price / 10000000 >= 1) {
-                return Math.floor(price / 100000) / 100 + " Crore";
+                return Math.floor(price / 100000) / 100 + " Cr";
             } else if (price / 100000 >= 1) {
                 return Math.floor(price / 1000) / 100 + " Lacs";
             } else if (price / 1000 >= 1) {
