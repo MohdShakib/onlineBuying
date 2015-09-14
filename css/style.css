@@ -795,7 +795,7 @@ ellipse.tower-unit-svg-selected-path {
 }
 .unit-content-wrapper .base-table{ padding:0 20px 0 180px;}
 .payment-pic{ padding:10px 20px 0 200px; text-align:left;}
-.payment-pic img{ display:inline-block;}
+.payment-pic img{ display:inline-block; max-width: 100%;}
 .specification-tabs,.pricebreakup-tabs{
 	top:120px;
 	position:absolute; 
