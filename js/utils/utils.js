@@ -393,6 +393,12 @@ var utils = (function() {
             }
             utils.updateShortListedList();
         },
+        removeShortlistedUnit: function(unitUniqueIdentifier) {
+             var comparedItems = utils.getComparedItems('shortlistedItems');
+             delete comparedItems[unitUniqueIdentifier];
+             utils.updateShortListInStorage(comparedItems);
+             utils.updateShortListedList(); 
+        },
         addToShortListed: function(unitIdentifier, unitName, towerIdentifier, rotationAngle, unitUniqueIdentifier) {
             var comparedItems = utils.getComparedItems('shortlistedItems'),
                 length = comparedItems.length;
