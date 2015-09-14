@@ -12,6 +12,9 @@ var TowerselectedModel = (function() {
 
         this._currentRotationAngle = towerAngle ? '' + towerAngle : '0';
         this._stableViewAngles = data.stableViewAngles || [];
+        if(this._stableViewAngles && this._stableViewAngles.length > 1){
+            this.showRotationButton = true;
+        }
         this._filteredListings = null;
         this._filteredAvailableCount = data.totalAvailableCount || 0;
         this._selectedListing = null;
