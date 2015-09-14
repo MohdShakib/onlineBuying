@@ -85,7 +85,7 @@ var UnitplaninfoView = (function() {
             }
 
             setTimeout(function() {
-            _this.unitComponentMouseEnter({
+                _this.unitComponentMouseEnter({
                     element: $("#unit-3d-svg-container.svg-container.unit-svg-container polygon:first")[0],
                     event: null
                 });
@@ -107,10 +107,10 @@ var UnitplaninfoView = (function() {
                 });
                 $('#' + config.towerRotationContainerId).addClass(config.smallLeftArea);
                 $('#' + config.towerRotationContainerId).find('.rotation-btn-container').hide();
-                setTimeout(function(){
-                  $('#' + config.towerRotationContainerId).find('.rotation-btn-container').show();
-                  $('#' + config.svgContainerId).show();
-                },900);
+                setTimeout(function() {
+                    $('#' + config.towerRotationContainerId).find('.rotation-btn-container').show();
+                    $('#' + config.svgContainerId).show();
+                }, 900);
 
 
                 // to show unit icon selected on tower
@@ -179,10 +179,10 @@ var UnitplaninfoView = (function() {
                 link = rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier + '/booking';
             htmlCode += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
             htmlCode += '<a><span class="icon icon-heart fs26 heart-clone"><label></label></span><p class="transition click-txt"></p><p class="shortlisted" style="display:none;"></p></a></div>';
-            if(data.bookingStatus == 'Available') {
-              htmlCode += '<div class="book-now"><a  data-url="' + link + '">Book now</a><span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(data.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
+            if (data.bookingStatus == 'Available') {
+                htmlCode += '<div class="book-now"><a  data-url="' + link + '">Book now</a><span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(data.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
             } else {
-              htmlCode += '<div class="book-now fade-image"><a>Sold out</a>';
+                htmlCode += '<div class="book-now fade-image"><a>Sold out</a>';
             }
             htmlCode += '</div>';
 
@@ -193,9 +193,9 @@ var UnitplaninfoView = (function() {
             var _this = this;
             $('#' + config.selectedUnitContainerId).off('click').on('click', '.like-box', function() {
                 _this._likeBoxClick.notify(this); //this refers to element
-    				if($(this).hasClass('selected')){//this refers to element
-    					utils.flyToShortlist(this); //this refers to element
-    				}
+                if ($(this).hasClass('selected')) { //this refers to element
+                    utils.flyToShortlist(this); //this refers to element
+                }
 
             });
             $('#' + config.selectedUnitContainerId).on('click', '.book-now a', function() {
@@ -239,20 +239,20 @@ var UnitplaninfoView = (function() {
                 _this._unitMenuClick.notify(this); // this refers to element here
             });
         },
-		    floorPlanContainer: function(data, rotationdata, rootdata) {
+        floorPlanContainer: function(data, rotationdata, rootdata) {
             var unitTypeIdentifierArr = rotationdata.unitTypeIdentifierArr;
             var unitTypeData = rootdata.unitTypes[unitTypeIdentifierArr[this._selectedFloor]];
             var _this = this;
             var isActive = function(floor) {
-              if(floor == _this._selectedFloor){
-                return "active";
-              } else {
-                return "";
-              }
+                if (floor == _this._selectedFloor) {
+                    return "active";
+                } else {
+                    return "";
+                }
             };
             var unitTypeDataArr = [];
-            for(var i =0; i < unitTypeIdentifierArr.length; i++) {
-              unitTypeDataArr[i] = rootdata.unitTypes[rotationdata.unitTypeIdentifierArr[i]];
+            for (var i = 0; i < unitTypeIdentifierArr.length; i++) {
+                unitTypeDataArr[i] = rootdata.unitTypes[rotationdata.unitTypeIdentifierArr[i]];
             }
             var isDuplex = (unitTypeIdentifierArr && unitTypeIdentifierArr.length && unitTypeIdentifierArr.length == 2) ? true : false;
             var imageUrl = unitTypeData.unitImageUrl;
@@ -268,12 +268,12 @@ var UnitplaninfoView = (function() {
                 code += "<div data-target='eve-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-night fs16'></span><label>Evening View</label></div></div>";
 
             }
-            if(isDuplex) {
-              code +="<div class='duplexBox'><h4>Duplex</h4>";
-              code +="<ul>";
-              code +="<li class='"+isActive(1)+"'><span>Upper</span><div class='thumb' data-floor='1'><img class='minmap' src='" + unitTypeDataArr[1].unitImageUrl + "'></div></li>";
-              code +="<li class='"+isActive(0)+"'><span>Lower</span><div class='thumb' data-floor='0'><img class='minmap' src='" + unitTypeDataArr[0].unitImageUrl + "'></div></li>";
-              code +="</ul></div>";
+            if (isDuplex) {
+                code += "<div class='duplexBox'><h4>Duplex</h4>";
+                code += "<ul>";
+                code += "<li class='" + isActive(1) + "'><span>Upper</span><div class='thumb' data-floor='1'><img class='minmap' src='" + unitTypeDataArr[1].unitImageUrl + "'></div></li>";
+                code += "<li class='" + isActive(0) + "'><span>Lower</span><div class='thumb' data-floor='0'><img class='minmap' src='" + unitTypeDataArr[0].unitImageUrl + "'></div></li>";
+                code += "</ul></div>";
             }
             this._elements.floorPlanContainer.html(code);
             this.floorPlanContainerEvents();
@@ -284,7 +284,7 @@ var UnitplaninfoView = (function() {
                 // notify controller
                 _this._sunlightMenuClick.notify(this); // this refers to element here
             });
-            _this._elements.floorPlanContainer.on('click', '.thumb', function(event){
+            _this._elements.floorPlanContainer.on('click', '.thumb', function(event) {
                 _this._selectedFloor = $(this).data('floor');
                 _this.buildView();
             });
@@ -309,36 +309,36 @@ var UnitplaninfoView = (function() {
             var unitTypeIdentifierArr = rotationdata.unitTypeIdentifierArr;
             var _this = this;
             var isActive = function(floor) {
-              if(floor == _this._selectedFloor){
-                return "active";
-              } else {
-                return "";
-              }
+                if (floor == _this._selectedFloor) {
+                    return "active";
+                } else {
+                    return "";
+                }
             };
             var unitTypeDataArr = [];
-            for(var i =0; i < unitTypeIdentifierArr.length; i++) {
-              unitTypeDataArr[i] = rootdata.unitTypes[rotationdata.unitTypeIdentifierArr[i]];
+            for (var i = 0; i < unitTypeIdentifierArr.length; i++) {
+                unitTypeDataArr[i] = rootdata.unitTypes[rotationdata.unitTypeIdentifierArr[i]];
             }
             var isDuplex = (unitTypeIdentifierArr && unitTypeIdentifierArr.length && unitTypeIdentifierArr.length == 2) ? true : false;
 
             var imageUrl = rootdata.unitTypes[unitTypeIdentifierArr[this._selectedFloor]].unitImage2dUrl;
             var code = "<img class='fullView' src='" + imageUrl + "'>";
-            if(isDuplex) {
-              code +="<div class='duplexBox'><h4>Duplex</h4>";
-              code +="<ul>";
-              code +="<li class='"+isActive(1)+"'><span>Upper</span><div class='thumb' data-floor='1'><img class='minmap' src='" + unitTypeDataArr[1].unitImageUrl + "'></div></li>";
-              code +="<li class='"+isActive(0)+"'><span>Lower</span><div class='thumb' data-floor='0'><img class='minmap' src='" + unitTypeDataArr[0].unitImageUrl + "'></div></li>";
-              code +="</ul></div>";
+            if (isDuplex) {
+                code += "<div class='duplexBox'><h4>Duplex</h4>";
+                code += "<ul>";
+                code += "<li class='" + isActive(1) + "'><span>Upper</span><div class='thumb' data-floor='1'><img class='minmap' src='" + unitTypeDataArr[1].unitImageUrl + "'></div></li>";
+                code += "<li class='" + isActive(0) + "'><span>Lower</span><div class='thumb' data-floor='0'><img class='minmap' src='" + unitTypeDataArr[0].unitImageUrl + "'></div></li>";
+                code += "</ul></div>";
             }
             this._elements.floorPlan2dContainer.html(code);
             this.floorPlan2dContainerEvents(data, rotationdata, rootdata);
-            if(is2d) {
-              $("#floor-plan2d").trigger('click');
+            if (is2d) {
+                $("#floor-plan2d").trigger('click');
             }
         },
         floorPlan2dContainerEvents: function(data, rotationdata, rootdata) {
             var _this = this;
-            _this._elements.floorPlan2dContainer.off('click').on('click', '.thumb', function(event){
+            _this._elements.floorPlan2dContainer.off('click').on('click', '.thumb', function(event) {
                 _this._selectedFloor = $(this).data('floor');
                 _this.buildView(true);
             });
@@ -346,10 +346,16 @@ var UnitplaninfoView = (function() {
         walkthroughContainer: function(data, rotationdata, rootdata) {
             var videoUrl = data.walkthrough.video;
             var imageUrl = data.walkthrough.image;
-            var code = "<video controls poster='" + imageUrl + "'>";
+            var code = "<video controls poster='" + imageUrl + "' id='walkthrough-video'>";
             code += "<source src='" + videoUrl + "' type='video/mp4'>";
             code += "</video>";
             this._elements.walkthroughContainer.html(code);
+            this.walkthroughContainerEvents();
+        },
+        walkthroughContainerEvents: function() {
+            $('body').on('click', function() {
+                document.getElementById("walkthrough-video").pause();
+            });
         },
         unit3dSvgContainer: function() {
             var unitTypeData = this._model.getUnitTypeData(this._selectedFloor),
@@ -424,7 +430,7 @@ var UnitplaninfoView = (function() {
         },
         unitComponentMouseEnter: function(params) {
             var hoveredComps = $("#unit-3d-svg-container.svg-container.unit-svg-container .hover");
-            utils.removeSVGClasses(hoveredComps,'hover');
+            utils.removeSVGClasses(hoveredComps, 'hover');
             utils.addSVGClass(params.element.id, 'hover');
             if (this._elements && this._elements.unitComponentDetailContainer) {
                 var pointX = $(params.element).attr('points').split(' ')[0];

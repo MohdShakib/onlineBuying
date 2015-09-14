@@ -410,13 +410,14 @@ ellipse.tower-unit-svg-selected-path {
 	text-align: left;
 	height: 40px;
 	cursor: pointer;
+	padding-right: 4px;
 	transition:all 0.5s ease-in-out;
 	-moz-transition:all 0.5s ease-in-out;
 	-ms-transition:all 0.5s ease-in-out;
 	-o-transition:all 0.5s ease-in-out;
 	-webkit-transition:all 0.5s ease-in-out;
 }
-.menu-item-options .option-item span{ display:block; position:relative; padding:0 10px;}
+.menu-item-options .option-item span{ display:block; position:relative; padding:0 30px 0 10px;}
 .menu-item-options .option-item span:before{ width:6px; height:1px; content:''; position:absolute; background:#ccc; right:20px; top:12px; transform:rotate(35deg); -moz-transform:rotate(35deg); -webkit-transform:rotate(35deg); opacity:0; transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;}
 .menu-item-options .option-item span:after{ width:15px; height:1px; content:''; position:absolute; background:#ccc; right:8px; top:8px; transform:rotate(-45deg); -moz-transform:rotate(-45deg); -webkit-transform:rotate(-45deg); opacity:0;transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;}
 .filter-title{ text-transform:uppercase; text-align:left; padding:0 10px; line-height:43px; background:#333; font-size:14px; border-bottom:1px solid #3D3D3D;}
@@ -795,7 +796,7 @@ ellipse.tower-unit-svg-selected-path {
 }
 .unit-content-wrapper .base-table{ padding:0 20px 0 180px;}
 .payment-pic{ padding:10px 20px 0 200px; text-align:left;}
-.payment-pic img{ display:inline-block;}
+.payment-pic img{ display:inline-block; max-width: 100%;}
 .specification-tabs,.pricebreakup-tabs{
 	top:120px;
 	position:absolute; 

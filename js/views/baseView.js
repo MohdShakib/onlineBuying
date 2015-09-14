@@ -121,7 +121,7 @@ var BaseView = (function() {
                 var borderClass = !i ? 'compare-unit-box-right-border' : 'compare-unit-box-right';
                 htmlCode += '<div  class="compare-unit-box ' + borderClass + '" ondragover="allowDrop(event);">';
 
-                htmlCode += '<div class="compare-unit-box-detail top-right-component"><span>Drag & drop to select unit and compare it.</span></div>' +
+                htmlCode += '<div class="compare-unit-box-detail top-right-component"><span>Drag & drop here to select unit and compare it.</span></div>' +
                     '<div class="img-svg-container drag-drop">' +
                     '<img class="compare-unit-img ' + config.lazyloadClass + '"  src="images/compare_drag.jpg"/></div>';
 
@@ -338,12 +338,12 @@ var BaseView = (function() {
                 //'         <a href="/" class="transition active">We will Call</a>' +
                 //'     </div>' +
                 '       <form id="call-box-form" name="call-box-form" novalidate onSubmit="return false;"  >' +
-                '           <div class="form-input-box"><input class="text" id="' + config.callBox.nameId + '" name="name" placeholder="enter your name" type="text" required /><div class="error-box ' + config.errorMsgClass + '">This field is required</div></div> ' +
-                '           <div class="form-input-box"><input class="text" id="' + config.callBox.emailId + '" name="email" placeholder="enter your email id" type="email" required /><div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
+                '           <div class="form-input-box"><input class="text" id="' + config.callBox.nameId + '" name="name" placeholder="Enter your name" type="text" required /><div class="error-box ' + config.errorMsgClass + '">This field is required</div></div> ' +
+                '           <div class="form-input-box"><input class="text" id="' + config.callBox.emailId + '" name="email" placeholder="Enter your email id" type="email" required /><div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
                 '           <div class="phone-no-holder"><div class="form-input-box fleft c-code">' +
                 '           <input id="' + config.callBox.countryCodeId + '" class="text" name="' + config.callBox.phoneId + '" type="text" value="+91" readonly/> ' +
                 '           <span class="icon icon-arrow_btm fs12 transition dropdown-arrow"></span><ul class="country-dropDown" style="display:none;"></ul></div> ' +
-                '           <div class="form-input-box fright mobile-number-field"><input class="text" id="' + config.callBox.phoneId + '" name="phone" placeholder="enter your phone number" type="text" minlength="10" maxlength="15" required data-countryid="1" data-countrycode="+91"/>' +
+                '           <div class="form-input-box fright mobile-number-field"><input class="text" id="' + config.callBox.phoneId + '" name="phone" placeholder="Enter your phone number" type="text" minlength="10" maxlength="15" required data-countryid="1" data-countrycode="+91"/>' +
                 '           <div class="error-box ' + config.errorMsgClass + '">This field is required</div></div><div class="clear-fix"></div></div>' +
                 '           <div class="submit" id="' + config.callBox.submitButtonId + '">Get Instant Callback' +
                 '           <input type="submit" />' +
@@ -366,9 +366,9 @@ var BaseView = (function() {
                 '           <a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Goggle+</a>' +
                 '       </div>' +
                 '       <form id="share-box-form" novalidate name="share-box-form" onSubmit="return false;"  >' +
-                '           <div class="form-input-box"><input class="text" id="' + config.emailBox.nameId + '" placeholder="enter your name" type="text" required />' +
+                '           <div class="form-input-box"><input class="text" id="' + config.emailBox.nameId + '" placeholder="Enter your name" type="text" required />' +
                 '           <div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
-                '           <div class="form-input-box"><input class="text" id="' + config.emailBox.emailId + '" placeholder="enter your friend\'s email id" type="email" required />' +
+                '           <div class="form-input-box"><input class="text" id="' + config.emailBox.emailId + '" placeholder="Enter your friend\'s email id" type="email" required />' +
                 '           <div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
                 '           <div class="submit" id="' + config.emailBox.submitButtonId + '"><input type="submit" />Share</div>' +
                 '       </form>' +
