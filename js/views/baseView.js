@@ -378,7 +378,7 @@ var BaseView = (function() {
                 //'         <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"></div>' +
                 '           <span class="social-or">or</span>' +
                 //'         <div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>' +
-                '           <a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Goggle+</a>' +
+                '           <a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Google+</a>' +
                 '       </div>' +
                 '       <form id="share-box-form" novalidate name="share-box-form" onSubmit="return false;"  >' +
                 '           <div class="form-input-box"><input class="text" id="' + config.emailBox.nameId + '" placeholder="Enter your name" type="text" required />' +
