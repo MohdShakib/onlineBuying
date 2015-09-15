@@ -444,6 +444,7 @@ var TowerselectedView = (function() {
                     totalFramesLoaded++;
                     (function(nextImageRef, timeout) {
                         setTimeout(function() {
+                            _this._elements.towerImgContainer.addClass('blurRotationImage');
                             $('.' + config.selectedTowerImagesClass).hide();
                             nextImageRef.show();
                         }, timeout);
@@ -454,6 +455,7 @@ var TowerselectedView = (function() {
                     if(lastShownImageRef){
                         lastShownImageRef.hide();
                     }
+                    _this._elements.towerImgContainer.removeClass('blurRotationImage');
                     $('.' + config.selectedTowerImagesClass).hide();
                     $('.' + rotationAngles[finalIndex]).show();
                     _this._elements.towerSvgContainer.show();
