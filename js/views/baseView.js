@@ -73,6 +73,21 @@ var BaseView = (function() {
             $('.project-title').html('<a href="https://www.proptiger.com/' + rootdata.projectUrl + '" target="_blank">' + rootdata.projectName + '</a>');
             $('.project-address').html(rootdata.address);
             $('.project-desc').html(rootdata.description);
+            this.initEvents();
+        },
+        initEvents: function() {
+            $(document).keydown(function(e) {
+                // ESCAPE key pressed
+                if (e.keyCode == 27) {
+                    $('.' + config.popupClass).hide();
+                }
+            });
+            $(document).click(function() {
+                var elements = $('.' + config.videoClass);
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].pause();
+                }
+            });
         },
         reinit: function() {
             $('.pro-contact-actions ul.conect-tab').css({
@@ -193,26 +208,26 @@ var BaseView = (function() {
                 item = compareList[uniqueIdentifier],
                 unitTypeArr = item.unitTypeIdentifierArr || [],
                 isDuplex = (unitTypeArr.length == 2) ? true : false,
-                imageUrl = item ? (isDuplex ? [item[unitTypeArr[0]].unitImageUrl, item[unitTypeArr[1]].unitImageUrl] : item[item.unitTypeIdentifier].unitImageUrl ) : undefined,
+                imageUrl = item ? (isDuplex ? [item[unitTypeArr[0]].unitImageUrl, item[unitTypeArr[1]].unitImageUrl] : item[item.unitTypeIdentifier].unitImageUrl) : undefined,
                 link = rootdata.baseUrl + '/' + item.towerIdentifier + '/' + item.rotationAngle + '/' + item.unitIdentifier + '/booking',
                 htmlCode = '<div class="tower-unit-detail-container ' + config.unitDataContainer + '"></div>';
             htmlCode += '<span class="icon fs14 icon-cross close-compare-box"></span><div class="compare-unit-box-detail top-right-component"><span>' + item.unitName + '</span> | <span>' + item.bedrooms + '</span> | <span>' + item.size + '</span> | <span>' + item.price + '</span> | <span>' + item.floor + '</span></div>';
             htmlCode += '<div class="top-right-component">' +
-                        '<div class="book-now" >' +
-                        '<a data-url="' + link + '" data-identifier="' + item.unitUniqueIdentifier + '">Book now</a><span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(item.bookingAmount) + '/- <br>(No Cancellation Charges)</span>' +
-                        '</div>';
+                '<div class="book-now" >' +
+                '<a data-url="' + link + '" data-identifier="' + item.unitUniqueIdentifier + '">Book now</a><span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(item.bookingAmount) + '/- <br>(No Cancellation Charges)</span>' +
+                '</div>';
 
-            if(isDuplex) {
-                    htmlCode += '<div id="slider" class="slider"><a class="control_next">></a> <a class="control_prev"><</a>'+
-                                '<ul>'+
-                                ' <li> <div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + unitTypeArr[0] + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' +
-                                '     <img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img ' + config.lazyloadClass + '"  src="' + imageUrl[0] + '"> </div></li>'+
-                                ' <li> <div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + unitTypeArr[1] + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' +
-                                '     <img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img ' + config.lazyloadClass + '"  src="' + imageUrl[1] + '"> </div></li>'+
-                                '</ul></div>';
+            if (isDuplex) {
+                htmlCode += '<div id="slider" class="slider"><a class="control_next">></a> <a class="control_prev"><</a>' +
+                    '<ul>' +
+                    ' <li> <div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + unitTypeArr[0] + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' +
+                    '     <img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img ' + config.lazyloadClass + '"  src="' + imageUrl[0] + '"> </div></li>' +
+                    ' <li> <div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + unitTypeArr[1] + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' +
+                    '     <img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img ' + config.lazyloadClass + '"  src="' + imageUrl[1] + '"> </div></li>' +
+                    '</ul></div>';
             } else {
-              htmlCode += '<div class="slider"><ul><li><div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + item.unitTypeIdentifier + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' +
-                  '<img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img ' + config.lazyloadClass + '"  src="' + imageUrl + '"> </div></li></ul></div>';
+                htmlCode += '<div class="slider"><ul><li><div class="img-svg-container"> <svg class="svg-container unit-svg-container" id="unit-compare-svg-container' + item.unitTypeIdentifier + '" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>' +
+                    '<img data-uniqueIdentifier="' + item.unitUniqueIdentifier + '" class="compare-unit-img ' + config.lazyloadClass + '"  src="' + imageUrl + '"> </div></li></ul></div>';
 
             }
 
@@ -220,44 +235,44 @@ var BaseView = (function() {
 
             $(compareBox).html(htmlCode);
             this.compareBoxSliderEvents();
-            if(isDuplex) {
-              this.unit3dSvgContainer(uniqueIdentifier, unitTypeArr[0], unitTypeArr[0]);
-              this.unit3dSvgContainer(uniqueIdentifier, unitTypeArr[1], unitTypeArr[1]);
+            if (isDuplex) {
+                this.unit3dSvgContainer(uniqueIdentifier, unitTypeArr[0], unitTypeArr[0]);
+                this.unit3dSvgContainer(uniqueIdentifier, unitTypeArr[1], unitTypeArr[1]);
             } else {
-              this.unit3dSvgContainer(uniqueIdentifier, item.unitTypeIdentifier, item.unitTypeIdentifier);
+                this.unit3dSvgContainer(uniqueIdentifier, item.unitTypeIdentifier, item.unitTypeIdentifier);
             }
         },
         compareBoxSliderEvents: function() {
-          var slideCount = $('#slider ul li').length;
-          var slideWidth = $('#slider ul li div').width();
-          var slideHeight = $('#slider ul li div').height();
-          var sliderUlWidth = slideCount * slideWidth;
+            var slideCount = $('#slider ul li').length;
+            var slideWidth = $('#slider ul li div').width();
+            var slideHeight = $('#slider ul li div').height();
+            var sliderUlWidth = slideCount * slideWidth;
 
-          function moveLeft() {
-              $('#slider ul').animate({
-                  left: + slideWidth
-              }, 200, function () {
-                  $('#slider ul li:last-child').prependTo('#slider ul');
-                  $('#slider ul').css('left', '');
-              });
-          }
+            function moveLeft() {
+                $('#slider ul').animate({
+                    left: +slideWidth
+                }, 200, function() {
+                    $('#slider ul li:last-child').prependTo('#slider ul');
+                    $('#slider ul').css('left', '');
+                });
+            }
 
-          function moveRight() {
-              $('#slider ul').animate({
-                  left: - slideWidth
-              }, 200, function () {
-                  $('#slider ul li:first-child').appendTo('#slider ul');
-                  $('#slider ul').css('left', '');
-              });
-          }
+            function moveRight() {
+                $('#slider ul').animate({
+                    left: -slideWidth
+                }, 200, function() {
+                    $('#slider ul li:first-child').appendTo('#slider ul');
+                    $('#slider ul').css('left', '');
+                });
+            }
 
-          $('a.control_prev').click(function () {
-              moveLeft();
-          });
+            $('a.control_prev').click(function() {
+                moveLeft();
+            });
 
-          $('a.control_next').click(function () {
-              moveRight();
-          });
+            $('a.control_next').click(function() {
+                moveRight();
+            });
         },
         removeFromCompareBox: function(element) {
             var parentElement = $(element).parent();
@@ -276,10 +291,10 @@ var BaseView = (function() {
         unit3dSvgContainer: function(uniqueIdentifier, unitTypeDataName, idName) {
             var compareList = this._model.getCompareList();
             var unitTypeData;
-            if(unitTypeDataName) {
-               unitTypeData = compareList[uniqueIdentifier][unitTypeDataName];
+            if (unitTypeDataName) {
+                unitTypeData = compareList[uniqueIdentifier][unitTypeDataName];
             } else {
-               unitTypeData = compareList[uniqueIdentifier].unitTypeData;
+                unitTypeData = compareList[uniqueIdentifier].unitTypeData;
             }
             var svgElements = utils.getUnit3dSvgPolygonElements(unitTypeData);
             var id = idName || uniqueIdentifier;
@@ -498,7 +513,7 @@ var BaseView = (function() {
             this._elements.bottomFormGroupContainer.on('click', '#' + config.emailBox.submitButtonId, function(event) {
                 if (!$(this).hasClass(config.disabledClass)) {
                     _this._shareOnEmailClick.notify(this);
-                }                
+                }
             });
 
             this._elements.bottomFormGroupContainer.on('keyup', '#share-box-form', function(event) {

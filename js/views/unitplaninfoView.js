@@ -22,7 +22,7 @@ var UnitplaninfoView = (function() {
         'specificationContainer': '<div class="specification-container sf-container ' + config.unitDataContainer + ' ' + config.hideClass + '" id="specification-container"></div>',
         'amenitiesContainer': '<div class="amenities-container fp-container ' + config.unitDataContainer + '" id="amenities-container"></div>',
         'unitViewTabs': '<div class="unit-view-tabs" id="unit-view-tabs"></div>',
-        'termsConditionPopup': '<div class="terms-condition-popup" id="terms-condition-popup" style="display:none;"></div>'
+        'termsConditionPopup': '<div class="terms-condition-popup ' + config.popupClass + '" id="terms-condition-popup" style="display:none;"></div>'
     };
 
     function getElements() {
@@ -346,19 +346,10 @@ var UnitplaninfoView = (function() {
         walkthroughContainer: function(data, rotationdata, rootdata) {
             var videoUrl = data.walkthrough.video;
             var imageUrl = data.walkthrough.image;
-            var code = "<video controls poster='" + imageUrl + "' id='walkthrough-video'>";
+            var code = "<video controls poster='" + imageUrl + "' class='" + config.videoClass + "'>";
             code += "<source src='" + videoUrl + "' type='video/mp4'>";
             code += "</video>";
             this._elements.walkthroughContainer.html(code);
-            this.walkthroughContainerEvents();
-        },
-        walkthroughContainerEvents: function() {
-            $('body').on('click', function() {
-                var element = document.getElementById("walkthrough-video");
-                if(element) {
-                    element.pause();
-                }
-            });
         },
         unit3dSvgContainer: function() {
             var unitTypeData = this._model.getUnitTypeData(this._selectedFloor),

@@ -205,6 +205,9 @@ var initializeRoutes = (function() {
                 utils.removeNotificationTooltip();
 
                 function beforeCallback(response) {
+                    
+                    // Update meta tags
+                    //$("meta[property=og\\:title]").attr("content", "this is title");
 
                     rootdata = response;
 

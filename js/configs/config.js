@@ -89,6 +89,8 @@ var config = (function() {
         dynamicResizeClass: "dynamic-resize",
         errorMsgClass: "error-msg",
         disabledClass: "disabled",
+        popupClass: "popup",
+        videoClass: "video",
 
         towerDetailContainerId: "tower-detail-container",
         leftPanelButtonClass: 'left-panel-button',
