@@ -505,7 +505,7 @@ var getProjectData = (function() {
 
         // City
         projectData.city = projectDetail.locality && projectDetail.locality.suburb && projectDetail.locality.suburb.city ? projectDetail.locality.suburb.city.label : '';
-
+        projectData.cityId = projectDetail.locality && projectDetail.locality.suburb && projectDetail.locality.suburb.city ? projectDetail.locality.suburb.city.id : '';
 
 
         var towersUnitInfo = {},
