@@ -354,7 +354,10 @@ var UnitplaninfoView = (function() {
         },
         walkthroughContainerEvents: function() {
             $('body').on('click', function() {
-                document.getElementById("walkthrough-video").pause();
+                var element = document.getElementById("walkthrough-video");
+                if(element) {
+                    element.pause();
+                }
             });
         },
         unit3dSvgContainer: function() {
