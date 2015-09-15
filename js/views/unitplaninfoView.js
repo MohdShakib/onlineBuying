@@ -292,7 +292,9 @@ var UnitplaninfoView = (function() {
         floorPlanMenuContainer: function(data, rotationdata, rootdata) {
             var code = "<table class='floor-plan-menu' cellpadding='0' cellspacind='0' border='0'><tr>";
             code += "<td data-target='fp-container' data-menu='3d-button' class='" + config.floorPlanMenuOptionClass + " " + config.selectedClass + " " + config.transitionClass + "' id='floor-plan'>3D</td>";
-            code += "<td data-target='fpwt-container' data-menu='walkthrough-button' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + " right' id='walkthrough'>Video Tour</td>";
+            if(data.walkthrough.video) {
+                code += "<td data-target='fpwt-container' data-menu='walkthrough-button' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + " right' id='walkthrough'>Video Tour</td>";
+            }
             code += "<td data-target='fp2d-container' data-menu='2d-button' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + "' id='floor-plan2d'>2D</td>";
             code += "</tr></table>";
             this._elements.floorPlanMenuContainer.html(code);

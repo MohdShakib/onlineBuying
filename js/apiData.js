@@ -640,10 +640,10 @@ var getProjectData = (function() {
                 }
             }
 
-            if (!flatUnit.walkthrough.video) {
-                flatUnit.walkthrough.video = "http://d1vh6m45iog96e.cloudfront.net/4/2/5000168/106/2/supertech-capetown-floor-plan-2bhk-2t-930-sq-ft-5000168.mp4";
-                flatUnit.walkthrough.image = "https://im.proptiger.com/4/2/5000168/106/2/supertech-capetown-floor-plan-2bhk-2t-930-sq-ft-5000168.jpg";
-            }
+            // if (!flatUnit.walkthrough.video) {
+            //     flatUnit.walkthrough.video = "http://d1vh6m45iog96e.cloudfront.net/4/2/5000168/106/2/supertech-capetown-floor-plan-2bhk-2t-930-sq-ft-5000168.mp4";
+            //     flatUnit.walkthrough.image = "https://im.proptiger.com/4/2/5000168/106/2/supertech-capetown-floor-plan-2bhk-2t-930-sq-ft-5000168.jpg";
+            // }
 
             flatUnit.bedrooms = propertyDetail.bedrooms;
             flatUnit.size = propertyDetail.size ? propertyDetail.size : 0;
