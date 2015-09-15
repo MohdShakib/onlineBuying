@@ -15,14 +15,17 @@ var BaseView = (function() {
     var containerMap = {
         'bottomFormGroupContainer': '<div class="bottom-form-group" id="bottom-form-group"></div>',
         'compareUnitsContainer': '<div  class="compare-units-container" id="' + config.compareUnitscontainerId + '"></div>',
-        'promptLeadFormContainer': '<div class="promptLeadFormBox" id="prompt-lead-form"></div>'
+        'promptLeadFormContainer': '<div class="promptLeadFormBox" id="prompt-lead-form"></div>',
+        'questionBoxContainer': '<div class="questionBox" id="question-box"></div>'
+
     };
 
     function getElements() {
         var elements = {
             'bottomFormGroupContainer': $('#bottom-form-group'),
             'compareUnitsContainer': $('#' + config.compareUnitscontainerId),
-            'promptLeadFormContainer': $('#prompt-lead-form')
+            'promptLeadFormContainer': $('#prompt-lead-form'),
+            'questionBoxContainer': $('#question-box')
         };
         return elements;
     }
@@ -693,6 +696,20 @@ var BaseView = (function() {
                 var label = $(d).find("label").text();
                 $(d).find("input").attr("placeholder", label);
                 $(d).find("textarea").attr("placeholder", label);
+            });
+        },
+        questionBoxContainer: function() {
+            var html = '<div class="question"><span>Questions?</span></div>' +
+                '   <div class="callInfo">' +
+                '   <p><span class="number">' + config.helpline + '</span>Our Advisors are here to help. Available from 10am to 10pm </p>' +
+                '</div>';
+            this._elements.questionBoxContainer.html(html);
+            this.questionBoxContainerEvents();
+        },
+        questionBoxContainerEvents: function() {
+            var _this = this;
+            this._elements.questionBoxContainer.on('click', '.question', function(event) {
+                _this._elements.questionBoxContainer.toggleClass('open');
             });
         }
     };
