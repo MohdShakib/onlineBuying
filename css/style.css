@@ -1246,6 +1246,16 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .promptLeadFormBox .col { width: 30%; float: left; box-sizing: border-box; }
 .promptLeadFormBox .col + .col { padding-left: 10px; width: 70%; }
 
+
+/* css for question box slider */
+.questionBox { position: fixed; right: -245px; transition: all .5s ease-in-out; -webkit-transition: all .5s ease-in-out; -o-transition: all .5s ease-in-out; -ms-transition: all .5s ease-in-out; -moz-transition: all .5s ease-in-out; top: 32%; padding-left: 27px; width: 245px; z-index: 999999; }
+.questionBox.open { right: -1px; }
+.questionBox .question { cursor: pointer; position: absolute; left: 0; top: 0; width: 27px; height: 100%; display: block; background-color: #e4552e; }
+.questionBox .question span { position: absolute; top: 44px; left: -29px; letter-spacing: 1px; transform: rotate(-90deg); -webkit-transform: rotate(-90deg); -o-transform: rotate(-90deg); -ms-transform: rotate(-90deg); -moz-transform: rotate(-90deg); color: #fff; font-size: 15px; }
+.questionBox .callInfo { padding: 15px; text-align: center; border: 1px solid #c7d0d4; background-color: #fff; }
+.questionBox .callInfo p span { margin: 5px 0; display: block; line-height: normal; font-size: 18px; font-weight: bold; color: #e4552e; }
+.questionBox .callInfo p { font-size: 14px; line-height: 22px; letter-spacing: .5px; }
+
 .blurRotationImage {
 	filter: blur(2px);
 	-webkit-filter: blur(2px);
@@ -1253,6 +1263,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 	-o-filter: blur(2px);
 	-ms-filter: blur(2px);
 }
+
 /*Styling duplex slider*/
 .slider {
   position: relative;
