@@ -22,6 +22,13 @@
 	-o-transition:left 0.9s ease-in-out;
 	-webkit-transition:left 0.9s ease-in-out;
 }
+.fast-transition-left {
+	transition:left 0.1s ease-in-out; 
+	-webkit-transition:left 0.1s ease-in-out; 
+	-ms-transition:left 0.1s ease-in-out;
+	-o-transition:left 0.1s ease-in-out;
+	-webkit-transition:left 0.1s ease-in-out;
+}
 /*-------------transition effect for all end-------------*/
 
 /*---image pop up animation---*/
@@ -488,6 +495,12 @@
 @-moz-keyframes zoom {
     to {
     	-moz-transform: translateX(-15%);
+    }
+}
+/* For IE9 */
+@-ms-keyframes zoom {
+    to {
+    	-ms-transform: translateX(-15%);
     }
 }
 /* Standard syntax */
