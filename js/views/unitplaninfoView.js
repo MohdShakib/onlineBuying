@@ -133,7 +133,7 @@ var UnitplaninfoView = (function() {
             });
             $('#' + config.towerRotationContainerId).removeClass(config.smallLeftArea);
             $('#' + config.towerRotationContainerId).find('.rotation-btn-container').hide();
-
+            $('#' + config.svgContainerId).hide();
 
             // hide selected unit
             var svgElements = $('.' + config.towerUnitSvgSelectedClass);
