@@ -281,6 +281,7 @@ var initializeRoutes = (function() {
 
 
                 }
+                utils.executeTrackingCode();
 
                 getProjectData(projectId, isPropertyPaymentUrl, beforeCallback);
                 return proceedRouteCallback;

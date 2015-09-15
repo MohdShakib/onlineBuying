@@ -27,6 +27,10 @@ var BaseModel = (function() {
             for (var uniqueIdentifier in this._comparedItems) {
                 eachItem = this._comparedItems[uniqueIdentifier];
                 if (this._rootdata) {
+                    if(!this._rootdata.towers[eachItem.towerIdentifier] || !this._rootdata.towers[eachItem.towerIdentifier].listings || !this._rootdata.towers[eachItem.towerIdentifier].listings[eachItem.unitIdentifier]) {
+                        utils.removeShortlistedUnit(eachItem.unitUniqueIdentifier);
+                        return {};
+                    }
                     var listingItem = this._rootdata.towers[eachItem.towerIdentifier].listings[eachItem.unitIdentifier] || {};
                     item = this._rootdata.towers[eachItem.towerIdentifier].rotationAngle[eachItem.rotationAngle].listing[eachItem.unitIdentifier];
                     item[item.unitIdentifier] = item;
