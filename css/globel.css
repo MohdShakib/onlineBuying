@@ -266,6 +266,12 @@ body {
 	overflow:hidden;
 	background:#000;
 }
+.top-message {
+	color: white;
+    text-align: center;
+    padding: 5px;
+    font-size: 15px;
+}
 .ml10{ margin-left:10px;} 
 .mr10{ margin-right:10px;}
 .ml5{ margin-left:5px;} 

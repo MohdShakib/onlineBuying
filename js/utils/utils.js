@@ -20,22 +20,29 @@ var utils = (function() {
             var imageResolutionHeight = config.imageResolution.height;
             var imageResolutionWidth = config.imageResolution.width;
             var imageResolutionUnit = config.imageResolution.unit || 'px';
+            var windowHeight = window.innerHeight, windowWidth = window.innerWidth;
+
+            if (windowWidth < 1024) {
+                $('.top-message').show();
+            } else {
+                $('.top-message').hide();
+            }
 
             var parentContainerElement = document.getElementById(config.parentContainerId);
-            var parentContainerWidth = window.innerWidth;
+            var parentContainerWidth = windowWidth;
 
             var dynamicResizeElement = $('.' + config.dynamicResizeClass);
 
             if (containerWidth === null || containerWidth == 'undefined') {
-                containerWidth = window.innerWidth;
+                containerWidth = windowWidth;
             }
 
             // For max height and width of containers
-            var height = (window.innerHeight < imageResolutionHeight) ? window.innerHeight : imageResolutionHeight;
+            var height = (windowHeight < imageResolutionHeight) ? windowHeight : imageResolutionHeight;
             var width = imageResolutionWidth / imageResolutionHeight * height;
             var diff = (width - containerWidth) / -2;
-            var parentDiff = (width - window.innerWidth) / -2;
-            var parentContainerElementTop = (window.innerHeight / 2) - (height / 2);
+            var parentDiff = (width - windowWidth) / -2;
+            var parentContainerElementTop = (windowHeight / 2) - (height / 2);
 
             if (!(parentContainerElement && parentContainerElement.style)) {
                 return;
@@ -49,6 +56,7 @@ var utils = (function() {
             dynamicResizeElement.css('height', height + imageResolutionUnit);
             dynamicResizeElement.css('width', width + imageResolutionUnit);
             dynamicResizeElement.css('left', (diff < 0) ? (diff + imageResolutionUnit) : 0);
+
         },
         getGroupInterval: function(n, interval) {
             var start = Math.floor(n / interval) * interval;
