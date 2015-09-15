@@ -9,8 +9,8 @@ var BookingView = (function() {
 
     var containerMap = {
         'paymentScreen': '<div id="payment-screen" class="payment-screen" style="display:none;"></div>',
-        'termsConditionPopup': '<div id="terms-condition-popup" class="terms-condition-popup" style="display:none;"></div>',
-        'paymentBreakupPopup': '<div id="payment-breakup-popup" class="terms-condition-popup" style="display:none;"></div>'
+        'termsConditionPopup': '<div id="terms-condition-popup" class="terms-condition-popup ' + config.popupClass + '" style="display:none;"></div>',
+        'paymentBreakupPopup': '<div id="payment-breakup-popup" class="terms-condition-popup ' + config.popupClass + '" style="display:none;"></div>'
     };
 
     function getElements() {

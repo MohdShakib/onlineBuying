@@ -73,6 +73,21 @@ var BaseView = (function() {
             $('.project-title').html('<a href="https://www.proptiger.com/' + rootdata.projectUrl + '" target="_blank">' + rootdata.projectName + '</a>');
             $('.project-address').html(rootdata.address);
             $('.project-desc').html(rootdata.description);
+            this.initEvents();
+        },
+        initEvents: function() {
+            $(document).keydown(function(e) {
+                // ESCAPE key pressed
+                if (e.keyCode == 27) {
+                    $('.' + config.popupClass).hide();
+                }
+            });
+            $(document).click(function() {
+                var elements = $('.' + config.videoClass);
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].pause();
+                }
+            });
         },
         reinit: function() {
             $('.pro-contact-actions ul.conect-tab').css({
@@ -193,7 +208,7 @@ var BaseView = (function() {
                 item = compareList[uniqueIdentifier],
                 unitTypeArr = item.unitTypeIdentifierArr || [],
                 isDuplex = (unitTypeArr.length == 2) ? true : false,
-                imageUrl = item ? (isDuplex ? [item[unitTypeArr[0]].unitImageUrl, item[unitTypeArr[1]].unitImageUrl] : item[item.unitTypeIdentifier].unitImageUrl ) : undefined,
+                imageUrl = item ? (isDuplex ? [item[unitTypeArr[0]].unitImageUrl, item[unitTypeArr[1]].unitImageUrl] : item[item.unitTypeIdentifier].unitImageUrl) : undefined,
                 link = rootdata.baseUrl + '/' + item.towerIdentifier + '/' + item.rotationAngle + '/' + item.unitIdentifier + '/booking',
                 htmlCode = '<div class="tower-unit-detail-container ' + config.unitDataContainer + '"></div>';
             htmlCode += '<span class="icon fs14 icon-cross close-compare-box"></span><div class="compare-unit-box-detail top-right-component"><span>' + item.unitName + '</span> | <span>' + item.bedrooms + '</span> | <span>' + item.size + '</span> | <span>' + item.price + '</span> | <span>' + item.floor + '</span></div>';
@@ -228,36 +243,36 @@ var BaseView = (function() {
             }
         },
         compareBoxSliderEvents: function() {
-          var slideCount = $('#slider ul li').length;
-          var slideWidth = $('#slider ul li div').width();
-          var slideHeight = $('#slider ul li div').height();
-          var sliderUlWidth = slideCount * slideWidth;
+            var slideCount = $('#slider ul li').length;
+            var slideWidth = $('#slider ul li div').width();
+            var slideHeight = $('#slider ul li div').height();
+            var sliderUlWidth = slideCount * slideWidth;
 
-          function moveLeft() {
-              $('#slider ul').animate({
-                  left: + slideWidth
-              }, 200, function () {
-                  $('#slider ul li:last-child').prependTo('#slider ul');
-                  $('#slider ul').css('left', '');
-              });
-          }
+            function moveLeft() {
+                $('#slider ul').animate({
+                    left: +slideWidth
+                }, 200, function() {
+                    $('#slider ul li:last-child').prependTo('#slider ul');
+                    $('#slider ul').css('left', '');
+                });
+            }
 
-          function moveRight() {
-              $('#slider ul').animate({
-                  left: - slideWidth
-              }, 200, function () {
-                  $('#slider ul li:first-child').appendTo('#slider ul');
-                  $('#slider ul').css('left', '');
-              });
-          }
+            function moveRight() {
+                $('#slider ul').animate({
+                    left: -slideWidth
+                }, 200, function() {
+                    $('#slider ul li:first-child').appendTo('#slider ul');
+                    $('#slider ul').css('left', '');
+                });
+            }
 
-          $('a.control_prev').click(function () {
-              moveLeft();
-          });
+            $('a.control_prev').click(function() {
+                moveLeft();
+            });
 
-          $('a.control_next').click(function () {
-              moveRight();
-          });
+            $('a.control_next').click(function() {
+                moveRight();
+            });
         },
         removeFromCompareBox: function(element) {
             var parentElement = $(element).parent();
@@ -276,10 +291,10 @@ var BaseView = (function() {
         unit3dSvgContainer: function(uniqueIdentifier, unitTypeDataName, idName) {
             var compareList = this._model.getCompareList();
             var unitTypeData;
-            if(unitTypeDataName) {
-               unitTypeData = compareList[uniqueIdentifier][unitTypeDataName];
+            if (unitTypeDataName) {
+                unitTypeData = compareList[uniqueIdentifier][unitTypeDataName];
             } else {
-               unitTypeData = compareList[uniqueIdentifier].unitTypeData;
+                unitTypeData = compareList[uniqueIdentifier].unitTypeData;
             }
             var svgElements = utils.getUnit3dSvgPolygonElements(unitTypeData);
             var id = idName || uniqueIdentifier;
@@ -363,7 +378,7 @@ var BaseView = (function() {
                 //'         <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"></div>' +
                 '           <span class="social-or">or</span>' +
                 //'         <div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>' +
-                '           <a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Goggle+</a>' +
+                '           <a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Google+</a>' +
                 '       </div>' +
                 '       <form id="share-box-form" novalidate name="share-box-form" onSubmit="return false;"  >' +
                 '           <div class="form-input-box"><input class="text" id="' + config.emailBox.nameId + '" placeholder="Enter your name" type="text" required />' +
@@ -498,7 +513,7 @@ var BaseView = (function() {
             this._elements.bottomFormGroupContainer.on('click', '#' + config.emailBox.submitButtonId, function(event) {
                 if (!$(this).hasClass(config.disabledClass)) {
                     _this._shareOnEmailClick.notify(this);
-                }                
+                }
             });
 
             this._elements.bottomFormGroupContainer.on('keyup', '#share-box-form', function(event) {
