@@ -205,11 +205,11 @@ var initializeRoutes = (function() {
                 utils.removeNotificationTooltip();
 
                 function beforeCallback(response) {
-                    
-                    // Update meta tags
-                    //$("meta[property=og\\:title]").attr("content", "this is title");
-
                     rootdata = response;
+
+                    // Update meta tags
+                    $("meta[property=og\\:description]").attr("content", "Book your Dream Home in " + rootdata.projectName + " & get " + rootdata.offer + ". Hurry Offer valid till 23rd September 2015.");
+                    $("meta[property=og\\:image]").attr("content", rootdata.mainImage);
 
                     var flag = false, proceedRoute = true;
                     var projectIdentifier = utils.getIdentifier(rootdata.projectName);

@@ -503,6 +503,12 @@ var getProjectData = (function() {
             }
         }
 
+        // Offer
+        projectData.offer = "attractive discounts";
+        if (projectDetail.offers && projectDetail.offers[0]) {
+            projectData.offer = projectDetail.offers[0].offerDesc;
+        }
+
         // City
         projectData.city = projectDetail.locality && projectDetail.locality.suburb && projectDetail.locality.suburb.city ? projectDetail.locality.suburb.city.label : '';
         projectData.cityId = projectDetail.locality && projectDetail.locality.suburb && projectDetail.locality.suburb.city ? projectDetail.locality.suburb.city.id : '';
