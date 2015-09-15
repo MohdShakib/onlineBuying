@@ -191,6 +191,8 @@ var initializeRoutes = (function() {
                     return;
                 }
                 router.setRoute(errorRoute);
+                router.handler();
+                return;
             },
             before: function(projectName, projectId, towerName, towerAngle, unitAddress) {
 
@@ -267,13 +269,16 @@ var initializeRoutes = (function() {
                         currentRoute = currentRoute.join('/');
                         currentRoute = '/'+currentRoute;
                         router.setRoute(currentRoute);
+                        router.handler();
+                        return;
                     }
 
                     if (!flag && proceedRoute) {
                         utils.log('data not available for the url');
                         proceedRouteCallback = true;
                         router.setRoute(errorRoute);
-                        return true;
+                        router.handler();
+                        return;
                     }
 
                     if (!proceedRouteCallback && proceedRoute) { // hack
@@ -281,7 +286,6 @@ var initializeRoutes = (function() {
                         router.handler();
                         return;
                     }
-
 
                 }
                 utils.executeTrackingCode();
