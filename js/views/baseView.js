@@ -702,13 +702,17 @@ var BaseView = (function() {
             var html = '<div class="question"><span>Questions?</span></div>' +
                 '   <div class="callInfo">' +
                 '   <p><span class="number">' + config.helpline + '</span>Our Advisors are here to help. Available from 10am to 10pm </p>' +
-                '</div>';
+                '	</div>'+
+				'	<span class="close">x</span>';
             this._elements.questionBoxContainer.html(html);
             this.questionBoxContainerEvents();
         },
         questionBoxContainerEvents: function() {
             var _this = this;
             this._elements.questionBoxContainer.on('click', '.question', function(event) {
+                _this._elements.questionBoxContainer.toggleClass('open');
+            });
+			this._elements.questionBoxContainer.on('click', '.close', function(event) {
                 _this._elements.questionBoxContainer.toggleClass('open');
             });
         }
