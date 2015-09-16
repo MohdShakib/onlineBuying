@@ -1187,7 +1187,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .loading-view h2, .loading-view h2 a{ width:100%; color:rgba(255,255,255,0.84); font-size:37px; font-weight:normal;}
 .loading-view h2 span{ display:block; font-size:22px;}
 .loading-pro-details{ width:100%; margin:30px 0 60px 0;}
-.loading-pro-details p{ font-size:12px; color:rgba(255,255,255,0.73);}
+.loading-pro-details p{ font-size:12px; color:rgba(255,255,255,0.73); height: 60px; overflow: hidden;}
 .four-d-icon{ width:100%; position:relative; margin-top:90px;}
 .four-d-icon p{ font-size:18px; position:relative; color:rgba(255,255,255,0.90);}
 .four-d-icon p span{ font-size:30px;}
