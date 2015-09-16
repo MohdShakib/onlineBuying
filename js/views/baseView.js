@@ -56,8 +56,6 @@ var BaseView = (function() {
         this._unitComponentMouseLeave = new Event(this);
         this._bookingClick = new Event(this);
 
-        //Small screen message
-        this._smallScreenButtonClick = new Event(this);
     }
 
     BaseView.prototype = {
