@@ -10,32 +10,38 @@ var envConfig = (function() {
     var envConfig = {
         local: {
             env: env,
-            apiURL: 'https://www.proptiger.com/',
+            protocol: 'http://',
+            apiURL: 'www.proptiger.com/',
             showLogs: true
         },
         dev: {
             env: env,
-            apiURL: 'https://www.proptiger.com/',
+            protocol: window.location.protocol + '//',
+            apiURL: 'www.proptiger.com/',
             showLogs: true
         },
         qa: {
             env: env,
-            apiURL: 'https://qa.proptiger-ws.com/',
+            protocol: window.location.protocol + '//',            
+            apiURL: 'qa.proptiger-ws.com/',
             showLogs: true
         },
         qaui: {
             env: env,
-            apiURL: 'https://qa-ui.proptiger-ws.com/',
+            protocol: window.location.protocol + '//',            
+            apiURL: 'qa-ui.proptiger-ws.com/',
             showLogs: true
         },
         beta: {
             env: env,
-            apiURL: 'https://beta.proptiger-ws.com/',
+            protocol: window.location.protocol + '//',            
+            apiURL: 'beta.proptiger-ws.com/',
             showLogs: true
         },
         prod: {
             env: env,
-            apiURL: 'https://www.proptiger.com/',
+            protocol: window.location.protocol + '//',            
+            apiURL: 'www.proptiger.com/',
             showLogs: false
         }
     };

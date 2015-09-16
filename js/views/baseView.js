@@ -699,7 +699,7 @@ var BaseView = (function() {
         questionBoxContainer: function() {
             var html = '<div class="question"><span>Questions?</span></div>' +
                 '   <div class="callInfo">' +
-                '   <p><span class="number">' + config.helpline + '</span>Our Advisors are here to help. Available from 10am to 10pm </p>' +
+                '   <p><span class="number">' + config.helpline + '</span>Our Advisors are here to help.</p>' +
                 '	</div>'+
 				'	<span class="close icon-cross"></span>';
             this._elements.questionBoxContainer.html(html);
