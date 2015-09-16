@@ -16,7 +16,8 @@ var BaseView = (function() {
         'bottomFormGroupContainer': '<div class="bottom-form-group" id="bottom-form-group"></div>',
         'compareUnitsContainer': '<div  class="compare-units-container" id="' + config.compareUnitscontainerId + '"></div>',
         'promptLeadFormContainer': '<div class="promptLeadFormBox" id="prompt-lead-form"></div>',
-        'questionBoxContainer': '<div class="questionBox" id="question-box"></div>'
+        'questionBoxContainer': '<div class="questionBox" id="question-box"></div>',
+        'smallScreenMessage': ' <div class="top-message '+ config.popupClass +'" id="small-screen" style="display:none;"></div>'
 
     };
 
@@ -25,7 +26,8 @@ var BaseView = (function() {
             'bottomFormGroupContainer': $('#bottom-form-group'),
             'compareUnitsContainer': $('#' + config.compareUnitscontainerId),
             'promptLeadFormContainer': $('#prompt-lead-form'),
-            'questionBoxContainer': $('#question-box')
+            'questionBoxContainer': $('#question-box'),
+            'smallScreenMessage': $('#small-screen')
         };
         return elements;
     }
@@ -53,6 +55,7 @@ var BaseView = (function() {
         this._unitComponentMouseEnter = new Event(this);
         this._unitComponentMouseLeave = new Event(this);
         this._bookingClick = new Event(this);
+
     }
 
     BaseView.prototype = {
@@ -696,7 +699,7 @@ var BaseView = (function() {
         questionBoxContainer: function() {
             var html = '<div class="question"><span>Questions?</span></div>' +
                 '   <div class="callInfo">' +
-                '   <p><span class="number">' + config.helpline + '</span>Our Advisors are here to help. Available from 10am to 10pm </p>' +
+                '   <p><span class="number">' + config.helpline + '</span>Our Advisors are here to help.</p>' +
                 '	</div>'+
 				'	<span class="close icon-cross"></span>';
             this._elements.questionBoxContainer.html(html);
@@ -721,6 +724,27 @@ var BaseView = (function() {
                 _this._elements.questionBoxContainer.removeClass('open');
             });
             
+        },
+        smallScreenMessage: function() {
+            var message = '<div class="info">Please use desktop screen to view this website for best experience.'+
+                          '<span class="close icon-cross"></span></div>';
+            this._elements.smallScreenMessage.html(message);
+            this.smallScreenMessageEvents();
+        },
+        smallScreenMessageEvents: function() {
+            var _this = this;
+
+            _this._elements.smallScreenMessage.on('click','.info', function() {
+                event.stopPropagation();
+            });
+
+            $(document).on('click', function(event) {
+                 _this._elements.smallScreenMessage.hide();
+            });
+
+            _this._elements.smallScreenMessage.on('click', '.close', function(){
+                _this._elements.smallScreenMessage.hide();
+            });
         }
     };
 
