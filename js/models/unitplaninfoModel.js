@@ -25,7 +25,11 @@ var UnitplaninfoModel = (function() {
         var enquiryCookie = cookieUtils.readCookie("enquiry_info");
         if (enquiryCookie !== null && enquiryCookie.length > 0) {
             enquiryCookie = decodeURIComponent(enquiryCookie);
-            enquiryCookie = JSON.parse(enquiryCookie);
+            try {
+                enquiryCookie = JSON.parse(enquiryCookie);
+            } catch (e) {
+                enquiryCookie = {};
+            }
         }
         this._cookie = enquiryCookie ? enquiryCookie : {};
     }

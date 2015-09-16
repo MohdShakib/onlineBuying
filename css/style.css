@@ -432,12 +432,12 @@ ellipse.tower-unit-svg-selected-path {
 .tower-rotation-container {
 	position: absolute;
 	width: 100%;
+	top: 50%;
 	z-index: 99990;
 }
 .rotation-btn-container{
 	position:absolute; 
 	z-index: 99999; 
-	top:300px;
 	width:48px;
 	height:48px; 
 }
@@ -1248,7 +1248,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 
 
 /* css for question box slider */
-.questionBox { position: fixed; right: -245px; transition: all .5s ease-in-out; -webkit-transition: all .5s ease-in-out; -o-transition: all .5s ease-in-out; -ms-transition: all .5s ease-in-out; -moz-transition: all .5s ease-in-out; top: 32%; padding-left: 27px; width: 245px; z-index: 110000; }
+.questionBox { position: absolute; right: -245px; transition: all .5s ease-in-out; -webkit-transition: all .5s ease-in-out; -o-transition: all .5s ease-in-out; -ms-transition: all .5s ease-in-out; -moz-transition: all .5s ease-in-out; top: 32%; padding-left: 27px; width: 245px; z-index: 110000; }
 .questionBox.open { right: -1px; }
 .questionBox .question { cursor: pointer; position: absolute; left: 0; top: 0; width: 27px; height: 100%; display: block; background-color: #e4552e; }
 .questionBox .question span { position: absolute; top: 44px; left: -29px; letter-spacing: 1px; transform: rotate(-90deg); -webkit-transform: rotate(-90deg); -o-transform: rotate(-90deg); -ms-transform: rotate(-90deg); -moz-transform: rotate(-90deg); color: #fff; font-size: 15px; }

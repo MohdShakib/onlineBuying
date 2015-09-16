@@ -552,11 +552,6 @@ var BaseView = (function() {
                 $('.' + config.callBox.countryDropdownClass).hide();
             });
 
-            this._elements.bottomFormGroupContainer.on('click', '.chat-widget', function(event) {
-                if (config.chatEnabled) {
-                    // window.Tawk_API.maximize();
-                }
-            });
         },
         getValidatedCallBackData: function() {
             var rootdata = this._model.getRootdata();
@@ -709,12 +704,23 @@ var BaseView = (function() {
         },
         questionBoxContainerEvents: function() {
             var _this = this;
-            this._elements.questionBoxContainer.on('click', '.question', function(event) {
+            
+            _this._elements.questionBoxContainer.on('click', '.question', function(event) {
+                event.stopPropagation();
                 _this._elements.questionBoxContainer.toggleClass('open');
             });
-			this._elements.questionBoxContainer.on('click', '.close', function(event) {
+			_this._elements.questionBoxContainer.on('click', '.close', function(event) {
+                event.stopPropagation();
                 _this._elements.questionBoxContainer.toggleClass('open');
             });
+            _this._elements.questionBoxContainer.on('click','.callInfo', function() {
+                event.stopPropagation();
+            });
+
+            $(document).on('click', function(event) {
+                _this._elements.questionBoxContainer.removeClass('open');
+            });
+            
         }
     };
 
