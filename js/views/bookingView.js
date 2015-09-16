@@ -122,7 +122,7 @@ var BookingView = (function() {
                 paymentBreakup = '<div class="clear-fix"></div><a id="payment-breakup" class="view-price-brakup">View Price Breakup &amp; Payment plan</a>';
 
                 if (data.discount) {
-                    offerBanner = '<div class="special-offers">' + '<span></span>' + '<p>Save <strong><label       class="icon fs14 icon-rupee"></label>' + utils.getReadablePrice(data.discount) + '</strong> ' + data.discountDescription + '</p>' + '</div>';
+                    offerBanner = '<div class="special-offers"><span></span><p>' + data.discountDescription + '</p></div>';
                 }
             }
             var isDuplex = false;
@@ -480,10 +480,11 @@ var BookingView = (function() {
             ajaxUtils.sendEmail(data, params);
         },
         termsConditionPopup: function(data, rotationdata, rootdata) {
-            var code = '<div class="tc-container">' +
-                '<a class="close-payment"><span class="icon icon-cross fs24"></span></a>' +
+            var code ='<div class="tc-container"><h3>Terms &amp; Conditions</h3>'+
+                '<a class="close-payment"><span class="icon icon-cross fs22"></span></a>' +
+                '<div class="terms-and-conditions">'+
                 utils.getTermsConditionsHtml(data, rootdata) +
-                '</div>';
+                '</div></div>';
             this._elements.termsConditionPopup.html(code);
             this.termsConditionPopupEvents();
         },
