@@ -534,9 +534,9 @@ var UnitplaninfoView = (function() {
         getAmenityClass: function(rootdata, key) {
             var ameneties = Object.keys(rootdata.projectAmeneties);
             if (ameneties.indexOf(key) > -1) {
-                return 'class="disable"';
-            } else {
                 return '';
+            } else {
+                return 'class="disable"';
             }
         },
         specificationContainer: function(data, rotationdata, rootdata) {
