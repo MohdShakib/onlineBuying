@@ -164,13 +164,16 @@ var BookingView = (function() {
                 countryIdCookie = cookie.country;
             }
 
+            var helpline = config.helpline;
+            if (ivrsData[rootdata.projectId] !== undefined) {
+                helpline = ivrsData[rootdata.projectId];
+            }
+
             var code = '<div class="payment-container">' +
                 '        <div class="title-text">' +
                 '           <a class="close-payment transition" ' + url + '><span class="icon icon-arrow_left fs24"></span></a>' +
                 '           <p>Checkout</p>';
-            if (ivrsData[rootdata.projectId] !== undefined) {
-                code += '<span class="phoneNumber"><i class="icon icon-phone"></i> ' + ivrsData[rootdata.projectId] + '</span>';
-            }
+            code += '<span class="phoneNumber"><i class="icon icon-phone"></i> ' + helpline + '</span>';
             code += '        </div>' +
                 '        <div class="payment-left">' + offerBanner +
                 '        <div class="payment-left-top">' +
