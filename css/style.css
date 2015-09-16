@@ -1162,7 +1162,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .btn-container .action-message span {font-size: 15px;}
 /*-------payment screen start here-------*/
 .terms-condition-popup{ background:rgba(0,0,0,0.7); position:fixed; top:0; left:0; width:100%; height:100%; z-index:9999999;}
-.tc-container{ background:#fff; height:500px; border-top: 20px white solid; border-bottom: 20px white solid; position:absolute; padding:0px 20px; width:640px; top:50%; left:50%; margin:-240px 0 0 -320px;; overflow-y:scroll; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;box-sizing:border-box;}
+.tc-container{ background:#fff; position:absolute; height:500px; width:640px; top:50%; left:50%; margin:-240px 0 0 -320px;	padding:0px 2px 0px 15px; border-top: 20px white solid; border-bottom: 20px white solid; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;box-sizing:border-box;}
 .tc-container .close-payment{ color:#616161;}
 .tc-container p, .price-breakup-trems p{ font-size:14px; color:#494949; margin-bottom:10px;}
 .tc-container p a, .price-breakup-trems p a{ color:#ECA537;}
@@ -1329,4 +1329,9 @@ a.control_next {
   margin: 10px auto;
   width: 160px;
   font-size: 18px;
+}
+.terms-and-conditions {
+	height:420px; 
+	overflow-y: scroll; 
+	padding:0px 15px 0 0;
 }

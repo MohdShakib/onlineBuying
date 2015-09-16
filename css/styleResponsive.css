@@ -22,6 +22,7 @@
 	.terms-condition { margin: 0; margin-top: 30px; }
 	.terms-condition-popup { padding: 20px; box-sizing: border-box; }
 	.tc-container { width: auto; position: static; margin: 0; height: 100%; }
+	.terms-and-conditions { height: 90%;}
 	.close-payment { top: 30px; right: 30px; }
 }
 

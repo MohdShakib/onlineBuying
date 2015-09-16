@@ -615,10 +615,11 @@ var UnitplaninfoView = (function() {
             }
         },
         termsConditionPopup: function(data, rotationdata, rootdata) {
-            var code = '<div class="tc-container">' +
-                '<a class="close-payment"><span class="icon icon-cross fs24"></span></a>' +
+            var code ='<div class="tc-container"><h3>Terms &amp; Conditions</h3>'+
+                '<a class="close-payment"><span class="icon icon-cross fs22"></span></a>' +
+                '<div class="terms-and-conditions">'+
                 utils.getTermsConditionsHtml(data, rootdata) +
-                '</div>';
+                '</div></div>';
             this._elements.termsConditionPopup.html(code);
             this.termsConditionPopupEvents();
         },
