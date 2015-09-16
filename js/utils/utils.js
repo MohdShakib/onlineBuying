@@ -516,8 +516,7 @@ var utils = (function() {
             return;
         },
         getTermsConditionsHtml: function(data, rootdata) {
-            return '<h3>Terms &amp; Conditions</h3>' +
-                '<p>All details provided about the project are based on information provided by the builder to PropTiger.com. No warranty of the accuracy of the details as provided by the builder. <a href="https://www.proptiger.com/" target="_blank">PropTiger.com</a> is not liable for any change in specifications post buying.</p>' +
+            return '<p>All details provided about the project are based on information provided by the builder to PropTiger.com. No warranty of the accuracy of the details as provided by the builder. <a href="https://www.proptiger.com/" target="_blank">PropTiger.com</a> is not liable for any change in specifications post buying.</p>' +
                 '<p>All the commitments on the delivery and quality of material used for the proposed flat/property are from the builder and PropTiger cannot be held accountable for any variations or non-delivery of any such committed things.</p>' +
                 '<p>Builder reserves the right to change the specifications of the flats at its own discretion as mentioned herein and PropTiger shall not be held responsible for any such change in specifications in future.</p>' +
                 '<p>Only Indian Residents, Non- Resident Indians (NRIs), OCI (Overseas Citizens of India) & Persons of Indian Origin (PIOs) who are eligible to enter into contract as per Indian Contract Act, 1881 shall be eligible to apply.</p>' +
