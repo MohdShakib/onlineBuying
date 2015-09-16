@@ -574,6 +574,8 @@ var utils = (function() {
                     code += "<tr><td class='total-price'>Price after Discount</td><td class='total-price right-align' width='100px'><span class='icon fs14 icon-rupee'></span> <label class='" + config.totalAmountClass + "'>" + utils.getReadablePrice(data.price - data.discount) + "</label></td></tr>";
                 }
 
+                code += "<tr><td colspan='2' class='pricebreakup-text'>- Service Tax, VAT &amp; Registration fees will be charged extra. <br>- Other charges including PLC subject to Unit selection which is not covered in price list will be charged extra.</td></tr>";
+
                 if (showTnc) {
                     code += "<tr><td colspan='2'><div class='price-breakup-trems'><a class='price-terms'>Terms &amp; Conditions</a></div></td></tr>";
                 }

@@ -861,6 +861,7 @@ ellipse.tower-unit-svg-selected-path {
 .tc-container .unit-content-wrapper{ position:static; top:inherit; bottom:inherit;}
 .tc-container .unit-content-wrapper .pricebreakup-tabs-content.pricebreakup{ padding-right:50px;}
 .pricebreakup input {margin-right: 5px;}
+.base-table td.pricebreakup-text { color: #666; font-size: 12px;}
 /*-----compare unit start here-----*/
 .compare-units-container {
 	position: absolute;
@@ -1167,7 +1168,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .tc-container p, .price-breakup-trems p{ font-size:14px; color:#494949; margin-bottom:10px;}
 .tc-container p a, .price-breakup-trems p a{ color:#ECA537;}
 .tc-container h3, .price-breakup-trems h3{ text-transform:uppercase; margin-bottom:20px;}
-.price-breakup-trems{ padding-top:20px; text-align:left;}
+.price-breakup-trems{ text-align:left;}
 /*-----loading screen css start here------*/
 .show-loading{ height:100%; width:100%; position:fixed; top:0; right:0; z-index:999999;}
 .loading-view{
