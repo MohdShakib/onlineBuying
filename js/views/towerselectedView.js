@@ -124,7 +124,7 @@ var TowerselectedView = (function() {
                 });
             }, 700);
 
-            utils.showNotificationTooltip('Click on unit spot & view its plan');
+            utils.showNotificationTooltip('Click on unit spot <span class="pointer"></span> & view its plan');
         },
         displayWithoutAnimation: function(fromUnitInfoView) {
             // lazy load rotation images

@@ -644,7 +644,7 @@ var utils = (function() {
 
             $('.' + config.notificationTooltipClass).stop(true, true);
             this.removeNotificationTooltip();
-            $('.' + config.notificationTooltipClass + ' .' + config.notificationMessageClass).text(message);
+            $('.' + config.notificationTooltipClass + ' .' + config.notificationMessageClass).html(message);
             $('.' + config.notificationTooltipClass).animate({
                 'top': 0
             }, 1000, function() {
