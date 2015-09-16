@@ -171,7 +171,7 @@ var UnitplaninfoView = (function() {
             var offerDiv = '';
 
             if (data.discount) {
-                offerDiv = '<div class="special-offers">' + '<span></span>' + '<p>Save <strong><label class="icon fs14 icon-rupee"></label>' + utils.getReadablePrice(data.discount) + '</strong> ' + data.discountDescription + '</p>' + '</div>';
+                offerDiv = '<div class="special-offers"><span></span><p>' + data.discountDescription + '</p></div>';
             }
 
             var htmlCode = offerDiv,

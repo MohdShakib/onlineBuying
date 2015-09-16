@@ -122,7 +122,7 @@ var BookingView = (function() {
                 paymentBreakup = '<div class="clear-fix"></div><a id="payment-breakup" class="view-price-brakup">View Price Breakup &amp; Payment plan</a>';
 
                 if (data.discount) {
-                    offerBanner = '<div class="special-offers">' + '<span></span>' + '<p>Save <strong><label       class="icon fs14 icon-rupee"></label>' + utils.getReadablePrice(data.discount) + '</strong> ' + data.discountDescription + '</p>' + '</div>';
+                    offerBanner = '<div class="special-offers"><span></span><p>' + data.discountDescription + '</p></div>';
                 }
             }
             var isDuplex = false;
