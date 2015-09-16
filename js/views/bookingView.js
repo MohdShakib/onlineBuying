@@ -82,7 +82,7 @@ var BookingView = (function() {
             var paymentBtnClass = 'make-payment',
                 propertyBooking = this._model.getPropertyBooking(),
                 cookie = this._model.getCookie();
-            var offerBanner, propertyDetail, titleText, offerList, getCallbackCode, url, imageUrl, unitDetails, paymentBreakup;
+            var offerBanner, propertyDetail, offerList, getCallbackCode, url, imageUrl, unitDetails, paymentBreakup;
 
             if (propertyBooking) {
                 offerBanner = "";
@@ -101,13 +101,11 @@ var BookingView = (function() {
                 }
 
                 propertyDetail = "<div class='property-detail'><span>" + data.bedrooms + " BHK + " + data.bathrooms + " T, " + data.size + " " + data.measure + "</span><span class='right'><span class='icon icon-rupee_final fleft fs18'></span>" + utils.getReadablePriceInWord(data.price) + "</span></div>";
-                titleText = "<br>Your full amount will be refunded in case you cancel the booking within 15 days.";
                 getCallbackCode = '<a class="fleft transition callback-btn get-callback">Get Call Back</a>';
                 url = 'href= "' + envConfig.apiURL + 'online-buying/' + utils.getIdentifier(rootdata.city) + '/' + utils.getIdentifier(rootdata.builderName) + '/' + utils.getIdentifier(rootdata.projectName) + '-' + rootdata.projectId + '"';
             } else {
                 offerBanner = '';
                 propertyDetail = '';
-                titleText = '';
                 offerList = '';
                 getCallbackCode = '';
                 url = 'data-url="' + rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier + '"';
@@ -166,13 +164,16 @@ var BookingView = (function() {
                 countryIdCookie = cookie.country;
             }
 
+            var helpline = config.helpline;
+            if (ivrsData[rootdata.projectId] !== undefined) {
+                helpline = ivrsData[rootdata.projectId];
+            }
+
             var code = '<div class="payment-container">' +
                 '        <div class="title-text">' +
                 '           <a class="close-payment transition" ' + url + '><span class="icon icon-arrow_left fs24"></span></a>' +
                 '           <p>Checkout</p>';
-            if (ivrsData[rootdata.projectId] !== undefined) {
-                code += '<span class="phoneNumber"><i class="icon icon-phone"></i> ' + ivrsData[rootdata.projectId] + '</span>';
-            }
+            code += '<span class="phoneNumber"><i class="icon icon-phone"></i> ' + helpline + '</span>';
             code += '        </div>' +
                 '        <div class="payment-left">' + offerBanner +
                 '        <div class="payment-left-top">' +
@@ -199,7 +200,7 @@ var BookingView = (function() {
                 '        <div class="payment-right">' +
                 '            <div id="booking-user-details" class="payment-right-container">' +
                 '            <h3>Nice Selection!</h3>' +
-                '            <p>Now, pay just <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- as token payment to block your selection.' + titleText + '</p>' +
+                '            <p>Now, pay just <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- as token payment to block your selection. <br>Your full amount will be refunded in case you cancel the booking within 15 days.</p>' +
                 '            <div class="personal-detail-box">' +
                 '                <div class="table">' +
                 '                   <div class="tr">' +

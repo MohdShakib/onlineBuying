@@ -134,7 +134,7 @@ var MasterplanView = (function() {
 
             // Notification tooltip
             setTimeout(function() {
-                utils.showNotificationTooltip('Select a tower to explore further');
+                utils.showNotificationTooltip('Click on a tower to explore further');
             }, 9000);
 
         },
@@ -170,7 +170,7 @@ var MasterplanView = (function() {
                 bottom: '0px'
             });
 
-            utils.showNotificationTooltip('Select a tower to explore further');
+            utils.showNotificationTooltip('Click on a tower to explore further');
         },
         dynamicResizeContainers: function() {
             utils.defaultDynamicResizeContainers();

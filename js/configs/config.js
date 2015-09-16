@@ -27,8 +27,8 @@ var config = (function() {
         towerMenuItemHeight: 44,
         maxShortlistCount: 6,
         tawkApiId: 'tawk_55e5498bfc2b363371225aaa',
-        errorMsg: 'Something went wrong. Please contact +91-11-66764112 for assistance.',
-        helpline: '+91-11-66764112',
+        errorMsg: 'Something went wrong. Please contact +91-11-66764111 for assistance.',
+        helpline: '+91-11-66764111',
 
         // Data
         backgroundImage: 'masterplan.jpg',

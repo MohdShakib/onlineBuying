@@ -861,6 +861,7 @@ ellipse.tower-unit-svg-selected-path {
 .tc-container .unit-content-wrapper{ position:static; top:inherit; bottom:inherit;}
 .tc-container .unit-content-wrapper .pricebreakup-tabs-content.pricebreakup{ padding-right:50px;}
 .pricebreakup input {margin-right: 5px;}
+.base-table td.pricebreakup-text { color: #666; font-size: 12px;}
 /*-----compare unit start here-----*/
 .compare-units-container {
 	position: absolute;
@@ -1167,7 +1168,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .tc-container p, .price-breakup-trems p{ font-size:14px; color:#494949; margin-bottom:10px;}
 .tc-container p a, .price-breakup-trems p a{ color:#ECA537;}
 .tc-container h3, .price-breakup-trems h3{ text-transform:uppercase; margin-bottom:20px;}
-.price-breakup-trems{ padding-top:20px; text-align:left;}
+.price-breakup-trems{ text-align:left;}
 /*-----loading screen css start here------*/
 .show-loading{ height:100%; width:100%; position:fixed; top:0; right:0; z-index:999999;}
 .loading-view{
@@ -1208,6 +1209,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .common-tol-tip{ position:absolute;top:-100px; left:50%;  z-index:999999; width:500px; margin-left:-250px; text-align:center;}
 .common-tol-tip p{color:#fff; background:rgba(0,0,0,0.8); padding:5px 0 5px 10px;font-size:14px;display:inline-block;}
 .common-tol-tip p span.icon{ margin-left:10px; padding:0 5px; margin-top:2px; cursor:pointer;}
+.common-tol-tip span.pointer { display: inline-block; width: 8px; height: 8px; border: 1px solid #fff; border-radius: 50%; background-color: #48C345; }
 /*-----*/
 .tolltip-tower-name{ font-size:15px; padding:8px 10px; background:#464646;}
 .car-animation { position:absolute;z-index:1;}
@@ -1252,10 +1254,10 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .questionBox.open { right: -1px; }
 .questionBox .question { cursor: pointer; position: absolute; left: 0; top: 0; width: 27px; height: 100%; display: block; background-color: #e4552e; }
 .questionBox .question span { position: absolute; top: 44px; left: -29px; letter-spacing: 1px; transform: rotate(-90deg); -webkit-transform: rotate(-90deg); -o-transform: rotate(-90deg); -ms-transform: rotate(-90deg); -moz-transform: rotate(-90deg); color: #fff; font-size: 15px; }
-.questionBox .callInfo { padding: 15px; text-align: center; border: 1px solid #c7d0d4; background-color: #fff; }
+.questionBox .callInfo { padding: 25px 15px; text-align: center; border: 1px solid #c7d0d4; background-color: #fff; }
 .questionBox .callInfo p span { margin: 5px 0; display: block; line-height: normal; font-size: 18px; font-weight: bold; color: #e4552e; }
 .questionBox .callInfo p { font-size: 14px; line-height: 22px; letter-spacing: .5px; }
-.questionBox .close { cursor: pointer; position: absolute; left: -10px; top: -10px; display: none; width: 20px; height: 20px; line-height: 19px; text-align: center; color: #999; border-radius: 50%; border: 1px solid #999; background-color: #fff; }
+.questionBox .close { cursor: pointer; position: absolute; left: -10px; top: -10px; display: none; width: 20px; height: 20px; line-height: 21px; text-align: center; color: #999; font-size: 9px; border-radius: 50%; border: 1px solid #999; background-color: #fff; }
 .questionBox.open .close { display: block; }
 
 .blurRotationImage {
