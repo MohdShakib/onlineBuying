@@ -102,7 +102,7 @@ var BookingView = (function() {
 
                 propertyDetail = "<div class='property-detail'><span>" + data.bedrooms + " BHK + " + data.bathrooms + " T, " + data.size + " " + data.measure + "</span><span class='right'><span class='icon icon-rupee_final fleft fs18'></span>" + utils.getReadablePriceInWord(data.price) + "</span></div>";
                 getCallbackCode = '<a class="fleft transition callback-btn get-callback">Get Call Back</a>';
-                url = 'href= "' + envConfig.apiURL + 'online-buying/' + utils.getIdentifier(rootdata.city) + '/' + utils.getIdentifier(rootdata.builderName) + '/' + utils.getIdentifier(rootdata.projectName) + '-' + rootdata.projectId + '"';
+                url = 'href= "' + envConfig.protocol + envConfig.apiURL + 'online-buying/' + utils.getIdentifier(rootdata.city) + '/' + utils.getIdentifier(rootdata.builderName) + '/' + utils.getIdentifier(rootdata.projectName) + '-' + rootdata.projectId + '"';
             } else {
                 offerBanner = '';
                 propertyDetail = '';
