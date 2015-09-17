@@ -16,9 +16,9 @@ var initializeRoutes = (function() {
             projectName: "([a-z0-9-]+)",
             projectId: "([0-9]{6})",
             propertyId: "(5[0-9]{6})",
-            towerName: "([a-z0-9-]+)",
+            towerName: "([a-z0-9-_]+)",
             towerAngle: "([0-9]{1,3})",
-            unitAddress: "([a-z0-9-]+)",
+            unitAddress: "([a-z0-9-_]+)",
             booking: "booking",
             error: "404"
         };
