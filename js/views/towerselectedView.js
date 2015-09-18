@@ -642,7 +642,7 @@ var TowerselectedView = (function() {
 
                 //check if value is preselected
                 var checkForValue = bhk;
-                if (bhkFiltersData && bhkFiltersData.length && bhkFiltersData.indexOf(parseInt(checkForValue)) > -1) {
+                if (bhkFiltersData && bhkFiltersData.length && bhkFiltersData.indexOf(parseFloat(checkForValue)) > -1) {
                     availabilityClass += ' ' + config.filters.selectedClass;
                 }
 

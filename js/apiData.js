@@ -464,6 +464,9 @@ var getProjectData = (function() {
                 property = {};
             property.propertyId = projectProperty.propertyId;
             property.bedrooms = projectProperty.bedrooms;
+            if (projectProperty.studyRoom) {
+                property.bedrooms += 0.5;
+            }
             property.bathrooms = projectProperty.bathrooms;
             property.size = projectProperty.size;
             property.measure = projectProperty.measure;
@@ -652,6 +655,9 @@ var getProjectData = (function() {
             // }
 
             flatUnit.bedrooms = propertyDetail.bedrooms;
+            if (propertyDetail.studyRoom) {
+                flatUnit.bedrooms += 0.5;
+            }
             flatUnit.size = propertyDetail.size ? propertyDetail.size : 0;
             flatUnit.measure = propertyDetail.measure;
 
