@@ -558,6 +558,10 @@ var utils = (function() {
                         pricingSubcategory = rootdata.pricingSubcategories[key];
                     }
 
+                    if (unitPricingSubcategory.price <= 10) {
+                        // Remove prices if value is less than 10
+                        continue;
+                    }
                     if (pricingSubcategory && pricingSubcategory.isMandatory) {
                         code += "<tr><td>" + pricingSubcategory.name + " <span>(" + pricingSubcategory.masterName + ")</span></td><td class='right-align'>" + utils.getReadablePrice(unitPricingSubcategory.price) + "</td></tr>";
                     } else if (pricingSubcategory) {
