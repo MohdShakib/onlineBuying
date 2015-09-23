@@ -72,7 +72,7 @@ var BaseView = (function() {
             }
 
             $('.' + config.notificationTooltipClass).off('click').on('click', '.icon-cross', function() {
-                utils.hideNotificationTooltip();
+                viewUtils.hideNotificationTooltip();
             });
         },
         init: function(rootdata) {
@@ -302,7 +302,7 @@ var BaseView = (function() {
             } else {
                 unitTypeData = compareList[uniqueIdentifier].unitTypeData;
             }
-            var svgElements = utils.getUnit3dSvgPolygonElements(unitTypeData);
+            var svgElements = viewUtils.getUnit3dSvgPolygonElements(unitTypeData);
             var id = idName || uniqueIdentifier;
             $('#unit-compare-svg-container' + id).empty();
             if (svgElements && svgElements.length) {
@@ -337,7 +337,7 @@ var BaseView = (function() {
             params.pointX = pointX;
             params.pointY = pointY;
             if (reference) {
-                utils.unitComponentMouseEnter(params, reference);
+                viewUtils.unitComponentMouseEnter(params, reference);
             }
         },
         unitComponentMouseLeave: function() {
@@ -380,11 +380,11 @@ var BaseView = (function() {
                 '   <div class="share-box">' +
                 '       <p>Share details with family / friends</p>' +
                 '       <div class="share-social">' +
-                '           <a href="javascript:void(0);" onclick="utils.socialClicked(\'facebook\')" ><span class="icon icon-facebook"></span>Facebook</a>' +
+                '           <a href="javascript:void(0);" onclick="viewUtils.socialClicked(\'facebook\')" ><span class="icon icon-facebook"></span>Facebook</a>' +
                 //'         <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"></div>' +
                 '           <span class="social-or">or</span>' +
                 //'         <div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>' +
-                '           <a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Google+</a>' +
+                '           <a href="javascript:void(0);" onclick="viewUtils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Google+</a>' +
                 '       </div>' +
                 '       <form id="share-box-form" novalidate name="share-box-form" onSubmit="return false;"  >' +
                 '           <div class="form-input-box"><input class="text" id="' + config.emailBox.nameId + '" placeholder="Enter your name" type="text" required />' +
@@ -513,7 +513,7 @@ var BaseView = (function() {
 
             this._elements.bottomFormGroupContainer.on('keyup', '#call-box-form', function(event) {
                 var callBoxForm = $('#call-box-form');
-                utils.validateForm(callBoxForm, false);
+                viewUtils.validateForm(callBoxForm, false);
             });
 
             this._elements.bottomFormGroupContainer.on('click', '#' + config.emailBox.submitButtonId, function(event) {
@@ -524,7 +524,7 @@ var BaseView = (function() {
 
             this._elements.bottomFormGroupContainer.on('keyup', '#share-box-form', function(event) {
                 var shareBoxForm = $('#share-box-form');
-                utils.validateForm(shareBoxForm, false);
+                viewUtils.validateForm(shareBoxForm, false);
             });
 
             this._elements.bottomFormGroupContainer.on('click', '.close-form', function() {
@@ -559,7 +559,7 @@ var BaseView = (function() {
         getValidatedCallBackData: function() {
             var rootdata = this._model.getRootdata();
             var form = $('#call-box-form');
-            var validationFlag = utils.validateForm(form, true);
+            var validationFlag = viewUtils.validateForm(form, true);
             if (!validationFlag) {
                 return null;
             }
@@ -610,7 +610,7 @@ var BaseView = (function() {
         getValidatedShareData: function() {
             var form = $('#share-box-form');
             var rootdata = this._model.getRootdata();
-            var validationFlag = utils.validateForm(form, true);
+            var validationFlag = viewUtils.validateForm(form, true);
             if (!validationFlag) {
                 return null;
             }
@@ -682,7 +682,7 @@ var BaseView = (function() {
             if (!length) {
                 return;
             }
-            utils.removeNotificationTooltip();
+            viewUtils.removeNotificationTooltip();
             this.formPopupCloseClicked();
             this.prepareCompareUnitsContainer(true);
             $('#' + config.compareUnitscontainerId).fadeIn(900);
@@ -707,7 +707,7 @@ var BaseView = (function() {
         },
         questionBoxContainerEvents: function() {
             var _this = this;
-            
+
             _this._elements.questionBoxContainer.on('click', '.question', function(event) {
                 event.stopPropagation();
                 _this._elements.questionBoxContainer.toggleClass('open');
@@ -723,7 +723,7 @@ var BaseView = (function() {
             $(document).on('click', function(event) {
                 _this._elements.questionBoxContainer.removeClass('open');
             });
-            
+
         },
         smallScreenMessage: function() {
             var message = '<div class="info">Please use desktop screen to view this website for best experience.'+

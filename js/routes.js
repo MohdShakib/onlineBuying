@@ -204,7 +204,7 @@ var initializeRoutes = (function() {
                 }
 
                 // Animations
-                utils.removeNotificationTooltip();
+                viewUtils.removeNotificationTooltip();
 
                 function beforeCallback(response) {
                     rootdata = response;

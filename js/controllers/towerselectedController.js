@@ -203,7 +203,7 @@ var TowerselectedController = (function() {
         generateTemplate: function(fromUnitInfoView) {
             this._view.buildView();
             if (this._model.isFirstLoad()) {
-                utils.showLoader(this._view, this._view.startAnimation);
+                viewUtils.showLoader(this._view, this._view.startAnimation);
                 this._model.toggleFirstLoad();
             } else {
                 this._view.displayWithoutAnimation(fromUnitInfoView);

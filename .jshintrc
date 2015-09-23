@@ -47,7 +47,8 @@
         "UnitplaninfoController": true,
         "UnitplaninfoModel": true,
         "UnitplaninfoView": true,
-        "utils": true
+        "utils": true,
+        "viewUtils": true
     },
     "-W065": true
 }

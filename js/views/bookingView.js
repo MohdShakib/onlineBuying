@@ -293,7 +293,7 @@ var BookingView = (function() {
                 countryId: countryIdCookie
             });
             this.paymentScreenEvents();
-            utils.slideIt();
+            viewUtils.slideIt();
         },
         getCountriesList: function(countries, params) {
             var htmlCode = '',
@@ -374,11 +374,11 @@ var BookingView = (function() {
 
             _this._elements.paymentScreen.on('keyup', '#booking-user-details', function(event) {
                 var bookingForm = $('#booking-user-details');
-                utils.validateForm(bookingForm, false);
+                viewUtils.validateForm(bookingForm, false);
             });
             _this._elements.paymentScreen.on('change', '#terms', function(event) {
                 var bookingForm = $('#booking-user-details');
-                utils.validateForm(bookingForm, false);
+                viewUtils.validateForm(bookingForm, false);
             });
 
             _this._elements.paymentScreen.on('click', '#tnc', function(event) {
@@ -403,7 +403,7 @@ var BookingView = (function() {
                 unitData = this._model.getData(),
                 data = {};
 
-            if (!utils.validateForm(bookingForm, true)) {
+            if (!viewUtils.validateForm(bookingForm, true)) {
                 return null;
             }
 
@@ -441,7 +441,7 @@ var BookingView = (function() {
                 return;
             }
 
-            if (!utils.validateForm(bookingForm, true, ignoreFields)) {
+            if (!viewUtils.validateForm(bookingForm, true, ignoreFields)) {
                 return;
             }
 
@@ -484,7 +484,7 @@ var BookingView = (function() {
             var code ='<div class="tc-container"><h3>Terms &amp; Conditions</h3>'+
                 '<a class="close-payment"><span class="icon icon-cross fs22"></span></a>' +
                 '<div class="terms-and-conditions">'+
-                utils.getTermsConditionsHtml(data, rootdata) +
+                viewUtils.getTermsConditionsHtml(data, rootdata) +
                 '</div></div>';
             this._elements.termsConditionPopup.html(code);
             this.termsConditionPopupEvents();
@@ -499,7 +499,7 @@ var BookingView = (function() {
         paymentBreakupPopup: function(data, rotationdata, rootdata) {
             var code = '<div class="tc-container">' +
                 '<a class="close-payment"><span class="icon icon-cross fs24"></span></a>' +
-                utils.getPriceBreakupHtml(data, rotationdata, rootdata, false) +
+                viewUtils.getPriceBreakupHtml(data, rotationdata, rootdata, false) +
                 '</div>';
             this._elements.paymentBreakupPopup.html(code);
             this.paymentBreakupPopupEvents();
@@ -521,7 +521,7 @@ var BookingView = (function() {
             });
 
             _this._elements.paymentBreakupPopup.on('click', '.' + config.optionalPriceClass, function() {
-                utils.updateTotalPrice(_this._model.getData());
+                viewUtils.updateTotalPrice(_this._model.getData());
             });
         },
         bookListing: function(data) {

@@ -114,7 +114,7 @@ var UnitplaninfoView = (function() {
 
 
                 // to show unit icon selected on tower
-                utils.removeSVGClass(data.unitIdentifier + "-selected-path", config.hideClass);
+                viewUtils.removeSVGClass(data.unitIdentifier + "-selected-path", config.hideClass);
 
                 // hide notification tool tip
                 $('.' + config.notificationTooltipClass).hide();
@@ -137,10 +137,10 @@ var UnitplaninfoView = (function() {
 
             // hide selected unit
             var svgElements = $('.' + config.towerUnitSvgSelectedClass);
-            utils.addSVGClassToElements(svgElements, config.hideClass);
+            viewUtils.addSVGClassToElements(svgElements, config.hideClass);
 
             // show notification tool tip
-            utils.removeNotificationTooltip();
+            viewUtils.removeNotificationTooltip();
             $('.' + config.notificationTooltipClass).show();
         },
         dynamicResizeContainers: function() {
@@ -194,7 +194,7 @@ var UnitplaninfoView = (function() {
             $('#' + config.selectedUnitContainerId).off('click').on('click', '.like-box', function() {
                 _this._likeBoxClick.notify(this); //this refers to element
                 if ($(this).hasClass('selected')) { //this refers to element
-                    utils.flyToShortlist(this); //this refers to element
+                    viewUtils.flyToShortlist(this); //this refers to element
                 }
 
             });
@@ -355,7 +355,7 @@ var UnitplaninfoView = (function() {
         },
         unit3dSvgContainer: function() {
             var unitTypeData = this._model.getUnitTypeData(this._selectedFloor),
-                svgElements = utils.getUnit3dSvgPolygonElements(unitTypeData);
+                svgElements = viewUtils.getUnit3dSvgPolygonElements(unitTypeData);
 
             if (svgElements && svgElements.length) {
                 for (var i = 0; i < svgElements.length; i++) {
@@ -400,7 +400,7 @@ var UnitplaninfoView = (function() {
                     'data-details': svgObj.details,
                     points: svgObj.svg2dPath
                 };
-                eachPolygon = utils.makeSVG('polygon', attrs);
+                eachPolygon = viewUtils.makeSVG('polygon', attrs);
                 this._elements.unit2dSvgContainer.append(eachPolygon);
             }
 
@@ -426,18 +426,18 @@ var UnitplaninfoView = (function() {
         },
         unitComponentMouseEnter: function(params) {
             var hoveredComps = $("#unit-3d-svg-container.svg-container.unit-svg-container .hover");
-            utils.removeSVGClasses(hoveredComps, 'hover');
-            utils.addSVGClass(params.element.id, 'hover');
+            viewUtils.removeSVGClasses(hoveredComps, 'hover');
+            viewUtils.addSVGClass(params.element.id, 'hover');
             if (this._elements && this._elements.unitComponentDetailContainer) {
                 var pointX = $(params.element).attr('points').split(' ')[0];
                 var pointY = $(params.element).attr('points').split(' ')[1];
                 params.pointX = pointX;
                 params.pointY = pointY;
-                utils.unitComponentMouseEnter(params, this._elements.unitComponentDetailContainer);
+                viewUtils.unitComponentMouseEnter(params, this._elements.unitComponentDetailContainer);
             }
         },
         unitComponentMouseLeave: function(params) {
-            utils.removeSVGClass(params.element.id, 'hover');
+            viewUtils.removeSVGClass(params.element.id, 'hover');
             document.getElementById(config.unitDetailContainerId).innerHTML = '';
         },
         amenitiesContainer: function(data, rotationdata, rootdata) {
@@ -510,7 +510,7 @@ var UnitplaninfoView = (function() {
             this._elements.clusterPlanContainer.html(code);
         },
         priceBreakupContainer: function(data, rotationdata, rootdata) {
-            var code = utils.getPriceBreakupHtml(data, rotationdata, rootdata, true);
+            var code = viewUtils.getPriceBreakupHtml(data, rotationdata, rootdata, true);
             this._elements.priceBreakupContainer.html(code);
             this.priceBreakupContainerEvents();
         },
@@ -528,7 +528,7 @@ var UnitplaninfoView = (function() {
                 $('#' + config.termsConditionPopupId).show();
             });
             _this._elements.priceBreakupContainer.on('click', '.' + config.optionalPriceClass, function() {
-                utils.updateTotalPrice(_this._model.getData());
+                viewUtils.updateTotalPrice(_this._model.getData());
             });
         },
         getAmenityClass: function(rootdata, key) {
@@ -618,7 +618,7 @@ var UnitplaninfoView = (function() {
             var code ='<div class="tc-container"><h3>Terms &amp; Conditions</h3>'+
                 '<a class="close-payment"><span class="icon icon-cross fs22"></span></a>' +
                 '<div class="terms-and-conditions">'+
-                utils.getTermsConditionsHtml(data, rootdata) +
+                viewUtils.getTermsConditionsHtml(data, rootdata) +
                 '</div></div>';
             this._elements.termsConditionPopup.html(code);
             this.termsConditionPopupEvents();

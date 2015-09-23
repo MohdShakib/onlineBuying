@@ -72,7 +72,7 @@ var MasterplanController = (function() {
                     clearTimeout(animationStart);
                 }
                 var animationStart = setTimeout(function() {
-                    utils.showLoader(_this._view, _this._view.startAnimation);
+                    viewUtils.showLoader(_this._view, _this._view.startAnimation);
                     _this._model.toggleFirstLoad();
                 }, 200);
             } else {

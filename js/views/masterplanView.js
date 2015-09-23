@@ -14,7 +14,7 @@ var MasterplanView = (function() {
         'towerDetailContainer': '<div class="tower-detail-container" id="tower-detail-container"></div>',
         'amenitiesContainer': '<div class="amenities-container ' + config.dynamicResizeClass + '" id="amenities-container"></div>',
         'cloudContainer': '<div class="cloud-container" id="cloud-container"></div>',
-        'carAnimation': '<svg class="car-animation transition-left ' + config.dynamicResizeClass + '" id="car-animation" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'        
+        'carAnimation': '<svg class="car-animation transition-left ' + config.dynamicResizeClass + '" id="car-animation" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'
     };
 
     function getElements() {
@@ -25,7 +25,7 @@ var MasterplanView = (function() {
             'towerDetailContainer': $('#tower-detail-container'),
             'amenitiesContainer': $('#amenities-container'),
             'cloudContainer': $('#cloud-container'),
-            'carAnimation': $('#car-animation')            
+            'carAnimation': $('#car-animation')
         };
         return elements;
     }
@@ -87,7 +87,7 @@ var MasterplanView = (function() {
         startAnimation: function(model) {
 
             model._baseView._showLoaderComplete.notify();
-            
+
             // Images
             $('.opacity-control').fadeIn(500);
 
@@ -134,7 +134,7 @@ var MasterplanView = (function() {
 
             // Notification tooltip
             setTimeout(function() {
-                utils.showNotificationTooltip('Click on a tower to explore further');
+                viewUtils.showNotificationTooltip('Click on a tower to explore further');
             }, 9000);
 
         },
@@ -170,7 +170,7 @@ var MasterplanView = (function() {
                 bottom: '0px'
             });
 
-            utils.showNotificationTooltip('Click on a tower to explore further');
+            viewUtils.showNotificationTooltip('Click on a tower to explore further');
         },
         dynamicResizeContainers: function() {
             utils.defaultDynamicResizeContainers();
@@ -354,7 +354,7 @@ var MasterplanView = (function() {
                         'data-imageid': tower.towerId,
                         points: tower.towerHoverSvg
                     };
-                    var eachPolygon = utils.makeSVG('polygon', attrs);
+                    var eachPolygon = viewUtils.makeSVG('polygon', attrs);
                     this._elements.buildingSvgContainer.append(eachPolygon);
                 }
             }
