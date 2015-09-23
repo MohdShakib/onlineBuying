@@ -107,7 +107,7 @@ var BookingView = (function() {
                 offerBanner = '';
                 propertyDetail = '';
                 offerList = '';
-                getCallbackCode = '';
+                getCallbackCode = '<a class="fleft transition callback-btn get-callback">Get Call Back</a>';
                 url = 'data-url="' + rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier + '"';
                 imageUrl = rootdata.unitTypes[rotationdata.unitTypeIdentifier].unitImageUrl;
                 unitDetails = '<div class="floor-area"><h5>' + data.listingAddress + '</h5> <p>Area <span>' + data.size + ' ' + data.measure + '</span></p> <p class="ml5 mr5">|</p> <p>Floor no. <span>' + data.floor + '</span></p><div class="clear-fix"></div></div>' +
@@ -276,12 +276,11 @@ var BookingView = (function() {
                 defaultMsg = '<span class="form-msg-failure">This unit is currently sold out.</span>';
             }
             code += '<div class="btn-container"><div class="action-message">' + defaultMsg + '</div>';
-            code += '<a class="fleft transition payment-btn ' + paymentBtnClass + '"  id="paymentButton" >Continue to Payment</a>';
-            //code += getCallbackCode;
+            //code += '<a class="fleft transition payment-btn ' + paymentBtnClass + '"  id="paymentButton" >Continue to Payment</a>';
+            code += getCallbackCode;
             code += '</div>';
-            code += '<div class="clear-fix"></div>' +
-			'	<p class="cancellationMsg">( no cancellation charges )</p>'+
-                '</div>' +
+            //code += '<div class="clear-fix"></div><p class="cancellationMsg">( no cancellation charges )</p>';
+            code += '</div>' +
                 '</div>' +
                 '</div>';
 

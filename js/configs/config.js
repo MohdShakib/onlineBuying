@@ -14,12 +14,12 @@ var config = (function() {
         // Flags
         showCarAnimation: true,
         showTowerRotation: true,
-        enablePayment: true,
+        enablePayment: false,
         useSpecifiedTowerTooltipSvg: true,
         allUnitsAvailable: false, // keep it true only for testing purpose
         polyHoverFlag: false,
         readDataFromJson: true,
-        chatEnabled: true,
+        chatEnabled: false,
         removeFacingFilter: true,
 
         // Variables
