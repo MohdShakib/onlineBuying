@@ -180,7 +180,8 @@ var UnitplaninfoView = (function() {
             htmlCode += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
             htmlCode += '<a><span class="icon icon-heart fs26 heart-clone"><label></label></span><p class="transition click-txt"></p><p class="shortlisted" style="display:none;"></p></a></div>';
             if (data.bookingStatus == 'Available') {
-                htmlCode += '<div class="book-now"><a  data-url="' + link + '">Proceed</a><span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(data.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
+                htmlCode += '<div class="book-now"><a  data-url="' + link + '">Proceed</a>';
+                //htmlCode += '<span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(data.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
             } else {
                 htmlCode += '<div class="book-now fade-image"><a>Sold out</a>';
             }
