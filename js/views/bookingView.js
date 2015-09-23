@@ -469,12 +469,12 @@ var BookingView = (function() {
             var params = {
                 successCallback: function(response, params) {
                     $('.callback-btn').removeClass("disabled");
-                    //resetFields();
-                    //$('.action-message').html('<span class="form-msg-success">Thank you for your interest. Our property advisors will get in touch shortly.</span>');
+                    resetFields();
+                    $('.action-message').html('<span class="form-msg-success">Thank you for your interest. Our property advisors will get in touch shortly.</span>');
                 },
                 errorCallback: function(response, params) {
                     $('.callback-btn').removeClass("disabled");
-                    //$('.action-message').html('<span class="form-msg-failure">' + config.errorMsg + '</span>');
+                    $('.action-message').html('<span class="form-msg-failure">' + config.errorMsg + '</span>');
                 }
             };
             ajaxUtils.sendEmail(data, params);
