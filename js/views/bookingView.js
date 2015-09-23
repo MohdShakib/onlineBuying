@@ -191,16 +191,16 @@ var BookingView = (function() {
 
             }
             code += '</div>' + unitDetails +
-                '        </div>' + paymentBreakup + offerList +
-                '            <div class="booking-amount">' +
-                '            <h3>Booking Amount: <span><span class="icon icon-rupee"><span><strong>' + utils.getReadablePrice(data.bookingAmount) + ' </strong><label>only</label></span></h3> ' +
-                '            <p>( no cancellation charges )</p>' +
-                '            </div>' +
+                '        </div>' + //paymentBreakup + offerList +
+                // '            <div class="booking-amount">' +
+                // '            <h3>Booking Amount: <span><span class="icon icon-rupee"><span><strong>' + utils.getReadablePrice(data.bookingAmount) + ' </strong><label>only</label></span></h3> ' +
+                // '            <p>( no cancellation charges )</p>' +
+                // '            </div>' +
                 '        </div>' +
                 '        <div class="payment-right">' +
                 '            <div id="booking-user-details" class="payment-right-container">' +
-                '            <h3>Nice Selection!</h3>' +
-                '            <p>Now, pay just <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- as token payment to block your selection. <br>Your full amount will be refunded in case you cancel the booking within 15 days.</p>' +
+                // '            <h3>Nice Selection!</h3>' +
+                // '            <p>Now, pay just <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- as token payment to block your selection. <br>Your full amount will be refunded in case you cancel the booking within 15 days.</p>' +
                 '            <div class="personal-detail-box">' +
                 '                <div class="table">' +
                 '                   <div class="tr">' +
@@ -264,12 +264,12 @@ var BookingView = (function() {
                 '                       <div class="clear-fix"></div>' +
                 '                   </div>' +
                 '                </div>' +
-                '            </div>' +
-                '            <div class="terms-condition">' +
-                '                <input type="checkbox" id="terms" required />' +
-                '                <label for="terms">I have read &amp; agree to <a id="tnc">Terms &amp; Conditions</a></label>' +
-                '                <span class="error ' + config.errorMsgClass + '"></span>' +
                 '            </div>';
+                // '            <div class="terms-condition">' +
+                // '                <input type="checkbox" id="terms" required />' +
+                // '                <label for="terms">I have read &amp; agree to <a id="tnc">Terms &amp; Conditions</a></label>' +
+                // '                <span class="error ' + config.errorMsgClass + '"></span>' +
+                // '            </div>';
 
             var defaultMsg = '';
             if (data.bookingStatus != 'Available') {
