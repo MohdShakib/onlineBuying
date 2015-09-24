@@ -29,6 +29,7 @@ var config = (function() {
         tawkApiId: 'tawk_55e5498bfc2b363371225aaa',
         errorMsg: 'Something went wrong. Please contact +91-11-66764111 for assistance.',
         helpline: '+91-11-66764111',
+        gaCategory: '4d-view',
 
         // Data
         backgroundImage: 'masterplan.jpg',

@@ -20,7 +20,7 @@ var BaseController = (function() {
                 var data = _this._model.getRootdata(),
                     elementData = element.dataset,
                     label = data.projectIdentifier + '-' + data.projectId + '-' + elementData.name;
-                utils.tracking('bottomPanel', 'clicked', label);
+                utils.tracking(config.gaCategory, 'bottomPanelClicked', label);
             });
 
             this._view._formPopupCloseClick.attach(function(sender, element) {
@@ -37,7 +37,7 @@ var BaseController = (function() {
                     label = data.projectIdentifier + '-' + data.projectId + '-bottomPanel-callbackButton',
                     callbackData = _this._view.getValidatedCallBackData();
                 if(callbackData != null) {
-                    utils.tracking('button', 'clicked', label);
+                    utils.tracking(config.gaCategory, 'callbackButtonClicked', label);
                     _this._view.callBackFormSubmit(callbackData);
                 }
             });
@@ -48,7 +48,7 @@ var BaseController = (function() {
                     label = data.projectIdentifier + '-' + data.projectId + '-bottomPanel-shareOnEmailButton',
                     callbackData = _this._view.getValidatedShareData();
                 if(callbackData != null) {
-                    utils.tracking('button', 'clicked', label);
+                    utils.tracking(config.gaCategory, 'shareOnEmailButtonClicked', label);
                     _this._view.shareOnEmailSubmit(callbackData);
                 }
             });
@@ -58,7 +58,7 @@ var BaseController = (function() {
                 _this._view.unitCompareButtonClicked(element);
                 var data = _this._model.getRootdata(),
                     label = data.projectIdentifier + '-' + data.projectId + '-bottomPanel-compareUnitPlanButton';
-                utils.tracking('button', 'clicked', label);
+                utils.tracking(config.gaCategory, 'compareUnitPlanButtonClicked', label);
             });
             this._view._removeShortlistClick.attach(function(sender, data) {
                 utils.removeFromShortListed(data.unitIdentifier, data.unitUniqueIdentifier);
@@ -79,7 +79,7 @@ var BaseController = (function() {
                 var data = _this._model.getRootdata(),
                     elementData = element.dataset,
                     label = data.projectIdentifier + '-' + data.projectId + '-' + elementData.identifier + '-compareScreen-bookNowButton';
-                utils.tracking('button', 'clicked', label);
+                utils.tracking(config.gaCategory, 'bookNowButtonClicked', label);
             });
 
         },

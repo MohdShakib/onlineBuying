@@ -28,7 +28,7 @@ var MasterplanController = (function() {
                 var data = _this._model.getData(),
                     elementData = element.dataset,
                     label = data.projectIdentifier + '-' + data.projectId + '-' + elementData.index + '-' + elementData.imageid + '-menu';
-                utils.tracking('masterPlanTowerMenu', 'clicked', label);
+                utils.tracking(config.gaCategory, 'masterPlanTowerMenuClicked', label);
             });
             this._view._menuUp.attach(function(sender, element) {
                 _this._view.menuUpHandler();
@@ -49,7 +49,7 @@ var MasterplanController = (function() {
                 var data = _this._model.getData(),
                     elementData = $(element).data(),
                     label = data.projectIdentifier + '-' + data.projectId + '-' + elementData.index + '-' + elementData.imageid + '-svg';
-                utils.tracking('masterPlanTowerSvg', 'clicked', label);
+                utils.tracking(config.gaCategory, 'masterPlanTowerSvgClicked', label);
             });
 
             // Amenity Events
@@ -57,7 +57,7 @@ var MasterplanController = (function() {
                 _this._view.amenityClickEvent(element);
                 var data = _this._model.getData(),
                     label = data.projectIdentifier + '-' + data.projectId + '-' + $(element).attr('id');
-                utils.tracking('masterPlanAmenities', 'clicked', label);
+                utils.tracking(config.gaCategory, 'masterPlanAmenitiesClicked', label);
             });
             this._view._amenityClose.attach(function(sender, element) {
                 _this._view.amenityCloseEvent();

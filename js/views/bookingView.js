@@ -110,16 +110,23 @@ var BookingView = (function() {
                 getCallbackCode = '<a class="fleft transition callback-btn get-callback">Get Call Back</a>';
                 url = 'data-url="' + rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier + '"';
                 imageUrl = rootdata.unitTypes[rotationdata.unitTypeIdentifier].unitImageUrl;
+                
+                var price = utils.getReadablePriceInWord(data.price),
+                    discountedPrice = utils.getReadablePriceInWord(data.price - data.discount);
+
                 unitDetails = '<div class="floor-area"><h5>' + data.listingAddress + '</h5> <p>Area <span>' + data.size + ' ' + data.measure + '</span></p> <p class="ml5 mr5">|</p> <p>Floor no. <span>' + data.floor + '</span></p><div class="clear-fix"></div></div>' +
                     '<div class="clear-fix"></div>' +
                     '<p class="fleft width-100">' +
                     '<span class="fleft">Total Price</span>' +
-                    '<span class="fright"><span class="icon icon-rupee_final fleft fs18"></span>' + utils.getReadablePriceInWord(data.price - data.discount) + ' </span>' +
-                    '<span class="fright line-through"><span class="icon icon-rupee_final fleft fs18"></span>' + utils.getReadablePriceInWord(data.price) + '</span>' +
-                    '</p>';
+                    '<span class="fright"><span class="icon icon-rupee_final fleft fs18"></span>' + discountedPrice + ' </span>';
+                if (price != discountedPrice) {
+                    unitDetails += '<span class="fright line-through"><span class="icon icon-rupee_final fleft fs18"></span>' + price + '</span>';
+                }
+                unitDetails += '</p>';
+                
                 paymentBreakup = '<div class="clear-fix"></div><a id="payment-breakup" class="view-price-brakup">View Price Breakup &amp; Payment plan</a>';
 
-                if (data.discount) {
+                if (data.discountDescription && data.discountDescription !== "") {
                     offerBanner = '<div class="special-offers"><span></span><p>' + data.discountDescription + '</p></div>';
                 }
             }
@@ -367,8 +374,9 @@ var BookingView = (function() {
 
             // Form Validations and get call back
             _this._elements.paymentScreen.on('click', '.get-callback', function(event) {
-                // notify controller
-                _this._getCallBack.notify(this); // this refers to element here
+                if (!$(this).hasClass(config.disabledClass)) {
+                    _this._getCallBack.notify(this); // this refers to element here
+                }
             });
 
             _this._elements.paymentScreen.on('keyup', '#booking-user-details', function(event) {
@@ -422,26 +430,14 @@ var BookingView = (function() {
             data.amount = unitData.bookingAmount;
             return data;
         },
-        validateAndSendEmail: function(buttonClicked) {
+        getValidatedEmailData: function(buttonClicked) {
             var bookingForm = $('#booking-user-details'),
                 rootdata = this._model.getRootdata(),
                 property = this._model.getData(),
                 ignoreFields = ['terms'];
 
-            function resetFields() {
-                $('.personal-detail-box').find('input').val(null).blur();
-                $('.personal-detail-box').find('input:hidden').val('');
-                $('input[type="checkbox"]').prop('checked', false);
-                $('.' + config.bookingSelectionDivClass + ' .selectedCountry').text('COUNTRY');
-                $('.' + config.bookingSelectionDivClass + ' .selectedCountry').data('countryid', 0);
-            }
-
-            if ($('.callback-btn').hasClass("disabled")) {
-                return;
-            }
-
             if (!utils.validateForm(bookingForm, true, ignoreFields)) {
-                return;
+                return null;
             }
 
             var data = {
@@ -460,16 +456,22 @@ var BookingView = (function() {
                     configuration: property.bedrooms + " BHK + " + property.bathrooms + " T",
                     area: property.size + " " + property.measure,
                     propertyId: property.propertyId,
+                    listingAddress: property.listingAddress,
                     buttonClicked: buttonClicked
                 }
             };
-
-            $('.callback-btn').addClass("disabled");
-            $('.action-message').empty();
+            return data;
+        },
+        resetFields: function() {
+            $('.personal-detail-box').find('input').val(null).blur();
+            $('input[type="checkbox"]').prop('checked', false);
+        },
+        sendEmail: function(data) {
+            var _this = this;
             var params = {
                 successCallback: function(response, params) {
+                    _this.resetFields();
                     $('.callback-btn').removeClass("disabled");
-                    resetFields();
                     $('.action-message').html('<span class="form-msg-success">Thank you for your interest. Our property advisors will get in touch shortly.</span>');
                 },
                 errorCallback: function(response, params) {
@@ -477,6 +479,8 @@ var BookingView = (function() {
                     $('.action-message').html('<span class="form-msg-failure">' + config.errorMsg + '</span>');
                 }
             };
+            $('.callback-btn').addClass("disabled");
+            $('.action-message').empty();
             ajaxUtils.sendEmail(data, params);
         },
         termsConditionPopup: function(data, rotationdata, rootdata) {
@@ -539,7 +543,10 @@ var BookingView = (function() {
             };
 
             $('#paymentButton').addClass('disabled');
-            this.validateAndSendEmail("ContinueToPayment");
+            var emailData = this.getValidatedEmailData("ContinueToPayment");
+            if (emailData != null) {
+                ajaxUtils.sendEmail(emailData, null);
+            }
             ajaxUtils.bookListing(data, params);
         }
     };
