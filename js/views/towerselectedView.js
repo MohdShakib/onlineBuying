@@ -12,7 +12,8 @@ var TowerselectedView = (function() {
         'towerSvgContainer': '<svg class="svg-container opacity-control fast-transition-left ' + config.dynamicResizeClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'towerDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>',
         'towerRotationContainer': '<div class="tower-rotation-container" id="' + config.towerRotationContainerId + '" style="display:none;"></div>',
-        'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>'
+        'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>',
+        'minMapView': '<div id="minMap"></div>'
     };
 
     function getElements() {
@@ -21,7 +22,8 @@ var TowerselectedView = (function() {
             'towerSvgContainer': $('#svg-container'),
             'towerDetailContainer': $('#tower-detail-container'),
             'towerRotationContainer': $('#tower-rotation-container'),
-            'filterMenuContainer': $('#filter-menu-container')
+            'filterMenuContainer': $('#filter-menu-container'),
+            'minMapView': $('#minMap')
         };
         return elements;
     }
@@ -461,6 +463,7 @@ var TowerselectedView = (function() {
                     _this._elements.towerSvgContainer.show();
                     _this._elements.towerRotationContainer.show();
                     _this.towerSvgContainer(data, rootdata);
+                    _this.minMapView(data);
                 }, (totalFramesLoaded + 1) * config.towerRotationSpeed);
 
             } else {
@@ -469,6 +472,7 @@ var TowerselectedView = (function() {
                 $('.' + finalImageClass).fadeIn(1000, function() {
                     _this.towerSvgContainer(data, rootdata);
                 });
+                _this.minMapView(data);
             }
         },
         towerRotationContainer: function() {
@@ -792,6 +796,16 @@ var TowerselectedView = (function() {
                 }
             }
             return prices;
+        },
+        minMapView: function(data) {
+
+          var currentRotationAngle = this._model.getCurrentRotationAngle();
+          var towerMinimap = data.rotationAngle[currentRotationAngle].towerMinimapUrl;
+          var img;
+          if(towerMinimap){
+            img = '<img src="'+ towerMinimap +'"  width="200px" height="180px" />';
+          }
+          this._elements.minMapView.html(img);
         }
     };
 

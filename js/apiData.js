@@ -94,6 +94,9 @@ var getProjectData = (function() {
                     unitInfo.unitSvgOnTower = unitSvgOnTower;
                     if (tower && tower.rotationAngle[unitInfo.rotationAngle] && unitInfo.rotationAngle) {
                         tower.rotationAngle[unitInfo.rotationAngle].listing[unitIdentifier] = unitInfo;
+                        if(unitInfo.towerMinimap){
+                          tower.rotationAngle[unitInfo.rotationAngle].towerMinimapUrl = zipImagePath + unitInfo.towerMinimap;
+                        }
                         validUnitFlag = true;
                     } else if (tower && tower.rotationAngle && unitInfo.rotationAngle) {
                         tower.rotationAngle[unitInfo.rotationAngle] = {};

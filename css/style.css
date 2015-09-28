@@ -1337,3 +1337,9 @@ a.control_next {
 	overflow-y: scroll; 
 	padding:0px 15px 0 0;
 }
+#minMap {
+	position: absolute;
+	right:1px;
+	bottom:1px;
+	z-index: 99999;
+}
