@@ -8,6 +8,76 @@ var utils = (function() {
                 console.log(obj);
             }
         },
+        validateForm: function(form, strict, ignoreFields) {
+            function validateEmail(email) {
+                var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+                return re.test(email);
+            }
+
+            function validatePhone(phoneNumber, countryCode) {
+                var re = /^\d{5,15}$/,
+                    sre = /^\d{10}$/;
+                if (countryCode == '+91') {
+                    return sre.test(phoneNumber);
+                }
+                return re.test(phoneNumber);
+            }
+
+            var fields = $(form).find('input[type=text],input[type=password],input[type=email],input[type=checkbox]');
+            var total_fields = fields.length;
+
+            var requiredMessage = 'This field is required';
+            var requiredCheckboxMessage = 'Please read and agree to Terms & Conditions';
+            var invalidEmailMessage = 'Invalid email address';
+            var invalidNumberMessage = 'Invalid phone number';
+
+            var validationFlag = true;
+            for (var i = 0; i < total_fields; i++) {
+
+                var this_field = $(fields[i]),
+                    id = $(this_field).attr('id'),
+                    data = $(this_field).data(),
+                    value = $(this_field).val(),
+                    type = $(this_field).attr('type'),
+                    name = $(this_field).attr('name'),
+                    isRequired = $(this_field).attr('required'),
+                    hasError = false;
+
+                if (ignoreFields && ignoreFields.indexOf(id) >= 0) {
+                    continue;
+                }
+
+                if (!$(this_field).parent('div').hasClass('error') && !strict) {
+                    continue;
+                }
+                $(this_field).parent('div').removeClass('error');
+
+                if (isRequired && !value) {
+                    validationFlag = false;
+                    $(this_field).parent('div').addClass('error');
+                    $(this_field).siblings('.' + config.errorMsgClass).text(requiredMessage);
+                } else if (isRequired && type == 'checkbox' && !$(this_field).is(":checked")) {
+                    validationFlag = false;
+                    $(this_field).parent('div').addClass('error');
+                    $(this_field).siblings('.' + config.errorMsgClass).text(requiredCheckboxMessage);
+                } else if (isRequired && type == 'email' && !validateEmail(value)) {
+                    validationFlag = false;
+                    $(this_field).parent('div').addClass('error');
+                    $(this_field).siblings('.' + config.errorMsgClass).text(invalidEmailMessage);
+                } else if (isRequired && name == 'phone' && !validatePhone(value, data.countrycode)) {
+                    validationFlag = false;
+                    $(this_field).parent('div').addClass('error');
+                    var updatedNumberMessage = invalidNumberMessage;
+                    if (data.countryname) {
+                        updatedNumberMessage += " for " + data.countryname;
+                    }
+                    $(this_field).siblings('.' + config.errorMsgClass).text(updatedNumberMessage);
+                }
+
+            }
+            return validationFlag;
+        },
+
         addResizeEventListener: function(listenerFunction) {
             listenerFunction();
             $(window).off('resize').on('resize', listenerFunction);
@@ -105,39 +175,6 @@ var utils = (function() {
             return identifier;
         },
 
-        getSvgData: function(url) {
-            return $.ajax({
-                type: "GET",
-                url: url,
-                async: false,
-                dataType: "text",
-                success: function(data) {
-                    // register success callback in return promise
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    utils.log('read csv error callback for: ' + url);
-                    utils.log('error occured ' + errorThrown);
-                    return false;
-                }
-            });
-        },
-        getJsonData: function(url, callback) {
-            return $.ajax({
-                type: 'GET',
-                url: url,
-                async: false,
-                jsonpCallback: callback,
-                contentType: "application/json",
-                dataType: "jsonp",
-                success: function(data) {
-                    // register success callback in return promise
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    utils.log('read json error callback for: ' + url);
-                    utils.log('error occured ' + errorThrown);
-                }
-            });
-        },
         getTooltipPosition: function(event) {
 
             if (!event) {

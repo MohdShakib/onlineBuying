@@ -514,7 +514,7 @@ var BaseView = (function() {
 
             this._elements.bottomFormGroupContainer.on('keyup', '#call-box-form', function(event) {
                 var callBoxForm = $('#call-box-form');
-                viewUtils.validateForm(callBoxForm, false);
+                utils.validateForm(callBoxForm, false);
             });
 
             this._elements.bottomFormGroupContainer.on('click', '#' + config.emailBox.submitButtonId, function(event) {
@@ -525,7 +525,7 @@ var BaseView = (function() {
 
             this._elements.bottomFormGroupContainer.on('keyup', '#share-box-form', function(event) {
                 var shareBoxForm = $('#share-box-form');
-                viewUtils.validateForm(shareBoxForm, false);
+                utils.validateForm(shareBoxForm, false);
             });
 
             this._elements.bottomFormGroupContainer.on('click', '.close-form', function() {
@@ -560,7 +560,7 @@ var BaseView = (function() {
         getValidatedCallBackData: function() {
             var rootdata = this._model.getRootdata();
             var form = $('#call-box-form');
-            var validationFlag = viewUtils.validateForm(form, true);
+            var validationFlag = utils.validateForm(form, true);
             if (!validationFlag) {
                 return null;
             }
@@ -611,7 +611,7 @@ var BaseView = (function() {
         getValidatedShareData: function() {
             var form = $('#share-box-form');
             var rootdata = this._model.getRootdata();
-            var validationFlag = viewUtils.validateForm(form, true);
+            var validationFlag = utils.validateForm(form, true);
             if (!validationFlag) {
                 return null;
             }

@@ -108,6 +108,40 @@ var ajaxUtils = (function() {
 
             utils.log(req);
             this.ajax(url, params, 'POST', true, req);
+        },
+
+        getSvgData: function(url) {
+            return $.ajax({
+                type: "GET",
+                url: url,
+                async: false,
+                dataType: "text",
+                success: function(data) {
+                    // register success callback in return promise
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    utils.log('read csv error callback for: ' + url);
+                    utils.log('error occured ' + errorThrown);
+                    return false;
+                }
+            });
+        },
+        getJsonData: function(url, callback) {
+            return $.ajax({
+                type: 'GET',
+                url: url,
+                async: false,
+                jsonpCallback: callback,
+                contentType: "application/json",
+                dataType: "jsonp",
+                success: function(data) {
+                    // register success callback in return promise
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    utils.log('read json error callback for: ' + url);
+                    utils.log('error occured ' + errorThrown);
+                }
+            });
         }
     };
 
