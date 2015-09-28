@@ -220,7 +220,8 @@ var BaseView = (function() {
             htmlCode += '<span class="icon fs14 icon-cross close-compare-box"></span><div class="compare-unit-box-detail top-right-component"><span>' + item.unitName + '</span> | <span>' + item.bedrooms + '</span> | <span>' + item.size + '</span> | <span>' + item.price + '</span> | <span>' + item.floor + '</span></div>';
             htmlCode += '<div class="top-right-component">' +
                 '<div class="book-now" >' +
-                '<a data-url="' + link + '" data-identifier="' + item.unitUniqueIdentifier + '">Book now</a><span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(item.bookingAmount) + '/- <br>(No Cancellation Charges)</span>' +
+                '<a data-url="' + link + '" data-identifier="' + item.unitUniqueIdentifier + '">Proceed</a>' +
+                //'<span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(item.bookingAmount) + '/- <br>(No Cancellation Charges)</span>' +
                 '</div>';
 
             if (isDuplex) {

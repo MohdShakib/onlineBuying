@@ -42,7 +42,7 @@ var UnitplaninfoController = (function() {
                     data = _this._model.getData(),
                     dataset = $(element).data(),
                     label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-' + data.unitIdentifier + '-' + dataset.menu;
-                utils.tracking('towerUnitTopMenu', 'clicked', label);
+                utils.tracking(config.gaCategory, 'towerUnitTopMenuClicked', label);
             });
 
             // Sunlight menu Events
@@ -53,7 +53,7 @@ var UnitplaninfoController = (function() {
                     data = _this._model.getData(),
                     dataset = $(element).data(),
                     label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-' + data.unitIdentifier + '-sunlight-' + dataset.target;
-                utils.tracking('sunlightMenu', 'clicked', label);
+                utils.tracking(config.gaCategory, 'sunlightMenuClicked', label);
             });
 
             // Floor plan menu Event
@@ -64,7 +64,7 @@ var UnitplaninfoController = (function() {
                     data = _this._model.getData(),
                     dataset = $(element).data(),
                     label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-' + data.unitIdentifier + '-' + dataset.menu;
-                utils.tracking('unitPlanMenu', 'clicked', label);
+                utils.tracking(config.gaCategory, 'unitPlanMenuClicked', label);
             });
 
             // Shortlisting button
@@ -76,7 +76,7 @@ var UnitplaninfoController = (function() {
 
                 var dataset = $(element).data(),
                     label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-' + data.unitIdentifier + '-shortlistButton';
-                utils.tracking('button', 'clicked', label);
+                utils.tracking(config.gaCategory, 'shortlistButtonClicked', label);
             });
 
             // Booking Event
@@ -85,7 +85,7 @@ var UnitplaninfoController = (function() {
                 var rootdata = _this._model.getRootdata(),
                     data = _this._model.getData(),
                     label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-' + data.unitIdentifier + '-bookNowButton';
-                utils.tracking('button', 'clicked', label);
+                utils.tracking(config.gaCategory, 'bookNowButtonClicked', label);
             });
 
             // Amenity Events
@@ -95,7 +95,7 @@ var UnitplaninfoController = (function() {
                     data = _this._model.getData(),
                     viewId = $(element).attr('id'),
                     label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-' + data.unitIdentifier + '-' + viewId;
-                utils.tracking('balconyViews', 'clicked', label);
+                utils.tracking(config.gaCategory, 'balconyViewsClicked', label);
             });
             this._view._amenityClose.attach(function(sender, element) {
                 _this._view.amenityCloseEvent();

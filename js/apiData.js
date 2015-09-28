@@ -658,6 +658,7 @@ var getProjectData = (function() {
             if (propertyDetail.studyRoom) {
                 flatUnit.bedrooms += 0.5;
             }
+            flatUnit.bathrooms = propertyDetail.bathrooms;
             flatUnit.size = propertyDetail.size ? propertyDetail.size : 0;
             flatUnit.measure = propertyDetail.measure;
 
