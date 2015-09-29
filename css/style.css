@@ -1342,4 +1342,11 @@ a.control_next {
 	right:1px;
 	bottom:1px;
 	z-index: 99999;
+	opacity: 0.6;
+}
+.display-false {
+	visibility: hidden;
+}
+.display-true {
+	visibility: visible;
 }

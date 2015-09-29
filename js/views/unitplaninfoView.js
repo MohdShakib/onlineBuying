@@ -171,7 +171,7 @@ var UnitplaninfoView = (function() {
             var offerDiv = '';
 
             if (data.discountDescription && data.discountDescription !== "") {
-                offerDiv = '<div class="special-offers"><span></span><p>' + data.discountDescription + '</p></div>';
+                offerDiv = '<div class="special-offers display-'+ config.showGreenRibbon +'"><span></span><p>' + data.discountDescription + '</p></div>';
             }
 
             var htmlCode = offerDiv,
@@ -233,7 +233,7 @@ var UnitplaninfoView = (function() {
                     code += "<span class='total-amount fright'><span class='icon icon-rupee'></span>" + price + "</span>";
                 }
 
-                code += "</div>" + 
+                code += "</div>" +
                 "<div class='uit-header-menu'><div data-target='fp-container' data-menu='unitPlanMenu' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'><span class='icon icon-unitplan fs18'></span></div>Unit Plan</div>" +
                 "<div data-target='cp-container' data-menu='floorPlanMenu' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon icon-clusterplan fs18'></span></div>Floor Plan</div>" +
                 "<div data-target='pb-container' data-menu='unitPricingMenu' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon icon-rupee fs18'></span></div>Pricing</div>" +

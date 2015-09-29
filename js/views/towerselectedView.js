@@ -803,7 +803,7 @@ var TowerselectedView = (function() {
           var towerMinimap = data.rotationAngle[currentRotationAngle].towerMinimapUrl;
           var img;
           if(towerMinimap){
-            img = '<img src="'+ towerMinimap +'"  width="200px" height="180px" />';
+            img = '<img src="'+ towerMinimap +'"  width="250px" height="180px" />';
           }
           this._elements.minMapView.html(img);
         }
