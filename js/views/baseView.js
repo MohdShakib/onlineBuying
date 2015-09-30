@@ -698,7 +698,7 @@ var BaseView = (function() {
             });
         },
         questionBoxContainer: function() {
-            var html = '<div class="question"><span>Questions?</span></div>' +
+            var html = '<div class="question"><span>Interested</span></div>' +
                 '   <div class="callInfo">' +
                 '   <p><span class="number">' + config.helpline + '</span>Our Advisors are here to help.</p>' +
                 '	</div>'+
