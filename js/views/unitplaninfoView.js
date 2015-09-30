@@ -179,7 +179,7 @@ var UnitplaninfoView = (function() {
                 link = rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier + '/booking';
             htmlCode += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
             htmlCode += '<a><span class="icon icon-heart fs26 heart-clone"><label></label></span><p class="transition click-txt"></p><p class="shortlisted" style="display:none;"></p></a></div>';
-            if (data.bookingStatus == 'Available' && (!config.hasPrimaryExpandedListing || config.hasPrimaryExpandedListing != 3)) {
+            if (data.bookingStatus == 'Available' && rootdata.hasPrimaryExpandedListing != 3) {
                 htmlCode += '<div class="book-now"><a  data-url="' + link + '">Proceed</a>';
                 //htmlCode += '<span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(data.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
             } else {
@@ -236,7 +236,7 @@ var UnitplaninfoView = (function() {
                 code += "</div>" +
                 "<div class='uit-header-menu'><div data-target='fp-container' data-menu='unitPlanMenu' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'><span class='icon icon-unitplan fs18'></span></div>Unit Plan</div>" +
                 "<div data-target='cp-container' data-menu='floorPlanMenu' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon icon-clusterplan fs18'></span></div>Floor Plan</div>";
-                if(!config.hasPrimaryExpandedListing || config.hasPrimaryExpandedListing != 3) {
+                if(rootdata.hasPrimaryExpandedListing != 3) {
                   code += "<div data-target='pb-container' data-menu='unitPricingMenu' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon icon-rupee fs18'></span></div>Pricing</div>";
                 }
                 code += "<div data-target='sf-container' data-menu='unitAmenitiesMenu' class='header-item " + config.unitMenuLinkClass + " right'><div class='item-icon-box'><span class='icon icon-specification fs18'></span></div>Amenities</div></div></div></div>";

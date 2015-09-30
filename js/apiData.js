@@ -379,7 +379,6 @@ var getProjectData = (function() {
         projectData = {};
 
     var parseApiData = function(projectDetail) {
-
         if (!projectDetail) {
             return;
         }
@@ -447,6 +446,7 @@ var getProjectData = (function() {
         projectData.address = projectDetail.address;
         projectData.bgImage = zipImagePath + config.backgroundImage;
         projectData.description = projectDetail.description;
+        projectData.hasPrimaryExpandedListing = projectDetail.hasPrimaryExpandedListing;
 
         // Project Ameneties
         projectData.projectAmeneties = {};
@@ -778,7 +778,6 @@ var getProjectData = (function() {
             params = {
                 successCallback: function(response) {
                     apiData = response;
-                    config.hasPrimaryExpandedListing = apiData.hasPrimaryExpandedListing;
                 }
             };
 
