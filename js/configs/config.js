@@ -28,7 +28,7 @@ var config = (function() {
         maxShortlistCount: 6,
         tawkApiId: 'tawk_55e5498bfc2b363371225aaa',
         errorMsg: 'Something went wrong. Please contact +91-11-66764111 for assistance.',
-        helpline: '+91-11-66764111',
+        helpline: '+91-92788-92788',
         gaCategory: '4d-view',
 
         // Data
