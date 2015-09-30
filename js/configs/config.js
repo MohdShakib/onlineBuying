@@ -21,6 +21,7 @@ var config = (function() {
         readDataFromJson: true,
         chatEnabled: false,
         removeFacingFilter: true,
+        hasPrimaryExpandedListing: null,
 
         // Variables
         towerRotationSpeed: 100, // delay between 2 consecutive frames in miliseconds

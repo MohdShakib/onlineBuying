@@ -778,6 +778,7 @@ var getProjectData = (function() {
             params = {
                 successCallback: function(response) {
                     apiData = response;
+                    config.hasPrimaryExpandedListing = apiData.hasPrimaryExpandedListing;
                 }
             };
 
