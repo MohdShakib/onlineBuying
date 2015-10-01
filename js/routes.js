@@ -204,11 +204,10 @@ var initializeRoutes = (function() {
                 }
 
                 // Animations
-                utils.removeNotificationTooltip();
+                viewUtils.removeNotificationTooltip();
 
                 function beforeCallback(response) {
                     rootdata = response;
-
                     // Update meta tags
                     $("meta[property=og\\:description]").attr("content", "Book your Dream Home in " + rootdata.projectName + " & get " + rootdata.offer + ". Hurry Offer valid till 23rd September 2015.");
                     $("meta[property=og\\:image]").attr("content", rootdata.mainImage);

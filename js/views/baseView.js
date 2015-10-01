@@ -72,7 +72,7 @@ var BaseView = (function() {
             }
 
             $('.' + config.notificationTooltipClass).off('click').on('click', '.icon-cross', function() {
-                utils.hideNotificationTooltip();
+                viewUtils.hideNotificationTooltip();
             });
         },
         init: function(rootdata) {
@@ -303,7 +303,7 @@ var BaseView = (function() {
             } else {
                 unitTypeData = compareList[uniqueIdentifier].unitTypeData;
             }
-            var svgElements = utils.getUnit3dSvgPolygonElements(unitTypeData);
+            var svgElements = viewUtils.getUnit3dSvgPolygonElements(unitTypeData);
             var id = idName || uniqueIdentifier;
             $('#unit-compare-svg-container' + id).empty();
             if (svgElements && svgElements.length) {
@@ -338,7 +338,7 @@ var BaseView = (function() {
             params.pointX = pointX;
             params.pointY = pointY;
             if (reference) {
-                utils.unitComponentMouseEnter(params, reference);
+                viewUtils.unitComponentMouseEnter(params, reference);
             }
         },
         unitComponentMouseLeave: function() {
@@ -381,11 +381,11 @@ var BaseView = (function() {
                 '   <div class="share-box">' +
                 '       <p>Share details with family / friends</p>' +
                 '       <div class="share-social">' +
-                '           <a href="javascript:void(0);" onclick="utils.socialClicked(\'facebook\')" ><span class="icon icon-facebook"></span>Facebook</a>' +
+                '           <a href="javascript:void(0);" onclick="viewUtils.socialClicked(\'facebook\')" ><span class="icon icon-facebook"></span>Facebook</a>' +
                 //'         <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"></div>' +
                 '           <span class="social-or">or</span>' +
                 //'         <div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>' +
-                '           <a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Google+</a>' +
+                '           <a href="javascript:void(0);" onclick="viewUtils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Google+</a>' +
                 '       </div>' +
                 '       <form id="share-box-form" novalidate name="share-box-form" onSubmit="return false;"  >' +
                 '           <div class="form-input-box"><input class="text" id="' + config.emailBox.nameId + '" placeholder="Enter your name" type="text" required />' +
@@ -683,7 +683,7 @@ var BaseView = (function() {
             if (!length) {
                 return;
             }
-            utils.removeNotificationTooltip();
+            viewUtils.removeNotificationTooltip();
             this.formPopupCloseClicked();
             this.prepareCompareUnitsContainer(true);
             $('#' + config.compareUnitscontainerId).fadeIn(900);
@@ -698,7 +698,7 @@ var BaseView = (function() {
             });
         },
         questionBoxContainer: function() {
-            var html = '<div class="question"><span>Questions?</span></div>' +
+            var html = '<div class="question"><span>Interested</span></div>' +
                 '   <div class="callInfo">' +
                 '   <p><span class="number">' + config.helpline + '</span>Our Advisors are here to help.</p>' +
                 '	</div>'+
@@ -708,7 +708,7 @@ var BaseView = (function() {
         },
         questionBoxContainerEvents: function() {
             var _this = this;
-            
+
             _this._elements.questionBoxContainer.on('click', '.question', function(event) {
                 event.stopPropagation();
                 _this._elements.questionBoxContainer.toggleClass('open');
@@ -724,7 +724,7 @@ var BaseView = (function() {
             $(document).on('click', function(event) {
                 _this._elements.questionBoxContainer.removeClass('open');
             });
-            
+
         },
         smallScreenMessage: function() {
             var message = '<div class="info">Please use desktop screen to view this website for best experience.'+

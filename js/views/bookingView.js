@@ -110,7 +110,7 @@ var BookingView = (function() {
                 getCallbackCode = '<a class="fleft transition callback-btn get-callback">Get Call Back</a>';
                 url = 'data-url="' + rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier + '"';
                 imageUrl = rootdata.unitTypes[rotationdata.unitTypeIdentifier].unitImageUrl;
-                
+
                 var price = utils.getReadablePriceInWord(data.price),
                     discountedPrice = utils.getReadablePriceInWord(data.price - data.discount);
 
@@ -123,7 +123,7 @@ var BookingView = (function() {
                     unitDetails += '<span class="fright line-through"><span class="icon icon-rupee_final fleft fs18"></span>' + price + '</span>';
                 }
                 unitDetails += '</p>';
-                
+
                 paymentBreakup = '<div class="clear-fix"></div><a id="payment-breakup" class="view-price-brakup">View Price Breakup &amp; Payment plan</a>';
 
                 if (data.discountDescription && data.discountDescription !== "") {
@@ -299,7 +299,7 @@ var BookingView = (function() {
                 countryId: countryIdCookie
             });
             this.paymentScreenEvents();
-            utils.slideIt();
+            viewUtils.slideIt();
         },
         getCountriesList: function(countries, params) {
             var htmlCode = '',
@@ -436,6 +436,18 @@ var BookingView = (function() {
                 property = this._model.getData(),
                 ignoreFields = ['terms'];
 
+            function resetFields() {
+                $('.personal-detail-box').find('input').val(null).blur();
+                $('.personal-detail-box').find('input:hidden').val('');
+                $('input[type="checkbox"]').prop('checked', false);
+                $('.' + config.bookingSelectionDivClass + ' .selectedCountry').text('COUNTRY');
+                $('.' + config.bookingSelectionDivClass + ' .selectedCountry').data('countryid', 0);
+            }
+
+            if ($('.callback-btn').hasClass("disabled")) {
+                return;
+            }
+
             if (!utils.validateForm(bookingForm, true, ignoreFields)) {
                 return null;
             }
@@ -487,7 +499,7 @@ var BookingView = (function() {
             var code ='<div class="tc-container"><h3>Terms &amp; Conditions</h3>'+
                 '<a class="close-payment"><span class="icon icon-cross fs22"></span></a>' +
                 '<div class="terms-and-conditions">'+
-                utils.getTermsConditionsHtml(data, rootdata) +
+                viewUtils.getTermsConditionsHtml(data, rootdata) +
                 '</div></div>';
             this._elements.termsConditionPopup.html(code);
             this.termsConditionPopupEvents();
@@ -502,7 +514,7 @@ var BookingView = (function() {
         paymentBreakupPopup: function(data, rotationdata, rootdata) {
             var code = '<div class="tc-container">' +
                 '<a class="close-payment"><span class="icon icon-cross fs24"></span></a>' +
-                utils.getPriceBreakupHtml(data, rotationdata, rootdata, false) +
+                viewUtils.getPriceBreakupHtml(data, rotationdata, rootdata, false) +
                 '</div>';
             this._elements.paymentBreakupPopup.html(code);
             this.paymentBreakupPopupEvents();
@@ -524,7 +536,7 @@ var BookingView = (function() {
             });
 
             _this._elements.paymentBreakupPopup.on('click', '.' + config.optionalPriceClass, function() {
-                utils.updateTotalPrice(_this._model.getData());
+                viewUtils.updateTotalPrice(_this._model.getData());
             });
         },
         bookListing: function(data) {

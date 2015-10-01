@@ -12,7 +12,8 @@ var TowerselectedView = (function() {
         'towerSvgContainer': '<svg class="svg-container opacity-control fast-transition-left ' + config.dynamicResizeClass + '" id="svg-container" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'towerDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>',
         'towerRotationContainer': '<div class="tower-rotation-container" id="' + config.towerRotationContainerId + '" style="display:none;"></div>',
-        'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>'
+        'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>',
+        'minMapView': '<div id="minMap"></div>'
     };
 
     function getElements() {
@@ -21,7 +22,8 @@ var TowerselectedView = (function() {
             'towerSvgContainer': $('#svg-container'),
             'towerDetailContainer': $('#tower-detail-container'),
             'towerRotationContainer': $('#tower-rotation-container'),
-            'filterMenuContainer': $('#filter-menu-container')
+            'filterMenuContainer': $('#filter-menu-container'),
+            'minMapView': $('#minMap')
         };
         return elements;
     }
@@ -124,7 +126,7 @@ var TowerselectedView = (function() {
                 });
             }, 700);
 
-            utils.showNotificationTooltip('Click on unit spot <span class="pointer"></span> to view its floor plan');
+            viewUtils.showNotificationTooltip('Click on unit spot <span class="pointer"></span> to view its floor plan');
         },
         displayWithoutAnimation: function(fromUnitInfoView) {
             // lazy load rotation images
@@ -150,7 +152,7 @@ var TowerselectedView = (function() {
                 bottom: '0px'
             });
 
-            utils.showNotificationTooltip('Click on unit spot <span class="pointer"></span> to view its floor plan');
+            viewUtils.showNotificationTooltip('Click on unit spot <span class="pointer"></span> to view its floor plan');
         },
         overviewImgContainer: function(data, rootdata) {
             var code = "<img src='" + data.image_url + "'/>";
@@ -177,7 +179,7 @@ var TowerselectedView = (function() {
                 data = this._model.getData(),
                 towerImageUrl, imageClass, imgCode = '';
             var allAngles = Object.keys(data.rotationAngle);
-            var lazyLoadSequence = utils.reOrderFrames(allAngles);
+            var lazyLoadSequence = viewUtils.reOrderFrames(allAngles);
             for(var i=0; i<lazyLoadSequence.length; i++){
                 var rotationAngle = lazyLoadSequence[i];
                 var isStableState = false;
@@ -236,7 +238,7 @@ var TowerselectedView = (function() {
                         ry: '1.7',
                         rx: '.78'
                     };
-                    eachEllipse = utils.makeSVG('ellipse', attrs);
+                    eachEllipse = viewUtils.makeSVG('ellipse', attrs);
                     this._elements.towerSvgContainer.append(eachEllipse);
                     attrs = {
                         'class': config.towerUnitSvgHoverClass + " " + config.hideClass,
@@ -246,7 +248,7 @@ var TowerselectedView = (function() {
                         ry: '1.7',
                         rx: '.78'
                     };
-                    eachEllipse = utils.makeSVG('ellipse', attrs);
+                    eachEllipse = viewUtils.makeSVG('ellipse', attrs);
                     this._elements.towerSvgContainer.append(eachEllipse);
 
                     if(config.polyHoverFlag){
@@ -257,7 +259,7 @@ var TowerselectedView = (function() {
                         id: unitIdentifier + "-poly-path",
                         points: unitInfo.unitHoverSvg
                         };
-                        eachPolygon = utils.makeSVG('polygon', attrs);
+                        eachPolygon = viewUtils.makeSVG('polygon', attrs);
                         this._elements.towerSvgContainer.append(eachPolygon);
                     }
 
@@ -271,7 +273,7 @@ var TowerselectedView = (function() {
                         ry: '1.2',
                         rx: '0.55'
                     };
-                    eachEllipse = utils.makeSVG('ellipse', attrs);
+                    eachEllipse = viewUtils.makeSVG('ellipse', attrs);
                     this._elements.towerSvgContainer.append(eachEllipse);
 
                 }
@@ -304,7 +306,7 @@ var TowerselectedView = (function() {
             var data = this._model.getData();
             var index = $(element).data('index');
             // show svg hover circle
-            utils.removeSVGClass(index + "-hover-path", config.hideClass);
+            viewUtils.removeSVGClass(index + "-hover-path", config.hideClass);
 
             // show tooltip
             var toolTipData = data && data.listings ? data.listings[index] : null;
@@ -320,7 +322,7 @@ var TowerselectedView = (function() {
             var index = $(element).data('index');
 
             // hide svg hover circle
-            utils.addSVGClass(index + "-hover-path", config.hideClass);
+            viewUtils.addSVGClass(index + "-hover-path", config.hideClass);
 
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
         },
@@ -329,8 +331,8 @@ var TowerselectedView = (function() {
             var dataset = $(element).data();
             if (dataset.url != 'undefined') {
                 var svgElements = $('.' + config.towerUnitSvgSelectedClass);
-                utils.addSVGClassToElements(svgElements, config.hideClass);
-                utils.removeSVGClass(dataset.index + "-selected-path", config.hideClass);
+                viewUtils.addSVGClassToElements(svgElements, config.hideClass);
+                viewUtils.removeSVGClass(dataset.index + "-selected-path", config.hideClass);
             }
         },
         showTowerUnitDetailContainer: function(unitInfo, left, top) {
@@ -461,6 +463,7 @@ var TowerselectedView = (function() {
                     _this._elements.towerSvgContainer.show();
                     _this._elements.towerRotationContainer.show();
                     _this.towerSvgContainer(data, rootdata);
+                    _this.minMapView(data);
                 }, (totalFramesLoaded + 1) * config.towerRotationSpeed);
 
             } else {
@@ -469,6 +472,7 @@ var TowerselectedView = (function() {
                 $('.' + finalImageClass).fadeIn(1000, function() {
                     _this.towerSvgContainer(data, rootdata);
                 });
+                _this.minMapView(data);
             }
         },
         towerRotationContainer: function() {
@@ -484,7 +488,7 @@ var TowerselectedView = (function() {
                 code += '<div class="rotation-btn-container left-btn transition"><div class="photo-thumb br50"><img src="images/tower-thumb.jpg" class="br50"></div><button class="' + config.rotationButtonClass + '  tower-rotation-left-button br50" data-anticlockwise="false"><span class="icon icon-rotate-1 fs48"></span></button><div class="rotation-title transition">Rotate Left</div></div>';
                 code += '<div class="rotation-btn-container right-btn transition"><div class="photo-thumb br50"><img src="images/tower-thumb.jpg" class="br50"></div><button class="' + config.rotationButtonClass + ' tower-rotation-right-button br50" data-anticlockwise="true"><span class="icon icon-rotate-2 fs48"></span></button><div class="rotation-title transition">Rotate Right</div></div>';
             }
-            
+
             if (this._elements && this._elements.towerRotationContainer) {
                 this._elements.towerRotationContainer.html(code);
             }
@@ -792,6 +796,16 @@ var TowerselectedView = (function() {
                 }
             }
             return prices;
+        },
+        minMapView: function(data) {
+
+          var currentRotationAngle = this._model.getCurrentRotationAngle();
+          var towerMinimap = data.rotationAngle[currentRotationAngle].towerMinimapUrl;
+          var img;
+          if(towerMinimap){
+            img = '<img src="'+ towerMinimap +'"  width="250px" height="180px" />';
+          }
+          this._elements.minMapView.html(img);
         }
     };
 
