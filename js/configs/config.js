@@ -10,25 +10,26 @@ var config = (function() {
         cityJson: true, // to read cities from json
         localZip: false,
         setJsonDataPriorityForTest: false,
-        builderSetUp: true,
+        builderSetUp: false,
 
         // Flags
         showCarAnimation: true,
         showTowerRotation: true,
-        enablePayment: false,
+        enablePayment: true,
         useSpecifiedTowerTooltipSvg: true,
         allUnitsAvailable: false, // keep it true only for testing purpose
         polyHoverFlag: false,
-        chatEnabled: false,
+        chatEnabled: true,
         readDataFromJson: true,
         removeFacingFilter: true,
+
 
         // Variables
         towerRotationSpeed: 100, // delay between 2 consecutive frames in miliseconds
         towerMenuItemHeight: 44,
         maxShortlistCount: 6,
         tawkApiId: 'tawk_55e5498bfc2b363371225aaa',
-        errorMsg: 'Something went wrong. Please contact +91-11-66764111 for assistance.',
+        errorMsg: 'Something went wrong. Please contact +91-92788-92788 for assistance.',
         helpline: '+91-92788-92788',
         gaCategory: '4d-view',
 

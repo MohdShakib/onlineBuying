@@ -36,6 +36,7 @@ var BaseModel = (function() {
                     item = towerData.rotationAngle[eachItem.rotationAngle].listing[eachItem.unitIdentifier];
                     item[item.unitIdentifier] = item;
                     item.bookingAmount = listingItem.bookingAmount;
+                    item.bookingStatus = listingItem.bookingStatus;
                     item.price = '<span class="icon icon-rupee fs10"></span>' + utils.getReadablePriceInWord(listingItem.price - listingItem.discount);
                     item.size = listingItem.size + ' ' + listingItem.measure;
                     item.floor = 'Floor ' + listingItem.floor;

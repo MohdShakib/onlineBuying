@@ -198,17 +198,23 @@ var BookingView = (function() {
 
             }
             code += '</div>' + unitDetails +
-                '        </div>' + //paymentBreakup + offerList +
-                // '            <div class="booking-amount">' +
-                // '            <h3>Booking Amount: <span><span class="icon icon-rupee"><span><strong>' + utils.getReadablePrice(data.bookingAmount) + ' </strong><label>only</label></span></h3> ' +
-                // '            <p>( no cancellation charges )</p>' +
-                // '            </div>' +
-                '        </div>' +
+                '        </div>';
+                if(rootdata.fairEnabled) {
+                  code +=   paymentBreakup + offerList +
+                 '            <div class="booking-amount">' +
+                 '            <h3>Booking Amount: <span><span class="icon icon-rupee"><span><strong>' + utils.getReadablePrice(data.bookingAmount) + ' </strong><label>only</label></span></h3> ' +
+                 '            <p>( no cancellation charges )</p>' +
+                 '            </div>';
+                }
+                code += '        </div>' +
                 '        <div class="payment-right">' +
-                '            <div id="booking-user-details" class="payment-right-container">' +
-                // '            <h3>Nice Selection!</h3>' +
-                // '            <p>Now, pay just <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- as token payment to block your selection. <br>Your full amount will be refunded in case you cancel the booking within 15 days.</p>' +
-                '            <div class="personal-detail-box">' +
+                '            <div id="booking-user-details" class="payment-right-container">';
+                if(rootdata.fairEnabled) {
+                  code += '<h3>Nice Selection!</h3>'+
+                          '<p>Now, pay just <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- as token payment to block your selection. <br>Your full amount will be refunded in case you cancel the booking within 15 days.</p>';
+
+                }
+                code += '    <div class="personal-detail-box">' +
                 '                <div class="table">' +
                 '                   <div class="tr">' +
                 '                        <div class="td">' +
@@ -272,19 +278,26 @@ var BookingView = (function() {
                 '                   </div>' +
                 '                </div>' +
                 '            </div>';
-                // '            <div class="terms-condition">' +
-                // '                <input type="checkbox" id="terms" required />' +
-                // '                <label for="terms">I have read &amp; agree to <a id="tnc">Terms &amp; Conditions</a></label>' +
-                // '                <span class="error ' + config.errorMsgClass + '"></span>' +
-                // '            </div>';
 
             var defaultMsg = '';
             if (data.bookingStatus != 'Available') {
                 defaultMsg = '<span class="form-msg-failure">This unit is currently sold out.</span>';
             }
+            if(rootdata.fairEnabled) {
+              code += '            <div class="terms-condition">' +
+              '                <input type="checkbox" id="terms" required />' +
+              '                <label for="terms">I have read &amp; agree to <a id="tnc">Terms &amp; Conditions</a></label>' +
+              '                <span class="error ' + config.errorMsgClass + '"></span>' +
+              '            </div>';
+            }
             code += '<div class="btn-container"><div class="action-message">' + defaultMsg + '</div>';
-            //code += '<a class="fleft transition payment-btn ' + paymentBtnClass + '"  id="paymentButton" >Continue to Payment</a>';
-            code += getCallbackCode;
+            if(rootdata.fairEnabled) {
+              code += '<a class="fleft transition payment-btn ' + paymentBtnClass + '"  id="paymentButton" >Continue to Payment</a>';
+            }
+            else if(!rootdata.fairEnabled) {
+              code += getCallbackCode;
+
+            }
             code += '</div>';
             //code += '<div class="clear-fix"></div><p class="cancellationMsg">( no cancellation charges )</p>';
             code += '</div>' +
@@ -557,7 +570,7 @@ var BookingView = (function() {
             $('#paymentButton').addClass('disabled');
             var emailData = this.getValidatedEmailData("ContinueToPayment");
             if (emailData != null) {
-                ajaxUtils.sendEmail(emailData, null);
+                ajaxUtils.sendEmail(emailData, {});
             }
             ajaxUtils.bookListing(data, params);
         }

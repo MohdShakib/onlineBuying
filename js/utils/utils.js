@@ -400,7 +400,12 @@ var utils = (function() {
             };
             }());
             window._vwo_settings_timer = window._vwo_code.init();
+      },
+      ascendingOrder: function(towers) {
+          towers = Object.keys(towers);
+          return towers.sort();
       }
+
     };
 
 })();
