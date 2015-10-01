@@ -268,10 +268,12 @@ var MasterplanView = (function() {
             this._elements.buildingImgContainer.html(imgCode);
         },
         buildingMenuContainer: function(data) {
+            var towersData = utils.ascendingOrder(data.towers);
             var code = "<div class='master-menu'><div class='menu-header menu-icon transition'><span class='icon'><a href='http://www.proptiger.com' target='_blank'><img src='images/logo.jpg' alt='proptiger.com'></span></a></div>";
             code += "<div class='menu-sep'></div>";
             code += "<div class='menu-items'><div class='scrollup-menu scroll-down transition'><span class='icon icon-arrow_btm fs14'></span></div><div class='scrollup-menu scroll-up top-stick transition'><span class='icon icon-arrow_top fs14'></span></div><div class='scroll-box'><div class='menu-scroll'><div class='master-tower-menu transition'>";
-            for (var towerIdentifier in data.towers) {
+            for (var i = 0; i < towersData.length; i++) {
+                var towerIdentifier = towersData[i];
                 var tower = data.towers[towerIdentifier],
                     towerUrl = tower.isAvailable ? data.baseUrl + "/" + tower.towerIdentifier : 'undefined';
                 code += "<div class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass +

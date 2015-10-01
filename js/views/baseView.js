@@ -67,7 +67,7 @@ var BaseView = (function() {
             for (var i in this._elements) {
                 if (this._elements.hasOwnProperty(i) && this[i]) {
                     this._elements[i].empty();
-                    this[i]();
+                    this[i](rootdata);
                 }
             }
 
@@ -347,9 +347,9 @@ var BaseView = (function() {
         compareBackButtonClicked: function() {
             $('#' + config.compareUnitscontainerId).fadeOut(800);
         },
-        bottomFormGroupContainer: function() {
+        bottomFormGroupContainer: function(rootdata) {
             var _this = this;
-            var chatdisabled = config.chatEnabled ? '' : 'disabled';
+            var chatdisabled = config.chatEnabled && rootdata.fairEnabled ? '' : 'disabled';
             var htmlCode = '<div class="pro-contact-actions">' +
                 '<div class="form-pop-up transition">' +
                 '   <span class="close-form icon icon-cross fs12"></span>' +
