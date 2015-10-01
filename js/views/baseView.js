@@ -219,10 +219,20 @@ var BaseView = (function() {
                 htmlCode = '<div class="tower-unit-detail-container ' + config.unitDataContainer + '"></div>';
             htmlCode += '<span class="icon fs14 icon-cross close-compare-box"></span><div class="compare-unit-box-detail top-right-component"><span>' + item.unitName + '</span> | <span>' + item.bedrooms + '</span> | <span>' + item.size + '</span> | <span>' + item.price + '</span> | <span>' + item.floor + '</span></div>';
             htmlCode += '<div class="top-right-component">' +
-                '<div class="book-now" >' +
-                '<a data-url="' + link + '" data-identifier="' + item.unitUniqueIdentifier + '">Proceed</a>' +
-                //'<span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(item.bookingAmount) + '/- <br>(No Cancellation Charges)</span>' +
-                '</div>';
+                '<div class="book-now" >';
+                if (item.bookingStatus == 'Available' && rootdata.fairEnabled && !config.builderSetUp) {
+                    htmlCode += '<a data-url="' + link + '" data-identifier="' + item.unitUniqueIdentifier + '">Book Now</a>' +
+                  '<span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(item.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
+
+                }
+                else if (item.bookingStatus == 'Available' && !rootdata.fairEnabled && !config.builderSetUp) {
+                    htmlCode += '<a data-url="' + link + '" data-identifier="' + item.unitUniqueIdentifier + '">Proceed</a>';
+                }
+                else if(!config.builderSetUp) {
+                    htmlCode += '<a>Sold out</a>';
+                }
+                htmlCode += '</div>';
+
 
             if (isDuplex) {
                 htmlCode += '<div id="slider" class="slider"><a class="control_next">></a> <a class="control_prev"><</a>' +
@@ -350,6 +360,7 @@ var BaseView = (function() {
         bottomFormGroupContainer: function(rootdata) {
             var _this = this;
             var chatdisabled = config.chatEnabled && rootdata.fairEnabled ? '' : 'disabled';
+            var iconEnabled = config.builderSetUp ? 'disabled' : '';
             var htmlCode = '<div class="pro-contact-actions">' +
                 '<div class="form-pop-up transition">' +
                 '   <span class="close-form icon icon-cross fs12"></span>' +
@@ -400,7 +411,7 @@ var BaseView = (function() {
                 '   </div>' +
                 '</div>' +
                 '<ul class="conect-tab transition">' +
-                '<li><a href="javascript:void(0);"  data-name="call-box">' +
+                '<li><a href="javascript:void(0);"  data-name="call-box" class="' + iconEnabled + '">' +
                 '   <p>Need Clarification?</br>Get in touch</p>' +
                 '   <span class="icon icon-phone"></span>' +
                 '   </a>' +
@@ -414,7 +425,7 @@ var BaseView = (function() {
                 '   </a>' +
                 '</li>' +
                 '<li>' +
-                '   <a href="javascript:void(0);" data-name="share-box">' +
+                '   <a href="javascript:void(0);" data-name="share-box" class="' + iconEnabled + '">' +
                 '   <p>Share with</br> friends' +
                 //' <span>Sign In Now!</span>'+
                 '   </p>' +

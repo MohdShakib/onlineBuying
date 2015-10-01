@@ -179,13 +179,14 @@ var UnitplaninfoView = (function() {
                 link = rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier + '/booking';
             htmlCode += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
             htmlCode += '<a><span class="icon icon-heart fs26 heart-clone"><label></label></span><p class="transition click-txt"></p><p class="shortlisted" style="display:none;"></p></a></div>';
-            if (data.bookingStatus == 'Available' && rootdata.fairEnabled) {
+            if (data.bookingStatus == 'Available' && rootdata.fairEnabled && !config.builderSetUp) {
                 htmlCode += '<div class="book-now"><a  data-url="' + link + '">Book Now</a>';
                 htmlCode += '<span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(data.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
             }
-            if (data.bookingStatus == 'Available' && !rootdata.fairEnabled) {
+            else if (data.bookingStatus == 'Available' && !rootdata.fairEnabled && !config.builderSetUp) {
                 htmlCode += '<div class="book-now"><a  data-url="' + link + '">Proceed</a>';
-            } else {
+            }
+            else if(!config.builderSetUp) {
                 htmlCode += '<div class="book-now fade-image"><a>Sold out</a>';
             }
             htmlCode += '</div>';

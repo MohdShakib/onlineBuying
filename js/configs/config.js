@@ -10,16 +10,17 @@ var config = (function() {
         cityJson: true, // to read cities from json
         localZip: false,
         setJsonDataPriorityForTest: false,
+        builderSetUp: false,
 
         // Flags
         showCarAnimation: true,
         showTowerRotation: true,
-        enablePayment: false,
+        enablePayment: true,
         useSpecifiedTowerTooltipSvg: true,
         allUnitsAvailable: false, // keep it true only for testing purpose
         polyHoverFlag: false,
+        chatEnabled: true,
         readDataFromJson: true,
-        chatEnabled: false,
         removeFacingFilter: true,
 
 

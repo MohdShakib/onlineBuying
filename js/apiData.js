@@ -446,7 +446,7 @@ var getProjectData = (function() {
         projectData.address = projectDetail.address;
         projectData.bgImage = zipImagePath + config.backgroundImage;
         projectData.description = projectDetail.description;
-        projectData.fairEnabled = projectDetail.hasPrimaryExpandedListing ==  3 ? false : true;
+        // projectData.fairEnabled = projectDetail.hasPrimaryExpandedListing ==  3 ? false : true;
         projectData.fairEnabled = false;
 
         // Project Ameneties
