@@ -350,6 +350,7 @@ var BaseView = (function() {
         bottomFormGroupContainer: function() {
             var _this = this;
             var chatdisabled = config.chatEnabled ? '' : 'disabled';
+            var iconEnabled = config.builderSetUp ? 'disabled' : '';
             var htmlCode = '<div class="pro-contact-actions">' +
                 '<div class="form-pop-up transition">' +
                 '   <span class="close-form icon icon-cross fs12"></span>' +
@@ -400,7 +401,7 @@ var BaseView = (function() {
                 '   </div>' +
                 '</div>' +
                 '<ul class="conect-tab transition">' +
-                '<li><a href="javascript:void(0);"  data-name="call-box">' +
+                '<li><a href="javascript:void(0);"  data-name="call-box" class="' + iconEnabled + '">' +
                 '   <p>Need Clarification?</br>Get in touch</p>' +
                 '   <span class="icon icon-phone"></span>' +
                 '   </a>' +
@@ -414,7 +415,7 @@ var BaseView = (function() {
                 '   </a>' +
                 '</li>' +
                 '<li>' +
-                '   <a href="javascript:void(0);" data-name="share-box">' +
+                '   <a href="javascript:void(0);" data-name="share-box" class="' + iconEnabled + '">' +
                 '   <p>Share with</br> friends' +
                 //' <span>Sign In Now!</span>'+
                 '   </p>' +
