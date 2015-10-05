@@ -13,7 +13,7 @@ var TowerselectedView = (function() {
         'towerDetailContainer': '<div class="tower-unit-detail-container" id="tower-detail-container"></div>',
         'towerRotationContainer': '<div class="tower-rotation-container" id="' + config.towerRotationContainerId + '" style="display:none;"></div>',
         'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>',
-        'minMapView': '<div id="minMap"></div>'
+        //'minMapView': '<div id="minMap"></div>'
     };
 
     function getElements() {
@@ -23,7 +23,7 @@ var TowerselectedView = (function() {
             'towerDetailContainer': $('#tower-detail-container'),
             'towerRotationContainer': $('#tower-rotation-container'),
             'filterMenuContainer': $('#filter-menu-container'),
-            'minMapView': $('#minMap')
+            //'minMapView': $('#minMap')
         };
         return elements;
     }
