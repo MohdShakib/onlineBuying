@@ -370,7 +370,7 @@ var TowerselectedView = (function() {
 
             towerCode += "<div class='detail-box show-details tSelected-view'>";
             towerCode += "<div class='line " + tooltipClass + "'>";
-            towerCode += "<div class='dot-two " + dotClass + (config.builderSetUp ? " orange'":"'") + "'></div>";
+            towerCode += "<div class='dot-two " + dotClass + "'></div>";
 
             towerCode += '<div class="tSelected-detail towerunit-detail-container ' + availabilityClass + '">';
             towerCode += '<div class="towerunit-name">' + details.address + '</div>';
