@@ -10,8 +10,8 @@ var config = (function() {
         cityJson: true, // to read cities from json
         localZip: true,
         setJsonDataPriorityForTest: false,
-        builderSetUp: true,
-        showInterestedIn: true,
+        builderSetUp: false,
+        showInterestedIn: true,       // to show hide interested popup
 
 
         // Flags
@@ -33,7 +33,7 @@ var config = (function() {
         tawkApiId: 'tawk_55e5498bfc2b363371225aaa',
         errorMsg: 'Something went wrong. Please contact +91-92788-92788 for assistance.',
         helpline: '+91-80104-00500',
-        emailId: 'Sales@umangrealtech.com',
+        emailId: 'sales@umangrealtech.com',
         gaCategory: '4d-view',
 
         // Data
