@@ -76,11 +76,8 @@ var BaseView = (function() {
             });
         },
         init: function(rootdata) {
-            if(config.builderSetUp){
-                $('.project-title').html(rootdata.builderName + ' ' + rootdata.projectName);
-            } else {
-                $('.project-title').html('<a href="https://www.proptiger.com/' + rootdata.projectUrl + '" target="_blank">' + rootdata.builderName + ' ' + rootdata.projectName + '</a>');
-            }
+            var content = config.builderSetUp ? rootdata.builderName + ' ' + rootdata.projectName : '<a href="https://www.proptiger.com/' + rootdata.projectUrl + '" target="_blank">' + rootdata.builderName + ' ' + rootdata.projectName + '</a>';
+            $('.project-title').html(content);
             $('.project-address').html(rootdata.address);
             $('.project-desc').html(rootdata.description);
             this.initEvents();
@@ -713,16 +710,17 @@ var BaseView = (function() {
             });
         },
         questionBoxContainer: function() {
-            var html = '<div class="question'+(config.builderSetUp ?' emailInfo"':'"')+'><span>Interested</span></div>' +
+            if(!config.showInterestedIn){
+                return;
+            }
+            var html = '<div class="question' + (config.builderSetUp ? ' emailInfo' : '') + '"><span>Interested</span></div>' +
                 '   <div class="callInfo">' +
                 (config.builderSetUp ? '   <p class="email">' + config.emailId + '</p>':'') +
                 '   <p><span class="number">' + config.helpline + '</span>Our Advisors are here to help.</p>' +
                 '	</div>'+
 				'	<span class="close icon-cross"></span>';
-            if(config.showInterestedIn){
-                this._elements.questionBoxContainer.html(html);
-                this.questionBoxContainerEvents();
-            }
+            this._elements.questionBoxContainer.html(html);
+            this.questionBoxContainerEvents();
         },
         questionBoxContainerEvents: function() {
             var _this = this;

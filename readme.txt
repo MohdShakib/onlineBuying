@@ -9,7 +9,7 @@ How to set up apache on mac?
 4. Change "AllowOverride None" to "AllowOverride All".
 5. sudo apachectl restart
 6. Goto the directory where online buying code is present
-7. sudo npm install
+7. sudo npm install (node version: v0.12.0)
 8. run grunt
 9. Goto http://localhost/4d-view/umang-thirdeye-demo-501660
 
@@ -21,4 +21,8 @@ How to setup builder specific changes?
         setJsonDataPriorityForTest: false,
         builderSetUp: true,
         showInterestedIn: true,
-2. Change the helpline number and emailId of builder in config.js file
+2. Change the helpline number and emailId of builder in config.js file and Run Grunt command 
+3. Change the logo.jpg in images folder
+4. Change project-detail.json in apis-json
+5. Change Zip-file
+6. Remove extra files
