@@ -80,7 +80,7 @@ var MasterplanView = (function() {
             this._elements = getElements();
         },
         renderInitialData: function(data) {
-            document.getElementById(config.projectDetail.titleId).innerHTML = '<a href="https://www.proptiger.com/' + data.projectUrl + '" target="_blank">' + data.builderName + ' ' + data.projectName + '</a>';
+            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '':'<a href="https://www.proptiger.com/' + data.projectUrl + '" target="_blank">') + data.builderName + ' ' + data.projectName + (config.builderSetUp ? '':'</a>');
             document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
         },
@@ -269,7 +269,12 @@ var MasterplanView = (function() {
         },
         buildingMenuContainer: function(data) {
             var towersData = utils.ascendingOrder(data.towers);
-            var code = "<div class='master-menu'><div class='menu-header menu-icon transition'><span class='icon'><a href='http://www.proptiger.com' target='_blank'><img src='images/logo.jpg' alt='proptiger.com'></span></a></div>";
+            var code = "<div class='master-menu'><div class='menu-header menu-icon transition'><span class='icon'>";
+            if(config.builderSetUp){
+                code += "<img src='images/builder-logo.jpg'></span></div>";
+            } else {
+                code += "<a href='http://www.proptiger.com' target='_blank'><img src='images/logo.jpg' alt='proptiger.com'></a></span></div>";
+            }
             code += "<div class='menu-sep'></div>";
             code += "<div class='menu-items'><div class='scrollup-menu scroll-down transition'><span class='icon icon-arrow_btm fs14'></span></div><div class='scrollup-menu scroll-up top-stick transition'><span class='icon icon-arrow_top fs14'></span></div><div class='scroll-box'><div class='menu-scroll'><div class='master-tower-menu transition'>";
             for (var i = 0; i < towersData.length; i++) {
@@ -443,7 +448,7 @@ var MasterplanView = (function() {
                 dotClass = !data.isAvailable ? 'sold' : '',
                 bookingText = (data.bookingStatus == 'OnHold') ? 'On Hold' : 'Sold Out';
             towerCode += "<div id='container-detail' class='tooltip-detail'>";
-            towerCode += "<div class='detail-box show-details'>" + "<div class='tooltip-title'>" + data.shortName + "</div>" + "<div class='line " + tooltipClass + "''>" + "<div class='dot-one'></div>" + "<div class='dot-two " + dotClass + "'></div>" + "<div class='detail-container master-details'>";
+            towerCode += "<div class='detail-box show-details'>" + "<div class='tooltip-title'>" + data.shortName + "</div>" + "<div class='line " + tooltipClass + "''>" + "<div class='dot-one'></div>" + "<div class='dot-two" + dotClass + "'></div>" + "<div class='detail-container master-details'>";
             towerCode += "<div class='tolltip-tower-name'>" + data.longName + "</div>";
             towerCode += "<table>";
             if (!data.isAvailable) {
@@ -459,7 +464,7 @@ var MasterplanView = (function() {
                     }
                     towerCode += "<tr class='" + availabilityClass + "'>";
                     towerCode += "<td>" + aptType.type + "</td>";
-                    towerCode += "<td>" + availabilityText + "</td></tr>";
+                    towerCode += config.builderSetUp ? "<td>Apartment</td></tr>" : "<td>" + availabilityText + "</td></tr>";
                 }
             }
             towerCode += "</table>";

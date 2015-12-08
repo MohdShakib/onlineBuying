@@ -28,6 +28,17 @@ module.exports = function(grunt) {
                 './css/*.min.css'
             ]
         },
+        compass:{
+            options: {
+                sassDir: 'scss',
+                cssDir: 'css'
+            },
+            server: {
+                options: {
+                    debugInfo: true
+                }
+            }
+        },
         uglify: {
             js: {
                 src: ['./js/{,*/}*.js'],
@@ -221,6 +232,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('base', [
         'clean',
+        'compass',
         'jshint',
         'uglify:js',
         'uglify:vendors',

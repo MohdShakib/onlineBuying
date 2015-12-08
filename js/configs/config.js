@@ -6,11 +6,13 @@ var config = (function() {
         urlAppName : '/4d-view',
 
         // Independent App
-        apisJson: false,
+        apisJson: true,
         cityJson: true, // to read cities from json
-        localZip: false,
+        localZip: true,
         setJsonDataPriorityForTest: false,
-        builderSetUp: false,
+        builderSetUp: true,
+        showInterestedIn: true,
+
 
         // Flags
         showCarAnimation: true,
@@ -30,7 +32,8 @@ var config = (function() {
         maxShortlistCount: 6,
         tawkApiId: 'tawk_55e5498bfc2b363371225aaa',
         errorMsg: 'Something went wrong. Please contact +91-92788-92788 for assistance.',
-        helpline: '+91-92788-92788',
+        helpline: '+91-80104-00500',
+        emailId: 'Sales@umangrealtech.com',
         gaCategory: '4d-view',
 
         // Data

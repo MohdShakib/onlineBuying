@@ -90,10 +90,12 @@ var TowerselectedView = (function() {
             }, 500);
         },
         renderInitialData: function(data, rootdata) {
-            document.getElementById(config.projectDetail.titleId).innerHTML = '<a href="https://www.proptiger.com/' + rootdata.projectUrl + '" target="_blank">' + rootdata.builderName + ' ' + rootdata.projectName + '</a>';
+            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '':'<a href="https://www.proptiger.com/' + rootdata.projectUrl + '" target="_blank">') + rootdata.builderName + ' ' + rootdata.projectName + (config.builderSetUp ? '':'</a>');
             document.getElementById(config.projectDetail.addressId).innerHTML = data.longName;
-            document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '<label class="count"></label> Available';
-            this.updateAvailableCount();
+            if(!config.builderSetUp){
+                document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '<label class="count"></label> Available';
+                this.updateAvailableCount();
+            }
         },
         startAnimation: function(model) {
 
@@ -368,15 +370,19 @@ var TowerselectedView = (function() {
 
             towerCode += "<div class='detail-box show-details tSelected-view'>";
             towerCode += "<div class='line " + tooltipClass + "'>";
-            towerCode += "<div class='dot-two " + dotClass + "'></div>";
+            towerCode += "<div class='dot-two " + dotClass + (config.builderSetUp ? " orange'":"'") + "'></div>";
 
             towerCode += '<div class="tSelected-detail towerunit-detail-container ' + availabilityClass + '">';
             towerCode += '<div class="towerunit-name">' + details.address + '</div>';
             towerCode += '<div>' + details.type + '</div>';
             towerCode += '<div>' + details.size + '</div>';
-            towerCode += '<div><span class="icon icon-rupee fs10"></span>' + details.price + '</div>';
+            if(!config.builderSetUp){
+                towerCode += '<div><span class="icon icon-rupee fs10"></span>' + details.price + '</div>';
+            }
             towerCode += '<div>Floor ' + details.floor + '</div>';
-            towerCode += '<div class="' + details.color + '">' + details.availability + '</div>';
+            if(!config.builderSetUp){
+                towerCode += '<div class="' + details.color + '">' + details.availability + '</div>';
+            }
             towerCode += '</div></div>';
             towerCode += '</div></div>';
 
