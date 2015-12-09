@@ -80,7 +80,7 @@ var MasterplanView = (function() {
             this._elements = getElements();
         },
         renderInitialData: function(data) {
-            document.getElementById(config.projectDetail.titleId).innerHTML = '<a href="https://www.proptiger.com/' + data.projectUrl + '" target="_blank">' + data.builderName + ' ' + data.projectName + '</a>';
+            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '':'<a href="https://www.proptiger.com/' + data.projectUrl + '" target="_blank">') + data.builderName + ' ' + data.projectName + (config.builderSetUp ? '':'</a>');
             document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
         },
@@ -269,8 +269,9 @@ var MasterplanView = (function() {
         },
         buildingMenuContainer: function(data) {
             var towersData = utils.ascendingOrder(data.towers);
-            var code = "<div class='master-menu'><div class='menu-header menu-icon transition'><span class='icon'><a href='http://www.proptiger.com' target='_blank'><img src='images/logo.jpg' alt='proptiger.com'></span></a></div>";
-            code += "<div class='menu-sep'></div>";
+            var code = "<div class='master-menu'><div class='menu-header menu-icon transition'><span class='icon'>";
+            code += config.builderSetUp ? "<img src='images/logo.jpg'>" : "<a href='http://www.proptiger.com' target='_blank'><img src='images/logo.jpg' alt='proptiger.com'></a>";
+            code += "</span></div><div class='menu-sep'></div>";
             code += "<div class='menu-items'><div class='scrollup-menu scroll-down transition'><span class='icon icon-arrow_btm fs14'></span></div><div class='scrollup-menu scroll-up top-stick transition'><span class='icon icon-arrow_top fs14'></span></div><div class='scroll-box'><div class='menu-scroll'><div class='master-tower-menu transition'>";
             for (var i = 0; i < towersData.length; i++) {
                 var towerIdentifier = towersData[i];
@@ -459,7 +460,7 @@ var MasterplanView = (function() {
                     }
                     towerCode += "<tr class='" + availabilityClass + "'>";
                     towerCode += "<td>" + aptType.type + "</td>";
-                    towerCode += "<td>" + availabilityText + "</td></tr>";
+                    towerCode += config.builderSetUp ? "<td>Apartment</td></tr>" : "<td>" + availabilityText + "</td></tr>";
                 }
             }
             towerCode += "</table>";
