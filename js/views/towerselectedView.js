@@ -527,11 +527,13 @@ var TowerselectedView = (function() {
                 code += this.getEntranceMenuOptions(data, entranceFiltersData);
                 code += "</td></tr>";
             }
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
-            code += this.displayFilterCount('price', priceFiltersData.length);
-            code += "<div class='menu-item'><span class='icon  icon-rupee_final fs30'></span></div>";
-            code += this.getPriceMenuOptions(data, priceFiltersData);
-            code += "</td></tr>";
+            if(!config.builderSetUp){
+                code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
+                code += this.displayFilterCount('price', priceFiltersData.length);
+                code += "<div class='menu-item'><span class='icon  icon-rupee_final fs30'></span></div>";
+                code += this.getPriceMenuOptions(data, priceFiltersData);
+                code += "</td></tr>";
+            }
             code += "<tr class='menu-item-container reset-all-menu-item reset-all-inactive'><td class='menu-item-container-td'><div class='menu-item " + config.filters.resetClass + "'><span class='icon icon-reset-final fs24'></span></div><div class='menu-item-options'><table><tr><td class='filter-title pointer " + config.filters.resetClass + "'>Reset All Filters</td></tr><table></div></td></tr>";
             code += "</table></td></tr>";
             code += "<tr><td class='menu-sep'></td></tr>";

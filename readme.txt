@@ -23,8 +23,10 @@ How to setup builder specific changes?
         showInterestedIn: true,
 2. Change the helpline number and emailId of builder in config.js file
 3. Change the colors in _builderVariables.scss 
-3. Run Grunt command 
+3. Run 'grunt' command
 4. Change the logo.jpg in images folder
 5. Change project-detail.json in apis-json
 6. Change Zip-file
 7. Remove extra files
+8. Change the file names of minified js, css, vendorjs in index.html
+9. Change the name of the project folder and put it into 4d-view folder of apache pointed directory
