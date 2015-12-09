@@ -76,7 +76,8 @@ var BaseView = (function() {
             });
         },
         init: function(rootdata) {
-            $('.project-title').html('<a href="https://www.proptiger.com/' + rootdata.projectUrl + '" target="_blank">' + rootdata.builderName + ' ' + rootdata.projectName + '</a>');
+            var content = config.builderSetUp ? rootdata.builderName + ' ' + rootdata.projectName : '<a href="https://www.proptiger.com/' + rootdata.projectUrl + '" target="_blank">' + rootdata.builderName + ' ' + rootdata.projectName + '</a>';
+            $('.project-title').html(content);
             $('.project-address').html(rootdata.address);
             $('.project-desc').html(rootdata.description);
             this.initEvents();
@@ -217,7 +218,7 @@ var BaseView = (function() {
                 imageUrl = item ? (isDuplex ? [item[unitTypeArr[0]].unitImageUrl, item[unitTypeArr[1]].unitImageUrl] : item[item.unitTypeIdentifier].unitImageUrl) : undefined,
                 link = rootdata.baseUrl + '/' + item.towerIdentifier + '/' + item.rotationAngle + '/' + item.unitIdentifier + '/booking',
                 htmlCode = '<div class="tower-unit-detail-container ' + config.unitDataContainer + '"></div>';
-            htmlCode += '<span class="icon fs14 icon-cross close-compare-box"></span><div class="compare-unit-box-detail top-right-component"><span>' + item.unitName + '</span> | <span>' + item.bedrooms + '</span> | <span>' + item.size + '</span> | <span>' + item.price + '</span> | <span>' + item.floor + '</span></div>';
+            htmlCode += '<span class="icon fs14 icon-cross close-compare-box"></span><div class="compare-unit-box-detail top-right-component"><span>' + item.unitName + '</span> | <span>' + item.bedrooms + '</span> | <span>' + item.size + '</span> | <span>' + (config.builderSetUp ? '' : item.price + '</span> | <span>') + item.floor + '</span></div>';
             htmlCode += '<div class="top-right-component">' +
                 '<div class="book-now" >';
                 if (item.bookingStatus == 'Available' && rootdata.fairEnabled && !config.builderSetUp) {
@@ -359,7 +360,7 @@ var BaseView = (function() {
         },
         bottomFormGroupContainer: function(rootdata) {
             var _this = this;
-            var chatdisabled = config.chatEnabled && rootdata.fairEnabled ? '' : 'disabled';
+            var chatdisabled = config.chatEnabled && rootdata.fairEnabled && !config.builderSetUp ? '' : 'disabled';
             var iconEnabled = config.builderSetUp ? 'disabled' : '';
             var htmlCode = '<div class="pro-contact-actions">' +
                 '<div class="form-pop-up transition">' +
@@ -709,8 +710,12 @@ var BaseView = (function() {
             });
         },
         questionBoxContainer: function() {
-            var html = '<div class="question"><span>Interested</span></div>' +
+            if(!config.showInterestedIn){
+                return;
+            }
+            var html = '<div class="question' + (config.builderSetUp ? ' emailInfo' : '') + '"><span>Interested</span></div>' +
                 '   <div class="callInfo">' +
+                (config.builderSetUp ? '   <p class="email">' + config.emailId + '</p>':'') +
                 '   <p><span class="number">' + config.helpline + '</span>Our Advisors are here to help.</p>' +
                 '	</div>'+
 				'	<span class="close icon-cross"></span>';

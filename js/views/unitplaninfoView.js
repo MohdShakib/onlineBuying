@@ -170,7 +170,7 @@ var UnitplaninfoView = (function() {
         unitViewTabs: function(data, rotationdata, rootdata) {
             var offerDiv = '';
 
-            if (data.discountDescription && data.discountDescription !== "") {
+            if (!config.builderSetUp && data.discountDescription && data.discountDescription !== "") {
                 offerDiv = '<div class="special-offers"><span></span><p>' + data.discountDescription + '</p></div>';
             }
 
@@ -232,15 +232,17 @@ var UnitplaninfoView = (function() {
                 var price = utils.getReadablePriceInWord(data.price),
                     discountedPrice = utils.getReadablePriceInWord(data.price - data.discount);
 
-                code += "<span class='fright big-size'><span class='icon icon-rupee fs16'></span> " + discountedPrice + "</span>";
-                if (price != discountedPrice) {
-                    code += "<span class='total-amount fright'><span class='icon icon-rupee'></span>" + price + "</span>";
+                if(!config.builderSetUp){
+                    code += "<span class='fright big-size'><span class='icon icon-rupee fs16'></span> " + discountedPrice + "</span>";
+                    if (price != discountedPrice) {
+                        code += "<span class='total-amount fright'><span class='icon icon-rupee'></span>" + price + "</span>";
+                    }
                 }
 
                 code += "</div>" +
                 "<div class='uit-header-menu'><div data-target='fp-container' data-menu='unitPlanMenu' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'><span class='icon icon-unitplan fs18'></span></div>Unit Plan</div>" +
                 "<div data-target='cp-container' data-menu='floorPlanMenu' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon icon-clusterplan fs18'></span></div>Floor Plan</div>";
-                if(rootdata.fairEnabled) {
+                if(rootdata.fairEnabled && !config.builderSetUp) {
                   code += "<div data-target='pb-container' data-menu='unitPricingMenu' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon icon-rupee fs18'></span></div>Pricing</div>";
                 }
                 code += "<div data-target='sf-container' data-menu='unitAmenitiesMenu' class='header-item " + config.unitMenuLinkClass + " right'><div class='item-icon-box'><span class='icon icon-specification fs18'></span></div>Amenities</div></div></div></div>";
