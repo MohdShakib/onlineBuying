@@ -11,7 +11,6 @@ How to set up apache on mac?
 6. Goto the directory where online buying code is present
 7. sudo npm install (node version: v0.12.0)
 8. run 'grunt'
-
 9. Goto http://localhost/4d-view/umang-thirdeye-demo-501660
 
 How to setup builder specific changes?
@@ -31,3 +30,4 @@ How to setup builder specific changes?
 7. Remove extra files
 8. Change the name of the project folder(projectName-projectId) and put it into 4d-view folder of apache pointed directory
 9. Change the base url in index.html
+10. 'RewriteRule ^4d-view/([^/]+)/(.*) 4d-view/$1/index.html [L,QSA]' uncomment this line

@@ -548,7 +548,8 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !/styles
 RewriteCond %{REQUEST_URI} !/index.html
-RewriteRule ^4d-view/([^/]+)/(.*) 4d-view/$1/index.html [L,QSA]
+#RewriteRule ^4d-view/([^/]+)/(.*) 4d-view/$1/index.html [L,QSA]
+RewriteRule ^(.*) index.html [L,QSA]
 
 # compress text, html, javascript, css, xml:
 AddOutputFilterByType DEFLATE text/plain
