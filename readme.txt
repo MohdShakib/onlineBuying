@@ -30,4 +30,5 @@ How to setup builder specific changes?
 7. Remove extra files
 8. Change the name of the project folder(projectName-projectId) and put it into 4d-view folder of apache pointed directory
 9. Change the base url in index.html
-10. 'RewriteRule ^4d-view/([^/]+)/(.*) 4d-view/$1/index.html [L,QSA]' uncomment this line
+10. 'RewriteRule ^4d-view/([^/]+)/(.*) 4d-view/$1/index.html [L,QSA]' uncomment this line and comment 'RewriteRule ^(.*) index.html [L,QSA]' this line
+11. Put the .htaccess file in same directory in which 4d-view folder is present
