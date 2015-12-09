@@ -21,8 +21,10 @@ How to setup builder specific changes?
         setJsonDataPriorityForTest: false,
         builderSetUp: true,
         showInterestedIn: true,
-2. Change the helpline number and emailId of builder in config.js file and Run Grunt command 
-3. Change the logo.jpg in images folder
-4. Change project-detail.json in apis-json
-5. Change Zip-file
-6. Remove extra files
+2. Change the helpline number and emailId of builder in config.js file
+3. Change the colors in _builderVariables.scss 
+3. Run Grunt command 
+4. Change the logo.jpg in images folder
+5. Change project-detail.json in apis-json
+6. Change Zip-file
+7. Remove extra files
