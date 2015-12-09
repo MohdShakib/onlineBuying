@@ -10,7 +10,8 @@ How to set up apache on mac?
 5. sudo apachectl restart
 6. Goto the directory where online buying code is present
 7. sudo npm install (node version: v0.12.0)
-8. run grunt
+8. run 'grunt'
+
 9. Goto http://localhost/4d-view/umang-thirdeye-demo-501660
 
 How to setup builder specific changes?
@@ -28,5 +29,5 @@ How to setup builder specific changes?
 5. Change project-detail.json in apis-json
 6. Change Zip-file
 7. Remove extra files
-8. Change the file names of minified js, css, vendorjs in index.html
-9. Change the name of the project folder and put it into 4d-view folder of apache pointed directory
+8. Change the name of the project folder(projectName-projectId) and put it into 4d-view folder of apache pointed directory
+9. Change the base url in index.html
