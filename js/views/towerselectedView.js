@@ -821,7 +821,7 @@ var TowerselectedView = (function() {
         },
         minMapEvents: function(){
             var _this = this;
-            _this._elements.minMapView.on('click', '.' + config.minMapToggleClass, function(event) {
+            _this._elements.minMapView.off('click').on('click', '.' + config.minMapToggleClass, function(event) {
                 _this._minMapClicked.notify($(this).parent());
             });
         },
