@@ -92,11 +92,8 @@ var getProjectData = (function() {
                     var unitSvgOnTower = unitInfo.unitSvgOnTower ? unitInfo.unitSvgOnTower.split(' ') : null;
                     var validUnitFlag = false;
                     unitInfo.unitSvgOnTower = unitSvgOnTower;
-                    if (tower && tower.rotationAngle[unitInfo.rotationAngle] && unitInfo.rotationAngle) {
+                    if (tower && unitInfo.rotationAngle && tower.rotationAngle[unitInfo.rotationAngle]) {
                         tower.rotationAngle[unitInfo.rotationAngle].listing[unitIdentifier] = unitInfo;
-                        if(unitInfo.towerMinimap){
-                          tower.rotationAngle[unitInfo.rotationAngle].towerMinimapUrl = zipImagePath + unitInfo.towerMinimap;
-                        }
                         validUnitFlag = true;
                     } else if (tower && tower.rotationAngle && unitInfo.rotationAngle) {
                         tower.rotationAngle[unitInfo.rotationAngle] = {};
@@ -104,6 +101,9 @@ var getProjectData = (function() {
                         tower.rotationAngle[unitInfo.rotationAngle].listing = {};
                         tower.rotationAngle[unitInfo.rotationAngle].listing[unitIdentifier] = unitInfo;
                         validUnitFlag = true;
+                        if(unitInfo.towerMinimap){
+                            tower.rotationAngle[unitInfo.rotationAngle].towerMinimapUrl = zipImagePath + unitInfo.towerMinimap;
+                        }
                     }
 
                     if(tower.stableViewAngles && (tower.stableViewAngles.indexOf(unitInfo.rotationAngle) == -1) && unitInfo.rotationAngle){

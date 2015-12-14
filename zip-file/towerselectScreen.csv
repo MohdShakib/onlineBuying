@@ -1,456 +1,456 @@
 towerName,rotationAngle,towerImageName,unitName,unitSvgOnTower,unitHoverSvg,unitType,directionThumbnail,towerMinimap
-Tower A,0,tow-a-ang-0.jpg,A-0002,48.08 86.2,45.15 76.79 51.01 86.49 51.01 90.62 45.15 80.92,A-3BHK type1-2,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-0102,48.03 81.12,45.1 71.71 50.96 81.41 50.96 85.54 45.1 75.84,A-3BHK type1-2,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-0202,47.97 76.04,45.04 66.63 50.9 76.33 50.9 80.46 45.04 70.76,A-3BHK type1-2,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-0302,47.92 70.96,44.99 61.56 50.85 71.25 50.85 75.38 44.99 65.68,A-3BHK type1-2,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-0402,47.87 65.88,44.94 56.48 50.8 66.17 50.8 70.3 44.94 60.6,A-3BHK type1-2,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-0502,47.82 60.8,44.89 51.4 50.75 61.1 50.75 65.22 44.89 55.52,A-3BHK type1-2,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-0602,47.76 55.73,44.83 46.33 50.69 56.02 50.69 60.15 44.83 50.45,A-3BHK type1-2,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-0702,47.71 50.65,44.78 41.25 50.64 50.94 50.64 55.07 44.78 45.37,A-3BHK type1-2,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-0802,47.66 45.57,44.73 36.17 50.59 45.87 50.59 49.99 44.73 40.29,A-3BHK type1-2,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-0902,47.6 40.49,44.67 31.09 50.53 40.79 50.53 44.91 44.67 35.21,A-3BHK type1-2,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-1002,47.55 35.41,44.62 26.01 50.48 35.71 50.48 39.83 44.62 30.13,A-3BHK type1-2,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-0003,40.89 79.69,37.96 69.97 43.82 79.67 43.82 84.43 37.96 74.73,A-2BHK type1-3,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-0103,40.83 74.77,37.9 65.05 43.77 74.75 43.77 79.51 37.9 69.81,A-2BHK type1-3,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-0203,40.78 69.85,37.85 60.13 43.71 69.83 43.71 74.59 37.85 64.89,A-2BHK type1-3,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-0303,40.72 64.93,37.79 55.21 43.65 64.9 43.65 69.67 37.79 59.97,A-2BHK type1-3,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-0403,40.67 60.01,37.74 50.29 43.6 59.98 43.6 64.75 37.74 55.05,A-2BHK type1-3,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-0503,40.6 55.1,37.68 45.37 43.54 55.07 43.54 59.83 37.68 50.13,A-2BHK type1-3,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-0603,40.55 50.17,37.62 40.45 43.48 50.15 43.48 54.91 37.62 45.21,A-2BHK type1-3,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-0703,40.49 45.25,37.56 35.53 43.42 45.23 43.42 49.99 37.56 40.29,A-2BHK type1-3,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-0803,40.44 40.33,37.51 30.61 43.37 40.31 43.37 45.07 37.51 35.37,A-2BHK type1-3,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-0903,40.38 35.41,37.45 25.69 43.31 35.39 43.31 40.15 37.45 30.45,A-2BHK type1-3,tow-a-ang-0-tb.png,
-Tower A,0,tow-a-ang-0.jpg,A-1003,40.32 30.5,37.39 20.78 43.25 30.48 43.25 35.24 37.39 25.54,A-2BHK type1-3,tow-a-ang-0-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-0004,49.88 87.31,46.95 77.9 52.81 87.6 52.81 91.73 46.95 82.03,A-2BHK type1-4,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-0104,49.87 82.23,46.95 72.83 52.81 82.52 52.81 86.65 46.95 76.95,A-2BHK type1-4,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-0204,49.87 77.15,46.94 67.75 52.8 77.44 52.8 81.57 46.94 71.87,A-2BHK type1-4,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-0304,49.86 72.07,46.93 62.67 52.79 72.37 52.79 76.49 46.93 66.79,A-2BHK type1-4,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-0404,49.85 66.99,46.92 57.59 52.78 67.29 52.78 71.41 46.92 61.71,A-2BHK type1-4,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-0504,49.84 61.91,46.92 52.51 52.78 62.21 52.78 66.33 46.92 56.63,A-2BHK type1-4,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-0604,49.84 56.83,46.91 47.43 52.77 57.13 52.77 61.25 46.91 51.56,A-2BHK type1-4,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-0704,49.83 51.75,46.9 42.35 52.76 52.05 52.76 56.17 46.9 46.48,A-2BHK type1-4,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-0804,49.82 46.67,46.89 37.27 52.75 46.97 52.75 51.1 46.89 41.4,A-2BHK type1-4,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-0904,49.82 41.6,46.89 32.19 52.75 41.89 52.75 46.02 46.89 36.32,A-2BHK type1-4,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-1004,49.81 36.52,46.88 27.11 52.74 36.81 52.74 40.94 46.88 31.24,A-2BHK type1-4,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-0001,42.24 82.54,39.31 72.82 45.17 82.52 45.17 87.28 39.31 77.58,A-3BHK type1-1,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-0101,42.21 77.63,39.28 67.9 45.14 77.6 45.14 82.37 39.28 72.67,A-3BHK type1-1,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-0201,42.18 72.71,39.25 62.98 45.11 72.68 45.11 77.44 39.25 67.75,A-3BHK type1-1,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-0301,42.15 67.79,39.22 58.06 45.08 67.76 45.08 72.52 39.22 62.83,A-3BHK type1-1,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-0401,42.11 62.87,39.18 53.14 45.04 62.84 45.04 67.6 39.18 57.9,A-3BHK type1-1,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-0501,42.08 57.94,39.15 48.22 45.01 57.92 45.01 62.68 39.15 52.98,A-3BHK type1-1,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-0601,42.05 53.02,39.12 43.3 44.98 53 44.98 57.76 39.12 48.06,A-3BHK type1-1,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-0701,42.02 48.1,39.09 38.38 44.95 48.08 44.95 52.84 39.09 43.14,A-3BHK type1-1,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-0801,41.99 43.18,39.06 33.46 44.92 43.16 44.92 47.92 39.06 38.22,A-3BHK type1-1,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-0901,41.96 38.26,39.03 28.54 44.89 38.24 44.89 43 39.03 33.3,A-3BHK type1-1,tow-a-ang-180-tb.png,
-Tower A,180,tow-a-ang-180.jpg,A-1001,41.92 33.34,39 23.62 44.86 33.32 44.86 38.08 39 28.38,A-3BHK type1-1,tow-a-ang-180-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-0002,49.23 90.95,46.3 81.55 52.16 91.25 52.16 95.37 46.3 85.67,B-2BHK type1-2,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-0102,49.24 87.15,46.31 77.75 52.17 87.44 52.17 91.57 46.31 81.87,B-2BHK type1-2,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-0202,49.25 83.34,46.32 73.94 52.18 83.63 52.18 87.76 46.32 78.06,B-2BHK type1-2,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-0302,49.25 79.53,46.32 70.13 52.18 79.83 52.18 83.95 46.32 74.25,B-2BHK type1-2,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-0402,49.26 75.72,46.33 66.32 52.19 76.02 52.19 80.14 46.33 70.44,B-2BHK type1-2,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-0502,49.27 71.91,46.34 62.51 52.2 72.21 52.2 76.33 46.34 66.63,B-2BHK type1-2,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-0602,49.27 68.1,46.34 58.7 52.2 68.4 52.2 72.52 46.34 62.83,B-2BHK type1-2,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-0702,49.28 64.29,46.35 54.89 52.21 64.59 52.21 68.71 46.35 59.02,B-2BHK type1-2,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-0802,49.29 60.48,46.36 51.08 52.22 60.78 52.22 64.9 46.36 55.21,B-2BHK type1-2,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-0902,49.29 56.67,46.36 47.27 52.22 56.97 52.22 61.1 46.36 51.4,B-2BHK type1-2,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-1002,49.3 52.87,46.37 43.46 52.23 53.16 52.23 57.29 46.37 47.59,B-2BHK type1-2,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-1302,49.38 43.02,47.18 33.79 51.58 42.49 51.58 47.25 47.18 38.55,B-2BHK type1-2,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-1402,49.38 38.25,47.18 29.02 51.58 37.73 51.58 42.49 47.18 33.79,B-2BHK type1-2,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-1502,49.38 33.49,47.18 24.26 51.58 32.97 51.58 37.73 47.18 29.02,B-2BHK type1-2,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-1602,49.38 28.73,47.18 19.5 51.58 28.21 51.58 32.97 47.18 24.26,B-2BHK type1-2,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-1702,49.38 23.97,47.18 14.74 51.58 23.44 51.58 28.21 47.18 19.5,B-2BHK type1-2,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-0003,44.66 88.1,44.66 88.1 44.66 88.1 44.66 88.1 44.66 88.1,C-2BHK type1-3,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-0103,44.63 84.13,44.64 84.13 44.64 84.13 44.64 84.13 44.64 84.13,C-2BHK type1-3,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-0203,44.62 80.17,44.62 80.17 44.62 80.17 44.62 80.17 44.62 80.17,C-2BHK type1-3,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-0303,44.59 76.2,44.59 76.2 44.59 76.2 44.59 76.2 44.59 76.2,C-2BHK type1-3,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-0403,44.57 72.23,44.57 72.23 44.57 72.23 44.57 72.23 44.57 72.23,C-2BHK type1-3,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-0503,44.54 68.26,44.54 68.26 44.54 68.26 44.54 68.26 44.54 68.26,C-2BHK type1-3,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-0603,44.51 64.29,44.52 64.29 44.52 64.29 44.52 64.29 44.52 64.29,C-2BHK type1-3,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-0703,44.49 60.33,44.49 60.33 44.49 60.33 44.49 60.33 44.49 60.33,C-2BHK type1-3,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-0803,44.47 56.36,44.47 56.36 44.47 56.36 44.47 56.36 44.47 56.36,C-2BHK type1-3,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-0903,44.45 52.39,44.45 52.39 44.45 52.39 44.45 52.39 44.45 52.39,C-2BHK type1-3,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-1003,44.42 48.42,44.42 48.42 44.42 48.42 44.42 48.42 44.42 48.42,C-2BHK type1-3,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-1103,44.4 44.45,44.4 44.45 44.4 44.45 44.4 44.45 44.4 44.45,C-2BHK type1-3,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-1203,44.37 40.48,44.37 40.48 44.37 40.48 44.37 40.48 44.37 40.48,C-2BHK type1-3,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-1303,44.35 36.52,44.35 36.52 44.35 36.52 44.35 36.52 44.35 36.52,C-2BHK type1-3,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-1403,44.32 32.55,44.33 32.55 44.33 32.55 44.33 32.55 44.33 32.55,C-2BHK type1-3,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-1503,44.3 28.58,44.3 28.58 44.3 28.58 44.3 28.58 44.3 28.58,C-2BHK type1-3,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-1603,44.28 24.61,44.27 24.61 44.27 24.61 44.27 24.61 44.27 24.61,C-2BHK type1-3,tow-b-ang-0-tb.png,
-Tower B,0,tow-b-ang-0.jpg,B-1703,44.25 20.64,44.25 20.64 44.25 20.64 44.25 20.64 44.25 20.64,C-2BHK type1-3,tow-b-ang-0-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-0004,51.59 91.75,48.65 82.35 54.51 92.05 54.51 96.17 48.65 86.48,C-2BHK type1-4,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-0104,51.59 87.79,48.66 78.38 54.52 88.08 54.52 92.21 48.66 82.51,C-2BHK type1-4,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-0204,51.6 83.82,48.67 74.41 54.53 84.11 54.53 88.24 48.67 78.54,C-2BHK type1-4,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-0304,51.6 79.85,48.67 70.44 54.53 80.14 54.53 84.27 48.67 74.57,C-2BHK type1-4,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-0404,51.61 75.88,48.68 66.48 54.54 76.17 54.54 80.3 48.68 70.6,C-2BHK type1-4,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-0504,51.62 71.91,48.69 62.51 54.55 72.21 54.55 76.33 48.69 66.63,C-2BHK type1-4,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-0604,51.63 67.94,48.7 58.54 54.56 68.24 54.56 72.37 48.7 62.67,C-2BHK type1-4,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-0704,51.64 63.98,48.71 54.57 54.57 64.27 54.57 68.4 48.71 58.7,C-2BHK type1-4,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-0804,51.65 60.01,48.71 50.6 54.58 60.3 54.58 64.43 48.71 54.73,C-2BHK type1-4,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-0904,51.65 56.04,48.72 46.63 54.58 56.33 54.58 60.46 48.72 50.76,C-2BHK type1-4,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-1004,51.66 52.07,48.73 42.67 54.59 52.37 54.59 56.49 48.73 46.79,C-2BHK type1-4,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-1104,51.67 48.1,48.74 38.7 54.6 48.4 54.6 52.52 48.74 42.83,C-2BHK type1-4,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-1204,51.68 44.13,48.74 34.73 54.6 44.43 54.6 48.56 48.74 38.86,C-2BHK type1-4,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-1304,51.68 40.17,48.75 30.76 54.61 40.46 54.61 44.59 48.75 34.89,C-2BHK type1-4,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-1404,51.7 36.2,48.76 26.79 54.62 36.49 54.62 40.62 48.76 30.92,C-2BHK type1-4,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-1504,51.7 32.23,48.77 22.83 54.63 32.52 54.63 36.65 48.77 26.95,C-2BHK type1-4,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-1604,51.71 28.26,48.78 18.86 54.64 28.56 54.64 32.68 48.78 22.98,C-2BHK type1-4,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-1704,51.71 24.29,48.78 14.89 54.64 24.59 54.64 28.71 48.78 19.02,C-2BHK type1-4,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-0001,45.91 90.16,42.98 80.75 48.84 90.45 48.84 94.58 42.98 84.88,B-2BHK type1-1,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-0101,45.89 86.36,42.96 76.95 48.82 86.65 48.82 90.78 42.96 81.08,B-2BHK type1-1,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-0201,45.88 82.55,42.95 73.14 48.81 82.84 48.81 86.97 42.95 77.27,B-2BHK type1-1,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-0301,45.86 78.74,42.93 69.33 48.79 79.03 48.79 83.16 42.93 73.46,B-2BHK type1-1,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-0401,45.84 74.93,42.91 65.52 48.77 75.22 48.77 79.35 42.91 69.65,B-2BHK type1-1,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-0501,45.82 71.12,42.89 61.71 48.75 71.41 48.75 75.54 42.89 65.84,B-2BHK type1-1,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-0601,45.81 67.31,42.87 57.9 48.73 67.6 48.73 71.73 42.87 62.03,B-2BHK type1-1,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-0701,45.79 63.5,42.85 54.1 48.71 63.79 48.71 67.92 42.85 58.22,B-2BHK type1-1,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-0801,45.76 59.69,42.83 50.29 48.69 59.98 48.69 64.11 42.83 54.41,B-2BHK type1-1,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-0901,45.74 55.88,42.81 46.48 48.67 56.17 48.67 60.3 42.81 50.6,B-2BHK type1-1,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-1001,45.73 52.07,42.79 42.67 48.66 52.37 48.66 56.49 42.79 46.79,B-2BHK type1-1,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-1301,45.63 40.64,45.63 40.64 45.63 40.64 45.63 40.64 45.63 40.64,B-2BHK type1-1,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-1401,45.62 36.36,45.61 36.36 45.61 36.36 45.61 36.36 45.61 36.36,B-2BHK type1-1,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-1501,45.6 32.07,45.6 32.07 45.6 32.07 45.6 32.07 45.6 32.07,B-2BHK type1-1,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-1601,45.59 27.79,45.59 27.79 45.59 27.79 45.59 27.79 45.59 27.79,B-2BHK type1-1,tow-b-ang-180-tb.png,
-Tower B,180,tow-b-ang-180.jpg,B-1701,45.58 23.5,45.58 23.5 45.58 23.5 45.58 23.5 45.58 23.5,B-2BHK type1-1,tow-b-ang-180-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-0002,51.95 90.33,49.01 80.92 54.88 90.62 54.88 94.75 49.01 85.05,B-2BHK type1-2,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-0102,51.95 86.52,49.02 77.11 54.88 86.81 54.88 90.94 49.02 81.24,B-2BHK type1-2,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-0202,51.95 82.71,49.02 73.3 54.88 83 54.88 87.13 49.02 77.43,B-2BHK type1-2,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-0302,51.96 78.9,49.03 69.49 54.89 79.19 54.89 83.32 49.03 73.62,B-2BHK type1-2,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-0402,51.96 75.09,49.03 65.68 54.89 75.38 54.89 79.51 49.03 69.81,B-2BHK type1-2,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-0502,51.96 71.28,49.03 61.87 54.89 71.57 54.89 75.7 49.03 66,B-2BHK type1-2,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-0602,51.97 67.47,49.04 58.06 54.9 67.76 54.9 71.89 49.04 62.19,B-2BHK type1-2,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-0702,51.97 63.66,49.04 54.25 54.9 63.95 54.9 68.08 49.04 58.38,B-2BHK type1-2,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-0802,51.98 59.85,49.04 50.44 54.9 60.14 54.9 64.27 49.04 54.57,B-2BHK type1-2,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-0902,51.98 56.04,49.05 46.63 54.91 56.33 54.91 60.46 49.05 50.76,B-2BHK type1-2,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-1002,51.98 52.23,49.05 42.83 54.91 52.52 54.91 56.65 49.05 46.95,B-2BHK type1-2,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-1102,51.99 48.42,49.05 39.02 54.92 48.71 54.92 52.84 49.05 43.14,B-2BHK type1-2,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-1202,51.99 44.61,49.06 35.21 54.92 44.9 54.92 49.03 49.06 39.33,B-2BHK type1-2,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-1302,52 40.8,49.06 31.4 54.92 41.1 54.92 45.22 49.06 35.52,B-2BHK type1-2,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-1402,52 36.99,49.07 27.59 54.93 37.29 54.93 41.41 49.07 31.71,B-2BHK type1-2,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-1502,52 33.18,49.07 23.78 54.93 33.48 54.93 37.6 49.07 27.9,B-2BHK type1-2,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-1602,52.01 29.37,49.07 19.97 54.93 29.67 54.93 33.79 49.07 24.1,B-2BHK type1-2,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-1702,52.01 25.56,49.08 16.16 54.94 25.86 54.94 29.98 49.08 20.29,B-2BHK type1-2,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-0003,45.99 90.01,45.99 90.01 45.99 90.01 45.99 90.01 45.99 90.01,C-2BHK type1-3,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-0103,45.97 86.36,45.97 86.36 45.97 86.36 45.97 86.36 45.97 86.36,C-2BHK type1-3,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-0203,45.95 82.71,45.95 82.71 45.95 82.71 45.95 82.71 45.95 82.71,C-2BHK type1-3,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-0303,45.93 79.06,45.93 79.06 45.93 79.06 45.93 79.06 45.93 79.06,C-2BHK type1-3,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-0403,45.91 75.4,45.91 75.4 45.91 75.4 45.91 75.4 45.91 75.4,C-2BHK type1-3,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-0503,45.89 71.75,45.89 71.75 45.89 71.75 45.89 71.75 45.89 71.75,C-2BHK type1-3,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-0603,45.87 68.1,45.87 68.1 45.87 68.1 45.87 68.1 45.87 68.1,C-2BHK type1-3,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-0703,45.85 64.45,45.85 64.45 45.85 64.45 45.85 64.45 45.85 64.45,C-2BHK type1-3,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-0803,45.84 60.8,45.83 60.8 45.83 60.8 45.83 60.8 45.83 60.8,C-2BHK type1-3,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-0903,45.82 57.15,45.81 57.15 45.81 57.15 45.81 57.15 45.81 57.15,C-2BHK type1-3,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-1003,45.8 53.5,45.79 53.5 45.79 53.5 45.79 53.5 45.79 53.5,C-2BHK type1-3,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-1303,45.91 41.44,42.97 32.03 48.84 41.73 48.84 45.86 42.97 36.16,C-2BHK type1-3,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-1403,45.88 37.47,42.95 28.06 48.81 37.76 48.81 41.89 42.95 32.19,C-2BHK type1-3,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-1503,45.85 33.5,42.92 24.1 48.78 33.79 48.78 37.92 42.92 28.22,C-2BHK type1-3,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-1603,45.83 29.53,42.9 20.13 48.76 29.83 48.76 33.95 42.9 24.25,C-2BHK type1-3,tow-c-ang-0-tb.png,
-Tower C,0,tow-c-ang-0.jpg,C-1703,45.81 25.56,42.87 16.16 48.73 25.86 48.73 29.98 42.87 20.29,C-2BHK type1-3,tow-c-ang-0-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-0004,52.76 91.75,49.83 82.34 55.69 92.04 55.69 96.17 49.83 86.47,C-2BHK type1-4,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-0104,52.77 87.94,49.84 78.54 55.7 88.24 55.7 92.37 49.84 82.67,C-2BHK type1-4,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-0204,52.78 84.13,49.85 74.73 55.71 84.43 55.71 88.56 49.85 78.86,C-2BHK type1-4,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-0304,52.79 80.33,49.86 70.92 55.73 80.62 55.73 84.75 49.86 75.05,C-2BHK type1-4,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-0404,52.81 76.52,49.88 67.11 55.74 76.81 55.74 80.94 49.88 71.24,C-2BHK type1-4,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-0504,52.81 72.71,49.89 63.3 55.75 73 55.75 77.13 49.89 67.43,C-2BHK type1-4,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-0604,52.83 68.9,49.9 59.49 55.76 69.19 55.76 73.32 49.9 63.62,C-2BHK type1-4,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-0704,52.84 65.09,49.91 55.68 55.77 65.38 55.77 69.51 49.91 59.81,C-2BHK type1-4,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-0804,52.85 61.28,49.92 51.87 55.78 61.57 55.78 65.7 49.92 56,C-2BHK type1-4,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-0904,52.87 57.47,49.94 48.06 55.8 57.76 55.8 61.89 49.94 52.19,C-2BHK type1-4,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-1004,52.88 53.66,49.95 44.25 55.81 53.95 55.81 58.08 49.95 48.38,C-2BHK type1-4,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-1304,52.9 42.86,49.97 33.45 55.83 43.15 55.83 47.28 49.97 37.58,C-2BHK type1-4,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-1404,52.91 38.58,49.98 29.17 55.84 38.87 55.84 43 49.98 33.3,C-2BHK type1-4,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-1504,52.92 34.29,49.99 24.89 55.85 34.59 55.85 38.71 49.99 29.02,C-2BHK type1-4,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-1604,52.93 30.01,50 20.6 55.86 30.3 55.86 34.43 50 24.73,C-2BHK type1-4,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-1704,52.94 25.72,50.01 16.32 55.87 26.02 55.87 30.14 50.01 20.44,C-2BHK type1-4,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-0001,42.52 86.67,39.59 77.27 45.45 86.97 45.45 91.1 39.59 81.4,B-2BHK type1-1,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-0101,42.47 82.87,39.54 73.46 45.4 83.16 45.4 87.29 39.54 77.59,B-2BHK type1-1,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-0201,42.42 79.06,39.5 69.65 45.36 79.35 45.36 83.48 39.5 73.78,B-2BHK type1-1,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-0301,42.38 75.25,39.45 65.84 45.31 75.54 45.31 79.67 39.45 69.97,B-2BHK type1-1,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-0401,42.34 71.44,39.41 62.03 45.27 71.73 45.27 75.86 39.41 66.16,B-2BHK type1-1,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-0501,42.29 67.63,39.36 58.22 45.22 67.92 45.22 72.05 39.36 62.35,B-2BHK type1-1,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-0601,42.25 63.83,39.32 54.42 45.18 64.12 45.18 68.25 39.32 58.55,B-2BHK type1-1,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-0701,42.2 60.02,39.27 50.61 45.13 60.31 45.13 64.44 39.27 54.74,B-2BHK type1-1,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-0801,42.16 56.21,39.23 46.8 45.09 56.5 45.09 60.63 39.23 50.93,B-2BHK type1-1,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-0901,42.11 52.4,39.18 42.99 45.04 52.69 45.04 56.82 39.18 47.12,B-2BHK type1-1,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-1001,42.07 48.59,39.14 39.18 45 48.88 45 53.01 39.14 43.31,B-2BHK type1-1,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-1101,42.03 44.78,39.09 35.37 44.95 45.07 44.95 49.2 39.09 39.5,B-2BHK type1-1,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-1201,41.98 40.98,39.04 31.57 44.9 41.27 44.9 45.4 39.04 35.7,B-2BHK type1-1,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-1301,41.93 37.17,39 27.76 44.86 37.46 44.86 41.59 39 31.89,B-2BHK type1-1,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-1401,41.89 33.36,38.96 23.95 44.82 33.65 44.82 37.78 38.96 28.08,B-2BHK type1-1,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-1501,41.84 29.55,38.91 20.14 44.77 29.84 44.77 33.97 38.91 24.27,B-2BHK type1-1,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-1601,41.79 25.74,38.86 16.33 44.73 26.03 44.73 30.16 38.86 20.46,B-2BHK type1-1,tow-c-ang-180-tb.png,
-Tower C,180,tow-c-ang-180.jpg,C-1701,41.75 21.93,38.82 12.52 44.68 22.22 44.68 26.35 38.82 16.65,B-2BHK type1-1,tow-c-ang-180-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-0002,53.64 89.06,51.44 86.67 55.84 86.67 55.84 91.44 51.44 91.44,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-0102,53.66 85.4,51.47 83.02 55.86 83.02 55.86 87.79 51.47 87.79,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-0202,53.68 82.07,51.48 79.69 55.88 79.69 55.88 84.45 51.48 84.45,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-0302,53.7 78.42,51.5 76.04 55.9 76.04 55.9 80.8 51.5 80.8,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-0402,53.72 75.09,51.52 72.71 55.91 72.71 55.91 77.47 51.52 77.47,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-0502,53.74 71.75,51.53 69.37 55.93 69.37 55.93 74.13 51.53 74.13,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-0602,53.75 68.42,51.55 66.04 55.95 66.04 55.95 70.8 51.55 70.8,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-0702,53.77 65.09,51.57 62.71 55.96 62.71 55.96 67.47 51.57 67.47,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-0802,53.79 61.12,51.59 58.74 55.99 58.74 55.99 63.5 51.59 63.5,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-0902,53.81 57.15,51.62 54.77 56.01 54.77 56.01 59.53 51.62 59.53,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-01002,53.84 53.18,51.64 50.8 56.04 50.8 56.04 55.56 51.64 55.56,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-01102,53.85 50.48,51.65 48.1 56.05 48.1 56.05 52.87 51.65 52.87,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-01202,53.88 46.52,51.67 44.13 56.07 44.13 56.07 48.9 51.67 48.9,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-01302,53.9 42.55,51.7 40.17 56.1 40.17 56.1 44.93 51.7 44.93,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-01402,53.92 38.58,51.72 36.2 56.12 36.2 56.12 40.96 51.72 40.96,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-01502,53.94 34.93,51.74 32.55 56.14 32.55 56.14 37.31 51.74 37.31,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-01602,53.97 30.96,51.77 28.58 56.16 28.58 56.16 33.34 51.77 33.34,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-01702,53.99 26.99,51.79 24.61 56.19 24.61 56.19 29.37 51.79 29.37,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-0003,43.63 85.87,43.62 85.87 43.62 85.87 43.62 85.87 43.62 85.87,E-3BHK type2-3,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-0103,43.62 82.08,43.62 82.08 43.62 82.08 43.62 82.08 43.62 82.08,E-3BHK type2-3,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-0203,43.6 78.59,43.6 78.59 43.6 78.59 43.6 78.59 43.6 78.59,E-3BHK type2-3,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-0303,43.59 75.72,43.59 75.72 43.59 75.72 43.59 75.72 43.59 75.72,E-3BHK type2-3,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-0403,43.57 72.55,43.57 72.55 43.57 72.55 43.57 72.55 43.57 72.55,E-3BHK type2-3,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-0503,43.55 68.74,43.55 68.74 43.55 68.74 43.55 68.74 43.55 68.74,E-3BHK type2-3,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-0603,43.53 65.25,43.53 65.25 43.53 65.25 43.53 65.25 43.53 65.25,E-3BHK type2-3,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-0703,43.51 61.75,43.51 61.75 43.51 61.75 43.51 61.75 43.51 61.75,E-3BHK type2-3,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-0803,43.49 58.58,43.49 58.58 43.49 58.58 43.49 58.58 43.49 58.58,E-3BHK type2-3,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-0903,43.47 55.09,43.47 55.09 43.47 55.09 43.47 55.09 43.47 55.09,E-3BHK type2-3,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-01003,43.45 51.29,43.45 51.29 43.45 51.29 43.45 51.29 43.45 51.29,E-3BHK type2-3,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-01303,43.34 40.02,41.14 37.63 45.54 37.63 45.54 42.4 41.14 42.4,E-3BHK type2-3,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-01403,43.32 36.05,41.12 33.67 45.51 33.67 45.51 38.43 41.12 38.43,E-3BHK type2-3,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-01503,43.29 32.08,41.09 29.7 45.49 29.7 45.49 34.46 41.09 34.46,E-3BHK type2-3,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-01603,43.27 28.11,41.07 25.73 45.47 25.73 45.47 30.49 41.07 30.49,E-3BHK type2-3,tow-e-ang-0-tb.png,
-Tower E,0,tow-e-ang-0.jpg,E-01703,43.63 85.87,43.62 85.87 43.62 85.87 43.62 85.87 43.62 85.87,E-3BHK type2-3,tow-e-ang-0-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-0004,53.13 87.48,53.14 87.48 53.14 87.48 53.14 87.48 53.14 87.48,E-3BHK type2-4,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-0104,53.16 83.67,53.16 83.67 53.16 83.67 53.16 83.67 53.16 83.67,E-3BHK type2-4,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-0204,53.18 80.17,53.18 80.17 53.18 80.17 53.18 80.17 53.18 80.17,E-3BHK type2-4,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-0304,53.2 77,53.2 77 53.2 77 53.2 77 53.2 77,E-3BHK type2-4,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-0404,53.22 73.51,53.22 73.51 53.22 73.51 53.22 73.51 53.22 73.51,E-3BHK type2-4,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-0504,53.25 69.7,53.25 69.7 53.25 69.7 53.25 69.7 53.25 69.7,E-3BHK type2-4,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-0604,53.27 66.52,53.27 66.52 53.27 66.52 53.27 66.52 53.27 66.52,E-3BHK type2-4,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-0704,53.29 63.35,53.29 63.35 53.29 63.35 53.29 63.35 53.29 63.35,E-3BHK type2-4,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-0804,53.3 60.18,53.3 60.18 53.3 60.18 53.3 60.18 53.3 60.18,E-3BHK type2-4,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-0904,53.32 56.37,53.33 56.37 53.33 56.37 53.33 56.37 53.33 56.37,E-3BHK type2-4,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-01004,53.35 53.5,53.35 53.5 53.35 53.5 53.35 53.5 53.35 53.5,E-3BHK type2-4,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-01304,53.51 42.08,53.51 42.08 53.51 42.08 53.51 42.08 53.51 42.08,E-3BHK type2-4,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-01404,53.52 38.59,53.53 38.59 53.53 38.59 53.53 38.59 53.53 38.59,E-3BHK type2-4,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-01504,53.55 34.46,53.56 34.46 53.56 34.46 53.56 34.46 53.56 34.46,E-3BHK type2-4,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-01604,53.59 30.65,53.59 30.65 53.59 30.65 53.59 30.65 53.59 30.65,E-3BHK type2-4,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-01704,53.61 26.84,53.61 26.84 53.61 26.84 53.61 26.84 53.61 26.84,E-3BHK type2-4,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-0001,43.21 84.14,43.2 84.14 43.2 84.14 43.2 84.14 43.2 84.14,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-0101,43.19 80.33,43.19 80.33 43.19 80.33 43.19 80.33 43.19 80.33,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-0201,43.17 76.84,43.17 76.84 43.17 76.84 43.17 76.84 43.17 76.84,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-0301,43.15 73.67,43.15 73.67 43.15 73.67 43.15 73.67 43.15 73.67,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-0401,43.14 70.49,43.14 70.49 43.14 70.49 43.14 70.49 43.14 70.49,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-0501,43.12 67,43.12 67 43.12 67 43.12 67 43.12 67,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-0601,43.11 63.83,43.11 63.83 43.11 63.83 43.11 63.83 43.11 63.83,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-0701,43.1 60.33,43.09 60.33 43.09 60.33 43.09 60.33 43.09 60.33,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-0801,43.08 57.16,43.08 57.16 43.08 57.16 43.08 57.16 43.08 57.16,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-0901,43.06 53.67,43.06 53.67 43.06 53.67 43.06 53.67 43.06 53.67,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-01001,43.04 50.5,43.04 50.5 43.04 50.5 43.04 50.5 43.04 50.5,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-01101,43.03 47,43.03 47 43.03 47 43.03 47 43.03 47,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-01201,43.01 43.83,43.01 43.83 43.01 43.83 43.01 43.83 43.01 43.83,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-01301,43 40.02,43 40.02 43 40.02 43 40.02 43 40.02,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-01401,42.99 36.21,42.98 36.21 42.98 36.21 42.98 36.21 42.98 36.21,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-01501,42.97 32.4,42.97 32.4 42.97 32.4 42.97 32.4 42.97 32.4,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-01601,42.95 28.6,42.95 28.6 42.95 28.6 42.95 28.6 42.95 28.6,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
-Tower E,180,tow-e-ang-180.jpg,E-01701,42.93 24.79,42.93 24.79 42.93 24.79 42.93 24.79 42.93 24.79,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-0002,53.28 91.1,51.08 88.71 55.48 88.71 55.48 93.48 51.08 93.48,G-3BHK type2-2,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-0102,53.29 87.48,51.1 85.1 55.49 85.1 55.49 89.87 51.1 89.87,G-3BHK type2-2,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-0202,53.35 82.87,51.15 80.48 55.55 80.48 55.55 85.25 51.15 85.25,G-3BHK type2-2,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-0302,53.37 79.53,51.18 77.15 55.57 77.15 55.57 81.91 51.18 81.91,G-3BHK type2-2,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-0402,53.4 76.52,51.2 74.13 55.59 74.13 55.59 78.9 51.2 78.9,G-3BHK type2-2,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-0502,53.42 72.55,51.23 70.17 55.62 70.17 55.62 74.93 51.23 74.93,G-3BHK type2-2,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-0602,53.45 69.21,51.25 66.83 55.64 66.83 55.64 71.6 51.25 71.6,G-3BHK type2-2,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-0702,53.48 65.56,51.28 63.18 55.67 63.18 55.67 67.94 51.28 67.94,G-3BHK type2-2,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-0802,53.51 61.6,51.31 59.21 55.7 59.21 55.7 63.98 51.31 63.98,G-3BHK type2-2,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-0902,53.53 58.26,51.33 55.88 55.73 55.88 55.73 60.64 51.33 60.64,G-3BHK type2-2,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-01002,53.56 54.61,51.36 52.23 55.75 52.23 55.75 56.99 51.36 56.99,G-3BHK type2-2,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-01302,53.56 43.65,51.37 41.27 55.76 41.27 55.76 46.03 51.37 46.03,G-3BHK type2-2,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-01402,53.58 39.4,51.38 37.02 55.78 37.02 55.78 41.78 51.38 41.78,G-3BHK type2-2,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-01502,53.59 35.12,51.39 32.74 55.79 32.74 55.79 37.5 51.39 37.5,G-3BHK type2-2,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-01602,53.6 31.15,51.41 28.77 55.8 28.77 55.8 33.53 51.41 33.53,G-3BHK type2-2,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-01702,53.62 26.87,51.42 24.49 55.81 24.49 55.81 29.25 51.42 29.25,G-3BHK type2-2,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-0003,42.68 88.08,40.48 85.7 44.88 85.7 44.88 90.46 40.48 90.46,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-0103,42.66 83.82,40.46 81.44 44.85 81.44 44.85 86.2 40.46 86.2,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-0203,42.62 80.48,40.43 78.1 44.82 78.1 44.82 82.87 40.43 82.87,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-0303,42.6 76.52,40.4 74.13 44.8 74.13 44.8 78.9 40.4 78.9,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-0403,42.57 73.18,40.37 70.8 44.77 70.8 44.77 75.56 40.37 75.56,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-0503,42.55 69.85,40.35 67.47 44.74 67.47 44.74 72.23 40.35 72.23,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-0603,42.52 66.52,40.32 64.13 44.71 64.13 44.71 68.9 40.32 68.9,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-0703,42.49 63.18,40.29 60.8 44.69 60.8 44.69 65.56 40.29 65.56,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-0803,42.46 59.85,40.26 57.47 44.66 57.47 44.66 62.23 40.26 62.23,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-0903,42.44 55.88,40.24 53.5 44.63 53.5 44.63 58.26 40.24 58.26,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-01003,42.41 52.23,40.21 49.85 44.6 49.85 44.6 54.61 40.21 54.61,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-01103,42.38 48.27,40.18 45.89 44.58 45.89 44.58 50.65 40.18 50.65,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-01203,42.35 44.61,40.15 42.23 44.55 42.23 44.55 46.99 40.15 46.99,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-01303,42.33 40.96,40.13 38.58 44.52 38.58 44.52 43.34 40.13 43.34,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-01403,42.3 36.99,40.1 34.61 44.5 34.61 44.5 39.37 40.1 39.37,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-01503,42.27 32.71,40.07 30.33 44.47 30.33 44.47 35.1 40.07 35.1,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-01603,42.22 28.47,40.03 26.09 44.42 26.09 44.42 30.85 40.03 30.85,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
-Tower G,0,tow-g-ang-0.jpg,G-01703,42.15 24.6,39.96 22.21 44.35 22.21 44.35 26.98 39.96 26.98,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-0001,43.92 85.09,41.72 82.71 46.12 82.71 46.12 87.47 41.72 87.47,G-3BHK type2-1,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-0101,43.89 81.75,41.69 79.37 46.09 79.37 46.09 84.13 41.69 84.13,G-3BHK type2-1,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-0201,43.85 78.1,41.66 75.72 46.05 75.72 46.05 80.48 41.66 80.48,G-3BHK type2-1,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-0301,43.82 74.77,41.63 72.39 46.02 72.39 46.02 77.15 41.63 77.15,G-3BHK type2-1,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-0401,43.79 71.12,41.59 68.74 45.99 68.74 45.99 73.5 41.59 73.5,G-3BHK type2-1,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-0501,43.77 68.11,41.57 65.73 45.96 65.73 45.96 70.49 41.57 70.49,G-3BHK type2-1,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-0601,43.73 64.77,41.53 62.39 45.93 62.39 45.93 67.15 41.53 67.15,G-3BHK type2-1,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-0701,43.7 61.44,41.5 59.06 45.9 59.06 45.9 63.82 41.5 63.82,G-3BHK type2-1,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-0801,43.66 57.15,41.46 54.77 45.85 54.77 45.85 59.53 41.46 59.53,G-3BHK type2-1,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-0901,43.63 54.14,41.43 51.76 45.83 51.76 45.83 56.52 41.43 56.52,G-3BHK type2-1,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-01001,43.6 51.13,41.4 48.75 45.8 48.75 45.8 53.51 41.4 53.51,G-3BHK type2-1,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-01301,43.37 40,41.17 37.62 45.57 37.62 45.57 42.38 41.17 42.38,G-3BHK type2-1,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-01401,43.37 36.03,41.17 33.65 45.57 33.65 45.57 38.41 41.17 38.41,G-3BHK type2-1,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-01501,43.37 32.06,41.17 29.68 45.57 29.68 45.57 34.44 41.17 34.44,G-3BHK type2-1,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-01601,43.37 28.1,41.17 25.71 45.57 25.71 45.57 30.48 41.17 30.48,G-3BHK type2-1,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-01701,43.37 24.13,41.17 21.75 45.57 21.75 45.57 26.51 41.17 26.51,G-3BHK type2-1,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-0004,53.79 88.42,51.59 86.04 55.99 86.04 55.99 90.8 51.59 90.8,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-0104,53.81 84.46,51.61 82.08 56.01 82.08 56.01 86.84 51.61 86.84,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-0204,53.83 80.81,51.63 78.43 56.03 78.43 56.03 83.19 51.63 83.19,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-0304,53.85 77.48,51.65 75.1 56.04 75.1 56.04 79.86 51.65 79.86,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-0404,53.86 73.83,51.67 71.44 56.07 71.44 56.07 76.21 51.67 76.21,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-0504,53.88 70.81,51.68 68.43 56.08 68.43 56.08 73.19 51.68 73.19,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-0604,53.9 67.16,51.7 64.78 56.1 64.78 56.1 69.54 51.7 69.54,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-0704,53.92 63.51,51.72 61.13 56.12 61.13 56.12 65.89 51.72 65.89,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-0804,53.94 59.86,51.74 57.48 56.14 57.48 56.14 62.24 51.74 62.24,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-0904,53.96 55.89,51.77 53.51 56.16 53.51 56.16 58.27 51.77 58.27,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-01004,53.98 51.92,51.79 49.54 56.18 49.54 56.18 54.3 51.79 54.3,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-01104,53.99 48.6,51.8 46.21 56.19 46.21 56.19 50.98 51.8 50.98,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-01204,54.01 45.57,51.82 43.19 56.21 43.19 56.21 47.95 51.82 47.95,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-01304,54.04 41.29,51.84 38.9 56.24 38.9 56.24 43.67 51.84 43.67,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-01404,54.07 37.32,51.87 34.94 56.26 34.94 56.26 39.7 51.87 39.7,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-01504,54.08 33.67,51.89 31.29 56.28 31.29 56.28 36.05 51.89 36.05,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-01604,54.1 29.71,51.9 27.33 56.3 27.33 56.3 32.1 51.9 32.1,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
-Tower G,180,tow-g-ang-180.jpg,G-01704,54.14 25.41,51.94 23.03 56.33 23.03 56.33 27.79 51.94 27.79,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-0002,56.58 86.04,54.38 83.66 58.78 83.66 58.78 88.42 54.38 88.42,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-0102,56.6 82.39,54.41 80.01 58.8 80.01 58.8 84.77 54.41 84.77,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-0202,56.63 79.06,54.43 76.67 58.82 76.67 58.82 81.44 54.43 81.44,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-0302,56.65 75.4,54.45 73.02 58.85 73.02 58.85 77.79 54.45 77.79,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-0402,56.67 72.39,54.47 70.01 58.86 70.01 58.86 74.77 54.47 74.77,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-0502,56.69 69.06,54.49 66.67 58.89 66.67 58.89 71.44 54.49 71.44,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-0602,56.71 65.72,54.51 63.34 58.91 63.34 58.91 68.1 54.51 68.1,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-0702,56.74 61.75,54.54 59.37 58.94 59.37 58.94 64.13 54.54 64.13,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-0802,56.77 58.1,54.57 55.72 58.96 55.72 58.96 60.48 54.57 60.48,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-0902,56.78 55.09,54.58 52.71 58.98 52.71 58.98 57.47 54.58 57.47,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-01002,56.81 51.12,54.61 48.74 59.01 48.74 59.01 53.5 54.61 53.5,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-01102,56.84 47.15,54.64 44.77 59.04 44.77 59.04 49.53 54.64 49.53,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-01202,56.87 43.18,54.67 40.8 59.07 40.8 59.07 45.56 54.67 45.56,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-01302,56.9 39.53,54.7 37.15 59.09 37.15 59.09 41.91 54.7 41.91,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-01402,56.92 35.25,54.73 32.87 59.12 32.87 59.12 37.63 54.73 37.63,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-01502,56.95 31.6,54.75 29.21 59.15 29.21 59.15 33.98 54.75 33.98,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-01602,56.98 27.63,54.78 25.25 59.18 25.25 59.18 30.02 54.78 30.02,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-01702,57.01 23.98,54.81 21.6 59.2 21.6 59.2 26.37 54.81 26.37,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-0003,46.33 87.94,44.13 85.56 48.52 85.56 48.52 90.33 44.13 90.33,I-3BHK type2-3,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-0103,46.29 84.3,44.1 81.92 48.49 81.92 48.49 86.68 44.1 86.68,I-3BHK type2-3,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-0203,46.25 80.64,44.06 78.26 48.45 78.26 48.45 83.02 44.06 83.02,I-3BHK type2-3,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-0303,46.22 77.31,44.02 74.93 48.42 74.93 48.42 79.69 44.02 79.69,I-3BHK type2-3,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-0403,46.18 73.98,43.99 71.6 48.38 71.6 48.38 76.36 43.99 76.36,I-3BHK type2-3,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-0503,46.14 70.64,43.95 68.26 48.34 68.26 48.34 73.02 43.95 73.02,I-3BHK type2-3,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-0603,46.11 66.99,43.91 64.61 48.3 64.61 48.3 69.37 43.91 69.37,I-3BHK type2-3,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-0703,46.06 63.66,43.87 61.28 48.26 61.28 48.26 66.04 43.87 66.04,I-3BHK type2-3,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-0803,46.03 60.01,43.83 57.63 48.23 57.63 48.23 62.39 43.83 62.39,I-3BHK type2-3,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-0903,45.99 56.37,43.79 53.98 48.19 53.98 48.19 58.75 43.79 58.75,I-3BHK type2-3,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-01003,45.95 52.08,43.75 49.7 48.15 49.7 48.15 54.46 43.75 54.46,I-3BHK type2-3,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-01303,45.8 41.75,43.6 39.37 48 39.37 48 44.13 43.6 44.13,I-3BHK type2-3,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-01403,45.74 37.79,43.55 35.4 47.94 35.4 47.94 40.17 43.55 40.17,I-3BHK type2-3,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-01503,45.69 33.82,43.49 31.44 47.89 31.44 47.89 36.2 43.49 36.2,I-3BHK type2-3,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-01603,45.63 29.85,43.43 27.47 47.83 27.47 47.83 32.23 43.43 32.23,I-3BHK type2-3,tow-i-ang-0-tb.png,
-Tower I,0,tow-i-ang-0.jpg,I-01703,45.58 25.89,43.38 23.51 47.77 23.51 47.77 28.27 43.38 28.27,I-3BHK type2-3,tow-i-ang-0-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-0001,46.48 89.2,44.28 86.82 48.68 86.82 48.68 91.58 44.28 91.58,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-0101,46.43 85.25,44.23 82.87 48.63 82.87 48.63 87.63 44.23 87.63,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-0201,46.4 81.91,44.2 79.53 48.59 79.53 48.59 84.29 44.2 84.29,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-0301,46.35 78.26,44.15 75.88 48.55 75.88 48.55 80.64 44.15 80.64,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-0401,46.31 74.61,44.11 72.23 48.51 72.23 48.51 76.99 44.11 76.99,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-0501,46.28 71.6,44.08 69.22 48.48 69.22 48.48 73.98 44.08 73.98,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-0601,46.24 67.95,44.04 65.57 48.44 65.57 48.44 70.33 44.04 70.33,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-0701,46.19 63.98,43.99 61.6 48.39 61.6 48.39 66.37 43.99 66.37,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-0801,46.15 60.33,43.95 57.95 48.34 57.95 48.34 62.71 43.95 62.71,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-0901,46.1 56.37,43.9 53.98 48.29 53.98 48.29 58.75 43.9 58.75,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-01001,46.05 52.72,43.86 50.34 48.25 50.34 48.25 55.1 43.86 55.1,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-01101,46.01 49.07,43.81 46.69 48.21 46.69 48.21 51.45 43.81 51.45,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-01201,45.98 46.06,43.78 43.67 48.18 43.67 48.18 48.44 43.78 48.44,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-01301,45.93 42.09,43.74 39.71 48.13 39.71 48.13 44.47 43.74 44.47,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-01401,45.88 38.12,43.68 35.74 48.08 35.74 48.08 40.5 43.68 40.5,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-01501,45.84 34.15,43.64 31.77 48.03 31.77 48.03 36.53 43.64 36.53,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-01601,45.79 30.51,43.59 28.13 47.99 28.13 47.99 32.89 43.59 32.89,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-01701,45.73 26.22,43.53 23.84 47.93 23.84 47.93 28.6 43.53 28.6,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-0004,56.6 86.52,54.4 84.13 58.79 84.13 58.79 88.9 54.4 88.9,I-3BHK type2-4,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-0104,56.64 82.55,54.44 80.17 58.84 80.17 58.84 84.93 54.44 84.93,I-3BHK type2-4,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-0204,56.68 79.21,54.48 76.83 58.88 76.83 58.88 81.6 54.48 81.6,I-3BHK type2-4,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-0304,56.71 76.2,54.52 73.82 58.91 73.82 58.91 78.58 54.52 78.58,I-3BHK type2-4,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-0404,56.75 72.55,54.56 70.17 58.95 70.17 58.95 74.93 54.56 74.93,I-3BHK type2-4,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-0504,56.79 69.53,54.59 67.15 58.99 67.15 58.99 71.91 54.59 71.91,I-3BHK type2-4,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-0604,56.83 66.21,54.63 63.83 59.03 63.83 59.03 68.59 54.63 68.59,I-3BHK type2-4,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-0704,56.87 62.25,54.67 59.87 59.07 59.87 59.07 64.63 54.67 64.63,I-3BHK type2-4,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-0804,56.91 59.22,54.71 56.84 59.11 56.84 59.11 61.6 54.71 61.6,I-3BHK type2-4,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-0904,56.95 55.25,54.75 52.87 59.15 52.87 59.15 57.63 54.75 57.63,I-3BHK type2-4,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-01004,56.99 51.61,54.79 49.23 59.19 49.23 59.19 53.99 54.79 53.99,I-3BHK type2-4,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-01304,56.81 42.21,54.61 39.83 59.01 39.83 59.01 44.59 54.61 44.59,I-3BHK type2-4,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-01404,56.77 37.63,54.58 35.25 58.97 35.25 58.97 40.02 54.58 40.02,I-3BHK type2-4,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-01504,56.74 33.67,54.54 31.29 58.93 31.29 58.93 36.05 54.54 36.05,I-3BHK type2-4,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-01604,56.7 29.7,54.5 27.32 58.9 27.32 58.9 32.08 54.5 32.08,I-3BHK type2-4,tow-i-ang-180-tb.png,
-Tower I,180,tow-i-ang-180.jpg,I-01704,56.66 25.43,54.46 23.05 58.85 23.05 58.85 27.81 54.46 27.81,I-3BHK type2-4,tow-i-ang-180-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-0002,51.21 87.95,49.01 85.57 53.41 85.57 53.41 90.33 49.01 90.33,L-3BHK type1-2,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-0102,51.22 83.98,49.03 81.6 53.42 81.6 53.42 86.36 49.03 86.36,L-3BHK type1-2,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-0202,51.23 80.33,49.03 77.94 53.42 77.94 53.42 82.71 49.03 82.71,L-3BHK type1-2,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-0302,51.23 76.99,49.03 74.61 53.42 74.61 53.42 79.37 49.03 79.37,L-3BHK type1-2,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-0402,51.23 73.98,49.03 71.6 53.42 71.6 53.42 76.36 49.03 76.36,L-3BHK type1-2,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-0502,51.23 69.69,49.04 67.31 53.44 67.31 53.44 72.07 49.04 72.07,L-3BHK type1-2,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-0602,51.24 66.04,49.04 63.66 53.44 63.66 53.44 68.42 49.04 68.42,L-3BHK type1-2,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-0702,51.24 62.71,49.04 60.33 53.44 60.33 53.44 65.09 49.04 65.09,L-3BHK type1-2,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-0802,51.25 59.06,49.05 56.67 53.44 56.67 53.44 61.44 49.05 61.44,L-3BHK type1-2,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-0902,51.25 55.4,49.05 53.02 53.45 53.02 53.45 57.79 49.05 57.79,L-3BHK type1-2,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-01002,51.25 51.75,49.06 49.37 53.45 49.37 53.45 54.13 49.06 54.13,L-3BHK type1-2,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-01102,51.26 48.1,49.06 45.72 53.46 45.72 53.46 50.48 49.06 50.48,L-3BHK type1-2,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-01202,51.26 44.13,49.07 41.75 53.47 41.75 53.47 46.52 49.07 46.52,L-3BHK type1-2,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-01302,51.28 39.85,49.08 37.47 53.48 37.47 53.48 42.23 49.08 42.23,L-3BHK type1-2,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-01402,51.29 35.88,49.09 33.5 53.49 33.5 53.49 38.26 49.09 38.26,L-3BHK type1-2,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-01502,51.3 31.6,49.1 29.21 53.5 29.21 53.5 33.98 49.1 33.98,L-3BHK type1-2,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-01602,51.3 27.94,49.11 25.56 53.5 25.56 53.5 30.33 49.11 30.33,L-3BHK type1-2,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-01702,51.31 23.36,49.11 20.98 53.51 20.98 53.51 25.74 49.11 25.74,L-3BHK type1-2,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-0003,44.73 87.3,42.54 84.92 46.93 84.92 46.93 89.68 42.54 89.68,L-2BHK type1-3,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-0103,44.7 83.37,42.5 80.98 46.9 80.98 46.9 85.75 42.5 85.75,L-2BHK type1-3,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-0203,44.68 79.69,42.49 77.31 46.88 77.31 46.88 82.07 42.49 82.07,L-2BHK type1-3,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-0303,44.66 76.04,42.46 73.66 46.86 73.66 46.86 78.42 42.46 78.42,L-2BHK type1-3,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-0403,44.63 72.71,42.44 70.33 46.83 70.33 46.83 75.09 42.44 75.09,L-2BHK type1-3,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-0503,44.6 69.06,42.41 66.67 46.81 66.67 46.81 71.44 42.41 71.44,L-2BHK type1-3,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-0603,44.58 65.4,42.38 63.02 46.78 63.02 46.78 67.79 42.38 67.79,L-2BHK type1-3,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-0703,44.56 61.75,42.36 59.37 46.75 59.37 46.75 64.13 42.36 64.13,L-2BHK type1-3,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-0803,44.53 59.06,42.33 56.67 46.73 56.67 46.73 61.44 42.33 61.44,L-2BHK type1-3,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-0903,44.51 54.77,42.31 52.39 46.7 52.39 46.7 57.15 42.31 57.15,L-2BHK type1-3,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-01003,44.48 51.12,42.28 48.74 46.68 48.74 46.68 53.5 42.28 53.5,L-2BHK type1-3,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-01303,44.55 39.21,42.35 36.83 46.75 36.83 46.75 41.6 42.35 41.6,L-2BHK type1-3,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-01403,44.48 34.94,42.29 32.56 46.68 32.56 46.68 37.32 42.29 37.32,L-2BHK type1-3,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-01503,44.42 30.97,42.22 28.59 46.62 28.59 46.62 33.35 42.22 33.35,L-2BHK type1-3,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-01603,44.36 27.01,42.16 24.63 46.56 24.63 46.56 29.39 42.16 29.39,L-2BHK type1-3,tow-l-ang-0-tb.png,
-Tower L,0,tow-l-ang-0.jpg,L-01703,44.3 23.05,42.1 20.67 46.49 20.67 46.49 25.43 42.1 25.43,L-2BHK type1-3,tow-l-ang-0-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-0001,44.46 88.1,42.26 85.72 46.66 85.72 46.66 90.48 42.26 90.48,L-3BHK type1-1,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-0101,44.45 84.45,42.26 82.07 46.65 82.07 46.65 86.83 42.26 86.83,L-3BHK type1-1,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-0201,44.44 80.17,42.24 77.79 46.63 77.79 46.63 82.55 42.24 82.55,L-3BHK type1-1,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-0301,44.43 76.83,42.23 74.45 46.63 74.45 46.63 79.21 42.23 79.21,L-3BHK type1-1,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-0401,44.42 73.5,42.23 71.12 46.62 71.12 46.62 75.88 42.23 75.88,L-3BHK type1-1,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-0501,44.42 70.48,42.23 68.1 46.62 68.1 46.62 72.87 42.23 72.87,L-3BHK type1-1,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-0601,44.42 67.15,42.22 64.77 46.62 64.77 46.62 69.53 42.22 69.53,L-3BHK type1-1,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-0701,44.41 63.18,42.21 60.8 46.6 60.8 46.6 65.56 42.21 65.56,L-3BHK type1-1,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-0801,44.4 58.9,42.2 56.52 46.59 56.52 46.59 61.29 42.2 61.29,L-3BHK type1-1,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-0901,44.38 55.25,42.19 52.87 46.58 52.87 46.58 57.63 42.19 57.63,L-3BHK type1-1,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-01001,44.38 51.6,42.18 49.22 46.58 49.22 46.58 53.98 42.18 53.98,L-3BHK type1-1,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-01101,44.37 47.95,42.17 45.57 46.56 45.57 46.56 50.33 42.17 50.33,L-3BHK type1-1,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-01201,44.36 44.3,42.16 41.92 46.56 41.92 46.56 46.68 42.16 46.68,L-3BHK type1-1,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-01301,44.35 40.65,42.15 38.27 46.55 38.27 46.55 43.03 42.15 43.03,L-3BHK type1-1,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-01401,44.34 36.68,42.14 34.3 46.53 34.3 46.53 39.06 42.14 39.06,L-3BHK type1-1,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-01501,44.32 32.71,42.12 30.33 46.52 30.33 46.52 35.1 42.12 35.1,L-3BHK type1-1,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-01601,44.32 29.7,42.12 27.32 46.52 27.32 46.52 32.08 42.12 32.08,L-3BHK type1-1,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-01701,44.31 25.41,42.11 23.03 46.51 23.03 46.51 27.79 42.11 27.79,L-3BHK type1-1,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-0004,51.28 90.63,49.08 88.25 53.48 88.25 53.48 93.02 49.08 93.02,L-2BHK type1-4,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-0104,51.28 86.98,49.08 84.6 53.48 84.6 53.48 89.37 49.08 89.37,L-2BHK type1-4,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-0204,51.28 83.65,49.08 81.27 53.48 81.27 53.48 86.03 49.08 86.03,L-2BHK type1-4,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-0304,51.28 80.32,49.08 77.94 53.48 77.94 53.48 82.7 49.08 82.7,L-2BHK type1-4,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-0404,51.28 76.67,49.08 74.29 53.48 74.29 53.48 79.05 49.08 79.05,L-2BHK type1-4,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-0504,51.28 73.02,49.08 70.63 53.48 70.63 53.48 75.4 49.08 75.4,L-2BHK type1-4,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-0604,51.28 69.68,49.08 67.3 53.48 67.3 53.48 72.06 49.08 72.06,L-2BHK type1-4,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-0704,51.28 66.35,49.08 63.97 53.48 63.97 53.48 68.73 49.08 68.73,L-2BHK type1-4,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-0804,51.28 62.38,49.08 60 53.48 60 53.48 64.76 49.08 64.76,L-2BHK type1-4,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-0904,51.28 59.05,49.08 56.67 53.48 56.67 53.48 61.43 49.08 61.43,L-2BHK type1-4,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-01004,51.28 55.4,49.08 53.02 53.48 53.02 53.48 57.78 49.08 57.78,L-2BHK type1-4,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-01304,50.85 43.32,48.65 40.94 53.05 40.94 53.05 45.7 48.65 45.7,L-2BHK type1-4,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-01404,50.86 39.68,48.67 37.3 53.06 37.3 53.06 42.06 48.67 42.06,L-2BHK type1-4,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-01504,50.89 35.75,48.69 33.37 53.09 33.37 53.09 38.13 48.69 38.13,L-2BHK type1-4,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-01604,50.9 31.8,48.7 29.42 53.1 29.42 53.1 34.18 48.7 34.18,L-2BHK type1-4,tow-l-ang-180-tb.png,
-Tower L,180,tow-l-ang-180.jpg,L-01704,50.92 27.51,48.73 25.13 53.12 25.13 53.12 29.89 48.73 29.89,L-2BHK type1-4,tow-l-ang-180-tb.png,
+Tower A,0,tow-a-ang-0.jpg,A-002,48.08 86.2,45.15 76.79 51.01 86.49 51.01 90.62 45.15 80.92,A-3BHK type1-2,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-102,48.03 81.12,45.1 71.71 50.96 81.41 50.96 85.54 45.1 75.84,A-3BHK type1-2,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-202,47.97 76.04,45.04 66.63 50.9 76.33 50.9 80.46 45.04 70.76,A-3BHK type1-2,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-302,47.92 70.96,44.99 61.56 50.85 71.25 50.85 75.38 44.99 65.68,A-3BHK type1-2,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-402,47.87 65.88,44.94 56.48 50.8 66.17 50.8 70.3 44.94 60.6,A-3BHK type1-2,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-502,47.82 60.8,44.89 51.4 50.75 61.1 50.75 65.22 44.89 55.52,A-3BHK type1-2,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-602,47.76 55.73,44.83 46.33 50.69 56.02 50.69 60.15 44.83 50.45,A-3BHK type1-2,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-702,47.71 50.65,44.78 41.25 50.64 50.94 50.64 55.07 44.78 45.37,A-3BHK type1-2,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-802,47.66 45.57,44.73 36.17 50.59 45.87 50.59 49.99 44.73 40.29,A-3BHK type1-2,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-902,47.6 40.49,44.67 31.09 50.53 40.79 50.53 44.91 44.67 35.21,A-3BHK type1-2,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-1002,47.55 35.41,44.62 26.01 50.48 35.71 50.48 39.83 44.62 30.13,A-3BHK type1-2,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-003,40.89 79.69,37.96 69.97 43.82 79.67 43.82 84.43 37.96 74.73,A-2BHK type1-3,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-103,40.83 74.77,37.9 65.05 43.77 74.75 43.77 79.51 37.9 69.81,A-2BHK type1-3,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-203,40.78 69.85,37.85 60.13 43.71 69.83 43.71 74.59 37.85 64.89,A-2BHK type1-3,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-303,40.72 64.93,37.79 55.21 43.65 64.9 43.65 69.67 37.79 59.97,A-2BHK type1-3,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-403,40.67 60.01,37.74 50.29 43.6 59.98 43.6 64.75 37.74 55.05,A-2BHK type1-3,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-503,40.6 55.1,37.68 45.37 43.54 55.07 43.54 59.83 37.68 50.13,A-2BHK type1-3,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-603,40.55 50.17,37.62 40.45 43.48 50.15 43.48 54.91 37.62 45.21,A-2BHK type1-3,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-703,40.49 45.25,37.56 35.53 43.42 45.23 43.42 49.99 37.56 40.29,A-2BHK type1-3,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-803,40.44 40.33,37.51 30.61 43.37 40.31 43.37 45.07 37.51 35.37,A-2BHK type1-3,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-903,40.38 35.41,37.45 25.69 43.31 35.39 43.31 40.15 37.45 30.45,A-2BHK type1-3,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,0,tow-a-ang-0.jpg,A-1003,40.32 30.5,37.39 20.78 43.25 30.48 43.25 35.24 37.39 25.54,A-2BHK type1-3,tow-a-ang-0-tb.png,tow-a-ang-0-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-004,49.88 87.31,46.95 77.9 52.81 87.6 52.81 91.73 46.95 82.03,A-2BHK type1-4,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-104,49.87 82.23,46.95 72.83 52.81 82.52 52.81 86.65 46.95 76.95,A-2BHK type1-4,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-204,49.87 77.15,46.94 67.75 52.8 77.44 52.8 81.57 46.94 71.87,A-2BHK type1-4,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-304,49.86 72.07,46.93 62.67 52.79 72.37 52.79 76.49 46.93 66.79,A-2BHK type1-4,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-404,49.85 66.99,46.92 57.59 52.78 67.29 52.78 71.41 46.92 61.71,A-2BHK type1-4,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-504,49.84 61.91,46.92 52.51 52.78 62.21 52.78 66.33 46.92 56.63,A-2BHK type1-4,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-604,49.84 56.83,46.91 47.43 52.77 57.13 52.77 61.25 46.91 51.56,A-2BHK type1-4,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-704,49.83 51.75,46.9 42.35 52.76 52.05 52.76 56.17 46.9 46.48,A-2BHK type1-4,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-804,49.82 46.67,46.89 37.27 52.75 46.97 52.75 51.1 46.89 41.4,A-2BHK type1-4,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-904,49.82 41.6,46.89 32.19 52.75 41.89 52.75 46.02 46.89 36.32,A-2BHK type1-4,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-1004,49.81 36.52,46.88 27.11 52.74 36.81 52.74 40.94 46.88 31.24,A-2BHK type1-4,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-001,42.24 82.54,39.31 72.82 45.17 82.52 45.17 87.28 39.31 77.58,A-3BHK type1-1,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-101,42.21 77.63,39.28 67.9 45.14 77.6 45.14 82.37 39.28 72.67,A-3BHK type1-1,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-201,42.18 72.71,39.25 62.98 45.11 72.68 45.11 77.44 39.25 67.75,A-3BHK type1-1,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-301,42.15 67.79,39.22 58.06 45.08 67.76 45.08 72.52 39.22 62.83,A-3BHK type1-1,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-401,42.11 62.87,39.18 53.14 45.04 62.84 45.04 67.6 39.18 57.9,A-3BHK type1-1,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-501,42.08 57.94,39.15 48.22 45.01 57.92 45.01 62.68 39.15 52.98,A-3BHK type1-1,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-601,42.05 53.02,39.12 43.3 44.98 53 44.98 57.76 39.12 48.06,A-3BHK type1-1,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-701,42.02 48.1,39.09 38.38 44.95 48.08 44.95 52.84 39.09 43.14,A-3BHK type1-1,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-801,41.99 43.18,39.06 33.46 44.92 43.16 44.92 47.92 39.06 38.22,A-3BHK type1-1,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-901,41.96 38.26,39.03 28.54 44.89 38.24 44.89 43 39.03 33.3,A-3BHK type1-1,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower A,180,tow-a-ang-180.jpg,A-1001,41.92 33.34,39 23.62 44.86 33.32 44.86 38.08 39 28.38,A-3BHK type1-1,tow-a-ang-180-tb.png,tow-a-ang-180-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-002,49.23 90.95,46.3 81.55 52.16 91.25 52.16 95.37 46.3 85.67,B-2BHK type1-2,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-102,49.24 87.15,46.31 77.75 52.17 87.44 52.17 91.57 46.31 81.87,B-2BHK type1-2,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-202,49.25 83.34,46.32 73.94 52.18 83.63 52.18 87.76 46.32 78.06,B-2BHK type1-2,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-302,49.25 79.53,46.32 70.13 52.18 79.83 52.18 83.95 46.32 74.25,B-2BHK type1-2,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-402,49.26 75.72,46.33 66.32 52.19 76.02 52.19 80.14 46.33 70.44,B-2BHK type1-2,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-502,49.27 71.91,46.34 62.51 52.2 72.21 52.2 76.33 46.34 66.63,B-2BHK type1-2,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-602,49.27 68.1,46.34 58.7 52.2 68.4 52.2 72.52 46.34 62.83,B-2BHK type1-2,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-702,49.28 64.29,46.35 54.89 52.21 64.59 52.21 68.71 46.35 59.02,B-2BHK type1-2,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-802,49.29 60.48,46.36 51.08 52.22 60.78 52.22 64.9 46.36 55.21,B-2BHK type1-2,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-902,49.29 56.67,46.36 47.27 52.22 56.97 52.22 61.1 46.36 51.4,B-2BHK type1-2,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-1002,49.3 52.87,46.37 43.46 52.23 53.16 52.23 57.29 46.37 47.59,B-2BHK type1-2,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-1402,49.38 43.02,47.18 33.79 51.58 42.49 51.58 47.25 47.18 38.55,B-2BHK type1-2,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-1502,49.38 38.25,47.18 29.02 51.58 37.73 51.58 42.49 47.18 33.79,B-2BHK type1-2,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-1602,49.38 33.49,47.18 24.26 51.58 32.97 51.58 37.73 47.18 29.02,B-2BHK type1-2,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-1702,49.38 28.73,47.18 19.5 51.58 28.21 51.58 32.97 47.18 24.26,B-2BHK type1-2,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-1802,49.38 23.97,47.18 14.74 51.58 23.44 51.58 28.21 47.18 19.5,B-2BHK type1-2,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-003,44.66 88.1,44.66 88.1 44.66 88.1 44.66 88.1 44.66 88.1,C-2BHK type1-3,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-103,44.63 84.13,44.64 84.13 44.64 84.13 44.64 84.13 44.64 84.13,C-2BHK type1-3,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-203,44.62 80.17,44.62 80.17 44.62 80.17 44.62 80.17 44.62 80.17,C-2BHK type1-3,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-303,44.59 76.2,44.59 76.2 44.59 76.2 44.59 76.2 44.59 76.2,C-2BHK type1-3,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-403,44.57 72.23,44.57 72.23 44.57 72.23 44.57 72.23 44.57 72.23,C-2BHK type1-3,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-503,44.54 68.26,44.54 68.26 44.54 68.26 44.54 68.26 44.54 68.26,C-2BHK type1-3,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-603,44.51 64.29,44.52 64.29 44.52 64.29 44.52 64.29 44.52 64.29,C-2BHK type1-3,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-703,44.49 60.33,44.49 60.33 44.49 60.33 44.49 60.33 44.49 60.33,C-2BHK type1-3,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-803,44.47 56.36,44.47 56.36 44.47 56.36 44.47 56.36 44.47 56.36,C-2BHK type1-3,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-903,44.45 52.39,44.45 52.39 44.45 52.39 44.45 52.39 44.45 52.39,C-2BHK type1-3,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-1003,44.42 48.42,44.42 48.42 44.42 48.42 44.42 48.42 44.42 48.42,C-2BHK type1-3,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-1103,44.4 44.45,44.4 44.45 44.4 44.45 44.4 44.45 44.4 44.45,C-2BHK type1-3,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-1203,44.37 40.48,44.37 40.48 44.37 40.48 44.37 40.48 44.37 40.48,C-2BHK type1-3,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-1403,44.35 36.52,44.35 36.52 44.35 36.52 44.35 36.52 44.35 36.52,C-2BHK type1-3,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-1503,44.32 32.55,44.33 32.55 44.33 32.55 44.33 32.55 44.33 32.55,C-2BHK type1-3,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-1603,44.3 28.58,44.3 28.58 44.3 28.58 44.3 28.58 44.3 28.58,C-2BHK type1-3,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-1703,44.28 24.61,44.27 24.61 44.27 24.61 44.27 24.61 44.27 24.61,C-2BHK type1-3,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,0,tow-b-ang-0.jpg,B-1803,44.25 20.64,44.25 20.64 44.25 20.64 44.25 20.64 44.25 20.64,C-2BHK type1-3,tow-b-ang-0-tb.png,tow-b-ang-0-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-004,51.59 91.75,48.65 82.35 54.51 92.05 54.51 96.17 48.65 86.48,C-2BHK type1-4,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-104,51.59 87.79,48.66 78.38 54.52 88.08 54.52 92.21 48.66 82.51,C-2BHK type1-4,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-204,51.6 83.82,48.67 74.41 54.53 84.11 54.53 88.24 48.67 78.54,C-2BHK type1-4,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-304,51.6 79.85,48.67 70.44 54.53 80.14 54.53 84.27 48.67 74.57,C-2BHK type1-4,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-404,51.61 75.88,48.68 66.48 54.54 76.17 54.54 80.3 48.68 70.6,C-2BHK type1-4,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-504,51.62 71.91,48.69 62.51 54.55 72.21 54.55 76.33 48.69 66.63,C-2BHK type1-4,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-604,51.63 67.94,48.7 58.54 54.56 68.24 54.56 72.37 48.7 62.67,C-2BHK type1-4,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-704,51.64 63.98,48.71 54.57 54.57 64.27 54.57 68.4 48.71 58.7,C-2BHK type1-4,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-804,51.65 60.01,48.71 50.6 54.58 60.3 54.58 64.43 48.71 54.73,C-2BHK type1-4,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-904,51.65 56.04,48.72 46.63 54.58 56.33 54.58 60.46 48.72 50.76,C-2BHK type1-4,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-1004,51.66 52.07,48.73 42.67 54.59 52.37 54.59 56.49 48.73 46.79,C-2BHK type1-4,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-1104,51.67 48.1,48.74 38.7 54.6 48.4 54.6 52.52 48.74 42.83,C-2BHK type1-4,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-1204,51.68 44.13,48.74 34.73 54.6 44.43 54.6 48.56 48.74 38.86,C-2BHK type1-4,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-1404,51.68 40.17,48.75 30.76 54.61 40.46 54.61 44.59 48.75 34.89,C-2BHK type1-4,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-1504,51.7 36.2,48.76 26.79 54.62 36.49 54.62 40.62 48.76 30.92,C-2BHK type1-4,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-1604,51.7 32.23,48.77 22.83 54.63 32.52 54.63 36.65 48.77 26.95,C-2BHK type1-4,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-1704,51.71 28.26,48.78 18.86 54.64 28.56 54.64 32.68 48.78 22.98,C-2BHK type1-4,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-1804,51.71 24.29,48.78 14.89 54.64 24.59 54.64 28.71 48.78 19.02,C-2BHK type1-4,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-001,45.91 90.16,42.98 80.75 48.84 90.45 48.84 94.58 42.98 84.88,B-2BHK type1-1,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-101,45.89 86.36,42.96 76.95 48.82 86.65 48.82 90.78 42.96 81.08,B-2BHK type1-1,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-201,45.88 82.55,42.95 73.14 48.81 82.84 48.81 86.97 42.95 77.27,B-2BHK type1-1,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-301,45.86 78.74,42.93 69.33 48.79 79.03 48.79 83.16 42.93 73.46,B-2BHK type1-1,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-401,45.84 74.93,42.91 65.52 48.77 75.22 48.77 79.35 42.91 69.65,B-2BHK type1-1,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-501,45.82 71.12,42.89 61.71 48.75 71.41 48.75 75.54 42.89 65.84,B-2BHK type1-1,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-601,45.81 67.31,42.87 57.9 48.73 67.6 48.73 71.73 42.87 62.03,B-2BHK type1-1,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-701,45.79 63.5,42.85 54.1 48.71 63.79 48.71 67.92 42.85 58.22,B-2BHK type1-1,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-801,45.76 59.69,42.83 50.29 48.69 59.98 48.69 64.11 42.83 54.41,B-2BHK type1-1,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-901,45.74 55.88,42.81 46.48 48.67 56.17 48.67 60.3 42.81 50.6,B-2BHK type1-1,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-1001,45.73 52.07,42.79 42.67 48.66 52.37 48.66 56.49 42.79 46.79,B-2BHK type1-1,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-1401,45.63 40.64,45.63 40.64 45.63 40.64 45.63 40.64 45.63 40.64,B-2BHK type1-1,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-1501,45.62 36.36,45.61 36.36 45.61 36.36 45.61 36.36 45.61 36.36,B-2BHK type1-1,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-1601,45.6 32.07,45.6 32.07 45.6 32.07 45.6 32.07 45.6 32.07,B-2BHK type1-1,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-1701,45.59 27.79,45.59 27.79 45.59 27.79 45.59 27.79 45.59 27.79,B-2BHK type1-1,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower B,180,tow-b-ang-180.jpg,B-1801,45.58 23.5,45.58 23.5 45.58 23.5 45.58 23.5 45.58 23.5,B-2BHK type1-1,tow-b-ang-180-tb.png,tow-b-ang-180-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-002,51.95 90.33,49.01 80.92 54.88 90.62 54.88 94.75 49.01 85.05,B-2BHK type1-2,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-102,51.95 86.52,49.02 77.11 54.88 86.81 54.88 90.94 49.02 81.24,B-2BHK type1-2,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-202,51.95 82.71,49.02 73.3 54.88 83 54.88 87.13 49.02 77.43,B-2BHK type1-2,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-302,51.96 78.9,49.03 69.49 54.89 79.19 54.89 83.32 49.03 73.62,B-2BHK type1-2,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-402,51.96 75.09,49.03 65.68 54.89 75.38 54.89 79.51 49.03 69.81,B-2BHK type1-2,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-502,51.96 71.28,49.03 61.87 54.89 71.57 54.89 75.7 49.03 66,B-2BHK type1-2,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-602,51.97 67.47,49.04 58.06 54.9 67.76 54.9 71.89 49.04 62.19,B-2BHK type1-2,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-702,51.97 63.66,49.04 54.25 54.9 63.95 54.9 68.08 49.04 58.38,B-2BHK type1-2,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-802,51.98 59.85,49.04 50.44 54.9 60.14 54.9 64.27 49.04 54.57,B-2BHK type1-2,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-902,51.98 56.04,49.05 46.63 54.91 56.33 54.91 60.46 49.05 50.76,B-2BHK type1-2,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-1002,51.98 52.23,49.05 42.83 54.91 52.52 54.91 56.65 49.05 46.95,B-2BHK type1-2,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-1102,51.99 48.42,49.05 39.02 54.92 48.71 54.92 52.84 49.05 43.14,B-2BHK type1-2,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-1202,51.99 44.61,49.06 35.21 54.92 44.9 54.92 49.03 49.06 39.33,B-2BHK type1-2,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-1402,52 40.8,49.06 31.4 54.92 41.1 54.92 45.22 49.06 35.52,B-2BHK type1-2,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-1502,52 36.99,49.07 27.59 54.93 37.29 54.93 41.41 49.07 31.71,B-2BHK type1-2,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-1602,52 33.18,49.07 23.78 54.93 33.48 54.93 37.6 49.07 27.9,B-2BHK type1-2,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-1702,52.01 29.37,49.07 19.97 54.93 29.67 54.93 33.79 49.07 24.1,B-2BHK type1-2,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-1802,52.01 25.56,49.08 16.16 54.94 25.86 54.94 29.98 49.08 20.29,B-2BHK type1-2,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-003,45.99 90.01,45.99 90.01 45.99 90.01 45.99 90.01 45.99 90.01,C-2BHK type1-3,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-103,45.97 86.36,45.97 86.36 45.97 86.36 45.97 86.36 45.97 86.36,C-2BHK type1-3,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-203,45.95 82.71,45.95 82.71 45.95 82.71 45.95 82.71 45.95 82.71,C-2BHK type1-3,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-303,45.93 79.06,45.93 79.06 45.93 79.06 45.93 79.06 45.93 79.06,C-2BHK type1-3,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-403,45.91 75.4,45.91 75.4 45.91 75.4 45.91 75.4 45.91 75.4,C-2BHK type1-3,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-503,45.89 71.75,45.89 71.75 45.89 71.75 45.89 71.75 45.89 71.75,C-2BHK type1-3,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-603,45.87 68.1,45.87 68.1 45.87 68.1 45.87 68.1 45.87 68.1,C-2BHK type1-3,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-703,45.85 64.45,45.85 64.45 45.85 64.45 45.85 64.45 45.85 64.45,C-2BHK type1-3,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-803,45.84 60.8,45.83 60.8 45.83 60.8 45.83 60.8 45.83 60.8,C-2BHK type1-3,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-903,45.82 57.15,45.81 57.15 45.81 57.15 45.81 57.15 45.81 57.15,C-2BHK type1-3,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-1003,45.8 53.5,45.79 53.5 45.79 53.5 45.79 53.5 45.79 53.5,C-2BHK type1-3,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-1403,45.91 41.44,42.97 32.03 48.84 41.73 48.84 45.86 42.97 36.16,C-2BHK type1-3,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-1503,45.88 37.47,42.95 28.06 48.81 37.76 48.81 41.89 42.95 32.19,C-2BHK type1-3,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-1603,45.85 33.5,42.92 24.1 48.78 33.79 48.78 37.92 42.92 28.22,C-2BHK type1-3,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-1703,45.83 29.53,42.9 20.13 48.76 29.83 48.76 33.95 42.9 24.25,C-2BHK type1-3,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,0,tow-c-ang-0.jpg,C-1803,45.81 25.56,42.87 16.16 48.73 25.86 48.73 29.98 42.87 20.29,C-2BHK type1-3,tow-c-ang-0-tb.png,tow-c-ang-0-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-004,52.76 91.75,49.83 82.34 55.69 92.04 55.69 96.17 49.83 86.47,C-2BHK type1-4,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-104,52.77 87.94,49.84 78.54 55.7 88.24 55.7 92.37 49.84 82.67,C-2BHK type1-4,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-204,52.78 84.13,49.85 74.73 55.71 84.43 55.71 88.56 49.85 78.86,C-2BHK type1-4,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-304,52.79 80.33,49.86 70.92 55.73 80.62 55.73 84.75 49.86 75.05,C-2BHK type1-4,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-404,52.81 76.52,49.88 67.11 55.74 76.81 55.74 80.94 49.88 71.24,C-2BHK type1-4,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-504,52.81 72.71,49.89 63.3 55.75 73 55.75 77.13 49.89 67.43,C-2BHK type1-4,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-604,52.83 68.9,49.9 59.49 55.76 69.19 55.76 73.32 49.9 63.62,C-2BHK type1-4,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-704,52.84 65.09,49.91 55.68 55.77 65.38 55.77 69.51 49.91 59.81,C-2BHK type1-4,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-804,52.85 61.28,49.92 51.87 55.78 61.57 55.78 65.7 49.92 56,C-2BHK type1-4,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-904,52.87 57.47,49.94 48.06 55.8 57.76 55.8 61.89 49.94 52.19,C-2BHK type1-4,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-1004,52.88 53.66,49.95 44.25 55.81 53.95 55.81 58.08 49.95 48.38,C-2BHK type1-4,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-1404,52.9 42.86,49.97 33.45 55.83 43.15 55.83 47.28 49.97 37.58,C-2BHK type1-4,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-1504,52.91 38.58,49.98 29.17 55.84 38.87 55.84 43 49.98 33.3,C-2BHK type1-4,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-1604,52.92 34.29,49.99 24.89 55.85 34.59 55.85 38.71 49.99 29.02,C-2BHK type1-4,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-1704,52.93 30.01,50 20.6 55.86 30.3 55.86 34.43 50 24.73,C-2BHK type1-4,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-1804,52.94 25.72,50.01 16.32 55.87 26.02 55.87 30.14 50.01 20.44,C-2BHK type1-4,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-001,42.52 86.67,39.59 77.27 45.45 86.97 45.45 91.1 39.59 81.4,B-2BHK type1-1,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-101,42.47 82.87,39.54 73.46 45.4 83.16 45.4 87.29 39.54 77.59,B-2BHK type1-1,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-201,42.42 79.06,39.5 69.65 45.36 79.35 45.36 83.48 39.5 73.78,B-2BHK type1-1,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-301,42.38 75.25,39.45 65.84 45.31 75.54 45.31 79.67 39.45 69.97,B-2BHK type1-1,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-401,42.34 71.44,39.41 62.03 45.27 71.73 45.27 75.86 39.41 66.16,B-2BHK type1-1,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-501,42.29 67.63,39.36 58.22 45.22 67.92 45.22 72.05 39.36 62.35,B-2BHK type1-1,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-601,42.25 63.83,39.32 54.42 45.18 64.12 45.18 68.25 39.32 58.55,B-2BHK type1-1,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-701,42.2 60.02,39.27 50.61 45.13 60.31 45.13 64.44 39.27 54.74,B-2BHK type1-1,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-801,42.16 56.21,39.23 46.8 45.09 56.5 45.09 60.63 39.23 50.93,B-2BHK type1-1,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-901,42.11 52.4,39.18 42.99 45.04 52.69 45.04 56.82 39.18 47.12,B-2BHK type1-1,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-1001,42.07 48.59,39.14 39.18 45 48.88 45 53.01 39.14 43.31,B-2BHK type1-1,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-1101,42.03 44.78,39.09 35.37 44.95 45.07 44.95 49.2 39.09 39.5,B-2BHK type1-1,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-1201,41.98 40.98,39.04 31.57 44.9 41.27 44.9 45.4 39.04 35.7,B-2BHK type1-1,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-1401,41.93 37.17,39 27.76 44.86 37.46 44.86 41.59 39 31.89,B-2BHK type1-1,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-1501,41.89 33.36,38.96 23.95 44.82 33.65 44.82 37.78 38.96 28.08,B-2BHK type1-1,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-1601,41.84 29.55,38.91 20.14 44.77 29.84 44.77 33.97 38.91 24.27,B-2BHK type1-1,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-1701,41.79 25.74,38.86 16.33 44.73 26.03 44.73 30.16 38.86 20.46,B-2BHK type1-1,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower C,180,tow-c-ang-180.jpg,C-1801,41.75 21.93,38.82 12.52 44.68 22.22 44.68 26.35 38.82 16.65,B-2BHK type1-1,tow-c-ang-180-tb.png,tow-c-ang-180-mm.png
+Tower E,0,tow-e-ang-0.jpg,E-002,53.64 89.06,51.44 86.67 55.84 86.67 55.84 91.44 51.44 91.44,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-102,53.66 85.4,51.47 83.02 55.86 83.02 55.86 87.79 51.47 87.79,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-202,53.68 82.07,51.48 79.69 55.88 79.69 55.88 84.45 51.48 84.45,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-302,53.7 78.42,51.5 76.04 55.9 76.04 55.9 80.8 51.5 80.8,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-402,53.72 75.09,51.52 72.71 55.91 72.71 55.91 77.47 51.52 77.47,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-502,53.74 71.75,51.53 69.37 55.93 69.37 55.93 74.13 51.53 74.13,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-602,53.75 68.42,51.55 66.04 55.95 66.04 55.95 70.8 51.55 70.8,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-702,53.77 65.09,51.57 62.71 55.96 62.71 55.96 67.47 51.57 67.47,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-802,53.79 61.12,51.59 58.74 55.99 58.74 55.99 63.5 51.59 63.5,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-902,53.81 57.15,51.62 54.77 56.01 54.77 56.01 59.53 51.62 59.53,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-1002,53.84 53.18,51.64 50.8 56.04 50.8 56.04 55.56 51.64 55.56,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-1102,53.85 50.48,51.65 48.1 56.05 48.1 56.05 52.87 51.65 52.87,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-1202,53.88 46.52,51.67 44.13 56.07 44.13 56.07 48.9 51.67 48.9,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-1402,53.9 42.55,51.7 40.17 56.1 40.17 56.1 44.93 51.7 44.93,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-1502,53.92 38.58,51.72 36.2 56.12 36.2 56.12 40.96 51.72 40.96,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-1602,53.94 34.93,51.74 32.55 56.14 32.55 56.14 37.31 51.74 37.31,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-1702,53.97 30.96,51.77 28.58 56.16 28.58 56.16 33.34 51.77 33.34,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-1802,53.99 26.99,51.79 24.61 56.19 24.61 56.19 29.37 51.79 29.37,E-3BHK-SQ-type1-2,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-003,43.63 85.87,43.62 85.87 43.62 85.87 43.62 85.87 43.62 85.87,E-3BHK type2-3,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-103,43.62 82.08,43.62 82.08 43.62 82.08 43.62 82.08 43.62 82.08,E-3BHK type2-3,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-203,43.6 78.59,43.6 78.59 43.6 78.59 43.6 78.59 43.6 78.59,E-3BHK type2-3,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-303,43.59 75.72,43.59 75.72 43.59 75.72 43.59 75.72 43.59 75.72,E-3BHK type2-3,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-403,43.57 72.55,43.57 72.55 43.57 72.55 43.57 72.55 43.57 72.55,E-3BHK type2-3,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-503,43.55 68.74,43.55 68.74 43.55 68.74 43.55 68.74 43.55 68.74,E-3BHK type2-3,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-603,43.53 65.25,43.53 65.25 43.53 65.25 43.53 65.25 43.53 65.25,E-3BHK type2-3,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-703,43.51 61.75,43.51 61.75 43.51 61.75 43.51 61.75 43.51 61.75,E-3BHK type2-3,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-803,43.49 58.58,43.49 58.58 43.49 58.58 43.49 58.58 43.49 58.58,E-3BHK type2-3,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-903,43.47 55.09,43.47 55.09 43.47 55.09 43.47 55.09 43.47 55.09,E-3BHK type2-3,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-1003,43.45 51.29,43.45 51.29 43.45 51.29 43.45 51.29 43.45 51.29,E-3BHK type2-3,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-1403,43.34 40.02,41.14 37.63 45.54 37.63 45.54 42.4 41.14 42.4,E-3BHK type2-3,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-1503,43.32 36.05,41.12 33.67 45.51 33.67 45.51 38.43 41.12 38.43,E-3BHK type2-3,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-1603,43.29 32.08,41.09 29.7 45.49 29.7 45.49 34.46 41.09 34.46,E-3BHK type2-3,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-1703,43.27 28.11,41.07 25.73 45.47 25.73 45.47 30.49 41.07 30.49,E-3BHK type2-3,tow-e-ang-0-tb.png,
+Tower E,0,tow-e-ang-0.jpg,E-1803,43.63 85.87,43.62 85.87 43.62 85.87 43.62 85.87 43.62 85.87,E-3BHK type2-3,tow-e-ang-0-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-004,53.13 87.48,53.14 87.48 53.14 87.48 53.14 87.48 53.14 87.48,E-3BHK type2-4,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-104,53.16 83.67,53.16 83.67 53.16 83.67 53.16 83.67 53.16 83.67,E-3BHK type2-4,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-204,53.18 80.17,53.18 80.17 53.18 80.17 53.18 80.17 53.18 80.17,E-3BHK type2-4,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-304,53.2 77,53.2 77 53.2 77 53.2 77 53.2 77,E-3BHK type2-4,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-404,53.22 73.51,53.22 73.51 53.22 73.51 53.22 73.51 53.22 73.51,E-3BHK type2-4,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-504,53.25 69.7,53.25 69.7 53.25 69.7 53.25 69.7 53.25 69.7,E-3BHK type2-4,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-604,53.27 66.52,53.27 66.52 53.27 66.52 53.27 66.52 53.27 66.52,E-3BHK type2-4,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-704,53.29 63.35,53.29 63.35 53.29 63.35 53.29 63.35 53.29 63.35,E-3BHK type2-4,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-804,53.3 60.18,53.3 60.18 53.3 60.18 53.3 60.18 53.3 60.18,E-3BHK type2-4,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-904,53.32 56.37,53.33 56.37 53.33 56.37 53.33 56.37 53.33 56.37,E-3BHK type2-4,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-1004,53.35 53.5,53.35 53.5 53.35 53.5 53.35 53.5 53.35 53.5,E-3BHK type2-4,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-1404,53.51 42.08,53.51 42.08 53.51 42.08 53.51 42.08 53.51 42.08,E-3BHK type2-4,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-1504,53.52 38.59,53.53 38.59 53.53 38.59 53.53 38.59 53.53 38.59,E-3BHK type2-4,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-1604,53.55 34.46,53.56 34.46 53.56 34.46 53.56 34.46 53.56 34.46,E-3BHK type2-4,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-1704,53.59 30.65,53.59 30.65 53.59 30.65 53.59 30.65 53.59 30.65,E-3BHK type2-4,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-1804,53.61 26.84,53.61 26.84 53.61 26.84 53.61 26.84 53.61 26.84,E-3BHK type2-4,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-001,43.21 84.14,43.2 84.14 43.2 84.14 43.2 84.14 43.2 84.14,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-101,43.19 80.33,43.19 80.33 43.19 80.33 43.19 80.33 43.19 80.33,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-201,43.17 76.84,43.17 76.84 43.17 76.84 43.17 76.84 43.17 76.84,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-301,43.15 73.67,43.15 73.67 43.15 73.67 43.15 73.67 43.15 73.67,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-401,43.14 70.49,43.14 70.49 43.14 70.49 43.14 70.49 43.14 70.49,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-501,43.12 67,43.12 67 43.12 67 43.12 67 43.12 67,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-601,43.11 63.83,43.11 63.83 43.11 63.83 43.11 63.83 43.11 63.83,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-701,43.1 60.33,43.09 60.33 43.09 60.33 43.09 60.33 43.09 60.33,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-801,43.08 57.16,43.08 57.16 43.08 57.16 43.08 57.16 43.08 57.16,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-901,43.06 53.67,43.06 53.67 43.06 53.67 43.06 53.67 43.06 53.67,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-1001,43.04 50.5,43.04 50.5 43.04 50.5 43.04 50.5 43.04 50.5,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-1101,43.03 47,43.03 47 43.03 47 43.03 47 43.03 47,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-1201,43.01 43.83,43.01 43.83 43.01 43.83 43.01 43.83 43.01 43.83,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-1401,43 40.02,43 40.02 43 40.02 43 40.02 43 40.02,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-1501,42.99 36.21,42.98 36.21 42.98 36.21 42.98 36.21 42.98 36.21,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-1601,42.97 32.4,42.97 32.4 42.97 32.4 42.97 32.4 42.97 32.4,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-1701,42.95 28.6,42.95 28.6 42.95 28.6 42.95 28.6 42.95 28.6,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
+Tower E,180,tow-e-ang-180.jpg,E-1801,42.93 24.79,42.93 24.79 42.93 24.79 42.93 24.79 42.93 24.79,E-3BHK-SQ-type1-1,tow-e-ang-180-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-002,53.28 91.1,51.08 88.71 55.48 88.71 55.48 93.48 51.08 93.48,G-3BHK type2-2,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-102,53.29 87.48,51.1 85.1 55.49 85.1 55.49 89.87 51.1 89.87,G-3BHK type2-2,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-202,53.35 82.87,51.15 80.48 55.55 80.48 55.55 85.25 51.15 85.25,G-3BHK type2-2,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-302,53.37 79.53,51.18 77.15 55.57 77.15 55.57 81.91 51.18 81.91,G-3BHK type2-2,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-402,53.4 76.52,51.2 74.13 55.59 74.13 55.59 78.9 51.2 78.9,G-3BHK type2-2,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-502,53.42 72.55,51.23 70.17 55.62 70.17 55.62 74.93 51.23 74.93,G-3BHK type2-2,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-602,53.45 69.21,51.25 66.83 55.64 66.83 55.64 71.6 51.25 71.6,G-3BHK type2-2,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-702,53.48 65.56,51.28 63.18 55.67 63.18 55.67 67.94 51.28 67.94,G-3BHK type2-2,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-802,53.51 61.6,51.31 59.21 55.7 59.21 55.7 63.98 51.31 63.98,G-3BHK type2-2,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-902,53.53 58.26,51.33 55.88 55.73 55.88 55.73 60.64 51.33 60.64,G-3BHK type2-2,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-1002,53.56 54.61,51.36 52.23 55.75 52.23 55.75 56.99 51.36 56.99,G-3BHK type2-2,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-1402,53.56 43.65,51.37 41.27 55.76 41.27 55.76 46.03 51.37 46.03,G-3BHK type2-2,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-1502,53.58 39.4,51.38 37.02 55.78 37.02 55.78 41.78 51.38 41.78,G-3BHK type2-2,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-1602,53.59 35.12,51.39 32.74 55.79 32.74 55.79 37.5 51.39 37.5,G-3BHK type2-2,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-1702,53.6 31.15,51.41 28.77 55.8 28.77 55.8 33.53 51.41 33.53,G-3BHK type2-2,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-1802,53.62 26.87,51.42 24.49 55.81 24.49 55.81 29.25 51.42 29.25,G-3BHK type2-2,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-003,42.68 88.08,40.48 85.7 44.88 85.7 44.88 90.46 40.48 90.46,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-103,42.66 83.82,40.46 81.44 44.85 81.44 44.85 86.2 40.46 86.2,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-203,42.62 80.48,40.43 78.1 44.82 78.1 44.82 82.87 40.43 82.87,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-303,42.6 76.52,40.4 74.13 44.8 74.13 44.8 78.9 40.4 78.9,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-403,42.57 73.18,40.37 70.8 44.77 70.8 44.77 75.56 40.37 75.56,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-503,42.55 69.85,40.35 67.47 44.74 67.47 44.74 72.23 40.35 72.23,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-603,42.52 66.52,40.32 64.13 44.71 64.13 44.71 68.9 40.32 68.9,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-703,42.49 63.18,40.29 60.8 44.69 60.8 44.69 65.56 40.29 65.56,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-803,42.46 59.85,40.26 57.47 44.66 57.47 44.66 62.23 40.26 62.23,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-903,42.44 55.88,40.24 53.5 44.63 53.5 44.63 58.26 40.24 58.26,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-1003,42.41 52.23,40.21 49.85 44.6 49.85 44.6 54.61 40.21 54.61,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-1103,42.38 48.27,40.18 45.89 44.58 45.89 44.58 50.65 40.18 50.65,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-1203,42.35 44.61,40.15 42.23 44.55 42.23 44.55 46.99 40.15 46.99,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-1403,42.33 40.96,40.13 38.58 44.52 38.58 44.52 43.34 40.13 43.34,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-1503,42.3 36.99,40.1 34.61 44.5 34.61 44.5 39.37 40.1 39.37,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-1603,42.27 32.71,40.07 30.33 44.47 30.33 44.47 35.1 40.07 35.1,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-1703,42.22 28.47,40.03 26.09 44.42 26.09 44.42 30.85 40.03 30.85,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
+Tower G,0,tow-g-ang-0.jpg,G-1803,42.15 24.6,39.96 22.21 44.35 22.21 44.35 26.98 39.96 26.98,G-3BHK-SQ-type1-3,tow-g-ang-0-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-001,43.92 85.09,41.72 82.71 46.12 82.71 46.12 87.47 41.72 87.47,G-3BHK type2-1,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-101,43.89 81.75,41.69 79.37 46.09 79.37 46.09 84.13 41.69 84.13,G-3BHK type2-1,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-201,43.85 78.1,41.66 75.72 46.05 75.72 46.05 80.48 41.66 80.48,G-3BHK type2-1,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-301,43.82 74.77,41.63 72.39 46.02 72.39 46.02 77.15 41.63 77.15,G-3BHK type2-1,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-401,43.79 71.12,41.59 68.74 45.99 68.74 45.99 73.5 41.59 73.5,G-3BHK type2-1,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-501,43.77 68.11,41.57 65.73 45.96 65.73 45.96 70.49 41.57 70.49,G-3BHK type2-1,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-601,43.73 64.77,41.53 62.39 45.93 62.39 45.93 67.15 41.53 67.15,G-3BHK type2-1,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-701,43.7 61.44,41.5 59.06 45.9 59.06 45.9 63.82 41.5 63.82,G-3BHK type2-1,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-801,43.66 57.15,41.46 54.77 45.85 54.77 45.85 59.53 41.46 59.53,G-3BHK type2-1,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-901,43.63 54.14,41.43 51.76 45.83 51.76 45.83 56.52 41.43 56.52,G-3BHK type2-1,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-1001,43.6 51.13,41.4 48.75 45.8 48.75 45.8 53.51 41.4 53.51,G-3BHK type2-1,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-1401,43.37 40,41.17 37.62 45.57 37.62 45.57 42.38 41.17 42.38,G-3BHK type2-1,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-1501,43.37 36.03,41.17 33.65 45.57 33.65 45.57 38.41 41.17 38.41,G-3BHK type2-1,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-1601,43.37 32.06,41.17 29.68 45.57 29.68 45.57 34.44 41.17 34.44,G-3BHK type2-1,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-1701,43.37 28.1,41.17 25.71 45.57 25.71 45.57 30.48 41.17 30.48,G-3BHK type2-1,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-1801,43.37 24.13,41.17 21.75 45.57 21.75 45.57 26.51 41.17 26.51,G-3BHK type2-1,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-004,53.79 88.42,51.59 86.04 55.99 86.04 55.99 90.8 51.59 90.8,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-104,53.81 84.46,51.61 82.08 56.01 82.08 56.01 86.84 51.61 86.84,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-204,53.83 80.81,51.63 78.43 56.03 78.43 56.03 83.19 51.63 83.19,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-304,53.85 77.48,51.65 75.1 56.04 75.1 56.04 79.86 51.65 79.86,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-404,53.86 73.83,51.67 71.44 56.07 71.44 56.07 76.21 51.67 76.21,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-504,53.88 70.81,51.68 68.43 56.08 68.43 56.08 73.19 51.68 73.19,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-604,53.9 67.16,51.7 64.78 56.1 64.78 56.1 69.54 51.7 69.54,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-704,53.92 63.51,51.72 61.13 56.12 61.13 56.12 65.89 51.72 65.89,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-804,53.94 59.86,51.74 57.48 56.14 57.48 56.14 62.24 51.74 62.24,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-904,53.96 55.89,51.77 53.51 56.16 53.51 56.16 58.27 51.77 58.27,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-1004,53.98 51.92,51.79 49.54 56.18 49.54 56.18 54.3 51.79 54.3,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-1104,53.99 48.6,51.8 46.21 56.19 46.21 56.19 50.98 51.8 50.98,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-1204,54.01 45.57,51.82 43.19 56.21 43.19 56.21 47.95 51.82 47.95,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-1404,54.04 41.29,51.84 38.9 56.24 38.9 56.24 43.67 51.84 43.67,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-1504,54.07 37.32,51.87 34.94 56.26 34.94 56.26 39.7 51.87 39.7,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-1604,54.08 33.67,51.89 31.29 56.28 31.29 56.28 36.05 51.89 36.05,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-1704,54.1 29.71,51.9 27.33 56.3 27.33 56.3 32.1 51.9 32.1,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
+Tower G,180,tow-g-ang-180.jpg,G-1804,54.14 25.41,51.94 23.03 56.33 23.03 56.33 27.79 51.94 27.79,G-3BHK-SQ-type1-4,tow-g-ang-180-tb.png,
+Tower I,0,tow-i-ang-0.jpg,I-002,56.58 86.04,54.38 83.66 58.78 83.66 58.78 88.42 54.38 88.42,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-102,56.6 82.39,54.41 80.01 58.8 80.01 58.8 84.77 54.41 84.77,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-202,56.63 79.06,54.43 76.67 58.82 76.67 58.82 81.44 54.43 81.44,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-302,56.65 75.4,54.45 73.02 58.85 73.02 58.85 77.79 54.45 77.79,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-402,56.67 72.39,54.47 70.01 58.86 70.01 58.86 74.77 54.47 74.77,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-502,56.69 69.06,54.49 66.67 58.89 66.67 58.89 71.44 54.49 71.44,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-602,56.71 65.72,54.51 63.34 58.91 63.34 58.91 68.1 54.51 68.1,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-702,56.74 61.75,54.54 59.37 58.94 59.37 58.94 64.13 54.54 64.13,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-802,56.77 58.1,54.57 55.72 58.96 55.72 58.96 60.48 54.57 60.48,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-902,56.78 55.09,54.58 52.71 58.98 52.71 58.98 57.47 54.58 57.47,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-1002,56.81 51.12,54.61 48.74 59.01 48.74 59.01 53.5 54.61 53.5,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-1102,56.84 47.15,54.64 44.77 59.04 44.77 59.04 49.53 54.64 49.53,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-1202,56.87 43.18,54.67 40.8 59.07 40.8 59.07 45.56 54.67 45.56,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-1402,56.9 39.53,54.7 37.15 59.09 37.15 59.09 41.91 54.7 41.91,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-1502,56.92 35.25,54.73 32.87 59.12 32.87 59.12 37.63 54.73 37.63,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-1602,56.95 31.6,54.75 29.21 59.15 29.21 59.15 33.98 54.75 33.98,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-1702,56.98 27.63,54.78 25.25 59.18 25.25 59.18 30.02 54.78 30.02,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-1802,57.01 23.98,54.81 21.6 59.2 21.6 59.2 26.37 54.81 26.37,I-3BHK-SQ-type1-2,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-003,46.33 87.94,44.13 85.56 48.52 85.56 48.52 90.33 44.13 90.33,I-3BHK type2-3,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-103,46.29 84.3,44.1 81.92 48.49 81.92 48.49 86.68 44.1 86.68,I-3BHK type2-3,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-203,46.25 80.64,44.06 78.26 48.45 78.26 48.45 83.02 44.06 83.02,I-3BHK type2-3,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-303,46.22 77.31,44.02 74.93 48.42 74.93 48.42 79.69 44.02 79.69,I-3BHK type2-3,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-403,46.18 73.98,43.99 71.6 48.38 71.6 48.38 76.36 43.99 76.36,I-3BHK type2-3,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-503,46.14 70.64,43.95 68.26 48.34 68.26 48.34 73.02 43.95 73.02,I-3BHK type2-3,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-603,46.11 66.99,43.91 64.61 48.3 64.61 48.3 69.37 43.91 69.37,I-3BHK type2-3,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-703,46.06 63.66,43.87 61.28 48.26 61.28 48.26 66.04 43.87 66.04,I-3BHK type2-3,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-803,46.03 60.01,43.83 57.63 48.23 57.63 48.23 62.39 43.83 62.39,I-3BHK type2-3,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-903,45.99 56.37,43.79 53.98 48.19 53.98 48.19 58.75 43.79 58.75,I-3BHK type2-3,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-1003,45.95 52.08,43.75 49.7 48.15 49.7 48.15 54.46 43.75 54.46,I-3BHK type2-3,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-1403,45.8 41.75,43.6 39.37 48 39.37 48 44.13 43.6 44.13,I-3BHK type2-3,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-1503,45.74 37.79,43.55 35.4 47.94 35.4 47.94 40.17 43.55 40.17,I-3BHK type2-3,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-1603,45.69 33.82,43.49 31.44 47.89 31.44 47.89 36.2 43.49 36.2,I-3BHK type2-3,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-1703,45.63 29.85,43.43 27.47 47.83 27.47 47.83 32.23 43.43 32.23,I-3BHK type2-3,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,0,tow-i-ang-0.jpg,I-1803,45.58 25.89,43.38 23.51 47.77 23.51 47.77 28.27 43.38 28.27,I-3BHK type2-3,tow-i-ang-0-tb.png,tow-l-ang-0-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-001,46.48 89.2,44.28 86.82 48.68 86.82 48.68 91.58 44.28 91.58,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-101,46.43 85.25,44.23 82.87 48.63 82.87 48.63 87.63 44.23 87.63,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-201,46.4 81.91,44.2 79.53 48.59 79.53 48.59 84.29 44.2 84.29,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-301,46.35 78.26,44.15 75.88 48.55 75.88 48.55 80.64 44.15 80.64,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-401,46.31 74.61,44.11 72.23 48.51 72.23 48.51 76.99 44.11 76.99,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-501,46.28 71.6,44.08 69.22 48.48 69.22 48.48 73.98 44.08 73.98,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-601,46.24 67.95,44.04 65.57 48.44 65.57 48.44 70.33 44.04 70.33,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-701,46.19 63.98,43.99 61.6 48.39 61.6 48.39 66.37 43.99 66.37,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-801,46.15 60.33,43.95 57.95 48.34 57.95 48.34 62.71 43.95 62.71,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-901,46.1 56.37,43.9 53.98 48.29 53.98 48.29 58.75 43.9 58.75,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-1001,46.05 52.72,43.86 50.34 48.25 50.34 48.25 55.1 43.86 55.1,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-1101,46.01 49.07,43.81 46.69 48.21 46.69 48.21 51.45 43.81 51.45,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-1201,45.98 46.06,43.78 43.67 48.18 43.67 48.18 48.44 43.78 48.44,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-1401,45.93 42.09,43.74 39.71 48.13 39.71 48.13 44.47 43.74 44.47,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-1501,45.88 38.12,43.68 35.74 48.08 35.74 48.08 40.5 43.68 40.5,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-1601,45.84 34.15,43.64 31.77 48.03 31.77 48.03 36.53 43.64 36.53,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-1701,45.79 30.51,43.59 28.13 47.99 28.13 47.99 32.89 43.59 32.89,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-1801,45.73 26.22,43.53 23.84 47.93 23.84 47.93 28.6 43.53 28.6,I-3BHK-SQ-type1-1,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-004,56.6 86.52,54.4 84.13 58.79 84.13 58.79 88.9 54.4 88.9,I-3BHK type2-4,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-104,56.64 82.55,54.44 80.17 58.84 80.17 58.84 84.93 54.44 84.93,I-3BHK type2-4,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-204,56.68 79.21,54.48 76.83 58.88 76.83 58.88 81.6 54.48 81.6,I-3BHK type2-4,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-304,56.71 76.2,54.52 73.82 58.91 73.82 58.91 78.58 54.52 78.58,I-3BHK type2-4,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-404,56.75 72.55,54.56 70.17 58.95 70.17 58.95 74.93 54.56 74.93,I-3BHK type2-4,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-504,56.79 69.53,54.59 67.15 58.99 67.15 58.99 71.91 54.59 71.91,I-3BHK type2-4,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-604,56.83 66.21,54.63 63.83 59.03 63.83 59.03 68.59 54.63 68.59,I-3BHK type2-4,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-704,56.87 62.25,54.67 59.87 59.07 59.87 59.07 64.63 54.67 64.63,I-3BHK type2-4,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-804,56.91 59.22,54.71 56.84 59.11 56.84 59.11 61.6 54.71 61.6,I-3BHK type2-4,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-904,56.95 55.25,54.75 52.87 59.15 52.87 59.15 57.63 54.75 57.63,I-3BHK type2-4,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-1004,56.99 51.61,54.79 49.23 59.19 49.23 59.19 53.99 54.79 53.99,I-3BHK type2-4,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-1404,56.81 42.21,54.61 39.83 59.01 39.83 59.01 44.59 54.61 44.59,I-3BHK type2-4,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-1504,56.77 37.63,54.58 35.25 58.97 35.25 58.97 40.02 54.58 40.02,I-3BHK type2-4,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-1604,56.74 33.67,54.54 31.29 58.93 31.29 58.93 36.05 54.54 36.05,I-3BHK type2-4,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-1704,56.7 29.7,54.5 27.32 58.9 27.32 58.9 32.08 54.5 32.08,I-3BHK type2-4,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower I,180,tow-i-ang-180.jpg,I-1804,56.66 25.43,54.46 23.05 58.85 23.05 58.85 27.81 54.46 27.81,I-3BHK type2-4,tow-i-ang-180-tb.png,tow-l-ang-180-mm.png
+Tower L,0,tow-l-ang-0.jpg,L-002,51.21 87.95,49.01 85.57 53.41 85.57 53.41 90.33 49.01 90.33,L-3BHK type1-2,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-102,51.22 83.98,49.03 81.6 53.42 81.6 53.42 86.36 49.03 86.36,L-3BHK type1-2,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-202,51.23 80.33,49.03 77.94 53.42 77.94 53.42 82.71 49.03 82.71,L-3BHK type1-2,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-302,51.23 76.99,49.03 74.61 53.42 74.61 53.42 79.37 49.03 79.37,L-3BHK type1-2,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-402,51.23 73.98,49.03 71.6 53.42 71.6 53.42 76.36 49.03 76.36,L-3BHK type1-2,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-502,51.23 69.69,49.04 67.31 53.44 67.31 53.44 72.07 49.04 72.07,L-3BHK type1-2,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-602,51.24 66.04,49.04 63.66 53.44 63.66 53.44 68.42 49.04 68.42,L-3BHK type1-2,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-702,51.24 62.71,49.04 60.33 53.44 60.33 53.44 65.09 49.04 65.09,L-3BHK type1-2,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-802,51.25 59.06,49.05 56.67 53.44 56.67 53.44 61.44 49.05 61.44,L-3BHK type1-2,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-902,51.25 55.4,49.05 53.02 53.45 53.02 53.45 57.79 49.05 57.79,L-3BHK type1-2,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-1002,51.25 51.75,49.06 49.37 53.45 49.37 53.45 54.13 49.06 54.13,L-3BHK type1-2,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-1102,51.26 48.1,49.06 45.72 53.46 45.72 53.46 50.48 49.06 50.48,L-3BHK type1-2,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-1202,51.26 44.13,49.07 41.75 53.47 41.75 53.47 46.52 49.07 46.52,L-3BHK type1-2,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-1402,51.28 39.85,49.08 37.47 53.48 37.47 53.48 42.23 49.08 42.23,L-3BHK type1-2,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-1502,51.29 35.88,49.09 33.5 53.49 33.5 53.49 38.26 49.09 38.26,L-3BHK type1-2,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-1602,51.3 31.6,49.1 29.21 53.5 29.21 53.5 33.98 49.1 33.98,L-3BHK type1-2,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-1702,51.3 27.94,49.11 25.56 53.5 25.56 53.5 30.33 49.11 30.33,L-3BHK type1-2,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-1802,51.31 23.36,49.11 20.98 53.51 20.98 53.51 25.74 49.11 25.74,L-3BHK type1-2,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-003,44.73 87.3,42.54 84.92 46.93 84.92 46.93 89.68 42.54 89.68,L-2BHK type1-3,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-103,44.7 83.37,42.5 80.98 46.9 80.98 46.9 85.75 42.5 85.75,L-2BHK type1-3,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-203,44.68 79.69,42.49 77.31 46.88 77.31 46.88 82.07 42.49 82.07,L-2BHK type1-3,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-303,44.66 76.04,42.46 73.66 46.86 73.66 46.86 78.42 42.46 78.42,L-2BHK type1-3,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-403,44.63 72.71,42.44 70.33 46.83 70.33 46.83 75.09 42.44 75.09,L-2BHK type1-3,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-503,44.6 69.06,42.41 66.67 46.81 66.67 46.81 71.44 42.41 71.44,L-2BHK type1-3,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-603,44.58 65.4,42.38 63.02 46.78 63.02 46.78 67.79 42.38 67.79,L-2BHK type1-3,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-703,44.56 61.75,42.36 59.37 46.75 59.37 46.75 64.13 42.36 64.13,L-2BHK type1-3,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-803,44.53 59.06,42.33 56.67 46.73 56.67 46.73 61.44 42.33 61.44,L-2BHK type1-3,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-903,44.51 54.77,42.31 52.39 46.7 52.39 46.7 57.15 42.31 57.15,L-2BHK type1-3,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-1003,44.48 51.12,42.28 48.74 46.68 48.74 46.68 53.5 42.28 53.5,L-2BHK type1-3,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-1403,44.55 39.21,42.35 36.83 46.75 36.83 46.75 41.6 42.35 41.6,L-2BHK type1-3,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-1503,44.48 34.94,42.29 32.56 46.68 32.56 46.68 37.32 42.29 37.32,L-2BHK type1-3,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-1603,44.42 30.97,42.22 28.59 46.62 28.59 46.62 33.35 42.22 33.35,L-2BHK type1-3,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-1703,44.36 27.01,42.16 24.63 46.56 24.63 46.56 29.39 42.16 29.39,L-2BHK type1-3,tow-l-ang-0-tb.png,
+Tower L,0,tow-l-ang-0.jpg,L-1803,44.3 23.05,42.1 20.67 46.49 20.67 46.49 25.43 42.1 25.43,L-2BHK type1-3,tow-l-ang-0-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-001,44.46 88.1,42.26 85.72 46.66 85.72 46.66 90.48 42.26 90.48,L-3BHK type1-1,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-101,44.45 84.45,42.26 82.07 46.65 82.07 46.65 86.83 42.26 86.83,L-3BHK type1-1,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-201,44.44 80.17,42.24 77.79 46.63 77.79 46.63 82.55 42.24 82.55,L-3BHK type1-1,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-301,44.43 76.83,42.23 74.45 46.63 74.45 46.63 79.21 42.23 79.21,L-3BHK type1-1,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-401,44.42 73.5,42.23 71.12 46.62 71.12 46.62 75.88 42.23 75.88,L-3BHK type1-1,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-501,44.42 70.48,42.23 68.1 46.62 68.1 46.62 72.87 42.23 72.87,L-3BHK type1-1,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-601,44.42 67.15,42.22 64.77 46.62 64.77 46.62 69.53 42.22 69.53,L-3BHK type1-1,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-701,44.41 63.18,42.21 60.8 46.6 60.8 46.6 65.56 42.21 65.56,L-3BHK type1-1,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-801,44.4 58.9,42.2 56.52 46.59 56.52 46.59 61.29 42.2 61.29,L-3BHK type1-1,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-901,44.38 55.25,42.19 52.87 46.58 52.87 46.58 57.63 42.19 57.63,L-3BHK type1-1,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-1001,44.38 51.6,42.18 49.22 46.58 49.22 46.58 53.98 42.18 53.98,L-3BHK type1-1,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-1101,44.37 47.95,42.17 45.57 46.56 45.57 46.56 50.33 42.17 50.33,L-3BHK type1-1,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-1201,44.36 44.3,42.16 41.92 46.56 41.92 46.56 46.68 42.16 46.68,L-3BHK type1-1,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-1401,44.35 40.65,42.15 38.27 46.55 38.27 46.55 43.03 42.15 43.03,L-3BHK type1-1,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-1501,44.34 36.68,42.14 34.3 46.53 34.3 46.53 39.06 42.14 39.06,L-3BHK type1-1,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-1601,44.32 32.71,42.12 30.33 46.52 30.33 46.52 35.1 42.12 35.1,L-3BHK type1-1,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-1701,44.32 29.7,42.12 27.32 46.52 27.32 46.52 32.08 42.12 32.08,L-3BHK type1-1,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-1801,44.31 25.41,42.11 23.03 46.51 23.03 46.51 27.79 42.11 27.79,L-3BHK type1-1,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-004,51.28 90.63,49.08 88.25 53.48 88.25 53.48 93.02 49.08 93.02,L-2BHK type1-4,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-104,51.28 86.98,49.08 84.6 53.48 84.6 53.48 89.37 49.08 89.37,L-2BHK type1-4,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-204,51.28 83.65,49.08 81.27 53.48 81.27 53.48 86.03 49.08 86.03,L-2BHK type1-4,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-304,51.28 80.32,49.08 77.94 53.48 77.94 53.48 82.7 49.08 82.7,L-2BHK type1-4,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-404,51.28 76.67,49.08 74.29 53.48 74.29 53.48 79.05 49.08 79.05,L-2BHK type1-4,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-504,51.28 73.02,49.08 70.63 53.48 70.63 53.48 75.4 49.08 75.4,L-2BHK type1-4,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-604,51.28 69.68,49.08 67.3 53.48 67.3 53.48 72.06 49.08 72.06,L-2BHK type1-4,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-704,51.28 66.35,49.08 63.97 53.48 63.97 53.48 68.73 49.08 68.73,L-2BHK type1-4,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-804,51.28 62.38,49.08 60 53.48 60 53.48 64.76 49.08 64.76,L-2BHK type1-4,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-904,51.28 59.05,49.08 56.67 53.48 56.67 53.48 61.43 49.08 61.43,L-2BHK type1-4,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-1004,51.28 55.4,49.08 53.02 53.48 53.02 53.48 57.78 49.08 57.78,L-2BHK type1-4,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-1404,50.85 43.32,48.65 40.94 53.05 40.94 53.05 45.7 48.65 45.7,L-2BHK type1-4,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-1504,50.86 39.68,48.67 37.3 53.06 37.3 53.06 42.06 48.67 42.06,L-2BHK type1-4,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-1604,50.89 35.75,48.69 33.37 53.09 33.37 53.09 38.13 48.69 38.13,L-2BHK type1-4,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-1704,50.9 31.8,48.7 29.42 53.1 29.42 53.1 34.18 48.7 34.18,L-2BHK type1-4,tow-l-ang-180-tb.png,
+Tower L,180,tow-l-ang-180.jpg,L-1804,50.92 27.51,48.73 25.13 53.12 25.13 53.12 29.89 48.73 29.89,L-2BHK type1-4,tow-l-ang-180-tb.png,
 ,,,,,,,,
 ,,,,,,,,
 ,,,,,,,,
@@ -987,5 +987,5 @@ Tower L,180,tow-l-ang-180.jpg,L-01704,50.92 27.51,48.73 25.13 53.12 25.13 53.12 
 ,,,,,,,,
 ,,,,,,,,
 ,,,,,,,,
-Tower H,180,tow-a-ang-180.jpg,H-0901,41.96 38.26,39.03 28.54 44.89 38.24 44.89 43 39.03 33.3,A-3BHK type1-1,tow-a-ang-180-tb.png,
+Tower H,180,tow-a-ang-180.jpg,H-901,41.96 38.26,39.03 28.54 44.89 38.24 44.89 43 39.03 33.3,A-3BHK type1-1,tow-a-ang-180-tb.png,
 Tower H,180,tow-a-ang-180.jpg,H-1001,41.92 33.34,39 23.62 44.86 33.32 44.86 38.08 39 28.38,A-3BHK type1-1,tow-a-ang-180-tb.png,
