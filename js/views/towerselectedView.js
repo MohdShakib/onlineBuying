@@ -824,6 +824,9 @@ var TowerselectedView = (function() {
             _this._elements.minMapView.on('click', '.' + config.minMapToggleClass, function(event) {
                 _this._minMapClicked.notify($(this).parent());
             });
+        },
+        minMapToggle: function(element) {
+            $(element).find('img').toggle();
         }
     };
 

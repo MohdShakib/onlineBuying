@@ -133,7 +133,7 @@ var TowerselectedController = (function() {
 
             //minMapEvents
             this._view._minMapClicked.attach(function(sender, element){
-                $(element).find('img').toggle();
+                _this._view.minMapToggle(element);
             });
         },
         toggleFilterOption: function(filterArray, filterOption, element) {
