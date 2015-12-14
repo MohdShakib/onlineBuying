@@ -814,7 +814,7 @@ var TowerselectedView = (function() {
             var towerMinimap = data.rotationAngle[currentRotationAngle].towerMinimapUrl;
             var img;
             if(towerMinimap){
-                img = '<span class='+config.minMapToggleClass+'>close</span><img src="'+ towerMinimap +'"  width="250px" height="180px" />';
+                img = '<span class='+config.minMapToggleClass+'></span><img src="'+ towerMinimap +'"  width="250px" height="180px" />';
                 this._elements.minMapView.html(img);
                 this.minMapEvents();
             }
@@ -826,7 +826,7 @@ var TowerselectedView = (function() {
             });
         },
         minMapToggle: function(element) {
-            $(element).find('img').toggle();
+            $(element).toggleClass('hideMinMap');
         }
     };
 
