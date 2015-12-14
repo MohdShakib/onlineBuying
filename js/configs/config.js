@@ -153,6 +153,8 @@ var config = (function() {
             priceInterval: 1000000
         },
 
+        minMapToggleClass: 'minmap-toggle',
+
         // Unitplan
         selectedUnitContainerId: 'selected-unit-container',
         unitDetailContainerId: "unit-component-detail-container",
