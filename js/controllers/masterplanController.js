@@ -67,6 +67,9 @@ var MasterplanController = (function() {
             this._view._googleMapProjectClick.attach(function(sender, element){
                 _this._view.imageOverlayClicked();
             });
+            this._view._googleMapViewChanged.attach(function(sender, element){
+                _this._view.removeGoogleMapView(element.map, element.center);
+            });
         },
         generateTemplate: function() {
             this._view.buildView();

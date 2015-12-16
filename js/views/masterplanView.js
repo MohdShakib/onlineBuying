@@ -15,7 +15,8 @@ var MasterplanView = (function() {
         'amenitiesContainer': '<div class="amenities-container ' + config.dynamicResizeClass + '" id="amenities-container"></div>',
         'cloudContainer': '<div class="cloud-container" id="cloud-container"></div>',
         'carAnimation': '<svg class="car-animation transition-left ' + config.dynamicResizeClass + '" id="car-animation" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
-        'googleMapContainer': '<div class="" style="height: 100%; width: 100%; position:relative; z-index:10001;"><div id="google-map-container" style="height:100%; width: 100%;"></div></div>'
+        'googleMapContainer': '<div class="" style="height: 100%; width: 100%; position:relative; z-index:-10;"><div id="google-map-container" style="height:100%; width: 100%;"></div></div>',
+        'showGoogleMapView': '<div id="show-google-map-view" style="padding: 10px 20px; color: #000; position: absolute; top: 20%; right: 20px; z-index: 100001; background-color: yellow;">Open Google Map View</div>'
     };
 
     function getElements() {
@@ -27,7 +28,8 @@ var MasterplanView = (function() {
             'amenitiesContainer': $('#amenities-container'),
             'cloudContainer': $('#cloud-container'),
             'carAnimation': $('#car-animation'),
-            'googleMapContainer': $('#google-map-container')
+            'googleMapContainer': $('#google-map-container'),
+            'showGoogleMapView': $('#show-google-map-view')
         };
         return elements;
     }
@@ -56,6 +58,7 @@ var MasterplanView = (function() {
 
         // Google Map Events
         this._googleMapProjectClick = new Event(this);
+        this._googleMapViewChanged = new Event(this);
 
         // For dynamic height of tower menu
         utils.masterPlanModel = this._model;
@@ -73,7 +76,7 @@ var MasterplanView = (function() {
                     this[i](data);
                 }
             }
-            this.renderGoogleMap();
+            this.renderGoogleMap(data.projectId);
         },
         buildSkeleton: function(containerList) {
             var key, mainContainerHtml = '';
@@ -90,11 +93,16 @@ var MasterplanView = (function() {
             document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
         },
-        renderGoogleMap: function(data){
-            var city = new google.maps.LatLng(28.381136, 76.979350);
+        renderGoogleMap: function(projectId){
+            var data = this._model.getGoogleMapData(projectId);
+            var center = {
+                lat: (data.upperEnd.lat + data.lowerEnd.lat)/2,
+                lng: (data.upperEnd.lng + data.lowerEnd.lng)/2 
+            }
+            var city = new google.maps.LatLng(center.lat, center.lng);
             var imageBounds = new google.maps.LatLngBounds(
-                            new google.maps.LatLng(28.379743, 76.978000),
-                            new google.maps.LatLng(28.382616, 76.980592));
+                            new google.maps.LatLng(data.upperEnd.lat, data.upperEnd.lng),
+                            new google.maps.LatLng(data.lowerEnd.lat, data.lowerEnd.lng));
             var mapOptions = {
                 zoom: 17,
                 center: city,
@@ -104,26 +112,52 @@ var MasterplanView = (function() {
             var map = new google.maps.Map(document.getElementById('google-map-container'),
                     mapOptions);
 
-            var imageOverlay = new google.maps.GroundOverlay('images/IMAGE.png',
+            var imageOverlay = new google.maps.GroundOverlay('images/'+projectId+'.png',
                                 imageBounds);
 
-            imageOverlay.setMap(map);
+            // imageOverlay.setMap(map);
 
-            this.googleMapContainerEvents(map, imageOverlay);
+            this.googleMapContainerEvents(map, imageOverlay, center);
             
         },
-        googleMapContainerEvents: function(map, imageOverlay){
+        googleMapContainerEvents: function(map, imageOverlay, center){
             var _this = this;
+
+            this._elements.showGoogleMapView.off('click').on('click', function(){
+                map.setZoom(17);
+                _this._elements.googleMapContainer.parent().css('z-index','100001');
+            })
+
+            var elements = {
+                map: map,
+                center: center
+            }
+
+            google.maps.event.addListener(map, 'center_changed', function(event){
+                _this._googleMapViewChanged.notify(elements);
+            });
+
+            google.maps.event.addListener(map, 'zoom_changed', function(event){
+                _this._googleMapViewChanged.notify(elements);
+            });
 
             google.maps.event.addListenerOnce(map, 'idle', function(){
                 // $('.show-loading').hide();
-                // imageOverlay.setMap(map);
+                imageOverlay.setMap(map);
             });
 
             google.maps.event.addListener(imageOverlay,'click',function(event){
                 // $(_this._elements.googleMapContainer).css('display', 'none');
                 _this._googleMapProjectClick.notify(this);
             });
+        },
+        removeGoogleMapView: function(map, center){
+            if(map.getZoom()>17){
+                var projectCenter = new google.maps.LatLng(center.lat, center.lng);
+                if(google.maps.geometry.spherical.computeDistanceBetween(projectCenter, map.center)<200){
+                    this.imageOverlayClicked();
+                } 
+            }
         },
         imageOverlayClicked: function(){
             this._elements.googleMapContainer.parent().css('z-index', '-10');
