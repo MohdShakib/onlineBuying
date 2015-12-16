@@ -14,7 +14,8 @@ var MasterplanView = (function() {
         'towerDetailContainer': '<div class="tower-detail-container" id="tower-detail-container"></div>',
         'amenitiesContainer': '<div class="amenities-container ' + config.dynamicResizeClass + '" id="amenities-container"></div>',
         'cloudContainer': '<div class="cloud-container" id="cloud-container"></div>',
-        'carAnimation': '<svg class="car-animation transition-left ' + config.dynamicResizeClass + '" id="car-animation" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'
+        'carAnimation': '<svg class="car-animation transition-left ' + config.dynamicResizeClass + '" id="car-animation" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
+        'googleMapContainer': '<div class="" style="height: 100%; width: 100%; position:relative; z-index:10001;"><div id="google-map-container" style="height:100%; width: 100%;"></div></div>'
     };
 
     function getElements() {
@@ -25,7 +26,8 @@ var MasterplanView = (function() {
             'towerDetailContainer': $('#tower-detail-container'),
             'amenitiesContainer': $('#amenities-container'),
             'cloudContainer': $('#cloud-container'),
-            'carAnimation': $('#car-animation')
+            'carAnimation': $('#car-animation'),
+            'googleMapContainer': $('#google-map-container')
         };
         return elements;
     }
@@ -52,6 +54,9 @@ var MasterplanView = (function() {
         this._amenityClick = new Event(this);
         this._amenityClose = new Event(this);
 
+        // Google Map Events
+        this._googleMapProjectClick = new Event(this);
+
         // For dynamic height of tower menu
         utils.masterPlanModel = this._model;
     }
@@ -68,6 +73,7 @@ var MasterplanView = (function() {
                     this[i](data);
                 }
             }
+            this.renderGoogleMap();
         },
         buildSkeleton: function(containerList) {
             var key, mainContainerHtml = '';
@@ -83,6 +89,44 @@ var MasterplanView = (function() {
             document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '':'<a href="https://www.proptiger.com/' + data.projectUrl + '" target="_blank">') + data.builderName + ' ' + data.projectName + (config.builderSetUp ? '':'</a>');
             document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
+        },
+        renderGoogleMap: function(data){
+            var city = new google.maps.LatLng(28.381136, 76.979350);
+            var imageBounds = new google.maps.LatLngBounds(
+                            new google.maps.LatLng(28.379743, 76.978000),
+                            new google.maps.LatLng(28.382616, 76.980592));
+            var mapOptions = {
+                zoom: 17,
+                center: city,
+                mapTypeId: google.maps.MapTypeId.HYBRID
+            };
+
+            var map = new google.maps.Map(document.getElementById('google-map-container'),
+                    mapOptions);
+
+            var imageOverlay = new google.maps.GroundOverlay('images/IMAGE.png',
+                                imageBounds);
+
+            imageOverlay.setMap(map);
+
+            this.googleMapContainerEvents(map, imageOverlay);
+            
+        },
+        googleMapContainerEvents: function(map, imageOverlay){
+            var _this = this;
+
+            google.maps.event.addListenerOnce(map, 'idle', function(){
+                // $('.show-loading').hide();
+                // imageOverlay.setMap(map);
+            });
+
+            google.maps.event.addListener(imageOverlay,'click',function(event){
+                // $(_this._elements.googleMapContainer).css('display', 'none');
+                _this._googleMapProjectClick.notify(this);
+            });
+        },
+        imageOverlayClicked: function(){
+            this._elements.googleMapContainer.parent().css('z-index', '-10');
         },
         startAnimation: function(model) {
 

@@ -62,6 +62,11 @@ var MasterplanController = (function() {
             this._view._amenityClose.attach(function(sender, element) {
                 _this._view.amenityCloseEvent();
             });
+
+            // Google Map Events
+            this._view._googleMapProjectClick.attach(function(sender, element){
+                _this._view.imageOverlayClicked();
+            });
         },
         generateTemplate: function() {
             this._view.buildView();
