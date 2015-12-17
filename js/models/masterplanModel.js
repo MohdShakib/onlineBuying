@@ -6,19 +6,6 @@
 "use strict";
 var MasterplanModel = (function() {
 
-    var googleMapData = {
-        '501660':{
-            upperEnd:{
-                lat: 28.379743,
-                lng: 76.978000
-            },
-            lowerEnd:{
-                lat: 28.382616,
-                lng: 76.980592
-            }
-        }
-    }
-
     function MasterplanModel(data) {
         this._data = data;
         this._firstLoad = true;
@@ -35,9 +22,6 @@ var MasterplanModel = (function() {
                 return {};
             }
             return this._data;
-        },
-        getGoogleMapData: function(projectId){
-            return googleMapData[projectId];
         },
         isFirstLoad: function() {
             return this._firstLoad;

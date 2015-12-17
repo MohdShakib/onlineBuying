@@ -16,7 +16,7 @@ var MasterplanView = (function() {
         'cloudContainer': '<div class="cloud-container" id="cloud-container"></div>',
         'carAnimation': '<svg class="car-animation transition-left ' + config.dynamicResizeClass + '" id="car-animation" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'googleMapContainer': '<div class="" style="height: 100%; width: 100%; position:relative; z-index:-10;"><div id="google-map-container" style="height:100%; width: 100%;"></div></div>',
-        'showGoogleMapView': '<div id="show-google-map-view" style="padding: 10px 20px; color: #000; position: absolute; top: 20%; right: 20px; z-index: 100001; background-color: yellow;">Open Google Map View</div>'
+        'openGoogleMapView': '<div id="open-google-map-view" style="padding: 10px 20px; color: #000; position: absolute; top: 20%; right: 20px; z-index: 100001; background-color: yellow;">Open Google Map View</div>'
     };
 
     function getElements() {
@@ -29,7 +29,7 @@ var MasterplanView = (function() {
             'cloudContainer': $('#cloud-container'),
             'carAnimation': $('#car-animation'),
             'googleMapContainer': $('#google-map-container'),
-            'showGoogleMapView': $('#show-google-map-view')
+            'openGoogleMapView': $('#open-google-map-view')
         };
         return elements;
     }
@@ -59,6 +59,7 @@ var MasterplanView = (function() {
         // Google Map Events
         this._googleMapProjectClick = new Event(this);
         this._googleMapViewChanged = new Event(this);
+        this._openGoogleMapClicked = new Event(this);
 
         // For dynamic height of tower menu
         utils.masterPlanModel = this._model;
@@ -76,7 +77,6 @@ var MasterplanView = (function() {
                     this[i](data);
                 }
             }
-            this.renderGoogleMap(data.projectId);
         },
         buildSkeleton: function(containerList) {
             var key, mainContainerHtml = '';
@@ -93,29 +93,26 @@ var MasterplanView = (function() {
             document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
         },
-        renderGoogleMap: function(projectId){
-            var data = this._model.getGoogleMapData(projectId);
+        googleMapContainer: function(){
+            var data = this._model.getData(),
+                googleMapData = data.googleMapData;
             var center = {
-                lat: (data.upperEnd.lat + data.lowerEnd.lat)/2,
-                lng: (data.upperEnd.lng + data.lowerEnd.lng)/2 
+                lat: (googleMapData.upperEnd.lat + googleMapData.lowerEnd.lat)/2,
+                lng: (googleMapData.upperEnd.lng + googleMapData.lowerEnd.lng)/2 
             }
             var city = new google.maps.LatLng(center.lat, center.lng);
             var imageBounds = new google.maps.LatLngBounds(
-                            new google.maps.LatLng(data.upperEnd.lat, data.upperEnd.lng),
-                            new google.maps.LatLng(data.lowerEnd.lat, data.lowerEnd.lng));
+                            new google.maps.LatLng(googleMapData.upperEnd.lat, googleMapData.upperEnd.lng),
+                            new google.maps.LatLng(googleMapData.lowerEnd.lat, googleMapData.lowerEnd.lng));
             var mapOptions = {
                 zoom: 17,
                 center: city,
                 mapTypeId: google.maps.MapTypeId.HYBRID
             };
-
-            var map = new google.maps.Map(document.getElementById('google-map-container'),
+            var map = new google.maps.Map(this._elements.googleMapContainer[0],
                     mapOptions);
-
-            var imageOverlay = new google.maps.GroundOverlay('images/'+projectId+'.png',
+            var imageOverlay = new google.maps.GroundOverlay('images/'+data.projectId+'.png',
                                 imageBounds);
-
-            // imageOverlay.setMap(map);
 
             this.googleMapContainerEvents(map, imageOverlay, center);
             
@@ -123,9 +120,8 @@ var MasterplanView = (function() {
         googleMapContainerEvents: function(map, imageOverlay, center){
             var _this = this;
 
-            this._elements.showGoogleMapView.off('click').on('click', function(){
-                map.setZoom(17);
-                _this._elements.googleMapContainer.parent().css('z-index','100001');
+            this._elements.openGoogleMapView.off('click').on('click', function(){
+                _this._openGoogleMapClicked.notify(map);
             })
 
             var elements = {
@@ -142,12 +138,10 @@ var MasterplanView = (function() {
             });
 
             google.maps.event.addListenerOnce(map, 'idle', function(){
-                // $('.show-loading').hide();
                 imageOverlay.setMap(map);
             });
 
             google.maps.event.addListener(imageOverlay,'click',function(event){
-                // $(_this._elements.googleMapContainer).css('display', 'none');
                 _this._googleMapProjectClick.notify(this);
             });
         },
@@ -155,12 +149,22 @@ var MasterplanView = (function() {
             if(map.getZoom()>17){
                 var projectCenter = new google.maps.LatLng(center.lat, center.lng);
                 if(google.maps.geometry.spherical.computeDistanceBetween(projectCenter, map.center)<200){
-                    this.imageOverlayClicked();
+                    this.hideGoogleMap();
                 } 
             }
         },
-        imageOverlayClicked: function(){
-            this._elements.googleMapContainer.parent().css('z-index', '-10');
+        hideGoogleMap: function(){
+            this._elements.googleMapContainer.parent().css('z-index','-10');
+            this._elements.openGoogleMapView.show();
+        },
+        showGoogleMap: function(map){
+            this._elements.googleMapContainer.parent().css('z-index','100001');
+            this._elements.openGoogleMapView.hide();
+            map.setZoom(17);
+        },
+        openGoogleMapView: function(){
+            var text = "Open Google Map View";
+            this._elements.openGoogleMapView.html(text);
         },
         startAnimation: function(model) {
 
