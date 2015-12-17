@@ -19,6 +19,8 @@ var MasterplanView = (function() {
         'openGoogleMapView': '<div id="open-google-map-view" style="padding: 10px 20px; color: #000; position: absolute; top: 20%; right: 20px; z-index: 100001; background-color: yellow;">Open Google Map View</div>'
     };
 
+    var google = google;
+
     function getElements() {
         var elements = {
             'buildingImgContainer': $('#img-container'),
@@ -93,13 +95,14 @@ var MasterplanView = (function() {
             document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
         },
+        // to render the google map container
         googleMapContainer: function(){
             var data = this._model.getData(),
                 googleMapData = data.googleMapData;
             var center = {
                 lat: (googleMapData.upperEnd.lat + googleMapData.lowerEnd.lat)/2,
                 lng: (googleMapData.upperEnd.lng + googleMapData.lowerEnd.lng)/2 
-            }
+            };
             var city = new google.maps.LatLng(center.lat, center.lng);
             var imageBounds = new google.maps.LatLngBounds(
                             new google.maps.LatLng(googleMapData.upperEnd.lat, googleMapData.upperEnd.lng),
@@ -117,17 +120,18 @@ var MasterplanView = (function() {
             this.googleMapContainerEvents(map, imageOverlay, center);
             
         },
+        // to attach events related to google maps view
         googleMapContainerEvents: function(map, imageOverlay, center){
             var _this = this;
 
             this._elements.openGoogleMapView.off('click').on('click', function(){
                 _this._openGoogleMapClicked.notify(map);
-            })
+            });
 
             var elements = {
                 map: map,
                 center: center
-            }
+            };
 
             google.maps.event.addListener(map, 'center_changed', function(event){
                 _this._googleMapViewChanged.notify(elements);
@@ -145,6 +149,7 @@ var MasterplanView = (function() {
                 _this._googleMapProjectClick.notify(this);
             });
         },
+        // to decide whether masterplan view has to be opened 
         removeGoogleMapView: function(map, center){
             if(map.getZoom()>17){
                 var projectCenter = new google.maps.LatLng(center.lat, center.lng);
@@ -153,15 +158,18 @@ var MasterplanView = (function() {
                 } 
             }
         },
+        // to hide the google map
         hideGoogleMap: function(){
             this._elements.googleMapContainer.parent().css('z-index','-10');
             this._elements.openGoogleMapView.show();
         },
+        // to show the google map view
         showGoogleMap: function(map){
             this._elements.googleMapContainer.parent().css('z-index','100001');
             this._elements.openGoogleMapView.hide();
             map.setZoom(17);
         },
+        // to make open map view icon
         openGoogleMapView: function(){
             var text = "Open Google Map View";
             this._elements.openGoogleMapView.html(text);

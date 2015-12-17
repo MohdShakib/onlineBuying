@@ -72,7 +72,7 @@ var MasterplanController = (function() {
             });
             this._view._openGoogleMapClicked.attach(function(sender, element){
                 _this._view.showGoogleMap(element);
-            })
+            });
         },
         generateTemplate: function() {
             this._view.buildView();
