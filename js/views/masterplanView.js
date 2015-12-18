@@ -149,7 +149,7 @@ var MasterplanView = (function() {
         },
         // to decide whether masterplan view has to be opened 
         removeGoogleMapView: function(map, center){
-            if(map.getZoom()>initialZoomLevel){
+            if(map.getZoom()>config.initialZoomLevel){
                 var projectCenter = new google.maps.LatLng(center.lat, center.lng);
                 if(google.maps.geometry.spherical.computeDistanceBetween(projectCenter, map.center)<config.openProjectRadius){
                     this.hideGoogleMap();
@@ -165,7 +165,7 @@ var MasterplanView = (function() {
         showGoogleMap: function(map){
             this._elements.googleMapContainer.parent().css('z-index','100001');     //do this using class
             this._elements.openGoogleMapView.hide();
-            map.setZoom(initialZoomLevel);
+            map.setZoom(config.initialZoomLevel);
         },
         // to make open map view icon
         openGoogleMapView: function(){
