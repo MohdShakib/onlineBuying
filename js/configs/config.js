@@ -130,6 +130,7 @@ var config = (function() {
 
         //google map view
         initialZoomLevel: 17,
+        maxZoomLevel: 18,
         openProjectRadius: 200,
 
         // Towerselected
