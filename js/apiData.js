@@ -4,6 +4,18 @@ var getProjectData = (function() {
     var zipPath = './zip-file/';
     var zipImagePath = zipPath + 'img/';
 
+    var googleMapData = {
+        upperEnd:{
+            lat: 28.379743,
+            lng: 76.978000
+        },
+        lowerEnd:{
+            lat: 28.382616,
+            lng: 76.980592
+        },
+        imagePath: zipImagePath+'501660.png'
+    };
+
     function processCsvDataToArray(allText) {
         var allTextLines = allText.split(/\r\n|\n/);
         var headers = allTextLines[0].split(',');
@@ -92,11 +104,8 @@ var getProjectData = (function() {
                     var unitSvgOnTower = unitInfo.unitSvgOnTower ? unitInfo.unitSvgOnTower.split(' ') : null;
                     var validUnitFlag = false;
                     unitInfo.unitSvgOnTower = unitSvgOnTower;
-                    if (tower && tower.rotationAngle[unitInfo.rotationAngle] && unitInfo.rotationAngle) {
+                    if (tower && unitInfo.rotationAngle && tower.rotationAngle[unitInfo.rotationAngle]) {
                         tower.rotationAngle[unitInfo.rotationAngle].listing[unitIdentifier] = unitInfo;
-                        if(unitInfo.towerMinimap){
-                          tower.rotationAngle[unitInfo.rotationAngle].towerMinimapUrl = zipImagePath + unitInfo.towerMinimap;
-                        }
                         validUnitFlag = true;
                     } else if (tower && tower.rotationAngle && unitInfo.rotationAngle) {
                         tower.rotationAngle[unitInfo.rotationAngle] = {};
@@ -104,6 +113,9 @@ var getProjectData = (function() {
                         tower.rotationAngle[unitInfo.rotationAngle].listing = {};
                         tower.rotationAngle[unitInfo.rotationAngle].listing[unitIdentifier] = unitInfo;
                         validUnitFlag = true;
+                        if(unitInfo.towerMinimap){
+                            tower.rotationAngle[unitInfo.rotationAngle].towerMinimapUrl = zipImagePath + unitInfo.towerMinimap;
+                        }
                     }
 
                     if(tower.stableViewAngles && (tower.stableViewAngles.indexOf(unitInfo.rotationAngle) == -1) && unitInfo.rotationAngle){
@@ -368,6 +380,7 @@ var getProjectData = (function() {
             useTowerRotationData(data);
 
             utils.log(projectData);
+            projectData.googleMapData = googleMapData;
             return projectData;
 
         });

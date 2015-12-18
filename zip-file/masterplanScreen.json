@@ -1,5 +1,4 @@
-masterplanScreen(
-[
+masterplanScreen([
   {
     "towerName":"Tower A",
     "displayOrder":"8",

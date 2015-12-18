@@ -130,6 +130,11 @@ var TowerselectedController = (function() {
                 _this._view.resetFilterOption(element);
                 _this.updateFilteredListings();
             });
+
+            //minMapEvents
+            this._view._minMapClicked.attach(function(sender, element){
+                _this._view.minMapToggle(element);
+            });
         },
         toggleFilterOption: function(filterArray, filterOption, element) {
             var index = filterArray.indexOf(filterOption);
