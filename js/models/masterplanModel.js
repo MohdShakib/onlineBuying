@@ -33,6 +33,7 @@ var MasterplanModel = (function() {
             this._data = data;
         },
         updateTowerMenuEnd: function(count) {
+            this._towerMenu.start = 0;
             this._towerMenu.end = this._towerMenu.start + count - 1;
         },
         slideUpTowerMenu: function() {
