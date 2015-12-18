@@ -48,7 +48,8 @@
         "UnitplaninfoModel": true,
         "UnitplaninfoView": true,
         "utils": true,
-        "viewUtils": true
+        "viewUtils": true,
+        "google": true
     },
     "-W065": true
 }

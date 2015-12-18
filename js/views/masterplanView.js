@@ -3,7 +3,6 @@
  * the UI events. The controller is attached to these
  * events to handle the user interraction.
  */
- /*global google */
 
 "use strict";
 var MasterplanView = (function() {
@@ -107,7 +106,7 @@ var MasterplanView = (function() {
                             new google.maps.LatLng(googleMapData.upperEnd.lat, googleMapData.upperEnd.lng),
                             new google.maps.LatLng(googleMapData.lowerEnd.lat, googleMapData.lowerEnd.lng));
             var mapOptions = {
-                zoom: 17,
+                zoom: config.initialZoomLevel,
                 center: city,
                 mapTypeId: google.maps.MapTypeId.HYBRID
             };
@@ -150,23 +149,23 @@ var MasterplanView = (function() {
         },
         // to decide whether masterplan view has to be opened 
         removeGoogleMapView: function(map, center){
-            if(map.getZoom()>17){
+            if(map.getZoom()>initialZoomLevel){
                 var projectCenter = new google.maps.LatLng(center.lat, center.lng);
-                if(google.maps.geometry.spherical.computeDistanceBetween(projectCenter, map.center)<200){
+                if(google.maps.geometry.spherical.computeDistanceBetween(projectCenter, map.center)<config.openProjectRadius){
                     this.hideGoogleMap();
                 } 
             }
         },
         // to hide the google map
         hideGoogleMap: function(){
-            this._elements.googleMapContainer.parent().css('z-index','-10');
+            this._elements.googleMapContainer.parent().css('z-index','-10');        //do this using class
             this._elements.openGoogleMapView.show();
         },
         // to show the google map view
         showGoogleMap: function(map){
-            this._elements.googleMapContainer.parent().css('z-index','100001');
+            this._elements.googleMapContainer.parent().css('z-index','100001');     //do this using class
             this._elements.openGoogleMapView.hide();
-            map.setZoom(17);
+            map.setZoom(initialZoomLevel);
         },
         // to make open map view icon
         openGoogleMapView: function(){

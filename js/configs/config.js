@@ -128,6 +128,10 @@ var config = (function() {
         amenityPopupCloseClass: "amenity-popup-close",
         towerMenuClass: "master-tower-menu",
 
+        //google map view
+        initialZoomLevel: 17,
+        openProjectRadius: 200,
+
         // Towerselected
         imgContainerId: 'img-container',
         svgContainerId: 'svg-container',
