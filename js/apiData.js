@@ -4,6 +4,18 @@ var getProjectData = (function() {
     var zipPath = './zip-file/';
     var zipImagePath = zipPath + 'img/';
 
+    var googleMapData = {
+        upperEnd:{
+            lat: 28.379743,
+            lng: 76.978000
+        },
+        lowerEnd:{
+            lat: 28.382616,
+            lng: 76.980592
+        },
+        imagePath: zipImagePath+'501660.png'
+    };
+
     function processCsvDataToArray(allText) {
         var allTextLines = allText.split(/\r\n|\n/);
         var headers = allTextLines[0].split(',');
@@ -368,6 +380,7 @@ var getProjectData = (function() {
             useTowerRotationData(data);
 
             utils.log(projectData);
+            projectData.googleMapData = googleMapData;
             return projectData;
 
         });

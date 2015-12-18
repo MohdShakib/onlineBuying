@@ -6,9 +6,9 @@ var config = (function() {
         urlAppName : '/4d-view',
 
         // Independent App
-        apisJson: false,
+        apisJson: true,
         cityJson: true, // to read cities from json
-        localZip: false,
+        localZip: true,
         setJsonDataPriorityForTest: false,
         builderSetUp: false,
         showInterestedIn: true,       // to show hide interested popup
@@ -127,6 +127,10 @@ var config = (function() {
         amenityPopupTableClass: "photo-table",
         amenityPopupCloseClass: "amenity-popup-close",
         towerMenuClass: "master-tower-menu",
+
+        //google map view
+        initialZoomLevel: 17,
+        openProjectRadius: 200,
 
         // Towerselected
         imgContainerId: 'img-container',
