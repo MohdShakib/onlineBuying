@@ -12,7 +12,8 @@ var getProjectData = (function() {
         lowerEnd:{
             lat: 28.382616,
             lng: 76.980592
-        }
+        },
+        imagePath: zipImagePath+'501660.png'
     };
 
     function processCsvDataToArray(allText) {

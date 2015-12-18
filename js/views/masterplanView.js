@@ -112,7 +112,7 @@ var MasterplanView = (function() {
             };
             var map = new google.maps.Map(this._elements.googleMapContainer[0],
                     mapOptions);
-            var imageOverlay = new google.maps.GroundOverlay('images/'+data.projectId+'.png',
+            var imageOverlay = new google.maps.GroundOverlay(googleMapData.imagePath,
                                 imageBounds);
 
             this.googleMapContainerEvents(map, imageOverlay, center);
