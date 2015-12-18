@@ -3,6 +3,7 @@
  * the UI events. The controller is attached to these
  * events to handle the user interraction.
  */
+ /*global google */
 
 "use strict";
 var MasterplanView = (function() {
@@ -18,8 +19,6 @@ var MasterplanView = (function() {
         'googleMapContainer': '<div class="" style="height: 100%; width: 100%; position:relative; z-index:-10;"><div id="google-map-container" style="height:100%; width: 100%;"></div></div>',
         'openGoogleMapView': '<div id="open-google-map-view" style="padding: 10px 20px; color: #000; position: absolute; top: 20%; right: 20px; z-index: 100001; background-color: yellow;">Open Google Map View</div>'
     };
-
-    var google = google;
 
     function getElements() {
         var elements = {
