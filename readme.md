@@ -17,10 +17,10 @@ $ sudo vim /etc/apache2/httpd.conf-
 
 * Change the default path to directory where you want to host. 
 ```
-DocumentRoot "/Library/WebServer/Documents"
+    DocumentRoot "/Library/WebServer/Documents"
 ```
 ```
-Directory "/Library/WebServer/Documents"
+    Directory "/Library/WebServer/Documents"
 ```
 
 * Change **"AllowOverride None"** to **"AllowOverride All"**.
