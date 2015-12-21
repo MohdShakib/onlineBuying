@@ -1,5 +1,4 @@
-towerRotation(
-[
+towerRotation([
   {
     "towerName":"Tower A",
     "imageName":"UmangA_00##.jpg",

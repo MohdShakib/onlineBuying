@@ -7,6 +7,7 @@ How to set up apache on mac?
 	DocumentRoot "/Library/WebServer/Documents"
 	<Directory "/Library/WebServer/Documents>"
 4. Change "AllowOverride None" to "AllowOverride All".
+5. Find the username of your system using command 'whoami' from your mac and and update the 'User' value using that in httpd.conf file.
 5. sudo apachectl restart
 6. Goto the directory where online buying code is present
 7. sudo npm install (node version: v0.12.0)

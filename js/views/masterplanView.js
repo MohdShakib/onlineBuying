@@ -14,7 +14,9 @@ var MasterplanView = (function() {
         'towerDetailContainer': '<div class="tower-detail-container" id="tower-detail-container"></div>',
         'amenitiesContainer': '<div class="amenities-container ' + config.dynamicResizeClass + '" id="amenities-container"></div>',
         'cloudContainer': '<div class="cloud-container" id="cloud-container"></div>',
-        'carAnimation': '<svg class="car-animation transition-left ' + config.dynamicResizeClass + '" id="car-animation" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>'
+        'carAnimation': '<svg class="car-animation transition-left ' + config.dynamicResizeClass + '" id="car-animation" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
+        'googleMapContainer': '<div class="" style="height: 100%; width: 100%; position:relative; z-index:-10;"><div id="google-map-container" style="height:100%; width: 100%;"></div></div>',
+        'openGoogleMapView': '<div id="open-google-map-view" style="padding: 10px 20px; color: #000; position: absolute; top: 20%; right: 20px; z-index: 100001; background-color: yellow;">Open Google Map View</div>'
     };
 
     function getElements() {
@@ -25,7 +27,9 @@ var MasterplanView = (function() {
             'towerDetailContainer': $('#tower-detail-container'),
             'amenitiesContainer': $('#amenities-container'),
             'cloudContainer': $('#cloud-container'),
-            'carAnimation': $('#car-animation')
+            'carAnimation': $('#car-animation'),
+            'googleMapContainer': $('#google-map-container'),
+            'openGoogleMapView': $('#open-google-map-view')
         };
         return elements;
     }
@@ -51,6 +55,11 @@ var MasterplanView = (function() {
         // Amenity Events
         this._amenityClick = new Event(this);
         this._amenityClose = new Event(this);
+
+        // Google Map Events
+        this._googleMapProjectClick = new Event(this);
+        this._googleMapViewChanged = new Event(this);
+        this._openGoogleMapClicked = new Event(this);
 
         // For dynamic height of tower menu
         utils.masterPlanModel = this._model;
@@ -83,6 +92,85 @@ var MasterplanView = (function() {
             document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '':'<a href="https://www.proptiger.com/' + data.projectUrl + '" target="_blank">') + data.builderName + ' ' + data.projectName + (config.builderSetUp ? '':'</a>');
             document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
+        },
+        // to render the google map container
+        googleMapContainer: function(){
+            var data = this._model.getData(),
+                googleMapData = data.googleMapData;
+            var center = {
+                lat: (googleMapData.upperEnd.lat + googleMapData.lowerEnd.lat)/2,
+                lng: (googleMapData.upperEnd.lng + googleMapData.lowerEnd.lng)/2 
+            };
+            var city = new google.maps.LatLng(center.lat, center.lng);
+            var imageBounds = new google.maps.LatLngBounds(
+                            new google.maps.LatLng(googleMapData.upperEnd.lat, googleMapData.upperEnd.lng),
+                            new google.maps.LatLng(googleMapData.lowerEnd.lat, googleMapData.lowerEnd.lng));
+            var mapOptions = {
+                zoom: config.initialZoomLevel,
+                center: city,
+                mapTypeId: google.maps.MapTypeId.HYBRID
+            };
+            var map = new google.maps.Map(this._elements.googleMapContainer[0],
+                    mapOptions);
+            var imageOverlay = new google.maps.GroundOverlay(googleMapData.imagePath,
+                                imageBounds);
+
+            this.googleMapContainerEvents(map, imageOverlay, center);
+            
+        },
+        // to attach events related to google maps view
+        googleMapContainerEvents: function(map, imageOverlay, center){
+            var _this = this;
+
+            this._elements.openGoogleMapView.off('click').on('click', function(){
+                _this._openGoogleMapClicked.notify(map);
+            });
+
+            var elements = {
+                map: map,
+                center: center
+            };
+
+            google.maps.event.addListener(map, 'center_changed', function(event){
+                _this._googleMapViewChanged.notify(elements);
+            });
+
+            google.maps.event.addListener(map, 'zoom_changed', function(event){
+                _this._googleMapViewChanged.notify(elements);
+            });
+
+            google.maps.event.addListenerOnce(map, 'idle', function(){
+                imageOverlay.setMap(map);
+            });
+
+            google.maps.event.addListener(imageOverlay,'click',function(event){
+                _this._googleMapProjectClick.notify(this);
+            });
+        },
+        // to decide whether masterplan view has to be opened 
+        removeGoogleMapView: function(map, center){
+            if(map.getZoom()>config.initialZoomLevel){
+                var projectCenter = new google.maps.LatLng(center.lat, center.lng);
+                if(google.maps.geometry.spherical.computeDistanceBetween(projectCenter, map.center)<config.openProjectRadius){
+                    this.hideGoogleMap();
+                } 
+            }
+        },
+        // to hide the google map
+        hideGoogleMap: function(){
+            this._elements.googleMapContainer.parent().css('z-index','-10');        //do this using class
+            this._elements.openGoogleMapView.show();
+        },
+        // to show the google map view
+        showGoogleMap: function(map){
+            this._elements.googleMapContainer.parent().css('z-index','100001');     //do this using class
+            this._elements.openGoogleMapView.hide();
+            map.setZoom(config.initialZoomLevel);
+        },
+        // to make open map view icon
+        openGoogleMapView: function(){
+            var text = "Open Google Map View";
+            this._elements.openGoogleMapView.html(text);
         },
         startAnimation: function(model) {
 

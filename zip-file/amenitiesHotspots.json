@@ -1,9 +1,8 @@
-amenitiesHotspots(
-[
+amenitiesHotspots([
   {
     "amenityName":"Swimming Pool",
     "amenitySvg":"42.19 39.84",
-    "imageName":"swimming_pool.jpg"
+    "imageName":"pool_view.jpg"
   },
   {
     "amenityName":"Kids Play",
@@ -28,7 +27,7 @@ amenitiesHotspots(
   {
     "amenityName":"Terrace Units",
     "amenitySvg":"55.38 21.42",
-    "imageName":"terrace_unit.jpg"
+    "imageName":"terrace_garden.jpg"
   },
   {
     "amenityName":"Tennis Court",
