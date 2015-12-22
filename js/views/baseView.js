@@ -713,7 +713,7 @@ var BaseView = (function() {
             if(!config.showInterestedIn){
                 return;
             }
-            var html = '<div class="question' + (config.builderSetUp ? ' emailInfo' : '') + '"><span>Interested</span></div>' +
+            var html = '<div class="question' + (config.builderSetUp ? ' emailInfo' : '') + '"><span>Interested?</span></div>' +
                 '   <div class="callInfo">' +
                 (config.builderSetUp ? '   <p class="email">' + config.emailId + '</p>':'') +
                 '   <p><span class="number">' + config.helpline + '</span>Our Advisors are here to help.</p>' +
