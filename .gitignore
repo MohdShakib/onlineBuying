@@ -4,3 +4,4 @@ css/style-all.*
 js/script-all.*
 vendors/vendors-all.*
 .sass-cache/
+.idea/
