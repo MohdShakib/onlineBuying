@@ -571,8 +571,9 @@ var MasterplanView = (function() {
                     var amenity = data.amenities[amenityKey];
                     var point = data.amenities[amenityKey].amenitySvg.split(' ');
                     var position = "top:" + point[1] + "%; left:" + point[0] + "%;";
+                    var positionName = 'margin-top: -110px; margin-left:60px;';
                     code += "<div data-top='" + point[1] + "' data-left='" + point[0] + "' id='" + amenityKey + "' class='" + config.amenityIconClass + "' style='" + position + "'><span class='icon icon-location transition fs0'></span>";
-                    code += "<div class='name'><span>" + amenity.amenityName + "</span></div>";
+                    code += "<div style='" + positionName +"' class='name'><img style='width: 80px;height: 80px; ' src="+amenity.imageUrl+"></div>";
                     code += "</div>";
                 }
             }
