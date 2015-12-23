@@ -106,7 +106,7 @@ var MasterplanView = (function() {
                             new google.maps.LatLng(googleMapData.upperEnd.lat, googleMapData.upperEnd.lng),
                             new google.maps.LatLng(googleMapData.lowerEnd.lat, googleMapData.lowerEnd.lng));
             var mapOptions = {
-                zoom: config.initialZoomLevel,
+                zoom: config.maxZoomLevel,
                 center: city,
                 mapTypeId: google.maps.MapTypeId.HYBRID
             };
@@ -122,14 +122,15 @@ var MasterplanView = (function() {
         googleMapContainerEvents: function(map, imageOverlay, center){
             var _this = this;
 
-            this._elements.openGoogleMapView.off('click').on('click', function(){
-                _this._openGoogleMapClicked.notify(map);
-            });
-
             var elements = {
                 map: map,
-                center: center
+                center: center,
+                visible: false
             };
+
+            this._elements.openGoogleMapView.off('click').on('click', function(){
+                _this._openGoogleMapClicked.notify(elements);
+            });
 
             google.maps.event.addListener(map, 'center_changed', function(event){
                 _this._googleMapViewChanged.notify(elements);
@@ -144,28 +145,32 @@ var MasterplanView = (function() {
             });
 
             google.maps.event.addListener(imageOverlay,'click',function(event){
-                _this._googleMapProjectClick.notify(this);
+                _this._googleMapProjectClick.notify(elements);
             });
         },
         // to decide whether masterplan view has to be opened 
-        removeGoogleMapView: function(map, center){
-            if(map.getZoom()>config.initialZoomLevel){
-                var projectCenter = new google.maps.LatLng(center.lat, center.lng);
-                if(google.maps.geometry.spherical.computeDistanceBetween(projectCenter, map.center)<config.openProjectRadius){
-                    this.hideGoogleMap();
+        removeGoogleMapView: function(elements){
+            if(elements.map.getZoom()>config.initialZoomLevel && elements.visible){
+                var projectCenter = new google.maps.LatLng(elements.center.lat, elements.center.lng);
+                if(google.maps.geometry.spherical.computeDistanceBetween(projectCenter, elements.map.center)<config.openProjectRadius){
+                    this.hideGoogleMap(elements);
                 } 
             }
         },
         // to hide the google map
-        hideGoogleMap: function(){
-            this._elements.googleMapContainer.parent().css('z-index','-10');        //do this using class
+        hideGoogleMap: function(elements){
+            elements.visible = false;
+            elements.map.setCenter(elements.center);
+            elements.map.setZoom(config.maxZoomLevel);
+            this._elements.googleMapContainer.parent().css('z-index','-10');     //do this using class
             this._elements.openGoogleMapView.show();
         },
         // to show the google map view
-        showGoogleMap: function(map){
+        showGoogleMap: function(elements){
             this._elements.googleMapContainer.parent().css('z-index','100001');     //do this using class
             this._elements.openGoogleMapView.hide();
-            map.setZoom(config.initialZoomLevel);
+            elements.map.setZoom(config.initialZoomLevel);
+            elements.visible = true;
         },
         // to make open map view icon
         openGoogleMapView: function(){

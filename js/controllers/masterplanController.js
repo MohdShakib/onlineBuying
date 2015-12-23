@@ -65,10 +65,10 @@ var MasterplanController = (function() {
 
             // Google Map Events
             this._view._googleMapProjectClick.attach(function(sender, element){
-                _this._view.hideGoogleMap();
+                _this._view.hideGoogleMap(element);
             });
             this._view._googleMapViewChanged.attach(function(sender, element){
-                _this._view.removeGoogleMapView(element.map, element.center);
+                _this._view.removeGoogleMapView(element);
             });
             this._view._openGoogleMapClicked.attach(function(sender, element){
                 _this._view.showGoogleMap(element);
