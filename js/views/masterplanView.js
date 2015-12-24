@@ -15,7 +15,8 @@ var MasterplanView = (function() {
         'amenitiesContainer': '<div class="amenities-container ' + config.dynamicResizeClass + '" id="amenities-container"></div>',
         'cloudContainer': '<div class="cloud-container" id="cloud-container"></div>',
         'carAnimation': '<svg class="car-animation transition-left ' + config.dynamicResizeClass + '" id="car-animation" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
-        'googleMapContainer': '<div class="" style="height: 100%; width: 100%; position:relative; z-index:-10;"><div id="google-map-container" style="height:100%; width: 100%;"></div></div>',
+        'googleMapContainer': '<div class="map-container"><div id="google-map-container" class="google-map-container"></div></div>',
+        'mapTooltip': '<div class="map-tooltip" id=map-tooltip></div>',
         'openGoogleMapView': '<div id="open-google-map-view" style="padding: 10px 20px; color: #000; position: absolute; top: 20%; right: 20px; z-index: 100001; background-color: yellow;">Open Google Map View</div>'
     };
 
@@ -96,7 +97,8 @@ var MasterplanView = (function() {
         // to render the google map container
         googleMapContainer: function(){
             var data = this._model.getData(),
-                googleMapData = data.googleMapData;
+                googleMapData = data.googleMapData,
+                _this = this;
             var center = {
                 lat: (googleMapData.upperEnd.lat + googleMapData.lowerEnd.lat)/2,
                 lng: (googleMapData.upperEnd.lng + googleMapData.lowerEnd.lng)/2 
@@ -105,18 +107,71 @@ var MasterplanView = (function() {
             var imageBounds = new google.maps.LatLngBounds(
                             new google.maps.LatLng(googleMapData.upperEnd.lat, googleMapData.upperEnd.lng),
                             new google.maps.LatLng(googleMapData.lowerEnd.lat, googleMapData.lowerEnd.lng));
+            var mapStyles =[
+                {
+                    featureType: "poi",
+                    elementType: "labels",
+                    stylers: [
+                        {
+                            visibility: "off"
+                        }
+                    ]
+                }
+            ];
             var mapOptions = {
                 zoom: config.maxZoomLevel,
                 center: city,
-                mapTypeId: google.maps.MapTypeId.HYBRID
+                mapTypeId: google.maps.MapTypeId.HYBRID,
+                styles: mapStyles
             };
             var map = new google.maps.Map(this._elements.googleMapContainer[0],
                     mapOptions);
+            var places = new google.maps.places.PlacesService(map);
+            places.nearbySearch({
+                location: center,
+                radius: config.nearbySearchDistance,
+                types: config.nearbySearchAmenities
+            }, function(results, status, next){
+                next.nextPage();
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    for (var i = 0; i < results.length; i++) {
+                        _this.createMarker(results[i], map);
+                    }
+                }
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+
             var imageOverlay = new google.maps.GroundOverlay(googleMapData.imagePath,
                                 imageBounds);
 
             this.googleMapContainerEvents(map, imageOverlay, center);
+
+        },
+        createMarker: function(place, map, masterplanView) {
+            var placeLoc = place.geometry.location,
+                _this = this;
+            var marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location
+            });
             
+            google.maps.event.addListener(marker, 'mouseover', function() {
+                $('#map-tooltip').html(place.name);
+                $('#map-tooltip').show();
+                var pixelLocation = _this.fromLatLngToPoint(place.geometry.location, map);
+                $('#map-tooltip').css({top: pixelLocation.y, left: pixelLocation.x});
+            });
+            google.maps.event.addListener(marker, 'mouseout', function(){
+                $('#map-tooltip').hide();
+            });
+        },
+        fromLatLngToPoint: function(latLng, map) {
+            var topRight = map.getProjection().fromLatLngToPoint(map.getBounds().getNorthEast());
+            var bottomLeft = map.getProjection().fromLatLngToPoint(map.getBounds().getSouthWest());
+            var scale = Math.pow(2, map.getZoom());
+            var worldPoint = map.getProjection().fromLatLngToPoint(latLng);
+            return new google.maps.Point((worldPoint.x - bottomLeft.x) * scale, (worldPoint.y - topRight.y) * scale);
         },
         // to attach events related to google maps view
         googleMapContainerEvents: function(map, imageOverlay, center){

@@ -273,6 +273,32 @@ ellipse.tower-unit-svg-selected-path {
 	color: $unavailableColor !important;
 }
 
+/* google map class */
+.map-container{
+	height: 100%;
+	width: 100%;
+	position:relative;
+	z-index:-10;
+}
+
+.map-container .google-map-container{
+	height:100%;
+	width: 100%;
+}
+
+.map-tooltip{
+	z-index:9999999999;
+	display:none;
+	background-color: #fff;
+	border-radius: 5px;
+	text-align: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 10px;
+	min-width: 200px;
+}
+
 
 /* Tower Menu */
 .tower-menu-container {

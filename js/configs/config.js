@@ -6,9 +6,9 @@ var config = (function() {
         urlAppName : '/4d-view',
 
         // Independent App
-        apisJson: true,
+        apisJson: false,
         cityJson: true, // to read cities from json
-        localZip: true,
+        localZip: false,
         setJsonDataPriorityForTest: false,
         builderSetUp: false,
         showInterestedIn: true,       // to show hide interested popup
@@ -132,6 +132,8 @@ var config = (function() {
         initialZoomLevel: 17,
         maxZoomLevel: 18,
         openProjectRadius: 200,
+        nearbySearchDistance: 3000,
+        nearbySearchAmenities: ['hospital','school','shopping_mall','grocery_or_supermarket','gas_station','doctor','department_store'],
 
         // Towerselected
         imgContainerId: 'img-container',
