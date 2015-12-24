@@ -15,8 +15,8 @@ var MasterplanView = (function() {
         'amenitiesContainer': '<div class="amenities-container ' + config.dynamicResizeClass + '" id="amenities-container"></div>',
         'cloudContainer': '<div class="cloud-container" id="cloud-container"></div>',
         'carAnimation': '<svg class="car-animation transition-left ' + config.dynamicResizeClass + '" id="car-animation" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
-        'googleMapContainer': '<div class="" style="height: 100%; width: 100%; position:relative; z-index:-10;"><div id="google-map-container" style="height:100%; width: 100%;"></div></div>',
-        'mapTooltip': '<div id=map-tooltip style="z-index:9999999999; display:none; background-color: #fff; border-radius: 5px; text-align: center; position: absolute; top: 0; left: 0; padding: 10px; min-width: 200px;"></div>',
+        'googleMapContainer': '<div class="map-container"><div id="google-map-container" class="google-map-container"></div></div>',
+        'mapTooltip': '<div class="map-tooltip" id=map-tooltip></div>',
         'openGoogleMapView': '<div id="open-google-map-view" style="padding: 10px 20px; color: #000; position: absolute; top: 20%; right: 20px; z-index: 100001; background-color: yellow;">Open Google Map View</div>'
     };
 
@@ -129,8 +129,8 @@ var MasterplanView = (function() {
             var places = new google.maps.places.PlacesService(map);
             places.nearbySearch({
                 location: center,
-                radius: 3000,
-                types: ['hospital','school','shopping_mall','grocery_or_supermarket','gas_station','doctor','department_store']
+                radius: config.nearbySearchDistance,
+                types: config.nearbySearchAmenities
             }, function(results, status, next){
                 next.nextPage();
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -142,13 +142,11 @@ var MasterplanView = (function() {
 
             var infowindow = new google.maps.InfoWindow();
 
-            
-
             var imageOverlay = new google.maps.GroundOverlay(googleMapData.imagePath,
                                 imageBounds);
 
             this.googleMapContainerEvents(map, imageOverlay, center);
-            
+
         },
         createMarker: function(place, map, masterplanView) {
             var placeLoc = place.geometry.location,
@@ -157,21 +155,15 @@ var MasterplanView = (function() {
                 map: map,
                 position: place.geometry.location
             });
-
-            var tooltip = document.createElement("div");
-            tooltip.innerHTML = place.name;
             
             google.maps.event.addListener(marker, 'mouseover', function() {
                 $('#map-tooltip').html(place.name);
                 $('#map-tooltip').show();
-                // infowindow.setContent(tooltip);
                 var pixelLocation = _this.fromLatLngToPoint(place.geometry.location, map);
-                $('#map-tooltip').css({top: pixelLocation.y, left: pixelLocation.x, position:'absolute'})
-                // infowindow.open(map, this);
+                $('#map-tooltip').css({top: pixelLocation.y, left: pixelLocation.x});
             });
             google.maps.event.addListener(marker, 'mouseout', function(){
                 $('#map-tooltip').hide();
-                // infowindow.close(map, this);
             });
         },
         fromLatLngToPoint: function(latLng, map) {
