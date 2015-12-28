@@ -107,8 +107,8 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         env: 'dev',
-                        cdn: '/4d-view/',
-                        baseHref: '/4d-view/',
+                        cdn: '/',
+                        baseHref: '/',
                         ga: {
                             key: "UA-22638191-12",
                             gtmKey1: "GTM-W9KBLB",
