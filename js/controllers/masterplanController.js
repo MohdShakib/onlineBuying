@@ -65,13 +65,25 @@ var MasterplanController = (function() {
 
             // Google Map Events
             this._view._googleMapProjectClick.attach(function(sender, element){
+                _this._view._elements.buildingImgContainer.removeClass('zoomOutMasterPlan');
+                _this._view._elements.buildingImgContainer.addClass('zoomInMasterPlan');
                 _this._view.hideGoogleMap(element);
             });
             this._view._googleMapViewChanged.attach(function(sender, element){
                 _this._view.removeGoogleMapView(element);
             });
             this._view._openGoogleMapClicked.attach(function(sender, element){
-                _this._view.showGoogleMap(element);
+                _this._view._elements.buildingImgContainer.removeClass('zoomInMasterPlan');
+                _this._view._elements.buildingImgContainer.addClass('zoomOutMasterPlan');
+                _this._view._elements.amenitiesContainer.hide();
+                _this._view._elements.carAnimation.hide();
+                _this._view._elements.buildingMenuContainer.hide();
+                _this._view._elements.openGoogleMapView.hide();
+                _this._view._elements.cloudContainer.hide();
+                element.map.setZoom(config.initialZoomLevel);
+                setTimeout(function(){
+                    _this._view.showGoogleMap(element);
+                },1500);
             });
         },
         generateTemplate: function() {
