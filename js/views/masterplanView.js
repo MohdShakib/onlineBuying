@@ -208,23 +208,34 @@ var MasterplanView = (function() {
             if(elements.map.getZoom()>config.initialZoomLevel && elements.visible){
                 var projectCenter = new google.maps.LatLng(elements.center.lat, elements.center.lng);
                 if(google.maps.geometry.spherical.computeDistanceBetween(projectCenter, elements.map.center)<config.openProjectRadius){
+                    elements.map.setZoom(config.initialZoomLevel);
+                    this._elements.buildingImgContainer.removeClass('zoomOutMasterPlan');
+                    this._elements.buildingImgContainer.addClass('zoomInMasterPlan');
                     this.hideGoogleMap(elements);
                 } 
             }
         },
         // to hide the google map
         hideGoogleMap: function(elements){
+            var _this = this;
             elements.visible = false;
             elements.map.setCenter(elements.center);
-            elements.map.setZoom(config.maxZoomLevel);
+            //elements.map.setZoom(config.maxZoomLevel);
             this._elements.googleMapContainer.parent().css('z-index','-10');     //do this using class
-            this._elements.openGoogleMapView.show();
+            setTimeout(function(){
+                _this._elements.amenitiesContainer.show();
+                _this._elements.carAnimation.show();
+                _this._elements.buildingMenuContainer.show();
+                _this._elements.openGoogleMapView.show();
+                _this._elements.cloudContainer.show();
+            },3000);
+
         },
         // to show the google map view
         showGoogleMap: function(elements){
             this._elements.googleMapContainer.parent().css('z-index','100001');     //do this using class
             this._elements.openGoogleMapView.hide();
-            elements.map.setZoom(config.initialZoomLevel);
+            //elements.map.setZoom(config.initialZoomLevel);
             elements.visible = true;
         },
         // to make open map view icon
