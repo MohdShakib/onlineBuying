@@ -1206,30 +1206,23 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .price-breakup-trems{ text-align:left;}
 /*-----loading screen css start here------*/
 .show-loading{ height:100%; width:100%; position:fixed; top:0; right:0; z-index:999999;}
-.loading-view{
-	background:rgba(0,0,0,0.52);
-	width:100%;
-	height:100%;
-	position:fixed;
-	left:0; 
-	top:0;	
-}
-.view-box{ width:590px; height:580px; position:absolute; text-align:center; top:50%; left:50%; margin:-290px 0 0 -295px;}
-.view-box *{ display:inline-block;}
-.view-photo{ width:130px; height:130px; border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50%; margin:0 0 20px 0; box-shadow:0 35px 35px rgba(255,255,255,0.16);}
-.view-photo img{ width:100%; height:100%; display:block;border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50%;}
-.view-box .loading-bar-container{color: white;}
-.loading-view h2, .loading-view h2 a{ width:100%; color:rgba(255,255,255,0.84); font-size:37px; font-weight:normal;}
-.loading-view h2 span{ display:block; font-size:22px;}
-.loading-pro-details{ width:100%; margin:30px 0 60px 0;}
-.loading-pro-details p{ font-size:12px; color:rgba(255,255,255,0.73); height: 60px; overflow: hidden;}
-.four-d-icon{ width:100%; position:relative; margin-top:90px;}
-.four-d-icon p{ font-size:18px; position:relative; color:rgba(255,255,255,0.90);}
-.four-d-icon p span{ font-size:30px;}
-.four-d-icon p:before{ content:''; position:absolute; width:100px; height:100px; background:url(../images/loading-icon.png) no-repeat; top:-110px; left:50%; margin-left:-50px;}
-.loading-bar{ width:341px; height:6px;border-radius:12px;-moz-border-radius:12px; -webkit-border-radius:12px; background:rgba(0,0,0,0.15); overflow:hidden;}
-.loading-bar span{ height:100%; width:0%; background:rgba(255,255,255,0.5); display:block;}
-.loading-persentage{ width:100%; font-size:18px; color:rgba(255,255,255,0.64);}
+
+.top-view { border-bottom: 4px solid #37421f; overflow: hidden; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3); position: absolute; top: 0; left: 0; z-index: 1; width: 100%; height: 70%; background: url(../images/loading-greenBg.png) top center no-repeat #243700; background-size: cover; }
+.top-view .info { padding-right: 100px; box-sizing: border-box; position: absolute; top: 25%; left: 10%; width: 40%; z-index: 1; }
+.top-view h2 { font-size: 48px; color: #fff; font-weight: normal; }
+.top-view h2 a { color: #fff; }
+.top-view h2 span { display: block; font-size: 30px; }
+.top-view .loading-txt { padding: 7px 20px; margin-top: 50px; color: #fff; font-style: italic; border-radius: 10px; background-color: rgba(0, 0, 0, .5); }
+.top-view .building { z-index: 0; position: absolute; width: 50%; height: 90%; right: 100px; bottom: -10px; }
+.top-view .building img { width: 100%; height: 100%; }
+
+.bot-view { text-align: center; box-sizing: border-box; position: absolute; bottom: 0; left: 0; width: 100%; height: 30%; background-color: #fff; }
+.bot-view .ldr { margin: auto; position: relative; z-index: 10; margin-top: -85px; border-radius: 50%; border: 2px solid #d36242; line-height: 170px; text-align: center; color: #d36242; font-size: 50px; width: 170px; height: 170px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); background-color: #fff; }
+.bot-view .ldr span { font-size: 34px; }
+.bot-view .txt { padding-top: 60px; font-size: 20px; color: #444; }
+.bot-view .txt span { padding: 5px; margin-top: 10px; font-size: 34px; color: #e4552e; display: inline-block; border-top: 1px solid #bcbcbc; border-bottom: 1px solid #bcbcbc; }
+
+
 /*-----loading screen css end here------*/
 /*---------page not found 404-----------*/
 .error-404{ background:#fff; text-align:center; position:fixed; top:0; left:0; height:100%; width:100%; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; padding-top:150px; z-index:999999;}
