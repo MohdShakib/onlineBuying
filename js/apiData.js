@@ -459,6 +459,7 @@ var getProjectData = (function() {
         projectData.address = projectDetail.address;
         projectData.bgImage = zipImagePath + config.backgroundImage;
         projectData.description = projectDetail.description;
+        projectData.totalEastFacingAvailableCount = 0;
         // projectData.fairEnabled = projectDetail.hasPrimaryExpandedListing ==  3 ? false : true;
         projectData.fairEnabled = true;
 
@@ -581,6 +582,7 @@ var getProjectData = (function() {
             towers[towerIdentifier].listings = {};
             towers[towerIdentifier].rotationAngle = {};
             towers[towerIdentifier].totalAvailableCount = 0; //contains count for total flats available in the tower
+            towers[towerIdentifier].totalEastFacingAvailableCount = 0; //contains count for total east facing flats available in the tower
             towers[towerIdentifier].stableViewAngles = [];
             towers[towerIdentifier].bookingStatus = bookingStatusMap['1'];
             towersUnitInfo[towerIdentifier] = {};
@@ -646,6 +648,7 @@ var getProjectData = (function() {
             flatUnit.bookingAmount = listing.bookingAmount;
             flatUnit.discount = listing.discount ? listing.discount : undefined;
             flatUnit.discountDescription = listing.discountDescription;
+            flatUnit.viewDirections = listing.viewDirections;
             flatUnit.rotationAnglesAvailable = [];
 
 
@@ -759,19 +762,29 @@ var getProjectData = (function() {
             tower = projectData.towers[towerIdentifier];
             var isAvailable = false,
                 totalAvailableCount = 0,
+                totalEastFacingAvailableCount = 0,
+                viewDirections = 0,
                 bookingStatus = 'SoldOut';
             for (var unitKey in tower.listings) {
                 if (hasOwnProperty.call(tower.listings, unitKey) && tower.listings[unitKey].bookingStatus == 'Available') {
                     isAvailable = true;
                     totalAvailableCount += 1;
                     bookingStatus = 'Available';
+                    if(tower.listings[unitKey].viewDirections.length>0){
+                        viewDirections = tower.listings[unitKey].viewDirections;
+                    }
+                    if(tower.listings[unitKey].facing == 'East'){
+                        totalEastFacingAvailableCount +=1;
+                    }
                 } else if (bookingStatus == 'SoldOut' && tower.listings[unitKey].bookingStatus == 'OnHold') {
                     bookingStatus = 'OnHold';
                 }
             }
             tower.isAvailable = isAvailable;
             tower.totalAvailableCount = totalAvailableCount; // keeps count for flats available after applying fitler etc
+            tower.totalEastFacingAvailableCount = totalEastFacingAvailableCount; // keeps count for east facing flats available after applying fitler etc
             tower.bookingStatus = bookingStatus;
+            tower.viewDirections = viewDirections;
         }
 
     };

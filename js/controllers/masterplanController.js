@@ -85,9 +85,13 @@ var MasterplanController = (function() {
                     _this._view.showGoogleMap(element);
                 },1500);
             });
+            this._view._applyfilter.attach(function(sender, element){
+                _this._view.applyFilter(element);
+            });
         },
         generateTemplate: function() {
             this._view.buildView();
+            this._view.craeteBottomFilterContainer();
             if (this._model.isFirstLoad()) {
                 var _this = this,
                     animationStart;

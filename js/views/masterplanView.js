@@ -5,7 +5,7 @@
  */
 
 "use strict";
-var MasterplanView = (function() {
+var MasterplanView = (function () {
 
     var containerMap = {
         'buildingImgContainer': '<div class="img-container opacity-control ' + config.dynamicResizeClass + '" id="img-container" style="display:none;"></div>',
@@ -17,7 +17,8 @@ var MasterplanView = (function() {
         'carAnimation': '<svg class="car-animation transition-left ' + config.dynamicResizeClass + '" id="car-animation" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'googleMapContainer': '<div class="map-container"><div id="google-map-container" class="google-map-container"></div></div>',
         'mapTooltip': '<div class="map-tooltip" id=map-tooltip></div>',
-        'openGoogleMapView': '<div id="open-google-map-view" style="padding: 10px 20px; color: #000; position: absolute; top: 20%; right: 20px; z-index: 100001; background-color: yellow;">Open Google Map View</div>'
+        'openGoogleMapView': '<div id="open-google-map-view" style="padding: 10px 20px; color: #000; position: absolute; top: 20%; right: 20px; z-index: 100001; background-color: yellow;">Open Google Map View</div>',
+        'bottomFilterContainer': '<div id="bottom-filter-container" style="width: 400px;height: 40px;padding: 15px 15px;color: #000;position: absolute;bottom: 0px;left: 30%;z-index: 100001;background-color: greenyellow;">WOooooo</div>'
     };
 
     function getElements() {
@@ -30,7 +31,8 @@ var MasterplanView = (function() {
             'cloudContainer': $('#cloud-container'),
             'carAnimation': $('#car-animation'),
             'googleMapContainer': $('#google-map-container'),
-            'openGoogleMapView': $('#open-google-map-view')
+            'openGoogleMapView': $('#open-google-map-view'),
+            'bottomFilterContainer': $('#bottom-filter-container')
         };
         return elements;
     }
@@ -62,12 +64,15 @@ var MasterplanView = (function() {
         this._googleMapViewChanged = new Event(this);
         this._openGoogleMapClicked = new Event(this);
 
+
+        this._applyfilter = new Event(this);
+
         // For dynamic height of tower menu
         utils.masterPlanModel = this._model;
     }
 
     MasterplanView.prototype = {
-        buildView: function() {
+        buildView: function () {
             var i, data = this._model.getData();
             var _this = this;
             this.buildSkeleton(Object.keys(containerMap));
@@ -79,7 +84,7 @@ var MasterplanView = (function() {
                 }
             }
         },
-        buildSkeleton: function(containerList) {
+        buildSkeleton: function (containerList) {
             var key, mainContainerHtml = '';
             for (key in containerList) {
                 if (containerList.hasOwnProperty(key) && containerMap[containerList[key]]) {
@@ -89,25 +94,25 @@ var MasterplanView = (function() {
             document.getElementById(config.mainContainerId).innerHTML = mainContainerHtml;
             this._elements = getElements();
         },
-        renderInitialData: function(data) {
-            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '':'<a href="https://www.proptiger.com/' + data.projectUrl + '" target="_blank">') + data.builderName + ' ' + data.projectName + (config.builderSetUp ? '':'</a>');
+        renderInitialData: function (data) {
+            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '' : '<a href="https://www.proptiger.com/' + data.projectUrl + '" target="_blank">') + data.builderName + ' ' + data.projectName + (config.builderSetUp ? '' : '</a>');
             document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
         },
         // to render the google map container
-        googleMapContainer: function(){
+        googleMapContainer: function () {
             var data = this._model.getData(),
                 googleMapData = data.googleMapData,
                 _this = this;
             var center = {
-                lat: (googleMapData.upperEnd.lat + googleMapData.lowerEnd.lat)/2,
-                lng: (googleMapData.upperEnd.lng + googleMapData.lowerEnd.lng)/2 
+                lat: (googleMapData.upperEnd.lat + googleMapData.lowerEnd.lat) / 2,
+                lng: (googleMapData.upperEnd.lng + googleMapData.lowerEnd.lng) / 2
             };
             var city = new google.maps.LatLng(center.lat, center.lng);
             var imageBounds = new google.maps.LatLngBounds(
-                            new google.maps.LatLng(googleMapData.upperEnd.lat, googleMapData.upperEnd.lng),
-                            new google.maps.LatLng(googleMapData.lowerEnd.lat, googleMapData.lowerEnd.lng));
-            var mapStyles =[
+                new google.maps.LatLng(googleMapData.upperEnd.lat, googleMapData.upperEnd.lng),
+                new google.maps.LatLng(googleMapData.lowerEnd.lat, googleMapData.lowerEnd.lng));
+            var mapStyles = [
                 {
                     featureType: "poi",
                     elementType: "labels",
@@ -125,13 +130,13 @@ var MasterplanView = (function() {
                 styles: mapStyles
             };
             var map = new google.maps.Map(this._elements.googleMapContainer[0],
-                    mapOptions);
+                mapOptions);
             var places = new google.maps.places.PlacesService(map);
             places.nearbySearch({
                 location: center,
                 radius: config.nearbySearchDistance,
                 types: config.nearbySearchAmenities
-            }, function(results, status, next){
+            }, function (results, status, next) {
                 next.nextPage();
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
                     for (var i = 0; i < results.length; i++) {
@@ -143,30 +148,30 @@ var MasterplanView = (function() {
             var infowindow = new google.maps.InfoWindow();
 
             var imageOverlay = new google.maps.GroundOverlay(googleMapData.imagePath,
-                                imageBounds);
+                imageBounds);
 
             this.googleMapContainerEvents(map, imageOverlay, center);
 
         },
-        createMarker: function(place, map, masterplanView) {
+        createMarker: function (place, map, masterplanView) {
             var placeLoc = place.geometry.location,
                 _this = this;
             var marker = new google.maps.Marker({
                 map: map,
                 position: place.geometry.location
             });
-            
-            google.maps.event.addListener(marker, 'mouseover', function() {
+
+            google.maps.event.addListener(marker, 'mouseover', function () {
                 $('#map-tooltip').html(place.name);
                 $('#map-tooltip').show();
                 var pixelLocation = _this.fromLatLngToPoint(place.geometry.location, map);
                 $('#map-tooltip').css({top: pixelLocation.y, left: pixelLocation.x});
             });
-            google.maps.event.addListener(marker, 'mouseout', function(){
+            google.maps.event.addListener(marker, 'mouseout', function () {
                 $('#map-tooltip').hide();
             });
         },
-        fromLatLngToPoint: function(latLng, map) {
+        fromLatLngToPoint: function (latLng, map) {
             var topRight = map.getProjection().fromLatLngToPoint(map.getBounds().getNorthEast());
             var bottomLeft = map.getProjection().fromLatLngToPoint(map.getBounds().getSouthWest());
             var scale = Math.pow(2, map.getZoom());
@@ -174,7 +179,7 @@ var MasterplanView = (function() {
             return new google.maps.Point((worldPoint.x - bottomLeft.x) * scale, (worldPoint.y - topRight.y) * scale);
         },
         // to attach events related to google maps view
-        googleMapContainerEvents: function(map, imageOverlay, center){
+        googleMapContainerEvents: function (map, imageOverlay, center) {
             var _this = this;
 
             var elements = {
@@ -183,67 +188,67 @@ var MasterplanView = (function() {
                 visible: false
             };
 
-            this._elements.openGoogleMapView.off('click').on('click', function(){
+            this._elements.openGoogleMapView.off('click').on('click', function () {
                 _this._openGoogleMapClicked.notify(elements);
             });
 
-            google.maps.event.addListener(map, 'center_changed', function(event){
+            google.maps.event.addListener(map, 'center_changed', function (event) {
                 _this._googleMapViewChanged.notify(elements);
             });
 
-            google.maps.event.addListener(map, 'zoom_changed', function(event){
+            google.maps.event.addListener(map, 'zoom_changed', function (event) {
                 _this._googleMapViewChanged.notify(elements);
             });
 
-            google.maps.event.addListenerOnce(map, 'idle', function(){
+            google.maps.event.addListenerOnce(map, 'idle', function () {
                 imageOverlay.setMap(map);
             });
 
-            google.maps.event.addListener(imageOverlay,'click',function(event){
+            google.maps.event.addListener(imageOverlay, 'click', function (event) {
                 _this._googleMapProjectClick.notify(elements);
             });
         },
-        // to decide whether masterplan view has to be opened 
-        removeGoogleMapView: function(elements){
-            if(elements.map.getZoom()>config.initialZoomLevel && elements.visible){
+        // to decide whether masterplan view has to be opened
+        removeGoogleMapView: function (elements) {
+            if (elements.map.getZoom() > config.initialZoomLevel && elements.visible) {
                 var projectCenter = new google.maps.LatLng(elements.center.lat, elements.center.lng);
-                if(google.maps.geometry.spherical.computeDistanceBetween(projectCenter, elements.map.center)<config.openProjectRadius){
+                if (google.maps.geometry.spherical.computeDistanceBetween(projectCenter, elements.map.center) < config.openProjectRadius) {
                     elements.map.setZoom(config.initialZoomLevel);
                     this._elements.buildingImgContainer.removeClass('zoomOutMasterPlan');
                     this._elements.buildingImgContainer.addClass('zoomInMasterPlan');
                     this.hideGoogleMap(elements);
-                } 
+                }
             }
         },
         // to hide the google map
-        hideGoogleMap: function(elements){
+        hideGoogleMap: function (elements) {
             var _this = this;
             elements.visible = false;
             elements.map.setCenter(elements.center);
             //elements.map.setZoom(config.maxZoomLevel);
-            this._elements.googleMapContainer.parent().css('z-index','-10');     //do this using class
-            setTimeout(function(){
+            this._elements.googleMapContainer.parent().css('z-index', '-10');     //do this using class
+            setTimeout(function () {
                 _this._elements.amenitiesContainer.show();
                 _this._elements.carAnimation.show();
                 _this._elements.buildingMenuContainer.show();
                 _this._elements.openGoogleMapView.show();
                 _this._elements.cloudContainer.show();
-            },3000);
+            }, 3000);
 
         },
         // to show the google map view
-        showGoogleMap: function(elements){
-            this._elements.googleMapContainer.parent().css('z-index','100001');     //do this using class
+        showGoogleMap: function (elements) {
+            this._elements.googleMapContainer.parent().css('z-index', '100001');     //do this using class
             this._elements.openGoogleMapView.hide();
             //elements.map.setZoom(config.initialZoomLevel);
             elements.visible = true;
         },
         // to make open map view icon
-        openGoogleMapView: function(){
+        openGoogleMapView: function () {
             var text = "Open Google Map View";
             this._elements.openGoogleMapView.html(text);
         },
-        startAnimation: function(model) {
+        startAnimation: function (model) {
 
             model._baseView._showLoaderComplete.notify();
 
@@ -266,16 +271,16 @@ var MasterplanView = (function() {
 
             // Amenities
             var time = 5000;
-            $('.amenity-icon span').each(function() {
+            $('.amenity-icon span').each(function () {
                 var _this = this;
-                setTimeout(function() {
+                setTimeout(function () {
                     $(_this).removeClass('fs0');
                 }, time);
                 time += 200;
             });
 
             // Tower Menu
-            setTimeout(function() {
+            setTimeout(function () {
                 $('.tower-menu-container').css({
                     visibility: 'visible'
                 });
@@ -285,19 +290,19 @@ var MasterplanView = (function() {
             }, 7000);
 
             // Connect tabs
-            setTimeout(function() {
+            setTimeout(function () {
                 $('.pro-contact-actions ul.conect-tab').css({
                     bottom: '0px'
                 });
             }, 7000);
 
             // Notification tooltip
-            setTimeout(function() {
+            setTimeout(function () {
                 viewUtils.showNotificationTooltip('Click on a tower to explore further');
             }, 9000);
 
         },
-        displayWithoutAnimation: function() {
+        displayWithoutAnimation: function () {
             // Images
             $('.opacity-control').fadeIn(500);
 
@@ -331,7 +336,7 @@ var MasterplanView = (function() {
 
             viewUtils.showNotificationTooltip('Click on a tower to explore further');
         },
-        dynamicResizeContainers: function() {
+        dynamicResizeContainers: function () {
             utils.defaultDynamicResizeContainers();
             var parentHeight = $('#' + config.parentContainerId).height(),
                 count = parseInt((parentHeight - (60 + 91)) / config.towerMenuItemHeight),
@@ -339,18 +344,18 @@ var MasterplanView = (function() {
             utils.masterPlanModel.updateTowerMenuEnd(count);
             $('.master-menu .menu-items').css('height', height);
         },
-        sortTowersObject: function(towers) {
+        sortTowersObject: function (towers) {
             var towerName, towerValues = [];
             for (towerName in towers) {
                 if (hasOwnProperty.call(towers, towerName)) {
                     towerValues.push(towers[towerName]);
                 }
             }
-            return towerValues.sort(function(t1, t2) {
+            return towerValues.sort(function (t1, t2) {
                 return t1.displayOrder - t2.displayOrder;
             });
         },
-        carAnimation: function(data) {
+        carAnimation: function (data) {
             if (!config.showCarAnimation || data.projectId != "501660") {
                 return;
             }
@@ -405,14 +410,14 @@ var MasterplanView = (function() {
                 carCode += "</animateMotion>";
 
                 // Hack for hiding cars
-                setTimeout(function(i) {
+                setTimeout(function (i) {
                     $('#car' + i).css('visibility', 'visible');
                 }, cars[i].begin * 1000, i); // jshint ignore:line
             }
 
             this._elements.carAnimation.html(carCode);
         },
-        buildingImgContainer: function(data) {
+        buildingImgContainer: function (data) {
             var imgCode = "<img id=\"main-image\" width='100%' src=\"" + data.bgImage + "\"/>";
             var tower, i,
                 towers = this.sortTowersObject(data.towers),
@@ -426,7 +431,7 @@ var MasterplanView = (function() {
             }
             this._elements.buildingImgContainer.html(imgCode);
         },
-        buildingMenuContainer: function(data) {
+        buildingMenuContainer: function (data) {
             var towersData = utils.ascendingOrder(data.towers);
             var code = "<div class='master-menu'><div class='menu-header menu-icon transition'><span class='icon'>";
             code += config.builderSetUp ? "<img src='images/logo.jpg'>" : "<a href='http://www.proptiger.com' target='_blank'><img src='images/logo.jpg' alt='proptiger.com'></a>";
@@ -440,22 +445,22 @@ var MasterplanView = (function() {
                     "' id='" + towerIdentifier + "-menu' data-index='" + towerIdentifier +
                     "' data-imageid='" + tower.towerId +
                     "' data-url='" + towerUrl +
-                    "'><span class='tower-menu-text transition'>"+tower.longName+"</span> <label class='transition'>" +tower.shortName+ "</label></div></div>";
+                    "'><span class='tower-menu-text transition'>" + tower.longName + "</span> <label class='transition'>" + tower.shortName + "</label></div></div>";
             }
             code += "</div></div></div></div>";
             code += "</div>";
             this._elements.buildingMenuContainer.html(code);
             this.buildingMenuContainerEvents();
         },
-        buildingMenuContainerEvents: function() {
+        buildingMenuContainerEvents: function () {
             var _this = this;
 
-            _this._elements.buildingMenuContainer.off('click').on('click', '.' + config.leftPanelButtonClass, function(event) {
+            _this._elements.buildingMenuContainer.off('click').on('click', '.' + config.leftPanelButtonClass, function (event) {
                 // notify controller
                 _this._menuClick.notify(this); // this refers to element here
             });
 
-            _this._elements.buildingMenuContainer.off('mouseenter').on('mouseenter', '.' + config.leftPanelButtonClass, function(event) {
+            _this._elements.buildingMenuContainer.off('mouseenter').on('mouseenter', '.' + config.leftPanelButtonClass, function (event) {
                 // notify controller
                 _this._menuMouseEnter.notify({
                     element: this,
@@ -463,22 +468,22 @@ var MasterplanView = (function() {
                 }); // this refers to element here
             });
 
-            _this._elements.buildingMenuContainer.off('mouseleave').on('mouseleave', '.' + config.leftPanelButtonClass, function(event) {
+            _this._elements.buildingMenuContainer.off('mouseleave').on('mouseleave', '.' + config.leftPanelButtonClass, function (event) {
                 // notify controller
                 _this._menuMouseLeave.notify(this); // this refers to element here
             });
 
-            _this._elements.buildingMenuContainer.on('click', '.scroll-up', function(event) {
+            _this._elements.buildingMenuContainer.on('click', '.scroll-up', function (event) {
                 // notify controller
                 _this._menuUp.notify(this); // this refers to element here
             });
-            _this._elements.buildingMenuContainer.on('click', '.scroll-down', function(event) {
+            _this._elements.buildingMenuContainer.on('click', '.scroll-down', function (event) {
                 // notify controller
                 _this._menuDown.notify(this); // this refers to element here
             });
 
         },
-        menuUpHandler: function() {
+        menuUpHandler: function () {
             var originalMargin = parseInt($('.' + config.towerMenuClass).css('margin-top'));
             if ((originalMargin % config.towerMenuItemHeight !== 0) ||
                 (this._model.getTowerMenu().start <= 0)) {
@@ -488,7 +493,7 @@ var MasterplanView = (function() {
             this._model.slideUpTowerMenu();
             $('.' + config.towerMenuClass).css('margin-top', margin + 'px');
         },
-        menuDownHandler: function() {
+        menuDownHandler: function () {
             var originalMargin = parseInt($('.' + config.towerMenuClass).css('margin-top'));
             if ((originalMargin % config.towerMenuItemHeight !== 0) ||
                 (this._model.getTowerMenu().end >= this._model.getTowerCount() - 1)) {
@@ -498,7 +503,7 @@ var MasterplanView = (function() {
             this._model.slideDownTowerMenu();
             $('.' + config.towerMenuClass).css('margin-top', margin + 'px');
         },
-        buildingSvgContainer: function(data) {
+        buildingSvgContainer: function (data) {
             var i, tower, towerUrl,
                 towers = this.sortTowersObject(data.towers),
                 tower_length = towers.length;
@@ -516,21 +521,33 @@ var MasterplanView = (function() {
                         'data-imageid': tower.towerId,
                         points: tower.towerHoverSvg
                     };
+// add specific class on each Polygon  like pool-view, park-view etc.
+
+                    if (tower.totalEastFacingAvailableCount > 0) {
+                        attrs['class'] += ' east-facing';
+                    }
+
+                    if (tower.viewDirections) {
+                        for (var direction in tower.viewDirections) {
+                            attrs['class'] += ' ' + tower.viewDirections[direction];
+                        }
+                    }
+
                     var eachPolygon = viewUtils.makeSVG('polygon', attrs);
                     this._elements.buildingSvgContainer.append(eachPolygon);
                 }
             }
             this.buildingSvgContainerEvents();
         },
-        buildingSvgContainerEvents: function() {
+        buildingSvgContainerEvents: function () {
             var _this = this;
 
-            _this._elements.buildingSvgContainer.off('click').on('click', '.' + config.towerImgSvgClass, function(event) {
+            _this._elements.buildingSvgContainer.off('click').on('click', '.' + config.towerImgSvgClass, function (event) {
                 // notify controller
                 _this._towerSvgClick.notify(this); // this refers to element here
             });
 
-            _this._elements.buildingSvgContainer.off('mouseenter').on('mouseenter', '.' + config.towerImgSvgClass, function(event) {
+            _this._elements.buildingSvgContainer.off('mouseenter').on('mouseenter', '.' + config.towerImgSvgClass, function (event) {
                 // notify controller
                 _this._towerSvgMouseEnter.notify({
                     element: this,
@@ -538,12 +555,85 @@ var MasterplanView = (function() {
                 }); // this refers to element here
             });
 
-            _this._elements.buildingSvgContainer.off('mouseleave').on('mouseleave', '.' + config.towerImgSvgClass, function(event) {
+            _this._elements.buildingSvgContainer.off('mouseleave').on('mouseleave', '.' + config.towerImgSvgClass, function (event) {
                 // notify controller
                 _this._towerSvgMouseLeave.notify(this); // this refers to element here
             });
         },
-        towerMouseEnterEvent: function(obj) {
+        // filter methods
+        applyFilter: function (filter) {
+            filter = filter || '';
+            var filterClass = '';
+            $('img.' + config.imgContainerClass).stop().fadeTo("0", 0.25, function () {});
+            switch (filter) {
+                case 'east-facing' :
+                {
+                    filterClass = '.east-facing';
+                    break;
+                }
+                case 'pool-facing' :
+                {
+                    filterClass = '.pool-facing';
+                    break;
+                }
+                case 'park-facing' :
+                {
+                    filterClass = '.park-facing';
+                    break;
+                }
+                case 'road-facing' :
+                {
+                    filterClass = '.road-facing';
+                    break;
+                }
+                default : {
+                    $('img.' + config.imgContainerClass).stop().fadeTo("0", 1, function () {});
+                }
+            }
+            var allpolygon = $(filterClass);
+            for (var i = 0; i < allpolygon.length; i++) {
+                var imageid = allpolygon[i].id.split('-')[0];
+                var targetImage = $('img#' + imageid);
+                targetImage.fadeTo("100", 1, function () {});
+            }
+        },
+        addFilterEvent: function () {
+            var _this = this;
+            this._elements.bottomFilterContainer.on('click', '.all-tower-button', function (event) {
+                // notify controller
+                _this._applyfilter.notify(''); // this refers to element here
+            });
+            this._elements.bottomFilterContainer.on('click', '.east-facing-filter-button', function (event) {
+                // notify controller
+                _this._applyfilter.notify('east-facing'); // this refers to element here
+            });
+            this._elements.bottomFilterContainer.on('click', '.pool-facing-filter-button', function (event) {
+                // notify controller
+                _this._applyfilter.notify('pool-facing'); // this refers to element here
+            });
+            this._elements.bottomFilterContainer.on('click', '.park-facing-filter-button', function (event) {
+                // notify controller
+                _this._applyfilter.notify('park-facing'); // this refers to element here
+            });
+            this._elements.bottomFilterContainer.on('click', '.road-facing-filter-button', function (event) {
+                // notify controller
+                _this._applyfilter.notify('road-facing'); // this refers to element here
+            });
+
+        },
+        craeteBottomFilterContainer: function () {
+            var code = '<table height="100%" width="100%" ><tr>';
+            code += '<td><button class="all-tower-button">All Tower</button></td>';
+            code += '<td><button class="pool-facing-filter-button">Pool View</button></td>';
+            code += '<td><button class="park-facing-filter-button">Park View</button></td>';
+            code += '<td><button class="road-facing-filter-button">Road View</button></td>';
+            code += '<td><button class="east-facing-filter-button">East Facing</button></td>';
+            code += '</tr></table>';
+
+            this._elements.bottomFilterContainer.html(code);
+            this.addFilterEvent();
+        },
+        towerMouseEnterEvent: function (obj) {
             var element = $(obj.element);
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
             var data = this._model.getData();
@@ -557,7 +647,8 @@ var MasterplanView = (function() {
                 return;
             }
 
-            $('img.' + config.imgContainerClass).not(targetImage).stop().fadeTo("500", 0.25, function() {});
+            $('img.' + config.imgContainerClass).not(targetImage).stop().fadeTo("500", 0.25, function () {
+            });
             $('.' + config.amenityContainerClass).addClass(config.amenityNotOnTopClass);
 
             if (towerData && towerData.towerTooltipSvg && config.useSpecifiedTowerTooltipSvg) {
@@ -572,17 +663,18 @@ var MasterplanView = (function() {
             $('#' + index + '-menu').addClass(config.menuItemHoverClass);
             $('#' + index + '-menu span').addClass(availabilityStatusClass);
         },
-        towerMouseLeaveEvent: function(element) {
+        towerMouseLeaveEvent: function (element) {
             $('.detail-box').removeClass('show-details');
             $('.detail-box').addClass('hide-details');
-            $('img.' + config.imgContainerClass).stop().fadeTo("500", 1, function() {});
+            $('img.' + config.imgContainerClass).stop().fadeTo("500", 1, function () {
+            });
             $('.' + config.amenityContainerClass).removeClass(config.amenityNotOnTopClass);
             var removeClasses = config.menuItemHoverClass + ' ' + config.availabilityClass.available + ' ' + config.availabilityClass.unavailable;
             $('.' + config.leftPanelButtonClass).removeClass(removeClasses);
 
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
         },
-        showTowerDetailContainer: function(data, left, top, unit) {
+        showTowerDetailContainer: function (data, left, top, unit) {
             if (!(data && data.unitInfo)) {
                 return;
             }
@@ -619,7 +711,7 @@ var MasterplanView = (function() {
                     }
                     towerCode += "<tr class='" + availabilityClass + "'>";
                     towerCode += "<td>" + aptType.type + "</td>";
-                    towerCode += config.builderSetUp ? "<td>Apartment</td></tr>" : "<td>" + availabilityText + "</td></tr>";
+                    towerCode += config.builderSetUp ? "<td>Apartment</td></tr>" : "<td>" + availabilityText + "</td> <td><td></tr>";
                 }
             }
             towerCode += "</table>";
@@ -635,7 +727,7 @@ var MasterplanView = (function() {
             window.getComputedStyle(document.getElementById('container-detail')).opacity; // jshint ignore:line
             document.getElementById('container-detail').style.opacity = "1";
         },
-        amenitiesContainer: function(data) {
+        amenitiesContainer: function (data) {
             var code = "";
             for (var amenityKey in data.amenities) {
                 if (hasOwnProperty.call(data.amenities, amenityKey)) {
@@ -643,21 +735,21 @@ var MasterplanView = (function() {
                     var point = data.amenities[amenityKey].amenitySvg.split(' ');
                     var position = "top:" + point[1] + "%; left:" + point[0] + "%;";
                     code += "<div data-top='" + point[1] + "' data-left='" + point[0] + "' id='" + amenityKey + "' class='" + config.amenityIconClass + "' style='" + position + "'><span class='icon icon-location transition fs0'></span>";
-                    code += "<div class='name'><img class='amenity-img' src="+amenity.imageUrl+"></div>";
+                    code += "<div class='name'><img class='amenity-img' src=" + amenity.imageUrl + "></div>";
                     code += "</div>";
                 }
             }
             this._elements.amenitiesContainer.html(code);
             this.amenitiesContainerEvents();
         },
-        amenitiesContainerEvents: function() {
+        amenitiesContainerEvents: function () {
             var _this = this;
-            _this._elements.amenitiesContainer.off('click').on('click', '.' + config.amenityIconClass, function(event) {
+            _this._elements.amenitiesContainer.off('click').on('click', '.' + config.amenityIconClass, function (event) {
                 // notify controller
                 _this._amenityClick.notify(this); // this refers to element here
             });
         },
-        amenityClickEvent: function(element) {
+        amenityClickEvent: function (element) {
             var data = this._model.getData();
             var amenityId = element.id;
             var amenity = {};
@@ -675,29 +767,29 @@ var MasterplanView = (function() {
             this._elements.amenitiesContainer.append(code);
             this.amenitiesPopupEvents();
         },
-        amenitiesPopupEvents: function() {
+        amenitiesPopupEvents: function () {
             var _this = this;
-            _this._elements.amenitiesContainer.off('click').on('click', '.' + config.amenityPopupClass, function(event) {
+            _this._elements.amenitiesContainer.off('click').on('click', '.' + config.amenityPopupClass, function (event) {
                 // notify controller
                 _this._amenityClose.notify(this); // this refers to element here
             });
-            _this._elements.amenitiesContainer.on('click', '.' + config.amenityPopupTableClass, function(event) {
+            _this._elements.amenitiesContainer.on('click', '.' + config.amenityPopupTableClass, function (event) {
                 event.stopPropagation();
             });
-            _this._elements.amenitiesContainer.on('click', '.' + config.amenityPopupCloseClass, function(event) {
+            _this._elements.amenitiesContainer.on('click', '.' + config.amenityPopupCloseClass, function (event) {
                 // notify controller
                 _this._amenityClose.notify(this); // this refers to element here
             });
         },
-        amenityCloseEvent: function() {
+        amenityCloseEvent: function () {
             $('.photo-table').removeClass('pop-up-in');
             $('.photo-table').addClass('pop-up-out');
-            setTimeout(function() {
+            setTimeout(function () {
                 $("." + config.amenityPopupClass).remove();
             }, 1000);
             this.amenitiesContainerEvents();
         },
-        cloudContainer: function(data) {
+        cloudContainer: function (data) {
             var code = '<div class="top-left-cloud"></div><div class="top-right-cloud"></div><div class="bottom-left-cloud"></div><div class="bottom-right-cloud"></div>';
             this._elements.cloudContainer.html(code);
         }
