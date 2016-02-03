@@ -305,7 +305,7 @@ ellipse.tower-unit-svg-selected-path {
 
 	width: 750px;
 	height: 110px;
-	padding: 15px;
+	padding: 15px 0;
 	color: #fff;
 	position: absolute;
 	text-align: center;
@@ -314,7 +314,7 @@ ellipse.tower-unit-svg-selected-path {
 	margin-left: -375px;
 	z-index: 100001;
 	box-sizing: border-box;
-	background-color: rgba(0, 0, 0, .7);
+	background-color: rgba(30, 43, 5, .7);
 	border-radius: 20px 20px 0px 0px;
 	overflow: hidden;
 
@@ -324,14 +324,29 @@ ellipse.tower-unit-svg-selected-path {
 	}
 
 	.tower-filter-wrap {
-		float: left;
-		width: 730px;
+		right: 0;
+		position: absolute;
+		width: 100%;
+		z-index: 1;
 
 		/* TO DO - class will add to tower filter wrap div after tower filter is clicked
 		and will be removed when back arrow is clicked */
 		&.slide-out {
-			width: 0;
-			opacity: 0;
+			width: 150px;
+			right: 0;
+			left: auto;
+			overflow: hidden;
+			height: 80px;
+			.filter {
+				opacity: 0;
+				width: 0;
+				display: none;
+				&.filter-active {
+					opacity: 1;
+					width: 130px;
+					display: block;
+				}
+			}
 		}
 
 	}
@@ -362,7 +377,7 @@ ellipse.tower-unit-svg-selected-path {
 			display: table-cell;
 			cursor: pointer;
 			padding: 0px 10px;
-			vertical-align: middle;
+			vertical-align: top;
 			&:hover {
 				.ico-wrap {
 					transform: scale(1.1);
@@ -393,6 +408,8 @@ ellipse.tower-unit-svg-selected-path {
 	.after-filter-apply {
 		width: 0;
 		opacity: 0;
+		height: 0;
+		float: left;
 		.current-filter span{
 			font-size: 12px;
 		}
@@ -402,22 +419,52 @@ ellipse.tower-unit-svg-selected-path {
 		&.slide-in {
 			width: 100%;
 			opacity: 1;
+			height: auto;
+			.left, .center, .right {
+				opacity: 1;
+				height: 80px;
+			}
 		}
 
+	}
+
+	.left, .center, .right {
+		opacity: 0;
+		height: 0;
 	}
 
 	.left {
 		width: 10%;
 		float: left;
 		line-height: 100px;
+		border-right: 1px solid rgba(255, 255, 255, .6);
+		box-sizing: border-box;
 	}
 	.center {
 		width: 70%;
 		float: left;
 	}
 	.right {
+		position: relative;
 		float: left;
 		width: 20%;
+		border-left: 1px solid rgba(255, 255, 255, .6);
+		box-sizing: border-box;
+		&:before {
+			content: '';
+		    display: block;
+		    width: 10px;
+		    height: 10px;
+		    border: 1px solid rgba(255, 255, 255, .6);
+		    border-right-color: transparent;
+		    transform: rotate(45deg);
+		    position: absolute;
+		    top: 50%;
+		    left: -6px;
+		    margin-top: -5px;
+		    border-top-color: transparent;
+		    box-sizing: border-box; 
+		}
 	}
 
 }
