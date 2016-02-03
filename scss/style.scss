@@ -556,7 +556,7 @@ ellipse.tower-unit-svg-selected-path {
 .rotation-btn-container:hover button{
 	background:#fff; 
 	border-color:#fff; 
-	color:#494949;
+	color:#e4552e;
 	text-shadow:2px 2px 2px rgba(0,0,0,0.3);
 }
 .rotation-btn-container.left-btn {
@@ -623,8 +623,8 @@ ellipse.tower-unit-svg-selected-path {
 .like-box.selected a p:before{ content:'Click to Remove'}
 .like-box a p.shortlisted:before{ content:'Added to Shortlist'}
 .like-box a p.shortlisted.max:before{ content:'Max shortlist reached'}
-.book-now{ position:absolute; left:50%; width:182px; text-align:center; margin-left:-91px; bottom:20px;z-index:999999;}
-.book-now a{ color:#fff; padding:11px; display:inline-block; font-size:16px; text-transform:uppercase; font-weight:bold; width:160px; font-weight:bold; background:#f18d18; border-radius:3px; cursor:pointer;}
+.book-now{ position:absolute; right:10px; width:30%; text-align:right; top:10px;z-index:999999;}
+.book-now a{ text-align: center; color:#fff; padding:11px; display:inline-block; font-size:16px; text-transform:uppercase; font-weight:bold; width:160px; font-weight:bold; background:#f18d18; border-radius:3px; cursor:pointer;}
 .compare-units-container .book-now{ right:20px; left:inherit; margin:0; bottom:10px;}
 .book-now a:hover{ opacity:0.9;}
 .book-now span{ display:block; padding:3px 5px; font-size:12px; font-weight:normal;}
@@ -665,12 +665,17 @@ ellipse.tower-unit-svg-selected-path {
 
 /* Unit Menu */
 .unit-menu-container {
+	padding: 1px 0;
 	position: absolute;
 	width: 100%;
   	z-index: 9999999;
-	background:#323232;
-	left:0; top:0;
-	border-bottom:2px solid #ccc;
+	left:0; top:100px;
+	border-top:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+}
+.unit-header {
+	overflow: hidden;
+	background-color: #323232;
 }
 .unit-menu-container table {
 	width: 100%;
@@ -727,8 +732,8 @@ ellipse.tower-unit-svg-selected-path {
 /* Unit Data */
 .unit-data-container {
 	position: absolute;
-	top: 0px;
-  	height: 100%;
+	bottom: 0px;
+  	height: calc(100% - 140px);
   	width: 100%;
   	text-align: center;
 }
@@ -753,54 +758,91 @@ ellipse.tower-unit-svg-selected-path {
 }
 .floor-plan-container .sunlight-menu {
 	position: absolute;
-	top: 100px;
+	top: 20px;
 	right: 15px;
 	border-radius: 30px;
 	z-index: 10001;
 }
 .floor-plan-container .sunlight-menu .sunlight-menu-option {
+	padding-left: 10px;
 	display:inline-block;
-	border-radius: 100%;
 	color:#252525;
 	text-align: center;
 	cursor: pointer;
 	position:relative;
-	overflow:hidden;
+	span {
+		font-size: 36px;
+	}
 }
-.floor-plan-container .sunlight-menu .sunlight-menu-option label{ font-size:12px; color:#333; text-shadow:1px 1px 0 #D2D2D2; position:absolute; right:-150px; visibility:hidden; top:auto; opacity:0; transition:all 0.5s ease-in-out;-moz-transition:all 0.5s ease-in-out;-webkit-transition:all 0.5s ease-in-out; text-align:left; cursor:pointer;}
-.floor-plan-container .sunlight-menu .sunlight-menu-option:hover label{ width:100px; opacity:1; right:-110px; visibility: visible;}
+.floor-plan-container .sunlight-menu .sunlight-menu-option label{ padding-top: 10px; font-size:12px; color:#666; display: block; cursor:pointer;}
 .floor-plan-container .sunlight-menu .sunlight-menu-option:hover, 
 .floor-plan-container .sunlight-menu .sunlight-menu-option.selected {
-	background-color: #fff;
 	color:#f18d18;
-	box-shadow:0 0 3px rgba(0,0,0,0.3);
-	overflow:inherit;
 	cursor: pointer !important;
 }
 .floor-plan-menu-container .floor-plan-menu {
 	position: absolute;
-	top: 60px;
-	right: 80px;
+	bottom: 40px;
+	left: 50%;
+	width: 85px;
+	margin-left: -50px;
 	background-color: #fff;
 	color: #333;
-	font-size: 11px;
+	font-size: 16px;
 	border-radius: 5px;
 	border-spacing: 0px;
-	overflow: hidden;
 	z-index: 10001;
-	border-collapse:collapse;
 	box-shadow:0 0 5px rgba(0,0,0,0.25);
 	display:block;
+	height: 29px;
+	span {
+		position: relative;
+		&:before {
+			z-index: -1;
+			opacity: 0;
+			position: absolute;
+			transition: all .5s ease;
+			top: -5px;
+			left: 0;
+			bottom: -5px;
+			right: 0;
+			content: '';
+			box-shadow: -5px 5px 10px rgba(0, 0, 0, .4);
+			border-radius: 5px;
+			background-color: #555;
+		}
+		&:first-child {
+			border-radius: 5px 0 0 5px;
+		}
+	 	&:last-child {
+			border-right: 0;
+			border-radius: 0 5px 5px 0;
+			&:before {
+				box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
+			}
+		}
+	}
 }
 .floor-plan-menu-container .floor-plan-menu .floor-plan-menu-option {
 	padding: 5px 10px;
 	cursor: pointer;
-	border-right:1px solid #eee;
+	display: block;
+	width: 50%;
+	float: left;
+	box-sizing: border-box;
 }
-.floor-plan-menu-container .floor-plan-menu .floor-plan-menu-option:hover,
+.floor-plan-menu-container .floor-plan-menu .floor-plan-menu-option:hover {
+	background-color: rgba(0,0,0,0.25);
+	z-index: -1;
+}
 .floor-plan-menu-container .floor-plan-menu .floor-plan-menu-option.selected {
-	background-color: #eee;
-	color:#333;
+	background-color: #555;
+	color:#fff;
+}
+.floor-plan-menu-container .floor-plan-menu .floor-plan-menu-option.selected {
+	&:before {
+		opacity: 1;
+	}
 }
 .unit-content-wrapper {
 	position: absolute;
@@ -979,7 +1021,6 @@ ellipse.tower-unit-svg-selected-path {
 .amenities-container {
 	position: absolute;
 	width: 100%;
-	height: 100%;
 }
 .amenities-container.not-on-top {
 	z-index: 9990;
@@ -1300,7 +1341,7 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 
 
 /* css for question box slider */
-.questionBox { position: absolute; right: -245px; transition: all .5s ease-in-out; -webkit-transition: all .5s ease-in-out; -o-transition: all .5s ease-in-out; -ms-transition: all .5s ease-in-out; -moz-transition: all .5s ease-in-out; top: 32%; padding-left: 27px; width: 245px; z-index: 110000; }
+.questionBox { position: absolute; right: -245px; transition: all .5s ease-in-out; -webkit-transition: all .5s ease-in-out; -o-transition: all .5s ease-in-out; -ms-transition: all .5s ease-in-out; -moz-transition: all .5s ease-in-out; top: 37%; padding-left: 27px; width: 245px; z-index: 110000; }
 .questionBox.open { right: -1px; }
 .questionBox .question { cursor: pointer; position: absolute; left: 0; top: 0; width: 27px; height: 100%; display: block; background-color: #e4552e; }
 .questionBox .question span { position: absolute; top: 44px; left: -28px; letter-spacing: 1px; transform: rotate(-90deg); -webkit-transform: rotate(-90deg); -o-transform: rotate(-90deg); -ms-transform: rotate(-90deg); -moz-transform: rotate(-90deg); color: #fff; font-size: 15px; }

@@ -127,7 +127,7 @@ var BookingView = (function() {
                 paymentBreakup = '<div class="clear-fix"></div><a id="payment-breakup" class="view-price-brakup">View Price Breakup &amp; Payment plan</a>';
 
                 if (data.discountDescription && data.discountDescription !== "") {
-                    offerBanner = '<div class="special-offers"><span></span><p>' + data.discountDescription + '</p></div>';
+                    offerBanner = '<div class="special-offers"><div class="icon-img"><img src="images/gift-box-icon.jpg" alt=""></div><span></span><p>' + data.discountDescription + '</p></div>';
                 }
             }
             var isDuplex = false;
@@ -210,8 +210,8 @@ var BookingView = (function() {
                 '        <div class="payment-right">' +
                 '            <div id="booking-user-details" class="payment-right-container">';
                 if(rootdata.fairEnabled) {
-                  code += '<h3>Nice Selection!</h3>'+
-                          '<p>Now, pay just <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- as token payment to block your selection. <br>Your full amount will be refunded in case you cancel the booking within 15 days.</p>';
+                  code +=   '<div class="payment-txt"><img src="images/best-choice-badge.jpg" alt=""><div class="rght"><h3>Nice Selection!</h3>'+
+                            '<p>Now, pay just <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- as token payment to block your selection. <br>Your full amount will be refunded in case you cancel the booking within 15 days.</p></div></div>';
 
                 }
                 code += '    <div class="personal-detail-box">' +

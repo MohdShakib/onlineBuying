@@ -181,7 +181,7 @@ var UnitplaninfoView = (function() {
             htmlCode += '<a><span class="icon icon-heart fs26 heart-clone"><label></label></span><p class="transition click-txt"></p><p class="shortlisted" style="display:none;"></p></a></div>';
             if (data.bookingStatus == 'Available' && rootdata.fairEnabled && !config.builderSetUp) {
                 htmlCode += '<div class="book-now"><a  data-url="' + link + '">Book Now</a>';
-                htmlCode += '<span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(data.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
+                htmlCode += '<span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(data.bookingAmount) + '/- (No Cancellation Charges)</span>';
             }
             else if (data.bookingStatus == 'Available' && !rootdata.fairEnabled && !config.builderSetUp) {
                 htmlCode += '<div class="book-now"><a  data-url="' + link + '">Proceed</a>';
@@ -280,9 +280,9 @@ var UnitplaninfoView = (function() {
                 code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " eve-image' src='" + unitTypeData.eveningSunlightImageUrl + "'>";
 
                 code += "<div class='sunlight-menu'>";
-                code += "<div data-target='mor-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-morning fs16'></span><label>Morning View</label></div>";
-                code += "<div data-target='aft-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-afternoon fs16'></span><label>Noon View</label></div>";
-                code += "<div data-target='eve-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-night fs16'></span><label>Evening View</label></div></div>";
+                code += "<div data-target='mor-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-morning'></span><label>Morning View</label></div>";
+                code += "<div data-target='aft-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-afternoon'></span><label>Noon View</label></div>";
+                code += "<div data-target='eve-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-night'></span><label>Evening View</label></div></div>";
 
             }
             if (isDuplex) {
@@ -307,13 +307,13 @@ var UnitplaninfoView = (function() {
             });
         },
         floorPlanMenuContainer: function(data, rotationdata, rootdata) {
-            var code = "<table class='floor-plan-menu' cellpadding='0' cellspacind='0' border='0'><tr>";
-            code += "<td data-target='fp-container' data-menu='3d-button' class='" + config.floorPlanMenuOptionClass + " " + config.selectedClass + " " + config.transitionClass + "' id='floor-plan'>3D</td>";
+            var code = "<div class='floor-plan-menu' cellpadding='0' cellspacind='0' border='0'><div>";
+            code += "<span data-target='fp-container' data-menu='3d-button' class='" + config.floorPlanMenuOptionClass + " " + config.selectedClass + " " + config.transitionClass + "' id='floor-plan'>3D</span>";
             if(data.walkthrough.video) {
-                code += "<td data-target='fpwt-container' data-menu='walkthrough-button' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + " right' id='walkthrough'>Video Tour</td>";
+                code += "<span data-target='fpwt-container' data-menu='walkthrough-button' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + " right' id='walkthrough'>Video Tour</span>";
             }
-            code += "<td data-target='fp2d-container' data-menu='2d-button' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + "' id='floor-plan2d'>2D</td>";
-            code += "</tr></table>";
+            code += "<span data-target='fp2d-container' data-menu='2d-button' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + "' id='floor-plan2d'>2D</span>";
+            code += "</div></div>";
             this._elements.floorPlanMenuContainer.html(code);
             this.floorPlanMenuContainerEvents();
         },
