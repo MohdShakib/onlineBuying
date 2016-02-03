@@ -299,6 +299,60 @@ ellipse.tower-unit-svg-selected-path {
 	min-width: 200px;
 }
 
+/*tower bottom menu*/
+
+.bottom-filter-container{
+	width: 500px;
+	height: 80px;
+	padding: 15px 15px;
+	color: #fff;
+	position: absolute;
+	bottom: 0px;
+	left: 30%;
+	z-index: 100001;
+	background-color: #353d14;
+	opacity: 0.8;
+	border-radius: 25px 25px 0px 0px;
+}
+
+.bottom-filter-container .filter-container-view div{
+	display: inline-block;
+	height: 100px;
+	width: 75px;
+	cursor: pointer;
+	padding: 0px 10px 0px 10px;
+	margin: 0px 10px 0px 20px;
+}
+
+.bottom-filter-container .filter-container-view div span{
+	font-size: 12px;
+}
+
+.bottom-filter-container .after-filter-apply div{
+	display: inline-block;
+	height: 100px;
+	width: 75px;
+	padding: 0px 10px 0px 10px;
+	margin: 0px 10px 0px 20px;
+}
+
+.bottom-filter-container .after-filter-apply .back-to-main{
+	vertical-align: middle;
+}
+.bottom-filter-container .after-filter-apply .back-to-main p{
+	cursor: pointer;
+}
+
+.bottom-filter-container .after-filter-apply .tower-list-container{
+}
+
+.bottom-filter-container .after-filter-apply .current-filter{
+
+}
+.bottom-filter-container .after-filter-apply .current-filter span{
+	font-size: 12px;
+}
+
 
 /* Tower Menu */
 .tower-menu-container {
@@ -310,7 +364,7 @@ ellipse.tower-unit-svg-selected-path {
 	max-height: 100%;
 	visibility: hidden;
 }
-.tower-menu-container.master-page{ position:absolute; height:calc(100% - 85px);}
+.tower-menu-container.master-page{ position:absolute; width:20%;}
 .tower-menu-container table {
 	border-spacing: 0px;
     border-collapse: separate;
@@ -336,7 +390,6 @@ ellipse.tower-unit-svg-selected-path {
 .tower-menu-container .menu-icon, .tower-menu-container .menu-items {
 	color: #FFF;
 	width: 45px;
-	text-align: center;
 	font-weight: normal;
 }
 .tower-menu-container .menu-icon {
@@ -363,11 +416,11 @@ ellipse.tower-unit-svg-selected-path {
 	vertical-align: top;
 	
 }
-.master-menu{position:absolute;height:100%;}
-.master-menu .menu-items{height:500px; padding:30px 0; box-sizing:border-box; position:relative;}
+.master-menu{position:absolute;width:80%; overflow: hidden; }
+.master-menu .menu-items{ padding:30px 0; box-sizing:border-box; position:relative; width: 400px; overflow: hidden;}
 .master-menu .menu-items.scroll-dwn{ padding-top:20px;}
 .tower-menu-container .menu-items .menu-scroll{ height:100%;}
-.scroll-box{ height:100%; width:120px;overflow:hidden;}
+.scroll-box{width:100%;overflow:hidden; height: 30px}
 .scrollup-menu{ background:rgba(0,0,0,0.8); z-index:99; color:#fff; cursor:pointer; position:absolute; width:45px; height:30px; line-height:30px; left:0; bottom:0;}
 .scrollup-menu.top-stick{ top:0;}
 .scrollup-menu:hover{ background:#333;}
@@ -378,6 +431,7 @@ ellipse.tower-unit-svg-selected-path {
 	position: relative;
 	height: 44px;
 	width: 44px;
+	float: left;
 }
 .tower-menu-container .menu-items .menu-item-container-td .apt-unavailable {
 	cursor: default !important;
