@@ -24174,7 +24174,7 @@
         "description": "Description",
         "bookingAmount": 20000,
         "relevanceScore": 0.0,
-        "viewDirections": [
+        "viewDirections": ["park-facing"
 
         ],
         "discount": 225000.0,

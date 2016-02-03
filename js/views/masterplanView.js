@@ -18,9 +18,10 @@ var MasterplanView = (function () {
         'googleMapContainer': '<div class="map-container"><div id="google-map-container" class="google-map-container"></div></div>',
         'mapTooltip': '<div class="map-tooltip" id=map-tooltip></div>',
         'openGoogleMapView': '<div id="open-google-map-view" style="padding: 10px 20px; color: #000; position: absolute; top: 20%; right: 20px; z-index: 100001; background-color: yellow;">Open Google Map View</div>',
-        'bottomFilterContainer': '<div id="bottom-filter-container" style="width: 400px;height: 40px;padding: 15px 15px;color: #000;position: absolute;bottom: 0px;left: 30%;z-index: 100001;background-color: greenyellow;">WOooooo</div>'
+        'bottomFilterContainer': '<div id="bottom-filter-container" style="width: 500px;height: 60px;padding: 15px 15px;color: #000;position: absolute;bottom: 0px;left: 30%; z-index: 100001;background-color: #353d14; opacity: 0.8; border-radius: 25px 25px 0px 0px;">WOooooo</div>'
     };
 
+    var curruntFilter = '';
     function getElements() {
         var elements = {
             'buildingImgContainer': $('#img-container'),
@@ -338,11 +339,11 @@ var MasterplanView = (function () {
         },
         dynamicResizeContainers: function () {
             utils.defaultDynamicResizeContainers();
-            var parentHeight = $('#' + config.parentContainerId).height(),
-                count = parseInt((parentHeight - (60 + 91)) / config.towerMenuItemHeight),
-                height = count * config.towerMenuItemHeight + 60;
+            var parentWidth = $('.master-menu .menu-items').parent().width(),
+                count = parseInt((parentWidth) / config.towerMenuItemHeight),
+                width = count * config.towerMenuItemHeight;
             utils.masterPlanModel.updateTowerMenuEnd(count);
-            $('.master-menu .menu-items').css('height', height);
+            $('.master-menu .menu-items').css('width', width);
         },
         sortTowersObject: function (towers) {
             var towerName, towerValues = [];
@@ -433,9 +434,9 @@ var MasterplanView = (function () {
         },
         buildingMenuContainer: function (data) {
             var towersData = utils.ascendingOrder(data.towers);
-            var code = "<div class='master-menu'><div class='menu-header menu-icon transition'><span class='icon'>";
-            code += config.builderSetUp ? "<img src='images/logo.jpg'>" : "<a href='http://www.proptiger.com' target='_blank'><img src='images/logo.jpg' alt='proptiger.com'></a>";
-            code += "</span></div><div class='menu-sep'></div>";
+            var code = "<div class='master-menu'>";
+
+            code += "<div class='menu-sep'></div>";
             code += "<div class='menu-items'><div class='scrollup-menu scroll-down transition'><span class='icon icon-arrow_btm fs14'></span></div><div class='scrollup-menu scroll-up top-stick transition'><span class='icon icon-arrow_top fs14'></span></div><div class='scroll-box'><div class='menu-scroll'><div class='master-tower-menu transition'>";
             for (var i = 0; i < towersData.length; i++) {
                 var towerIdentifier = towersData[i];
@@ -445,7 +446,7 @@ var MasterplanView = (function () {
                     "' id='" + towerIdentifier + "-menu' data-index='" + towerIdentifier +
                     "' data-imageid='" + tower.towerId +
                     "' data-url='" + towerUrl +
-                    "'><span class='tower-menu-text transition'>" + tower.longName + "</span> <label class='transition'>" + tower.shortName + "</label></div></div>";
+                    "'><label class='transition'>" + tower.shortName + "</label></div></div>";
             }
             code += "</div></div></div></div>";
             code += "</div>";
@@ -484,24 +485,24 @@ var MasterplanView = (function () {
 
         },
         menuUpHandler: function () {
-            var originalMargin = parseInt($('.' + config.towerMenuClass).css('margin-top'));
+            var originalMargin = parseInt($('.' + config.towerMenuClass).css('margin-left'));
             if ((originalMargin % config.towerMenuItemHeight !== 0) ||
                 (this._model.getTowerMenu().start <= 0)) {
                 return;
             }
             var margin = originalMargin + config.towerMenuItemHeight;
             this._model.slideUpTowerMenu();
-            $('.' + config.towerMenuClass).css('margin-top', margin + 'px');
+            $('.' + config.towerMenuClass).css('margin-left', margin + 'px');
         },
         menuDownHandler: function () {
-            var originalMargin = parseInt($('.' + config.towerMenuClass).css('margin-top'));
+            var originalMargin = parseInt($('.' + config.towerMenuClass).css('margin-left'));
             if ((originalMargin % config.towerMenuItemHeight !== 0) ||
                 (this._model.getTowerMenu().end >= this._model.getTowerCount() - 1)) {
                 return;
             }
             var margin = originalMargin - config.towerMenuItemHeight;
             this._model.slideDownTowerMenu();
-            $('.' + config.towerMenuClass).css('margin-top', margin + 'px');
+            $('.' + config.towerMenuClass).css('margin-left', margin + 'px');
         },
         buildingSvgContainer: function (data) {
             var i, tower, towerUrl,
@@ -601,18 +602,22 @@ var MasterplanView = (function () {
             var _this = this;
             this._elements.bottomFilterContainer.on('click', '.all-tower-button', function (event) {
                 // notify controller
+                curruntFilter = '';
                 _this._applyfilter.notify(''); // this refers to element here
             });
             this._elements.bottomFilterContainer.on('click', '.east-facing-filter-button', function (event) {
                 // notify controller
+                curruntFilter = 'east-facing';
                 _this._applyfilter.notify('east-facing'); // this refers to element here
             });
             this._elements.bottomFilterContainer.on('click', '.pool-facing-filter-button', function (event) {
                 // notify controller
+                curruntFilter = 'pool-facing';
                 _this._applyfilter.notify('pool-facing'); // this refers to element here
             });
             this._elements.bottomFilterContainer.on('click', '.park-facing-filter-button', function (event) {
                 // notify controller
+                curruntFilter = 'park-facing';
                 _this._applyfilter.notify('park-facing'); // this refers to element here
             });
             this._elements.bottomFilterContainer.on('click', '.road-facing-filter-button', function (event) {
@@ -666,8 +671,11 @@ var MasterplanView = (function () {
         towerMouseLeaveEvent: function (element) {
             $('.detail-box').removeClass('show-details');
             $('.detail-box').addClass('hide-details');
-            $('img.' + config.imgContainerClass).stop().fadeTo("500", 1, function () {
-            });
+            if(curruntFilter !== ''){
+                this.applyFilter(curruntFilter);
+            }else{
+                $('img.' + config.imgContainerClass).stop().fadeTo("500", 1, function () {});
+            }
             $('.' + config.amenityContainerClass).removeClass(config.amenityNotOnTopClass);
             var removeClasses = config.menuItemHoverClass + ' ' + config.availabilityClass.available + ' ' + config.availabilityClass.unavailable;
             $('.' + config.leftPanelButtonClass).removeClass(removeClasses);
