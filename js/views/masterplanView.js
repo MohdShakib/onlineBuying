@@ -305,6 +305,11 @@ var MasterplanView = (function () {
                 viewUtils.showNotificationTooltip('Click on a tower to explore further');
             }, 9000);
 
+            // bottom container
+            setTimeout(function () {
+                $('.bottom-filter-container').addClass('show-up');
+            }, 7000);
+
         },
         displayWithoutAnimation: function () {
             // Images
@@ -569,8 +574,8 @@ var MasterplanView = (function () {
             filter = filter || '';
             var filterClass = '';
             $('img.' + config.imgContainerClass).stop().fadeTo("0", 0.25, function () {});
-            $('.bottom-filter-container .tower-filter').hide();
-            $('.bottom-filter-container .after-filter-apply').show();
+            $('.bottom-filter-container .tower-filter-wrap').addClass('slide-out');
+            $('.bottom-filter-container .after-filter-apply').addClass('slide-in');
 
             switch (filter) {
                 case 'pool-facing' :
@@ -601,8 +606,8 @@ var MasterplanView = (function () {
         },
         removeFilter : function () {
             $('img.' + config.imgContainerClass).stop().fadeTo("0", 1, function () {});
-            $('.bottom-filter-container .tower-filter').show();
-            $('.bottom-filter-container .after-filter-apply').hide();
+            $('.bottom-filter-container .tower-filter-wrap').removeClass('slide-out');
+            $('.bottom-filter-container .after-filter-apply').removeClass('slide-in');
         },
         mouseenterFilter:function(filter){
           console.log('Mouse enter ', filter);
@@ -686,7 +691,6 @@ var MasterplanView = (function () {
                 code += "</div>";
 
             this._elements.bottomFilterContainer.html(code);
-            $('.bottom-filter-container .after-filter-apply').hide();
             this.addFilterEvent();
         },
         towerMouseEnterEvent: function (obj) {
