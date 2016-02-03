@@ -566,7 +566,7 @@ var MasterplanView = (function () {
             filter = filter || '';
             var filterClass = '';
             $('img.' + config.imgContainerClass).stop().fadeTo("0", 0.25, function () {});
-            $('.bottom-filter-container .filter-container-view').hide();
+            $('.bottom-filter-container .tower-filter').hide();
             $('.bottom-filter-container .after-filter-apply').show();
 
             switch (filter) {
@@ -627,11 +627,11 @@ var MasterplanView = (function () {
                 // notify controller
                 _this._applyfilter.notify('road-facing'); // this refers to element here
             });
-            this._elements.bottomFilterContainer.on('click', '.back-to-main p', function (event) {
+            this._elements.bottomFilterContainer.on('click', '.back-to-filter', function (event) {
                 // notify controller
                 console.log('Back clicked Change this into event and methods');
                 $('.bottom-filter-container .after-filter-apply').hide();
-                $('.bottom-filter-container .filter-container-view').show();
+                $('.bottom-filter-container .tower-filter').show();
 
             });
 
@@ -644,16 +644,17 @@ var MasterplanView = (function () {
                 roadFacing = $('.road-facing').length,
                 code = "";
 
-                code += "<div class='filter-container-view'>";
-                code += "<div class='all-tower-button'><img src='images/all-tower.png'><span>All Towers "+ allTower+"</span></div>";
-                code += "<div class='pool-facing-filter-button'><img src='images/pool-facing.png'><span>Pool Facing "+ poolFacing+"</span></div>";
-                code += "<div class='park-facing-filter-button'><img src='images/park-facing.png'><span>Park Facing "+ parkFacing+"</span></div>";
-                code += "<div class='road-facing-filter-button'><img src='images/road-facing.png'><span>Road Facing "+ roadFacing+"</span></div>";
+                code += "<div class='filter-wrap tower-filter'>";
+                code += "<div class='filter all-tower-button'><div class='ico-wrap transition'><img src='images/all-tower.png'></div><span>All Towers "+ allTower+"</span></div>";
+                code += "<div class='filter pool-facing-filter-button'><div class='ico-wrap transition'><img src='images/pool-facing.png'></div><span>Pool Facing "+ poolFacing+"</span></div>";
+                code += "<div class='filter park-facing-filter-button'><div class='ico-wrap transition'><img src='images/park-facing.png'></div><span>Park Facing "+ parkFacing+"</span></div>";
+                code += "<div class='filter road-facing-filter-button'><div class='ico-wrap transition'><img src='images/road-facing.png'></div><span>Road Facing "+ roadFacing+"</span></div>";
                 code += "</div>";
+
                 code += "<div class='after-filter-apply'>";
-                code += "<div class='back-to-main'><p > Back</p></div>";
-                code += "<div class='tower-list-container'><p>HHHHHHHHHHHHHHHHHHH</p></div>";
-                code += "<div class='current-filter'><img src='images/road-facing.png'><span>Road Facing "+ roadFacing+"</span></div>";
+                code += "<div class='left'><div class='back-to-filter'><i class='icon icon-arrow_left'></i></div></div>";
+                code += "<div class='center'><div class='filter-wrap'><div class='filter item'>HHHHHHHHHHHHHHHHHHH</div></div></div>";
+                code += "<div class='right'><div class='current-filter filter'><div class='ico-wrap'><img src='images/road-facing.png'></div><span>Road Facing "+ roadFacing+"</span></div></div>";
                 code += "</div>";
 
             this._elements.bottomFilterContainer.html(code);
