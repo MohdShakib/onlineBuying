@@ -68,6 +68,8 @@ var MasterplanView = (function () {
 
         this._applyfilter = new Event(this);
 
+        this._removeFilter = new Event(this);
+
         // For dynamic height of tower menu
         utils.masterPlanModel = this._model;
     }
@@ -570,11 +572,6 @@ var MasterplanView = (function () {
             $('.bottom-filter-container .after-filter-apply').show();
 
             switch (filter) {
-                case 'east-facing' :
-                {
-                    filterClass = '.east-facing';
-                    break;
-                }
                 case 'pool-facing' :
                 {
                     filterClass = '.pool-facing';
@@ -601,17 +598,17 @@ var MasterplanView = (function () {
                 targetImage.fadeTo("100", 1, function () {});
             }
         },
+        removeFilter : function () {
+            $('img.' + config.imgContainerClass).stop().fadeTo("0", 1, function () {});
+            $('.bottom-filter-container .tower-filter').show();
+            $('.bottom-filter-container .after-filter-apply').hide();
+        },
         addFilterEvent: function () {
             var _this = this;
             this._elements.bottomFilterContainer.on('click', '.all-tower-button', function (event) {
                 // notify controller
                 curruntFilter = '';
                 _this._applyfilter.notify(''); // this refers to element here
-            });
-            this._elements.bottomFilterContainer.on('click', '.east-facing-filter-button', function (event) {
-                // notify controller
-                curruntFilter = 'east-facing';
-                _this._applyfilter.notify('east-facing'); // this refers to element here
             });
             this._elements.bottomFilterContainer.on('click', '.pool-facing-filter-button', function (event) {
                 // notify controller
@@ -629,10 +626,7 @@ var MasterplanView = (function () {
             });
             this._elements.bottomFilterContainer.on('click', '.back-to-filter', function (event) {
                 // notify controller
-                console.log('Back clicked Change this into event and methods');
-                $('.bottom-filter-container .after-filter-apply').hide();
-                $('.bottom-filter-container .tower-filter').show();
-
+                _this._removeFilter.notify(); // this refers to element here
             });
 
         },
