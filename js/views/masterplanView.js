@@ -18,7 +18,7 @@ var MasterplanView = (function () {
         'googleMapContainer': '<div class="map-container"><div id="google-map-container" class="google-map-container"></div></div>',
         'mapTooltip': '<div class="map-tooltip" id=map-tooltip></div>',
         'openGoogleMapView': '<div id="open-google-map-view" style="padding: 10px 20px; color: #000; position: absolute; top: 20%; right: 20px; z-index: 100001; background-color: yellow;">Open Google Map View</div>',
-        'bottomFilterContainer': '<div id="bottom-filter-container" style="width: 500px;height: 60px;padding: 15px 15px;color: #000;position: absolute;bottom: 0px;left: 30%; z-index: 100001;background-color: #353d14; opacity: 0.8; border-radius: 25px 25px 0px 0px;">WOooooo</div>'
+        'bottomFilterContainer': '<div id="bottom-filter-container" class="bottom-filter-container"></div>'
     };
 
     var curruntFilter = '';
@@ -566,6 +566,9 @@ var MasterplanView = (function () {
             filter = filter || '';
             var filterClass = '';
             $('img.' + config.imgContainerClass).stop().fadeTo("0", 0.25, function () {});
+            $('.bottom-filter-container .filter-container-view').hide();
+            $('.bottom-filter-container .after-filter-apply').show();
+
             switch (filter) {
                 case 'east-facing' :
                 {
@@ -624,18 +627,37 @@ var MasterplanView = (function () {
                 // notify controller
                 _this._applyfilter.notify('road-facing'); // this refers to element here
             });
+            this._elements.bottomFilterContainer.on('click', '.back-to-main p', function (event) {
+                // notify controller
+                console.log('Back clicked Change this into event and methods');
+                $('.bottom-filter-container .after-filter-apply').hide();
+                $('.bottom-filter-container .filter-container-view').show();
+
+            });
 
         },
-        craeteBottomFilterContainer: function () {
-            var code = '<table height="100%" width="100%" ><tr>';
-            code += '<td><button class="all-tower-button">All Tower</button></td>';
-            code += '<td><button class="pool-facing-filter-button">Pool View</button></td>';
-            code += '<td><button class="park-facing-filter-button">Park View</button></td>';
-            code += '<td><button class="road-facing-filter-button">Road View</button></td>';
-            code += '<td><button class="east-facing-filter-button">East Facing</button></td>';
-            code += '</tr></table>';
+        bottomFilterContainer: function (data) {
+            console.log('craeteBottomFilterContainer', data);
+            var allTower = $('img.' + config.imgContainerClass).length,
+                poolFacing = $('.pool-facing').length,
+                parkFacing = $('.park-facing').length,
+                roadFacing = $('.road-facing').length,
+                code = "";
+
+                code += "<div class='filter-container-view'>";
+                code += "<div class='all-tower-button'><img src='images/all-tower.png'><span>All Towers "+ allTower+"</span></div>";
+                code += "<div class='pool-facing-filter-button'><img src='images/pool-facing.png'><span>Pool Facing "+ poolFacing+"</span></div>";
+                code += "<div class='park-facing-filter-button'><img src='images/park-facing.png'><span>Park Facing "+ parkFacing+"</span></div>";
+                code += "<div class='road-facing-filter-button'><img src='images/road-facing.png'><span>Road Facing "+ roadFacing+"</span></div>";
+                code += "</div>";
+                code += "<div class='after-filter-apply'>";
+                code += "<div class='back-to-main'><p > Back</p></div>";
+                code += "<div class='tower-list-container'><p>HHHHHHHHHHHHHHHHHHH</p></div>";
+                code += "<div class='current-filter'><img src='images/road-facing.png'><span>Road Facing "+ roadFacing+"</span></div>";
+                code += "</div>";
 
             this._elements.bottomFilterContainer.html(code);
+            $('.bottom-filter-container .after-filter-apply').hide();
             this.addFilterEvent();
         },
         towerMouseEnterEvent: function (obj) {

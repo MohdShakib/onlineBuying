@@ -91,7 +91,6 @@ var MasterplanController = (function() {
         },
         generateTemplate: function() {
             this._view.buildView();
-            this._view.craeteBottomFilterContainer();
             if (this._model.isFirstLoad()) {
                 var _this = this,
                     animationStart;

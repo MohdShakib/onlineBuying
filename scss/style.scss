@@ -299,6 +299,60 @@ ellipse.tower-unit-svg-selected-path {
 	min-width: 200px;
 }
 
+/*tower bottom menu*/
+
+.bottom-filter-container{
+	width: 500px;
+	height: 80px;
+	padding: 15px 15px;
+	color: #fff;
+	position: absolute;
+	bottom: 0px;
+	left: 30%;
+	z-index: 100001;
+	background-color: #353d14;
+	opacity: 0.8;
+	border-radius: 25px 25px 0px 0px;
+}
+
+.bottom-filter-container .filter-container-view div{
+	display: inline-block;
+	height: 100px;
+	width: 75px;
+	cursor: pointer;
+	padding: 0px 10px 0px 10px;
+	margin: 0px 10px 0px 20px;
+}
+
+.bottom-filter-container .filter-container-view div span{
+	font-size: 12px;
+}
+
+.bottom-filter-container .after-filter-apply div{
+	display: inline-block;
+	height: 100px;
+	width: 75px;
+	padding: 0px 10px 0px 10px;
+	margin: 0px 10px 0px 20px;
+}
+
+.bottom-filter-container .after-filter-apply .back-to-main{
+	vertical-align: middle;
+}
+.bottom-filter-container .after-filter-apply .back-to-main p{
+	cursor: pointer;
+}
+
+.bottom-filter-container .after-filter-apply .tower-list-container{
+}
+
+.bottom-filter-container .after-filter-apply .current-filter{
+
+}
+.bottom-filter-container .after-filter-apply .current-filter span{
+	font-size: 12px;
+}
+
 
 /* Tower Menu */
 .tower-menu-container {
