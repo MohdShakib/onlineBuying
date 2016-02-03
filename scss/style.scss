@@ -303,19 +303,38 @@ ellipse.tower-unit-svg-selected-path {
 
 .bottom-filter-container{
 
-	width: 500px;
+	width: 750px;
 	height: 110px;
 	padding: 15px;
 	color: #fff;
 	position: absolute;
 	text-align: center;
-	bottom: 0px;
+	bottom: -110px;
 	left: 50%;
-	margin-left: -250px;
+	margin-left: -375px;
 	z-index: 100001;
 	box-sizing: border-box;
-	background-color: rgba(0, 0, 0, .5);
+	background-color: rgba(0, 0, 0, .7);
 	border-radius: 20px 20px 0px 0px;
+	overflow: hidden;
+
+	/* TO DO - this class will be added after few seconds as clouds are removed  */
+	&.show-up {
+		bottom: 0px;
+	}
+
+	.tower-filter-wrap {
+		float: left;
+		width: 730px;
+
+		/* TO DO - class will add to tower filter wrap div after tower filter is clicked
+		and will be removed when back arrow is clicked */
+		&.slide-out {
+			width: 0;
+			opacity: 0;
+		}
+
+	}
 
 	.ico-wrap {
 		border-radius: 50%;
@@ -372,10 +391,19 @@ ellipse.tower-unit-svg-selected-path {
 	}
 
 	.after-filter-apply {
-
+		width: 0;
+		opacity: 0;
 		.current-filter span{
 			font-size: 12px;
 		}
+
+		/* TO DO - class will add to after filter apply div after tower filter
+		is clicked and will be removed when back arrow is clicked  */
+		&.slide-in {
+			width: 100%;
+			opacity: 1;
+		}
+
 	}
 
 	.left {

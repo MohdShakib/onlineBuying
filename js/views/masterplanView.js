@@ -18,7 +18,7 @@ var MasterplanView = (function () {
         'googleMapContainer': '<div class="map-container"><div id="google-map-container" class="google-map-container"></div></div>',
         'mapTooltip': '<div class="map-tooltip" id=map-tooltip></div>',
         'openGoogleMapView': '<div id="open-google-map-view" style="padding: 10px 20px; color: #000; position: absolute; top: 20%; right: 20px; z-index: 100001; background-color: yellow;">Open Google Map View</div>',
-        'bottomFilterContainer': '<div id="bottom-filter-container" class="bottom-filter-container"></div>'
+        'bottomFilterContainer': '<div id="bottom-filter-container" class="bottom-filter-container transition"></div>'
     };
 
     var curruntFilter = '';
@@ -672,14 +672,14 @@ var MasterplanView = (function () {
                 roadFacing = $('.road-facing').length,
                 code = "";
 
-                code += "<div class='filter-wrap tower-filter'>";
+                code += "<div class='tower-filter-wrap transition'><div class='filter-wrap tower-filter'>";
                 code += "<div class='filter all-tower-button'><div class='ico-wrap transition'><img src='images/all-tower.png'></div><span>All Towers "+ allTower+"</span></div>";
                 code += "<div class='filter pool-facing-filter-button'><div class='ico-wrap transition'><img src='images/pool-facing.png'></div><span>Pool Facing "+ poolFacing+"</span></div>";
                 code += "<div class='filter park-facing-filter-button'><div class='ico-wrap transition'><img src='images/park-facing.png'></div><span>Park Facing "+ parkFacing+"</span></div>";
                 code += "<div class='filter road-facing-filter-button'><div class='ico-wrap transition'><img src='images/road-facing.png'></div><span>Road Facing "+ roadFacing+"</span></div>";
-                code += "</div>";
+                code += "</div></div>";
 
-                code += "<div class='after-filter-apply'>";
+                code += "<div class='after-filter-apply transition'>";
                 code += "<div class='left'><div class='back-to-filter'><i class='icon icon-arrow_left'></i></div></div>";
                 code += "<div class='center'><div class='filter-wrap'><div class='filter item'>HHHHHHHHHHHHHHHHHHH</div></div></div>";
                 code += "<div class='right'><div class='current-filter filter'><div class='ico-wrap'><img src='images/road-facing.png'></div><span>Road Facing "+ roadFacing+"</span></div></div>";
