@@ -80,6 +80,7 @@ var BaseView = (function() {
             $('.project-title').html(content);
             $('.project-address').html(rootdata.address);
             $('.project-desc').html(rootdata.description);
+            $('.project-offer').html(rootdata.offer);
             this.initEvents();
         },
         initEvents: function() {
