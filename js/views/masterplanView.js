@@ -440,8 +440,12 @@ var MasterplanView = (function () {
             }
             this._elements.buildingImgContainer.html(imgCode);
         },
-        buildingMenuContainer: function (data) {
+        buildingMenuContainer: function (data, filteredTower) {
+            data = data || this._model.getData();
             var towersData = utils.ascendingOrder(data.towers);
+            if(filteredTower && filteredTower.length > 0){
+                towersData = filteredTower;
+            }
             var code = "<div class='master-menu'>";
 
             code += "<div class='menu-sep'></div>";
@@ -598,16 +602,20 @@ var MasterplanView = (function () {
                 }
             }
             var allpolygon = $(filterClass);
+            var filteredTower = [];
             for (var i = 0; i < allpolygon.length; i++) {
+                filteredTower.push(allpolygon[i].attributes[2].nodeValue);
                 var imageid = allpolygon[i].id.split('-')[0];
                 var targetImage = $('img#' + imageid);
                 targetImage.fadeTo("100", 1, function () {});
             }
+            this.buildingMenuContainer(this._model.getData(), filteredTower.sort());
         },
         removeFilter : function () {
             $('img.' + config.imgContainerClass).stop().fadeTo("0", 1, function () {});
             $('.bottom-filter-container .tower-filter-wrap').removeClass('slide-out');
             $('.bottom-filter-container .after-filter-apply').removeClass('slide-in');
+            this.buildingMenuContainer();
         },
         mouseenterFilter:function(filter){
           console.log('Mouse enter ', filter);
@@ -656,6 +664,7 @@ var MasterplanView = (function () {
             });
             this._elements.bottomFilterContainer.on('mouseenter', '.road-facing-filter-button', function (event) {
                 // notify controller
+                curruntFilter = 'road-facing';
                 _this._mouseenterFilter.notify('road-facing');
             });
             this._elements.bottomFilterContainer.on('mouseleave', '.road-facing-filter-button', function (event) {
@@ -665,6 +674,7 @@ var MasterplanView = (function () {
             });
             this._elements.bottomFilterContainer.on('click', '.back-to-filter', function (event) {
                 // notify controller
+                curruntFilter = '';
                 _this._removeFilter.notify(); // this refers to element here
             });
 
