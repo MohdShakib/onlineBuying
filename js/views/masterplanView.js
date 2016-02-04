@@ -21,7 +21,7 @@ var MasterplanView = (function () {
         'bottomFilterContainer': '<div id="bottom-filter-container" class="bottom-filter-container transition"></div>'
     };
 
-    var curruntFilter = '';
+    var curruntFilter = '', isClicked = false;
     function getElements() {
         var elements = {
             'buildingImgContainer': $('#img-container'),
@@ -575,6 +575,7 @@ var MasterplanView = (function () {
         },
         // filter methods
         applyFilter: function (filter) {
+            isClicked = true;
             filter = filter || '';
             var filterClass = '';
             $('img.' + config.imgContainerClass).stop().fadeTo("0", 0.25, function () {});
@@ -614,16 +615,48 @@ var MasterplanView = (function () {
             this.buildingMenuContainer(this._model.getData(), filteredTower.sort());
         },
         removeFilter : function () {
+            isClicked = false;
             $('img.' + config.imgContainerClass).stop().fadeTo("0", 1, function () {});
             $('.bottom-filter-container .tower-filter-wrap').removeClass('slide-out');
             $('.bottom-filter-container .after-filter-apply').removeClass('slide-in');
             this.buildingMenuContainer();
         },
         mouseenterFilter:function(filter){
-          console.log('Mouse enter ', filter);
+            filter = filter || '';
+            var filterClass = '';
+            $('img.' + config.imgContainerClass).stop().fadeTo("0", 0.25, function () {});
+
+            switch (filter) {
+                case 'pool-facing' :
+                {
+                    filterClass = '.pool-facing';
+                    break;
+                }
+                case 'park-facing' :
+                {
+                    filterClass = '.park-facing';
+                    break;
+                }
+                case 'road-facing' :
+                {
+                    filterClass = '.road-facing';
+                    break;
+                }
+                default : {
+                    $('img.' + config.imgContainerClass).stop().fadeTo("0", 1, function () {});
+                }
+            }
+            var allpolygon = $(filterClass);
+            for (var i = 0; i < allpolygon.length; i++) {
+                var imageid = allpolygon[i].id.split('-')[0];
+                var targetImage = $('img#' + imageid);
+                targetImage.fadeTo("100", 1, function () {});
+            }
         },
         mouseleaveFilter:function(){
-            console.log('Mouse leave');
+            if(!isClicked){
+                $('img.' + config.imgContainerClass).stop().fadeTo("0", 1, function () {});
+            }
         },
         addFilterEvent: function () {
             var _this = this;
