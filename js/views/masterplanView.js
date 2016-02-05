@@ -618,28 +618,31 @@ var MasterplanView = (function () {
             var filterClass = '';
             $('img.' + config.imgContainerClass).stop().fadeTo("0", 0.25, function () {});
             $('.bottom-filter-container .tower-filter-wrap').addClass('slide-out');
-            $('.bottom-filter-container .tower-filter-wrap .all-tower-button').addClass('filter-active');
-            //$('.bottom-filter-container .tower-filter-wrap .pool-facing-filter-button').addClass('filter-active');
             $('.bottom-filter-container .after-filter-apply').addClass('slide-in');
+            $('.filter-active').removeClass('filter-active');
 
             switch (filter) {
                 case 'pool-facing' :
                 {
                     filterClass = '.pool-facing';
+                    $('.bottom-filter-container .tower-filter-wrap .pool-facing-filter-button').addClass('filter-active');
                     break;
                 }
                 case 'park-facing' :
                 {
                     filterClass = '.park-facing';
+                    $('.bottom-filter-container .tower-filter-wrap .park-facing-filter-button').addClass('filter-active');
                     break;
                 }
                 case 'road-facing' :
                 {
                     filterClass = '.road-facing';
+                    $('.bottom-filter-container .tower-filter-wrap .road-facing-filter-button').addClass('filter-active');
                     break;
                 }
                 default : {
                     $('img.' + config.imgContainerClass).stop().fadeTo("0", 1, function () {});
+                    $('.bottom-filter-container .tower-filter-wrap .all-tower-button').addClass('filter-active');
                 }
             }
             var allpolygon = $(filterClass);
