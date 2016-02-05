@@ -26,14 +26,14 @@ var MasterplanView = (function () {
         var elements = {
             'buildingImgContainer': $('#img-container'),
             'buildingSvgContainer': $('#svg-container'),
-            'buildingMenuContainer': $('#tower-menu-container'),
             'towerDetailContainer': $('#tower-detail-container'),
             'amenitiesContainer': $('#amenities-container'),
             'cloudContainer': $('#cloud-container'),
             'carAnimation': $('#car-animation'),
             'googleMapContainer': $('#google-map-container'),
             'openGoogleMapView': $('#open-google-map-view'),
-            'bottomFilterContainer': $('#bottom-filter-container')
+            'bottomFilterContainer': $('#bottom-filter-container'),
+            'buildingMenuContainer': $('#tower-menu-container'),
         };
         return elements;
     }
@@ -289,7 +289,7 @@ var MasterplanView = (function () {
                     visibility: 'visible'
                 });
                 $('.tower-menu-container').animate({
-                    left: '0px'
+                    left: '80px'
                 }, 500);
             }, 7000);
 
@@ -334,9 +334,12 @@ var MasterplanView = (function () {
 
             // Tower Menu
             $('.tower-menu-container').css({
-                left: '0px',
+                left: '80px',
                 visibility: 'visible'
             });
+
+            //bottom-filter-container
+            $('.bottom-filter-container').addClass('show-up');
 
             // Connect tabs
             $('.pro-contact-actions ul.conect-tab').css({
@@ -463,10 +466,14 @@ var MasterplanView = (function () {
             code += "</div></div></div></div>";
             code += "</div>";
             this._elements.buildingMenuContainer.html(code);
+            if($('#inside-tower-menu-container').html){
+                $('#inside-tower-menu-container').html(code);
+            }
             this.buildingMenuContainerEvents();
         },
         buildingMenuContainerEvents: function () {
             var _this = this;
+// todo delete these events when we remove upper buildingMenuContainer
 
             _this._elements.buildingMenuContainer.off('click').on('click', '.' + config.leftPanelButtonClass, function (event) {
                 // notify controller
@@ -494,6 +501,37 @@ var MasterplanView = (function () {
                 // notify controller
                 _this._menuDown.notify(this); // this refers to element here
             });
+
+// events binding after menu creation into bottomFilterContainer  todo click is not working yet
+
+            //_this._elements.bottomFilterContainer.off('click').on('click', '.' + config.leftPanelButtonClass, function (event) {
+            //    // notify controller
+            //    _this._menuClick.notify(this); // this refers to element here
+            //});
+            //
+            _this._elements.bottomFilterContainer.off('mouseenter').on('mouseenter', '.' + config.leftPanelButtonClass, function (event) {
+                // notify controller
+                _this._menuMouseEnter.notify({
+                    element: this,
+                    event: event
+                }); // this refers to element here
+            });
+
+            _this._elements.bottomFilterContainer.off('mouseleave').on('mouseleave', '.' + config.leftPanelButtonClass, function (event) {
+                // notify controller
+                _this._menuMouseLeave.notify(this); // this refers to element here
+            });
+
+
+            _this._elements.bottomFilterContainer.on('click', '.scroll-up', function (event) {
+                // notify controller
+                _this._menuUp.notify(this); // this refers to element here
+            });
+            _this._elements.bottomFilterContainer.on('click', '.scroll-down', function (event) {
+                // notify controller
+                _this._menuDown.notify(this); // this refers to element here
+            });
+
 
         },
         menuUpHandler: function () {
@@ -658,7 +696,7 @@ var MasterplanView = (function () {
                 $('img.' + config.imgContainerClass).stop().fadeTo("0", 1, function () {});
             }
         },
-        addFilterEvent: function () {
+        bottomFilterContainerEvents: function () {
             var _this = this;
             this._elements.bottomFilterContainer.on('click', '.all-tower-button', function (event) {
                 // notify controller
@@ -731,12 +769,14 @@ var MasterplanView = (function () {
 
                 code += "<div class='after-filter-apply transition'>";
                 code += "<div class='left'><div class='back-to-filter'><i class='icon icon-arrow_left'></i></div></div>";
-                code += "<div class='center'><div class='filter-wrap'><div class='filter item'>HHHHHHHHHHHHHHHHHHH</div></div></div>";
+                code += "<div class='center'><div class='filter-wrap'><div class='filter item'>";
+                code += '<div class="tower-menu-container master-page" id="inside-tower-menu-container">';
+                code += "</div></div></div></div>";
                 code += "<div class='right'></div>";
                 code += "</div>";
 
             this._elements.bottomFilterContainer.html(code);
-            this.addFilterEvent();
+            this.bottomFilterContainerEvents();
         },
         towerMouseEnterEvent: function (obj) {
             var element = $(obj.element);
