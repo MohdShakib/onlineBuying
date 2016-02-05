@@ -145,6 +145,7 @@ var getProjectData = (function() {
                     projectData.towers[towerIdentifier].hoverImageUrl = zipImagePath + towers[towerName].hoverImageName;
                     projectData.towers[towerIdentifier].towerHoverSvg = towers[towerName].towerHoverSvg;
                     projectData.towers[towerIdentifier].towerTooltipSvg = towers[towerName].towerTooltipSvg;
+                    projectData.towers[towerIdentifier].displayImage = towers[towerName].displayImage;
                 }
             }
         }

@@ -33,7 +33,7 @@ var MasterplanView = (function () {
             'googleMapContainer': $('#google-map-container'),
             'openGoogleMapView': $('#open-google-map-view'),
             'bottomFilterContainer': $('#bottom-filter-container'),
-            'buildingMenuContainer': $('#tower-menu-container'),
+            'buildingMenuContainer': $('#tower-menu-container')
         };
         return elements;
     }
@@ -341,6 +341,8 @@ var MasterplanView = (function () {
             //bottom-filter-container
             $('.bottom-filter-container').addClass('show-up');
 
+            this.applyFilter();
+
             // Connect tabs
             $('.pro-contact-actions ul.conect-tab').css({
                 bottom: '0px'
@@ -462,6 +464,8 @@ var MasterplanView = (function () {
                     "' data-imageid='" + tower.towerId +
                     "' data-url='" + towerUrl +
                     "'><label class='transition'>" + tower.shortName + "</label></div></div>";
+                    // Image name can get via "tower.displayImage" to show instead of sort name
+                    // avilable count  can get via "tower.totalAvailableCount" to show
             }
             code += "</div></div></div></div>";
             code += "</div>";
@@ -504,11 +508,11 @@ var MasterplanView = (function () {
 
 // events binding after menu creation into bottomFilterContainer  todo click is not working yet
 
-            //_this._elements.bottomFilterContainer.off('click').on('click', '.' + config.leftPanelButtonClass, function (event) {
-            //    // notify controller
-            //    _this._menuClick.notify(this); // this refers to element here
-            //});
-            //
+            _this._elements.bottomFilterContainer.off('click').on('click', '.' + config.leftPanelButtonClass, function (event) {
+                // notify controller
+                _this._menuClick.notify(this); // this refers to element here
+            });
+
             _this._elements.bottomFilterContainer.off('mouseenter').on('mouseenter', '.' + config.leftPanelButtonClass, function (event) {
                 // notify controller
                 _this._menuMouseEnter.notify({
@@ -531,7 +535,7 @@ var MasterplanView = (function () {
                 // notify controller
                 _this._menuDown.notify(this); // this refers to element here
             });
-
+            this.bottomFilterContainerEvents();
 
         },
         menuUpHandler: function () {
@@ -614,7 +618,7 @@ var MasterplanView = (function () {
         // filter methods
         applyFilter: function (filter) {
             isClicked = true;
-            filter = filter || '';
+            filter = filter || curruntFilter;
             var filterClass = '';
             $('img.' + config.imgContainerClass).stop().fadeTo("0", 0.25, function () {});
             $('.bottom-filter-container .tower-filter-wrap').addClass('slide-out');
