@@ -473,7 +473,7 @@ var MasterplanView = (function () {
             }
             code += "</div></div></div></div>";
             code += "</div>";
-            this._elements.buildingMenuContainer.html(code);
+            //this._elements.buildingMenuContainer.html(code);
             if($('#inside-tower-menu-container').html){
                 $('#inside-tower-menu-container').html(code);
             }
@@ -694,6 +694,10 @@ var MasterplanView = (function () {
             $('img.' + config.imgContainerClass).stop().fadeTo("0", 1, function () {});
             $('.bottom-filter-container .tower-filter-wrap').removeClass('slide-out');
             $('.bottom-filter-container .after-filter-apply').removeClass('slide-in');
+            var allPolygon = $('.tower-svg-path');
+            for(var j = 0; j < allPolygon.length; j++){
+                allPolygon[j].classList.remove('deactive');
+            }
             this.buildingMenuContainer();
             //this.buildingSvgContainerEvents();
 
