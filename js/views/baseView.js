@@ -79,8 +79,14 @@ var BaseView = (function() {
             var content = config.builderSetUp ? rootdata.builderName + ' ' + rootdata.projectName : '<a href="https://www.proptiger.com/' + rootdata.projectUrl + '" target="_blank">' + rootdata.builderName + ' ' + rootdata.projectName + '</a>';
             $('.project-title').html(content);
             $('.project-address').html(rootdata.address);
-            $('.project-desc').html(rootdata.description);
-            $('.project-offer').html(rootdata.offer);
+            if(rootdata.description !=''){
+                $('.loading-txt').html(rootdata.description);
+                $('.loading-txt').show();
+            }
+            if(rootdata.offer !=''){
+                $('.project-offer').html(rootdata.offer);
+                $('.project-offer').addClass('border-lines');
+            }
             this.initEvents();
         },
         initEvents: function() {

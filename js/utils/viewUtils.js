@@ -252,7 +252,25 @@ var viewUtils = (function() {
             return el;
         },
         showLoader: function(model, startAnimation) {
-            $('.loading-persentage').html('0%');
+
+            var canvas = document.getElementById('loading-circle');
+            var context = canvas.getContext('2d');
+            var x = canvas.width / 2;
+            var y = canvas.height / 2;
+            var radius = 85;
+            var circ = Math.PI * 2;
+            var quart = Math.PI / 2;
+
+            function animate(current) {
+                context.lineWidth = 2;
+                context.strokeStyle = '#d36242';
+
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.beginPath();
+                context.arc(x, y, radius, -(quart), ((circ) * current) - quart, false);
+                context.stroke();
+            }
+
             $('.show-loading').show();
             var percentCounter = 0,
                 count = 0,
@@ -269,12 +287,14 @@ var viewUtils = (function() {
                     .load(function() {
                         count++;
                         percentCounter = (count / arrayOfImageUrls.length) * 100; //set the percentCounter after this image has loaded
-                        var percentage = Math.floor(percentCounter) + '%';
-                        $('.loading-bar span').width(percentage);
-                        $('.ldr').html(percentage);
+                        var percentage = Math.floor(percentCounter);
+                        animate(percentage /100);
+                        $('.ldr span').html(percentage + '%');
                         if (percentCounter == 100) {
-                            $('.show-loading').hide();
                             startAnimation(model);
+                            setTimeout(function(){
+                                $('.show-loading').hide();
+                            },100);
                         }
                     });
             });
