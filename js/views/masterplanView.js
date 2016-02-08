@@ -646,13 +646,11 @@ var MasterplanView = (function () {
                 }
                 var filteredTower = [];
                 for (var i = 0; i < filteredPolygon.length; i++) {
-                    console.log(filteredPolygon[i]);
                     filteredPolygon[i].classList.remove('deactive');
                     filteredTower.push(filteredPolygon[i].attributes[2].nodeValue);
                     var imageid = filteredPolygon[i].id.split('-')[0];
                     var targetImage = $('img#' + imageid);
-                    targetImage.fadeTo("100", 1, function () {});
-                    console.log('filteredPolygon[i]', filteredPolygon[i])
+                    targetImage.fadeTo("0", 1, function () {});
                 }
                 _this.buildingMenuContainer(_this._model.getData(), filteredTower.sort());
             }
@@ -792,7 +790,6 @@ var MasterplanView = (function () {
 
         },
         bottomFilterContainer: function (data) {
-            console.log('craeteBottomFilterContainer', data);
             var allTower = $('img.' + config.imgContainerClass).length,
                 poolFacing = $('.pool-facing').length,
                 parkFacing = $('.park-facing').length,
@@ -831,7 +828,7 @@ var MasterplanView = (function () {
                 return;
             }
 
-            $('img.' + config.imgContainerClass).not(targetImage).stop().fadeTo("500", 0.25, function () {
+            $('img.' + config.imgContainerClass).not(targetImage).stop().fadeTo("0", 0.25, function () {
             });
             $('.' + config.amenityContainerClass).addClass(config.amenityNotOnTopClass);
 
@@ -853,7 +850,7 @@ var MasterplanView = (function () {
             if(curruntFilter !== ''){
                 this.applyFilter(curruntFilter);
             }else{
-                $('img.' + config.imgContainerClass).stop().fadeTo("500", 1, function () {});
+                $('img.' + config.imgContainerClass).stop().fadeTo("0", 1, function () {});
             }
             $('.' + config.amenityContainerClass).removeClass(config.amenityNotOnTopClass);
             var removeClasses = config.menuItemHoverClass + ' ' + config.availabilityClass.available + ' ' + config.availabilityClass.unavailable;
