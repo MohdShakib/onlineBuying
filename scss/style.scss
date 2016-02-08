@@ -741,6 +741,21 @@ ellipse.tower-unit-svg-selected-path {
 .small-left .rotation-btn-container.right-btn{
 	right: 8%;
 }
+.open-google-map-btn {
+	width: 7%;
+	height: 15%;
+	color: rgb(0, 0, 0);
+	position: absolute;
+	bottom: 14px;
+	left: 0px;
+	z-index: 100001;
+	display: block;
+}
+.open-google-map-btn img {
+	width:100%;
+	height: 100%;
+}
+
 .small-left .rotation-btn-container button{ width:48px; height:48px;}
 .small-left .rotation-btn-container .fs48{ font-size:30px !important;}
 .small-left .rotation-title{ bottom:-25px;}

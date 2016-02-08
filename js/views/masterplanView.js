@@ -17,7 +17,7 @@ var MasterplanView = (function () {
         'carAnimation': '<svg class="car-animation transition-left ' + config.dynamicResizeClass + '" id="car-animation" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'googleMapContainer': '<div class="map-container"><div id="google-map-container" class="google-map-container"></div></div>',
         'mapTooltip': '<div class="map-tooltip" id=map-tooltip></div>',
-        'openGoogleMapView': '<div id="open-google-map-view" style="padding: 10px 20px; color: #000; position: absolute; top: 20%; right: 20px; z-index: 100001; background-color: yellow;">Open Google Map View</div>',
+        'openGoogleMapView': '<div id="open-google-map-view" class="open-google-map-btn"></div>',
         'bottomFilterContainer': '<div id="bottom-filter-container" class="bottom-filter-container transition"></div>'
     };
 
@@ -232,6 +232,7 @@ var MasterplanView = (function () {
             //elements.map.setZoom(config.maxZoomLevel);
             this._elements.googleMapContainer.parent().css('z-index', '-10');     //do this using class
             setTimeout(function () {
+                _this._elements.bottomFilterContainer.addClass('show-up');
                 _this._elements.amenitiesContainer.show();
                 _this._elements.carAnimation.show();
                 _this._elements.buildingMenuContainer.show();
@@ -243,14 +244,15 @@ var MasterplanView = (function () {
         // to show the google map view
         showGoogleMap: function (elements) {
             this._elements.googleMapContainer.parent().css('z-index', '100001');     //do this using class
+            this._elements.bottomFilterContainer.removeClass('show-up');
             this._elements.openGoogleMapView.hide();
             //elements.map.setZoom(config.initialZoomLevel);
             elements.visible = true;
         },
         // to make open map view icon
         openGoogleMapView: function () {
-            var text = "Open Google Map View";
-            this._elements.openGoogleMapView.html(text);
+            var code = "<img src='images/open-google-map.png'/>";
+            this._elements.openGoogleMapView.html(code);
         },
         startAnimation: function (model) {
 
