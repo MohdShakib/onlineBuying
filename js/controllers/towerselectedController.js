@@ -135,6 +135,14 @@ var TowerselectedController = (function() {
             this._view._minMapClicked.attach(function(sender, element){
                 _this._view.minMapToggle(element);
             });
+
+            this._view._filterApply.attach(function(sender, element){
+                _this._view.applyFilter(element);
+            });
+
+            this._view._backToFilter.attach(function(sender, element){
+                _this._view.backToFilter(element);
+            });
         },
         toggleFilterOption: function(filterArray, filterOption, element) {
             var index = filterArray.indexOf(filterOption);
