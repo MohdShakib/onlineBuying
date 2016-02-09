@@ -474,9 +474,9 @@ var MasterplanView = (function () {
             code += "</div></div></div></div>";
             code += "</div>";
             //this._elements.buildingMenuContainer.html(code);
-            if($('#inside-tower-menu-container').html){
+            setTimeout(function(){
                 $('#inside-tower-menu-container').html(code);
-            }
+            },100);
             this.buildingMenuContainerEvents();
         },
         buildingMenuContainerEvents: function () {
@@ -655,6 +655,7 @@ var MasterplanView = (function () {
                     targetImage.fadeTo("0", 1, function () {});
                 }
                 _this.buildingMenuContainer(_this._model.getData(), filteredTower.sort());
+                console.log('>buildingMenuContainer  called');
             }
 
             switch (filter) {
