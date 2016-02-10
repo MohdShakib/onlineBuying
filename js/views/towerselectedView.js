@@ -745,7 +745,6 @@ var TowerselectedView = (function() {
             var code = "<div class='menu-item-options'><table><tr>";
             var prices = this.getPriceAvailability(data.listings);
             var sortedPrices = Object.keys(prices).sort();
-            console.log('>>>>> prices>>  ', prices);
             for (var i in sortedPrices) {
                 var price = sortedPrices[i],
                     id = config.filters.price + i;
