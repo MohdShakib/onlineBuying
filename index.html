@@ -96,9 +96,7 @@
                         <label class="project-title"></label>
                         <span class="project-address"></span>
                     </h2>
-                    <div class="loading-txt">
-                        Lorem impsum text can come here for loading context...
-                        <!-- <p class="project-desc"></p> -->
+                    <div class="loading-txt hide">
                     </div>
                 </div>
                 <div class="building">
@@ -112,10 +110,13 @@
                 <div class="circleBlur"></div>
             </div>
             <div class="bot-view">
-                <div class="ldr">56%<span class="hide">loading</span></div>
+                <div class="ldr">
+                    <canvas id="loading-circle"  class="loading-image-canvas" width="170" height="170"></canvas>
+                    <span>loading...</span>
+                </div>
                 <div class="txt">
                     <strong>Interactive &amp; Immense 4D VIEW Experience...<br></strong>
-                    <span>Exclusive 10:90 Payment Plan*</span>
+                    <span class="project-offer hide"></span>
                 </div>
             </div>
         </div>

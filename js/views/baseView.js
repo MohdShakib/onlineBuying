@@ -26,7 +26,7 @@ var BaseView = (function() {
             'bottomFormGroupContainer': $('#bottom-form-group'),
             'compareUnitsContainer': $('#' + config.compareUnitscontainerId),
             'promptLeadFormContainer': $('#prompt-lead-form'),
-            'questionBoxContainer': $('#question-box'),
+            //'questionBoxContainer': $('#question-box'),
             'smallScreenMessage': $('#small-screen')
         };
         return elements;
@@ -79,7 +79,14 @@ var BaseView = (function() {
             var content = config.builderSetUp ? rootdata.builderName + ' ' + rootdata.projectName : '<a href="https://www.proptiger.com/' + rootdata.projectUrl + '" target="_blank">' + rootdata.builderName + ' ' + rootdata.projectName + '</a>';
             $('.project-title').html(content);
             $('.project-address').html(rootdata.address);
-            $('.project-desc').html(rootdata.description);
+            if(rootdata.description !=''){
+                $('.loading-txt').html(rootdata.description);
+                $('.loading-txt').show();
+            }
+            if(rootdata.offer !=''){
+                $('.project-offer').html(rootdata.offer);
+                $('.project-offer').addClass('border-lines');
+            }
             this.initEvents();
         },
         initEvents: function() {
@@ -98,7 +105,7 @@ var BaseView = (function() {
         },
         reinit: function() {
             $('.pro-contact-actions ul.conect-tab').css({
-                bottom: '-45px'
+                bottom: '60px'
             });
         },
         buildSkeleton: function(containerList) {
@@ -363,23 +370,35 @@ var BaseView = (function() {
             var chatdisabled = config.chatEnabled && rootdata.fairEnabled && !config.builderSetUp ? '' : 'disabled';
             var iconEnabled = config.builderSetUp ? 'disabled' : '';
             var htmlCode = '<div class="pro-contact-actions">' +
+
+                '<ul class="conect-tab transition">' +
+                '<li>' +
+                '   <a href="javascript:void(0);" id="heart-added" data-name="compare-box">' +
+                '   <p>Compare among</br> shortlisted flats</p>' +
+                '   <span class="icon icon-heart ' + config.blinkElementClass + '">' +
+                '   <label class="like-count br50" id="' + config.likeCountId + '">0</label>' +
+                '   </span>' +
+                '   </a>' +
+                '</li>' +
+                '<li><a href="javascript:void(0);"  data-name="call-box" class="' + iconEnabled + '">' +
+                '   <p>Need Clarification?</br>Get in touch</p>' +
+                '   <span class="icon icon-phone"></span>' +
+                '   </a>' +
+                '</li>' +
+
+                '</ul>' +
                 '<div class="form-pop-up transition">' +
                 '   <span class="close-form icon icon-cross fs12"></span>' +
                 '   <div class="call-box">' +
-                '       <p>Get callback from our property advisor<br></p>' +
-                //'     <div class="chat-tab-box">' +
-                //'         <a href="/" class="transition">Start Chatting</a>' +
-                //'         <a href="/" class="transition active">We will Call</a>' +
-                //'     </div>' +
+                '       <p>Inetsted in  '+ rootdata.projectIdentifier+' ?<br></p>' +
                 '       <form id="call-box-form" name="call-box-form" novalidate onSubmit="return false;"  >' +
-                '           <div class="form-input-box"><input class="text" id="' + config.callBox.nameId + '" name="name" placeholder="Enter your name" type="text" required /><div class="error-box ' + config.errorMsgClass + '">This field is required</div></div> ' +
-                '           <div class="form-input-box"><input class="text" id="' + config.callBox.emailId + '" name="email" placeholder="Enter your email id" type="email" required /><div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
+                '           <div class="form-input-box"><input class="text" id="' + config.callBox.emailId + '" name="email" placeholder="Email Address" type="email" required /><div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
                 '           <div class="phone-no-holder"><div class="form-input-box fleft c-code">' +
                 '           <input id="' + config.callBox.countryCodeId + '" class="text" name="' + config.callBox.phoneId + '" type="text" value="+91" readonly/> ' +
                 '           <span class="icon icon-arrow_btm fs12 transition dropdown-arrow"></span><ul class="country-dropDown" style="display:none;"></ul></div> ' +
-                '           <div class="form-input-box fright mobile-number-field"><input class="text" id="' + config.callBox.phoneId + '" name="phone" placeholder="Enter your phone number" type="text" minlength="10" maxlength="15" required data-countryid="1" data-countrycode="+91"/>' +
+                '           <div class="form-input-box fright mobile-number-field"><input class="text" id="' + config.callBox.phoneId + '" name="phone" placeholder="Mobile No" type="text" minlength="10" maxlength="15" required data-countryid="1" data-countrycode="+91"/>' +
                 '           <div class="error-box ' + config.errorMsgClass + '">This field is required</div></div><div class="clear-fix"></div></div>' +
-                '           <div class="submit" id="' + config.callBox.submitButtonId + '">Get Instant Callback' +
+                '           <div class="submit" id="' + config.callBox.submitButtonId + '">Get Call back' +
                 '           <input type="submit" />' +
                 '           </div>' +
                 '       </form>' +
@@ -390,57 +409,7 @@ var BaseView = (function() {
                 '       <div class="clear-fix"></div>' +
                 '       <div id="' + config.unitCompareButtonId + '" class="submit"><input type="submit" />Compare Unit Plans</div>' +
                 '   </div>' +
-                '   <div class="share-box">' +
-                '       <p>Share details with family / friends</p>' +
-                '       <div class="share-social">' +
-                '           <a href="javascript:void(0);" onclick="viewUtils.socialClicked(\'facebook\')" ><span class="icon icon-facebook"></span>Facebook</a>' +
-                //'         <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"></div>' +
-                '           <span class="social-or">or</span>' +
-                //'         <div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>' +
-                '           <a href="javascript:void(0);" onclick="viewUtils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Google+</a>' +
-                '       </div>' +
-                '       <form id="share-box-form" novalidate name="share-box-form" onSubmit="return false;"  >' +
-                '           <div class="form-input-box"><input class="text" id="' + config.emailBox.nameId + '" placeholder="Enter your name" type="text" required />' +
-                '           <div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
-                '           <div class="form-input-box"><input class="text" id="' + config.emailBox.emailId + '" placeholder="Enter your friend\'s email id" type="email" required />' +
-                '           <div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
-                '           <div class="submit" id="' + config.emailBox.submitButtonId + '"><input type="submit" />Share</div>' +
-                '       </form>' +
-                '   </div>' +
-                '   <div class="live-chat">' +
-                '       <div id="' + config.tawkApiId + '"></div>' +
-                '   </div>' +
                 '</div>' +
-                '<ul class="conect-tab transition">' +
-                '<li><a href="javascript:void(0);"  data-name="call-box" class="' + iconEnabled + '">' +
-                '   <p>Need Clarification?</br>Get in touch</p>' +
-                '   <span class="icon icon-phone"></span>' +
-                '   </a>' +
-                '</li>' +
-                '<li>' +
-                '   <a href="javascript:void(0);" id="heart-added" data-name="compare-box">' +
-                '   <p>Compare among</br> shortlisted flats</p>' +
-                '   <span class="icon icon-heart ' + config.blinkElementClass + '">' +
-                '   <label class="like-count br50" id="' + config.likeCountId + '">0</label>' +
-                '   </span>' +
-                '   </a>' +
-                '</li>' +
-                '<li>' +
-                '   <a href="javascript:void(0);" data-name="share-box" class="' + iconEnabled + '">' +
-                '   <p>Share with</br> friends' +
-                //' <span>Sign In Now!</span>'+
-                '   </p>' +
-                '   <span class="icon icon-share"></span>' +
-                '   </a>' +
-                '</li>' +
-                '<li>' +
-                '   <a href="javascript:void(0);" data-name="live-chat" class="chat-widget ' + chatdisabled + '">' +
-                '   <p>Live support' +
-                '   </p>' +
-                '   <span class="icon icon-chat"></span>' +
-                '   </a>' +
-                '</li>' +
-                '</ul>' +
                 '</div>';
 
             this._elements.bottomFormGroupContainer.html(htmlCode);
