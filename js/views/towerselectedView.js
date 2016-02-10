@@ -519,35 +519,6 @@ var TowerselectedView = (function() {
                 priceFiltersData = filterdata.price;
 
             var code = "<table><tr><td class='menu-header menu-icon transition go-back'><a><span class='icon icon-arrow_left'></span></a></td></tr>"; //href='#"+url+"'
-            code += "<tr><td class='menu-sep'></td></tr>";
-            code += "<tr><td class='menu-items'><table>";
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
-            code += this.displayFilterCount('bhk', bhkFiltersData.length);
-            code += "<div class='menu-item'><span class='icon icon-bhk'></span></div>";
-            code += this.getBHKMenuOptions(data, bhkFiltersData);
-            code += "</td></tr>";
-            code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
-            code += this.displayFilterCount('floor', floorFiltersData.length);
-            code += "<div class='menu-item'><span class='icon icon-floor'></span></div>";
-            code += this.getFloorMenuOptions(data, floorFiltersData);
-            code += "</td></tr>";
-            if(!config.removeFacingFilter){
-                code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
-                code += this.displayFilterCount('entrance', entranceFiltersData.length);
-                code += "<div class='menu-item'><span class='icon icon-compass fs28'></span></div>";
-                code += this.getEntranceMenuOptions(data, entranceFiltersData);
-                code += "</td></tr>";
-            }
-            if(!config.builderSetUp){
-                code += "<tr class='menu-item-container'><td class='menu-item-container-td'>";
-                code += this.displayFilterCount('price', priceFiltersData.length);
-                code += "<div class='menu-item'><span class='icon  icon-rupee_final fs30'></span></div>";
-                code += this.getPriceMenuOptions(data, priceFiltersData);
-                code += "</td></tr>";
-            }
-            code += "<tr class='menu-item-container reset-all-menu-item reset-all-inactive'><td class='menu-item-container-td'><div class='menu-item " + config.filters.resetClass + "'><span class='icon icon-reset-final fs24'></span></div><div class='menu-item-options'><table><tr><td class='filter-title pointer " + config.filters.resetClass + "'>Reset All Filters</td></tr><table></div></td></tr>";
-            code += "</table></td></tr>";
-            code += "<tr><td class='menu-sep'></td></tr>";
             code += "</table>";
             this._elements.filterMenuContainer.html(code);
             this.filterMenuContainerEvents();
@@ -648,7 +619,7 @@ var TowerselectedView = (function() {
             }
         },
         resetFilterOption: function(element) {
-            this._elements.filterMenuContainer.find('*').removeClass(config.filters.selectedClass);
+            this._elements.bottomFilterContainer.find('*').removeClass(config.filters.selectedClass);
             this.updateFilterCount();
         },
         getBHKMenuOptions: function(data, bhkFiltersData) {
@@ -774,6 +745,7 @@ var TowerselectedView = (function() {
             var code = "<div class='menu-item-options'><table><tr>";
             var prices = this.getPriceAvailability(data.listings);
             var sortedPrices = Object.keys(prices).sort();
+            console.log('>>>>> prices>>  ', prices);
             for (var i in sortedPrices) {
                 var price = sortedPrices[i],
                     id = config.filters.price + i;
@@ -857,33 +829,20 @@ var TowerselectedView = (function() {
             code += "<div class='after-filter-apply transition'>";
             code += "<div class='left'><div class='back-to-filter'><i class='icon icon-arrow_left'></i></div></div>";
             code += "<div class='center'><div class='filter-wrap'><div class='filter item'>";
-            code += '<div class="tower-menu-container master-page" id="inside-tower-menu-container">';
-
-
-
+            code += '<div class="tower-menu-container" id="inside-tower-menu-container">';
 // Code for floor options
-            code +='<div class="floor-plan-filter hide">';
+            code +='<div class="floor-plan-filter">';
             code += this.getFloorMenuOptions(data, floorFiltersData);
             code += '</div>';
-
 // Code for bhk options
-
             code +='<div class="bhk-plan-filter">';
             code += this.getBHKMenuOptions(data, bhkFiltersData);
             code += '</div>';
-
-
-
 // Code for budget options
-
-            code +='<div class="bhk-plan-filter hide">';
-            code += this.getPriceMenuOptions(data, priceFiltersData);
+            code +='<div class="budget-plan-filter">';
+            code +=  this.getPriceMenuOptions(data, priceFiltersData);
+            var cccode =  this.getPriceMenuOptions(data, priceFiltersData);
             code += '</div>';
-
-// code for range slider
-
-
-
             code += "</div></div></div></div>";
             code += "<div class='right'></div>";
             code += "</div>";
@@ -913,7 +872,6 @@ var TowerselectedView = (function() {
             });
             _this._elements.bottomFilterContainer.on('click', '.reset-filter-button', function (event) {
                 // notify controller
-                console.log(' please reset all filters');
                 _this._resetFiltersClick.notify(this); // this refers to element here
             });
             _this._elements.bottomFilterContainer.on('click', '.' + config.filters.floor, function(event) {
@@ -924,31 +882,36 @@ var TowerselectedView = (function() {
                 // notify controller
                 _this._bhkFilterOptionClick.notify(this); // this refers to element here
             });
+            _this._elements.bottomFilterContainer.on('click', '.' + config.filters.price, function(event) {
+                // notify controller
+                _this._priceFilterOptionClick.notify(this); // this refers to element here
+            });
 
         },
         applyFilter: function (filter) {
-            console.log('Filter >>>', filter);
             var _this = this;
             filter = filter;
             $('.bottom-filter-container .tower-filter-wrap').addClass('slide-out');
             $('.bottom-filter-container .after-filter-apply').addClass('slide-in');
             $('.filter-active').removeClass('filter-active');
-
-
+            $('#inside-tower-menu-container').children().hide();
             switch (filter) {
                 case 'budget' :
                 {
                     $('.bottom-filter-container .tower-filter-wrap .budget-filter-button').addClass('filter-active');
+                    $('.tower-menu-container .budget-plan-filter').show();
                     break;
                 }
                 case 'bedroom' :
                 {
                     $('.bottom-filter-container .tower-filter-wrap .bedroom-filter-button').addClass('filter-active');
+                    $('.tower-menu-container .bhk-plan-filter').show();
                     break;
                 }
                 case 'floor' :
                 {
                     $('.bottom-filter-container .tower-filter-wrap .floor-filter-button').addClass('filter-active');
+                    $('.tower-menu-container .floor-plan-filter').show();
                     break;
                 }
                 default : {

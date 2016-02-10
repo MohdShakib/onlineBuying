@@ -472,7 +472,7 @@ ellipse.tower-unit-svg-selected-path {
 
 /* Tower Menu */
 .tower-menu-container {
-	position: absolute;
+	position: relative;
 	z-index: 99999;/*300000;*/
 	top: 0px;
 	left: -45px;
@@ -498,8 +498,7 @@ ellipse.tower-unit-svg-selected-path {
 .menu-item-options .option-item:hover,
 .menu-item-options .selected ,
 .reset-filters{
-	background: #333;
-	
+
 }
 
 .tower-menu-container .menu-item .icon{ padding-top:10px; color:#ccc;}
@@ -616,17 +615,11 @@ ellipse.tower-unit-svg-selected-path {
 	-o-transition:all 0.5s ease-in-out;
 	-webkit-transition:all 0.5s ease-in-out;
 }
-.menu-item-options .option-item span{ display:block; position:relative; padding:0 30px 0 10px;}
-.menu-item-options .option-item span:before{ width:6px; height:1px; content:''; position:absolute; background:#ccc; right:20px; top:12px; transform:rotate(35deg); -moz-transform:rotate(35deg); -webkit-transform:rotate(35deg); opacity:0; transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;}
-.menu-item-options .option-item span:after{ width:15px; height:1px; content:''; position:absolute; background:#ccc; right:8px; top:8px; transform:rotate(-45deg); -moz-transform:rotate(-45deg); -webkit-transform:rotate(-45deg); opacity:0;transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;}
+.menu-item-options .option-item span{ display:block; position:relative; padding:0 30px 0 10px;height: 100%;  border-radius: 5px;  text-align: center; text-align:  -webkit-center;}
+.menu-item-options .option-item span:before{ width:15px; height:4px; content:''; position:absolute; background:green; right:17px; top:4px; transform:rotate(35deg); -moz-transform:rotate(35deg); -webkit-transform:rotate(35deg); opacity:0; transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;}
+.menu-item-options .option-item span:after{ width:25px; height:4px; content:''; position:absolute; background:green; right:0px; top:0px; transform:rotate(-45deg); -moz-transform:rotate(-45deg); -webkit-transform:rotate(-45deg); opacity:0;transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;}
 .filter-title{ text-transform:uppercase; text-align:left; padding:0 10px; line-height:43px; background:#333; font-size:14px; border-bottom:1px solid #3D3D3D;}
-.menu-item-options .option-item:hover {
-  	border-right: 4px solid;
-}
-.menu-item-options .selected {
-  	border-right: 4px solid;
-}
-.menu-item-options .option-item.selected span:before, .menu-item-options .option-item.selected span:after{ opacity:1;} 
+.menu-item-options .option-item.selected span:before, .menu-item-options .option-item.selected span:after{ opacity:1;}
 /* Tower Rotation */
 .tower-rotation-container {
 	position: absolute;
