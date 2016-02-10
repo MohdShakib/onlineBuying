@@ -11,6 +11,8 @@ var config = (function() {
         localZip: false,
         setJsonDataPriorityForTest: false,
         builderSetUp: false,
+        showInterestedIn: true,       // to show hide interested popup
+
 
         // Flags
         showCarAnimation: true,
@@ -31,6 +33,8 @@ var config = (function() {
         tawkApiId: 'tawk_55e5498bfc2b363371225aaa',
         errorMsg: 'Something went wrong. Please contact +91-20395-20918 for assistance.',
         helpline: '+91-20395-20918',
+        cancellationEnabled: true,
+        emailId: 'sales@umangrealtech.com',
         gaCategory: '4d-view',
 
         // Data
