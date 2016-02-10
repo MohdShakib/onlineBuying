@@ -805,7 +805,7 @@ var MasterplanView = (function () {
                 code = "";
 
                 code += "<div class='tower-filter-wrap transition'><div class='filter-wrap transition tower-filter'>";
-                code += "<div class='filter all-tower-button transition'><div class='ico-wrap transition'><img src='images/all-tower.png'></div><span>All Towers "+ allTower+"</span></div>";
+                code += "<div class='filter all-tower-button transition'><div class='ico-wrap transition'><img src='images/all-tower.png'></div><span>All Towers ("+ allTower+")</span></div>";
                 code += "<div class='filter pool-facing-filter-button transition'><div class='ico-wrap transition'><img src='images/pool-facing.png'></div><span>Pool Facing ("+ poolFacing+")</span></div>";
                 code += "<div class='filter park-facing-filter-button transition'><div class='ico-wrap transition'><img src='images/park-facing.png'></div><span>Park Facing ("+ parkFacing+")</span></div>";
                 code += "<div class='filter road-facing-filter-button transition'><div class='ico-wrap transition'><img src='images/road-facing.png'></div><span>Road Facing ("+ roadFacing+")</span></div>";
