@@ -567,46 +567,9 @@ var TowerselectedView = (function() {
         },
         filterMenuContainerEvents: function() {
             var _this = this;
-
-            _this._elements.filterMenuContainer.off('mouseenter').on('mouseenter', '.' + config.menuItemContainerClass, function(event) {
-                $(this).find('.' + config.menuItemOptionsClass).stop().fadeIn("fast", function() {});
-            });
-
-            _this._elements.filterMenuContainer.off('mouseleave').on('mouseleave', '.' + config.menuItemContainerClass, function(event) {
-                $(this).find('.' + config.menuItemOptionsClass).stop().fadeOut("fast", function() {});
-            });
-
-
             _this._elements.filterMenuContainer.off('click').on('click', '.go-back', function(event) {
                 // notify controller
                 _this._goBackButtonClick.notify(this); // this refers to element here
-            });
-
-            _this._elements.filterMenuContainer.on('click', '.' + config.filters.bhk, function(event) {
-                // notify controller
-                _this._bhkFilterOptionClick.notify(this); // this refers to element here
-            });
-
-            _this._elements.filterMenuContainer.on('click', '.' + config.filters.floor, function(event) {
-                // notify controller
-                _this._floorFilterOptionClick.notify(this); // this refers to element here
-            });
-
-            if(!config.removeFacingFilter){
-                _this._elements.filterMenuContainer.on('click', '.' + config.filters.entrance, function(event) {
-                    // notify controller
-                    _this._entranceFilterOptionClick.notify(this); // this refers to element here
-                });
-            }
-
-            _this._elements.filterMenuContainer.on('click', '.' + config.filters.price, function(event) {
-                // notify controller
-                _this._priceFilterOptionClick.notify(this); // this refers to element here
-            });
-
-            _this._elements.filterMenuContainer.on('click', '.' + config.filters.resetClass, function(event) {
-                // notify controller
-                //_this._resetFiltersClick.notify(this); // this refers to element here
             });
         },
         toggleFilterOption: function(element) {
@@ -840,7 +803,6 @@ var TowerselectedView = (function() {
 // Code for budget options
             code +='<div class="budget-plan-filter">';
             code +=  this.getPriceMenuOptions(data, priceFiltersData);
-            var cccode =  this.getPriceMenuOptions(data, priceFiltersData);
             code += '</div>';
             code += "</div></div></div></div>";
             code += "<div class='right'></div>";
