@@ -291,7 +291,7 @@ var MasterplanView = (function () {
                     visibility: 'visible'
                 });
                 $('.tower-menu-container').animate({
-                    left: '80px'
+                    //left: '80px'
                 }, 500);
             }, 7000);
 
@@ -336,7 +336,7 @@ var MasterplanView = (function () {
 
             // Tower Menu
             $('.tower-menu-container').css({
-                left: '80px',
+                //left: '80px',
                 visibility: 'visible'
             });
 
@@ -458,7 +458,7 @@ var MasterplanView = (function () {
             var code = "<div class='master-menu'>";
 
             code += "<div class='menu-sep'></div>";
-            code += "<div class='menu-items'><div class='scrollup-menu scroll-down transition'><span class='icon icon-arrow_btm fs14'></span></div><div class='scrollup-menu scroll-up top-stick transition'><span class='icon icon-arrow_top fs14'></span></div><div class='scroll-box'><div class='menu-scroll'><div class='master-tower-menu transition'>";
+            code += "<div class='menu-items'><div class='scrollup-menu scroll-next transition'><span class='icon icon-arrow_btm fs20'></span></div><div class='scrollup-menu scroll-prev next transition'><span class='icon icon-arrow_top fs20'></span></div><div class='scroll-box'><div class='menu-scroll'><div class='master-tower-menu transition'>";
             for (var i = 0; i < towersData.length; i++) {
                 var towerIdentifier = towersData[i];
                 var tower = data.towers[towerIdentifier],
@@ -467,7 +467,7 @@ var MasterplanView = (function () {
                     "' id='" + towerIdentifier + "-menu' data-index='" + towerIdentifier +
                     "' data-imageid='" + tower.towerId +
                     "' data-url='" + towerUrl +
-                    "'><img src='images/"+tower.displayImage +"' > </div></div>";
+                    "'><div class='img-wrap transition'><img src='images/"+tower.displayImage +"' ></div><span>Flower</span></div></div>";
                     // Image name can get via "tower.displayImage" to show instead of sort name
                     // avilable count  can get via "tower.totalAvailableCount" to show
             }
@@ -501,11 +501,11 @@ var MasterplanView = (function () {
                 _this._menuMouseLeave.notify(this); // this refers to element here
             });
 
-            _this._elements.buildingMenuContainer.on('click', '.scroll-up', function (event) {
+            _this._elements.buildingMenuContainer.on('click', '.scroll-prev', function (event) {
                 // notify controller
                 _this._menuUp.notify(this); // this refers to element here
             });
-            _this._elements.buildingMenuContainer.on('click', '.scroll-down', function (event) {
+            _this._elements.buildingMenuContainer.on('click', '.scroll-next', function (event) {
                 // notify controller
                 _this._menuDown.notify(this); // this refers to element here
             });
@@ -531,11 +531,11 @@ var MasterplanView = (function () {
             });
 
 
-            _this._elements.bottomFilterContainer.on('click', '.scroll-up', function (event) {
+            _this._elements.bottomFilterContainer.on('click', '.scroll-prev', function (event) {
                 // notify controller
                 _this._menuUp.notify(this); // this refers to element here
             });
-            _this._elements.bottomFilterContainer.on('click', '.scroll-down', function (event) {
+            _this._elements.bottomFilterContainer.on('click', '.scroll-next', function (event) {
                 // notify controller
                 _this._menuDown.notify(this); // this refers to element here
             });
@@ -805,10 +805,10 @@ var MasterplanView = (function () {
                 code = "";
 
                 code += "<div class='tower-filter-wrap transition'><div class='filter-wrap transition tower-filter'>";
-                code += "<div class='filter all-tower-button transition'><div class='ico-wrap transition'><img src='images/all-tower.png'></div><span>All Towers ("+ allTower+")</span></div>";
-                code += "<div class='filter pool-facing-filter-button transition'><div class='ico-wrap transition'><img src='images/pool-facing.png'></div><span>Pool Facing ("+ poolFacing+")</span></div>";
-                code += "<div class='filter park-facing-filter-button transition'><div class='ico-wrap transition'><img src='images/park-facing.png'></div><span>Park Facing ("+ parkFacing+")</span></div>";
-                code += "<div class='filter road-facing-filter-button transition'><div class='ico-wrap transition'><img src='images/road-facing.png'></div><span>Road Facing ("+ roadFacing+")</span></div>";
+                code += "<div class='filter all-tower-button transition'><div class='ico-wrap transition'><em></em></div><span>All Towers ("+ allTower+")</span></div>";
+                code += "<div class='filter pool-facing-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Pool Facing ("+ poolFacing+")</span></div>";
+                code += "<div class='filter park-facing-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Park Facing ("+ parkFacing+")</span></div>";
+                code += "<div class='filter road-facing-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Road Facing ("+ roadFacing+")</span></div>";
                 code += "</div></div>";
 
                 code += "<div class='after-filter-apply transition'>";

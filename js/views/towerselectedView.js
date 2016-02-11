@@ -586,7 +586,7 @@ var TowerselectedView = (function() {
             this.updateFilterCount();
         },
         getBHKMenuOptions: function(data, bhkFiltersData) {
-            var code = "<div class='menu-item-options'><table><tr>";
+            var code = "<div class='options'><table><tr>";
             var bhks = this.getBHKAvailability(data.listings);
             var sortedBhks = Object.keys(bhks).sort();
             for (var i in sortedBhks) {
@@ -604,7 +604,7 @@ var TowerselectedView = (function() {
                 }
 
                 code += "<td class='option-item " + config.filters.bhk + " " + availabilityClass + "' ";
-                code += "id='" + id + "' data-index='" + id + "' data-value='" + bhk + "'><span>" + bhk + " BHK</span></td>";
+                code += "id='" + id + "' data-index='" + id + "' data-value='" + bhk + "'><span>" + bhk + "</span>" + bhk + " BHK</td>";
             }
             code += "</tr></table></div>";
             return code;
@@ -623,7 +623,7 @@ var TowerselectedView = (function() {
             return bhks;
         },
         getFloorMenuOptions: function(data, floorFiltersData) {
-            var code = "<div class='menu-item-options'><table><tr>";
+            var code = "<div class='options'><table><tr>";
             var floors = this.getFloorAvailability(data.listings);
             var sortedFloors = Object.keys(floors).sort();
             for (var i in sortedFloors) {
@@ -668,7 +668,7 @@ var TowerselectedView = (function() {
             return floors;
         },
         getEntranceMenuOptions: function(data, entranceFiltersData) {
-            var code = "<div class='menu-item-options'><table><tr><td class='filter-title'>Entrance</td></tr>";
+            var code = "<div class='options'><table><tr><td class='filter-title'>Entrance</td></tr>";
             var entrances = this.getEntranceAvailability(data.listings);
             var sortedEntrances = Object.keys(entrances).sort();
             for (var i in sortedEntrances) {
@@ -705,7 +705,7 @@ var TowerselectedView = (function() {
             return entrances;
         },
         getPriceMenuOptions: function(data, priceFiltersData) {
-            var code = "<div class='menu-item-options'><table><tr>";
+            var code = "<div class='options'><table><tr>";
             var prices = this.getPriceAvailability(data.listings);
             var sortedPrices = Object.keys(prices).sort();
             for (var i in sortedPrices) {
@@ -782,16 +782,16 @@ var TowerselectedView = (function() {
 
             code += "<div class='tower-filter-wrap transition'><div class='filter-wrap transition tower-filter'>";
 
-            code += "<div class='filter budget-filter-button transition'><div class='ico-wrap transition'><img src='images/pool-facing.png'></div><span>BUDGET</span></div>";
-            code += "<div class='filter bedroom-filter-button transition'><div class='ico-wrap transition'><img src='images/road-facing.png'></div><span>BEDROOM</span></div>";
-            code += "<div class='filter floor-filter-button transition'><div class='ico-wrap transition'><img src='images/all-tower.png'></div><span>FLOOR</span></div>";
-            code += "<div class='filter reset-filter-button transition'><div class='ico-wrap transition'><img src='images/park-facing.png'></div><span>REST</span></div>";
+            code += "<div class='filter budget-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Budget</span></div>";
+            code += "<div class='filter bedroom-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Bedroom</span></div>";
+            code += "<div class='filter floor-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Floor</span></div>";
+            code += "<div class='filter reset-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Reset</span></div>";
             code += "</div></div>";
 
             code += "<div class='after-filter-apply transition'>";
             code += "<div class='left'><div class='back-to-filter'><i class='icon icon-arrow_left'></i></div></div>";
             code += "<div class='center'><div class='filter-wrap'><div class='filter item'>";
-            code += '<div class="tower-menu-container" id="inside-tower-menu-container">';
+            code += '<div class="tower-menu-container floor-filters-wrap" id="inside-tower-menu-container">';
 // Code for floor options
             code +='<div class="floor-plan-filter">';
             code += this.getFloorMenuOptions(data, floorFiltersData);

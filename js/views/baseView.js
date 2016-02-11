@@ -372,7 +372,7 @@ var BaseView = (function() {
             var htmlCode = '<div class="pro-contact-actions">' +
 
                 '<ul class="conect-tab transition">' +
-                '<li>' +
+                '<li class="shortlist">' +
                 '   <a href="javascript:void(0);" id="heart-added" data-name="compare-box">' +
                 '   <p>Compare among</br> shortlisted flats</p>' +
                 '   <span class="icon icon-heart ' + config.blinkElementClass + '">' +
@@ -380,10 +380,7 @@ var BaseView = (function() {
                 '   </span>' +
                 '   </a>' +
                 '</li>' +
-                '<li><a href="javascript:void(0);"  data-name="call-box" class="' + iconEnabled + '">' +
-                '   <p>Need Clarification?</br>Get in touch</p>' +
-                '   <span class="icon icon-phone"></span>' +
-                '   </a>' +
+                '<li class="get-call-back"><a href="javascript:void(0);"  data-name="call-box" class="' + iconEnabled + '">Get Call Back</a>' +
                 '</li>' +
 
                 '</ul>' +
