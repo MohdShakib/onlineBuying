@@ -1,35 +1,157 @@
 /*====@media queries====*/
-@media screen and (min-width: 500px) and (max-width: 1023px){
-	.unit-menu-container .header-item{ font-size:0;}
-	.unit-menu-container .header-item .item-icon-box{ display:inline-block; padding-top:15px;}
-	.uit-header-menu{ width:25%;}
-	.unit-menu-container .header-title{ width:74.5%;}
-	.floor-plan-menu-container .floor-plan-menu{ top:130px; right:15px;}
-	.unit-content-wrapper .base-table{ padding:0 20px 0 155px;}
-	.unit-content-wrapper .pricebreakup-tabs-content.pricebreakup{padding-right: 5px;}
-	.terms-condition{ margin:125px 0 10px 0;}
-	.payment-pic{ padding:10px 20px 0 160px;}
-	.compare-units-container .compare-unit-img{ height:380px;}
-	.compare-unit-box .img-svg-container.drag-drop img{ height:100%;}
-}
+@media screen and (min-width: 500px) and (max-width: 1023px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\000033}}
+  .unit-menu-container .header-item {
+    font-size: 0;
+  }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\000034}}
+  .unit-menu-container .header-item .item-icon-box {
+    display: inline-block;
+    padding-top: 15px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\000035}}
+  .uit-header-menu {
+    width: 25%;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\000036}}
+  .unit-menu-container .header-title {
+    width: 74.5%;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\000037}}
+  .floor-plan-menu-container .floor-plan-menu {
+    top: 130px;
+    right: 15px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\000038}}
+  .unit-content-wrapper .base-table {
+    padding: 0 20px 0 155px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\000039}}
+  .unit-content-wrapper .pricebreakup-tabs-content.pricebreakup {
+    padding-right: 5px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\0000310}}
+  .terms-condition {
+    margin: 125px 0 10px 0;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\0000311}}
+  .payment-pic {
+    padding: 10px 20px 0 160px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\0000312}}
+  .compare-units-container .compare-unit-img {
+    height: 380px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\0000313}}
+  .compare-unit-box .img-svg-container.drag-drop img {
+    height: 100%;
+  }
+}
 @media only screen and (max-width: 768px) {
-	.payment-container { padding: 30px; padding-top: 80px; }
-	.payment-right-container { height: auto; }
-	.payment-right p { margin-bottom: 0; padding-right: 0; }
-	.payment-left { width: 100%; float: none; }
-	.payment-right { padding-left: 0; padding-top: 30px; position: static; }
-	.terms-condition { margin: 0; margin-top: 30px; }
-	.terms-condition-popup { padding: 20px; box-sizing: border-box; }
-	.tc-container { width: auto; position: static; margin: 0; height: 100%; }
-	.terms-and-conditions { height: 90%;}
-	.close-payment { top: 30px; right: 30px; }
-}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\0000317}}
+  .payment-container {
+    padding: 30px;
+    padding-top: 80px;
+  }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\0000318}}
+  .payment-right-container {
+    height: auto;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\0000319}}
+  .payment-right p {
+    margin-bottom: 0;
+    padding-right: 0;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\0000320}}
+  .payment-left {
+    width: 100%;
+    float: none;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\0000321}}
+  .payment-photo-box {
+    max-height: inherit;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\0000322}}
+  .payment-right {
+    padding-left: 0;
+    padding-top: 30px;
+    position: static;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\0000323}}
+  .terms-condition {
+    margin: 0;
+    margin-top: 30px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\0000324}}
+  .terms-condition-popup {
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\0000325}}
+  .tc-container {
+    width: auto;
+    position: static;
+    margin: 0;
+    height: 100%;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\0000326}}
+  .terms-and-conditions {
+    height: 90%;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\0000327}}
+  .close-payment {
+    top: 30px;
+    right: 30px;
+  }
+}
 @media only screen and (max-width: 480px) {
-	.title-text, .title-text .phoneNumber { font-size: 14px; }
-	.title-text .phoneNumber .icon { font-size: 15px; }
-	.title-text p { padding-left: 50px; text-align: left; }
-	.personal-detail-box .table .td { float: none; padding: 0!important; width: 100%; clear: both; display: block; }
-	.payment-container .property-detail { font-size: 12px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\0000331}}
+  .title-text, .title-text .phoneNumber {
+    font-size: 14px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\0000332}}
+  .title-text .phoneNumber .icon {
+    font-size: 15px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\0000333}}
+  .title-text p {
+    padding-left: 50px;
+    text-align: left;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\0000334}}
+  .personal-detail-box .table .td {
+    float: none;
+    padding: 0 !important;
+    width: 100%;
+    clear: both;
+    display: block;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/gagandeep\/Desktop\/gagan\/onlineBuying\/scss\/styleResponsive\.scss}line{font-family:\0000335}}
+  .payment-container .property-detail {
+    font-size: 12px;
+  }
 }
