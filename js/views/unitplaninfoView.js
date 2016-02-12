@@ -9,6 +9,8 @@ var UnitplaninfoView = (function() {
 
     var containerMap = {
         'unitCloseContainer': '<div class="unit-close-container" id="' + config.closeUnitContainerId + '"></div>',
+        'unitHeaderContainer': '<div class="unit-header-container" id="unit-header-container"></div>',
+        'unitPriceContainer': '<div class="unit-price-container" id="unit-price-container"></div>',
         'unitMenuContainer': '<div class="unit-menu-container" id="unit-menu-container"></div>',
         'floorPlanMenuContainer': '<div class="floor-plan-menu-container fp-container fp2d-container fpwt-container ' + config.unitDataContainer + '" id="floor-plan-menu-container"></div>',
         'floorPlanContainer': '<div class="floor-plan-container fp-container ' + config.unitDataContainer + '" id="floor-plan-container"></div>',
@@ -28,6 +30,8 @@ var UnitplaninfoView = (function() {
     function getElements() {
         var elements = {
             'unitCloseContainer': $('#' + config.closeUnitContainerId),
+            'unitHeaderContainer': $('#unit-header-container'),
+            'unitPriceContainer': $('#unit-price-container'),
             'unitMenuContainer': $('#unit-menu-container'),
             'floorPlanMenuContainer': $('#floor-plan-menu-container'),
             'floorPlanContainer': $('#floor-plan-container'),
@@ -170,9 +174,9 @@ var UnitplaninfoView = (function() {
         unitViewTabs: function(data, rotationdata, rootdata) {
             var offerDiv = '';
 
-            if (!config.builderSetUp && data.discountDescription && data.discountDescription !== "") {
-                offerDiv = '<div class="special-offers"><span></span><p>' + data.discountDescription + '</p></div>';
-            }
+            // if (!config.builderSetUp && data.discountDescription && data.discountDescription !== "") {
+            //     offerDiv = '<div class="special-offers"><span></span><p>' + data.discountDescription + '</p></div>';
+            // }
 
             var htmlCode = offerDiv,
                 selectedClass = data.shortListed ? 'selected' : '',
@@ -207,11 +211,39 @@ var UnitplaninfoView = (function() {
                 _this._bookingClick.notify(this); //this refers to element
             });
         },
+
         unitCloseContainer: function(data, rotationdata, rootdata) {
             var code = '<span class="icon icon-cross fs20"></span>';
             this._elements.unitCloseContainer.html(code);
             this.unitCloseContainerEvents();
         },
+
+        unitHeaderContainer: function(data, rotationdata, rootdata) {
+            var code = "<div class='header-item header-title'> " +
+                "<span class='address'>" + data.listingAddress + "</span> " +
+                "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
+                ", <span>" + data.size + " " + data.measure + "</span> " +
+                ", <span>Floor " + data.floor + "</span></div> ";
+            this._elements.unitHeaderContainer.html(code);
+        },
+
+        unitPriceContainer: function(data, rotationdata, rootdata) {
+            var code =  "<div class='price-wrap'><div class='unit-price'>"
+
+                var price = utils.getReadablePriceInWord(data.price),
+                    discountedPrice = utils.getReadablePriceInWord(data.price - data.discount);
+
+                if(!config.builderSetUp){
+                    code += "<span class='big-size'><span class='icon icon-rupee fs16'></span> " + discountedPrice + "</span>";
+                    if (price != discountedPrice) {
+                        code += "<span class='total-amount'><span class='icon icon-rupee'></span>" + price + "</span>";
+                    }
+                }
+
+                code += "</div></div>";
+            this._elements.unitPriceContainer.html(code);
+        },
+
         unitCloseContainerEvents: function() {
             var _this = this;
             _this._elements.unitCloseContainer.off('click').on('click', function(event) {
@@ -223,24 +255,7 @@ var UnitplaninfoView = (function() {
             });
         },
         unitMenuContainer: function(data, rotationdata, rootdata) {
-            var code = "<div class='unit-header'><div class='unit-header-container'><div class='header-item header-title'> " +
-                "<span class='address'>" + data.listingAddress + "</span> " +
-                "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
-                ", <span>" + data.size + " " + data.measure + "</span> " +
-                ", <span>Floor " + data.floor + "</span> ";
-
-                var price = utils.getReadablePriceInWord(data.price),
-                    discountedPrice = utils.getReadablePriceInWord(data.price - data.discount);
-
-                if(!config.builderSetUp){
-                    code += "<span class='fright big-size'><span class='icon icon-rupee fs16'></span> " + discountedPrice + "</span>";
-                    if (price != discountedPrice) {
-                        code += "<span class='total-amount fright'><span class='icon icon-rupee'></span>" + price + "</span>";
-                    }
-                }
-
-                code += "</div>" +
-                "<div class='uit-header-menu'><div data-target='fp-container' data-menu='unitPlanMenu' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'><span class='icon icon-unitplan fs18'></span></div>Unit Plan</div>" +
+            var code = "<div class='uit-header-menu'><div data-target='fp-container' data-menu='unitPlanMenu' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'><span class='icon icon-unitplan fs18'></span></div>Unit Plan</div>" +
                 "<div data-target='cp-container' data-menu='floorPlanMenu' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon icon-clusterplan fs18'></span></div>Floor Plan</div>";
                 if(rootdata.fairEnabled && !config.builderSetUp) {
                   code += "<div data-target='pb-container' data-menu='unitPricingMenu' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon icon-rupee fs18'></span></div>Pricing</div>";

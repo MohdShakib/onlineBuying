@@ -312,7 +312,7 @@ ellipse.tower-unit-svg-selected-path {
 	bottom: -110px;
 	left: 50%;
 	margin-left: -375px;
-	z-index: 100001;
+	z-index: 10000;
 	box-sizing: border-box;
 	background-color: rgba(30, 43, 5, .7);
 	border-radius: 20px 20px 0px 0px;
@@ -892,6 +892,7 @@ ellipse.tower-unit-svg-selected-path {
 	width: 60%;
 	height: 100%;
 	right: -67%;
+	top: 0;
 }
 .selected-unit-container.unit-slide-in {
 	right:0;
@@ -975,18 +976,26 @@ ellipse.tower-unit-svg-selected-path {
 
 /* Unit Menu */
 .unit-menu-container {
-	padding: 1px 0;
 	position: absolute;
+	width: 65%;
+}
+.unit-price-container {
+	padding: 1px 0;
 	width: 100%;
   	z-index: 9999999;
-	left:0; top:100px;
+	left:0; top:0;
 	border-top:1px solid #ccc;
 	border-bottom:1px solid #ccc;
+	
+	.price-wrap {
+		padding: 10px 20px;
+		overflow: hidden;
+		background-color: #323232;
+	}
 }
-.unit-header {
-	overflow: hidden;
-	background-color: #323232;
-}
+.total-amount{ padding-right:15px; opacity:0.5; text-decoration:line-through;}
+.big-size{ font-size:16px !important; color:#fff; font-weight:bolder;}
+
 .unit-menu-container table {
 	width: 100%;
 	border-spacing: 0px;
@@ -1021,13 +1030,11 @@ ellipse.tower-unit-svg-selected-path {
 	line-height:50px;
 }
 .uit-header-menu{width:40%; height:50px; line-height:20px; float:left; padding-left:1.9%; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; display:table;}
-.total-amount{ padding-right:15px; opacity:0.5; text-decoration:line-through;}
 .unit-menu-container .header-title span {
 	display: inline;
 	font-size: 14px;
 	color:#fff;
 }
-.big-size{ font-size:16px !important; color:#fff; font-weight:bolder;}
 .unit-menu-container .header-title .address {
 	font-size: 19px;
 	color: #FFF;
@@ -1633,7 +1640,9 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .car-animation { position:absolute;z-index:1;}
 .car-animation .car {visibility: hidden;}
 .already-sold { opacity: 0.5; font-size: 14px; text-transform: uppercase; font-weight: 600; background: #f28d19; color: #fff; text-align: center; width: 220px;  line-height: 42px;   border-radius: 3px;   margin: 15px 0 0 0;  cursor: default; }
-.mobile-number-field { width : 225px;}
+.mobile-number-field { width : 95%;}
+.mobile-number-field input.text { padding-left: 40px; }
+.mobile-number-field span { position: absolute; left: 10px; top: 16px; color: #a1a1a1; }
 .social-or { padding: 0 5px;}
 
 /* css for duplex box */

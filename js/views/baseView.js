@@ -390,10 +390,12 @@ var BaseView = (function() {
                 '       <p>Inetsted in  '+ rootdata.projectIdentifier+' ?<br></p>' +
                 '       <form id="call-box-form" name="call-box-form" novalidate onSubmit="return false;"  >' +
                 '           <div class="form-input-box"><input class="text" id="' + config.callBox.emailId + '" name="email" placeholder="Email Address" type="email" required /><div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
-                '           <div class="phone-no-holder"><div class="form-input-box fleft c-code">' +
-                '           <input id="' + config.callBox.countryCodeId + '" class="text" name="' + config.callBox.phoneId + '" type="text" value="+91" readonly/> ' +
+                '           <div class="country-holder"><div class="form-input-box c-code">' +
+                '           <input class="text" type="text" value="India" readonly/> ' +
                 '           <span class="icon icon-arrow_btm fs12 transition dropdown-arrow"></span><ul class="country-dropDown" style="display:none;"></ul></div> ' +
-                '           <div class="form-input-box fright mobile-number-field"><input class="text" id="' + config.callBox.phoneId + '" name="phone" placeholder="Mobile No" type="text" minlength="10" maxlength="15" required data-countryid="1" data-countrycode="+91"/>' +
+                '           </div>' +
+                '           <div class="phone-no-holder">'+
+                '           <div class="form-input-box fright mobile-number-field"><input class="text" id="' + config.callBox.phoneId + '" name="phone" placeholder="Mobile No" type="text" minlength="10" maxlength="15" required data-countryid="1" data-countrycode="+91"/><span>+91</span>' +
                 '           <div class="error-box ' + config.errorMsgClass + '">This field is required</div></div><div class="clear-fix"></div></div>' +
                 '           <div class="submit" id="' + config.callBox.submitButtonId + '">Get Call back' +
                 '           <input type="submit" />' +
