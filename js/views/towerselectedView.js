@@ -383,18 +383,19 @@ var TowerselectedView = (function() {
             towerCode += "<div class='line " + tooltipClass + "'>";
             towerCode += "<div class='dot-two " + dotClass + "'></div>";
 
-            towerCode += '<div class="tSelected-detail towerunit-detail-container ' + availabilityClass + '">';
-            towerCode += '<div class="towerunit-name">' + details.address + '</div>';
-            towerCode += '<div>' + details.type + '</div>';
-            towerCode += '<div>' + details.size + '</div>';
+            towerCode += '<div class="tSelected-detail towerunit-detail-container ' + availabilityClass + '"><div class="top-info">';
             if(!config.builderSetUp){
-                towerCode += '<div><span class="icon icon-rupee fs10"></span>' + details.price + '</div>';
+                towerCode += '<div class="fleft ' + details.color + '">' + details.availability + '</div>';
             }
-            towerCode += '<div>Floor ' + details.floor + '</div>';
             if(!config.builderSetUp){
-                towerCode += '<div class="' + details.color + '">' + details.availability + '</div>';
+                towerCode += '<div class="fright price"><span class="icon icon-rupee"></span>' + details.price + '</div>';
             }
-            towerCode += '</div></div>';
+            towerCode += '</div>';
+            towerCode += '<div class="floor-item"><div>' + details.type + '</div>';
+            towerCode += '<div>' + details.size + '</div></div>';
+            towerCode += '<div class="floor-item"><div>Floor ' + details.floor + '</div>';
+            towerCode += '<div class="towerunit-name">Unit No. ' + details.address + '</div>';
+            towerCode += '</div></div></div>';
             towerCode += '</div></div>';
 
 

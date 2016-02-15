@@ -218,7 +218,7 @@ var UnitplaninfoView = (function() {
                 "- <span>" + data.size + " " + data.measure + "</span> " +
                 "<div class='floor-info'><span class='address'>" + data.listingAddress + "</span> <span>(" + data.floor + " Floor)</span></div></div>";
                 code += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
-                code += '<a><span class="icon icon-heart-1 heart-clone"></span><p class="transition click-txt"></p><p class="shortlisted" style="display:none;"></p></a></div>';
+                code += '<a><span class="icon icon-heart-1 heart-clone"></span><p class="click-txt"></p><p class="shortlisted" style="display:none;"></p></a></div>';
             this._elements.unitHeaderContainer.html(code);
         },
 
@@ -237,7 +237,7 @@ var UnitplaninfoView = (function() {
 
                 code += "</div>";
                 if (!config.builderSetUp && data.discountDescription && data.discountDescription !== "") {
-                    code += '<div class="special-offers"><span><i class="icon icon-clubhouse"></i> Deal</span> <p>' + data.discountDescription + '</p></div>';
+                    code += '<div class="special-offers"><span><i class="icon icon-gift"></i> Deal</span> <p>' + data.discountDescription + '</p></div>';
                 }
                 code += "</div>";
             this._elements.unitPriceContainer.html(code);
@@ -294,9 +294,9 @@ var UnitplaninfoView = (function() {
                 code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " eve-image' src='" + unitTypeData.eveningSunlightImageUrl + "'>";
 
                 code += "<div class='sunlight-menu'>";
-                code += "<div data-target='mor-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-morning'></span><label>Morning View</label></div>";
-                code += "<div data-target='aft-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-afternoon'></span><label>Noon View</label></div>";
-                code += "<div data-target='eve-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-night'></span><label>Evening View</label></div></div>";
+                code += "<div data-target='mor-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-cloudsun-o'></span><label>Morning</label></div>";
+                code += "<div data-target='aft-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-sun-o'></span><label>Noon</label></div>";
+                code += "<div data-target='eve-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-cloudmoon-o'></span><label>Evening</label></div></div>";
 
             }
             if (isDuplex) {
@@ -469,7 +469,7 @@ var UnitplaninfoView = (function() {
         },
         unitComponentMouseLeave: function(params) {
             viewUtils.removeSVGClass(params.element.id, 'hover');
-            document.getElementById(config.unitDetailContainerId).innerHTML = '';
+            //document.getElementById(config.unitDetailContainerId).innerHTML = '';
         },
         amenitiesContainer: function(data, rotationdata, rootdata) {
             var unitTypeData = this._model.getUnitTypeData(this._selectedFloor),

@@ -220,13 +220,55 @@ ellipse.tower-unit-svg-selected-path {
 .towerunit-detail-container{
 	background: #333;
 	margin-left: 70px;
-	padding: 5px 12px;
-	min-width:100px;
+	min-width:190px;
+	font-size: 14px;
+	color: #fff;
+	&.floor-detail {
+		padding: 5px 12px;
+		min-width: 100px;
+	}
+	.top-info {
+		padding: 15px 12px;
+		min-height: 23px;
+		.apt-available-color, .apt-unavailable-color {
+			margin-top: 5px;
+		}
+	}
+	.floor-item {
+		margin-right: -5px;
+		padding: 15px 12px;
+		position: relative;
+		min-height: 30px;
+		border-right: 5px solid #232323;
+		background-color: #232323;
+		&:after {
+			content: '';
+			display: block;
+			height: 1px;
+			background-color: #393939;
+			position: absolute;
+			bottom: 0;
+			left: 5%;
+			width: 93%;
+		}
+		&:last-child {
+			&:after {
+				display: none;
+			}
+		}
+	}
+	.price {
+		font-size: 22px;
+		color: #fff;
+		span {
+			font-size: 16px;
+		}
+	}
 }
 .towerunit-detail-container > div{
 	text-align: left;
 	padding: 3px;
-	color: #c3c3c3;
+	color: #fff;
 }
 .towerunit-detail-container > div.towerunit-name, div.towerunit-detail {
 	font-size: 13px;
@@ -433,12 +475,12 @@ ellipse.tower-unit-svg-selected-path {
 		}
 		&.park-facing-filter-button {
 			em {
-				background-position: left -108px;
+				background-position: left -162px;
 			}
 		}
 		&.road-facing-filter-button {
 			em {
-				background-position: left -162px;
+				background-position: left -108px;
 			}
 		}
 		&.budget-filter-button {
@@ -518,21 +560,6 @@ ellipse.tower-unit-svg-selected-path {
 		width: 20%;
 		border-left: 1px solid rgba(255, 255, 255, .6);
 		box-sizing: border-box;
-		&:before {
-			content: '';
-		    display: block;
-		    width: 10px;
-		    height: 10px;
-		    border: 1px solid rgba(255, 255, 255, .6);
-		    border-right-color: transparent;
-		    transform: rotate(45deg);
-		    position: absolute;
-		    top: 50%;
-		    left: -6px;
-		    margin-top: -5px;
-		    border-top-color: transparent;
-		    box-sizing: border-box; 
-		}
 	}
 
 }
@@ -597,7 +624,7 @@ ellipse.tower-unit-svg-selected-path {
 .master-menu .menu-items{ padding:0 15px 15px 20px; box-sizing:border-box; position:relative; width: 505px; }
 .master-menu .menu-items.scroll-dwn{ padding-top:20px;}
 .tower-menu-container .menu-items .menu-scroll{ height:100%;}
-.scroll-box{ padding-left: 5px; width:100%; overflow:hidden; height: 80px; box-sizing: border-box;}
+.scroll-box{ padding-left: 5px; width:99%; overflow:hidden; height: 80px; box-sizing: border-box;}
 .scrollup-menu{ z-index:99; color:#fff; cursor:pointer; position:absolute; width:30px; height:30px; line-height:30px; left:0px; top: 25px; transform: rotate(90deg);}
 .scrollup-menu span { font-weight: bold; }
 .scrollup-menu.next{ left: auto; right: -5px; }
@@ -1093,7 +1120,7 @@ ellipse.tower-unit-svg-selected-path {
 	z-index: 10001;
 }
 .floor-plan-container .sunlight-menu .sunlight-menu-option {
-	padding-left: 10px;
+	padding-left: 40px;
 	display:inline-block;
 	color:#252525;
 	text-align: center;
@@ -1103,7 +1130,7 @@ ellipse.tower-unit-svg-selected-path {
 		font-size: 36px;
 	}
 }
-.floor-plan-container .sunlight-menu .sunlight-menu-option label{ padding-top: 10px; font-size:12px; color:#666; display: block; cursor:pointer;}
+.floor-plan-container .sunlight-menu .sunlight-menu-option label{ font-size:12px; color:#666; display: block; cursor:pointer;}
 .floor-plan-container .sunlight-menu .sunlight-menu-option:hover, 
 .floor-plan-container .sunlight-menu .sunlight-menu-option.selected {
 	color:#f18d18;
@@ -1372,13 +1399,16 @@ ellipse.tower-unit-svg-selected-path {
 	-ms-transition:all 0.5s ease-in-out;
 	-o-transition:all 0.5s ease-in-out;
 	-webkit-transition:all 0.5s ease-in-out;
+	&:hover {
+		z-index: 100001;
+	}
 }
 .selected-unit-container .amenities-container .amenity-icon{ color:#616161;}
 .amenities-container .amenity-icon .name {
 	position: absolute;
 	top: 35px;
-	left: -90px;
-	margin-top: -110px;
+	left: -130px;
+	margin-top: -170px;
 	margin-left:60px;
 	color: #DFDFDF;
 	line-height: normal;
@@ -1398,8 +1428,10 @@ ellipse.tower-unit-svg-selected-path {
 }
 
 .amenity-img{
-	width: 80px;
-	height: 80px;
+	width: 160px;
+	height: 120px;
+	border-radius: 10px;
+	border: 2px solid #fff;
 }
 
 .amenities-container .amenity-icon .name span {
@@ -1493,7 +1525,7 @@ ellipse.tower-unit-svg-selected-path {
 .payment-left h3{ text-align:center; font-size:16px;}
 .payment-left h3 span{ font-size:14px; color:#666; font-weight:normal;}
 .payment-left .special-offers { padding:10px 15px; right: 0; top: 67px; width: 100%; min-height: 52px; background-color: #565656; }
-.payment-left .special-offers .icon-img { width: 52px; height: 52px; text-align: center; line-height: 52px; color: #fff; display: inline-block; border-radius: 50%; /*border: 1px solid #fff;*/ vertical-align: middle; background-color: #e28248; }
+.payment-left .special-offers .icon-img { width: 52px; height: 52px; text-align: center; line-height: 64px; color: #fff; display: inline-block; border-radius: 50%; /*border: 1px solid #fff;*/ vertical-align: middle; background-color: #e28248; }
 .payment-left .special-offers .icon-img i { font-size: 28px; }
 .payment-left .special-offers p { padding-left: 10px; color: #fff; vertical-align: middle; width: 80%; font-weight: bold; font-size: 17px; }
 .payment-left .special-offers span { display: none; }

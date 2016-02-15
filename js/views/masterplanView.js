@@ -871,7 +871,7 @@ var MasterplanView = (function () {
                     }
                     towerCode += "<tr class='" + availabilityClass + "'>";
                     towerCode += "<td>" + aptType.type + "</td>";
-                    towerCode += config.builderSetUp ? "<td>Apartment</td></tr>" : "<td>" + availabilityText + "</td> <td><td></tr>";
+                    towerCode += config.builderSetUp ? "<td>Apartment</td></tr>" : "<td>" + availabilityText + "</td></tr>";
                 }
             }
             towerCode += "</table>";

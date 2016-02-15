@@ -127,7 +127,7 @@ var BookingView = (function() {
                 paymentBreakup = '<div class="clear-fix"></div><a id="payment-breakup" class="view-price-brakup">View Price Breakup &amp; Payment plan</a>';
 
                 if (data.discountDescription && data.discountDescription !== "") {
-                    offerBanner = '<div class="special-offers"><div class="icon-img"><img src="images/gift-box-icon.jpg" alt=""></div><span></span><p>' + data.discountDescription + '</p></div>';
+                    offerBanner = '<div class="special-offers"><div class="icon-img"><i class="icon icon-gift"></i></div><span></span><p>' + data.discountDescription + '</p></div>';
                 }
             }
             var isDuplex = false;
