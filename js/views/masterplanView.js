@@ -356,10 +356,8 @@ var MasterplanView = (function () {
         },
         dynamicResizeContainers: function () {
             utils.defaultDynamicResizeContainers();
-            var parentWidth = $('.master-menu .menu-items').parent().width(),
-                count = parseInt((parentWidth) / config.towerMenuItemHeight),
-                width = count * config.towerMenuItemHeight;
-            utils.masterPlanModel.updateTowerMenuEnd(count);
+            var width = 5 * config.towerMenuItemHeight;
+            utils.masterPlanModel.updateTowerMenuEnd(5);
             $('.master-menu .menu-items').css('width', width);
         },
         sortTowersObject: function (towers) {
@@ -458,7 +456,11 @@ var MasterplanView = (function () {
             var code = "<div class='master-menu'>";
 
             code += "<div class='menu-sep'></div>";
-            code += "<div class='menu-items'><div class='scrollup-menu scroll-next transition'><span class='icon icon-arrow_btm fs20'></span></div><div class='scrollup-menu scroll-prev next transition'><span class='icon icon-arrow_top fs20'></span></div><div class='scroll-box'><div class='menu-scroll'><div class='master-tower-menu transition'>";
+            code += "<div class='menu-items'>";
+            if(towersData.length > 5){
+                code +="<div class='scrollup-menu scroll-next transition'><span class='icon icon-arrow_btm fs20'></span></div><div class='scrollup-menu scroll-prev next transition'><span class='icon icon-arrow_top fs20'></span></div>";
+            }
+            code +=   "<div class='scroll-box'><div class='menu-scroll'><div class='master-tower-menu transition'>";
             for (var i = 0; i < towersData.length; i++) {
                 var towerIdentifier = towersData[i];
                 var tower = data.towers[towerIdentifier],
@@ -467,9 +469,7 @@ var MasterplanView = (function () {
                     "' id='" + towerIdentifier + "-menu' data-index='" + towerIdentifier +
                     "' data-imageid='" + tower.towerId +
                     "' data-url='" + towerUrl +
-                    "'><div class='img-wrap transition'><img src='images/"+tower.displayImage +"' ></div><span>Flower</span></div></div>";
-                    // Image name can get via "tower.displayImage" to show instead of sort name
-                    // avilable count  can get via "tower.totalAvailableCount" to show
+                    "'><div class='img-wrap transition'><img src='images/"+tower.displayImage +"' ></div><span>"+ tower.longName+" ("+ tower.totalAvailableCount+")" +" </span></div></div>";
             }
             code += "</div></div></div></div>";
             code += "</div>";
@@ -481,34 +481,7 @@ var MasterplanView = (function () {
         },
         buildingMenuContainerEvents: function () {
             var _this = this;
-// todo delete these events when we remove upper buildingMenuContainer
 
-            _this._elements.buildingMenuContainer.off('click').on('click', '.' + config.leftPanelButtonClass, function (event) {
-                // notify controller
-                _this._menuClick.notify(this); // this refers to element here
-            });
-
-            _this._elements.buildingMenuContainer.off('mouseenter').on('mouseenter', '.' + config.leftPanelButtonClass, function (event) {
-                // notify controller
-                _this._menuMouseEnter.notify({
-                    element: this,
-                    event: event
-                }); // this refers to element here
-            });
-
-            _this._elements.buildingMenuContainer.off('mouseleave').on('mouseleave', '.' + config.leftPanelButtonClass, function (event) {
-                // notify controller
-                _this._menuMouseLeave.notify(this); // this refers to element here
-            });
-
-            _this._elements.buildingMenuContainer.on('click', '.scroll-prev', function (event) {
-                // notify controller
-                _this._menuUp.notify(this); // this refers to element here
-            });
-            _this._elements.buildingMenuContainer.on('click', '.scroll-next', function (event) {
-                // notify controller
-                _this._menuDown.notify(this); // this refers to element here
-            });
 
 // events binding after menu creation into bottomFilterContainer  todo click is not working yet
 
@@ -831,7 +804,6 @@ var MasterplanView = (function () {
             var imageid = element.data('imageid') ? element.data('imageid') : 'main-image';
             var svgpath = document.getElementById(imageid + '-path');
             var targetImage = $('img#' + imageid);
-            var availabilityStatusClass = towerData.isAvailable ? config.availabilityClass.available : config.availabilityClass.unavailable;
             if (!(targetImage && targetImage.length)) {
                 return;
             }
@@ -850,7 +822,6 @@ var MasterplanView = (function () {
             }
 
             $('#' + index + '-menu').addClass(config.menuItemHoverClass);
-            $('#' + index + '-menu span').addClass(availabilityStatusClass);
         },
         towerMouseLeaveEvent: function (element) {
             $('.detail-box').removeClass('show-details');
@@ -861,9 +832,6 @@ var MasterplanView = (function () {
                 $('img.' + config.imgContainerClass).stop().fadeTo("0", 1, function () {});
             }
             $('.' + config.amenityContainerClass).removeClass(config.amenityNotOnTopClass);
-            var removeClasses = config.menuItemHoverClass + ' ' + config.availabilityClass.available + ' ' + config.availabilityClass.unavailable;
-            $('.' + config.leftPanelButtonClass).removeClass(removeClasses);
-
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
         },
         showTowerDetailContainer: function (data, left, top, unit) {
