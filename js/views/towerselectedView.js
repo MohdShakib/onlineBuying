@@ -884,7 +884,7 @@ var TowerselectedView = (function() {
             $('.bottom-filter-container .after-filter-apply').removeClass('slide-in');
             console.log('No need to write any code on this click');
             //this.buildingSvgContainerEvents();
-        },
+        }
 
     };
 

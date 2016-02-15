@@ -228,7 +228,7 @@ var UnitplaninfoView = (function() {
         },
 
         unitPriceContainer: function(data, rotationdata, rootdata) {
-            var code =  "<div class='price-wrap'><div class='unit-price'>"
+            var code =  "<div class='price-wrap'><div class='unit-price'>";
 
                 var price = utils.getReadablePriceInWord(data.price),
                     discountedPrice = utils.getReadablePriceInWord(data.price - data.discount);
