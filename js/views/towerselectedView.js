@@ -537,15 +537,15 @@ var TowerselectedView = (function() {
             var filterExist = false;
             if (filterdata.bhk.length > 0) {
                 filterExist = true;
-                $('#bhk-filter-count').show().html(filterdata.bhk.length);
+                $('.bedroom-tick').addClass('active');
             } else {
-                $('#bhk-filter-count').hide();
+                $('.bedroom-tick').removeClass('active');
             }
             if (filterdata.floor.length > 0) {
                 filterExist = true;
-                $('#floor-filter-count').show().html(filterdata.floor.length);
+                $('.floor-tick').addClass('active');
             } else {
-                $('#floor-filter-count').hide();
+                $('.floor-tick').removeClass('active');
             }
             if (filterdata.entrance.length > 0) {
                 filterExist = true;
@@ -555,9 +555,9 @@ var TowerselectedView = (function() {
             }
             if (filterdata.price.length > 0) {
                 filterExist = true;
-                $('#price-filter-count').show().html(filterdata.price.length);
+                $('.budget-tick').addClass('active');
             } else {
-                $('#price-filter-count').hide();
+                $('.budget-tick').removeClass('active');
             }
 
             if (filterExist) {
@@ -783,9 +783,9 @@ var TowerselectedView = (function() {
 
             code += "<div class='tower-filter-wrap transition'><div class='filter-wrap transition unit-filter'>";
 
-            code += "<div class='filter budget-filter-button transition'><div class='ico-wrap transition'><em></em><small><i class='icon icon-tick'></i></small></div><span>Budget</span></div>";
-            code += "<div class='filter bedroom-filter-button transition'><div class='ico-wrap transition'><em></em><small><i class='icon icon-tick'></i></small></div><span>Bedroom</span></div>";
-            code += "<div class='filter floor-filter-button transition'><div class='ico-wrap transition'><em></em><small><i class='icon icon-tick'></i></small></div><span>Floor</span></div>";
+            code += "<div class='filter budget-filter-button transition'><div class='ico-wrap transition'><em></em><small class='budget-tick transition'><i class='icon icon-tick'></i></small></div><div></div><span>Budget</span></div>";
+            code += "<div class='filter bedroom-filter-button transition'><div class='ico-wrap transition'><em></em><small class='bedroom-tick transition'><i class='icon icon-tick'></i></small></div><span>Bedroom</span></div>";
+            code += "<div class='filter floor-filter-button transition'><div class='ico-wrap transition'><em></em><small class='floor-tick transition'><i class='icon icon-tick'></i></small></div><span>Floor</span></div>";
             code += "<div class='filter reset-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Reset</span></div>";
             code += "</div></div>";
 
@@ -820,19 +820,35 @@ var TowerselectedView = (function() {
                 _this._backToFilter.notify(''); // this refers to element here
 
             });
-            _this._elements.bottomFilterContainer.on('click', '.budget-filter-button', function (event) {
+            _this._elements.bottomFilterContainer.on('click', '.budget-filter-button div', function (event) {
                 // notify controller
                 _this._filterApply.notify('budget'); // this refers to element here
             });
-            _this._elements.bottomFilterContainer.on('click', '.bedroom-filter-button', function (event) {
+            _this._elements.bottomFilterContainer.on('click', '.budget-filter-button span', function (event) {
+                // notify controller
+                _this._filterApply.notify('budget'); // this refers to element here
+            });
+            _this._elements.bottomFilterContainer.on('click', '.bedroom-filter-button div', function (event) {
                 // notify controller
                 _this._filterApply.notify('bedroom'); // this refers to element here
             });
-            _this._elements.bottomFilterContainer.on('click', '.floor-filter-button', function (event) {
+            _this._elements.bottomFilterContainer.on('click', '.bedroom-filter-button span', function (event) {
+                // notify controller
+                _this._filterApply.notify('bedroom'); // this refers to element here
+            });
+            _this._elements.bottomFilterContainer.on('click', '.floor-filter-button div', function (event) {
                 // notify controller
                 _this._filterApply.notify('floor'); // this refers to element here
             });
-            _this._elements.bottomFilterContainer.on('click', '.reset-filter-button', function (event) {
+            _this._elements.bottomFilterContainer.on('click', '.floor-filter-button span', function (event) {
+                // notify controller
+                _this._filterApply.notify('floor'); // this refers to element here
+            });
+            _this._elements.bottomFilterContainer.on('click', '.reset-filter-button div', function (event) {
+                // notify controller
+                _this._resetFiltersClick.notify(this); // this refers to element here
+            });
+            _this._elements.bottomFilterContainer.on('click', '.reset-filter-button span', function (event) {
                 // notify controller
                 _this._resetFiltersClick.notify(this); // this refers to element here
             });

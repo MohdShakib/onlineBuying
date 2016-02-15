@@ -394,6 +394,7 @@ ellipse.tower-unit-svg-selected-path {
 
 	.ico-wrap {
 		border-radius: 50%;
+		cursor: pointer;
 		width: 54px;
 		height: 54px;
 		line-height: 54px;
@@ -442,7 +443,6 @@ ellipse.tower-unit-svg-selected-path {
 
 		.filter {
 			display: table-cell;
-			cursor: pointer;
 			padding: 0px 10px;
 			vertical-align: top;
 			&:hover {
@@ -793,10 +793,14 @@ ellipse.tower-unit-svg-selected-path {
 			font-weight: bold;
 			text-align: center;
 			line-height: 20px;
+			transform: scale(0);
 			background-color: limegreen;
 			i {
 				font-size: 10px;
 				font-weight: bold;
+			}
+			&.active {
+				transform: scale(1);
 			}
 		}
 	}
