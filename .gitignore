@@ -1,6 +1,6 @@
 .DS_Store
 node_modules/
-css/
+css/*.css
 js/script-all.*
 vendors/vendors-all.*
 .sass-cache/
