@@ -375,7 +375,7 @@ var BaseView = (function() {
                 '<li class="shortlist">' +
                 '   <a href="javascript:void(0);" id="heart-added" data-name="compare-box">' +
                 '   <p>Compare among</br> shortlisted flats</p>' +
-                '   <span class="icon icon-heart ' + config.blinkElementClass + '">' +
+                '   <span class="icon icon-heart-1 transition ' + config.blinkElementClass + '">' +
                 '   <label class="like-count br50" id="' + config.likeCountId + '">0</label>' +
                 '   </span>' +
                 '   </a>' +

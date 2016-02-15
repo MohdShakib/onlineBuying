@@ -780,11 +780,11 @@ var TowerselectedView = (function() {
                 code = "";
 
 
-            code += "<div class='tower-filter-wrap transition'><div class='filter-wrap transition tower-filter'>";
+            code += "<div class='tower-filter-wrap transition'><div class='filter-wrap transition unit-filter'>";
 
-            code += "<div class='filter budget-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Budget</span></div>";
-            code += "<div class='filter bedroom-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Bedroom</span></div>";
-            code += "<div class='filter floor-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Floor</span></div>";
+            code += "<div class='filter budget-filter-button transition'><div class='ico-wrap transition'><em></em><small><i class='icon icon-tick'></i></small></div><span>Budget</span></div>";
+            code += "<div class='filter bedroom-filter-button transition'><div class='ico-wrap transition'><em></em><small><i class='icon icon-tick'></i></small></div><span>Bedroom</span></div>";
+            code += "<div class='filter floor-filter-button transition'><div class='ico-wrap transition'><em></em><small><i class='icon icon-tick'></i></small></div><span>Floor</span></div>";
             code += "<div class='filter reset-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Reset</span></div>";
             code += "</div></div>";
 

@@ -173,9 +173,8 @@ var viewUtils = (function() {
         },
         getPriceBreakupHtml: function(data, rotationdata, rootdata, showTnc) {
             var opCode = '';
-            var code = '<ul class="pricebreakup-tabs">' + '<li class="active"  data-type="pricebreakup">Price Breakup</li>' + '<li  data-type="paymentplan">Payment Plan</li>' + '</ul>' +
-                '<div class="unit-content-wrapper">' +
-                '<div class="payment-pic pricebreakup-tabs-content paymentplan ' + config.hideClass + '">';
+            var code = '<div class="unit-content-wrapper">' +
+                '<div class="payment-pic pricebreakup-tabs-content paymentplan"><h3>Price Breakup</h3>';
             if (rootdata.paymentPlanImage) {
                 code += '<img src="' + rootdata.paymentPlanImage + '" />';
             } else {
@@ -183,7 +182,7 @@ var viewUtils = (function() {
             }
 
             code += '</div>';
-            code += "<table class='base-table pricebreakup-tabs-content pricebreakup' cellpadding='0' cellspacing='0' border='0'>";
+            code += "<h3>Payment Plan</h3><table class='base-table pricebreakup-tabs-content pricebreakup' cellpadding='0' cellspacing='0' border='0'>";
             if (data.price) {
                 code += "<tr><td>BSP <span>(Basic Selling Price)</span></td><td class='right-align'>" + data.basePrice + "</td></tr>";
 

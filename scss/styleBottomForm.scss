@@ -10,8 +10,8 @@ a{ text-decoration:none;}
 .pro-contact-actions{ position:absolute; top:10px; right:0px; margin:0; padding:0; z-index: 99999;}
 .pro-contact-actions ul.conect-tab{ margin:0; padding:0; margin-right: 10px; position:relative; float:left; bottom: 60px}
 .pro-contact-actions ul.conect-tab > li{ margin:0; padding:0; list-style:none; vertical-align: middle; display: inline-block; margin-left:10px;}
-.pro-contact-actions ul.conect-tab > li > a{ display:block; padding:0 10px; font-size:12px; font-family:Arial, Helvetica, sans-serif; text-decoration:none; color:#fff; box-sizing:border-box; transition:all ease-in-out 0.5s; -webkit-transition:all ease-in-out 0.5s;position:relative;}
-.pro-contact-actions ul.conect-tab > li > a .icon { font-size: 34px; }
+.pro-contact-actions ul.conect-tab > li > a{ display:block; padding:0 10px; font-size:12px; font-family:Arial, Helvetica, sans-serif; text-decoration:none; color:#fff; box-sizing:border-box; position:relative;}
+.pro-contact-actions ul.conect-tab > li > a .icon { font-size: 34px; width: 34px; height: 34px; text-align: center; }
 .pro-contact-actions ul.conect-tab > li > a p{ color: #fff; position:absolute; left:-110px; top:4.5px;transition:all ease-in-out 0.5s; -webkit-transition:all ease-in-out 0.5s; width:110px; padding:0; margin:0; opacity:0; visibility: hidden;}
 .pro-contact-actions ul.conect-tab > li.get-call-back a { padding: 0 20px; line-height: 40px; border: 1px solid #fff; border-radius: 5px; font-size: 16px; text-transform: uppercase; }
 .pro-contact-actions ul.conect-tab > li.get-call-back a:hover, .pro-contact-actions ul.conect-tab > li.get-call-back a.active { border-color: #da5d09; background: #da5d09; }
@@ -19,7 +19,7 @@ a{ text-decoration:none;}
 .pro-contact-actions ul.conect-tab > li.shortlist > a.active{ padding:0px 10px 0 110px; }
 .pro-contact-actions ul.conect-tab > li > a.active p{ left:10px; opacity:1; visibility: visible;}
 .pro-contact-actions ul.conect-tab > li > a p span{ display:block;}
-.pro-contact-actions ul.conect-tab > li > a:hover .icon, .pro-contact-actions ul.conect-tab > li > a.active .icon{ color:#da5d09;}
+.pro-contact-actions ul.conect-tab > li > a:hover .icon:before, .pro-contact-actions ul.conect-tab > li > a.active .icon:before { content: '\e617'; color:#da5d09; font-size: 32px;}
 .country-holder { float: left; width: 28%; }
 .country-holder .c-code { width: 100%; }
 .phone-no-holder { float: right; width: 70%; }

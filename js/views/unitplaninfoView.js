@@ -174,15 +174,8 @@ var UnitplaninfoView = (function() {
         unitViewTabs: function(data, rotationdata, rootdata) {
             var offerDiv = '';
 
-            // if (!config.builderSetUp && data.discountDescription && data.discountDescription !== "") {
-            //     offerDiv = '<div class="special-offers"><span></span><p>' + data.discountDescription + '</p></div>';
-            // }
-
             var htmlCode = offerDiv,
-                selectedClass = data.shortListed ? 'selected' : '',
                 link = rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier + '/booking';
-            htmlCode += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
-            htmlCode += '<a><span class="icon icon-heart fs26 heart-clone"><label></label></span><p class="transition click-txt"></p><p class="shortlisted" style="display:none;"></p></a></div>';
             if (data.bookingStatus == 'Available' && rootdata.fairEnabled && !config.builderSetUp) {
                 htmlCode += '<div class="book-now"><a  data-url="' + link + '">Book Now</a>';
                 htmlCode += '<span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(data.bookingAmount) + '/- (No Cancellation Charges)</span>';
@@ -219,16 +212,18 @@ var UnitplaninfoView = (function() {
         },
 
         unitHeaderContainer: function(data, rotationdata, rootdata) {
+            var selectedClass = data.shortListed ? 'selected' : '';
             var code = "<div class='header-item header-title'> " +
-                "<span class='address'>" + data.listingAddress + "</span> " +
-                "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
-                ", <span>" + data.size + " " + data.measure + "</span> " +
-                ", <span>Floor " + data.floor + "</span></div> ";
+                "<span>" + data.bedrooms + "BHK Apartment</span> " +
+                "- <span>" + data.size + " " + data.measure + "</span> " +
+                "<div class='floor-info'><span class='address'>" + data.listingAddress + "</span> <span>(" + data.floor + " Floor)</span></div></div>";
+                code += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
+                code += '<a><span class="icon icon-heart-1 heart-clone"></span><p class="transition click-txt"></p><p class="shortlisted" style="display:none;"></p></a></div>';
             this._elements.unitHeaderContainer.html(code);
         },
 
         unitPriceContainer: function(data, rotationdata, rootdata) {
-            var code =  "<div class='price-wrap'><div class='unit-price'>"
+            var code =  "<div class='price-wrap'><div class='unit-price fleft'>";
 
                 var price = utils.getReadablePriceInWord(data.price),
                     discountedPrice = utils.getReadablePriceInWord(data.price - data.discount);
@@ -240,7 +235,11 @@ var UnitplaninfoView = (function() {
                     }
                 }
 
-                code += "</div></div>";
+                code += "</div>";
+                if (!config.builderSetUp && data.discountDescription && data.discountDescription !== "") {
+                    code += '<div class="special-offers"><span><i class="icon icon-clubhouse"></i> Deal</span> <p>' + data.discountDescription + '</p></div>';
+                }
+                code += "</div>";
             this._elements.unitPriceContainer.html(code);
         },
 
@@ -255,12 +254,12 @@ var UnitplaninfoView = (function() {
             });
         },
         unitMenuContainer: function(data, rotationdata, rootdata) {
-            var code = "<div class='uit-header-menu'><div data-target='fp-container' data-menu='unitPlanMenu' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'><span class='icon icon-unitplan fs18'></span></div>Unit Plan</div>" +
-                "<div data-target='cp-container' data-menu='floorPlanMenu' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon icon-clusterplan fs18'></span></div>Floor Plan</div>";
+            var code = "<div class='uit-header-menu'><div data-target='fp-container' data-menu='unitPlanMenu' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'>Unit Plan</div>" +
+                "<div data-target='cp-container' data-menu='floorPlanMenu' class='header-item " + config.unitMenuLinkClass + "'>Floor Plan</div>";
                 if(rootdata.fairEnabled && !config.builderSetUp) {
-                  code += "<div data-target='pb-container' data-menu='unitPricingMenu' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon icon-rupee fs18'></span></div>Pricing</div>";
+                  code += "<div data-target='pb-container' data-menu='unitPricingMenu' class='header-item " + config.unitMenuLinkClass + "'>Pricing</div>";
                 }
-                code += "<div data-target='sf-container' data-menu='unitAmenitiesMenu' class='header-item " + config.unitMenuLinkClass + " right'><div class='item-icon-box'><span class='icon icon-specification fs18'></span></div>Amenities</div></div></div></div>";
+                code += "<div data-target='sf-container' data-menu='unitAmenitiesMenu' class='header-item " + config.unitMenuLinkClass + "'>Amenities</div></div></div></div>";
             this._elements.unitMenuContainer.html(code);
             this.unitMenuContainerEvents();
         },
@@ -572,11 +571,8 @@ var UnitplaninfoView = (function() {
             }
         },
         specificationContainer: function(data, rotationdata, rootdata) {
-            var code = '<ul class="specification-tabs">' +
-                '<li class="active" data-type="project-amenities">Amenities</li>' +
-                '<li data-type="specifications">Specification</li>' +
-                '</ul><div class="unit-content-wrapper">' +
-                '<div class="project-amenities specification-tabs-content" >' +
+            var code = '<div class="unit-content-wrapper">' +
+                '<div class="project-amenities specification-tabs-content" ><h3>Amenities</h3>' +
                 '<ul>' +
                 '<li ' + this.getAmenityClass(rootdata, 'Gym') + '><span class="icon icon-gym"></span><label>Gymnasium</label></li>' +
                 '<li ' + this.getAmenityClass(rootdata, 'Swi') + '><span class="icon icon-swimming"></span><label>Swimming Pool</label></li>' +
@@ -592,7 +588,7 @@ var UnitplaninfoView = (function() {
                 '<li ' + this.getAmenityClass(rootdata, 'Caf') + '><span class="icon icon-cafe"></span><label>Cafeteria</label></li>' +
                 '</ul>' +
                 '<div class="clear-fix"></div></div>';
-            code += "<table class='base-table " + config.hideClass + " specification-tabs-content specifications'>";
+            code += "<h3>Specifications</h3><table class='base-table specification-tabs-content specifications'>";
             for (var category in rootdata.specifications) {
                 if (rootdata.specifications.hasOwnProperty(category)) {
                     var items = rootdata.specifications[category];
