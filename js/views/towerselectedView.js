@@ -56,10 +56,11 @@ var TowerselectedView = (function() {
         //minimap event
         this._minMapClicked = new Event(this);
 
-
+        //filter events
         this._filterApply = new Event(this);
         this._backToFilter = new Event(this);
         this._resetFilter = new Event(this);
+        this._bottomFilterToggle = new Event(this);
 
     }
 
@@ -781,7 +782,7 @@ var TowerselectedView = (function() {
                 code = "";
 
 
-            code += "<div class='tower-filter-wrap transition'><div class='filter-wrap transition unit-filter'>";
+            code += "<span class='toggle-arrow'></span><div class='tower-filter-wrap transition'><div class='filter-wrap transition unit-filter'>";
 
             code += "<div class='filter budget-filter-button transition'><div class='ico-wrap transition'><em></em><small class='budget-tick transition'><i class='icon icon-tick'></i></small></div><div></div><span>Budget</span></div>";
             code += "<div class='filter bedroom-filter-button transition'><div class='ico-wrap transition'><em></em><small class='bedroom-tick transition'><i class='icon icon-tick'></i></small></div><span>Bedroom</span></div>";
@@ -815,6 +816,11 @@ var TowerselectedView = (function() {
         },
         bottomFilterContainerEvents: function () {
             var _this = this;
+            this._elements.bottomFilterContainer.on('click', '.toggle-arrow', function (event) {
+                // notify controller
+                _this._bottomFilterToggle.notify(this); // this refers to element here
+
+            });
             this._elements.bottomFilterContainer.on('click', '.back-to-filter', function (event) {
                 // notify controller
                 _this._backToFilter.notify(''); // this refers to element here
@@ -865,6 +871,13 @@ var TowerselectedView = (function() {
                 _this._priceFilterOptionClick.notify(this); // this refers to element here
             });
 
+        },
+        bottomFilterToggle: function (element){
+            if(this._elements.bottomFilterContainer.hasClass('show-up')){
+                this._elements.bottomFilterContainer.removeClass('show-up');
+            }else{
+                this._elements.bottomFilterContainer.addClass('show-up');
+            }
         },
         applyFilter: function (filter) {
             var _this = this;

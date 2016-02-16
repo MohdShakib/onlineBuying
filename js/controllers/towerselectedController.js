@@ -143,6 +143,10 @@ var TowerselectedController = (function() {
             this._view._backToFilter.attach(function(sender, element){
                 _this._view.backToFilter(element);
             });
+
+            this._view._bottomFilterToggle.attach(function(sender, element){
+                _this._view.bottomFilterToggle(element);
+            });
         },
         toggleFilterOption: function(filterArray, filterOption, element) {
             var index = filterArray.indexOf(filterOption);

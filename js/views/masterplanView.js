@@ -65,11 +65,12 @@ var MasterplanView = (function () {
         this._googleMapViewChanged = new Event(this);
         this._openGoogleMapClicked = new Event(this);
 
-
+        // filter  Events
         this._applyfilter = new Event(this);
         this._removeFilter = new Event(this);
         this._mouseenterFilter = new Event(this);
         this._mouseleaveFilter = new Event(this);
+        this._bottomFilterToggle = new Event(this);
 
         // For dynamic height of tower menu
         utils.masterPlanModel = this._model;
@@ -721,6 +722,13 @@ var MasterplanView = (function () {
                 curruntFilter = '';
                 _this._applyfilter.notify(''); // this refers to element here
             });
+
+            this._elements.bottomFilterContainer.on('click', '.toggle-arrow', function (event) {
+                // notify controller
+                _this._bottomFilterToggle.notify(this); // this refers to element here
+
+            });
+
             this._elements.bottomFilterContainer.on('click', '.pool-facing-filter-button', function (event) {
                 // notify controller
                 curruntFilter = 'pool-facing';
@@ -777,7 +785,7 @@ var MasterplanView = (function () {
                 roadFacing = $('.road-facing').length,
                 code = "";
 
-                code += "<div class='tower-filter-wrap transition'><div class='filter-wrap transition tower-filter'>";
+                code += "<span class='toggle-arrow'></span><div class='tower-filter-wrap transition'><div class='filter-wrap transition tower-filter'>";
                 code += "<div class='filter all-tower-button transition'><div class='ico-wrap transition'><em></em></div><span>All Towers ("+ allTower+")</span></div>";
                 code += "<div class='filter pool-facing-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Pool Facing ("+ poolFacing+")</span></div>";
                 code += "<div class='filter park-facing-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Park Facing ("+ parkFacing+")</span></div>";
@@ -794,6 +802,13 @@ var MasterplanView = (function () {
 
             this._elements.bottomFilterContainer.html(code);
             this.bottomFilterContainerEvents();
+        },
+        bottomFilterToggle: function (element){
+            if(this._elements.bottomFilterContainer.hasClass('show-up')){
+                this._elements.bottomFilterContainer.removeClass('show-up');
+            }else{
+                this._elements.bottomFilterContainer.addClass('show-up');
+            }
         },
         towerMouseEnterEvent: function (obj) {
             var element = $(obj.element);
