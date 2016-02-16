@@ -1410,9 +1410,9 @@ ellipse.tower-unit-svg-selected-path {
 .selected-unit-container .amenities-container .amenity-icon{ color:#616161;}
 .amenities-container .amenity-icon .name {
 	position: absolute;
-	top: 35px;
+	top: 86px;
 	left: -130px;
-	margin-top: -170px;
+	margin-top: -195px;
 	margin-left:60px;
 	color: #DFDFDF;
 	line-height: normal;
@@ -1442,6 +1442,8 @@ ellipse.tower-unit-svg-selected-path {
 	background: rgba(0,0,0,0.4);
 	border-radius: 100px;
 	padding: 5px 10px;
+	margin-top: 5px;
+	display: inline-block;
 }
 .selected-unit-container .amenities-container .amenity-icon .name span {
 	background: #616161;
