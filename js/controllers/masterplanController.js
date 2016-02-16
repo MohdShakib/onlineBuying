@@ -97,6 +97,10 @@ var MasterplanController = (function() {
             this._view._mouseleaveFilter.attach(function(sender, element){
                 _this._view.mouseleaveFilter(element);
             });
+
+            this._view._bottomFilterToggle.attach(function(sender, element){
+                _this._view.bottomFilterToggle(element);
+            });
         },
         generateTemplate: function() {
             this._view.buildView();

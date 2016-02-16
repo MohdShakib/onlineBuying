@@ -875,7 +875,9 @@ var TowerselectedView = (function() {
         bottomFilterToggle: function (element){
             if(this._elements.bottomFilterContainer.hasClass('show-up')){
                 this._elements.bottomFilterContainer.removeClass('show-up');
+                this._elements.bottomFilterContainer.addClass('show-bottom');
             }else{
+                this._elements.bottomFilterContainer.removeClass('show-bottom');
                 this._elements.bottomFilterContainer.addClass('show-up');
             }
         },

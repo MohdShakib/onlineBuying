@@ -345,27 +345,25 @@ ellipse.tower-unit-svg-selected-path {
 /*tower bottom menu*/
 
 .bottom-filter-container{
-
 	width: 750px;
 	height: 110px;
 	padding: 15px 0;
 	color: #fff;
 	position: absolute;
 	text-align: center;
-	bottom: -100px;
+	bottom: -135px;
 	left: 50%;
 	margin-left: -375px;
 	z-index: 10000;
 	box-sizing: border-box;
-	background-color: rgba(30, 43, 5, .7);
+	background-color: rgba(30, 43, 5, 0.7);
 	border-radius: 20px 0px 0px 0px;
-	//overflow: hidden;
 
 	.toggle-arrow {
 		border-radius: 5px 5px 0 0;
-		position: absolute;
+		/* position: absolute; */
 		right: 0px;
-		top: -25px;
+		margin-top: -25px;
 		width: 35px;
 		height: 25px;
 		line-height: 22px;
@@ -375,6 +373,10 @@ ellipse.tower-unit-svg-selected-path {
 		background-color: rgba(30, 43, 5, 0.7);
 		/* text-indent: -9999px; */
 		cursor: pointer;
+		display: block;
+		float: right;
+		position: relative;
+		top: -15px;
 		&:before {
 			transform: rotate(225deg);
 			display: inline-block;
@@ -401,6 +403,10 @@ ellipse.tower-unit-svg-selected-path {
 				vertical-align: middle;
 			}
 		}
+	}
+
+	&.show-bottom {
+		bottom: -100px;
 	}
 
 	.tower-filter-wrap {
