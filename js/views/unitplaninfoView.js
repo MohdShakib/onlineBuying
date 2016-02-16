@@ -469,7 +469,7 @@ var UnitplaninfoView = (function() {
         },
         unitComponentMouseLeave: function(params) {
             viewUtils.removeSVGClass(params.element.id, 'hover');
-            //document.getElementById(config.unitDetailContainerId).innerHTML = '';
+            document.getElementById(config.unitDetailContainerId).innerHTML = '';
         },
         amenitiesContainer: function(data, rotationdata, rootdata) {
             var unitTypeData = this._model.getUnitTypeData(this._selectedFloor),
@@ -481,7 +481,7 @@ var UnitplaninfoView = (function() {
                 var point = svgObj.svgPath.split(' ');
                 var position = "top:" + point[1] + "%; left:" + point[0] + "%;";
                 code += "<div id='" + svgId + "' data-top='" + point[1] + "' data-left='" + point[0] + "' class='" + config.amenityIconClass + "' style='" + position + "'><span class='icon icon-location'></span>";
-                code += "<div class='name'><span>" + svgObj.name + "</span></div>";
+                code += "<div class='name'><img class='amenity-img' src=" + svgObj.details + "><span>" + svgObj.name + "</span></div>";
                 code += "</div>";
             }
             this._elements.amenitiesContainer.html(code);
