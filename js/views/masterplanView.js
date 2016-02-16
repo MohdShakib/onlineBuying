@@ -18,7 +18,7 @@ var MasterplanView = (function () {
         'googleMapContainer': '<div class="map-container"><div id="google-map-container" class="google-map-container"></div></div>',
         'mapTooltip': '<div class="map-tooltip" id=map-tooltip></div>',
         'openGoogleMapView': '<div id="open-google-map-view" class="open-google-map-btn"></div>',
-        'bottomFilterContainer': '<div id="bottom-filter-container" class="bottom-filter-container transition"></div>'
+        'bottomFilterContainer': '<div class="bottom-filter-wrapper transition"><span class="toggle-arrow"></span><div id="bottom-filter-container" class="bottom-filter-container"></div>'
     };
 
     var curruntFilter = '', isClicked = false;
@@ -233,7 +233,7 @@ var MasterplanView = (function () {
             //elements.map.setZoom(config.maxZoomLevel);
             this._elements.googleMapContainer.parent().css('z-index', '-10');     //do this using class
             setTimeout(function () {
-                _this._elements.bottomFilterContainer.addClass('show-up');
+                $('.bottom-filter-wrapper').addClass('show-up');
                 _this._elements.amenitiesContainer.show();
                 _this._elements.carAnimation.show();
                 _this._elements.buildingMenuContainer.show();
@@ -245,7 +245,7 @@ var MasterplanView = (function () {
         // to show the google map view
         showGoogleMap: function (elements) {
             this._elements.googleMapContainer.parent().css('z-index', '100001');     //do this using class
-            this._elements.bottomFilterContainer.removeClass('show-up');
+            $('.bottom-filter-wrapper').removeClass('show-up');
             this._elements.openGoogleMapView.hide();
             //elements.map.setZoom(config.initialZoomLevel);
             elements.visible = true;
@@ -310,7 +310,7 @@ var MasterplanView = (function () {
 
             // bottom container
             setTimeout(function () {
-                $('.bottom-filter-container').addClass('show-up');
+                $('.bottom-filter-wrapper').addClass('show-up');
             }, 7000);
 
         },
@@ -342,7 +342,7 @@ var MasterplanView = (function () {
             });
 
             //bottom-filter-container
-            $('.bottom-filter-container').addClass('show-up');
+            $('.bottom-filter-wrapper').addClass('show-up');
 
             if(curruntFilter !== ''){
                 this.applyFilter();
@@ -507,11 +507,11 @@ var MasterplanView = (function () {
 
             _this._elements.bottomFilterContainer.on('click', '.scroll-prev', function (event) {
                 // notify controller
-                _this._menuUp.notify(this); // this refers to element here
+                _this._menuDown.notify(this); // this refers to element here
             });
             _this._elements.bottomFilterContainer.on('click', '.scroll-next', function (event) {
                 // notify controller
-                _this._menuDown.notify(this); // this refers to element here
+                _this._menuUp.notify(this); // this refers to element here
             });
             this.bottomFilterContainerEvents();
 
@@ -629,7 +629,6 @@ var MasterplanView = (function () {
                     targetImage.fadeTo("0", 1, function () {});
                 }
                 _this.buildingMenuContainer(_this._model.getData(), filteredTower.sort());
-                console.log('>buildingMenuContainer  called');
             }
 
             switch (filter) {
@@ -723,12 +722,6 @@ var MasterplanView = (function () {
                 _this._applyfilter.notify(''); // this refers to element here
             });
 
-            this._elements.bottomFilterContainer.on('click', '.toggle-arrow', function (event) {
-                // notify controller
-                _this._bottomFilterToggle.notify(this); // this refers to element here
-
-            });
-
             this._elements.bottomFilterContainer.on('click', '.pool-facing-filter-button', function (event) {
                 // notify controller
                 curruntFilter = 'pool-facing';
@@ -777,6 +770,11 @@ var MasterplanView = (function () {
                 _this._removeFilter.notify(); // this refers to element here
             });
 
+            $('.bottom-filter-wrapper').off('click').on('click', '.toggle-arrow', function (event) {
+                // notify controller
+                _this._bottomFilterToggle.notify(this); // this refers to element here
+            });
+
         },
         bottomFilterContainer: function (data) {
             var allTower = $('img.' + config.imgContainerClass).length,
@@ -785,7 +783,7 @@ var MasterplanView = (function () {
                 roadFacing = $('.road-facing').length,
                 code = "";
 
-                code += "<span class='toggle-arrow'></span><div class='tower-filter-wrap transition'><div class='filter-wrap transition tower-filter'>";
+                code += "<div class='tower-filter-wrap transition'><div class='filter-wrap transition tower-filter'>";
                 code += "<div class='filter all-tower-button transition'><div class='ico-wrap transition'><em></em></div><span>All Towers ("+ allTower+")</span></div>";
                 code += "<div class='filter pool-facing-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Pool Facing ("+ poolFacing+")</span></div>";
                 code += "<div class='filter park-facing-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Park Facing ("+ parkFacing+")</span></div>";
@@ -804,12 +802,12 @@ var MasterplanView = (function () {
             this.bottomFilterContainerEvents();
         },
         bottomFilterToggle: function (element){
-            if(this._elements.bottomFilterContainer.hasClass('show-up')){
-                this._elements.bottomFilterContainer.removeClass('show-up');
-                this._elements.bottomFilterContainer.addClass('show-bottom');
+            if($('.bottom-filter-wrapper').hasClass('show-up')){
+                $('.bottom-filter-wrapper').removeClass('show-up');
+                $('.bottom-filter-wrapper').addClass('show-bottom');
             }else{
-                this._elements.bottomFilterContainer.removeClass('show-bottom');
-                this._elements.bottomFilterContainer.addClass('show-up');
+                $('.bottom-filter-wrapper').removeClass('show-bottom');
+                $('.bottom-filter-wrapper').addClass('show-up');
             }
         },
         towerMouseEnterEvent: function (obj) {

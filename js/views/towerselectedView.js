@@ -14,7 +14,7 @@ var TowerselectedView = (function() {
         'towerRotationContainer': '<div class="tower-rotation-container" id="' + config.towerRotationContainerId + '" style="display:none;"></div>',
         'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>',
         'minMapView': '<div id="minMap"></div>',
-        'bottomFilterContainer': '<div id="bottom-filter-container" class="bottom-filter-container transition"></div>'
+        'bottomFilterContainer': '<div class="bottom-filter-wrapper transition"><span class="toggle-arrow"></span><div id="bottom-filter-container" class="bottom-filter-container"></div>'
     };
 
     function getElements() {
@@ -372,12 +372,12 @@ var TowerselectedView = (function() {
 
             var details = {
                 'address': unitInfo.listingAddress,
-                'size': unitInfo.size + ' ' + unitInfo.measure,
+                'size': utils.getReadablePrice(unitInfo.size) + ' ' + unitInfo.measure,
                 'floor': unitInfo.floor ? unitInfo.floor : 'Ground',
                 'color': unitInfo.isAvailable ? 'apt-available-color' : 'apt-unavailable-color',
                 'availability': unitInfo.isAvailable ? 'Available' : bookingText,
                 'price': utils.getReadablePriceInWord(unitInfo.price - unitInfo.discount),
-                'type': unitInfo.bedrooms > 1 ? unitInfo.bedrooms + ' BHK Apartments': unitInfo.bedrooms + ' BHK Apartment'
+                'type': unitInfo.bedrooms > 1 ? unitInfo.bedrooms + 'BHK Apartments': unitInfo.bedrooms + 'BHK Apartment'
             };
 
             towerCode += "<div class='detail-box show-details tSelected-view'>";
@@ -782,7 +782,7 @@ var TowerselectedView = (function() {
                 code = "";
 
 
-            code += "<span class='toggle-arrow'></span><div class='tower-filter-wrap transition'><div class='filter-wrap transition unit-filter'>";
+            code += "<div class='tower-filter-wrap transition'><div class='filter-wrap transition unit-filter'>";
 
             code += "<div class='filter budget-filter-button transition'><div class='ico-wrap transition'><em></em><small class='budget-tick transition'><i class='icon icon-tick'></i></small></div><div></div><span>Budget</span></div>";
             code += "<div class='filter bedroom-filter-button transition'><div class='ico-wrap transition'><em></em><small class='bedroom-tick transition'><i class='icon icon-tick'></i></small></div><span>Bedroom</span></div>";
@@ -792,7 +792,7 @@ var TowerselectedView = (function() {
 
             code += "<div class='after-filter-apply transition'>";
             code += "<div class='left'><div class='back-to-filter'><i class='icon icon-arrow_left'></i></div></div>";
-            code += "<div class='center'><div class='filter-wrap'><div class='filter item'>";
+            code += "<div class='center'><div class='filter-wrap'><div class='item'>";
             code += '<div class="tower-menu-container floor-filters-wrap" id="inside-tower-menu-container">';
 // Code for floor options
             code +='<div class="floor-plan-filter">';
@@ -810,13 +810,13 @@ var TowerselectedView = (function() {
             code += "<div class='right'></div>";
             code += "</div>";
 
-            this._elements.bottomFilterContainer.addClass('show-up');
+            $('.bottom-filter-wrapper').addClass('show-up');
             this._elements.bottomFilterContainer.html(code);
             this.bottomFilterContainerEvents();
         },
         bottomFilterContainerEvents: function () {
             var _this = this;
-            this._elements.bottomFilterContainer.on('click', '.toggle-arrow', function (event) {
+            $('.bottom-filter-wrapper').on('click', '.toggle-arrow', function (event) {
                 // notify controller
                 _this._bottomFilterToggle.notify(this); // this refers to element here
 
@@ -873,12 +873,12 @@ var TowerselectedView = (function() {
 
         },
         bottomFilterToggle: function (element){
-            if(this._elements.bottomFilterContainer.hasClass('show-up')){
-                this._elements.bottomFilterContainer.removeClass('show-up');
-                this._elements.bottomFilterContainer.addClass('show-bottom');
+            if($('.bottom-filter-wrapper').hasClass('show-up')){
+                $('.bottom-filter-wrapper').removeClass('show-up');
+                $('.bottom-filter-wrapper').addClass('show-bottom');
             }else{
-                this._elements.bottomFilterContainer.removeClass('show-bottom');
-                this._elements.bottomFilterContainer.addClass('show-up');
+                $('.bottom-filter-wrapper').removeClass('show-bottom');
+                $('.bottom-filter-wrapper').addClass('show-up');
             }
         },
         applyFilter: function (filter) {
