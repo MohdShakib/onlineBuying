@@ -582,11 +582,17 @@ var BaseView = (function() {
             $('#' + config.callBox.submitButtonId).removeClass(config.disabledClass);
             $('.callback-message').remove();
             $('.call-box').append('<div class="callback-message form-msg-success">You will get a call back shortly.</div>');
+            setTimeout(function(){
+                $('.call-box .callback-message').remove();
+            },5000);
         },
         submitLeadErrorCallback: function(response, params) {
             $('#' + config.callBox.submitButtonId).removeClass(config.disabledClass);
             $('.callback-message').remove();
             $('.call-box').append('<div class="callback-message form-msg-failure">' + config.errorMsg + '</div>');
+            setTimeout(function(){
+                $('.call-box .callback-message').remove();
+            },5000);
         },
         getValidatedShareData: function() {
             var form = $('#share-box-form');
