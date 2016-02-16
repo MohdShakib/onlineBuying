@@ -220,7 +220,7 @@ ellipse.tower-unit-svg-selected-path {
 .towerunit-detail-container{
 	background: #333;
 	margin-left: 70px;
-	min-width:190px;
+	min-width:230px;
 	font-size: 14px;
 	color: #fff;
 	&.floor-detail {
@@ -235,8 +235,9 @@ ellipse.tower-unit-svg-selected-path {
 		}
 	}
 	.floor-item {
+		font-size: 15px;
 		margin-right: -5px;
-		padding: 15px 12px;
+		padding: 15px 15px;
 		position: relative;
 		min-height: 30px;
 		border-right: 5px solid #232323;
@@ -258,10 +259,10 @@ ellipse.tower-unit-svg-selected-path {
 		}
 	}
 	.price {
-		font-size: 22px;
+		font-size: 18px;
 		color: #fff;
 		span {
-			font-size: 16px;
+			font-size: 14px;
 		}
 	}
 }

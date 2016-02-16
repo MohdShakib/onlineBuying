@@ -376,7 +376,7 @@ var TowerselectedView = (function() {
                 'color': unitInfo.isAvailable ? 'apt-available-color' : 'apt-unavailable-color',
                 'availability': unitInfo.isAvailable ? 'Available' : bookingText,
                 'price': utils.getReadablePriceInWord(unitInfo.price - unitInfo.discount),
-                'type': unitInfo.bedrooms + ' BHK'
+                'type': unitInfo.bedrooms > 1 ? unitInfo.bedrooms + ' BHK Apartments': unitInfo.bedrooms + ' BHK Apartment'
             };
 
             towerCode += "<div class='detail-box show-details tSelected-view'>";
