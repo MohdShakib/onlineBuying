@@ -680,33 +680,46 @@ var MasterplanView = (function () {
         mouseenterFilter:function(filter){
             filter = filter || '';
             var filterClass = '';
-            $('img.' + config.imgContainerClass).stop().fadeTo("0", 0.25, function () {});
+
+            function filterTowers(){
+                var allpolygon = $(filterClass);
+                var skipHideList=[];
+                for (var i = 0; i < allpolygon.length; i++) {
+                    var imageid = allpolygon[i].id.split('-')[0];
+                    skipHideList.push(imageid);
+                }
+                var allTowerList = $('img.' + config.imgContainerClass);
+                for(var towerIndex=0;towerIndex<allTowerList.length;towerIndex++){
+                    var imageid = allTowerList[towerIndex].id.split('-')[0];
+                    if(skipHideList.indexOf(imageid) < 0){
+                        var targetImage = $('img#' + imageid);
+                        targetImage.fadeTo("0", 0.25, function () {});
+                    }
+                }
+            }
 
             switch (filter) {
                 case 'pool-facing' :
                 {
                     filterClass = '.pool-facing';
+                    filterTowers();
                     break;
                 }
                 case 'park-facing' :
                 {
                     filterClass = '.park-facing';
+                    filterTowers();
                     break;
                 }
                 case 'road-facing' :
                 {
                     filterClass = '.road-facing';
+                    filterTowers();
                     break;
                 }
                 default : {
                     $('img.' + config.imgContainerClass).stop().fadeTo("0", 1, function () {});
                 }
-            }
-            var allpolygon = $(filterClass);
-            for (var i = 0; i < allpolygon.length; i++) {
-                var imageid = allpolygon[i].id.split('-')[0];
-                var targetImage = $('img#' + imageid);
-                targetImage.fadeTo("100", 1, function () {});
             }
         },
         mouseleaveFilter:function(){

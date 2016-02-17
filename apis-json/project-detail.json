@@ -2348,7 +2348,7 @@
         "bookingAmount": 20000,
         "relevanceScore": 0.0,
         "viewDirections": [
-
+          "pool-facing"
         ],
         "discount": 325000.0,
         "discountDescription": "Free Covered Car Parking & Club Membership",
@@ -3353,7 +3353,7 @@
         "bookingAmount": 20000,
         "relevanceScore": 0.0,
         "viewDirections": [
-
+          "pool-facing"
         ],
         "discount": 225000.0,
         "discountDescription": "Free Open Car Parking & Club Membership",
@@ -4760,7 +4760,7 @@
         "bookingAmount": 20000,
         "relevanceScore": 0.0,
         "viewDirections": [
-
+          "pool-facing"
         ],
         "discount": 325000.0,
         "discountDescription": "Free Covered Car Parking & Club Membership",
@@ -5564,7 +5564,7 @@
         "bookingAmount": 20000,
         "relevanceScore": 0.0,
         "viewDirections": [
-
+          "pool-facing"
         ],
         "discount": 225000.0,
         "discountDescription": "Free Open Car Parking & Club Membership",
@@ -6971,7 +6971,7 @@
         "bookingAmount": 20000,
         "relevanceScore": 0.0,
         "viewDirections": [
-
+          "pool-facing"
         ],
         "discount": 325000.0,
         "discountDescription": "Free Covered Car Parking & Club Membership",
@@ -7842,7 +7842,7 @@
         "bookingAmount": 20000,
         "relevanceScore": 0.0,
         "viewDirections": [
-
+          "pool-facing"
         ],
         "discount": 225000.0,
         "discountDescription": "Free Open Car Parking & Club Membership",
@@ -9047,7 +9047,7 @@
         "description": "Description",
         "bookingAmount": 20000,
         "relevanceScore": 0.0,
-        "viewDirections": ["road-facing"
+        "viewDirections": ["road-facing", "pool-facing"
 
         ],
         "discount": 325000.0,
@@ -10388,7 +10388,7 @@
         "bookingAmount": 20000,
         "relevanceScore": 0.0,
         "viewDirections": [
-
+          "pool-facing"
         ],
         "discount": 225000.0,
         "discountDescription": "Free Open Car Parking & Club Membership",
@@ -12264,7 +12264,7 @@
         "bookingAmount": 20000,
         "relevanceScore": 0.0,
         "viewDirections": [
-
+          "pool-facing"
         ],
         "discount": 225000.0,
         "discountDescription": "Free Open Car Parking & Club Membership",
@@ -13521,7 +13521,7 @@
         "bookingAmount": 20000,
         "relevanceScore": 0.0,
         "viewDirections": [
-
+          "pool-facing"
         ],
         "discount": 225000.0,
         "discountDescription": "Free Open Car Parking & Club Membership",
@@ -15421,7 +15421,7 @@
         "bookingAmount": 20000,
         "relevanceScore": 0.0,
         "viewDirections": [
-
+          "pool-facing"
         ],
         "discount": 325000.0,
         "discountDescription": "Free Covered Car Parking & Club Membership",
@@ -17073,7 +17073,7 @@
         "bookingAmount": 20000,
         "relevanceScore": 0.0,
         "viewDirections": [
-
+          "pool-facing"
         ],
         "discount": 225000.0,
         "discountDescription": "Free Open Car Parking & Club Membership",
@@ -19418,7 +19418,7 @@
         "bookingAmount": 20000,
         "relevanceScore": 0.0,
         "viewDirections": [
-
+          "pool-facing"
         ],
         "discount": 225000.0,
         "discountDescription": "Free Open Car Parking & Club Membership",
@@ -20691,7 +20691,7 @@
         "bookingAmount": 20000,
         "relevanceScore": 0.0,
         "viewDirections": [
-
+          "pool-facing"
         ],
         "discount": 225000.0,
         "discountDescription": "Free Open Car Parking & Club Membership",
