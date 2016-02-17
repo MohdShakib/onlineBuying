@@ -752,11 +752,11 @@ var MasterplanView = (function () {
             });
             this._elements.bottomFilterContainer.on('click', '.road-facing-filter-button', function (event) {
                 // notify controller
+                curruntFilter = 'road-facing';
                 _this._applyfilter.notify('road-facing'); // this refers to element here
             });
             this._elements.bottomFilterContainer.on('mouseenter', '.road-facing-filter-button', function (event) {
                 // notify controller
-                curruntFilter = 'road-facing';
                 _this._mouseenterFilter.notify('road-facing');
             });
             this._elements.bottomFilterContainer.on('mouseleave', '.road-facing-filter-button', function (event) {
