@@ -830,15 +830,7 @@ var TowerselectedView = (function() {
                 // notify controller
                 _this._filterApply.notify('budget'); // this refers to element here
             });
-            _this._elements.bottomFilterContainer.on('click', '.budget-filter-button span', function (event) {
-                // notify controller
-                _this._filterApply.notify('budget'); // this refers to element here
-            });
             _this._elements.bottomFilterContainer.on('click', '.bedroom-filter-button div', function (event) {
-                // notify controller
-                _this._filterApply.notify('bedroom'); // this refers to element here
-            });
-            _this._elements.bottomFilterContainer.on('click', '.bedroom-filter-button span', function (event) {
                 // notify controller
                 _this._filterApply.notify('bedroom'); // this refers to element here
             });
@@ -846,15 +838,7 @@ var TowerselectedView = (function() {
                 // notify controller
                 _this._filterApply.notify('floor'); // this refers to element here
             });
-            _this._elements.bottomFilterContainer.on('click', '.floor-filter-button span', function (event) {
-                // notify controller
-                _this._filterApply.notify('floor'); // this refers to element here
-            });
             _this._elements.bottomFilterContainer.on('click', '.reset-filter-button div', function (event) {
-                // notify controller
-                _this._resetFiltersClick.notify(this); // this refers to element here
-            });
-            _this._elements.bottomFilterContainer.on('click', '.reset-filter-button span', function (event) {
                 // notify controller
                 _this._resetFiltersClick.notify(this); // this refers to element here
             });

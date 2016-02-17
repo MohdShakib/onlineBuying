@@ -740,50 +740,50 @@ var MasterplanView = (function () {
         },
         bottomFilterContainerEvents: function () {
             var _this = this;
-            this._elements.bottomFilterContainer.on('click', '.all-tower-button', function (event) {
+            this._elements.bottomFilterContainer.on('click', '.all-tower-button div', function (event) {
                 // notify controller
                 curruntFilter = '';
                 _this._applyfilter.notify(''); // this refers to element here
             });
 
-            this._elements.bottomFilterContainer.on('click', '.pool-facing-filter-button', function (event) {
+            this._elements.bottomFilterContainer.on('click', '.pool-facing-filter-button div', function (event) {
                 // notify controller
                 curruntFilter = 'pool-facing';
                 _this._applyfilter.notify('pool-facing'); // this refers to element here
             });
-            this._elements.bottomFilterContainer.on('mouseenter', '.pool-facing-filter-button', function (event) {
+            this._elements.bottomFilterContainer.on('mouseenter', '.pool-facing-filter-button div', function (event) {
                 // notify controller
                 _this._mouseenterFilter.notify('pool-facing');
             });
-            this._elements.bottomFilterContainer.on('mouseleave', '.pool-facing-filter-button', function (event) {
+            this._elements.bottomFilterContainer.on('mouseleave', '.pool-facing-filter-button div', function (event) {
                 // notify controller
                 _this._mouseleaveFilter.notify('');
 
             });
-            this._elements.bottomFilterContainer.on('click', '.park-facing-filter-button', function (event) {
+            this._elements.bottomFilterContainer.on('click', '.park-facing-filter-button div', function (event) {
                 // notify controller
                 curruntFilter = 'park-facing';
                 _this._applyfilter.notify('park-facing'); // this refers to element here
             });
-            this._elements.bottomFilterContainer.on('mouseenter', '.park-facing-filter-button', function (event) {
+            this._elements.bottomFilterContainer.on('mouseenter', '.park-facing-filter-button div', function (event) {
                 // notify controller
                 _this._mouseenterFilter.notify('park-facing');
             });
-            this._elements.bottomFilterContainer.on('mouseleave', '.park-facing-filter-button', function (event) {
+            this._elements.bottomFilterContainer.on('mouseleave', '.park-facing-filter-button div', function (event) {
                 // notify controller
                 _this._mouseleaveFilter.notify('');
 
             });
-            this._elements.bottomFilterContainer.on('click', '.road-facing-filter-button', function (event) {
+            this._elements.bottomFilterContainer.on('click', '.road-facing-filter-button div', function (event) {
                 // notify controller
                 curruntFilter = 'road-facing';
                 _this._applyfilter.notify('road-facing'); // this refers to element here
             });
-            this._elements.bottomFilterContainer.on('mouseenter', '.road-facing-filter-button', function (event) {
+            this._elements.bottomFilterContainer.on('mouseenter', '.road-facing-filter-button div', function (event) {
                 // notify controller
                 _this._mouseenterFilter.notify('road-facing');
             });
-            this._elements.bottomFilterContainer.on('mouseleave', '.road-facing-filter-button', function (event) {
+            this._elements.bottomFilterContainer.on('mouseleave', '.road-facing-filter-button div', function (event) {
                 // notify controller
                 _this._mouseleaveFilter.notify('');
 
