@@ -107,8 +107,8 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         env: 'dev',
-                        cdn: '/4d-view/',
-                        baseHref: '/4d-view/',
+                        cdn: '/',
+                        baseHref: '/',
                         ga: {
                             key: "UA-22638191-12",
                             gtmKey1: "GTM-W9KBLB",
@@ -224,8 +224,8 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            files: ['<%= jshint.files %>'],
-            tasks: ['jshint']
+            files: ['./scss/*.scss'],
+            tasks: ['compass']
         }
 
     });
@@ -241,6 +241,7 @@ module.exports = function(grunt) {
         'cssmin',
         'filerev',
         'clean:minified'
+
     ]);
 
     grunt.registerTask('obfuscator', function() {
@@ -255,7 +256,8 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', [
         'base',
-        'processhtml:local'
+        'processhtml:local',
+        'watch'
     ]);
 
     grunt.registerTask('test', [

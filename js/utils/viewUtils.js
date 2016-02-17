@@ -173,9 +173,8 @@ var viewUtils = (function() {
         },
         getPriceBreakupHtml: function(data, rotationdata, rootdata, showTnc) {
             var opCode = '';
-            var code = '<ul class="pricebreakup-tabs">' + '<li class="active"  data-type="pricebreakup">Price Breakup</li>' + '<li  data-type="paymentplan">Payment Plan</li>' + '</ul>' +
-                '<div class="unit-content-wrapper">' +
-                '<div class="payment-pic pricebreakup-tabs-content paymentplan ' + config.hideClass + '">';
+            var code = '<div class="unit-content-wrapper">' +
+                '<div class="payment-pic pricebreakup-tabs-content paymentplan"><h3>Price Breakup</h3>';
             if (rootdata.paymentPlanImage) {
                 code += '<img src="' + rootdata.paymentPlanImage + '" />';
             } else {
@@ -183,7 +182,7 @@ var viewUtils = (function() {
             }
 
             code += '</div>';
-            code += "<table class='base-table pricebreakup-tabs-content pricebreakup' cellpadding='0' cellspacing='0' border='0'>";
+            code += "<h3>Payment Plan</h3><table class='base-table pricebreakup-tabs-content pricebreakup' cellpadding='0' cellspacing='0' border='0'>";
             if (data.price) {
                 code += "<tr><td>BSP <span>(Basic Selling Price)</span></td><td class='right-align'>" + data.basePrice + "</td></tr>";
 
@@ -252,8 +251,25 @@ var viewUtils = (function() {
             return el;
         },
         showLoader: function(model, startAnimation) {
-            $('.loading-bar span').width('0%');
-            $('.loading-persentage').html('0%');
+
+            var canvas = document.getElementById('loading-circle');
+            var context = canvas.getContext('2d');
+            var x = canvas.width / 2;
+            var y = canvas.height / 2;
+            var radius = 85;
+            var circ = Math.PI * 2;
+            var quart = Math.PI / 2;
+
+            function animate(current) {
+                context.lineWidth = 2;
+                context.strokeStyle = '#d36242';
+
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.beginPath();
+                context.arc(x, y, radius, -(quart), ((circ) * current) - quart, false);
+                context.stroke();
+            }
+
             $('.show-loading').show();
             var percentCounter = 0,
                 count = 0,
@@ -270,12 +286,14 @@ var viewUtils = (function() {
                     .load(function() {
                         count++;
                         percentCounter = (count / arrayOfImageUrls.length) * 100; //set the percentCounter after this image has loaded
-                        var percentage = Math.floor(percentCounter) + '%';
-                        $('.loading-bar span').width(percentage);
-                        $('.loading-persentage').html(percentage);
+                        var percentage = Math.floor(percentCounter);
+                        animate(percentage /100);
+                        $('.ldr span').html(percentage + '%');
                         if (percentCounter == 100) {
-                            $('.show-loading').hide();
                             startAnimation(model);
+                            setTimeout(function(){
+                                $('.show-loading').hide();
+                            },100);
                         }
                     });
             });

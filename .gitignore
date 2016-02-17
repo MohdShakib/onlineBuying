@@ -1,6 +1,7 @@
 .DS_Store
 node_modules/
-css/style-all.*
+css/*.css
 js/script-all.*
 vendors/vendors-all.*
 .sass-cache/
+.idea/

@@ -28,7 +28,7 @@ var config = (function() {
 
         // Variables
         towerRotationSpeed: 100, // delay between 2 consecutive frames in miliseconds
-        towerMenuItemHeight: 44,
+        towerMenuItemHeight: 90,
         maxShortlistCount: 6,
         tawkApiId: 'tawk_55e5498bfc2b363371225aaa',
         errorMsg: 'Something went wrong. Please contact +91-20395-20918 for assistance.',
@@ -130,7 +130,10 @@ var config = (function() {
 
         //google map view
         initialZoomLevel: 17,
+        maxZoomLevel: 18,
         openProjectRadius: 200,
+        nearbySearchDistance: 3000,
+        nearbySearchAmenities: ['hospital','school','shopping_mall','grocery_or_supermarket','gas_station','doctor','department_store'],
 
         // Towerselected
         imgContainerId: 'img-container',
@@ -153,7 +156,7 @@ var config = (function() {
             price: 'price-option',
             selectedClass: 'selected',
             resetClass: 'reset-filters',
-            floorInterval: 3,
+            floorInterval: 6,
             priceInterval: 1000000
         },
 
