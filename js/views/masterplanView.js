@@ -603,12 +603,11 @@ var MasterplanView = (function () {
             });
         },
         // filter methods
-        applyFilter: function (filter) {
+        applyFilter: function (filter , isTowerMouseLeave) {
             var _this = this;
             isClicked = true;
             filter = filter || curruntFilter;
             var filterClass = '';
-            $('img.' + config.imgContainerClass).stop().fadeTo("0", 0.25, function () {});
             $('.bottom-filter-container .tower-filter-wrap').addClass('slide-out');
             $('.bottom-filter-container .after-filter-apply').addClass('slide-in');
             $('.filter-active').removeClass('filter-active');
@@ -621,12 +620,24 @@ var MasterplanView = (function () {
                     allPolygon[j].classList.add('deactive');
                 }
                 var filteredTower = [];
+                var skipHideList = [];
                 for (var i = 0; i < filteredPolygon.length; i++) {
                     filteredPolygon[i].classList.remove('deactive');
                     filteredTower.push(filteredPolygon[i].attributes[2].nodeValue);
                     var imageid = filteredPolygon[i].id.split('-')[0];
-                    var targetImage = $('img#' + imageid);
-                    targetImage.fadeTo("0", 1, function () {});
+                    skipHideList.push(imageid);
+                }
+                var allTowerList = $('img.' + config.imgContainerClass);
+                for(var towerIndex=0;towerIndex<allTowerList.length;towerIndex++){
+                    var imageid = allTowerList[towerIndex].id.split('-')[0];
+                    if(!isTowerMouseLeave && skipHideList.indexOf(imageid) < 0){
+                        var targetImage = $('img#' + imageid);
+                        targetImage.fadeTo("0", 0.25, function () {});
+                    }
+                    if(isTowerMouseLeave && skipHideList.indexOf(imageid) > -1){
+                        var targetImage = $('img#' + imageid);
+                        targetImage.fadeTo("0", 1, function () {});
+                    }
                 }
                 _this.buildingMenuContainer(_this._model.getData(), filteredTower.sort());
             }
@@ -855,7 +866,7 @@ var MasterplanView = (function () {
             $('.detail-box').removeClass('show-details');
             $('.detail-box').addClass('hide-details');
             if(curruntFilter !== ''){
-                this.applyFilter(curruntFilter);
+                this.applyFilter(curruntFilter, true);
             }else{
                 $('img.' + config.imgContainerClass).stop().fadeTo("0", 1, function () {});
             }
