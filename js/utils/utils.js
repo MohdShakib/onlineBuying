@@ -26,7 +26,8 @@ var utils = (function() {
             var fields = $(form).find('input[type=text],input[type=password],input[type=email],input[type=checkbox]');
             var total_fields = fields.length;
 
-            var requiredMessage = 'This field is required';
+            var emailRequiredMessage = 'Email is required';
+            var mobileRequiredMessage = 'Mobile is required';
             var requiredCheckboxMessage = 'Please read and agree to Terms & Conditions';
             var invalidEmailMessage = 'Invalid email address';
             var invalidNumberMessage = 'Invalid phone number';
@@ -52,10 +53,14 @@ var utils = (function() {
                 }
                 $(this_field).parent('div').removeClass('error');
 
-                if (isRequired && !value) {
+                if (isRequired && !value && type == 'email') {
                     validationFlag = false;
                     $(this_field).parent('div').addClass('error');
-                    $(this_field).siblings('.' + config.errorMsgClass).text(requiredMessage);
+                    $(this_field).siblings('.' + config.errorMsgClass).text(emailRequiredMessage);
+                } else if (isRequired && !value) {
+                    validationFlag = false;
+                    $(this_field).parent('div').addClass('error');
+                    $(this_field).siblings('.' + config.errorMsgClass).text(mobileRequiredMessage);
                 } else if (isRequired && type == 'checkbox' && !$(this_field).is(":checked")) {
                     validationFlag = false;
                     $(this_field).parent('div').addClass('error');

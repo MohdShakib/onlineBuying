@@ -9,6 +9,8 @@ var UnitplaninfoView = (function() {
 
     var containerMap = {
         'unitCloseContainer': '<div class="unit-close-container" id="' + config.closeUnitContainerId + '"></div>',
+        'unitHeaderContainer': '<div class="unit-header-container" id="unit-header-container"></div>',
+        'unitPriceContainer': '<div class="unit-price-container" id="unit-price-container"></div>',
         'unitMenuContainer': '<div class="unit-menu-container" id="unit-menu-container"></div>',
         'floorPlanMenuContainer': '<div class="floor-plan-menu-container fp-container fp2d-container fpwt-container ' + config.unitDataContainer + '" id="floor-plan-menu-container"></div>',
         'floorPlanContainer': '<div class="floor-plan-container fp-container ' + config.unitDataContainer + '" id="floor-plan-container"></div>',
@@ -28,6 +30,8 @@ var UnitplaninfoView = (function() {
     function getElements() {
         var elements = {
             'unitCloseContainer': $('#' + config.closeUnitContainerId),
+            'unitHeaderContainer': $('#unit-header-container'),
+            'unitPriceContainer': $('#unit-price-container'),
             'unitMenuContainer': $('#unit-menu-container'),
             'floorPlanMenuContainer': $('#floor-plan-menu-container'),
             'floorPlanContainer': $('#floor-plan-container'),
@@ -170,18 +174,11 @@ var UnitplaninfoView = (function() {
         unitViewTabs: function(data, rotationdata, rootdata) {
             var offerDiv = '';
 
-            if (!config.builderSetUp && data.discountDescription && data.discountDescription !== "") {
-                offerDiv = '<div class="special-offers"><span></span><p>' + data.discountDescription + '</p></div>';
-            }
-
             var htmlCode = offerDiv,
-                selectedClass = data.shortListed ? 'selected' : '',
                 link = rootdata.baseUrl + '/' + data.towerIdentifier + '/' + rotationdata.rotationAngle + '/' + data.unitIdentifier + '/booking';
-            htmlCode += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
-            htmlCode += '<a><span class="icon icon-heart fs26 heart-clone"><label></label></span><p class="transition click-txt"></p><p class="shortlisted" style="display:none;"></p></a></div>';
             if (data.bookingStatus == 'Available' && rootdata.fairEnabled && !config.builderSetUp) {
                 htmlCode += '<div class="book-now"><a  data-url="' + link + '">Book Now</a>';
-                htmlCode += '<span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(data.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
+                htmlCode += '<span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(data.bookingAmount) + '/- (No Cancellation Charges)</span>';
             }
             else if (data.bookingStatus == 'Available' && !rootdata.fairEnabled && !config.builderSetUp) {
                 htmlCode += '<div class="book-now"><a  data-url="' + link + '">Proceed</a>';
@@ -207,11 +204,45 @@ var UnitplaninfoView = (function() {
                 _this._bookingClick.notify(this); //this refers to element
             });
         },
+
         unitCloseContainer: function(data, rotationdata, rootdata) {
             var code = '<span class="icon icon-cross fs20"></span>';
             this._elements.unitCloseContainer.html(code);
             this.unitCloseContainerEvents();
         },
+
+        unitHeaderContainer: function(data, rotationdata, rootdata) {
+            var selectedClass = data.shortListed ? 'selected' : '';
+            var code = "<div class='header-item header-title'> " +
+                "<span>" + data.bedrooms + "BHK Apartment</span> " +
+                "- <span>" + data.size + " " + data.measure + "</span> " +
+                "<div class='floor-info'><span class='address'>" + data.listingAddress + "</span> <span>(" + data.floor + " Floor)</span></div></div>";
+                code += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
+                code += '<a><span class="icon icon-heart-1 heart-clone"></span><p class="click-txt"></p><p class="shortlisted" style="display:none;"></p></a></div>';
+            this._elements.unitHeaderContainer.html(code);
+        },
+
+        unitPriceContainer: function(data, rotationdata, rootdata) {
+            var code =  "<div class='price-wrap'><div class='unit-price fleft'>";
+
+                var price = utils.getReadablePriceInWord(data.price),
+                    discountedPrice = utils.getReadablePriceInWord(data.price - data.discount);
+
+                if(!config.builderSetUp){
+                    code += "<span class='big-size'><span class='icon icon-rupee fs16'></span> " + discountedPrice + "</span>";
+                    if (price != discountedPrice) {
+                        code += "<span class='total-amount'><span class='icon icon-rupee'></span>" + price + "</span>";
+                    }
+                }
+
+                code += "</div>";
+                if (!config.builderSetUp && data.discountDescription && data.discountDescription !== "") {
+                    code += '<div class="special-offers"><span><i class="icon icon-gift"></i> Deal</span> <p>' + data.discountDescription + '</p></div>';
+                }
+                code += "</div>";
+            this._elements.unitPriceContainer.html(code);
+        },
+
         unitCloseContainerEvents: function() {
             var _this = this;
             _this._elements.unitCloseContainer.off('click').on('click', function(event) {
@@ -223,29 +254,12 @@ var UnitplaninfoView = (function() {
             });
         },
         unitMenuContainer: function(data, rotationdata, rootdata) {
-            var code = "<div class='unit-header'><div class='unit-header-container'><div class='header-item header-title'> " +
-                "<span class='address'>" + data.listingAddress + "</span> " +
-                "&nbsp;&nbsp;<span>" + data.bedrooms + "BHK</span> " +
-                ", <span>" + data.size + " " + data.measure + "</span> " +
-                ", <span>Floor " + data.floor + "</span> ";
-
-                var price = utils.getReadablePriceInWord(data.price),
-                    discountedPrice = utils.getReadablePriceInWord(data.price - data.discount);
-
-                if(!config.builderSetUp){
-                    code += "<span class='fright big-size'><span class='icon icon-rupee fs16'></span> " + discountedPrice + "</span>";
-                    if (price != discountedPrice) {
-                        code += "<span class='total-amount fright'><span class='icon icon-rupee'></span>" + price + "</span>";
-                    }
-                }
-
-                code += "</div>" +
-                "<div class='uit-header-menu'><div data-target='fp-container' data-menu='unitPlanMenu' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'><div class='item-icon-box'><span class='icon icon-unitplan fs18'></span></div>Unit Plan</div>" +
-                "<div data-target='cp-container' data-menu='floorPlanMenu' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon icon-clusterplan fs18'></span></div>Floor Plan</div>";
+            var code = "<div class='uit-header-menu'><div data-target='fp-container' data-menu='unitPlanMenu' class='header-item " + config.unitMenuLinkClass + " " + config.selectedClass + "'>Unit Plan</div>" +
+                "<div data-target='cp-container' data-menu='floorPlanMenu' class='header-item " + config.unitMenuLinkClass + "'>Floor Plan</div>";
                 if(rootdata.fairEnabled && !config.builderSetUp) {
-                  code += "<div data-target='pb-container' data-menu='unitPricingMenu' class='header-item " + config.unitMenuLinkClass + "'><div class='item-icon-box'><span class='icon icon-rupee fs18'></span></div>Pricing</div>";
+                  code += "<div data-target='pb-container' data-menu='unitPricingMenu' class='header-item " + config.unitMenuLinkClass + "'>Pricing</div>";
                 }
-                code += "<div data-target='sf-container' data-menu='unitAmenitiesMenu' class='header-item " + config.unitMenuLinkClass + " right'><div class='item-icon-box'><span class='icon icon-specification fs18'></span></div>Amenities</div></div></div></div>";
+                code += "<div data-target='sf-container' data-menu='unitAmenitiesMenu' class='header-item " + config.unitMenuLinkClass + "'>Amenities</div></div></div></div>";
             this._elements.unitMenuContainer.html(code);
             this.unitMenuContainerEvents();
         },
@@ -280,9 +294,9 @@ var UnitplaninfoView = (function() {
                 code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " eve-image' src='" + unitTypeData.eveningSunlightImageUrl + "'>";
 
                 code += "<div class='sunlight-menu'>";
-                code += "<div data-target='mor-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-morning fs16'></span><label>Morning View</label></div>";
-                code += "<div data-target='aft-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-afternoon fs16'></span><label>Noon View</label></div>";
-                code += "<div data-target='eve-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-night fs16'></span><label>Evening View</label></div></div>";
+                code += "<div data-target='mor-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-cloudsun-o'></span><label>Morning</label></div>";
+                code += "<div data-target='aft-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-sun-o'></span><label>Noon</label></div>";
+                code += "<div data-target='eve-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-cloudmoon-o'></span><label>Evening</label></div></div>";
 
             }
             if (isDuplex) {
@@ -307,13 +321,13 @@ var UnitplaninfoView = (function() {
             });
         },
         floorPlanMenuContainer: function(data, rotationdata, rootdata) {
-            var code = "<table class='floor-plan-menu' cellpadding='0' cellspacind='0' border='0'><tr>";
-            code += "<td data-target='fp-container' data-menu='3d-button' class='" + config.floorPlanMenuOptionClass + " " + config.selectedClass + " " + config.transitionClass + "' id='floor-plan'>3D</td>";
+            var code = "<div class='floor-plan-menu' cellpadding='0' cellspacind='0' border='0'><div>";
+            code += "<span data-target='fp-container' data-menu='3d-button' class='" + config.floorPlanMenuOptionClass + " " + config.selectedClass + " " + config.transitionClass + "' id='floor-plan'>3D</span>";
             if(data.walkthrough.video) {
-                code += "<td data-target='fpwt-container' data-menu='walkthrough-button' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + " right' id='walkthrough'>Video Tour</td>";
+                code += "<span data-target='fpwt-container' data-menu='walkthrough-button' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + " right' id='walkthrough'>Video Tour</span>";
             }
-            code += "<td data-target='fp2d-container' data-menu='2d-button' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + "' id='floor-plan2d'>2D</td>";
-            code += "</tr></table>";
+            code += "<span data-target='fp2d-container' data-menu='2d-button' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + "' id='floor-plan2d'>2D</span>";
+            code += "</div></div>";
             this._elements.floorPlanMenuContainer.html(code);
             this.floorPlanMenuContainerEvents();
         },
@@ -467,7 +481,7 @@ var UnitplaninfoView = (function() {
                 var point = svgObj.svgPath.split(' ');
                 var position = "top:" + point[1] + "%; left:" + point[0] + "%;";
                 code += "<div id='" + svgId + "' data-top='" + point[1] + "' data-left='" + point[0] + "' class='" + config.amenityIconClass + "' style='" + position + "'><span class='icon icon-location'></span>";
-                code += "<div class='name'><span>" + svgObj.name + "</span></div>";
+                code += "<div class='name'><img class='amenity-img' src=" + svgObj.details + "><span>" + svgObj.name + "</span></div>";
                 code += "</div>";
             }
             this._elements.amenitiesContainer.html(code);
@@ -557,11 +571,8 @@ var UnitplaninfoView = (function() {
             }
         },
         specificationContainer: function(data, rotationdata, rootdata) {
-            var code = '<ul class="specification-tabs">' +
-                '<li class="active" data-type="project-amenities">Amenities</li>' +
-                '<li data-type="specifications">Specification</li>' +
-                '</ul><div class="unit-content-wrapper">' +
-                '<div class="project-amenities specification-tabs-content" >' +
+            var code = '<div class="unit-content-wrapper">' +
+                '<div class="project-amenities specification-tabs-content" ><h3>Amenities</h3>' +
                 '<ul>' +
                 '<li ' + this.getAmenityClass(rootdata, 'Gym') + '><span class="icon icon-gym"></span><label>Gymnasium</label></li>' +
                 '<li ' + this.getAmenityClass(rootdata, 'Swi') + '><span class="icon icon-swimming"></span><label>Swimming Pool</label></li>' +
@@ -577,7 +588,7 @@ var UnitplaninfoView = (function() {
                 '<li ' + this.getAmenityClass(rootdata, 'Caf') + '><span class="icon icon-cafe"></span><label>Cafeteria</label></li>' +
                 '</ul>' +
                 '<div class="clear-fix"></div></div>';
-            code += "<table class='base-table " + config.hideClass + " specification-tabs-content specifications'>";
+            code += "<h3>Specifications</h3><table class='base-table specification-tabs-content specifications'>";
             for (var category in rootdata.specifications) {
                 if (rootdata.specifications.hasOwnProperty(category)) {
                     var items = rootdata.specifications[category];

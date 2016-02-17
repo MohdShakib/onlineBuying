@@ -85,6 +85,22 @@ var MasterplanController = (function() {
                     _this._view.showGoogleMap(element);
                 },1500);
             });
+            this._view._applyfilter.attach(function(sender, element){
+                _this._view.applyFilter(element);
+            });
+            this._view._removeFilter.attach(function(sender, element){
+                _this._view.removeFilter(element);
+            });
+            this._view._mouseenterFilter.attach(function(sender, element){
+                _this._view.mouseenterFilter(element );
+            });
+            this._view._mouseleaveFilter.attach(function(sender, element){
+                _this._view.mouseleaveFilter(element);
+            });
+
+            this._view._bottomFilterToggle.attach(function(sender, element){
+                _this._view.bottomFilterToggle(element);
+            });
         },
         generateTemplate: function() {
             this._view.buildView();

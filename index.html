@@ -90,28 +90,33 @@
 
         <!--project loading start here-->
     	<div class="show-loading" >
-            <div class="blur-bg"></div>
-            <div class="loading-view">
-                <div class="view-box">
-                <div class="view-photo"><img src="images/loader-project.jpg" alt="" /></div>
-                <h2><label class="project-title"></label>
-                    <span class="project-address"></span></h2>
-                <div class="loading-pro-details">
-                    <p class="project-desc"></p>
-                </div>
-                <div class="loading-bar-container" style="display:none;">
-                    <div class="four-d-icon">
-                        <p>Loading <span>'4D View'</span> Experience..</p>
+            <div class="top-view">
+                <div class="info">
+                    <h2>
+                        <label class="project-title"></label>
+                        <span class="project-address"></span>
+                    </h2>
+                    <div class="loading-txt hide">
                     </div>
-                    <div class="loading-bar">
-                        <span class="transition"></span>
+                </div>
+                <div class="building">
+                    <!-- <img src="images/building.png" alt=""> -->
+                    <div class="building-slider">
+                      <div class="slide1"><img src="images/building-slide-img1.png" alt=""></div>
+                      <div class="slide2"><img src="images/building-slide-img2.png" alt=""></div>
+                      <div class="slide3"><img src="images/building-slide-img3.png" alt=""></div>
                     </div>
-                    <div class="loading-persentage">0%</div>
                 </div>
-                <div class="loading-bar-container default-loading" >
-                    Loading, Please wait...
+                <div class="circleBlur"></div>
+            </div>
+            <div class="bot-view">
+                <div class="ldr">
+                    <canvas id="loading-circle"  class="loading-image-canvas" width="170" height="170"></canvas>
+                    <span>loading...</span>
                 </div>
-
+                <div class="txt">
+                    <strong>Interactive &amp; Immense 4D VIEW Experience...<br></strong>
+                    <span class="project-offer hide"></span>
                 </div>
             </div>
         </div>

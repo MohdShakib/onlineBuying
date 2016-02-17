@@ -224,8 +224,8 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            files: ['<%= jshint.files %>'],
-            tasks: ['jshint']
+            files: ['./scss/*.scss'],
+            tasks: ['compass']
         }
 
     });
@@ -240,7 +240,8 @@ module.exports = function(grunt) {
         'uglify:dist',
         'cssmin',
         'filerev',
-        'clean:minified'
+        'clean:minified',
+        'watch'
     ]);
 
     grunt.registerTask('obfuscator', function() {
