@@ -460,7 +460,7 @@ var getProjectData = (function() {
         projectData.address = projectDetail.address;
         projectData.bgImage = zipImagePath + config.backgroundImage;
         projectData.description = projectDetail.description;
-        projectData.totalEastFacingAvailableCount = 0;
+        projectData.totalEastFacingAvailableCount = 0;         // this is use for track east facing filter, not in use in current filters
         // projectData.fairEnabled = projectDetail.hasPrimaryExpandedListing ==  3 ? false : true;
         projectData.fairEnabled = true;
 
