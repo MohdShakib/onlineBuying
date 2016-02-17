@@ -240,8 +240,8 @@ module.exports = function(grunt) {
         'uglify:dist',
         'cssmin',
         'filerev',
-        'clean:minified',
-        'watch'
+        'clean:minified'
+
     ]);
 
     grunt.registerTask('obfuscator', function() {
@@ -256,7 +256,8 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', [
         'base',
-        'processhtml:local'
+        'processhtml:local',
+        'watch'
     ]);
 
     grunt.registerTask('test', [
