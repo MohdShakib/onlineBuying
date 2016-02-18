@@ -514,12 +514,6 @@ var TowerselectedView = (function() {
         },
         filterMenuContainer: function(data, rootdata) {
             var url = rootdata.baseUrl;
-            var filterdata = this._model.getSelectedFiltersData();
-            var bhkFiltersData = filterdata.bhk,
-                floorFiltersData = filterdata.floor,
-                entranceFiltersData = filterdata.entrance,
-                priceFiltersData = filterdata.price;
-
             var code = "<table><tr><td class='menu-header menu-icon transition go-back'><a><span class='icon icon-arrow_left'></span></a></td></tr>"; //href='#"+url+"'
             code += "</table>";
             this._elements.filterMenuContainer.html(code);
@@ -813,6 +807,7 @@ var TowerselectedView = (function() {
             $('.bottom-filter-wrapper').addClass('show-up');
             this._elements.bottomFilterContainer.html(code);
             this.bottomFilterContainerEvents();
+            this.updateFilterCount();
         },
         bottomFilterContainerEvents: function () {
             var _this = this;
