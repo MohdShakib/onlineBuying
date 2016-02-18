@@ -80,6 +80,8 @@ var MasterplanController = (function() {
                 _this._view._elements.buildingMenuContainer.hide();
                 _this._view._elements.openGoogleMapView.hide();
                 _this._view._elements.cloudContainer.hide();
+                $('.bottom-filter-wrapper').removeClass('show-up');
+                $('.bottom-filter-wrapper').addClass('show-bottom');
                 element.map.setZoom(config.initialZoomLevel);
                 setTimeout(function(){
                     _this._view.showGoogleMap(element);

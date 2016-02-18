@@ -233,6 +233,7 @@ var MasterplanView = (function () {
             //elements.map.setZoom(config.maxZoomLevel);
             this._elements.googleMapContainer.parent().css('z-index', '-10');     //do this using class
             setTimeout(function () {
+                $('.bottom-filter-wrapper').removeClass('show-bottom');
                 $('.bottom-filter-wrapper').addClass('show-up');
                 _this._elements.amenitiesContainer.show();
                 _this._elements.carAnimation.show();
@@ -245,7 +246,6 @@ var MasterplanView = (function () {
         // to show the google map view
         showGoogleMap: function (elements) {
             this._elements.googleMapContainer.parent().css('z-index', '100001');     //do this using class
-            $('.bottom-filter-wrapper').removeClass('show-up');
             this._elements.openGoogleMapView.hide();
             //elements.map.setZoom(config.initialZoomLevel);
             elements.visible = true;
@@ -823,7 +823,6 @@ var MasterplanView = (function () {
                 code += "</div>";
 
             this._elements.bottomFilterContainer.html(code);
-            this.bottomFilterContainerEvents();
         },
         bottomFilterToggle: function (element){
             if($('.bottom-filter-wrapper').hasClass('show-up')){
