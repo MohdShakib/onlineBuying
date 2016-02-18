@@ -140,7 +140,7 @@ var TowerselectedView = (function() {
                 });
             }, 700);
 
-            viewUtils.showNotificationTooltip('Click on unit spot <span class="pointer"></span> to view its floor plan');
+            //viewUtils.showNotificationTooltip('Click on unit spot <span class="pointer"></span> to view its floor plan');
         },
         displayWithoutAnimation: function(fromUnitInfoView) {
             // lazy load rotation images
@@ -166,7 +166,7 @@ var TowerselectedView = (function() {
                 bottom: '0px'
             });
 
-            viewUtils.showNotificationTooltip('Click on unit spot <span class="pointer"></span> to view its floor plan');
+            //viewUtils.showNotificationTooltip('Click on unit spot <span class="pointer"></span> to view its floor plan');
         },
         overviewImgContainer: function(data, rootdata) {
             var code = "<img src='" + data.image_url + "'/>";
@@ -778,6 +778,7 @@ var TowerselectedView = (function() {
 
             code += "<div class='tower-filter-wrap transition'><div class='filter-wrap transition unit-filter'>";
 
+            code += "<div class='filter left-text transition'><div class=''><p>Filters</p></div></div>";
             code += "<div class='filter budget-filter-button transition'><div class='ico-wrap transition'><em></em><small class='budget-tick transition'><i class='icon icon-tick'></i></small></div><div></div><span>Budget</span></div>";
             code += "<div class='filter bedroom-filter-button transition'><div class='ico-wrap transition'><em></em><small class='bedroom-tick transition'><i class='icon icon-tick'></i></small></div><span>Bedroom</span></div>";
             code += "<div class='filter floor-filter-button transition'><div class='ico-wrap transition'><em></em><small class='floor-tick transition'><i class='icon icon-tick'></i></small></div><span>Floor</span></div>";
@@ -785,7 +786,7 @@ var TowerselectedView = (function() {
             code += "</div></div>";
 
             code += "<div class='after-filter-apply transition'>";
-            code += "<div class='left'><div class='back-to-filter'><i class='icon icon-arrow_left'></i></div></div>";
+            code += "<div class='left'><div class='back-to-filter'><i class='icon icon-arrow_left'></i><span>Filters</span></div></div>";
             code += "<div class='center'><div class='filter-wrap'><div class='item'>";
             code += '<div class="tower-menu-container floor-filters-wrap" id="inside-tower-menu-container">';
 // Code for floor options

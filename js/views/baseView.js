@@ -403,7 +403,7 @@ var BaseView = (function() {
                 '       </form>' +
                 '   </div>' +
                 '   <div class="compare-box">' +
-                '       <p>Shortlisted Units are listed below</p>' +
+                '       <p id="shortlisted-head"></p>' +
                 '       <div class="unit-box fleft" id="' + config.shortListedUnitListId + '"></div>' +
                 '       <div class="clear-fix"></div>' +
                 '       <div id="' + config.unitCompareButtonId + '" class="submit"><input type="submit" />Compare Unit Plans</div>' +

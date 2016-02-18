@@ -323,6 +323,11 @@ var utils = (function() {
             if (length > 1) {
                 $('#' + config.unitCompareButtonId).removeClass('disable');
             }
+            if (length > 0) {
+                $('#shortlisted-head').html('Shortlisted Units are listed below');
+            }else{
+                $('#shortlisted-head').html('');
+            }
 
             $('#' + config.shortListedUnitListId).html(htmlCode);
             $('#' + config.likeCountId).html(length);
