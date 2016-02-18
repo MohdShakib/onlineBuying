@@ -55,11 +55,11 @@ var BookingView = (function() {
         },
         "674457": { // artha neo
             ivrsData : "+91-7676888222",
-            cancellationEnabled : true
+            cancellationEnabled : false
         },
         "668243": { // artha serene
             ivrsData : "+91-7676888222",
-            cancellationEnabled : true
+            cancellationEnabled : false
         }
     };
 
