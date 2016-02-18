@@ -140,7 +140,7 @@ var TowerselectedView = (function() {
                 });
             }, 700);
 
-            viewUtils.showNotificationTooltip('Click on unit spot <span class="pointer"></span> to view its floor plan');
+            //viewUtils.showNotificationTooltip('Click on unit spot <span class="pointer"></span> to view its floor plan');
         },
         displayWithoutAnimation: function(fromUnitInfoView) {
             // lazy load rotation images
@@ -166,7 +166,7 @@ var TowerselectedView = (function() {
                 bottom: '0px'
             });
 
-            viewUtils.showNotificationTooltip('Click on unit spot <span class="pointer"></span> to view its floor plan');
+            //viewUtils.showNotificationTooltip('Click on unit spot <span class="pointer"></span> to view its floor plan');
         },
         overviewImgContainer: function(data, rootdata) {
             var code = "<img src='" + data.image_url + "'/>";

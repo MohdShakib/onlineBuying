@@ -17,7 +17,7 @@ var MasterplanView = (function () {
         'carAnimation': '<svg class="car-animation transition-left ' + config.dynamicResizeClass + '" id="car-animation" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'googleMapContainer': '<div class="map-container"><div id="google-map-container" class="google-map-container"></div></div>',
         'mapTooltip': '<div class="map-tooltip" id=map-tooltip></div>',
-        'openGoogleMapView': '<div id="open-google-map-view" class="open-google-map-btn"></div>',
+        'openGoogleMapView': '<div id="open-google-map-view" class="open-google-map-btn hide"></div>',
         'bottomFilterContainer': '<div class="bottom-filter-wrapper transition"><span class="toggle-arrow"></span><div id="bottom-filter-container" class="bottom-filter-container"></div>'
     };
 
@@ -303,10 +303,10 @@ var MasterplanView = (function () {
                 });
             }, 7000);
 
-            // Notification tooltip
-            setTimeout(function () {
-                viewUtils.showNotificationTooltip('Click on a tower to explore further');
-            }, 9000);
+            // Notification tooltip     //todo remove this code and related code of display notification if not required
+            //setTimeout(function () {
+            //    viewUtils.showNotificationTooltip('Click on a tower to explore further');
+            //}, 9000);
 
             // bottom container
             setTimeout(function () {
@@ -353,7 +353,7 @@ var MasterplanView = (function () {
                 bottom: '0px'
             });
 
-            viewUtils.showNotificationTooltip('Click on a tower to explore further');
+            //viewUtils.showNotificationTooltip('Click on a tower to explore further');
         },
         dynamicResizeContainers: function () {
             utils.defaultDynamicResizeContainers();
