@@ -100,7 +100,7 @@ var MasterplanView = (function () {
             this._elements = getElements();
         },
         renderInitialData: function (data) {
-            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '' : '<a href="https://www.proptiger.com/' + data.projectUrl + '" target="_blank">') + data.builderName + ' ' + data.projectName + (config.builderSetUp ? '' : '</a>');
+            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '' : '<a href="' + data.baseUrl + '">') + data.builderName + ' ' + data.projectName + (config.builderSetUp ? '' : '</a>');
             document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
         },

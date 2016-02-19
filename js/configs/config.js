@@ -40,6 +40,8 @@ var config = (function() {
         backgroundImage: 'masterplan.jpg',
         projectDetail: {
             titleId: "project-title",
+            towerId: "project-tower",
+            unitId: "project-unit",
             addressId: "project-address",
             availabilityCountId: "project-count"
         },

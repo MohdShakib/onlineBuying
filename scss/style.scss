@@ -18,9 +18,12 @@ header {
 	-o-border-radius:50%;
 	-webkit-border-radius:50%;
 }
-header .project-title a, header .project-title{
-	font-size: 18px;
+header .project-title a, header .project-title, header .project-tower a, header .project-tower, header .project-unit {
+	font-size: 16px;
 	color: #FFF;
+	&.project-unit{
+		text-transform: uppercase;
+	}
 }
 header .project-count {
 	color: $availableColor;
