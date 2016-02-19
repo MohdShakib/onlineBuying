@@ -122,6 +122,9 @@ var UnitplaninfoView = (function() {
 
                 // hide notification tool tip
                 $('.' + config.notificationTooltipClass).hide();
+
+                document.getElementById(config.projectDetail.towerId).innerHTML = (config.builderSetUp ? '':'<a href="' + rootdata.baseUrl + "/"+ data.towerIdentifier+'">') + rootdata.towers[data.towerIdentifier].longName + (config.builderSetUp ? '':'</a> &nbsp &gt');
+                document.getElementById(config.projectDetail.unitId).innerHTML = data.unitIdentifier;
             }
         },
         destroyView: function() {

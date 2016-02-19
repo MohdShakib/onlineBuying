@@ -102,8 +102,10 @@ var TowerselectedView = (function() {
             }, 500);
         },
         renderInitialData: function(data, rootdata) {
-            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '':'<a href="https://www.proptiger.com/' + rootdata.projectUrl + '" target="_blank">') + rootdata.builderName + ' ' + rootdata.projectName + (config.builderSetUp ? '':'</a>');
-            document.getElementById(config.projectDetail.addressId).innerHTML = data.longName;
+            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '':'<a href="' + rootdata.baseUrl + '">') + rootdata.builderName + ' ' + rootdata.projectName + (config.builderSetUp ? '':'</a> &nbsp &gt');
+            document.getElementById(config.projectDetail.towerId).innerHTML = data.longName;
+            document.getElementById(config.projectDetail.unitId).innerHTML = '';
+            document.getElementById(config.projectDetail.addressId).innerHTML = '';
             if(!config.builderSetUp){
                 document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '<label class="count"></label> Available';
                 this.updateAvailableCount();
