@@ -346,7 +346,7 @@ ellipse.tower-unit-svg-selected-path {
 
 .bottom-filter-wrapper {
 	width: 750px;
-	height: 110px;
+	height: 95px;
 	bottom: -135px;
 	left: 50%;
 	margin-left: -375px;
@@ -400,14 +400,14 @@ ellipse.tower-unit-svg-selected-path {
 	}
 
 	&.show-bottom {
-		bottom: -100px;
+		bottom: -87px;
 	}
 }
 
 .bottom-filter-container{
 	width: 100%;
-	height: 110px;
-	padding: 15px 0;
+	height: 100px;
+	padding: 8px 0;
 	color: #fff;
 	text-align: center;
 	box-sizing: border-box;
@@ -616,19 +616,29 @@ ellipse.tower-unit-svg-selected-path {
 		line-height: 100px;
 		border-right: 1px solid rgba(255, 255, 255, .6);
 		box-sizing: border-box;
+		&.master-plan-tower-filter{
+			width: 10%;
+		}
 	}
+
 	.center {
-		width: 70%;
+		width: 65%;
 		float: left;
+		&.master-plan-tower-filter{
+			width: 70%;
+		}
 	}
+
 	.right {
 		position: relative;
 		float: left;
-		width: 15%;
+		width: 20%;
 		border-left: 1px solid rgba(255, 255, 255, .6);
 		box-sizing: border-box;
+		&.master-plan-tower-filter{
+			width: 20%;
+		}
 	}
-
 }
 
 

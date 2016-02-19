@@ -815,11 +815,11 @@ var MasterplanView = (function () {
                 code += "</div></div>";
 
                 code += "<div class='after-filter-apply transition'>";
-                code += "<div class='left'><div class='back-to-filter'><i class='icon icon-arrow_left'></i></div></div>";
-                code += "<div class='center'><div class='filter-wrap'><div class='filter item'>";
+                code += "<div class='left master-plan-tower-filter'><div class='back-to-filter'><i class='icon icon-arrow_left'></i></div></div>";
+                code += "<div class='center master-plan-tower-filter'><div class='filter-wrap'><div class='filter item'>";
                 code += '<div class="tower-menu-container master-page" id="inside-tower-menu-container">';
                 code += "</div></div></div></div>";
-                code += "<div class='right'></div>";
+                code += "<div class='right master-plan-tower-filter'></div>";
                 code += "</div>";
 
             this._elements.bottomFilterContainer.html(code);
