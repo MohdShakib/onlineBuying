@@ -876,44 +876,14 @@ var MasterplanView = (function () {
             if (!(data && data.unitInfo)) {
                 return;
             }
+            var countAvailabilityClass = data.totalAvailableCount>0 ? config.countAvailabilityClass.available : config.countAvailabilityClass.unavailable;
 
-            var tooltipClass = utils.getTooltipPosition({
-                pageX: left,
-                pageY: top,
-                unit: unit
-            });
-            tooltipClass = tooltipClass ? tooltipClass : 'bottom-right';
-
-            var availabilityClassSuffix = '-border-right';
-            if (tooltipClass == 'top-left' || tooltipClass == 'bottom-left') {
-                availabilityClassSuffix = '-border-left';
-            }
-
-            var towerCode = "",
-                dotClass = !data.isAvailable ? 'sold' : '',
-                bookingText = (data.bookingStatus == 'OnHold') ? 'On Hold' : 'Sold Out';
+            var towerCode = "";
             towerCode += "<div id='container-detail' class='tooltip-detail'>";
-            towerCode += "<div class='detail-box show-details'>" + "<div class='tooltip-title'><img width='100%' height='100%' src='images/" + data.displayImage + "' ></div>" + "<div class='line " + tooltipClass + "''>" + "<div class='dot-one'></div>" + "<div class='dot-two " + dotClass + "'></div>" + "<div class='detail-container master-details'>";
-            towerCode += "<div class='tolltip-tower-name'>" + data.longName + "</div>";
-            towerCode += "<table>";
-            if (!data.isAvailable) {
-                towerCode += "<tr><td colspan='2' class='" + config.availabilityClass.unavailable + "'>" + bookingText + "</td></tr>";
-            } else {
-                for (var j in data.unitInfo) {
-                    var aptType = data.unitInfo[j];
-                    var availabilityClass = config.availabilityClass.available + availabilityClassSuffix;
-                    var availabilityText = aptType.available + " Available";
-                    if (aptType.available === 0) {
-                        availabilityClass = config.availabilityClass.unavailable + availabilityClassSuffix;
-                        availabilityText = 'Sold Out';
-                    }
-                    towerCode += "<tr class='" + availabilityClass + "'>";
-                    towerCode += "<td>" + aptType.type + "</td>";
-                    towerCode += config.builderSetUp ? "<td>Apartment</td></tr>" : "<td>" + availabilityText + "</td></tr>";
-                }
-            }
-            towerCode += "</table>";
-            towerCode += "</div>" + "</div>" + "</div>";
+            towerCode += "<div class='detail-box show-details'> <div class='tooltip-title "+ countAvailabilityClass +"'>";
+            towerCode += "<img width='100%' height='100%' src='images/" + data.displayImage + "' >";
+            towerCode += "<span class='apt-available-count "+ countAvailabilityClass +"'>"+ data.totalAvailableCount;
+            towerCode += "</span></div></div></div>";
 
             if (this._elements && this._elements.towerDetailContainer) {
                 this._elements.towerDetailContainer.html(towerCode);

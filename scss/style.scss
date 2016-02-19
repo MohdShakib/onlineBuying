@@ -197,19 +197,39 @@ ellipse.tower-unit-svg-selected-path {
 	border-spacing: 0px;
 }
 .tooltip-detail .tooltip-title {
-	background: #333;
-	border: 1px solid #37b34a;
 	border-radius: 100%;
 	color: #CCC;
-	padding: 5px;
 	position: absolute;
-	width: 30px;
-	height: 30px;
+	width: 50px;
+	height: 50px;
 	line-height: 20px;
 	text-align: center;
 	font-size: 14px;
 	top: -20px;
 	left: -20px;
+	&.apt-available-count-color{
+		border: 2px solid $availableColor  !important;
+	}
+	&.apt-unavailable-count-color{
+		border: 2px solid $unavailableColor  !important;
+	}
+	.apt-available-count{
+		position: relative;
+		top: -60px;
+		left: 20px;
+		font-size: 13px;
+		padding: 4px;
+		right: -15px;
+		color: white;
+		border-radius: 10px;
+		font-weight: 600;
+		&.apt-available-count-color{
+			background: $availableColor  !important;
+		}
+		&.apt-unavailable-count-color{
+			background: $unavailableColor !important;
+		}
+	}
 }
 .tooltip-detail .detail-container {
 	background: #333;
@@ -233,9 +253,10 @@ ellipse.tower-unit-svg-selected-path {
 	.top-info {
 		padding: 15px 12px;
 		min-height: 23px;
-		.apt-available-color, .apt-unavailable-color {
+		&.apt-available-color, .apt-unavailable-color{
 			margin-top: 5px;
 		}
+
 	}
 	.floor-item {
 		font-size: 15px;

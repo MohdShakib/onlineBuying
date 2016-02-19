@@ -92,6 +92,10 @@ var config = (function() {
             available: 'apt-available',
             unavailable: 'apt-unavailable'
         },
+        countAvailabilityClass: {
+            available: 'apt-available-count-color',
+            unavailable: 'apt-unavailable-count-color'
+        },
         parentContainerId: "parent-container",
         mainContainerId: "main-container",
         baseContainerId: "base-container",
