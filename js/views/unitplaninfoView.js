@@ -224,7 +224,7 @@ var UnitplaninfoView = (function() {
             var selectedClass = data.shortListed ? 'selected' : '';
             var code = "<div class='header-item header-title'> " +
                 "<span>" + data.bedrooms + "BHK Apartment</span> " +
-                "- <span>" + data.size + " " + data.measure + "</span> " +
+                "- <span>" + utils.getReadablePrice(data.size) + " " + data.measure + "</span> " +
                 "<div class='floor-info'><span class='address'>" + data.listingAddress + "</span> <span>(" + data.floor + " Floor)</span></div></div>";
                 code += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
                 code += '<a><span class="icon icon-heart-1 heart-clone"></span><p class="click-txt"></p><p class="shortlisted" style="display:none;"></p></a></div>';
