@@ -740,50 +740,50 @@ var MasterplanView = (function () {
         },
         bottomFilterContainerEvents: function () {
             var _this = this;
-            this._elements.bottomFilterContainer.on('click', '.all-tower-button div', function (event) {
+            this._elements.bottomFilterContainer.on('click', '.all-tower-butto div', function (event) {
                 // notify controller
                 curruntFilter = '';
                 _this._applyfilter.notify(''); // this refers to element here
             });
 
-            this._elements.bottomFilterContainer.on('click', '.pool-facing-filter-button div', function (event) {
+            this._elements.bottomFilterContainer.on('click', '.pool-facing-filter-button:not(.disabled) div', function (event) {
                 // notify controller
                 curruntFilter = 'pool-facing';
                 _this._applyfilter.notify('pool-facing'); // this refers to element here
             });
-            this._elements.bottomFilterContainer.on('mouseenter', '.pool-facing-filter-button div', function (event) {
+            this._elements.bottomFilterContainer.on('mouseenter', '.pool-facing-filter-button:not(.disabled) div', function (event) {
                 // notify controller
                 _this._mouseenterFilter.notify('pool-facing');
             });
-            this._elements.bottomFilterContainer.on('mouseleave', '.pool-facing-filter-button div', function (event) {
+            this._elements.bottomFilterContainer.on('mouseleave', '.pool-facing-filter-button:not(.disabled) div', function (event) {
                 // notify controller
                 _this._mouseleaveFilter.notify('');
 
             });
-            this._elements.bottomFilterContainer.on('click', '.park-facing-filter-button div', function (event) {
+            this._elements.bottomFilterContainer.on('click', '.park-facing-filter-button:not(.disabled) div', function (event) {
                 // notify controller
                 curruntFilter = 'park-facing';
                 _this._applyfilter.notify('park-facing'); // this refers to element here
             });
-            this._elements.bottomFilterContainer.on('mouseenter', '.park-facing-filter-button div', function (event) {
+            this._elements.bottomFilterContainer.on('mouseenter', '.park-facing-filter-button:not(.disabled) div', function (event) {
                 // notify controller
                 _this._mouseenterFilter.notify('park-facing');
             });
-            this._elements.bottomFilterContainer.on('mouseleave', '.park-facing-filter-button div', function (event) {
+            this._elements.bottomFilterContainer.on('mouseleave', '.park-facing-filter-button:not(.disabled) div', function (event) {
                 // notify controller
                 _this._mouseleaveFilter.notify('');
 
             });
-            this._elements.bottomFilterContainer.on('click', '.road-facing-filter-button div', function (event) {
+            this._elements.bottomFilterContainer.on('click', '.road-facing-filter-button:not(.disabled) div', function (event) {
                 // notify controller
                 curruntFilter = 'road-facing';
                 _this._applyfilter.notify('road-facing'); // this refers to element here
             });
-            this._elements.bottomFilterContainer.on('mouseenter', '.road-facing-filter-button div', function (event) {
+            this._elements.bottomFilterContainer.on('mouseenter', '.road-facing-filter-button:not(.disabled) div', function (event) {
                 // notify controller
                 _this._mouseenterFilter.notify('road-facing');
             });
-            this._elements.bottomFilterContainer.on('mouseleave', '.road-facing-filter-button div', function (event) {
+            this._elements.bottomFilterContainer.on('mouseleave', '.road-facing-filter-button:not(.disabled) div', function (event) {
                 // notify controller
                 _this._mouseleaveFilter.notify('');
 
@@ -805,13 +805,16 @@ var MasterplanView = (function () {
                 poolFacing = $('.pool-facing').length,
                 parkFacing = $('.park-facing').length,
                 roadFacing = $('.road-facing').length,
+                poolFacingDIsabled = poolFacing == 0 ? 'disabled' : '',
+                parkFacingDIsabled = parkFacing == 0 ? 'disabled' : '',
+                roadFacingDIsabled = roadFacing == 0 ? 'disabled' : '',
                 code = "";
 
                 code += "<div class='tower-filter-wrap transition'><div class='filter-wrap transition tower-filter'>";
-                code += "<div class='filter all-tower-button transition'><div class='ico-wrap transition'><em></em></div><span>All Towers ("+ allTower+")</span></div>";
-                code += "<div class='filter pool-facing-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Pool Facing ("+ poolFacing+")</span></div>";
-                code += "<div class='filter park-facing-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Park Facing ("+ parkFacing+")</span></div>";
-                code += "<div class='filter road-facing-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Road Facing ("+ roadFacing+")</span></div>";
+                code += "<div class='filter all-tower-button transition '><div class='ico-wrap transition'><em></em></div><span>All Towers ("+ allTower+")</span></div>";
+                code += "<div class='filter pool-facing-filter-button transition " + poolFacingDIsabled + "'><div class='ico-wrap transition'><em></em></div><span>Pool Facing ("+ poolFacing+")</span></div>";
+                code += "<div class='filter park-facing-filter-button transition " + parkFacingDIsabled + "'><div class='ico-wrap transition'><em></em></div><span>Park Facing ("+ parkFacing+")</span></div>";
+                code += "<div class='filter road-facing-filter-button transition " + roadFacingDIsabled + "'><div class='ico-wrap transition'><em></em></div><span>Road Facing ("+ roadFacing+")</span></div>";
                 code += "</div></div>";
 
                 code += "<div class='after-filter-apply transition'>";
