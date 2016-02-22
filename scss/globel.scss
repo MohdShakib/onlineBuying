@@ -46,6 +46,9 @@ img{ border:0; outline:none;}
 }
 .icon{ display:inline-block !important; font-size:25px; position:relative;}
 
+.icon-location:before {
+  content: "\e61b";
+}
 .icon-gift:before {
     content: "\e903";
 }
@@ -168,9 +171,6 @@ img{ border:0; outline:none;}
 }
 .icon-morning:before {
     content: "\e61c";
-}
-.icon-location:before {
-    content: "\e61b";
 }
 .icon-jogging:before {
     content: "\e61a";
