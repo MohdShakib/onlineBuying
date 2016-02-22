@@ -558,9 +558,9 @@ var TowerselectedView = (function() {
             }
 
             if (filterExist) {
-                $('.reset-all-menu-item').removeClass('reset-all-inactive');
+                $('.reset-filter-button').removeClass('disabled');
             } else {
-                $('.reset-all-menu-item').addClass('reset-all-inactive');
+                $('.reset-filter-button').addClass('disabled');
             }
         },
         filterMenuContainerEvents: function() {
@@ -836,7 +836,7 @@ var TowerselectedView = (function() {
                 // notify controller
                 _this._filterApply.notify('floor'); // this refers to element here
             });
-            _this._elements.bottomFilterContainer.on('click', '.reset-filter-button div', function (event) {
+            _this._elements.bottomFilterContainer.on('click', '.reset-filter-button:not(.disabled) div', function (event) {
                 // notify controller
                 _this._resetFiltersClick.notify(this); // this refers to element here
             });
