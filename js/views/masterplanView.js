@@ -470,7 +470,7 @@ var MasterplanView = (function () {
                     "' id='" + towerIdentifier + "-menu' data-index='" + towerIdentifier +
                     "' data-imageid='" + tower.towerId +
                     "' data-url='" + towerUrl +
-                    "'><div class='img-wrap transition'><img src='images/"+tower.displayImage +"' ></div><span>"+ tower.longName+" ("+ tower.totalAvailableCount+")" +" </span></div></div>";
+                    "'><div class='img-wrap transition'><img src='"+tower.displayImage +"' ></div><span>"+ tower.longName+" ("+ tower.totalAvailableCount+")" +" </span></div></div>";
             }
             code += "</div></div></div></div>";
             code += "</div>";
@@ -884,7 +884,7 @@ var MasterplanView = (function () {
             var towerCode = "";
             towerCode += "<div id='container-detail' class='tooltip-detail'>";
             towerCode += "<div class='detail-box show-details'> <div class='tooltip-title "+ countAvailabilityClass +"'>";
-            towerCode += "<img width='100%' height='100%' src='images/" + data.displayImage + "' >";
+            towerCode += "<img width='100%' height='100%' src='" + data.displayImage + "' >";
             towerCode += "<span class='apt-available-count "+ countAvailabilityClass +"'>"+ data.totalAvailableCount;
             towerCode += "</span></div></div></div>";
 
