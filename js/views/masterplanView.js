@@ -740,7 +740,7 @@ var MasterplanView = (function () {
         },
         bottomFilterContainerEvents: function () {
             var _this = this;
-            this._elements.bottomFilterContainer.on('click', '.all-tower-butto div', function (event) {
+            this._elements.bottomFilterContainer.on('click', '.all-tower-button div', function (event) {
                 // notify controller
                 curruntFilter = '';
                 _this._applyfilter.notify(''); // this refers to element here
