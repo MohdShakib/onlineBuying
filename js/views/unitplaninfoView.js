@@ -97,6 +97,9 @@ var UnitplaninfoView = (function() {
         },
         initView: function(data, rotationdata, rootdata) {
             if (!$('#' + config.selectedUnitContainerId).length) {
+                $('.bottom-filter-wrapper').removeClass('show-up');
+                $('.bottom-filter-wrapper').removeClass('show-bottom');
+
                 $('#' + config.mainContainerId).append("<div class='selected-unit-container' id='" + config.selectedUnitContainerId + "'></div>");
                 // Add resize event listener
                 utils.addResizeEventListener(this.dynamicResizeContainers);
@@ -149,6 +152,9 @@ var UnitplaninfoView = (function() {
             // show notification tool tip
             viewUtils.removeNotificationTooltip();
             $('.' + config.notificationTooltipClass).show();
+            $('.bottom-filter-wrapper').removeClass('show-bottom');
+            $('.bottom-filter-wrapper').addClass('show-up');
+
         },
         dynamicResizeContainers: function() {
             var parentContainerHeight = (window.innerHeight > config.imageResolution.height ? config.imageResolution.height : window.innerHeight),
