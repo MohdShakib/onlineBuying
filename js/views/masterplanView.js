@@ -808,9 +808,9 @@ var MasterplanView = (function () {
                 poolFacing = $('.pool-facing').length,
                 parkFacing = $('.park-facing').length,
                 roadFacing = $('.road-facing').length,
-                poolFacingDIsabled = poolFacing == 0 ? 'disabled' : '',
-                parkFacingDIsabled = parkFacing == 0 ? 'disabled' : '',
-                roadFacingDIsabled = roadFacing == 0 ? 'disabled' : '',
+                poolFacingDIsabled = poolFacing === 0 ? 'disabled' : '',
+                parkFacingDIsabled = parkFacing === 0 ? 'disabled' : '',
+                roadFacingDIsabled = roadFacing === 0 ? 'disabled' : '',
                 code = "";
 
                 code += "<div class='tower-filter-wrap transition'><div class='filter-wrap transition tower-filter'>";
