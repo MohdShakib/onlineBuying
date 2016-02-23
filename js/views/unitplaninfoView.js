@@ -97,6 +97,9 @@ var UnitplaninfoView = (function() {
         },
         initView: function(data, rotationdata, rootdata) {
             if (!$('#' + config.selectedUnitContainerId).length) {
+                $('.bottom-filter-wrapper').removeClass('show-up');
+                $('.bottom-filter-wrapper').removeClass('show-bottom');
+
                 $('#' + config.mainContainerId).append("<div class='selected-unit-container' id='" + config.selectedUnitContainerId + "'></div>");
                 // Add resize event listener
                 utils.addResizeEventListener(this.dynamicResizeContainers);
@@ -149,6 +152,9 @@ var UnitplaninfoView = (function() {
             // show notification tool tip
             viewUtils.removeNotificationTooltip();
             $('.' + config.notificationTooltipClass).show();
+            $('.bottom-filter-wrapper').removeClass('show-bottom');
+            $('.bottom-filter-wrapper').addClass('show-up');
+
         },
         dynamicResizeContainers: function() {
             var parentContainerHeight = (window.innerHeight > config.imageResolution.height ? config.imageResolution.height : window.innerHeight),
@@ -218,7 +224,7 @@ var UnitplaninfoView = (function() {
             var selectedClass = data.shortListed ? 'selected' : '';
             var code = "<div class='header-item header-title'> " +
                 "<span>" + data.bedrooms + "BHK Apartment</span> " +
-                "- <span>" + data.size + " " + data.measure + "</span> " +
+                "- <span>" + utils.getReadablePrice(data.size) + " " + data.measure + "</span> " +
                 "<div class='floor-info'><span class='address'>" + data.listingAddress + "</span> <span>(" + data.floor + " Floor)</span></div></div>";
                 code += '<div class="like-box ' + selectedClass + ' ' + data.unitUniqueIdentifier + '-like-box">';
                 code += '<a><span class="icon icon-heart-1 heart-clone"></span><p class="click-txt"></p><p class="shortlisted" style="display:none;"></p></a></div>';
@@ -297,9 +303,12 @@ var UnitplaninfoView = (function() {
                 code += "<img class='fullView " + config.sunlightImageClass + " " + config.hideClass + " eve-image' src='" + unitTypeData.eveningSunlightImageUrl + "'>";
 
                 code += "<div class='sunlight-menu'>";
-                code += "<div data-target='mor-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-cloudsun-o'></span><label>Morning</label></div>";
-                code += "<div data-target='aft-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-sun-o'></span><label>Noon</label></div>";
-                code += "<div data-target='eve-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-cloudmoon-o'></span><label>Evening</label></div></div>";
+                code += "<div data-target='mor-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-cloudsun-o opaque'></span><span class='icon-cloudsun-fill filled'>";
+                code += "<span class='path1'></span><span class='path2'></span><span class='path3'></span><span class='path4'></span><span class='path5'></span></span><label>Morning</label></div>";
+                code += "<div data-target='aft-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-sun-o opaque'></span><span class='icon-sun-fill filled'>";
+                code += "<span class='path1'></span><span class='path2'></span><span class='path3'></span><span class='path4'></span></span><label>Noon</label></div>";
+                code += "<div data-target='eve-image' class='" + config.sunlightMenuOptionClass + " " + config.transitionClass + "'><span class='icon icon-cloudmoon-o opaque'></span><span class='icon-cloudmoon-fill filled'>";
+                code += "<span class='path1'></span><span class='path2'></span><span class='path3'></span><span class='path4'></span><span class='path5'></span></span><label>Evening</label></div></div>";
 
             }
             if (isDuplex) {
