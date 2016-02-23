@@ -14,11 +14,13 @@ var TowerselectedView = (function() {
         'towerRotationContainer': '<div class="tower-rotation-container" id="' + config.towerRotationContainerId + '" style="display:none;"></div>',
         'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>',
         'minMapView': '<div id="minMap"></div>',
-        'bottomFilterContainer': '<div class="bottom-filter-wrapper transition"><span class="toggle-arrow"></span><div id="bottom-filter-container" class="bottom-filter-container"></div>'
+        'bottomFilterContainer': '<div class="bottom-filter-wrapper transition"><span class="toggle-arrow"></span><div id="bottom-filter-container" class="bottom-filter-container"></div></div>',
+        'helpContainer': '<div id="helpContainer" class="help-container"></div>'
     };
 
     function getElements() {
         var elements = {
+            'helpContainer': $('#helpContainer'),
             'towerImgContainer': $('#img-container'),
             'towerSvgContainer': $('#svg-container'),
             'towerDetailContainer': $('#tower-detail-container'),
@@ -767,6 +769,16 @@ var TowerselectedView = (function() {
         },
         minMapToggle: function(element) {
             $(element).toggleClass('hideMinMap');
+        },
+        helpContainer: function (data, rootdata) {
+            console.log('>>>>>>>>>>>>>>>');
+            var helpContainerCode = "<h1>hello</h1>";
+            this._elements.helpContainer.html(helpContainerCode);
+            this.helpContainerEvents();
+        },
+        helpContainerEvents: function () {
+            // write event here
+
         },
         bottomFilterContainer: function (data, rootdata) {
             var url = rootdata.baseUrl;
