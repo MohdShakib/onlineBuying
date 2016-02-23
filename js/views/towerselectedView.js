@@ -15,7 +15,7 @@ var TowerselectedView = (function() {
         'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>',
         'minMapView': '<div id="minMap"></div>',
         'bottomFilterContainer': '<div class="bottom-filter-wrapper transition"><span class="toggle-arrow"></span><div id="bottom-filter-container" class="bottom-filter-container"></div></div>',
-        'helpContainer': '<div id="helpContainer" class="help-container"></div>'
+        'helpContainer': '<div id="helpContainer" class="help-container hide transition"></div>'
     };
 
     function getElements() {
@@ -771,8 +771,8 @@ var TowerselectedView = (function() {
             $(element).toggleClass('hideMinMap');
         },
         helpContainer: function (data, rootdata) {
-            console.log('>>>>>>>>>>>>>>>');
-            var helpContainerCode = "<h1>hello</h1>";
+            //console.log('>>>>>>>>>>>>>>>');
+            var helpContainerCode = "<div class='help-info transition'><img src='images/help-screen-img.png' alt='' /></div>";
             this._elements.helpContainer.html(helpContainerCode);
             this.helpContainerEvents();
         },
