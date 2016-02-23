@@ -46,6 +46,76 @@ img{ border:0; outline:none;}
 }
 .icon{ display:inline-block !important; font-size:25px; position:relative;}
 
+.icon-location:before {
+    content: "\e61b";
+}
+.icon-sun-fill .path1:before {
+    content: "\e904";
+    color: rgb(49, 78, 85);
+}
+.icon-sun-fill .path2:before {
+    content: "\e905";
+    margin-left: -1em;
+    color: rgb(242, 133, 68);
+}
+.icon-sun-fill .path3:before {
+    content: "\e906";
+    margin-left: -1em;
+    color: rgb(49, 78, 85);
+}
+.icon-sun-fill .path4:before {
+    content: "\e907";
+    margin-left: -1em;
+    color: rgb(49, 78, 85);
+}
+.icon-cloudsun-fill .path1:before {
+    content: "\e908";
+    color: rgb(242, 133, 68);
+}
+.icon-cloudsun-fill .path2:before {
+    content: "\e909";
+    margin-left: -1.486328125em;
+    color: rgb(49, 78, 85);
+}
+.icon-cloudsun-fill .path3:before {
+    content: "\e90a";
+    margin-left: -1.486328125em;
+    color: rgb(129, 164, 227);
+}
+.icon-cloudsun-fill .path4:before {
+    content: "\e90b";
+    margin-left: -1.486328125em;
+    color: rgb(49, 78, 85);
+}
+.icon-cloudsun-fill .path5:before {
+    content: "\e90c";
+    margin-left: -1.486328125em;
+    color: rgb(49, 78, 85);
+}
+.icon-cloudmoon-fill .path1:before {
+    content: "\e90d";
+    color: rgb(242, 133, 68);
+}
+.icon-cloudmoon-fill .path2:before {
+    content: "\e90e";
+    margin-left: -1.2275390625em;
+    color: rgb(49, 78, 85);
+}
+.icon-cloudmoon-fill .path3:before {
+    content: "\e90f";
+    margin-left: -1.2275390625em;
+    color: rgb(129, 164, 227);
+}
+.icon-cloudmoon-fill .path4:before {
+    content: "\e910";
+    margin-left: -1.2275390625em;
+    color: rgb(49, 78, 85);
+}
+.icon-cloudmoon-fill .path5:before {
+    content: "\e911";
+    margin-left: -1.2275390625em;
+    color: rgb(49, 78, 85);
+}
 .icon-gift:before {
     content: "\e903";
 }
@@ -168,9 +238,6 @@ img{ border:0; outline:none;}
 }
 .icon-morning:before {
     content: "\e61c";
-}
-.icon-location:before {
-    content: "\e61b";
 }
 .icon-jogging:before {
     content: "\e61a";

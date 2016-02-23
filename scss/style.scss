@@ -741,8 +741,8 @@ ellipse.tower-unit-svg-selected-path {
 .master-menu .menu-items{ padding:0 15px 15px 20px; box-sizing:border-box; position:relative; width: 505px; }
 .master-menu .menu-items.scroll-dwn{ padding-top:20px;}
 .tower-menu-container .menu-items .menu-scroll{ height:100%;}
-.scroll-box{ padding-left: 5px; width:99%; overflow:hidden; height: 80px; box-sizing: border-box;}
-.scrollup-menu{ z-index:99; color:#fff; cursor:pointer; position:absolute; width:30px; height:30px; line-height:30px; left:0px; top: 25px; transform: rotate(90deg);}
+.scroll-box{ padding-left: 5px; margin-top: 10px; position: relative; top: -20px; width:99%; overflow:hidden; height: 90px; box-sizing: border-box;}
+.scrollup-menu{ z-index:99; color:#fff; cursor:pointer; position:absolute; width:30px; height:30px; line-height:30px; left:0px; top: 15px; transform: rotate(90deg);}
 .scrollup-menu span { font-weight: bold; }
 .scrollup-menu.next{ left: auto; right: -5px; }
 .scrollup-menu:hover{ }
@@ -760,51 +760,56 @@ ellipse.tower-unit-svg-selected-path {
 	cursor: default !important;
 }
 .master-tower-menu { display: table; width: 100%; }
-.tower-menu-container .menu-item .img-wrap {
-	margin: auto;
-	position: relative;
-	line-height: 44px;
-	height: 54px;
-	top: 0px;
-	width: 54px;
-	left:0px;
-	cursor: pointer;
-	border-radius: 50%;
-	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
-	background-color: #fff;
-	box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
-	transition:all 0.5s ease-in-out;
-	-moz-transition:all 0.5s ease-in-out;
-	-ms-transition:all 0.5s ease-in-out;
-	-o-transition:all 0.5s ease-in-out;
-	-webkit-transition:all 0.5s ease-in-out;
-	/*&:after {
-		opacity: 0;
-		display: block;
-		position: absolute;
-		bottom: -10px;
-		left: 50%;
-		margin-left: -25px;
-		width: 50px;
-		height: 4px;
-		content: '';
-		border-radius: 50%;
-		transition: all .5s ease;
-		background-color: #000;
-		filter: blur(2px);
-		-webkit-filter: blur(2px);
-		-moz-filter: blur(2px);
-		-o-filter: blur(2px);
-		-ms-filter: blur(2px);
-	}
-	&:hover {
-		transform: translateY(-5px);
-		&:after {
-			opacity: 1;
+.tower-menu-container {
+	.menu-item {
+		margin-top: 10px;
+		.img-wrap {
+			margin: auto;
+			position: relative;
+			line-height: 44px;
+			height: 54px;
+			top: 0px;
+			width: 54px;
+			left:0px;
+			cursor: pointer;
+			border-radius: 50%;
+			box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+			background-color: #fff;
+			box-sizing:border-box;
+			-moz-box-sizing:border-box;
+			-webkit-box-sizing:border-box;
+			transition:all 0.5s ease-in-out;
+			-moz-transition:all 0.5s ease-in-out;
+			-ms-transition:all 0.5s ease-in-out;
+			-o-transition:all 0.5s ease-in-out;
+			-webkit-transition:all 0.5s ease-in-out;
+			&:after {
+				opacity: 0;
+				display: block;
+				position: absolute;
+				bottom: -10px;
+				left: 50%;
+				margin-left: -25px;
+				width: 50px;
+				height: 4px;
+				content: '';
+				border-radius: 50%;
+				transition: all .5s ease;
+				background-color: #000;
+				filter: blur(2px);
+				-webkit-filter: blur(2px);
+				-moz-filter: blur(2px);
+				-o-filter: blur(2px);
+				-ms-filter: blur(2px);
+			}
+			&:hover {
+				transform: translateY(-5px);
+				&:after {
+					opacity: 1;
+				}
+			}
 		}
-	}*/
+	}
 }
 .tower-menu-container.tower-selected-menu .menu-item{width: 45px;left:0; padding-left:0;border-bottom:1px solid #3d3d3d;}
 .tower-menu-container .menu-item .tower-menu-text{position:absolute; left:-105px; height: 44px; width: 100px; overflow: hidden;}
@@ -1268,7 +1273,7 @@ ellipse.tower-unit-svg-selected-path {
 	z-index: 10001;
 }
 .floor-plan-container .sunlight-menu .sunlight-menu-option {
-	padding-left: 40px;
+	margin-left: 40px;
 	display:inline-block;
 	color:#252525;
 	text-align: center;
@@ -1277,12 +1282,32 @@ ellipse.tower-unit-svg-selected-path {
 	span {
 		font-size: 36px;
 	}
+	.icon-cloudmoon-fill, .icon-cloudsun-fill {
+		span {
+			font-size: 22px;
+			vertical-align: 3px;
+			display: inline-block;
+		}
+	}
+	.icon-cloudmoon-fill {
+		span {
+			font-size: 27px;
+		}
+	}
+	.filled {
+		display: none;
+	}
 }
 .floor-plan-container .sunlight-menu .sunlight-menu-option label{ font-size:12px; color:#666; display: block; cursor:pointer;}
 .floor-plan-container .sunlight-menu .sunlight-menu-option:hover, 
 .floor-plan-container .sunlight-menu .sunlight-menu-option.selected {
-	color:#f18d18;
 	cursor: pointer !important;
+	.opaque {
+		display: none!important;
+	}
+	.filled {
+		display: inline-block!important;
+	}
 }
 .floor-plan-menu-container .floor-plan-menu {
 	position: absolute;
