@@ -4,7 +4,7 @@
 header {
 	position: absolute;
 	color: #CCC;
-	margin-left: 60px;
+	margin-left: 10px;
 	line-height: 45px;
 	z-index: 100000;
 	font-size: 14px;
@@ -19,8 +19,9 @@ header {
 	-webkit-border-radius:50%;
 }
 header .project-title a, header .project-title, header .project-tower a, header .project-tower, header .project-unit {
-	font-size: 16px;
+	font-size: 21px;
 	color: #FFF;
+	text-shadow: 1px 1px 1px #333;
 	&.project-unit{
 		text-transform: uppercase;
 	}
@@ -440,7 +441,7 @@ ellipse.tower-unit-svg-selected-path {
 	color: #fff;
 	text-align: center;
 	box-sizing: border-box;
-	background-color: rgba(30, 43, 5, 0.9);
+	background-color: rgba(30, 43, 5, 0.8);
 	border-radius: 20px 0px 0px 0px;
 	overflow: hidden;
 	position: absolute;

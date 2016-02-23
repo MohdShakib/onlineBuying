@@ -23,7 +23,7 @@ var TowerselectedView = (function() {
             'towerSvgContainer': $('#svg-container'),
             'towerDetailContainer': $('#tower-detail-container'),
             'towerRotationContainer': $('#tower-rotation-container'),
-            'filterMenuContainer': $('#filter-menu-container'),
+            //'filterMenuContainer': $('#filter-menu-container'),    // todo remove this container later
             'minMapView': $('#minMap'),
             'bottomFilterContainer': $('#bottom-filter-container')
         };
