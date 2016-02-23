@@ -771,7 +771,6 @@ var TowerselectedView = (function() {
             $(element).toggleClass('hideMinMap');
         },
         helpContainer: function (data, rootdata) {
-            console.log('>>>>>>>>>>>>>>>');
             var helpContainerCode = "<h1>hello</h1>";
             this._elements.helpContainer.html(helpContainerCode);
             this.helpContainerEvents();

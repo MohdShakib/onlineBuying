@@ -3,32 +3,33 @@ amenitiesHotspots([
     "amenityName":"Swimming Pool",
     "amenitySvg":"42.19 39.84",
     "imageName":"pool_view.jpg",
-    "displayIcon" : "chat"
+    "displayIcon" : "dummy"
   },
   {
     "amenityName":"Kids Play",
     "amenitySvg":"75.6 53.96",
     "imageName":"kids_play.jpg",
-    "displayIcon" : "chat"
+    "displayIcon" : "dummy"
 },
   {
     "amenityName":"Garden View ",
     "amenitySvg":"58.09 49.68",
     "imageName":"garden_view.jpg",
-    "displayIcon" : "chat"
+    "displayIcon" : "dummy"
 },
   {
     "amenityName":"Entrance ",
     "amenitySvg":"83.29 73.8",
     "imageName":"entrance.jpg",
-    "displayIcon" : "chat"
+    "displayIcon" : "dummy"
 },
   {
     "amenityName":"Club House",
     "amenitySvg":"42.19 34.76",
     "imageName":"club_house.jpg",
-    "displayIcon" : "chat"
-  },
+    "displayIcon" : "dummy"
+
+},
   {
     "amenityName":"Terrace Units",
     "amenitySvg":"55.38 21.42",
@@ -51,7 +52,7 @@ amenitiesHotspots([
     "amenityName":"Jogging ",
     "amenitySvg":"21.9 37.46",
     "imageName":"jogging_park.jpg",
-    "displayIcon" : "chat"
+    "displayIcon" : "dummy"
   },
   {
     "amenityName":"Hill View",
