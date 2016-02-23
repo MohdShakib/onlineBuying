@@ -313,6 +313,8 @@ var MasterplanView = (function () {
                 $('.bottom-filter-wrapper').addClass('show-up');
             }, 7000);
 
+            document.getElementById(config.projectDetail.towerId).innerHTML = '';
+
         },
         displayWithoutAnimation: function () {
             // Images
@@ -352,6 +354,7 @@ var MasterplanView = (function () {
             $('.pro-contact-actions ul.conect-tab').css({
                 bottom: '0px'
             });
+            document.getElementById(config.projectDetail.towerId).innerHTML = '';
 
             //viewUtils.showNotificationTooltip('Click on a tower to explore further');
         },
