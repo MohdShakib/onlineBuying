@@ -1149,11 +1149,11 @@ ellipse.tower-unit-svg-selected-path {
 .like-box a p.shortlisted.max:before{ content:'Max shortlist reached'}
 .book-now{ text-align:right;display: inline-block;}
 .book-now a{ text-align: center; color:#fff; padding:11px; display:inline-block; font-size:16px; text-transform:uppercase; font-weight:bold; width:160px; font-weight:bold; background:#e4552e; border-radius:3px; cursor:pointer;}
-.compare-units-container .book-now{ right:20px; left:inherit; margin:0; bottom:10px;}
+.compare-units-container .book-now{ position: absolute; text-align: center; width: 182px; z-index: 999999;right:20px; left:inherit; margin:0; bottom:10px;}
 .book-now a:hover{ opacity:0.9;}
 .book-now span{ display:block; padding:3px 5px; font-size:12px; color: #777; font-weight:normal;}
 /*----compare box---*/
-.compare-container{ width:100%; padding-left:290px;}
+.compare-container{ left: 0; padding-left: 290px; position: absolute; top: 50px; width: 100%; z-index: 999999; }
 .com-pro-box{ width:94px; display:inline-block; margin:2px 3px; box-shadow:0 0 1px #D0D0D0; cursor: pointer; border-bottom:2px solid #252525; cursor:pointer;}
 .com-pro-box:hover {opacity: 0.8}
 .com-pro-box p{ font-size:12px; padding:5px 10px; color:#616161; text-align:left;}
