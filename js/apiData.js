@@ -307,7 +307,8 @@ var getProjectData = (function() {
                 projectData.amenities[utils.getIdentifier(amenityData.amenityName)] = {
                     amenityName: amenityData.amenityName,
                     imageUrl: zipImagePath + amenityData.imageName,
-                    amenitySvg: amenityData.amenitySvg
+                    amenitySvg: amenityData.amenitySvg,
+                    displayIcon:amenityData.displayIcon
 
                 };
             }

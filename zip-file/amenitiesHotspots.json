@@ -2,51 +2,61 @@ amenitiesHotspots([
   {
     "amenityName":"Swimming Pool",
     "amenitySvg":"42.19 39.84",
-    "imageName":"pool_view.jpg"
+    "imageName":"pool_view.jpg",
+    "displayIcon" : "chat"
   },
   {
     "amenityName":"Kids Play",
     "amenitySvg":"75.6 53.96",
-    "imageName":"kids_play.jpg"
-  },
+    "imageName":"kids_play.jpg",
+    "displayIcon" : "chat"
+},
   {
     "amenityName":"Garden View ",
     "amenitySvg":"58.09 49.68",
-    "imageName":"garden_view.jpg"
-  },
+    "imageName":"garden_view.jpg",
+    "displayIcon" : "chat"
+},
   {
     "amenityName":"Entrance ",
     "amenitySvg":"83.29 73.8",
-    "imageName":"entrance.jpg"
-  },
+    "imageName":"entrance.jpg",
+    "displayIcon" : "chat"
+},
   {
     "amenityName":"Club House",
     "amenitySvg":"42.19 34.76",
-    "imageName":"club_house.jpg"
+    "imageName":"club_house.jpg",
+    "displayIcon" : "chat"
   },
   {
     "amenityName":"Terrace Units",
     "amenitySvg":"55.38 21.42",
-    "imageName":"terrace_garden.jpg"
+    "imageName":"terrace_garden.jpg",
+    "displayIcon" : "dummy"
   },
   {
     "amenityName":"Tennis Court",
     "amenitySvg":"42.27 8.41",
-    "imageName":"tennis_court.jpg"
+    "imageName":"tennis_court.jpg",
+    "displayIcon" : "dummy"
   },
   {
     "amenityName":"Amphitheater",
     "amenitySvg":"66.52 72.85",
-    "imageName":"amphitheater.jpg"
+    "imageName":"amphitheater.jpg",
+    "displayIcon" : "dummy"
   },
   {
     "amenityName":"Jogging ",
     "amenitySvg":"21.9 37.46",
-    "imageName":"jogging_park.jpg"
+    "imageName":"jogging_park.jpg",
+    "displayIcon" : "chat"
   },
   {
     "amenityName":"Hill View",
     "amenitySvg":"20.29 19.68",
-    "imageName":"hill_view.jpg"
+    "imageName":"hill_view.jpg",
+    "displayIcon" : "dummy"
   }
 ]);

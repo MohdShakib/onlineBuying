@@ -1,11 +1,11 @@
-amenityName,amenitySvg,imageName
-Swimming Pool,42.19 39.84,pool_view.jpg
-Kids Play,75.6 53.96,kids_play.jpg
-Garden View ,58.09 49.68,garden_view.jpg
-Entrance ,83.29 73.8,entrance.jpg
-Club House,42.19 34.76,club_house.jpg
-Terrace Units,55.38 21.42,terrace_garden.jpg
-Tennis Court,42.27 8.41,tennis_court.jpg
-Amphitheater,66.52 72.85,amphitheater.jpg
-Jogging ,21.9 37.46,jogging_park.jpg
-Hill View,20.29 19.68,hill_view.jpg
+amenityName,amenitySvg,imageName,displayIcon
+Swimming Pool,42.19 39.84,pool_view.jpg,chat
+Kids Play,75.6 53.96,kids_play.jpg,chat
+Garden View ,58.09 49.68,garden_view.jpg,chat
+Entrance ,83.29 73.8,entrance.jpg,chat
+Club House,42.19 34.76,club_house.jpg,chat
+Terrace Units,55.38 21.42,terrace_garden.jpg,dummy
+Tennis Court,42.27 8.41,tennis_court.jpg,dummy
+Amphitheater,66.52 72.85,amphitheater.jpg,dummy
+Jogging ,21.9 37.46,jogging_park.jpg,chat
+Hill View,20.29 19.68,hill_view.jpg,dummy
