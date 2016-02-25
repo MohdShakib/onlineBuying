@@ -469,12 +469,20 @@ var MasterplanView = (function () {
                 var towerIdentifier = towersData[i];
                 var tower = data.towers[towerIdentifier],
                     towerUrl = tower.isAvailable ? data.baseUrl + "/" + tower.towerIdentifier : 'undefined';
-                code += "<div class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass +
-                    "' id='" + towerIdentifier + "-menu' data-index='" + towerIdentifier +
-                    "' data-imageid='" + tower.towerId +
-                    "' data-url='" + towerUrl +
-                    "'><div class='img-wrap transition'><img src='"+tower.displayImage +"' ></div><span>"+ tower.longName+" ("+ tower.totalAvailableCount+")" +" </span></div></div>";
-            }
+                if(tower.displayImage === ''){
+                    code += "<div class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass +
+                        "' id='" + towerIdentifier + "-menu' data-index='" + towerIdentifier +
+                        "' data-imageid='" + tower.towerId +
+                        "' data-url='" + towerUrl +
+                        "'><div class='img-wrap transition'><label class='transition'>" +tower.shortName+ "</label></div><span>"+ tower.longName+" ("+ tower.totalAvailableCount+")" +" </span></div></div>";
+                }{
+                    //code += "<div class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass +
+                    //    "' id='" + towerIdentifier + "-menu' data-index='" + towerIdentifier +
+                    //    "' data-imageid='" + tower.towerId +
+                    //    "' data-url='" + towerUrl +
+                    //    "'><div class='img-wrap transition'><img src='"+tower.displayImage +"' ></div><span>"+ tower.longName+" ("+ tower.totalAvailableCount+")" +" </span></div></div>";
+                }
+             }
             code += "</div></div></div></div>";
             code += "</div>";
             //this._elements.buildingMenuContainer.html(code);
@@ -878,18 +886,24 @@ var MasterplanView = (function () {
             $('.' + config.amenityContainerClass).removeClass(config.amenityNotOnTopClass);
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
         },
-        showTowerDetailContainer: function (data, left, top, unit) {
+        showTowerDetailContainer: function(data, left, top, unit) {
             if (!(data && data.unitInfo)) {
                 return;
             }
             var countAvailabilityClass = data.totalAvailableCount>0 ? config.countAvailabilityClass.available : config.countAvailabilityClass.unavailable;
 
             var towerCode = "";
-            towerCode += "<div id='container-detail' class='tooltip-detail'>";
-            towerCode += "<div class='detail-box show-details'> <div class='tooltip-title "+ countAvailabilityClass +"'>";
-            towerCode += "<img width='100%' height='100%' src='" + data.displayImage + "' >";
-            towerCode += "<span class='apt-available-count "+ countAvailabilityClass +"'>"+ data.totalAvailableCount;
-            towerCode += "</span></div></div></div>";
+            if(data.displayImage === ''){
+                towerCode += "<div id='container-detail' class='tooltip-detail'>";
+                towerCode += "<div class='detail-box show-details'>" + "<div class='tooltip-title'>" + data.shortName + "</div>" + "" + "<div class='dot-one'></div>" + "" + "";
+                towerCode += "" + "" + "</div>";
+            }else{
+                towerCode += "<div id='container-detail' class='tooltip-detail'>";
+                towerCode += "<div class='detail-box show-details'> <div class='tooltip-title "+ countAvailabilityClass +"'>";
+                towerCode += "<img width='100%' height='100%' src='" + data.displayImage + "' >";
+                towerCode += "<span class='apt-available-count "+ countAvailabilityClass +"'>"+ data.totalAvailableCount;
+                towerCode += "</span></div></div></div>";
+            }
 
             if (this._elements && this._elements.towerDetailContainer) {
                 this._elements.towerDetailContainer.html(towerCode);
