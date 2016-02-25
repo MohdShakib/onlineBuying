@@ -6,9 +6,9 @@ var config = (function() {
         urlAppName : '/4d-view',
 
         // Independent App
-        apisJson: true,
+        apisJson: false,
         cityJson: true, // to read cities from json
-        localZip: true,
+        localZip: false,
         setJsonDataPriorityForTest: false,
         builderSetUp: false,
         showInterestedIn: true,       // to show hide interested popup
