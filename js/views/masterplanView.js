@@ -471,21 +471,18 @@ var MasterplanView = (function () {
                     towerUrl = tower.isAvailable ? data.baseUrl + "/" + tower.towerIdentifier : 'undefined';
                 var countAvailabilityClass = tower.isAvailable ? config.countAvailabilityClass.available : config.countAvailabilityClass.unavailable;
 
+                code += "<div class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass +
+                    "' id='" + towerIdentifier + "-menu' data-index='" + towerIdentifier +
+                    "' data-imageid='" + tower.towerId +
+                    "' data-url='" + towerUrl +
+                    "'>";
                 if(tower.displayImage &&  tower.displayImage !== ''){
-                    code += "<div class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass +
-                        "' id='" + towerIdentifier + "-menu' data-index='" + towerIdentifier +
-                        "' data-imageid='" + tower.towerId +
-                        "' data-url='" + towerUrl +
-                        "'><div class='img-wrap transition'><img src='"+tower.displayImage +"' ></div><span>"+ tower.longName+" ("+ tower.totalAvailableCount+")" +" </span></div></div>";
+                    code += "<div class='img-wrap transition " +countAvailabilityClass+ "'><img src='"+tower.displayImage +"' ></div>";
 
                 }else{
-                    code += "<div class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass +
-                        "' id='" + towerIdentifier + "-menu' data-index='" + towerIdentifier +
-                        "' data-imageid='" + tower.towerId +
-                        "' data-url='" + towerUrl +
-                        "'><div class='img-wrap transition " +countAvailabilityClass+ "'><label class='transition'>" +tower.shortName+ "</label></div><span>"+ tower.longName+" ("+ tower.totalAvailableCount+")" +" </span></div></div>";
-
+                    code += "<div class='img-wrap transition " +countAvailabilityClass+ "'><label class='transition'>" +tower.shortName+ "</label></div>";
                 }
+                code +="<span>"+ tower.longName+" ("+ tower.totalAvailableCount+")" +" </span></div></div>";
              }
             code += "</div></div></div></div>";
             code += "</div>";
