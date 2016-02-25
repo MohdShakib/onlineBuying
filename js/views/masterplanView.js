@@ -852,6 +852,7 @@ var MasterplanView = (function () {
             }
         },
         towerMouseEnterEvent: function (obj) {
+            console.log('obj', obj);
             var element = $(obj.element);
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
             var data = this._model.getData();
@@ -876,10 +877,14 @@ var MasterplanView = (function () {
                 var diff = (window.innerWidth > config.imageResolution.width) ? (window.innerWidth - config.imageResolution.width) / 2 : 0;
                 this.showTowerDetailContainer(towerData, (svgpathClient.left - diff + svgpathClient.width / 2), svgpathClient.top + 30, 'px');
             }
+            console.log("$('#' + index + '-menu')", $('#' + index + '-menu'+' .img-wrap'));
 
-            $('#' + index + '-menu').addClass(config.menuItemHoverClass);
+            $('#' + index + '-menu'+' .img-wrap').addClass('tower-hover');
+
+            //$('#' + index + '-menu').addClass(config.menuItemHoverClass);
         },
         towerMouseLeaveEvent: function (element) {
+            $('.img-wrap').removeClass('tower-hover');
             $('.detail-box').removeClass('show-details');
             $('.detail-box').addClass('hide-details');
             if(curruntFilter !== ''){
@@ -889,6 +894,7 @@ var MasterplanView = (function () {
             }
             $('.' + config.amenityContainerClass).removeClass(config.amenityNotOnTopClass);
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
+
         },
         showTowerDetailContainer: function(data, left, top, unit) {
             if (!(data && data.unitInfo)) {
