@@ -812,7 +812,7 @@ ellipse.tower-unit-svg-selected-path {
 				-o-filter: blur(2px);
 				-ms-filter: blur(2px);
 			}
-			&:hover {
+			&:hover, &.tower-hover {
 				transform: translateY(-5px);
 				&:after {
 					opacity: 1;
