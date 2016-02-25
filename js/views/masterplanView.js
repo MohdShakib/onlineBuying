@@ -852,7 +852,6 @@ var MasterplanView = (function () {
             }
         },
         towerMouseEnterEvent: function (obj) {
-            console.log('obj', obj);
             var element = $(obj.element);
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
             var data = this._model.getData();
@@ -877,11 +876,8 @@ var MasterplanView = (function () {
                 var diff = (window.innerWidth > config.imageResolution.width) ? (window.innerWidth - config.imageResolution.width) / 2 : 0;
                 this.showTowerDetailContainer(towerData, (svgpathClient.left - diff + svgpathClient.width / 2), svgpathClient.top + 30, 'px');
             }
-            console.log("$('#' + index + '-menu')", $('#' + index + '-menu'+' .img-wrap'));
-
             $('#' + index + '-menu'+' .img-wrap').addClass('tower-hover');
-
-            //$('#' + index + '-menu').addClass(config.menuItemHoverClass);
+            $('#' + index + '-menu').addClass(config.menuItemHoverClass);
         },
         towerMouseLeaveEvent: function (element) {
             $('.img-wrap').removeClass('tower-hover');
@@ -903,19 +899,15 @@ var MasterplanView = (function () {
             var countAvailabilityClass = data.isAvailable ? config.countAvailabilityClass.available : config.countAvailabilityClass.unavailable;
 
             var towerCode = "";
+            towerCode += "<div id='container-detail' class='tooltip-detail'>";
+            towerCode += "<div class='detail-box show-details'> <div class='tooltip-title "+ countAvailabilityClass +"'>";
             if(data.displayImage && data.displayImage !== ''){
-                towerCode += "<div id='container-detail' class='tooltip-detail'>";
-                towerCode += "<div class='detail-box show-details'> <div class='tooltip-title "+ countAvailabilityClass +"'>";
                 towerCode += "<img width='100%' height='100%' src='" + data.displayImage + "' >";
-                towerCode += "<span class='apt-available-count "+ countAvailabilityClass +"'>"+ data.totalAvailableCount;
-                towerCode += "</span></div></div></div>";
             }else{
-                towerCode += "<div id='container-detail' class='tooltip-detail'>";
-                towerCode += "<div class='detail-box show-details'> <div class='tooltip-title "+ countAvailabilityClass +"'>";
                 towerCode += data.shortName;
-                towerCode += "<span class='apt-available-count "+ countAvailabilityClass +"'>"+ data.totalAvailableCount;
-                towerCode += "</span></div></div></div>";
             }
+            towerCode += "<span class='apt-available-count "+ countAvailabilityClass +"'>"+ data.totalAvailableCount;
+            towerCode += "</span></div></div></div>";
 
 
             if (this._elements && this._elements.towerDetailContainer) {
