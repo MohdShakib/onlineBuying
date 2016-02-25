@@ -469,12 +469,21 @@ var MasterplanView = (function () {
                 var towerIdentifier = towersData[i];
                 var tower = data.towers[towerIdentifier],
                     towerUrl = tower.isAvailable ? data.baseUrl + "/" + tower.towerIdentifier : 'undefined';
+                var countAvailabilityClass = tower.isAvailable ? config.countAvailabilityClass.available : config.countAvailabilityClass.unavailable;
+
                 code += "<div class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass +
                     "' id='" + towerIdentifier + "-menu' data-index='" + towerIdentifier +
                     "' data-imageid='" + tower.towerId +
                     "' data-url='" + towerUrl +
-                    "'><div class='img-wrap transition'><img src='"+tower.displayImage +"' ></div><span>"+ tower.longName+" ("+ tower.totalAvailableCount+")" +" </span></div></div>";
-            }
+                    "'>";
+                if(tower.displayImage &&  tower.displayImage !== ''){
+                    code += "<div class='img-wrap transition " +countAvailabilityClass+ "'><img src='"+tower.displayImage +"' ></div>";
+
+                }else{
+                    code += "<div class='img-wrap transition " +countAvailabilityClass+ "'><label class='transition'>" +tower.shortName+ "</label></div>";
+                }
+                code +="<span>"+ tower.longName+" ("+ tower.totalAvailableCount+")" +" </span></div></div>";
+             }
             code += "</div></div></div></div>";
             code += "</div>";
             //this._elements.buildingMenuContainer.html(code);
@@ -864,10 +873,11 @@ var MasterplanView = (function () {
                 var diff = (window.innerWidth > config.imageResolution.width) ? (window.innerWidth - config.imageResolution.width) / 2 : 0;
                 this.showTowerDetailContainer(towerData, (svgpathClient.left - diff + svgpathClient.width / 2), svgpathClient.top + 30, 'px');
             }
-
+            $('#' + index + '-menu'+' .img-wrap').addClass('tower-hover');
             $('#' + index + '-menu').addClass(config.menuItemHoverClass);
         },
         towerMouseLeaveEvent: function (element) {
+            $('.img-wrap').removeClass('tower-hover');
             $('.detail-box').removeClass('show-details');
             $('.detail-box').addClass('hide-details');
             if(curruntFilter !== ''){
@@ -877,19 +887,25 @@ var MasterplanView = (function () {
             }
             $('.' + config.amenityContainerClass).removeClass(config.amenityNotOnTopClass);
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
+
         },
-        showTowerDetailContainer: function (data, left, top, unit) {
+        showTowerDetailContainer: function(data, left, top, unit) {
             if (!(data && data.unitInfo)) {
                 return;
             }
-            var countAvailabilityClass = data.totalAvailableCount>0 ? config.countAvailabilityClass.available : config.countAvailabilityClass.unavailable;
+            var countAvailabilityClass = data.isAvailable ? config.countAvailabilityClass.available : config.countAvailabilityClass.unavailable;
 
             var towerCode = "";
             towerCode += "<div id='container-detail' class='tooltip-detail'>";
             towerCode += "<div class='detail-box show-details'> <div class='tooltip-title "+ countAvailabilityClass +"'>";
-            towerCode += "<img width='100%' height='100%' src='" + data.displayImage + "' >";
+            if(data.displayImage && data.displayImage !== ''){
+                towerCode += "<img width='100%' height='100%' src='" + data.displayImage + "' >";
+            }else{
+                towerCode += data.shortName;
+            }
             towerCode += "<span class='apt-available-count "+ countAvailabilityClass +"'>"+ data.totalAvailableCount;
             towerCode += "</span></div></div></div>";
+
 
             if (this._elements && this._elements.towerDetailContainer) {
                 this._elements.towerDetailContainer.html(towerCode);
@@ -909,7 +925,7 @@ var MasterplanView = (function () {
                     var displayIcon = amenity.displayIcon ? 'icon-'+amenity.displayIcon : '';
                     var point = data.amenities[amenityKey].amenitySvg.split(' ');
                     var position = "top:" + point[1] + "%; left:" + point[0] + "%;";
-                    code += "<div data-top='" + point[1] + "' data-left='" + point[0] + "' id='" + amenityKey + "' class='" + config.amenityIconClass + "' style='" + position + "'><span class='icon  icon-location "+ displayIcon +" transition'></span>";
+                    code += "<div data-top='" + point[1] + "' data-left='" + point[0] + "' id='" + amenityKey + "' class='" + config.amenityIconClass + "' style='" + position + "'><span class='icon  icon-location "+ displayIcon +" transition fs0'></span>";
                     code += "<div class='name'><img class='amenity-img' src=" + amenity.imageUrl + "><span>" + amenity.amenityName + "</span></div>";
                     code += "</div>";
                 }
