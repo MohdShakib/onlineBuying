@@ -884,7 +884,7 @@ var MasterplanView = (function () {
                 $('img.' + config.imgContainerClass).stop().fadeTo("0", 1, function () {});
             }
             $('.' + config.amenityContainerClass).removeClass(config.amenityNotOnTopClass);
-            document.getElementById(config.towerDetailContainerId).innerHTML = '';
+            //document.getElementById(config.towerDetailContainerId).innerHTML = '';
         },
         showTowerDetailContainer: function(data, left, top, unit) {
             if (!(data && data.unitInfo)) {
@@ -895,8 +895,19 @@ var MasterplanView = (function () {
             var towerCode = "";
             if(data.displayImage === ''){
                 towerCode += "<div id='container-detail' class='tooltip-detail'>";
-                towerCode += "<div class='detail-box show-details'>" + "<div class='tooltip-title'>" + data.shortName + "</div>" + "" + "<div class='dot-one'></div>" + "" + "";
-                towerCode += "" + "" + "</div>";
+                towerCode += "<div class='detail-box show-details'> <div class='tooltip-title "+ countAvailabilityClass +"'>";
+                towerCode += data.shortName;
+                towerCode += "<span class='apt-available-count "+ countAvailabilityClass +"'>"+ data.totalAvailableCount;
+                towerCode += "</span></div></div></div>";
+
+
+
+
+
+
+                // towerCode += "<div id='container-detail' class='tooltip-detail'>";
+                // towerCode += "<div class='detail-box show-details'>" + "<div class='tooltip-title'>" + data.shortName + "</div>";
+                // towerCode += "" + "" + "</div>";
             }else{
                 towerCode += "<div id='container-detail' class='tooltip-detail'>";
                 towerCode += "<div class='detail-box show-details'> <div class='tooltip-title "+ countAvailabilityClass +"'>";
