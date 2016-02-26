@@ -31,7 +31,7 @@ var config = (function() {
         towerMenuItemHeight: 44,
         maxShortlistCount: 6,
         tawkApiId: 'tawk_55e5498bfc2b363371225aaa',
-        errorMsg: 'Something went wrong. Please contact +91-20395-20918 for assistance.',
+        errorMsg: 'Something went wrong. Please contact 1800-103-104-1 for assistance.',
         projectConfig: {
             "501448": {
                 ivrsData: "+91-7930641590"
@@ -72,7 +72,7 @@ var config = (function() {
                 cancellationEnabled : false
             }
         },
-        helpline: '+91-20395-20918',
+        helpline: '1800-103-104-1',
         cancellationEnabled: true,
         emailId: 'sales@umangrealtech.com',
         gaCategory: '4d-view',
