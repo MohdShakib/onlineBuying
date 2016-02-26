@@ -22,46 +22,6 @@ var BookingView = (function() {
         return elements;
     }
 
-    var projectConfig = {
-        "501448": {
-            ivrsData : "+91-7930641590"
-        },
-        "640926": {
-            ivrsData : "+91-7930641590"
-        },
-        "513534": {
-            ivrsData : "+91-8049202151"
-        },
-        "656047": {
-            ivrsData : "+91-8049202151"
-        },
-        "668509": {
-            ivrsData : "+91-4439942696"
-        },
-        "672575": {
-            ivrsData : "+91-1166764112"
-        },
-        "501639": {
-            ivrsData : "+91-3330566486"
-        },
-        "669434": {
-            ivrsData : "+91-2261739689"
-        },
-        "655929": {
-            ivrsData : "+91-2039520706"
-        },
-        "667404": {
-            ivrsData : "+91-2039520706"
-        },
-        "674457": { // artha neo
-            ivrsData : "+91-7676888222",
-            cancellationEnabled : false
-        },
-        "668243": { // artha serene
-            ivrsData : "+91-7676888222",
-            cancellationEnabled : false
-        }
-    };
 
     function BookingView(model) {
         this._model = model;
@@ -200,13 +160,13 @@ var BookingView = (function() {
             }
 
             var cancellationEnabled = config.cancellationEnabled;
-            if(projectConfig[rootdata.projectId] && projectConfig[rootdata.projectId].cancellationEnabled){
-                cancellationEnabled = projectConfig.cancellationEnabled;
+            if(config.projectConfig[rootdata.projectId] && config.projectConfig[rootdata.projectId].cancellationEnabled){
+                cancellationEnabled = config.projectConfig.cancellationEnabled;
             }
 
             var helpline = config.helpline;
-            if (projectConfig[rootdata.projectId] && projectConfig[rootdata.projectId].ivrsData !== undefined) {
-                helpline = projectConfig[rootdata.projectId].ivrsData;
+            if (config.projectConfig[rootdata.projectId] && config.projectConfig[rootdata.projectId].ivrsData !== undefined) {
+                helpline = config.projectConfig[rootdata.projectId].ivrsData;
             }
 
             var code = '<div class="payment-container">' +
