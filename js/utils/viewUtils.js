@@ -33,11 +33,11 @@ var viewUtils = (function() {
 
             var tooltipCoordinates = {};
             if (params.event) {
-                tooltipCoordinates.pageX = params.event.clientX;
-                tooltipCoordinates.pageY = params.event.clientY;
+                tooltipCoordinates.pageX = params.event.clientX + 10;
+                tooltipCoordinates.pageY = params.event.clientY + 10;
             } else {
-                tooltipCoordinates.pageX = $('#' + config.selectedUnitContainerId).offset().left + (params.pointX * $('#' + config.selectedUnitContainerId).width() / 100) + 10;
-                tooltipCoordinates.pageY = $('#' + config.selectedUnitContainerId).offset().top + (params.pointY * $('#' + config.selectedUnitContainerId).height() / 100) + 10;
+                tooltipCoordinates.pageX = $('#' + config.selectedUnitContainerId).offset().left + (params.pointX * $('#' + config.selectedUnitContainerId).width() / 120)+ 120;
+                tooltipCoordinates.pageY = $('#' + config.selectedUnitContainerId).offset().top + (params.pointY * $('#' + config.selectedUnitContainerId).height() / 120) + 135;
             }
             var tooltipClass = utils.getTooltipPosition(tooltipCoordinates);
             tooltipClass = tooltipClass ? tooltipClass : 'bottom-right';
