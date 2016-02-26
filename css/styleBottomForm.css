@@ -17,6 +17,7 @@ a{ text-decoration:none;}
 .pro-contact-actions ul.conect-tab > li > a.active p{ left:10px; opacity:1;}
 .pro-contact-actions ul.conect-tab > li > a p span{ display:block;}
 .pro-contact-actions ul.conect-tab > li > a:hover .icon, .pro-contact-actions ul.conect-tab > li > a.active .icon{ color:#ff8714;}
+.pro-contact-actions ul.conect-tab > li.disabled > a, .pro-contact-actions ul.conect-tab > li.disabled > a:hover, .pro-contact-actions ul.conect-tab > li.disabled > a:hover .icon, .pro-contact-actions ul.conect-tab > li.disabled > a.active .icon { box-shadow: none; color: #c4c5c0!important; cursor: default!important; }
 .like-count{ position:absolute; background:#383735; color:#fff; font-size:10px; border:1px solid #fff; text-align:center; width:15px; height:15px; right:-5px; top:8px; line-height:15px; cursor:pointer;}
 .form-pop-up{ position:absolute; width:301px; height:auto; bottom:46px; padding:13px; background:#323232; border-top:4px solid #ff8611; left:-346px;}
 .form-pop-up.out{left:0;}

@@ -424,8 +424,8 @@ var BaseView = (function() {
                 '   </span>' +
                 '   </a>' +
                 '</li>' +
-                '<li>' +
-                '   <a href="javascript:void(0);" data-name="share-box" class="' + iconEnabled + '">' +
+                '<li class="disabled">' +
+                '   <a href="javascript:void(0);" data-name="">' +
                 '   <p>Share with</br> friends' +
                 //' <span>Sign In Now!</span>'+
                 '   </p>' +
