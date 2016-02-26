@@ -708,10 +708,10 @@ var BaseView = (function() {
                 $(d).find("textarea").attr("placeholder", label);
             });
         },
-        questionBoxContainer: function() {
+        questionBoxContainer: function(rootdata) {
             var helpline = config.helpline ;
-            if(config.projectHelpline[rootdata.projectId]){
-                helpline = config.projectHelpline[rootdata.projectId].helpline;
+            if(config.projectConfig[rootdata.projectId]){
+                helpline = config.projectConfig[rootdata.projectId].ivrsData;
             }
             var html = '<div class="question"><span>Interested</span></div>' +
                 '   <div class="callInfo">' +
