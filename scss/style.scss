@@ -1251,9 +1251,10 @@ ellipse.tower-unit-svg-selected-path {
 /* Unit Data */
 .unit-data-container {
 	position: absolute;
-	bottom: 0px;
-  	height: calc(100% - 140px);
-  	width: 100%;
+	top: 20%;
+	left:10%;
+  	height: 80%;
+  	width: 90%;
   	text-align: center;
 }
 .uit-header-menu > div{ padding: 2px 10px; margin-bottom: 10px; border-left: 3px solid #fff; }
