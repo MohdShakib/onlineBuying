@@ -708,9 +708,8 @@ var BaseView = (function() {
                 $(d).find("textarea").attr("placeholder", label);
             });
         },
-        questionBoxContainer: function(rootdata) {
-            console.log('config.projectHelpline[rootdata.projectId]', config.projectHelpline[rootdata.projectId]);
-            var helpline = config.helpline;
+        questionBoxContainer: function() {
+            var helpline = config.helpline ;
             if(config.projectHelpline[rootdata.projectId]){
                 helpline = config.projectHelpline[rootdata.projectId].helpline;
             }
