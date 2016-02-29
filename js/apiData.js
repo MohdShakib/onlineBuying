@@ -145,7 +145,7 @@ var getProjectData = (function() {
                     projectData.towers[towerIdentifier].hoverImageUrl = zipImagePath + towers[towerName].hoverImageName;
                     projectData.towers[towerIdentifier].towerHoverSvg = towers[towerName].towerHoverSvg;
                     projectData.towers[towerIdentifier].towerTooltipSvg = towers[towerName].towerTooltipSvg;
-                    projectData.towers[towerIdentifier].displayImage = towers[towerName].displayImage;
+                    projectData.towers[towerIdentifier].displayImage =  (towers[towerName].displayImage && towers[towerName].displayImage !== '')?  zipImagePath + towers[towerName].displayImage : '';
                 }
             }
         }
@@ -307,7 +307,8 @@ var getProjectData = (function() {
                 projectData.amenities[utils.getIdentifier(amenityData.amenityName)] = {
                     amenityName: amenityData.amenityName,
                     imageUrl: zipImagePath + amenityData.imageName,
-                    amenitySvg: amenityData.amenitySvg
+                    amenitySvg: amenityData.amenitySvg,
+                    displayIcon:amenityData.displayIcon
 
                 };
             }

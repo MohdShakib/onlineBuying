@@ -14,16 +14,18 @@ var TowerselectedView = (function() {
         'towerRotationContainer': '<div class="tower-rotation-container" id="' + config.towerRotationContainerId + '" style="display:none;"></div>',
         'filterMenuContainer': '<div class="tower-menu-container tower-selected-menu ' + config.transitionClass + '" id="' + config.filterMenuContainerId + '"></div>',
         'minMapView': '<div id="minMap"></div>',
-        'bottomFilterContainer': '<div class="bottom-filter-wrapper transition"><span class="toggle-arrow"></span><div id="bottom-filter-container" class="bottom-filter-container"></div>'
+        'bottomFilterContainer': '<div class="bottom-filter-wrapper transition"><span class="toggle-arrow"></span><div id="bottom-filter-container" class="bottom-filter-container"></div></div>',
+        'helpContainer': '<div id="helpContainer" class="help-container hide transition"></div>'
     };
 
     function getElements() {
         var elements = {
+            'helpContainer': $('#helpContainer'),
             'towerImgContainer': $('#img-container'),
             'towerSvgContainer': $('#svg-container'),
             'towerDetailContainer': $('#tower-detail-container'),
             'towerRotationContainer': $('#tower-rotation-container'),
-            'filterMenuContainer': $('#filter-menu-container'),
+            //'filterMenuContainer': $('#filter-menu-container'),    // todo remove this container later
             'minMapView': $('#minMap'),
             'bottomFilterContainer': $('#bottom-filter-container')
         };
@@ -102,8 +104,10 @@ var TowerselectedView = (function() {
             }, 500);
         },
         renderInitialData: function(data, rootdata) {
-            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '':'<a href="https://www.proptiger.com/' + rootdata.projectUrl + '" target="_blank">') + rootdata.builderName + ' ' + rootdata.projectName + (config.builderSetUp ? '':'</a>');
-            document.getElementById(config.projectDetail.addressId).innerHTML = data.longName;
+            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '':'<a href="' + rootdata.baseUrl + '">') + rootdata.builderName + ' ' + rootdata.projectName + (config.builderSetUp ? '':'</a> &nbsp &gt');
+            document.getElementById(config.projectDetail.towerId).innerHTML = data.longName;
+            document.getElementById(config.projectDetail.unitId).innerHTML = '';
+            document.getElementById(config.projectDetail.addressId).innerHTML = '';
             if(!config.builderSetUp){
                 document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '<label class="count"></label> Available';
                 this.updateAvailableCount();
@@ -140,7 +144,7 @@ var TowerselectedView = (function() {
                 });
             }, 700);
 
-            viewUtils.showNotificationTooltip('Click on unit spot <span class="pointer"></span> to view its floor plan');
+            //viewUtils.showNotificationTooltip('Click on unit spot <span class="pointer"></span> to view its floor plan');
         },
         displayWithoutAnimation: function(fromUnitInfoView) {
             // lazy load rotation images
@@ -166,7 +170,7 @@ var TowerselectedView = (function() {
                 bottom: '0px'
             });
 
-            viewUtils.showNotificationTooltip('Click on unit spot <span class="pointer"></span> to view its floor plan');
+            //viewUtils.showNotificationTooltip('Click on unit spot <span class="pointer"></span> to view its floor plan');
         },
         overviewImgContainer: function(data, rootdata) {
             var code = "<img src='" + data.image_url + "'/>";
@@ -514,12 +518,6 @@ var TowerselectedView = (function() {
         },
         filterMenuContainer: function(data, rootdata) {
             var url = rootdata.baseUrl;
-            var filterdata = this._model.getSelectedFiltersData();
-            var bhkFiltersData = filterdata.bhk,
-                floorFiltersData = filterdata.floor,
-                entranceFiltersData = filterdata.entrance,
-                priceFiltersData = filterdata.price;
-
             var code = "<table><tr><td class='menu-header menu-icon transition go-back'><a><span class='icon icon-arrow_left'></span></a></td></tr>"; //href='#"+url+"'
             code += "</table>";
             this._elements.filterMenuContainer.html(code);
@@ -562,9 +560,9 @@ var TowerselectedView = (function() {
             }
 
             if (filterExist) {
-                $('.reset-all-menu-item').removeClass('reset-all-inactive');
+                $('.reset-filter-button').removeClass('disabled');
             } else {
-                $('.reset-all-menu-item').addClass('reset-all-inactive');
+                $('.reset-filter-button').addClass('disabled');
             }
         },
         filterMenuContainerEvents: function() {
@@ -772,6 +770,15 @@ var TowerselectedView = (function() {
         minMapToggle: function(element) {
             $(element).toggleClass('hideMinMap');
         },
+        helpContainer: function (data, rootdata) {
+            var helpContainerCode = "<div class='help-info transition'><img src='images/help-screen-img.png' alt='' /></div>";
+            this._elements.helpContainer.html(helpContainerCode);
+            this.helpContainerEvents();
+        },
+        helpContainerEvents: function () {
+            // write event here
+
+        },
         bottomFilterContainer: function (data, rootdata) {
             var url = rootdata.baseUrl;
             var filterdata = this._model.getSelectedFiltersData();
@@ -784,6 +791,7 @@ var TowerselectedView = (function() {
 
             code += "<div class='tower-filter-wrap transition'><div class='filter-wrap transition unit-filter'>";
 
+            code += "<div class='filter left-text transition'><div class=''><p>Filters</p></div></div>";
             code += "<div class='filter budget-filter-button transition'><div class='ico-wrap transition'><em></em><small class='budget-tick transition'><i class='icon icon-tick'></i></small></div><div></div><span>Budget</span></div>";
             code += "<div class='filter bedroom-filter-button transition'><div class='ico-wrap transition'><em></em><small class='bedroom-tick transition'><i class='icon icon-tick'></i></small></div><span>Bedroom</span></div>";
             code += "<div class='filter floor-filter-button transition'><div class='ico-wrap transition'><em></em><small class='floor-tick transition'><i class='icon icon-tick'></i></small></div><span>Floor</span></div>";
@@ -791,7 +799,7 @@ var TowerselectedView = (function() {
             code += "</div></div>";
 
             code += "<div class='after-filter-apply transition'>";
-            code += "<div class='left'><div class='back-to-filter'><i class='icon icon-arrow_left'></i></div></div>";
+            code += "<div class='left'><div class='back-to-filter'><i class='icon icon-arrow_left'></i><span>Filters</span></div></div>";
             code += "<div class='center'><div class='filter-wrap'><div class='item'>";
             code += '<div class="tower-menu-container floor-filters-wrap" id="inside-tower-menu-container">';
 // Code for floor options
@@ -813,6 +821,7 @@ var TowerselectedView = (function() {
             $('.bottom-filter-wrapper').addClass('show-up');
             this._elements.bottomFilterContainer.html(code);
             this.bottomFilterContainerEvents();
+            this.updateFilterCount();
         },
         bottomFilterContainerEvents: function () {
             var _this = this;
@@ -838,7 +847,7 @@ var TowerselectedView = (function() {
                 // notify controller
                 _this._filterApply.notify('floor'); // this refers to element here
             });
-            _this._elements.bottomFilterContainer.on('click', '.reset-filter-button div', function (event) {
+            _this._elements.bottomFilterContainer.on('click', '.reset-filter-button:not(.disabled) div', function (event) {
                 // notify controller
                 _this._resetFiltersClick.notify(this); // this refers to element here
             });

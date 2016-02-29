@@ -17,7 +17,7 @@ var MasterplanView = (function () {
         'carAnimation': '<svg class="car-animation transition-left ' + config.dynamicResizeClass + '" id="car-animation" width="100%" height="100%" viewbox="0 0 100 100" preserveAspectRatio="none"></svg>',
         'googleMapContainer': '<div class="map-container"><div id="google-map-container" class="google-map-container"></div></div>',
         'mapTooltip': '<div class="map-tooltip" id=map-tooltip></div>',
-        'openGoogleMapView': '<div id="open-google-map-view" class="open-google-map-btn"></div>',
+        'openGoogleMapView': '<div id="open-google-map-view" class="open-google-map-btn hide"></div>',
         'bottomFilterContainer': '<div class="bottom-filter-wrapper transition"><span class="toggle-arrow"></span><div id="bottom-filter-container" class="bottom-filter-container"></div>'
     };
 
@@ -100,7 +100,7 @@ var MasterplanView = (function () {
             this._elements = getElements();
         },
         renderInitialData: function (data) {
-            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '' : '<a href="https://www.proptiger.com/' + data.projectUrl + '" target="_blank">') + data.builderName + ' ' + data.projectName + (config.builderSetUp ? '' : '</a>');
+            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '' : '<a href="' + data.baseUrl + '">') + data.builderName + ' ' + data.projectName + (config.builderSetUp ? '' : '</a>');
             document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
         },
@@ -233,6 +233,7 @@ var MasterplanView = (function () {
             //elements.map.setZoom(config.maxZoomLevel);
             this._elements.googleMapContainer.parent().css('z-index', '-10');     //do this using class
             setTimeout(function () {
+                $('.bottom-filter-wrapper').removeClass('show-bottom');
                 $('.bottom-filter-wrapper').addClass('show-up');
                 _this._elements.amenitiesContainer.show();
                 _this._elements.carAnimation.show();
@@ -245,7 +246,6 @@ var MasterplanView = (function () {
         // to show the google map view
         showGoogleMap: function (elements) {
             this._elements.googleMapContainer.parent().css('z-index', '100001');     //do this using class
-            $('.bottom-filter-wrapper').removeClass('show-up');
             this._elements.openGoogleMapView.hide();
             //elements.map.setZoom(config.initialZoomLevel);
             elements.visible = true;
@@ -303,15 +303,17 @@ var MasterplanView = (function () {
                 });
             }, 7000);
 
-            // Notification tooltip
-            setTimeout(function () {
-                viewUtils.showNotificationTooltip('Click on a tower to explore further');
-            }, 9000);
+            // Notification tooltip     //todo remove this code and related code of display notification if not required
+            //setTimeout(function () {
+            //    viewUtils.showNotificationTooltip('Click on a tower to explore further');
+            //}, 9000);
 
             // bottom container
             setTimeout(function () {
                 $('.bottom-filter-wrapper').addClass('show-up');
             }, 7000);
+
+            document.getElementById(config.projectDetail.towerId).innerHTML = '';
 
         },
         displayWithoutAnimation: function () {
@@ -352,8 +354,9 @@ var MasterplanView = (function () {
             $('.pro-contact-actions ul.conect-tab').css({
                 bottom: '0px'
             });
+            document.getElementById(config.projectDetail.towerId).innerHTML = '';
 
-            viewUtils.showNotificationTooltip('Click on a tower to explore further');
+            //viewUtils.showNotificationTooltip('Click on a tower to explore further');
         },
         dynamicResizeContainers: function () {
             utils.defaultDynamicResizeContainers();
@@ -466,12 +469,21 @@ var MasterplanView = (function () {
                 var towerIdentifier = towersData[i];
                 var tower = data.towers[towerIdentifier],
                     towerUrl = tower.isAvailable ? data.baseUrl + "/" + tower.towerIdentifier : 'undefined';
+                var countAvailabilityClass = tower.isAvailable ? config.countAvailabilityClass.available : config.countAvailabilityClass.unavailable;
+
                 code += "<div class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass +
                     "' id='" + towerIdentifier + "-menu' data-index='" + towerIdentifier +
                     "' data-imageid='" + tower.towerId +
                     "' data-url='" + towerUrl +
-                    "'><div class='img-wrap transition'><img src='images/"+tower.displayImage +"' ></div><span>"+ tower.longName+" ("+ tower.totalAvailableCount+")" +" </span></div></div>";
-            }
+                    "'>";
+                if(tower.displayImage &&  tower.displayImage !== ''){
+                    code += "<div class='img-wrap transition " +countAvailabilityClass+ "'><img src='"+tower.displayImage +"' ></div>";
+
+                }else{
+                    code += "<div class='img-wrap transition " +countAvailabilityClass+ "'><label class='transition'>" +tower.shortName+ "</label></div>";
+                }
+                code +="<span>"+ tower.longName+" ("+ tower.totalAvailableCount+")" +" </span></div></div>";
+             }
             code += "</div></div></div></div>";
             code += "</div>";
             //this._elements.buildingMenuContainer.html(code);
@@ -746,44 +758,44 @@ var MasterplanView = (function () {
                 _this._applyfilter.notify(''); // this refers to element here
             });
 
-            this._elements.bottomFilterContainer.on('click', '.pool-facing-filter-button div', function (event) {
+            this._elements.bottomFilterContainer.on('click', '.pool-facing-filter-button:not(.disabled) div', function (event) {
                 // notify controller
                 curruntFilter = 'pool-facing';
                 _this._applyfilter.notify('pool-facing'); // this refers to element here
             });
-            this._elements.bottomFilterContainer.on('mouseenter', '.pool-facing-filter-button div', function (event) {
+            this._elements.bottomFilterContainer.on('mouseenter', '.pool-facing-filter-button:not(.disabled) div', function (event) {
                 // notify controller
                 _this._mouseenterFilter.notify('pool-facing');
             });
-            this._elements.bottomFilterContainer.on('mouseleave', '.pool-facing-filter-button div', function (event) {
+            this._elements.bottomFilterContainer.on('mouseleave', '.pool-facing-filter-button:not(.disabled) div', function (event) {
                 // notify controller
                 _this._mouseleaveFilter.notify('');
 
             });
-            this._elements.bottomFilterContainer.on('click', '.park-facing-filter-button div', function (event) {
+            this._elements.bottomFilterContainer.on('click', '.park-facing-filter-button:not(.disabled) div', function (event) {
                 // notify controller
                 curruntFilter = 'park-facing';
                 _this._applyfilter.notify('park-facing'); // this refers to element here
             });
-            this._elements.bottomFilterContainer.on('mouseenter', '.park-facing-filter-button div', function (event) {
+            this._elements.bottomFilterContainer.on('mouseenter', '.park-facing-filter-button:not(.disabled) div', function (event) {
                 // notify controller
                 _this._mouseenterFilter.notify('park-facing');
             });
-            this._elements.bottomFilterContainer.on('mouseleave', '.park-facing-filter-button div', function (event) {
+            this._elements.bottomFilterContainer.on('mouseleave', '.park-facing-filter-button:not(.disabled) div', function (event) {
                 // notify controller
                 _this._mouseleaveFilter.notify('');
 
             });
-            this._elements.bottomFilterContainer.on('click', '.road-facing-filter-button div', function (event) {
+            this._elements.bottomFilterContainer.on('click', '.road-facing-filter-button:not(.disabled) div', function (event) {
                 // notify controller
                 curruntFilter = 'road-facing';
                 _this._applyfilter.notify('road-facing'); // this refers to element here
             });
-            this._elements.bottomFilterContainer.on('mouseenter', '.road-facing-filter-button div', function (event) {
+            this._elements.bottomFilterContainer.on('mouseenter', '.road-facing-filter-button:not(.disabled) div', function (event) {
                 // notify controller
                 _this._mouseenterFilter.notify('road-facing');
             });
-            this._elements.bottomFilterContainer.on('mouseleave', '.road-facing-filter-button div', function (event) {
+            this._elements.bottomFilterContainer.on('mouseleave', '.road-facing-filter-button:not(.disabled) div', function (event) {
                 // notify controller
                 _this._mouseleaveFilter.notify('');
 
@@ -791,7 +803,7 @@ var MasterplanView = (function () {
             this._elements.bottomFilterContainer.on('click', '.back-to-filter', function (event) {
                 // notify controller
                 curruntFilter = '';
-                _this._removeFilter.notify(); // this refers to element here
+                //_this._removeFilter.notify(); // this refers to element here   //todo remove this comment when we need back to filter button
             });
 
             $('.bottom-filter-wrapper').off('click').on('click', '.toggle-arrow', function (event) {
@@ -805,25 +817,27 @@ var MasterplanView = (function () {
                 poolFacing = $('.pool-facing').length,
                 parkFacing = $('.park-facing').length,
                 roadFacing = $('.road-facing').length,
+                poolFacingDIsabled = poolFacing === 0 ? 'disabled' : '',
+                parkFacingDIsabled = parkFacing === 0 ? 'disabled' : '',
+                roadFacingDIsabled = roadFacing === 0 ? 'disabled' : '',
                 code = "";
 
-                code += "<div class='tower-filter-wrap transition'><div class='filter-wrap transition tower-filter'>";
-                code += "<div class='filter all-tower-button transition'><div class='ico-wrap transition'><em></em></div><span>All Towers ("+ allTower+")</span></div>";
-                code += "<div class='filter pool-facing-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Pool Facing ("+ poolFacing+")</span></div>";
-                code += "<div class='filter park-facing-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Park Facing ("+ parkFacing+")</span></div>";
-                code += "<div class='filter road-facing-filter-button transition'><div class='ico-wrap transition'><em></em></div><span>Road Facing ("+ roadFacing+")</span></div>";
+                code += "<div class='tower-filter-wrap transition slide-out'><div class='filter-wrap transition tower-filter'>";
+                code += "<div class='filter all-tower-button transition filter-active'><div class='ico-wrap transition'><em></em></div><span>All Towers ("+ allTower+")</span></div>";
+                code += "<div class='filter pool-facing-filter-button transition " + poolFacingDIsabled + "'><div class='ico-wrap transition'><em></em></div><span>Pool Facing ("+ poolFacing+")</span></div>";
+                code += "<div class='filter park-facing-filter-button transition " + parkFacingDIsabled + "'><div class='ico-wrap transition'><em></em></div><span>Park Facing ("+ parkFacing+")</span></div>";
+                code += "<div class='filter road-facing-filter-button transition " + roadFacingDIsabled + "'><div class='ico-wrap transition'><em></em></div><span>Road Facing ("+ roadFacing+")</span></div>";
                 code += "</div></div>";
 
-                code += "<div class='after-filter-apply transition'>";
-                code += "<div class='left'><div class='back-to-filter'><i class='icon icon-arrow_left'></i></div></div>";
-                code += "<div class='center'><div class='filter-wrap'><div class='filter item'>";
+                code += "<div class='after-filter-apply transition slide-in'>";
+                code += "<div class='left master-plan-tower-filter'><div class='back-to-filter'></div></div>";
+                code += "<div class='center master-plan-tower-filter'><div class='filter-wrap'><div class='filter item'>";
                 code += '<div class="tower-menu-container master-page" id="inside-tower-menu-container">';
                 code += "</div></div></div></div>";
-                code += "<div class='right'></div>";
+                code += "<div class='right master-plan-tower-filter'></div>";
                 code += "</div>";
 
             this._elements.bottomFilterContainer.html(code);
-            this.bottomFilterContainerEvents();
         },
         bottomFilterToggle: function (element){
             if($('.bottom-filter-wrapper').hasClass('show-up')){
@@ -859,10 +873,11 @@ var MasterplanView = (function () {
                 var diff = (window.innerWidth > config.imageResolution.width) ? (window.innerWidth - config.imageResolution.width) / 2 : 0;
                 this.showTowerDetailContainer(towerData, (svgpathClient.left - diff + svgpathClient.width / 2), svgpathClient.top + 30, 'px');
             }
-
+            $('#' + index + '-menu'+' .img-wrap').addClass('tower-hover');
             $('#' + index + '-menu').addClass(config.menuItemHoverClass);
         },
         towerMouseLeaveEvent: function (element) {
+            $('.img-wrap').removeClass('tower-hover');
             $('.detail-box').removeClass('show-details');
             $('.detail-box').addClass('hide-details');
             if(curruntFilter !== ''){
@@ -872,49 +887,25 @@ var MasterplanView = (function () {
             }
             $('.' + config.amenityContainerClass).removeClass(config.amenityNotOnTopClass);
             document.getElementById(config.towerDetailContainerId).innerHTML = '';
+
         },
-        showTowerDetailContainer: function (data, left, top, unit) {
+        showTowerDetailContainer: function(data, left, top, unit) {
             if (!(data && data.unitInfo)) {
                 return;
             }
+            var countAvailabilityClass = data.isAvailable ? config.countAvailabilityClass.available : config.countAvailabilityClass.unavailable;
 
-            var tooltipClass = utils.getTooltipPosition({
-                pageX: left,
-                pageY: top,
-                unit: unit
-            });
-            tooltipClass = tooltipClass ? tooltipClass : 'bottom-right';
-
-            var availabilityClassSuffix = '-border-right';
-            if (tooltipClass == 'top-left' || tooltipClass == 'bottom-left') {
-                availabilityClassSuffix = '-border-left';
-            }
-
-            var towerCode = "",
-                dotClass = !data.isAvailable ? 'sold' : '',
-                bookingText = (data.bookingStatus == 'OnHold') ? 'On Hold' : 'Sold Out';
+            var towerCode = "";
             towerCode += "<div id='container-detail' class='tooltip-detail'>";
-            towerCode += "<div class='detail-box show-details'>" + "<div class='tooltip-title'><img width='100%' height='100%' src='images/" + data.displayImage + "' ></div>" + "<div class='line " + tooltipClass + "''>" + "<div class='dot-one'></div>" + "<div class='dot-two " + dotClass + "'></div>" + "<div class='detail-container master-details'>";
-            towerCode += "<div class='tolltip-tower-name'>" + data.longName + "</div>";
-            towerCode += "<table>";
-            if (!data.isAvailable) {
-                towerCode += "<tr><td colspan='2' class='" + config.availabilityClass.unavailable + "'>" + bookingText + "</td></tr>";
-            } else {
-                for (var j in data.unitInfo) {
-                    var aptType = data.unitInfo[j];
-                    var availabilityClass = config.availabilityClass.available + availabilityClassSuffix;
-                    var availabilityText = aptType.available + " Available";
-                    if (aptType.available === 0) {
-                        availabilityClass = config.availabilityClass.unavailable + availabilityClassSuffix;
-                        availabilityText = 'Sold Out';
-                    }
-                    towerCode += "<tr class='" + availabilityClass + "'>";
-                    towerCode += "<td>" + aptType.type + "</td>";
-                    towerCode += config.builderSetUp ? "<td>Apartment</td></tr>" : "<td>" + availabilityText + "</td></tr>";
-                }
+            towerCode += "<div class='detail-box show-details'> <div class='tooltip-title "+ countAvailabilityClass +"'>";
+            if(data.displayImage && data.displayImage !== ''){
+                towerCode += "<img width='100%' height='100%' src='" + data.displayImage + "' >";
+            }else{
+                towerCode += data.shortName;
             }
-            towerCode += "</table>";
-            towerCode += "</div>" + "</div>" + "</div>";
+            towerCode += "<span class='apt-available-count "+ countAvailabilityClass +"'>"+ data.totalAvailableCount;
+            towerCode += "</span></div></div></div>";
+
 
             if (this._elements && this._elements.towerDetailContainer) {
                 this._elements.towerDetailContainer.html(towerCode);
@@ -931,9 +922,10 @@ var MasterplanView = (function () {
             for (var amenityKey in data.amenities) {
                 if (hasOwnProperty.call(data.amenities, amenityKey)) {
                     var amenity = data.amenities[amenityKey];
+                    var displayIcon = amenity.displayIcon ? 'icon-'+amenity.displayIcon : '';
                     var point = data.amenities[amenityKey].amenitySvg.split(' ');
                     var position = "top:" + point[1] + "%; left:" + point[0] + "%;";
-                    code += "<div data-top='" + point[1] + "' data-left='" + point[0] + "' id='" + amenityKey + "' class='" + config.amenityIconClass + "' style='" + position + "'><span class='icon icon-location transition fs0'></span>";
+                    code += "<div data-top='" + point[1] + "' data-left='" + point[0] + "' id='" + amenityKey + "' class='" + config.amenityIconClass + "' style='" + position + "'><span class='icon  icon-location "+ displayIcon +" transition fs0'></span>";
                     code += "<div class='name'><img class='amenity-img' src=" + amenity.imageUrl + "><span>" + amenity.amenityName + "</span></div>";
                     code += "</div>";
                 }

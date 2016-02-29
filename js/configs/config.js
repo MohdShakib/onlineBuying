@@ -40,6 +40,8 @@ var config = (function() {
         backgroundImage: 'masterplan.jpg',
         projectDetail: {
             titleId: "project-title",
+            towerId: "project-tower",
+            unitId: "project-unit",
             addressId: "project-address",
             availabilityCountId: "project-count"
         },
@@ -89,6 +91,10 @@ var config = (function() {
         availabilityClass: {
             available: 'apt-available',
             unavailable: 'apt-unavailable'
+        },
+        countAvailabilityClass: {
+            available: 'apt-available-count-color',
+            unavailable: 'apt-unavailable-count-color'
         },
         parentContainerId: "parent-container",
         mainContainerId: "main-container",
