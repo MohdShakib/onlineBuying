@@ -334,11 +334,11 @@ var UnitplaninfoView = (function() {
         },
         floorPlanMenuContainer: function(data, rotationdata, rootdata) {
             var code = "<div class='floor-plan-menu' cellpadding='0' cellspacind='0' border='0'><div>";
-            code += "<span data-target='fp-container' data-menu='3d-button' class='" + config.floorPlanMenuOptionClass + " " + config.selectedClass + " " + config.transitionClass + "' id='floor-plan'>3D</span>";
+            code += "<div data-target='fp-container' data-menu='3d-button' class='" + config.floorPlanMenuOptionClass + " " + config.selectedClass + " " + config.transitionClass + "' ><span id='floor-plan'>3D</span></div>";
             if(data.walkthrough.video) {
-                code += "<span data-target='fpwt-container' data-menu='walkthrough-button' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + " right' id='walkthrough'>Video Tour</span>";
+                code += "<div data-target='fpwt-container' data-menu='walkthrough-button' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + " right'><span  id='walkthrough'>Video Tour</span></div>";
             }
-            code += "<span data-target='fp2d-container' data-menu='2d-button' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + "' id='floor-plan2d'>2D</span>";
+            code += "<div data-target='fp2d-container' data-menu='2d-button' class='" + config.floorPlanMenuOptionClass + " " + config.transitionClass + "'><span  id='floor-plan2d'>2D</span></div>";
             code += "</div></div>";
             this._elements.floorPlanMenuContainer.html(code);
             this.floorPlanMenuContainerEvents();
