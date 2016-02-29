@@ -803,7 +803,7 @@ var MasterplanView = (function () {
             this._elements.bottomFilterContainer.on('click', '.back-to-filter', function (event) {
                 // notify controller
                 curruntFilter = '';
-                _this._removeFilter.notify(); // this refers to element here
+                //_this._removeFilter.notify(); // this refers to element here   //todo remove this comment when we need back to filter button
             });
 
             $('.bottom-filter-wrapper').off('click').on('click', '.toggle-arrow', function (event) {
@@ -822,15 +822,15 @@ var MasterplanView = (function () {
                 roadFacingDIsabled = roadFacing === 0 ? 'disabled' : '',
                 code = "";
 
-                code += "<div class='tower-filter-wrap transition'><div class='filter-wrap transition tower-filter'>";
-                code += "<div class='filter all-tower-button transition '><div class='ico-wrap transition'><em></em></div><span>All Towers ("+ allTower+")</span></div>";
+                code += "<div class='tower-filter-wrap transition slide-out'><div class='filter-wrap transition tower-filter'>";
+                code += "<div class='filter all-tower-button transition filter-active'><div class='ico-wrap transition'><em></em></div><span>All Towers ("+ allTower+")</span></div>";
                 code += "<div class='filter pool-facing-filter-button transition " + poolFacingDIsabled + "'><div class='ico-wrap transition'><em></em></div><span>Pool Facing ("+ poolFacing+")</span></div>";
                 code += "<div class='filter park-facing-filter-button transition " + parkFacingDIsabled + "'><div class='ico-wrap transition'><em></em></div><span>Park Facing ("+ parkFacing+")</span></div>";
                 code += "<div class='filter road-facing-filter-button transition " + roadFacingDIsabled + "'><div class='ico-wrap transition'><em></em></div><span>Road Facing ("+ roadFacing+")</span></div>";
                 code += "</div></div>";
 
-                code += "<div class='after-filter-apply transition'>";
-                code += "<div class='left master-plan-tower-filter'><div class='back-to-filter'><i class='icon icon-arrow_left'></i></div></div>";
+                code += "<div class='after-filter-apply transition slide-in'>";
+                code += "<div class='left master-plan-tower-filter'><div class='back-to-filter'></div></div>";
                 code += "<div class='center master-plan-tower-filter'><div class='filter-wrap'><div class='filter item'>";
                 code += '<div class="tower-menu-container master-page" id="inside-tower-menu-container">';
                 code += "</div></div></div></div>";
