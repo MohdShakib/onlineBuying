@@ -473,7 +473,7 @@ ellipse.tower-unit-svg-selected-path {
 				display: none;
 				&.filter-active {
 					opacity: 1;
-					width: 130px;
+					width: 120px;
 					display: block;
 				}
 			}
@@ -663,18 +663,18 @@ ellipse.tower-unit-svg-selected-path {
 		width: 15%;
 		float: left;
 		line-height: 93px;
-		border-right: 1px solid rgba(255, 255, 255, .6);
+		//border-right: 1px solid rgba(255, 255, 255, .6);
 		box-sizing: border-box;
 		&.master-plan-tower-filter{
-			width: 10%;
+			width: 6%;
 		}
 	}
 
 	.center {
-		width: 65%;
+		width: 74%;
 		float: left;
 		&.master-plan-tower-filter{
-			width: 70%;
+			width: 72%;
 		}
 	}
 
@@ -751,7 +751,7 @@ ellipse.tower-unit-svg-selected-path {
 .master-menu .menu-items.scroll-dwn{ padding-top:20px;}
 .tower-menu-container .menu-items .menu-scroll{ height:100%;}
 .scroll-box{ padding-left: 5px; margin-top: 10px; position: relative; top: -20px; width:99%; overflow:hidden; height: 90px; box-sizing: border-box;}
-.scrollup-menu{ z-index:99; color:#fff; cursor:pointer; position:absolute; width:30px; height:30px; line-height:30px; left:0px; top: 15px; transform: rotate(90deg);}
+.scrollup-menu{ z-index:99; color:#fff; cursor:pointer; position:absolute; width:30px; height:30px; line-height:30px; left:-12px; top: 15px; transform: rotate(90deg);}
 .scrollup-menu span { font-weight: bold; }
 .scrollup-menu.next{ left: auto; right: -5px; }
 .scrollup-menu:hover{ }
