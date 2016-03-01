@@ -937,10 +937,10 @@ var MasterplanView = (function () {
             for (var amenityKey in data.amenities) {
                 if (hasOwnProperty.call(data.amenities, amenityKey)) {
                     var amenity = data.amenities[amenityKey];
-                    var displayIcon = amenity.displayIcon ? 'icon-'+amenity.displayIcon : '';
+                    var iconPathCode = viewUtils.getIconHtml(amenity.amenityName);
                     var point = data.amenities[amenityKey].amenitySvg.split(' ');
                     var position = "top:" + point[1] + "%; left:" + point[0] + "%;";
-                    code += "<div data-top='" + point[1] + "' data-left='" + point[0] + "' id='" + amenityKey + "' class='" + config.amenityIconClass + "' style='" + position + "'><span class='icon  icon-location "+ displayIcon +" transition fs0'></span>";
+                    code += "<div data-top='" + point[1] + "' data-left='" + point[0] + "' id='" + amenityKey + "' class='" + config.amenityIconClass + "' style='" + position + "'>" + iconPathCode ;
                     code += "<div class='name'><img class='amenity-img' src=" + amenity.imageUrl + "><span>" + amenity.amenityName + "</span></div>";
                     code += "</div>";
                 }
