@@ -780,7 +780,6 @@ var getProjectData = (function() {
                     bookingStatus = 'Available';
                     if(tower.listings[unitKey].viewDirections.length>0){
                         viewDirections = tower.listings[unitKey].viewDirections;
-                        console.log('viewDirections', viewDirections);
                     }
                     if(tower.listings[unitKey].facing == 'East'){
                         totalEastFacingAvailableCount +=1;
