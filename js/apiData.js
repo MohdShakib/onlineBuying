@@ -650,13 +650,7 @@ var getProjectData = (function() {
             flatUnit.bookingAmount = listing.bookingAmount;
             flatUnit.discount = listing.discount ? listing.discount : undefined;
             flatUnit.discountDescription = listing.discountDescription;
-            flatUnit.viewDirections = [];
-            var viewDirectionsObjectArray = listing.viewDirections || [] ;
-            viewDirectionsObjectArray.forEach(function(obj) {
-                Object.keys(obj).forEach(function(key) {
-                    flatUnit.viewDirections.push(obj[key]);
-                });
-            });
+            flatUnit.viewDirections = utils.arrayOfObjectToArray(listing.viewDirections);
             flatUnit.rotationAnglesAvailable = [];
 
 

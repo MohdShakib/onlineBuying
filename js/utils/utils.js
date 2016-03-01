@@ -414,6 +414,16 @@ var utils = (function() {
       ascendingOrder: function(towers) {
           towers = Object.keys(towers);
           return towers.sort();
+      },
+        arrayOfObjectToArray: function(viewDirections) {
+            var viewDirectionsObjectArray = viewDirections || [] ;
+            var viewDirectionsArray = [] ;
+            viewDirectionsObjectArray.forEach(function(obj) {
+                Object.keys(obj).forEach(function(key) {
+                    viewDirectionsArray.push(obj[key]);
+                });
+            });
+            return viewDirectionsArray;
       }
 
     };
