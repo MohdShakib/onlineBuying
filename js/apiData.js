@@ -650,7 +650,13 @@ var getProjectData = (function() {
             flatUnit.bookingAmount = listing.bookingAmount;
             flatUnit.discount = listing.discount ? listing.discount : undefined;
             flatUnit.discountDescription = listing.discountDescription;
-            flatUnit.viewDirections = listing.viewDirections;
+            flatUnit.viewDirections = [];
+            var viewDirectionsObjectArray = listing.viewDirections || [] ;
+            viewDirectionsObjectArray.forEach(function(obj) {
+                Object.keys(obj).forEach(function(key) {
+                    flatUnit.viewDirections.push(obj[key]);
+                });
+            });
             flatUnit.rotationAnglesAvailable = [];
 
 
@@ -774,6 +780,7 @@ var getProjectData = (function() {
                     bookingStatus = 'Available';
                     if(tower.listings[unitKey].viewDirections.length>0){
                         viewDirections = tower.listings[unitKey].viewDirections;
+                        console.log('viewDirections', viewDirections);
                     }
                     if(tower.listings[unitKey].facing == 'East'){
                         totalEastFacingAvailableCount +=1;

@@ -574,7 +574,22 @@ var MasterplanView = (function () {
 
                     if (tower.viewDirections) {
                         for (var direction in tower.viewDirections) {
-                            attrs['class'] += ' ' + tower.viewDirections[direction];
+                            var className = '';
+                            switch(tower.viewDirections[direction]){
+                                case 'Garden View' : {
+                                    className = 'park-facing';
+                                    break;
+                                }
+                                case 'Pool View' : {
+                                    className = 'pool-facing';
+                                    break;
+                                }
+                                case 'Road View' : {
+                                    className = 'road-facing';
+                                    break;
+                                }
+                            }
+                            attrs['class'] += ' ' + className;
                         }
                     }
 
