@@ -1341,7 +1341,7 @@ ellipse.tower-unit-svg-selected-path {
 	    position: relative;
 	    z-index: 0;
 	}
-	span {
+	.floor-plan-menu-option {
 		position: relative;
 		&:before {
 			z-index: -1;
@@ -1378,7 +1378,6 @@ ellipse.tower-unit-svg-selected-path {
 }
 .floor-plan-menu-container .floor-plan-menu .floor-plan-menu-option:hover {
 	background-color: rgba(0,0,0,0.25);
-	z-index: -1;
 }
 .floor-plan-menu-container .floor-plan-menu .floor-plan-menu-option.selected {
 	background-color: #555;
