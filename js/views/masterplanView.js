@@ -575,16 +575,17 @@ var MasterplanView = (function () {
                     if (tower.viewDirections) {
                         for (var direction in tower.viewDirections) {
                             var className = '';
-                            switch(tower.viewDirections[direction]){
-                                case 'Garden View' : {
+                            var facing =  tower.viewDirections[direction].toLowerCase();
+                            switch(facing){
+                                case 'garden view' : {
                                     className = 'park-facing';
                                     break;
                                 }
-                                case 'Pool View' : {
+                                case 'pool view' : {
                                     className = 'pool-facing';
                                     break;
                                 }
-                                case 'Road View' : {
+                                case 'road view' : {
                                     className = 'road-facing';
                                     break;
                                 }

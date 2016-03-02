@@ -765,7 +765,7 @@ var getProjectData = (function() {
             var isAvailable = false,
                 totalAvailableCount = 0,
                 totalEastFacingAvailableCount = 0,
-                viewDirections = 0,
+                viewDirections = [],
                 bookingStatus = 'SoldOut';
             for (var unitKey in tower.listings) {
                 if (hasOwnProperty.call(tower.listings, unitKey) && tower.listings[unitKey].bookingStatus == 'Available') {
@@ -773,7 +773,12 @@ var getProjectData = (function() {
                     totalAvailableCount += 1;
                     bookingStatus = 'Available';
                     if(tower.listings[unitKey].viewDirections.length>0){
-                        viewDirections = tower.listings[unitKey].viewDirections;
+                        var viewDirectionArray = tower.listings[unitKey].viewDirections;
+                        for(var viewDirection in viewDirectionArray){
+                            if(viewDirections.indexOf(viewDirectionArray[viewDirection]) < 0 ){
+                                viewDirections.push(viewDirectionArray[viewDirection]);
+                            }
+                        }
                     }
                     if(tower.listings[unitKey].facing == 'East'){
                         totalEastFacingAvailableCount +=1;
