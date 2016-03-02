@@ -74,6 +74,7 @@ var MasterplanView = (function () {
 
         // For dynamic height of tower menu
         utils.masterPlanModel = this._model;
+
     }
 
     MasterplanView.prototype = {
@@ -100,9 +101,10 @@ var MasterplanView = (function () {
             this._elements = getElements();
         },
         renderInitialData: function (data) {
-            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '' : '<a href="' + data.baseUrl + '">') + data.builderName + ' ' + data.projectName + (config.builderSetUp ? '' : '</a>');
+            document.getElementById(config.projectDetail.titleId).innerHTML =  data.builderName + ' ' + data.projectName;
             document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
+            $('.'+config.projectDetail.titleId).off('click');
         },
         // to render the google map container
         googleMapContainer: function () {
@@ -574,7 +576,23 @@ var MasterplanView = (function () {
 
                     if (tower.viewDirections) {
                         for (var direction in tower.viewDirections) {
-                            attrs['class'] += ' ' + tower.viewDirections[direction];
+                            var className = '';
+                            var facing =  tower.viewDirections[direction].toLowerCase();
+                            switch(facing){
+                                case 'garden view' : {
+                                    className = 'park-facing';
+                                    break;
+                                }
+                                case 'pool view' : {
+                                    className = 'pool-facing';
+                                    break;
+                                }
+                                case 'road view' : {
+                                    className = 'road-facing';
+                                    break;
+                                }
+                            }
+                            attrs['class'] += ' ' + className;
                         }
                     }
 
@@ -803,7 +821,7 @@ var MasterplanView = (function () {
             this._elements.bottomFilterContainer.on('click', '.back-to-filter', function (event) {
                 // notify controller
                 curruntFilter = '';
-                //_this._removeFilter.notify(); // this refers to element here   //todo remove this comment when we need back to filter button
+                _this._removeFilter.notify(); // this refers to element here
             });
 
             $('.bottom-filter-wrapper').off('click').on('click', '.toggle-arrow', function (event) {
@@ -822,15 +840,15 @@ var MasterplanView = (function () {
                 roadFacingDIsabled = roadFacing === 0 ? 'disabled' : '',
                 code = "";
 
-                code += "<div class='tower-filter-wrap transition slide-out'><div class='filter-wrap transition tower-filter'>";
-                code += "<div class='filter all-tower-button transition filter-active'><div class='ico-wrap transition'><em></em></div><span>All Towers ("+ allTower+")</span></div>";
+                code += "<div class='tower-filter-wrap transition'><div class='filter-wrap transition tower-filter'>";
+                code += "<div class='filter all-tower-button transition '><div class='ico-wrap transition'><em></em></div><span>All Towers ("+ allTower+")</span></div>";
                 code += "<div class='filter pool-facing-filter-button transition " + poolFacingDIsabled + "'><div class='ico-wrap transition'><em></em></div><span>Pool Facing ("+ poolFacing+")</span></div>";
                 code += "<div class='filter park-facing-filter-button transition " + parkFacingDIsabled + "'><div class='ico-wrap transition'><em></em></div><span>Park Facing ("+ parkFacing+")</span></div>";
                 code += "<div class='filter road-facing-filter-button transition " + roadFacingDIsabled + "'><div class='ico-wrap transition'><em></em></div><span>Road Facing ("+ roadFacing+")</span></div>";
                 code += "</div></div>";
 
-                code += "<div class='after-filter-apply transition slide-in'>";
-                code += "<div class='left master-plan-tower-filter'><div class='back-to-filter'></div></div>";
+                code += "<div class='after-filter-apply transition'>";
+                code += "<div class='left master-plan-tower-filter'><div class='back-to-filter'><i class='icon icon-arrow_left'></i></div></div>";
                 code += "<div class='center master-plan-tower-filter'><div class='filter-wrap'><div class='filter item'>";
                 code += '<div class="tower-menu-container master-page" id="inside-tower-menu-container">';
                 code += "</div></div></div></div>";
@@ -838,6 +856,16 @@ var MasterplanView = (function () {
                 code += "</div>";
 
             this._elements.bottomFilterContainer.html(code);
+            // fall back if no filter data present
+            if(!(poolFacing || parkFacing || roadFacing)){
+                this.filterDataFallBack();
+            }
+        },
+        filterDataFallBack : function(){
+            $('.tower-filter-wrap').addClass('slide-out');
+            $('.bottom-filter-container').addClass('no-left-arrow');
+            $('.tower-filter-wrap .all-tower-button').addClass('filter-active');
+            $('.after-filter-apply').addClass('slide-in');
         },
         bottomFilterToggle: function (element){
             if($('.bottom-filter-wrapper').hasClass('show-up')){
@@ -922,11 +950,15 @@ var MasterplanView = (function () {
             for (var amenityKey in data.amenities) {
                 if (hasOwnProperty.call(data.amenities, amenityKey)) {
                     var amenity = data.amenities[amenityKey];
-                    var displayIcon = amenity.displayIcon ? 'icon-'+amenity.displayIcon : '';
+                    var iconPathCode = viewUtils.getIconHtml(amenity.amenityName);
                     var point = data.amenities[amenityKey].amenitySvg.split(' ');
                     var position = "top:" + point[1] + "%; left:" + point[0] + "%;";
-                    code += "<div data-top='" + point[1] + "' data-left='" + point[0] + "' id='" + amenityKey + "' class='" + config.amenityIconClass + "' style='" + position + "'><span class='icon  icon-location "+ displayIcon +" transition fs0'></span>";
-                    code += "<div class='name'><img class='amenity-img' src=" + amenity.imageUrl + "><span>" + amenity.amenityName + "</span></div>";
+                    var hoverImageClass = '';
+                    if(point[1] < 10){
+                        hoverImageClass += 'fixed-image-top';
+                    }
+                    code += "<div data-top='" + point[1] + "' data-left='" + point[0] + "' id='" + amenityKey + "' class='" + config.amenityIconClass + "' style='" + position + "'>" + iconPathCode ;
+                    code += "<div class='name " + hoverImageClass+"'><img class='amenity-img' src=" + amenity.imageUrl + "><span>" + amenity.amenityName + "</span></div>";
                     code += "</div>";
                 }
             }
