@@ -126,9 +126,19 @@ var UnitplaninfoView = (function() {
                 // hide notification tool tip
                 $('.' + config.notificationTooltipClass).hide();
 
-                document.getElementById(config.projectDetail.towerId).innerHTML = (config.builderSetUp ? '':'<a href="' + rootdata.baseUrl + "/"+ data.towerIdentifier+'">') + rootdata.towers[data.towerIdentifier].longName + (config.builderSetUp ? '':'</a> &nbsp &gt');
+                document.getElementById(config.projectDetail.towerId).innerHTML = (config.builderSetUp ? '':'<a href="#" onClick="return false;">') + rootdata.towers[data.towerIdentifier].longName + (config.builderSetUp ? '':'</a> &nbsp &gt');
                 document.getElementById(config.projectDetail.unitId).innerHTML = data.unitIdentifier;
+                this.renderInitialDataEvents();
             }
+        },
+        renderInitialDataEvents : function (){
+            var _this = this;
+            $('.' + config.projectDetail.towerId).off('click').on('click', function (event) {
+                _this.destroyView();
+                setTimeout(function() {
+                    _this._unitCloseClick.notify();
+                }, 1000);
+            });
         },
         destroyView: function() {
             utils.dynamicResizeContainers(window.innerWidth);
@@ -154,7 +164,7 @@ var UnitplaninfoView = (function() {
             $('.' + config.notificationTooltipClass).show();
             $('.bottom-filter-wrapper').removeClass('show-bottom');
             $('.bottom-filter-wrapper').addClass('show-up');
-
+            $('.' + config.projectDetail.towerId).off('click');
         },
         dynamicResizeContainers: function() {
             var parentContainerHeight = (window.innerHeight > config.imageResolution.height ? config.imageResolution.height : window.innerHeight),
@@ -492,8 +502,12 @@ var UnitplaninfoView = (function() {
                 var svgObj = svgData[svgId];
                 var point = svgObj.svgPath.split(' ');
                 var position = "top:" + point[1] + "%; left:" + point[0] + "%;";
+                var hoverImageClass = '';
+                if(point[0] > 80){
+                    hoverImageClass += 'fixed-image-right';
+                }
                 code += "<div id='" + svgId + "' data-top='" + point[1] + "' data-left='" + point[0] + "' class='" + config.amenityIconClass + "' style='" + position + "'><span class='icon icon-location'></span>";
-                code += "<div class='name'><img class='amenity-img' src=" + svgObj.details + "><span>" + svgObj.name + "</span></div>";
+                code += "<div class='name " + hoverImageClass+"'><img class='amenity-img' src=" + svgObj.details + "><span>" + svgObj.name + "</span></div>";
                 code += "</div>";
             }
             this._elements.amenitiesContainer.html(code);

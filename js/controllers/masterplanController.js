@@ -103,6 +103,7 @@ var MasterplanController = (function() {
             this._view._bottomFilterToggle.attach(function(sender, element){
                 _this._view.bottomFilterToggle(element);
             });
+
         },
         generateTemplate: function() {
             this._view.buildView();

@@ -57,11 +57,11 @@ a{ text-decoration:none;}
 .chat-tab-box a:hover, .chat-tab-box a.active{ background:#f3f3f3; box-shadow:0 -2px 0 #ff8611 inset;}
 .c-code{ width:65px; position:relative;}
 .c-code input{ padding:10px 20px 10px 10px !important;}
-.c-code .icon{ position:absolute; right:5px; padding:0 5px; color:#a1a1a1; line-height:54px; cursor:pointer; top:0px;}
-.c-code .icon:hover{ background:#414141;}
-.country-dropDown{ position:absolute; top:102%; width:200px; background:#616161; left:0; z-index:2; height:105px; overflow:auto;}
+.c-code .icon{ position:absolute; right:5px; padding:0 5px; color:#a1a1a1; line-height:50px; cursor:pointer; top:0px;}
+.c-code .icon:hover{ background:#a1a1a1;color: #ffffff}
+.country-dropDown{ position:absolute; top:80%; width:180px; background:#ffffff; left:0; z-index:2; height:105px; overflow:auto;}
 .country-dropDown li{padding:7px 10px; color:#c6c6c6; border-bottom:1px solid #7A7A7A; transition:all 0.5s ease-in-out; -moz-transition:all 0.5s ease-in-out; -webkit-transition:all 0.5s ease-in-out; cursor:pointer;}
-.country-dropDown li:hover, .country-dropDown li.active{ background:#414141;}
+.country-dropDown li:hover, .country-dropDown li.active{ background:#999;color: #ffffff}
 .country-dropDown li a {color:#c6c6c6;}
 .country-dropDown.bmt{ top:inherit; bottom:102%;}
 .country-dropDown span {font-size: 0.7em; padding-left: 5px; text-transform: uppercase;}

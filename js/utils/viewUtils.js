@@ -420,6 +420,25 @@ var viewUtils = (function() {
             $('a.control_next').click(function() {
                 moveRight();
             });
+        },
+        getIconHtml : function(amenityName){
+            var iconMapObject = {       // todo add icon-name (same as amenity name) and path count for each icon
+                //"Swimming-Pool" : {
+                //    "pathCount" : 14
+                //}
+            };
+            var displayIcon = amenityName.split(' ').join('-');
+            var pathCount  = iconMapObject[displayIcon] && iconMapObject[displayIcon].pathCount || 0;
+            var htmlCode = '';
+            if(pathCount === 0 ){
+                displayIcon = 'location';
+            }
+            htmlCode += "<span class='icon icon-"+ displayIcon +" transition fs0'>" ;
+            for(var i = 1 ; i <= pathCount ; i++){
+                htmlCode += "<span class='path"+ i +"'></span>";
+            }
+            htmlCode += "</span>";
+            return htmlCode;
         }
     };
 
