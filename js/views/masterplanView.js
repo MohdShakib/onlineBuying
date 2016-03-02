@@ -100,7 +100,7 @@ var MasterplanView = (function () {
             this._elements = getElements();
         },
         renderInitialData: function (data) {
-            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '' : '<a href="' + data.baseUrl + '">') + data.builderName + ' ' + data.projectName + (config.builderSetUp ? '' : '</a>');
+            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '' : '<a href="' + data.baseUrl + config.demoValue  + '">') + data.builderName + ' ' + data.projectName +  (config.builderSetUp ? '' : '</a>');
             document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
         },
@@ -854,6 +854,15 @@ var MasterplanView = (function () {
                 code += "</div>";
 
             this._elements.bottomFilterContainer.html(code);
+            // fall back if no filter data present
+            if(!(poolFacing || parkFacing || roadFacing)){
+                this.filterDataFallBack();
+            }
+        },
+        filterDataFallBack : function(){
+            $('.tower-filter-wrap').addClass('slide-out');
+            $('.tower-filter-wrap .all-tower-button').addClass('filter-active');
+            $('.after-filter-apply').addClass('slide-in');
         },
         bottomFilterToggle: function (element){
             if($('.bottom-filter-wrapper').hasClass('show-up')){
