@@ -120,7 +120,6 @@ var TowerselectedView = (function() {
         renderInitialDataEvents : function (){
             var _this = this;
             $('.' + config.projectDetail.titleId).off('click').on('click', function (event) {
-                console.log('Project title clicked');
                 _this._projectTitleClick.notify(this); // this refers to element here
             });
         },

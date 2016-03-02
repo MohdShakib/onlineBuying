@@ -75,8 +75,6 @@ var MasterplanView = (function () {
         // For dynamic height of tower menu
         utils.masterPlanModel = this._model;
 
-        // baseUrl clicked
-        this._projectTitleClick = new Event(this);
     }
 
     MasterplanView.prototype = {
@@ -103,16 +101,10 @@ var MasterplanView = (function () {
             this._elements = getElements();
         },
         renderInitialData: function (data) {
-            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '' : '<a href="#" onClick="return false;">') + data.builderName + ' ' + data.projectName +  (config.builderSetUp ? '' : '</a>');
+            document.getElementById(config.projectDetail.titleId).innerHTML =  data.builderName + ' ' + data.projectName;
             document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
-            this.renderInitialDataEvents();
-        },
-        renderInitialDataEvents : function (){
-            var _this = this;
-            $('.' + config.projectDetail.titleId).off('click').on('click', function (event) {
-                _this._projectTitleClick.notify(this); // this refers to element here
-            });
+            $('.'+config.projectDetail.titleId).off('click');
         },
         // to render the google map container
         googleMapContainer: function () {

@@ -168,11 +168,9 @@ var initializeRoutes = (function() {
         };
 
         var queries = window.location.href.split('?')[1];
-        console.log('queries', window.location.href.split('?')[1]);
         if(queries == 'demo=true'){
             config.apisJson = true;
             config.localZip = true;
-            config.demoValue = '?demo=true';
         }
 
         // instantiate the router

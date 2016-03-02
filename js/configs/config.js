@@ -12,7 +12,6 @@ var config = (function() {
         setJsonDataPriorityForTest: false,
         builderSetUp: false,
         showInterestedIn: true,       // to show hide interested popup
-        demoValue: '',
 
 
         // Flags

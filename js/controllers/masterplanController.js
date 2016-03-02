@@ -104,12 +104,6 @@ var MasterplanController = (function() {
                 _this._view.bottomFilterToggle(element);
             });
 
-            // Go back Event
-            this._view._projectTitleClick.attach(function(sender, element) {
-                var rootData = _this._model.getData();
-                router.setRoute(rootData.baseUrl);
-                return;
-            });
         },
         generateTemplate: function() {
             this._view.buildView();
