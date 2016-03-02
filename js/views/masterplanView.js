@@ -951,8 +951,13 @@ var MasterplanView = (function () {
                     var iconPathCode = viewUtils.getIconHtml(amenity.amenityName);
                     var point = data.amenities[amenityKey].amenitySvg.split(' ');
                     var position = "top:" + point[1] + "%; left:" + point[0] + "%;";
+                    console.log('>> position>>>>', position);
+                    var hoverImageClass = '';
+                    if(point[1] < 10){
+                        hoverImageClass += 'fixed-image-top';
+                    }
                     code += "<div data-top='" + point[1] + "' data-left='" + point[0] + "' id='" + amenityKey + "' class='" + config.amenityIconClass + "' style='" + position + "'>" + iconPathCode ;
-                    code += "<div class='name'><img class='amenity-img' src=" + amenity.imageUrl + "><span>" + amenity.amenityName + "</span></div>";
+                    code += "<div class='name " + hoverImageClass+"'><img class='amenity-img' src=" + amenity.imageUrl + "><span>" + amenity.amenityName + "</span></div>";
                     code += "</div>";
                 }
             }

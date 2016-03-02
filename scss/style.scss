@@ -1632,6 +1632,13 @@ ellipse.tower-unit-svg-selected-path {
 	-o-transition:all 0.5s ease-in-out;
 	-webkit-transition:all 0.5s ease-in-out;
 }
+.amenities-container .amenity-icon .fixed-image-top{
+	top: 150px;
+}
+.amenities-container .amenity-icon .fixed-image-right{
+	right: 0px;
+	left: -200px;
+}
 .amenities-container .amenity-icon:hover .name {
 	opacity: 1;
 	visibility: visible;
