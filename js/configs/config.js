@@ -31,8 +31,49 @@ var config = (function() {
         towerMenuItemHeight: 90,
         maxShortlistCount: 6,
         tawkApiId: 'tawk_55e5498bfc2b363371225aaa',
-        errorMsg: 'Something went wrong. Please contact +91-20395-20918 for assistance.',
-        helpline: '+91-20395-20918',
+        errorMsg: 'Something went wrong. Please contact 1800-103-104-1 for assistance.',
+        projectConfig: {
+            "501448": {
+                ivrsData: "+91-7930641590"
+            },
+            "640926": {
+                ivrsData: "+91-7930641590"
+            },
+            "513534": {
+                ivrsData: "+91-8049202151"
+            },
+            "656047": {
+                ivrsData: "+91-8049202151"
+            },
+            "668509": {
+                ivrsData: "+91-4439942696"
+            },
+            "672575": {
+                ivrsData: "+91-1166764112"
+            },
+            "501639": {
+                ivrsData: "+91-3330566486"
+            },
+            "669434": {
+                ivrsData: "+91-2261739689"
+            },
+            "655929": {
+                ivrsData: "+91-2039520706"
+            },
+            "667404": {
+                ivrsData: "+91-2039520706"
+            },
+            "674457": { // artha neo
+                ivrsData : "+91-7676888222",
+                cancellationEnabled : false
+            },
+            "668243": { // artha serene
+                ivrsData : "+91-7676888222",
+                cancellationEnabled : false
+            }
+        },
+        helpline: '1800-103-104-1',
+        cancellationEnabled: true,
         emailId: 'sales@umangrealtech.com',
         gaCategory: '4d-view',
 
