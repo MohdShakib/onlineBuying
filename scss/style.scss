@@ -1658,9 +1658,9 @@ ellipse.tower-unit-svg-selected-path {
 .amenity-popup {
 	position: absolute;
 	top: 0px;
+	left:-40px;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0,0,0,0.7);
 	z-index: 1000000;
 }
 .selected-unit-container .amenity-popup {
