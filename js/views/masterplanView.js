@@ -861,6 +861,7 @@ var MasterplanView = (function () {
         },
         filterDataFallBack : function(){
             $('.tower-filter-wrap').addClass('slide-out');
+            $('.bottom-filter-container').addClass('no-left-arrow');
             $('.tower-filter-wrap .all-tower-button').addClass('filter-active');
             $('.after-filter-apply').addClass('slide-in');
         },

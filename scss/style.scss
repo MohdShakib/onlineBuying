@@ -688,6 +688,28 @@ ellipse.tower-unit-svg-selected-path {
 			width: 20%;
 		}
 	}
+	&.no-left-arrow{
+		.left{
+			display: none;
+		}
+		.center {
+			&.master-plan-tower-filter{
+				width: 80%;
+			}
+		}
+		.master-menu .menu-items{
+			margin: 0 auto;
+		}
+		.scrollup-menu{
+			left: -20px;
+			&.next{
+				left: auto;
+				right:-20px;
+			}
+
+		}
+
+	}
 }
 
 
