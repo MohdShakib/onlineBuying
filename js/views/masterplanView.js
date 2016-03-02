@@ -74,6 +74,9 @@ var MasterplanView = (function () {
 
         // For dynamic height of tower menu
         utils.masterPlanModel = this._model;
+
+        // baseUrl clicked
+        this._projectTitleClick = new Event(this);
     }
 
     MasterplanView.prototype = {
@@ -100,9 +103,16 @@ var MasterplanView = (function () {
             this._elements = getElements();
         },
         renderInitialData: function (data) {
-            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '' : '<a href="' + data.baseUrl + config.demoValue  + '">') + data.builderName + ' ' + data.projectName +  (config.builderSetUp ? '' : '</a>');
+            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '' : '<a href="#" onClick="return false;">') + data.builderName + ' ' + data.projectName +  (config.builderSetUp ? '' : '</a>');
             document.getElementById(config.projectDetail.addressId).innerHTML = data.address;
             document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '';
+            this.renderInitialDataEvents();
+        },
+        renderInitialDataEvents : function (){
+            var _this = this;
+            $('.' + config.projectDetail.titleId).off('click').on('click', function (event) {
+                _this._projectTitleClick.notify(this); // this refers to element here
+            });
         },
         // to render the google map container
         googleMapContainer: function () {
@@ -951,7 +961,6 @@ var MasterplanView = (function () {
                     var iconPathCode = viewUtils.getIconHtml(amenity.amenityName);
                     var point = data.amenities[amenityKey].amenitySvg.split(' ');
                     var position = "top:" + point[1] + "%; left:" + point[0] + "%;";
-                    console.log('>> position>>>>', position);
                     var hoverImageClass = '';
                     if(point[1] < 10){
                         hoverImageClass += 'fixed-image-top';

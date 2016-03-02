@@ -147,6 +147,12 @@ var TowerselectedController = (function() {
             this._view._bottomFilterToggle.attach(function(sender, element){
                 _this._view.bottomFilterToggle(element);
             });
+            // Go back Event
+            this._view._projectTitleClick.attach(function(sender, element) {
+                var rootData = _this._model.getRootdata();
+                router.setRoute(rootData.baseUrl);
+                return;
+            });
         },
         toggleFilterOption: function(filterArray, filterOption, element) {
             var index = filterArray.indexOf(filterOption);

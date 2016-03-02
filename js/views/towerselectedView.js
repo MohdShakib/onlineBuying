@@ -64,6 +64,9 @@ var TowerselectedView = (function() {
         this._resetFilter = new Event(this);
         this._bottomFilterToggle = new Event(this);
 
+        // baseUrl clicked
+        this._projectTitleClick = new Event(this);
+
     }
 
     TowerselectedView.prototype = {
@@ -104,7 +107,7 @@ var TowerselectedView = (function() {
             }, 500);
         },
         renderInitialData: function(data, rootdata) {
-            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '':'<a href="' + rootdata.baseUrl + config.demoValue + '">') + rootdata.builderName + ' ' + rootdata.projectName + (config.builderSetUp ? '':'</a> &nbsp &gt');
+            document.getElementById(config.projectDetail.titleId).innerHTML = (config.builderSetUp ? '':'<a href="#" onClick="return false;">') + rootdata.builderName + ' ' + rootdata.projectName + (config.builderSetUp ? '':'</a> &nbsp &gt');
             document.getElementById(config.projectDetail.towerId).innerHTML = data.longName;
             document.getElementById(config.projectDetail.unitId).innerHTML = '';
             document.getElementById(config.projectDetail.addressId).innerHTML = '';
@@ -112,6 +115,14 @@ var TowerselectedView = (function() {
                 document.getElementById(config.projectDetail.availabilityCountId).innerHTML = '<label class="count"></label> Available';
                 this.updateAvailableCount();
             }
+            this.renderInitialDataEvents();
+        },
+        renderInitialDataEvents : function (){
+            var _this = this;
+            $('.' + config.projectDetail.titleId).off('click').on('click', function (event) {
+                console.log('Project title clicked');
+                _this._projectTitleClick.notify(this); // this refers to element here
+            });
         },
         startAnimation: function(model) {
 
