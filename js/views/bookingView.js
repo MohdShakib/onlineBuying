@@ -205,8 +205,8 @@ var BookingView = (function() {
                 '        <div class="payment-right">' +
                 '            <div id="booking-user-details" class="payment-right-container">';
                 if(rootdata.fairEnabled) {
-                  code += '<h3>Nice Selection!</h3>'+
-                          '<p>Now, pay just <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- as token payment to block your selection.';
+                  code +=   '<div class="payment-txt"><img src="images/best-choice-badge.jpg" alt=""><div class="rght"><h3>Nice Selection!</h3>'+
+                            '<p>Now, pay just <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- as token payment to block your selection. <br>Your full amount will be refunded in case you cancel the booking within 15 days.</p></div></div>';
 
                     if(cancellationEnabled){
                         code += ' <br>Your full amount will be refunded in case you cancel the booking within 15 days.';
