@@ -445,6 +445,9 @@ var utils = (function() {
         },
         eraseCookie :function eraseCookie(name) {
             this.createCookie(name, "", -1);
+        },
+        getDisplayIcon :function getDisplayIcon(name) {
+            return name.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}).trim().split(' ').join('-');
         }
     };
 

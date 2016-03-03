@@ -466,7 +466,7 @@ var viewUtils = (function() {
                    "pathCount" : 8
                 }
             };
-            var displayIcon = amenityName.trim().split(' ').join('-');
+            var displayIcon = utils.getDisplayIcon(amenityName);
             var pathCount  = iconMapObject[displayIcon] && iconMapObject[displayIcon].pathCount || 0;
             var htmlCode = '';
             var extraClasses = '';
