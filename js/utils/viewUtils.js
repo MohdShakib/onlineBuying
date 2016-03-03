@@ -423,9 +423,12 @@ var viewUtils = (function() {
         },
         getAmenitiesIconHtml : function(amenityName, amenityIcon){
             var iconMapObject = {       // todo add icon-name (same as amenity name) and path count for each icon
-                //"Swimming-Pool" : {
-                //    "pathCount" : 14
-                //}
+                "Swimming-Pool" : {
+                   "pathCount" : 14
+                },
+                "Jogging" : {
+                   "pathCount" : 9
+                }
             };
             var displayIcon = amenityName.split(' ').join('-');
             var pathCount  = iconMapObject[displayIcon] && iconMapObject[displayIcon].pathCount || 0;
