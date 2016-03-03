@@ -428,9 +428,45 @@ var viewUtils = (function() {
                 },
                 "Jogging" : {
                    "pathCount" : 9
+                },
+                "Indoor-Games" : {
+                   "pathCount" : 11
+                },
+                "mountain" : {
+                   "pathCount" : 11
+                },
+                "Club-House" : {
+                   "pathCount" : 10
+                },
+                "Hill-View" : {
+                   "pathCount" : 10
+                },
+                "templebell" : {
+                   "pathCount" : 12
+                },
+                "Tennis-Court" : {
+                   "pathCount" : 12
+                },
+                "Amphitheater" : {
+                   "pathCount" : 6
+                },
+                "Golf-Course" : {
+                   "pathCount" : 6
+                },
+                "Gymnasium" : {
+                   "pathCount" : 9
+                },
+                "Kids-Play" : {
+                   "pathCount" : 22
+                },
+                "homecinema" : {
+                   "pathCount" : 10
+                },
+                "traveling" : {
+                   "pathCount" : 8
                 }
             };
-            var displayIcon = amenityName.split(' ').join('-');
+            var displayIcon = amenityName.trim().split(' ').join('-');
             var pathCount  = iconMapObject[displayIcon] && iconMapObject[displayIcon].pathCount || 0;
             var htmlCode = '';
             var extraClasses = '';
