@@ -845,6 +845,21 @@ ellipse.tower-unit-svg-selected-path {
 			}
 		}
 	}
+	.tower-item {
+		.img-wrap {
+			color: #fff;
+			line-height: 54px;
+			font-size: 28px;
+			font-weight: bold;
+			background: none;
+			border: 2px solid #fff;
+		}
+		&.disabled {
+			.img-wrap {
+				border-width: 1px;
+			}
+		}
+	}
 }
 .tower-menu-container.tower-selected-menu .menu-item{width: 45px;left:0; padding-left:0;border-bottom:1px solid #3d3d3d;}
 .tower-menu-container .menu-item .tower-menu-text{position:absolute; left:-105px; height: 44px; width: 100px; overflow: hidden;}
