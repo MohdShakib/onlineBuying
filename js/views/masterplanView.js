@@ -337,7 +337,7 @@ var MasterplanView = (function () {
             });
 
             // Amenities
-            $('.amenity-icon span').removeClass('fs0');
+            $('.amenity-icon').addClass('amenity-zoom');
 
             // Tower Menu
             $('.tower-menu-container').css({
