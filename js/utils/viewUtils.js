@@ -459,6 +459,15 @@ var viewUtils = (function() {
                 "Kids-Play" : {
                    "pathCount" : 22
                 },
+                "Garden-View" : {
+                   "pathCount" : 9
+                },
+                "Entrance" : {
+                   "pathCount" : 6
+                },
+                "Terrace-Units" : {
+                   "pathCount" : 7
+                },
                 "homecinema" : {
                    "pathCount" : 10
                 },
