@@ -474,10 +474,10 @@ var viewUtils = (function() {
                 displayIcon = amenityIcon || 'location';
             }
             if(!amenityIcon){
-                extraClasses = ' transition fs0 tower-amenity';
+                extraClasses = ' transition tower-amenity';
             }
             if(pathCount === 0 && displayIcon === 'location'){
-                extraClasses = ' transition fs0';
+                extraClasses = ' transition';
             }
             htmlCode += "<span class='icon icon-"+ displayIcon + extraClasses + "'>" ;
             for(var i = 1 ; i <= pathCount ; i++){

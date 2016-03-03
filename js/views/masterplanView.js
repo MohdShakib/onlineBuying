@@ -280,10 +280,10 @@ var MasterplanView = (function () {
 
             // Amenities
             var time = 5000;
-            $('.amenity-icon span').each(function () {
+            $('.amenity-icon').each(function () {
                 var _this = this;
                 setTimeout(function () {
-                    $(_this).removeClass('fs0');
+                    $(_this).addClass('amenity-zoom');
                 }, time);
                 time += 200;
             });
