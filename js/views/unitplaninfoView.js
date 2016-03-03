@@ -599,8 +599,8 @@ var UnitplaninfoView = (function() {
         specificationContainer: function(data, rotationdata, rootdata) {
             var code = '<div class="unit-content-wrapper">' +
                 '<div class="project-amenities specification-tabs-content" ><h3>Amenities</h3>' +
-                '<ul>' ;
-            code +=    '<li ' + this.getAmenityClass(rootdata, 'Gym') + '>'+ viewUtils.getAmenitiesIconHtml("Gymnasium","gym") +'<label>Gymnasium</label></li>' +
+                '<ul>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Gym') + '>'+ viewUtils.getAmenitiesIconHtml("Gymnasium","gym") +'<label>Gymnasium</label></li>' +
                 '<li ' + this.getAmenityClass(rootdata, 'Swi') + '> '+ viewUtils.getAmenitiesIconHtml("Swimming Pool","swimming") +'<label>Swimming Pool</label></li>' +
                 '<li ' + this.getAmenityClass(rootdata, 'Clu') + '>'+ viewUtils.getAmenitiesIconHtml("Club House","clubhouse") +'<label>Club House</label></li>' +
                 '<li ' + this.getAmenityClass(rootdata, 'Int') + '>'+ viewUtils.getAmenitiesIconHtml("Intercom","intercom") +'<label>Intercom</label></li>' +
@@ -611,9 +611,8 @@ var UnitplaninfoView = (function() {
                 '<li ' + this.getAmenityClass(rootdata, 'Chi') + '>'+ viewUtils.getAmenitiesIconHtml("Kids Play","playarea") +'<label>Children Play area</label></li>' +
                 '<li ' + this.getAmenityClass(rootdata, 'Jog') + '>'+ viewUtils.getAmenitiesIconHtml("Jogging","jogging") +'<label>Jogging Track</label></li>' +
                 '<li ' + this.getAmenityClass(rootdata, 'Rai') + '>'+ viewUtils.getAmenitiesIconHtml("Rain Water Harvesting","harvesting") +'<label>Rain Water Harvesting</label></li>' +
-                '<li ' + this.getAmenityClass(rootdata, 'Caf') + '>'+ viewUtils.getAmenitiesIconHtml("Cafeteria","cafe") +'<label>Cafeteria</label></li>' ;
-
-            code += '</ul>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Caf') + '>'+ viewUtils.getAmenitiesIconHtml("Cafeteria","cafe") +'<label>Cafeteria</label></li>' +
+                '</ul>' +
                 '<div class="clear-fix"></div></div>';
             code += "<h3>Specifications</h3><table class='base-table specification-tabs-content specifications'>";
             for (var category in rootdata.specifications) {
