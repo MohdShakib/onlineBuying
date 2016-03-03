@@ -162,8 +162,6 @@ var UnitplaninfoView = (function() {
             // show notification tool tip
             viewUtils.removeNotificationTooltip();
             $('.' + config.notificationTooltipClass).show();
-            $('.bottom-filter-wrapper').removeClass('show-bottom');
-            $('.bottom-filter-wrapper').addClass('show-up');
             $('.' + config.projectDetail.towerId).off('click');
         },
         dynamicResizeContainers: function() {
