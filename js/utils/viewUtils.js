@@ -435,7 +435,7 @@ var viewUtils = (function() {
             var htmlCode = '';
             var extraClasses = '';
             if(!amenityIcon){
-                extraClasses = ' transition fs0';
+                extraClasses = ' transition fs0 tower-amenity';
             }
             if(pathCount === 0 ){
                 displayIcon = amenityIcon || 'location';
