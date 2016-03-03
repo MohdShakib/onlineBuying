@@ -11,7 +11,6 @@ var config = (function() {
         localZip: false,
         setJsonDataPriorityForTest: false,
         builderSetUp: false,
-        showInterestedIn: true,       // to show hide interested popup
 
 
         // Flags

@@ -154,6 +154,13 @@ var TowerselectedView = (function() {
                 });
             }, 700);
 
+            if(!utils.readCookie('isFirstTimeUser')){
+                utils.createCookie('isFirstTimeUser', 'true');
+                $('.help-container').removeClass('hide');
+                setTimeout(function() {
+                    $('.help-container').addClass('hide');
+                }, 3000);
+            }
             //viewUtils.showNotificationTooltip('Click on unit spot <span class="pointer"></span> to view its floor plan');
         },
         displayWithoutAnimation: function(fromUnitInfoView) {
@@ -781,7 +788,7 @@ var TowerselectedView = (function() {
             $(element).toggleClass('hideMinMap');
         },
         helpContainer: function (data, rootdata) {
-            var helpContainerCode = "<div class='help-info transition'><img src='images/help-screen-img.png' alt='' /></div>";
+            var helpContainerCode = "<div class='help-info transition show-info'><img src='images/help-screen-img.png' alt='' /></div>";
             this._elements.helpContainer.html(helpContainerCode);
             this.helpContainerEvents();
         },
