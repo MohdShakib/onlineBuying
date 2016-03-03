@@ -470,11 +470,14 @@ var viewUtils = (function() {
             var pathCount  = iconMapObject[displayIcon] && iconMapObject[displayIcon].pathCount || 0;
             var htmlCode = '';
             var extraClasses = '';
+            if(pathCount === 0 ){
+                displayIcon = amenityIcon || 'location';
+            }
             if(!amenityIcon){
                 extraClasses = ' transition fs0 tower-amenity';
             }
-            if(pathCount === 0 ){
-                displayIcon = amenityIcon || 'location';
+            if(pathCount === 0 && displayIcon === 'location'){
+                extraClasses = ' transition fs0';
             }
             htmlCode += "<span class='icon icon-"+ displayIcon + extraClasses + "'>" ;
             for(var i = 1 ; i <= pathCount ; i++){
