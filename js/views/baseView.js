@@ -16,7 +16,6 @@ var BaseView = (function() {
         'bottomFormGroupContainer': '<div class="bottom-form-group" id="bottom-form-group"></div>',
         'compareUnitsContainer': '<div  class="compare-units-container" id="' + config.compareUnitscontainerId + '"></div>',
         'promptLeadFormContainer': '<div class="promptLeadFormBox" id="prompt-lead-form"></div>',
-        'questionBoxContainer': '<div class="questionBox" id="question-box"></div>',
         'smallScreenMessage': ' <div class="top-message '+ config.popupClass +'" id="small-screen" style="display:none;"></div>'
 
     };
@@ -26,7 +25,6 @@ var BaseView = (function() {
             'bottomFormGroupContainer': $('#bottom-form-group'),
             'compareUnitsContainer': $('#' + config.compareUnitscontainerId),
             'promptLeadFormContainer': $('#prompt-lead-form'),
-            //'questionBoxContainer': $('#question-box'),
             'smallScreenMessage': $('#small-screen')
         };
         return elements;
@@ -682,39 +680,6 @@ var BaseView = (function() {
                 $(d).find("input").attr("placeholder", label);
                 $(d).find("textarea").attr("placeholder", label);
             });
-        },
-        questionBoxContainer: function(rootdata) {
-            var helpline = config.helpline ;
-            if(config.projectConfig[rootdata.projectId]){
-                helpline = config.projectConfig[rootdata.projectId].ivrsData;
-            }
-            var html = '<div class="question"><span>Interested</span></div>' +
-                '   <div class="callInfo">' +
-                '   <p><span class="number">' + helpline + '</span>Our Advisors are here to help.</p>' +
-                '	</div>'+
-                '	<span class="close icon-cross"></span>';
-            this._elements.questionBoxContainer.html(html);
-            this.questionBoxContainerEvents();
-        },
-        questionBoxContainerEvents: function() {
-            var _this = this;
-
-            _this._elements.questionBoxContainer.on('click', '.question', function(event) {
-                event.stopPropagation();
-                _this._elements.questionBoxContainer.toggleClass('open');
-            });
-			_this._elements.questionBoxContainer.on('click', '.close', function(event) {
-                event.stopPropagation();
-                _this._elements.questionBoxContainer.toggleClass('open');
-            });
-            _this._elements.questionBoxContainer.on('click','.callInfo', function() {
-                event.stopPropagation();
-            });
-
-            $(document).on('click', function(event) {
-                _this._elements.questionBoxContainer.removeClass('open');
-            });
-
         },
         smallScreenMessage: function() {
             var message = '<div class="info">Please use desktop screen to view this website for best experience.'+
