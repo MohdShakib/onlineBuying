@@ -1592,25 +1592,37 @@ ellipse.tower-unit-svg-selected-path {
 .amenities-container.not-on-top {
 	z-index: 9990;
 }
-.amenities-container .amenity-icon {
-	position: absolute;
-	z-index: 10000;
-	color: rgba(0,0,0,0.6);
-    text-shadow: 0px 0px 20px #AAA;
-	height: 25px;
-	width: 25px;
-	line-height: 25px;
-	font-size: 20px;
-	text-align: center;
-	border-radius: 100%;
-	cursor: pointer;
-	transition:all 0.5s ease-in-out;
-	-moz-transition:all 0.5s ease-in-out;
-	-ms-transition:all 0.5s ease-in-out;
-	-o-transition:all 0.5s ease-in-out;
-	-webkit-transition:all 0.5s ease-in-out;
-	&:hover {
-		z-index: 100001;
+.amenities-container {
+	.amenity-icon {
+		position: absolute;
+		z-index: 10000;
+		color: rgba(0,0,0,0.6);
+	    text-shadow: 0px 0px 20px #AAA;
+		height: 25px;
+		width: 25px;
+		line-height: 25px;
+		font-size: 20px;
+		text-align: center;
+		border-radius: 100%;
+		cursor: pointer;
+		transition:all 0.5s ease-in-out;
+		-moz-transition:all 0.5s ease-in-out;
+		-ms-transition:all 0.5s ease-in-out;
+		-o-transition:all 0.5s ease-in-out;
+		-webkit-transition:all 0.5s ease-in-out;
+		&:hover {
+			z-index: 100001;
+		}
+	}
+	.tower-amenity {
+		background: #fff;
+	    border-radius: 50%;
+	    font-size: 24px;
+	    width: 30px;
+	    height: 30px;
+	    line-height: 26px;
+	    text-shadow: inherit;
+	    box-shadow: 3px 3px 3px rgba(0, 0, 0, .8);
 	}
 }
 .selected-unit-container .amenities-container .amenity-icon{ color:#616161;}
