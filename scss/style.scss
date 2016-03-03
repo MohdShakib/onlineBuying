@@ -845,6 +845,21 @@ ellipse.tower-unit-svg-selected-path {
 			}
 		}
 	}
+	.tower-item {
+		.img-wrap {
+			color: #fff;
+			line-height: 54px;
+			font-size: 28px;
+			font-weight: bold;
+			background: none;
+			border: 2px solid #fff;
+		}
+		&.disabled {
+			.img-wrap {
+				border-width: 1px;
+			}
+		}
+	}
 }
 .tower-menu-container.tower-selected-menu .menu-item{width: 45px;left:0; padding-left:0;border-bottom:1px solid #3d3d3d;}
 .tower-menu-container .menu-item .tower-menu-text{position:absolute; left:-105px; height: 44px; width: 100px; overflow: hidden;}
@@ -1592,25 +1607,53 @@ ellipse.tower-unit-svg-selected-path {
 .amenities-container.not-on-top {
 	z-index: 9990;
 }
-.amenities-container .amenity-icon {
-	position: absolute;
-	z-index: 10000;
-	color: rgba(0,0,0,0.6);
-    text-shadow: 0px 0px 20px #AAA;
-	height: 25px;
-	width: 25px;
-	line-height: 25px;
-	font-size: 20px;
-	text-align: center;
-	border-radius: 100%;
-	cursor: pointer;
-	transition:all 0.5s ease-in-out;
-	-moz-transition:all 0.5s ease-in-out;
-	-ms-transition:all 0.5s ease-in-out;
-	-o-transition:all 0.5s ease-in-out;
-	-webkit-transition:all 0.5s ease-in-out;
-	&:hover {
-		z-index: 100001;
+.amenities-container {
+	.amenity-icon {
+		position: absolute;
+		z-index: 10000;
+		color: rgba(0,0,0,0.6);
+	    //text-shadow: 0px 0px 20px #AAA;
+		height: 25px;
+		width: 25px;
+		line-height: 25px;
+		font-size: 20px;
+		text-align: center;
+		border-radius: 100%;
+		cursor: pointer;
+		transition:all 0.5s ease-in-out;
+		-moz-transition:all 0.5s ease-in-out;
+		-ms-transition:all 0.5s ease-in-out;
+		-o-transition:all 0.5s ease-in-out;
+		-webkit-transition:all 0.5s ease-in-out;
+		transform: scale(0);
+		-webkit-transform: scale(0);
+		&:hover {
+			z-index: 100001;
+		}
+		&.amenity-zoom {
+			transform: scale(1);
+			-webkit-transform: scale(1);
+		}
+		/*&:after {
+			height: 20px;
+			width: 1px;
+			content: '';
+			background-color: #fff;
+			position: absolute;
+			left: 50%;
+			top: 100%;
+			margin-left: 1px;
+		}*/
+	}
+	.tower-amenity {
+		background: #fff;
+	    border-radius: 50%;
+	    font-size: 20px;
+	    width: 30px;
+	    height: 30px;
+	    line-height: 30px;
+	    text-shadow: inherit;
+	    box-shadow: 3px 3px 3px rgba(0, 0, 0, .8);
 	}
 }
 .selected-unit-container .amenities-container .amenity-icon{ color:#616161;}

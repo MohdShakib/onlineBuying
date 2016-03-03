@@ -15,7 +15,7 @@ amenitiesHotspots([
     "imageName":"garden_view.jpg"
 },
   {
-    "amenityName":"Entrance ",
+    "amenityName":"Entrance",
     "amenitySvg":"83.29 73.8",
     "imageName":"entrance.jpg"
 },
@@ -40,7 +40,7 @@ amenitiesHotspots([
     "imageName":"amphitheater.jpg"
   },
   {
-    "amenityName":"Jogging ",
+    "amenityName":"Jogging",
     "amenitySvg":"21.9 37.46",
     "imageName":"jogging_park.jpg"
   },
