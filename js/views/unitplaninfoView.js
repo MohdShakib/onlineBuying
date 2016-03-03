@@ -162,8 +162,6 @@ var UnitplaninfoView = (function() {
             // show notification tool tip
             viewUtils.removeNotificationTooltip();
             $('.' + config.notificationTooltipClass).show();
-            $('.bottom-filter-wrapper').removeClass('show-bottom');
-            $('.bottom-filter-wrapper').addClass('show-up');
             $('.' + config.projectDetail.towerId).off('click');
         },
         dynamicResizeContainers: function() {
@@ -600,18 +598,18 @@ var UnitplaninfoView = (function() {
             var code = '<div class="unit-content-wrapper">' +
                 '<div class="project-amenities specification-tabs-content" ><h3>Amenities</h3>' +
                 '<ul>' +
-                '<li ' + this.getAmenityClass(rootdata, 'Gym') + '><span class="icon icon-gym"></span><label>Gymnasium</label></li>' +
-                '<li ' + this.getAmenityClass(rootdata, 'Swi') + '><span class="icon icon-swimming"></span><label>Swimming Pool</label></li>' +
-                '<li ' + this.getAmenityClass(rootdata, 'Clu') + '><span class="icon icon-clubhouse"></span><label>Club House</label></li>' +
-                '<li ' + this.getAmenityClass(rootdata, 'Int') + '><span class="icon icon-intercom"></span><label>Intercom</label></li>' +
-                '<li ' + this.getAmenityClass(rootdata, 'Sec') + '><span class="icon icon-security"></span><label>24 X 7 Security</label></li>' +
-                '<li ' + this.getAmenityClass(rootdata, 'Pow') + '><span class="icon icon-powerbackup-1"></span><label>Power Backup</label></li>' +
-                '<li ' + this.getAmenityClass(rootdata, 'Lan') + '><span class="icon icon-garden"></span><label>Landscaped Gardens</label></li>' +
-                '<li ' + this.getAmenityClass(rootdata, 'Car') + '><span class="icon icon-parking"></span><label>Ample Parking Space</label></li>' +
-                '<li ' + this.getAmenityClass(rootdata, 'Chi') + '><span class="icon icon-playarea"></span><label>Children Play area</label></li>' +
-                '<li ' + this.getAmenityClass(rootdata, 'Jog') + '><span class="icon icon-jogging"></span><label>Jogging Track</label></li>' +
-                '<li ' + this.getAmenityClass(rootdata, 'Rai') + '><span class="icon icon-harvesting"></span><label>Rain Water Harvesting</label></li>' +
-                '<li ' + this.getAmenityClass(rootdata, 'Caf') + '><span class="icon icon-cafe"></span><label>Cafeteria</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Gym') + '>'+ viewUtils.getAmenitiesIconHtml("Gymnasium","gym") +'<label>Gymnasium</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Swi') + '> '+ viewUtils.getAmenitiesIconHtml("Swimming Pool","swimming") +'<label>Swimming Pool</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Clu') + '>'+ viewUtils.getAmenitiesIconHtml("Club House","clubhouse") +'<label>Club House</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Int') + '>'+ viewUtils.getAmenitiesIconHtml("Intercom","intercom") +'<label>Intercom</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Sec') + '>'+ viewUtils.getAmenitiesIconHtml("24X7 Security","security") +'<label>24 X 7 Security</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Pow') + '>'+ viewUtils.getAmenitiesIconHtml("Power Backup","powerbackup-1") +'<label>Power Backup</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Lan') + '>'+ viewUtils.getAmenitiesIconHtml("Garden View","garden") +'<label>Landscaped Gardens</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Car') + '>'+ viewUtils.getAmenitiesIconHtml("Car Parking","parking") +'<label>Ample Parking Space</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Chi') + '>'+ viewUtils.getAmenitiesIconHtml("Kids Play","playarea") +'<label>Children Play area</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Jog') + '>'+ viewUtils.getAmenitiesIconHtml("Jogging","jogging") +'<label>Jogging Track</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Rai') + '>'+ viewUtils.getAmenitiesIconHtml("Rain Water Harvesting","harvesting") +'<label>Rain Water Harvesting</label></li>' +
+                '<li ' + this.getAmenityClass(rootdata, 'Caf') + '>'+ viewUtils.getAmenitiesIconHtml("Cafeteria","cafe") +'<label>Cafeteria</label></li>' +
                 '</ul>' +
                 '<div class="clear-fix"></div></div>';
             code += "<h3>Specifications</h3><table class='base-table specification-tabs-content specifications'>";

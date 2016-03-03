@@ -421,7 +421,7 @@ var viewUtils = (function() {
                 moveRight();
             });
         },
-        getIconHtml : function(amenityName){
+        getAmenitiesIconHtml : function(amenityName, amenityIcon){
             var iconMapObject = {       // todo add icon-name (same as amenity name) and path count for each icon
                 //"Swimming-Pool" : {
                 //    "pathCount" : 14
@@ -430,10 +430,14 @@ var viewUtils = (function() {
             var displayIcon = amenityName.split(' ').join('-');
             var pathCount  = iconMapObject[displayIcon] && iconMapObject[displayIcon].pathCount || 0;
             var htmlCode = '';
-            if(pathCount === 0 ){
-                displayIcon = 'location';
+            var extraClasses = '';
+            if(!amenityIcon){
+                extraClasses = ' transition fs0';
             }
-            htmlCode += "<span class='icon icon-"+ displayIcon +" transition fs0'>" ;
+            if(pathCount === 0 ){
+                displayIcon = amenityIcon || 'location';
+            }
+            htmlCode += "<span class='icon icon-"+ displayIcon + extraClasses + "'>" ;
             for(var i = 1 ; i <= pathCount ; i++){
                 htmlCode += "<span class='path"+ i +"'></span>";
             }

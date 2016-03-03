@@ -22,18 +22,6 @@ var BookingView = (function() {
         return elements;
     }
 
-    var ivrsData = {
-        "501448": "+91-7930641590",
-        "640926": "+91-7930641590",
-        "513534": "+91-8049202151",
-        "656047": "+91-8049202151",
-        "668509": "+91-4439942696",
-        "672575": "+91-1166764112",
-        "501639": "+91-3330566486",
-        "669434": "+91-2261739689",
-        "655929": "+91-2039520706",
-        "667404": "+91-2039520706"
-    };
 
     function BookingView(model) {
         this._model = model;
@@ -171,9 +159,14 @@ var BookingView = (function() {
                 countryIdCookie = cookie.country;
             }
 
+            var cancellationEnabled = config.cancellationEnabled;
+            if(config.projectConfig[rootdata.projectId] && config.projectConfig[rootdata.projectId].cancellationEnabled){
+                cancellationEnabled = config.projectConfig.cancellationEnabled;
+            }
+
             var helpline = config.helpline;
-            if (ivrsData[rootdata.projectId] !== undefined) {
-                helpline = ivrsData[rootdata.projectId];
+            if (config.projectConfig[rootdata.projectId] && config.projectConfig[rootdata.projectId].ivrsData !== undefined) {
+                helpline = config.projectConfig[rootdata.projectId].ivrsData;
             }
 
             var code = '<div class="payment-container">' +
@@ -202,9 +195,11 @@ var BookingView = (function() {
                 if(rootdata.fairEnabled) {
                   code +=   paymentBreakup + offerList +
                  '            <div class="booking-amount">' +
-                 '            <h3>Booking Amount: <span><span class="icon icon-rupee"><span><strong>' + utils.getReadablePrice(data.bookingAmount) + ' </strong><label>only</label></span></h3> ' +
-                 '            <p>( no cancellation charges )</p>' +
-                 '            </div>';
+                 '            <h3>Booking Amount: <span><span class="icon icon-rupee"><span><strong>' + utils.getReadablePrice(data.bookingAmount) + ' </strong><label>only</label></span></h3> ' ;
+                    if(cancellationEnabled){
+                        code += ' <p>( no cancellation charges )</p>';
+                    }
+                    code +=  '</div>';
                 }
                 code += '        </div>' +
                 '        <div class="payment-right">' +
@@ -213,6 +208,10 @@ var BookingView = (function() {
                   code +=   '<div class="payment-txt"><img src="images/best-choice-badge.jpg" alt=""><div class="rght"><h3>Nice Selection!</h3>'+
                             '<p>Now, pay just <span class="icon icon-rupee fs14"></span> ' + utils.getReadablePrice(data.bookingAmount) + '/- as token payment to block your selection. <br>Your full amount will be refunded in case you cancel the booking within 15 days.</p></div></div>';
 
+                    if(cancellationEnabled){
+                        code += ' <br>Your full amount will be refunded in case you cancel the booking within 15 days.';
+                    }
+                    code +='</p>';
                 }
                 code += '    <div class="personal-detail-box">' +
                 '                <div class="table">' +
