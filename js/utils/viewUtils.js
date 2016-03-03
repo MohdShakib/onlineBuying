@@ -423,19 +423,70 @@ var viewUtils = (function() {
         },
         getAmenitiesIconHtml : function(amenityName, amenityIcon){
             var iconMapObject = {       // todo add icon-name (same as amenity name) and path count for each icon
-                //"Swimming-Pool" : {
-                //    "pathCount" : 14
-                //}
+                "Swimming-Pool" : {
+                   "pathCount" : 14
+                },
+                "Jogging" : {
+                   "pathCount" : 9
+                },
+                "Indoor-Games" : {
+                   "pathCount" : 11
+                },
+                "mountain" : {
+                   "pathCount" : 11
+                },
+                "Club-House" : {
+                   "pathCount" : 10
+                },
+                "Hill-View" : {
+                   "pathCount" : 10
+                },
+                "templebell" : {
+                   "pathCount" : 12
+                },
+                "Tennis-Court" : {
+                   "pathCount" : 12
+                },
+                "Amphitheater" : {
+                   "pathCount" : 6
+                },
+                "Golf-Course" : {
+                   "pathCount" : 6
+                },
+                "Gymnasium" : {
+                   "pathCount" : 9
+                },
+                "Kids-Play" : {
+                   "pathCount" : 22
+                },
+                "Garden-View" : {
+                   "pathCount" : 9
+                },
+                "Entrance" : {
+                   "pathCount" : 6
+                },
+                "Terrace-Units" : {
+                   "pathCount" : 7
+                },
+                "homecinema" : {
+                   "pathCount" : 10
+                },
+                "traveling" : {
+                   "pathCount" : 8
+                }
             };
-            var displayIcon = amenityName.split(' ').join('-');
+            var displayIcon = utils.getDisplayIcon(amenityName);
             var pathCount  = iconMapObject[displayIcon] && iconMapObject[displayIcon].pathCount || 0;
             var htmlCode = '';
             var extraClasses = '';
-            if(!amenityIcon){
-                extraClasses = ' transition fs0';
-            }
             if(pathCount === 0 ){
                 displayIcon = amenityIcon || 'location';
+            }
+            if(!amenityIcon){
+                extraClasses = ' transition tower-amenity';
+            }
+            if(pathCount === 0 && displayIcon === 'location'){
+                extraClasses = ' transition';
             }
             htmlCode += "<span class='icon icon-"+ displayIcon + extraClasses + "'>" ;
             for(var i = 1 ; i <= pathCount ; i++){

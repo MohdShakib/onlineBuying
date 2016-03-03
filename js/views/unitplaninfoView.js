@@ -500,11 +500,12 @@ var UnitplaninfoView = (function() {
                 var svgObj = svgData[svgId];
                 var point = svgObj.svgPath.split(' ');
                 var position = "top:" + point[1] + "%; left:" + point[0] + "%;";
+                var iconPathCode = viewUtils.getAmenitiesIconHtml(svgObj.name);
                 var hoverImageClass = '';
                 if(point[0] > 80){
                     hoverImageClass += 'fixed-image-right';
                 }
-                code += "<div id='" + svgId + "' data-top='" + point[1] + "' data-left='" + point[0] + "' class='" + config.amenityIconClass + "' style='" + position + "'><span class='icon icon-location'></span>";
+                code += "<div id='" + svgId + "' data-top='" + point[1] + "' data-left='" + point[0] + "' class='amenity-zoom " + config.amenityIconClass + "' style='" + position + "'>" + iconPathCode ;
                 code += "<div class='name " + hoverImageClass+"'><img class='amenity-img' src=" + svgObj.details + "><span>" + svgObj.name + "</span></div>";
                 code += "</div>";
             }

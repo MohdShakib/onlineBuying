@@ -280,10 +280,10 @@ var MasterplanView = (function () {
 
             // Amenities
             var time = 5000;
-            $('.amenity-icon span').each(function () {
+            $('.amenity-icon').each(function () {
                 var _this = this;
                 setTimeout(function () {
-                    $(_this).removeClass('fs0');
+                    $(_this).addClass('amenity-zoom');
                 }, time);
                 time += 200;
             });
@@ -337,7 +337,7 @@ var MasterplanView = (function () {
             });
 
             // Amenities
-            $('.amenity-icon span').removeClass('fs0');
+            $('.amenity-icon').addClass('amenity-zoom');
 
             // Tower Menu
             $('.tower-menu-container').css({
@@ -471,18 +471,18 @@ var MasterplanView = (function () {
                 var towerIdentifier = towersData[i];
                 var tower = data.towers[towerIdentifier],
                     towerUrl = tower.isAvailable ? data.baseUrl + "/" + tower.towerIdentifier : 'undefined';
-                var countAvailabilityClass = tower.isAvailable ? config.countAvailabilityClass.available : config.countAvailabilityClass.unavailable;
+                var countAvailabilityClass = tower.isAvailable ? '' : ' disabled ';
 
-                code += "<div class='menu-item-container-td'><div class='menu-item " + config.leftPanelButtonClass +
+                code += "<div class='menu-item-container-td'><div class='menu-item tower-item " + countAvailabilityClass + config.leftPanelButtonClass +
                     "' id='" + towerIdentifier + "-menu' data-index='" + towerIdentifier +
                     "' data-imageid='" + tower.towerId +
                     "' data-url='" + towerUrl +
                     "'>";
                 if(tower.displayImage &&  tower.displayImage !== ''){
-                    code += "<div class='img-wrap transition " +countAvailabilityClass+ "'><img src='"+tower.displayImage +"' ></div>";
+                    code += "<div class='img-wrap transition'><img src='"+tower.displayImage +"' ></div>";
 
                 }else{
-                    code += "<div class='img-wrap transition " +countAvailabilityClass+ "'><label class='transition'>" +tower.shortName+ "</label></div>";
+                    code += "<div class='img-wrap transition'><label class='transition'>" +tower.shortName+ "</label></div>";
                 }
                 code +="<span>"+ tower.longName+" ("+ tower.totalAvailableCount+")" +" </span></div></div>";
              }
