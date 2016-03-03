@@ -950,7 +950,7 @@ var MasterplanView = (function () {
             for (var amenityKey in data.amenities) {
                 if (hasOwnProperty.call(data.amenities, amenityKey)) {
                     var amenity = data.amenities[amenityKey];
-                    var iconPathCode = viewUtils.getIconHtml(amenity.amenityName);
+                    var iconPathCode = viewUtils.getAmenitiesIconHtml(amenity.amenityName);
                     var point = data.amenities[amenityKey].amenitySvg.split(' ');
                     var position = "top:" + point[1] + "%; left:" + point[0] + "%;";
                     var hoverImageClass = '';
