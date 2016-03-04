@@ -384,7 +384,7 @@ var BaseView = (function() {
                 '<div class="form-pop-up transition">' +
                 '   <span class="close-form icon icon-cross fs12"></span>' +
                 '   <div class="call-box">' +
-                '       <p>Inetsted in  '+ rootdata.projectIdentifier+' ?<br></p>' +
+                '       <p>Interested in  '+ rootdata.projectIdentifier+' ?<br></p>' +
                 '       <form id="call-box-form" name="call-box-form" novalidate onSubmit="return false;"  >' +
                 '           <div class="form-input-box"><input class="text" id="' + config.callBox.emailId + '" name="email" placeholder="Email Address" type="email" required /><div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
                 '           <div class="country-holder"><div class="form-input-box c-code">' +

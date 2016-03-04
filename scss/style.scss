@@ -1426,12 +1426,12 @@ ellipse.tower-unit-svg-selected-path {
 	}
 }
 .unit-content-wrapper {
-	padding-left: 190px;
+	padding-left: 120px;
 	box-sizing: border-box;
 	position: absolute;
 	overflow-y: auto;
 	overflow-x: hidden;
-	top: 10px;
+	top: 15px;
 	bottom: 35px;
 	width:100%;
 	text-align: left;
@@ -1768,7 +1768,7 @@ ellipse.tower-unit-svg-selected-path {
 /*----------project amenities start here-----------*/
 .project-amenities{ text-align:left; padding:5px 10px 20px 0px;}
 .project-amenities ul {margin-top: 20px; }
-.project-amenities .icon{ width:55px; height:55px; font-size:28px; background:#fff; border-radius:2px; border:1px solid #dedede; color:#666; text-align:center; line-height:55px;}
+.project-amenities .icon{ width:55px; height:55px; font-size:40px; background:#fff; border-radius:2px; color:#666; text-align:center; line-height:55px;}
 .project-amenities li{ float:left; width:25%; height:120px; text-align:center;}
 .project-amenities li.disable{ opacity:0.3;}
 .project-amenities li label{ color:#333; font-size:13px; display:block; margin-top:10px; text-align:center;}
