@@ -87,6 +87,8 @@ var UnitplaninfoView = (function() {
                     this[i](data, rotationdata, rootdata, is2d);
                 }
             }
+            document.getElementById(config.projectDetail.towerId).innerHTML = (config.builderSetUp ? '':'<a href="#" onClick="return false;">') + rootdata.towers[data.towerIdentifier].longName + (config.builderSetUp ? '':'</a> &nbsp &gt');
+            document.getElementById(config.projectDetail.unitId).innerHTML = data.unitIdentifier;
 
             setTimeout(function() {
                 _this.unitComponentMouseEnter({
@@ -126,8 +128,6 @@ var UnitplaninfoView = (function() {
                 // hide notification tool tip
                 $('.' + config.notificationTooltipClass).hide();
 
-                document.getElementById(config.projectDetail.towerId).innerHTML = (config.builderSetUp ? '':'<a href="#" onClick="return false;">') + rootdata.towers[data.towerIdentifier].longName + (config.builderSetUp ? '':'</a> &nbsp &gt');
-                document.getElementById(config.projectDetail.unitId).innerHTML = data.unitIdentifier;
                 this.renderInitialDataEvents();
             }
         },
@@ -341,6 +341,7 @@ var UnitplaninfoView = (function() {
             _this._elements.floorPlanContainer.on('click', '.thumb', function(event) {
                 _this._selectedFloor = $(this).data('floor');
                 _this.buildView();
+
             });
         },
         floorPlanMenuContainer: function(data, rotationdata, rootdata) {
