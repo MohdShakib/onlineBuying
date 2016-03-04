@@ -527,9 +527,9 @@ var getProjectData = (function() {
         }
 
         // Offer
-        projectData.offer = "attractive discounts";
+        projectData.offer = [];
         if (projectDetail.offers && projectDetail.offers[0]) {
-            projectData.offer = projectDetail.offers[0].offerDesc;
+            projectData.offer = utils.arrayOfObjectToArray(projectDetail.offers);
         }
 
         // City
