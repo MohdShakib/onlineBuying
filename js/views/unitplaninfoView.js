@@ -99,6 +99,7 @@ var UnitplaninfoView = (function() {
         },
         initView: function(data, rotationdata, rootdata) {
             if (!$('#' + config.selectedUnitContainerId).length) {
+                document.title = "Proptiger";
                 $('.bottom-filter-wrapper').removeClass('show-up');
                 $('.bottom-filter-wrapper').removeClass('show-bottom');
 

@@ -55,7 +55,6 @@ var BookingView = (function() {
         },
         endAnimation: function() {
             $('#payment-screen').fadeOut(800);
-            document.title = "Proptiger";
         },
         buildSkeleton: function(containerList) {
             var key, mainContainerHtml = '';
