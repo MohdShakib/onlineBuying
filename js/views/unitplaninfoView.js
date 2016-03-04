@@ -211,11 +211,14 @@ var UnitplaninfoView = (function() {
         unitViewTabsEvents: function() {
             var _this = this;
             $('#' + config.selectedUnitContainerId).off('click').on('click', '.like-box', function() {
+                var currentElement = this;
                 _this._likeBoxClick.notify(this); //this refers to element
-                if ($(this).hasClass('selected')) { //this refers to element
-                    viewUtils.flyToShortlist(this); //this refers to element
+                if ($(currentElement).hasClass('selected')) { //this refers to element
+                    $(currentElement).addClass(config.textBlinkClass);
+                    setTimeout(function() {
+                        $(currentElement).removeClass(config.textBlinkClass);
+                    }, 500);
                 }
-
             });
             $('#' + config.selectedUnitContainerId).on('click', '.book-now a', function() {
                 _this._bookingClick.notify(this); //this refers to element
