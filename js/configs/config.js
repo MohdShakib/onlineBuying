@@ -30,6 +30,7 @@ var config = (function() {
         towerMenuItemHeight: 90,
         maxShortlistCount: 6,
         tawkApiId: 'tawk_55e5498bfc2b363371225aaa',
+        loadingText: 'Hover your mouse over a Tower to get information about the tower.',
         errorMsg: 'Something went wrong. Please contact 1800-103-104-1 for assistance.',
         projectConfig: {
             "501448": {

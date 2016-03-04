@@ -77,12 +77,11 @@ var BaseView = (function() {
             var content = config.builderSetUp ? rootdata.builderName + ' ' + rootdata.projectName : '<a href="https://www.proptiger.com/' + rootdata.projectUrl + '" target="_blank">' + rootdata.builderName + ' ' + rootdata.projectName + '</a>';
             $('.project-title').html(content);
             $('.project-address').html(rootdata.address);
-            if(rootdata.description !==''){
-                $('.loading-txt').html(rootdata.description);
-                $('.loading-txt').show();
-            }
-            if(rootdata.offer !==''){
-                $('.project-offer').html(rootdata.offer);
+            $('.loading-txt').html(config.loadingText);
+            $('.loading-txt').show();
+            if(rootdata.offer.length > 0){
+                var index = Math.floor(Math.random() * rootdata.offer.length);
+                $('.project-offer').html(rootdata.offer[index]);
                 $('.project-offer').addClass('border-lines');
             }
             this.initEvents();

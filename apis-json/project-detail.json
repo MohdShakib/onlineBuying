@@ -2000,7 +2000,9 @@
     ],
     "offers": [
       {
-        "offerDesc": "Pay 10% Now & No EMI for 18 Months"
+        "offerDesc1": "Pay 10% Now & No EMI for 18 Months",
+        "offerDesc2": "Pay 8% Now & No EMI for 30 Months",
+        "offerDesc3": "Pay 5% Now & No EMI for 48 Months"
       }
     ],
     "has3DImages": false,
