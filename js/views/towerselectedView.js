@@ -154,13 +154,6 @@ var TowerselectedView = (function() {
                 });
             }, 700);
 
-            if(!utils.readCookie('isFirstTimeUser')){
-                utils.createCookie('isFirstTimeUser', 'true');
-                $('.help-container').removeClass('hide');
-                setTimeout(function() {
-                    $('.help-container').addClass('hide');
-                }, 3000);
-            }
             //viewUtils.showNotificationTooltip('Click on unit spot <span class="pointer"></span> to view its floor plan');
         },
         displayWithoutAnimation: function(fromUnitInfoView) {
@@ -240,6 +233,7 @@ var TowerselectedView = (function() {
         towerSvgContainer: function(data, rootdata) {
             var currentRotationAngle = this._model.getCurrentRotationAngle(),
                 selectedListing = this._model.getSelectedListing();
+            var helpScreenPossion = [];
             var listings = (data && data.rotationAngle[currentRotationAngle] && Object.keys(data.rotationAngle[currentRotationAngle].listing).length) ? data.rotationAngle[currentRotationAngle].listing : null;
             if (!listings) {
                 return;
@@ -309,9 +303,21 @@ var TowerselectedView = (function() {
                         rx: '0.55'
                     };
                     eachEllipse = viewUtils.makeSVG('ellipse', attrs);
+                    if(svgClass === 'apt-available' ){
+                        helpScreenPossion = unitInfo.unitSvgOnTower;
+                    }
                     this._elements.towerSvgContainer.append(eachEllipse);
 
                 }
+            }
+
+            $('.help-container .help-info').css( {'left' : (helpScreenPossion[0]-22)+'%', 'top': (helpScreenPossion[1]-1.25)+'%'});
+            if(!utils.readCookie('isFirstTimeUser')){
+                utils.createCookie('isFirstTimeUser', 'true');
+                $('.help-container').removeClass('hide');
+                setTimeout(function() {
+                    $('.help-container').addClass('hide');
+                }, 3000);
             }
             this.towerSvgContainerEvents();
         },
