@@ -79,7 +79,7 @@ var BaseView = (function() {
             $('.project-address').html(rootdata.address);
             $('.loading-txt').html(config.loadingText);
             $('.loading-txt').show();
-            if(rootdata.offer.length > 0){
+            if(rootdata.offer && rootdata.offer.length > 0){
                 var index = Math.floor(Math.random() * rootdata.offer.length);
                 $('.project-offer').html(rootdata.offer[index]);
                 $('.project-offer').addClass('border-lines');
