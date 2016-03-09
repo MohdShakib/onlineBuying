@@ -166,13 +166,6 @@ var initializeRoutes = (function() {
                 errorPageController.generateTemplate();
             }
         };
-
-        var queries = window.location.href.split('?')[1];
-        if(queries == 'demo=true'){
-            config.apisJson = true;
-            config.localZip = true;
-        }
-
         // instantiate the router
         router = new Router(routes);
         router.configure({ // a global configuration setting.
@@ -202,6 +195,12 @@ var initializeRoutes = (function() {
             },
             before: function(projectName, projectId, towerName, towerAngle, unitAddress) {
 
+                var queries = window.location.href.split('?');
+
+                if(queries[1] == 'demo=true'){
+                    config.apisJson = true;
+                    config.localZip = true;
+                }
                 var isPropertyPaymentUrl = true;
                 if(!(towerName && towerName.match(/(5[0-9]{6})/g))){
                     isPropertyPaymentUrl = false;
@@ -214,6 +213,18 @@ var initializeRoutes = (function() {
 
                 function beforeCallback(response) {
                     rootdata = response;
+
+                    var queries = window.location.href.split('?');
+                        if(queries[1] == 'demo=true') {
+                            var root = location.protocol + '//' + location.host;
+                            var newurl = root + rootdata.baseUrl + '?demo=true';
+                            var url = window.location.href;
+                            if (url != newurl) {
+                                window.location.href = newurl;
+                                return;
+                            }
+                        }
+
                     // Update meta tags
                     $("meta[property=og\\:description]").attr("content", "Book your Dream Home in " + rootdata.projectName + " & get " + rootdata.offer + ". Hurry Offer valid till 23rd September 2015.");
                     $("meta[property=og\\:image]").attr("content", rootdata.mainImage);
