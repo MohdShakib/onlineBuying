@@ -1,11 +1,11 @@
 masterplanScreen([
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "displayOrder":"8",
     "hoverImageName":"tow-a-lay-8.png",
     "towerHoverSvg":"72.82 72.69 72.3 71.42 71.2 72.38 68.93 66.19 69.01 65.23 68.35 65.71 67.98 65.07 68.42 63.8 67.61 62.85 68.64 50.63 70.76 47.3 71.57 48.88 72.3 50.47 72.67 51.11 74.13 50.15 74.28 50.79 74.28 53.33 75.23 56.19 75.6 55.71 76.33 57.3 74.57 70.95 72.82 72.53",
     "towerTooltipSvg":"72.38 52.22",
-    "displayImage":"tulip.png"
+    "displayImage":"azalea.png"
   },
   {
     "towerName":"Daffodil",
@@ -24,12 +24,12 @@ masterplanScreen([
     "displayImage":"sunflower.png"
 },
   {
-    "towerName":"Tulip2",
+    "towerName":"Buttercup",
     "displayOrder":"5",
     "hoverImageName":"tow-d-lay-5.png",
     "towerHoverSvg":"57.87 44.12 57.36 43.49 56.84 44.76 56.11 43.8 55.67 43.96 55.38 43.49 55.31 42.53 52.96 40.47 52.96 35.87 52.08 35.07 52.16 28.41 52.82 26.82 52.23 26.19 53.33 23.65 53.99 24.28 54.72 23.17 55.53 23.65 55.75 24.44 56.26 25.55 57.28 23.96 57.58 24.12 57.65 26.5 58.68 29.04 57.87 31.42 57.65 34.44 58.02 35.23 57.8 43.8",
     "towerTooltipSvg":"56.19 26.5",
-    "displayImage":"tulip.png"
+    "displayImage":"buttercup.png"
   },
   {
     "towerName":"Cosmos",
@@ -48,12 +48,12 @@ masterplanScreen([
     "displayImage":"daisy.png"
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "displayOrder":"0",
     "hoverImageName":"tow-g-lay-0.png",
     "towerHoverSvg":"28.71 44.28 26.73 35.55 24.46 14.28 29.37 11.11 31.79 20.31 32.23 25.87 33.18 29.04 33.18 29.2 32.6 30 32.67 31.11 28.49 35.23 28.27 35.07 28.64 43.8",
     "towerTooltipSvg":"27.91 17.14",
-    "displayImage":"happy.png"
+    "displayImage":"cherry.png"
   },
   {
     "towerName":"Lotus",
@@ -64,12 +64,12 @@ masterplanScreen([
     "displayImage":"lotus.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "displayOrder":"2",
     "hoverImageName":"tow-i-lay-2.png",
     "towerHoverSvg":"33.77 58.73 33.18 49.36 32.89 48.88 33.18 47.93 32.45 39.04 36.77 32.69 42.19 41.58 42.85 61.9 42.49 62.38 42.49 64.44 41.97 65.23 41.24 64.44 41.02 64.44 41.02 66.66 40.65 67.3 40 66.34 39.26 67.61 38.46 67.14 33.77 58.57",
     "towerTooltipSvg":"37.5 40.31",
-    "displayImage":"magnolia.png"
+    "displayImage":"clover.png"
   },
   {
     "towerName":"Red",

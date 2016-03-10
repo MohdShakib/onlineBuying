@@ -1,6 +1,6 @@
 towerselectScreen([
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-002",
@@ -11,7 +11,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-102",
@@ -22,7 +22,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-202",
@@ -33,7 +33,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-302",
@@ -44,7 +44,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-402",
@@ -55,7 +55,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-502",
@@ -66,7 +66,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-602",
@@ -77,7 +77,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-702",
@@ -88,7 +88,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-802",
@@ -99,7 +99,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-902",
@@ -110,7 +110,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-1002",
@@ -121,7 +121,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-003",
@@ -132,7 +132,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-103",
@@ -143,7 +143,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-203",
@@ -154,7 +154,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-303",
@@ -165,7 +165,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-403",
@@ -176,7 +176,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-503",
@@ -187,7 +187,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-603",
@@ -198,7 +198,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-703",
@@ -209,7 +209,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-803",
@@ -220,7 +220,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-903",
@@ -231,7 +231,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"0",
     "towerImageName":"tow-a-ang-0.jpg",
     "unitName":"A-1003",
@@ -242,7 +242,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-0-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-004",
@@ -253,7 +253,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-104",
@@ -264,7 +264,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-204",
@@ -275,7 +275,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-304",
@@ -286,7 +286,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-404",
@@ -297,7 +297,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-504",
@@ -308,7 +308,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-604",
@@ -319,7 +319,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-704",
@@ -330,7 +330,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-804",
@@ -341,7 +341,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-904",
@@ -352,7 +352,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-1004",
@@ -363,7 +363,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-001",
@@ -374,7 +374,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-101",
@@ -385,7 +385,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-201",
@@ -396,7 +396,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-301",
@@ -407,7 +407,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-401",
@@ -418,7 +418,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-501",
@@ -429,7 +429,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-601",
@@ -440,7 +440,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-701",
@@ -451,7 +451,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-801",
@@ -462,7 +462,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-901",
@@ -473,7 +473,7 @@ towerselectScreen([
     "towerMinimap":"tow-a-ang-180-mm.png"
   },
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "rotationAngle":"180",
     "towerImageName":"tow-a-ang-180.jpg",
     "unitName":"A-1001",
@@ -2728,7 +2728,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-002",
@@ -2739,7 +2739,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-102",
@@ -2750,7 +2750,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-202",
@@ -2761,7 +2761,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-302",
@@ -2772,7 +2772,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-402",
@@ -2783,7 +2783,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-502",
@@ -2794,7 +2794,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-602",
@@ -2805,7 +2805,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-702",
@@ -2816,7 +2816,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-802",
@@ -2827,7 +2827,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-902",
@@ -2838,7 +2838,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-1002",
@@ -2849,7 +2849,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-1402",
@@ -2860,7 +2860,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-1502",
@@ -2871,7 +2871,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-1602",
@@ -2882,7 +2882,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-1702",
@@ -2893,7 +2893,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-1802",
@@ -2904,7 +2904,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-003",
@@ -2915,7 +2915,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-103",
@@ -2926,7 +2926,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-203",
@@ -2937,7 +2937,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-303",
@@ -2948,7 +2948,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-403",
@@ -2959,7 +2959,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-503",
@@ -2970,7 +2970,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-603",
@@ -2981,7 +2981,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-703",
@@ -2992,7 +2992,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-803",
@@ -3003,7 +3003,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-903",
@@ -3014,7 +3014,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-1003",
@@ -3025,7 +3025,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-1103",
@@ -3036,7 +3036,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-1203",
@@ -3047,7 +3047,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-1403",
@@ -3058,7 +3058,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-1503",
@@ -3069,7 +3069,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-1603",
@@ -3080,7 +3080,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-1703",
@@ -3091,7 +3091,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"0",
     "towerImageName":"tow-g-ang-0.jpg",
     "unitName":"G-1803",
@@ -3102,7 +3102,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-001",
@@ -3113,7 +3113,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-101",
@@ -3124,7 +3124,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-201",
@@ -3135,7 +3135,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-301",
@@ -3146,7 +3146,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-401",
@@ -3157,7 +3157,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-501",
@@ -3168,7 +3168,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-601",
@@ -3179,7 +3179,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-701",
@@ -3190,7 +3190,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-801",
@@ -3201,7 +3201,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-901",
@@ -3212,7 +3212,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-1001",
@@ -3223,7 +3223,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-1401",
@@ -3234,7 +3234,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-1501",
@@ -3245,7 +3245,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-1601",
@@ -3256,7 +3256,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-1701",
@@ -3267,7 +3267,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-1801",
@@ -3278,7 +3278,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-004",
@@ -3289,7 +3289,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-104",
@@ -3300,7 +3300,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-204",
@@ -3311,7 +3311,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-304",
@@ -3322,7 +3322,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-404",
@@ -3333,7 +3333,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-504",
@@ -3344,7 +3344,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-604",
@@ -3355,7 +3355,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-704",
@@ -3366,7 +3366,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-804",
@@ -3377,7 +3377,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-904",
@@ -3388,7 +3388,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-1004",
@@ -3399,7 +3399,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-1104",
@@ -3410,7 +3410,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-1204",
@@ -3421,7 +3421,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-1404",
@@ -3432,7 +3432,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-1504",
@@ -3443,7 +3443,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-1604",
@@ -3454,7 +3454,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-1704",
@@ -3465,7 +3465,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "rotationAngle":"180",
     "towerImageName":"tow-g-ang-180.jpg",
     "unitName":"G-1804",
@@ -3476,7 +3476,7 @@ towerselectScreen([
     "towerMinimap":""
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-002",
@@ -3487,7 +3487,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-102",
@@ -3498,7 +3498,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-202",
@@ -3509,7 +3509,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-302",
@@ -3520,7 +3520,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-402",
@@ -3531,7 +3531,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-502",
@@ -3542,7 +3542,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-602",
@@ -3553,7 +3553,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-702",
@@ -3564,7 +3564,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-802",
@@ -3575,7 +3575,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-902",
@@ -3586,7 +3586,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-1002",
@@ -3597,7 +3597,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-1102",
@@ -3608,7 +3608,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-1202",
@@ -3619,7 +3619,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-1402",
@@ -3630,7 +3630,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-1502",
@@ -3641,7 +3641,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-1602",
@@ -3652,7 +3652,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-1702",
@@ -3663,7 +3663,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-1802",
@@ -3674,7 +3674,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-003",
@@ -3685,7 +3685,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-103",
@@ -3696,7 +3696,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-203",
@@ -3707,7 +3707,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-303",
@@ -3718,7 +3718,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-403",
@@ -3729,7 +3729,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-503",
@@ -3740,7 +3740,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-603",
@@ -3751,7 +3751,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-703",
@@ -3762,7 +3762,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-803",
@@ -3773,7 +3773,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-903",
@@ -3784,7 +3784,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-1003",
@@ -3795,7 +3795,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-1403",
@@ -3806,7 +3806,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-1503",
@@ -3817,7 +3817,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-1603",
@@ -3828,7 +3828,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-1703",
@@ -3839,7 +3839,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"0",
     "towerImageName":"tow-i-ang-0.jpg",
     "unitName":"I-1803",
@@ -3850,7 +3850,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-0-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-001",
@@ -3861,7 +3861,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-101",
@@ -3872,7 +3872,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-201",
@@ -3883,7 +3883,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-301",
@@ -3894,7 +3894,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-401",
@@ -3905,7 +3905,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-501",
@@ -3916,7 +3916,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-601",
@@ -3927,7 +3927,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-701",
@@ -3938,7 +3938,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-801",
@@ -3949,7 +3949,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-901",
@@ -3960,7 +3960,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-1001",
@@ -3971,7 +3971,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-1101",
@@ -3982,7 +3982,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-1201",
@@ -3993,7 +3993,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-1401",
@@ -4004,7 +4004,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-1501",
@@ -4015,7 +4015,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-1601",
@@ -4026,7 +4026,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-1701",
@@ -4037,7 +4037,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-1801",
@@ -4048,7 +4048,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-004",
@@ -4059,7 +4059,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-104",
@@ -4070,7 +4070,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-204",
@@ -4081,7 +4081,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-304",
@@ -4092,7 +4092,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-404",
@@ -4103,7 +4103,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-504",
@@ -4114,7 +4114,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-604",
@@ -4125,7 +4125,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-704",
@@ -4136,7 +4136,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-804",
@@ -4147,7 +4147,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-904",
@@ -4158,7 +4158,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-1004",
@@ -4169,7 +4169,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-1404",
@@ -4180,7 +4180,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-1504",
@@ -4191,7 +4191,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-1604",
@@ -4202,7 +4202,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-1704",
@@ -4213,7 +4213,7 @@ towerselectScreen([
     "towerMinimap":"tow-l-ang-180-mm.png"
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "rotationAngle":"180",
     "towerImageName":"tow-i-ang-180.jpg",
     "unitName":"I-1804",

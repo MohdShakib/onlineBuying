@@ -1,6 +1,6 @@
 towerRotation([
   {
-    "towerName":"Tulip1",
+    "towerName":"Azalea",
     "imageName":"UmangA_00##.jpg",
     "numberOfFrames":"48",
     "keyframe1":"15",
@@ -52,7 +52,7 @@ towerRotation([
     "link4":""
   },
   {
-    "towerName":"Happy",
+    "towerName":"Cherry",
     "imageName":"G_00##.jpg",
     "numberOfFrames":"48",
     "keyframe1":"24",
@@ -65,7 +65,7 @@ towerRotation([
     "link4":""
   },
   {
-    "towerName":"Magnolia",
+    "towerName":"Clover",
     "imageName":"i_00##.jpg",
     "numberOfFrames":"48",
     "keyframe1":"24",
