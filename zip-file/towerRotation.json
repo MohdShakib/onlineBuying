@@ -1,6 +1,6 @@
 towerRotation([
   {
-    "towerName":"Tower A",
+    "towerName":"Azalea",
     "imageName":"UmangA_00##.jpg",
     "numberOfFrames":"48",
     "keyframe1":"15",
@@ -13,7 +13,7 @@ towerRotation([
     "link4":""
   },
   {
-    "towerName":"Tower B",
+    "towerName":"Daffodil",
     "imageName":"tower_b00##.jpg",
     "numberOfFrames":"48",
     "keyframe1":"24",
@@ -26,7 +26,7 @@ towerRotation([
     "link4":""
   },
   {
-    "towerName":"Tower C",
+    "towerName":"Sunflower",
     "imageName":"100##.jpg",
     "numberOfFrames":"48",
     "keyframe1":"24",
@@ -39,7 +39,7 @@ towerRotation([
     "link4":""
   },
   {
-    "towerName":"Tower E",
+    "towerName":"Cosmos",
     "imageName":"E_00##.jpg",
     "numberOfFrames":"48",
     "keyframe1":"0",
@@ -52,7 +52,7 @@ towerRotation([
     "link4":""
   },
   {
-    "towerName":"Tower G",
+    "towerName":"Cherry",
     "imageName":"G_00##.jpg",
     "numberOfFrames":"48",
     "keyframe1":"24",
@@ -65,7 +65,7 @@ towerRotation([
     "link4":""
   },
   {
-    "towerName":"Tower I",
+    "towerName":"Clover",
     "imageName":"i_00##.jpg",
     "numberOfFrames":"48",
     "keyframe1":"24",
@@ -78,7 +78,7 @@ towerRotation([
     "link4":""
   },
   {
-    "towerName":"Tower L",
+    "towerName":"Violet",
     "imageName":"Tower-L_00##.jpg",
     "numberOfFrames":"48",
     "keyframe1":"24",
