@@ -2045,13 +2045,13 @@
       {
         "towerId": 1845,
         "projectId": 501660,
-        "towerName": "Daffodil1",
+        "towerName": "Daffodil",
         "verified": 1
       },
       {
         "towerId": 1846,
         "projectId": 501660,
-        "towerName": "Sunflower1",
+        "towerName": "Sunflower",
         "verified": 1
       },
       {
@@ -2063,49 +2063,49 @@
       {
         "towerId": 1848,
         "projectId": 501660,
-        "towerName": "Daffodil2",
+        "towerName": "Cosmos",
         "verified": 1
       },
       {
         "towerId": 1849,
         "projectId": 501660,
-        "towerName": "Sunflower2",
+        "towerName": "Daisy",
         "verified": 1
       },
       {
         "towerId": 1850,
         "projectId": 501660,
-        "towerName": "Tulip3",
+        "towerName": "Happy",
         "verified": 1
       },
       {
         "towerId": 1851,
         "projectId": 501660,
-        "towerName": "Daffodil3",
+        "towerName": "Lotus",
         "verified": 1
       },
       {
         "towerId": 1852,
         "projectId": 501660,
-        "towerName": "Sunflower3",
+        "towerName": "Magnolia",
         "verified": 1
       },
       {
         "towerId": 1853,
         "projectId": 501660,
-        "towerName": "Tulip4",
+        "towerName": "Red",
         "verified": 1
       },
       {
         "towerId": 1854,
         "projectId": 501660,
-        "towerName": "Daffodil4",
+        "towerName": "Rose",
         "verified": 1
       },
       {
         "towerId": 1855,
         "projectId": 501660,
-        "towerName": "Sunflower4",
+        "towerName": "Violet",
         "verified": 1
       }
     ],

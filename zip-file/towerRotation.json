@@ -13,7 +13,7 @@ towerRotation([
     "link4":""
   },
   {
-    "towerName":"Daffodil1",
+    "towerName":"Daffodil",
     "imageName":"tower_b00##.jpg",
     "numberOfFrames":"48",
     "keyframe1":"24",
@@ -26,7 +26,7 @@ towerRotation([
     "link4":""
   },
   {
-    "towerName":"Sunflower1",
+    "towerName":"Sunflower",
     "imageName":"100##.jpg",
     "numberOfFrames":"48",
     "keyframe1":"24",
@@ -39,7 +39,7 @@ towerRotation([
     "link4":""
   },
   {
-    "towerName":"Daffodil2",
+    "towerName":"Cosmos",
     "imageName":"E_00##.jpg",
     "numberOfFrames":"48",
     "keyframe1":"0",
@@ -52,7 +52,7 @@ towerRotation([
     "link4":""
   },
   {
-    "towerName":"Tulip3",
+    "towerName":"Happy",
     "imageName":"G_00##.jpg",
     "numberOfFrames":"48",
     "keyframe1":"24",
@@ -65,7 +65,7 @@ towerRotation([
     "link4":""
   },
   {
-    "towerName":"Sunflower3",
+    "towerName":"Magnolia",
     "imageName":"i_00##.jpg",
     "numberOfFrames":"48",
     "keyframe1":"24",
@@ -78,7 +78,7 @@ towerRotation([
     "link4":""
   },
   {
-    "towerName":"Sunflower4",
+    "towerName":"Violet",
     "imageName":"Tower-L_00##.jpg",
     "numberOfFrames":"48",
     "keyframe1":"24",
