@@ -423,55 +423,133 @@ var viewUtils = (function() {
         },
         getAmenitiesIconHtml : function(amenityName, amenityIcon){
             var iconMapObject = {       // todo add icon-name (same as amenity name) and path count for each icon
-                "Swimming-Pool" : {
+                "atm" : {
+                    "pathCount" : 10
+                },
+                "badminton" : {
+                    "pathCount" : 10
+                },
+                "cafeteria" : {
+                    "pathCount" : 12
+                },
+                "commercial-sape" : {
+                    "pathCount" : 24
+                },
+                "covered-car-parking" : {
+                    "pathCount" : 16
+                },
+                "health-care-center" : {
+                    "pathCount" : 26
+                },
+                "intercom" : {
+                    "pathCount" : 24
+                },
+                "landscape" : {
+                    "pathCount" : 8
+                },
+                "maintenance" : {
+                    "pathCount" : 10
+                },
+                "metrostation" : {
+                    "pathCount" : 14
+                },
+                "multipurpose-room" : {
+                    "pathCount" : 16
+                },
+                "open-car-parking" : {
+                    "pathCount" : 15
+                },
+                "party-hall" : {
+                    "pathCount" : 23
+                },
+                "power-backup" : {
+                    "pathCount" : 6
+                },
+                 "rain-water-harvesting" : {
+                    "pathCount" : 15
+                },
+                "security" : {
+                    "pathCount" : 2
+                },
+                "semi-covered-car-parking" : {
+                    "pathCount" : 14
+                },
+                "skating-area" : {
+                    "pathCount" : 16
+                },
+                "sport-facility" : {
+                    "pathCount" : 11
+                },
+                "city-hall" : {
+                    "pathCount" : 20
+                },
+                "iconic-fountain" : {
+                    "pathCount" : 5
+                },
+                "market" : {
+                    "pathCount" : 17
+                },
+                "play-court" : {
+                    "pathCount" : 7
+                },
+                "pool-deck" : {
+                    "pathCount" : 21
+                },
+                "sitting" : {
+                    "pathCount" : 14
+                },
+                  "travel-bag" : {
+                    "pathCount" : 10
+                },
+                "swimming-pool" : {
                    "pathCount" : 14
                 },
-                "Jogging" : {
+                "jogging" : {
                    "pathCount" : 9
                 },
-                "Indoor-Games" : {
+                "indoor-games" : {
                    "pathCount" : 11
                 },
                 "mountain" : {
                    "pathCount" : 11
                 },
-                "Club-House" : {
+                "club-house" : {
                    "pathCount" : 10
                 },
-                "Hill-View" : {
+                "hill-view" : {
                    "pathCount" : 10
                 },
                 "templebell" : {
                    "pathCount" : 12
                 },
-                "Tennis-Court" : {
+                "tennis-court" : {
                    "pathCount" : 12
                 },
-                "Amphitheater" : {
+                "amphitheater" : {
                    "pathCount" : 6
                 },
-                "Golf-Course" : {
+                "golf-course" : {
                    "pathCount" : 6
                 },
-                "Gymnasium" : {
+                "gymnasium" : {
                    "pathCount" : 9
                 },
-                "Kids-Play" : {
+                "kids-play" : {
                    "pathCount" : 22
                 },
-                "Garden-View" : {
+                "garden-view" : {
                    "pathCount" : 9
                 },
-                "Entrance" : {
+                "entrance" : {
                    "pathCount" : 6
                 },
-                "Terrace-Units" : {
+                "terrace-units" : {
                    "pathCount" : 7
                 },
                 "homecinema" : {
                    "pathCount" : 10
                 },
-                "traveling" : {
+                "roadside-view" : {
                    "pathCount" : 8
                 }
             };
