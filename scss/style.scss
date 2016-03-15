@@ -304,6 +304,15 @@ ellipse.tower-unit-svg-selected-path {
 		}
 	}
 }
+
+.top-left, .bottom-left{
+	.towerunit-detail-container{
+		.floor-item{
+			margin-right: 0px;
+			margin-left: -5px;
+		}
+	}
+}
 .towerunit-detail-container > div{
 	text-align: left;
 	padding: 3px;
