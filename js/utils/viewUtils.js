@@ -551,6 +551,9 @@ var viewUtils = (function() {
                 },
                 "roadside-view" : {
                    "pathCount" : 8
+                },
+                "basket-ball-court" : {
+                   "pathCount" : 6
                 }
             };
             var displayIcon = utils.getDisplayIcon(amenityName);
