@@ -259,17 +259,33 @@ var viewUtils = (function() {
             var radius = 85;
             var circ = Math.PI * 2;
             var quart = Math.PI / 2;
+            var currentLoadingPersent = 0;
+            var currentCircleState = 0;
 
             function animate(current) {
                 context.lineWidth = 2;
                 context.strokeStyle = '#d36242';
-
+                $('.ldr span').html(parseInt(current*100) + '%');
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 context.beginPath();
                 context.arc(x, y, radius, -(quart), ((circ) * current) - quart, false);
                 context.stroke();
+
             }
 
+            var IntervalId;
+
+            function startLoadingBar(){
+                IntervalId = setInterval(function(){
+                    if(currentLoadingPersent >= (currentCircleState * 100)){
+                        currentCircleState = currentCircleState + 0.01;
+                        animate(currentCircleState);
+                    }
+                },10);
+                setTimeout(function(){
+                    clearInterval(IntervalId);
+                },1 * 30 * 1000);
+            }
 
             var loadingImagesArray = $('.loading-image');
             var allLoadingDiv = $('.building-slider div');
@@ -309,15 +325,21 @@ var viewUtils = (function() {
                 return;
             }
 
+            var isFirstTime = true;
+
             $.each(arrayOfImageUrls, function(index, value) {
                 $('<img>').attr('src', value.src) //load image
                     .load(function() {
                         count++;
                         percentCounter = (count / arrayOfImageUrls.length) * 100; //set the percentCounter after this image has loaded
                         var percentage = Math.floor(percentCounter);
-                        animate(percentage /100);
-                        $('.ldr span').html(percentage + '%');
+                        currentLoadingPersent = percentage;
+                        if(isFirstTime){
+                            startLoadingBar();
+                            isFirstTime = false;
+                        }
                         if (percentCounter == 100) {
+                            clearInterval(IntervalId);
                             startAnimation(model);
                             setTimeout(function(){
                                 $('.show-loading').hide();
