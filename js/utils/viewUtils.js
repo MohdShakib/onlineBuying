@@ -270,10 +270,40 @@ var viewUtils = (function() {
                 context.stroke();
             }
 
+
+            var loadingImagesArray = $('.loading-image');
+            var allLoadingDiv = $('.building-slider div');
+            (function (){
+                console.log('reinit startLoadingAnimation');
+
+                $(allLoadingDiv[0]).removeClass('hide-slide');
+                for(var i = 1; i < allLoadingDiv.length; i++){
+                    $(allLoadingDiv[i]).addClass('hide-slide');
+                }
+            })();
+
+            function startLoadingAnimation(){
+                $(allLoadingDiv[0]).addClass('hide-slide');  // Todo remove this line if it is base image
+                for(var i = 1; i < allLoadingDiv.length; i++){
+                    $(allLoadingDiv[i]).removeClass('hide-slide');
+                }
+            }
+            var loadingImagesCount = 0;
+            $.each(loadingImagesArray, function(index, value) {
+                $('<img>').attr('src', value.src) //load image
+                    .load(function() {
+                        loadingImagesCount++;
+                        if(loadingImagesCount === loadingImagesArray.length){
+                           startLoadingAnimation();
+                        }
+                    });
+            });
+
+
             $('.show-loading').show();
             var percentCounter = 0,
                 count = 0,
-                arrayOfImageUrls = $('img').not(config.lazyloadClass);
+                arrayOfImageUrls = $('img').not(config.lazyloadClass).not('.loading-image');
 
             if (!(arrayOfImageUrls && arrayOfImageUrls.length)) {
                 $('.show-loading').hide();

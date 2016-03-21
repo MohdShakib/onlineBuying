@@ -1895,6 +1895,10 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .top-view .loading-txt { padding: 7px 20px; margin-top: 50px; color: #fff; font-style: italic; border-radius: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;background-color: rgba(0, 0, 0, .5); }
 .top-view .building { z-index: 0; position: absolute; width: 30%; height: 82%; right: 100px; bottom: -1%; }
 .top-view .building img { width: 100%; height: auto; }
+.top-view .building .details {
+	width: 80%;
+	border-radius: 5px;
+}
 .top-view .circleBlur {
 	margin-top: -200px;
 	margin-left: -200px;
@@ -1919,28 +1923,44 @@ span.error{ position:absolute; font-size:12px; bottom:-18px; left:17px; display:
 .bot-view .txt { padding-top: 3%; font-size: 20px; color: #444; }
 .bot-view .txt span { padding: 5px; margin-top: 10px; font-size: 34px; color: #e4552e; display: inline-block;}
 .bot-view .txt .border-lines{border-top: 1px solid #bcbcbc; border-bottom: 1px solid #bcbcbc;}
-.building-slider { width: 100%; height: 100%; position: absolute; z-index: -1; top: 0; left: 0; }
-.slide1,.slide2,.slide3 { position: absolute; width: 100%; height: 100%; }
-.slide1 { opacity: 0; /*background: url(../images/building-slide-img1.png)no-repeat top center; background-size: cover;*/ animation:fade 3s; -webkit-animation:fade 3s; } 
-.slide2 { opacity: 1; /*background: url(../images/building-slide-img2.png)no-repeat top center; background-size: cover;*/ animation:fade2 3s; -webkit-animation:fade2 3s; } 
-.slide3 { top: 4%; left: -53.5%; width: 80%;  height: auto; transform-origin: bottom right; transition: all .3s ease; /*background: url(../images/building-slide-img3.png)no-repeat top center; background-size: cover;*/ animation:fade3 3s; -webkit-animation:fade3 3s; } 
-@keyframes fade
-{
-  0%   {opacity:0}
-  50% { opacity: 1}
-  100% { opacity: 0}
-}
-@keyframes fade2
-{
-  0%   {opacity:0}
-  50%   {opacity:0}
-  100% { opacity: 1; }
-}
-@keyframes fade3
-{
-  0%   { transform: scale(0);}
-  80%   { transform: scale(0);}
-  100% { transform: scale(1, 1); }
+.building-slider {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	.building-slid1{
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 1;
+		transition: all 1s ease;
+		&.hide-slide{
+			opacity: 0;
+		}
+	}
+	.building-slid2{
+		position: absolute;
+		top: 0;
+		left: 0;
+		transition: all 1s ease;
+		z-index: 2;
+		&.hide-slide{
+			opacity: 0;
+		}
+	}
+	.building-slid3{
+		position: absolute;
+		z-index: 3;
+		top: 120px;
+		left: 140px;
+		animation-delay: 1s;
+		transition: all 1s ease;
+		&.hide-slide{
+			opacity: 0;
+		}
+	}
 }
 
 /*-----loading screen css end here------*/
