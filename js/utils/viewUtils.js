@@ -270,14 +270,20 @@ var viewUtils = (function() {
                 context.beginPath();
                 context.arc(x, y, radius, -(quart), ((circ) * current) - quart, false);
                 context.stroke();
-
+                if (currentLoadingPercentage == 100) {
+                    startAnimation(model);
+                    setTimeout(function(){
+                        clearInterval(IntervalId);
+                        $('.show-loading').hide();
+                    },100);
+                }
             }
 
             var IntervalId;
 
             function startLoadingBar(){
                 IntervalId = setInterval(function(){
-                    if(currentLoadingPersent >= (currentCircleState * 100)){
+                    if(currentLoadingPercentage >= (currentCircleState * 100)){
                         currentCircleState = currentCircleState + 0.01;
                         animate(currentCircleState);
                     }
@@ -332,18 +338,10 @@ var viewUtils = (function() {
                     .load(function() {
                         count++;
                         percentCounter = (count / arrayOfImageUrls.length) * 100; //set the percentCounter after this image has loaded
-                        var percentage = Math.floor(percentCounter);
-                        currentLoadingPersent = percentage;
+                        currentLoadingPercentage = Math.floor(percentCounter);
                         if(isFirstTime){
                             startLoadingBar();
                             isFirstTime = false;
-                        }
-                        if (percentCounter == 100) {
-                            clearInterval(IntervalId);
-                            startAnimation(model);
-                            setTimeout(function(){
-                                $('.show-loading').hide();
-                            },100);
                         }
                     });
             });
