@@ -204,7 +204,7 @@ var viewUtils = (function() {
                     }
                     if (pricingSubcategory && pricingSubcategory.isMandatory) {
                         code += "<tr><td>" + pricingSubcategory.name + " <span>(" + pricingSubcategory.masterName + ")</span></td><td class='right-align'>" + utils.getReadablePrice(unitPricingSubcategory.price) + "</td></tr>";
-                    } else if (pricingSubcFategory) {
+                    } else if (pricingSubcategory) {
                         opCode += "<tr class='" + config.optionalPriceClass + "'><td><input type='checkbox' value='" + unitPricingSubcategory.price + "'/> " + pricingSubcategory.name + " <span>(" + pricingSubcategory.masterName + ")</span></td><td class='right-align'>" + utils.getReadablePrice(unitPricingSubcategory.price) + "</td></tr>";
                     }
                 }
