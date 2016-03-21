@@ -259,7 +259,7 @@ var viewUtils = (function() {
             var radius = 85;
             var circ = Math.PI * 2;
             var quart = Math.PI / 2;
-            var currentLoadingPersent = 0;
+            var currentLoadingPercentage = 0;
             var currentCircleState = 0;
 
             function animate(current) {
