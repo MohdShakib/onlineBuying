@@ -204,7 +204,7 @@ var viewUtils = (function() {
                     }
                     if (pricingSubcategory && pricingSubcategory.isMandatory) {
                         code += "<tr><td>" + pricingSubcategory.name + " <span>(" + pricingSubcategory.masterName + ")</span></td><td class='right-align'>" + utils.getReadablePrice(unitPricingSubcategory.price) + "</td></tr>";
-                    } else if (pricingSubcategory) {
+                    } else if (pricingSubcFategory) {
                         opCode += "<tr class='" + config.optionalPriceClass + "'><td><input type='checkbox' value='" + unitPricingSubcategory.price + "'/> " + pricingSubcategory.name + " <span>(" + pricingSubcategory.masterName + ")</span></td><td class='right-align'>" + utils.getReadablePrice(unitPricingSubcategory.price) + "</td></tr>";
                     }
                 }
@@ -274,9 +274,7 @@ var viewUtils = (function() {
             var loadingImagesArray = $('.loading-image');
             var allLoadingDiv = $('.building-slider div');
             (function (){
-                console.log('reinit startLoadingAnimation');
-
-                $(allLoadingDiv[0]).removeClass('hide-slide');
+                $(allLoadingDiv[0]).removeClass('hide-slide'); // Todo remove this line if it is base image
                 for(var i = 1; i < allLoadingDiv.length; i++){
                     $(allLoadingDiv[i]).addClass('hide-slide');
                 }
