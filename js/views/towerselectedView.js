@@ -392,7 +392,7 @@ var TowerselectedView = (function() {
             }
 
             var tooltipClass = utils.getTooltipPosition({
-                pageX: 50, // to keep tooltip always on the right
+                pageX: left,
                 pageY: top
             });
             tooltipClass = tooltipClass ? tooltipClass : 'bottom-right';

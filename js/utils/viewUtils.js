@@ -259,21 +259,71 @@ var viewUtils = (function() {
             var radius = 85;
             var circ = Math.PI * 2;
             var quart = Math.PI / 2;
+            var currentLoadingPercentage = 0;
+            var currentCircleState = 0;
 
             function animate(current) {
                 context.lineWidth = 2;
                 context.strokeStyle = '#d36242';
-
+                $('.ldr span').html(parseInt(current*100) + '%');
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 context.beginPath();
                 context.arc(x, y, radius, -(quart), ((circ) * current) - quart, false);
                 context.stroke();
+                if (currentLoadingPercentage == 100) {
+                    startAnimation(model);
+                    setTimeout(function(){
+                        clearInterval(IntervalId);
+                        $('.show-loading').hide();
+                    },100);
+                }
             }
+
+            var IntervalId;
+
+            function startLoadingBar(){
+                IntervalId = setInterval(function(){
+                    if(currentLoadingPercentage >= (currentCircleState * 100)){
+                        currentCircleState = currentCircleState + 0.01;
+                        animate(currentCircleState);
+                    }
+                },10);
+                setTimeout(function(){
+                    clearInterval(IntervalId);
+                },1 * 30 * 1000);
+            }
+
+            var loadingImagesArray = $('.loading-image');
+            var allLoadingDiv = $('.building-slider div');
+            (function (){
+                $(allLoadingDiv[0]).removeClass('hide-slide'); // Todo remove this line if it is base image
+                for(var i = 1; i < allLoadingDiv.length; i++){
+                    $(allLoadingDiv[i]).addClass('hide-slide');
+                }
+            })();
+
+            function startLoadingAnimation(){
+                $(allLoadingDiv[0]).addClass('hide-slide');  // Todo remove this line if it is base image
+                for(var i = 1; i < allLoadingDiv.length; i++){
+                    $(allLoadingDiv[i]).removeClass('hide-slide');
+                }
+            }
+            var loadingImagesCount = 0;
+            $.each(loadingImagesArray, function(index, value) {
+                $('<img>').attr('src', value.src) //load image
+                    .load(function() {
+                        loadingImagesCount++;
+                        if(loadingImagesCount === loadingImagesArray.length){
+                           startLoadingAnimation();
+                        }
+                    });
+            });
+
 
             $('.show-loading').show();
             var percentCounter = 0,
                 count = 0,
-                arrayOfImageUrls = $('img').not(config.lazyloadClass);
+                arrayOfImageUrls = $('img').not(config.lazyloadClass).not('.loading-image');
 
             if (!(arrayOfImageUrls && arrayOfImageUrls.length)) {
                 $('.show-loading').hide();
@@ -281,19 +331,17 @@ var viewUtils = (function() {
                 return;
             }
 
+            var isFirstTime = true;
+
             $.each(arrayOfImageUrls, function(index, value) {
                 $('<img>').attr('src', value.src) //load image
                     .load(function() {
                         count++;
                         percentCounter = (count / arrayOfImageUrls.length) * 100; //set the percentCounter after this image has loaded
-                        var percentage = Math.floor(percentCounter);
-                        animate(percentage /100);
-                        $('.ldr span').html(percentage + '%');
-                        if (percentCounter == 100) {
-                            startAnimation(model);
-                            setTimeout(function(){
-                                $('.show-loading').hide();
-                            },100);
+                        currentLoadingPercentage = Math.floor(percentCounter);
+                        if(isFirstTime){
+                            startLoadingBar();
+                            isFirstTime = false;
                         }
                     });
             });
@@ -551,6 +599,9 @@ var viewUtils = (function() {
                 },
                 "roadside-view" : {
                    "pathCount" : 8
+                },
+                "basket-ball-court" : {
+                   "pathCount" : 6
                 }
             };
             var displayIcon = utils.getDisplayIcon(amenityName);

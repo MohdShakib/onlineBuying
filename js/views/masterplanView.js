@@ -30,7 +30,7 @@ var MasterplanView = (function () {
             'amenitiesContainer': $('#amenities-container'),
             'cloudContainer': $('#cloud-container'),
             'carAnimation': $('#car-animation'),
-            'googleMapContainer': $('#google-map-container'),
+            //'googleMapContainer': $('#google-map-container'),
             'openGoogleMapView': $('#open-google-map-view'),
             'bottomFilterContainer': $('#bottom-filter-container'),
             'buildingMenuContainer': $('#tower-menu-container')
