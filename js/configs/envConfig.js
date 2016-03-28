@@ -10,8 +10,9 @@ var envConfig = (function() {
     var envConfig = {
         local: {
             env: env,
-            protocol: 'http://',
-            apiURL: 'www.proptiger.com/',
+            protocol: 'https://',
+            apiURL: 'proptiger.com/',
+            //apiURL: 'beta.makaan-ws.com/',
             showLogs: true
         },
         dev: {

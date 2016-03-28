@@ -1,0 +1,27 @@
+amenitiesHotspots([
+  {
+    "amenityName":"Entrance View",
+    "amenitySvg":"58.6 96.19",
+    "imageName":"entrance-view.jpg"
+  },
+  {
+    "amenityName":"Garden View",
+    "amenitySvg":"34.79 21.42",
+    "imageName":"garden-view.jpg"
+  },
+  {
+    "amenityName":"Iconic Fountain",
+    "amenitySvg":"49.37 66.03",
+    "imageName":"iconic-fountain.jpg"
+  },
+  {
+    "amenityName":"Landscaping and Fountain",
+    "amenitySvg":"56.92 80.47",
+    "imageName":"landscaping-and-fountain.jpg"
+  },
+  {
+    "amenityName":"Pool View",
+    "amenitySvg":"46.81 42.85",
+    "imageName":"pool-view.jpg"
+  }
+]);

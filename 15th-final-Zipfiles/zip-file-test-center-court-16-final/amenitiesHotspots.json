@@ -1,0 +1,37 @@
+amenitiesHotspots([
+  {
+    "amenityName":"Amphitheater",
+    "amenitySvg":"27.69 79.84",
+    "imageName":"Amphitheater.jpg"
+  },
+  {
+    "amenityName":"Basketball Court",
+    "amenitySvg":"77.43 56.19",
+    "imageName":"Basketball-Court.jpg"
+  },
+  {
+    "amenityName":"Club House",
+    "amenitySvg":"62.85 84.6",
+    "imageName":"Club-House.jpg"
+  },
+  {
+    "amenityName":"Kids Play",
+    "amenitySvg":"40.36 92.22",
+    "imageName":"Kids-Play.jpg"
+  },
+  {
+    "amenityName":"Pool Deck",
+    "amenitySvg":"45.86 73.33",
+    "imageName":"Pool-Deck.jpg"
+  },
+  {
+    "amenityName":"Skating Area",
+    "amenitySvg":"33.99 79.36",
+    "imageName":"Skating-Area.jpg"
+  },
+  {
+    "amenityName":"Swimming",
+    "amenitySvg":"49.01 78.41",
+    "imageName":"Swimming.jpg"
+  }
+]);

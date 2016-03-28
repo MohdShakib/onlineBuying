@@ -181,6 +181,18 @@
     <script src="js/init.js"></script>
     <!-- /build -->
     
+    <script>
+      // Let's register our serviceworker
+      navigator.serviceWorker.register('sw.js', {
+        // The scope cannot be parent to the script url
+        scope: './'
+      }).catch(function(error) {
+        // registration failed
+        console.log('Registration failed with ' + error);
+      });
+    </script>
+    <script src="swLogging.js"></script>
+
     <div id="fb-root"></div>
     <!-- Loaded fb and google sdk from init.js -->
 
