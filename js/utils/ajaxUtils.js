@@ -114,8 +114,9 @@ var ajaxUtils = (function() {
             return $.ajax({
                 type: "GET",
                 url: url,
-                async: false,
+                async: true,
                 dataType: "text",
+                cache: true,
                 success: function(data) {
                     // register success callback in return promise
                 },
@@ -130,12 +131,14 @@ var ajaxUtils = (function() {
             return $.ajax({
                 type: 'GET',
                 url: url,
-                async: false,
+                async: true,
                 jsonpCallback: callback,
                 contentType: "application/json",
                 dataType: "jsonp",
+                cache: true,
                 success: function(data) {
                     // register success callback in return promise
+
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     utils.log('read json error callback for: ' + url);

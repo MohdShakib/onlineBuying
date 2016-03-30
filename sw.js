@@ -125,6 +125,7 @@ self.addEventListener('fetch', function(event) {
     })*/
 
     caches.match(event.request).then(function(response) {
+
         if(response){
           console.log('catched : ',event.request.url);
           return response
@@ -133,7 +134,7 @@ self.addEventListener('fetch', function(event) {
           return fetch(event.request).then(function(response) {
             return caches.open('v1').then(function(cache) {
               try{
-              cache.put(event.request, response.clone());
+                cache.put(event.request, response.clone());
               }catch(error){
                 console.log('error is: ', JSON.stringify(error));
               }
