@@ -32,14 +32,21 @@ var BookingController = (function() {
                     data = _this._model.getData(),
                     label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-' + data.unitIdentifier + '-continueToPaymentButton';
                 if (paymentData != null && config.enablePayment && data.bookingStatus == "Available") {
-                    utils.tracking('button', 'clicked', label);
+                    utils.tracking(config.gaCategory, 'continueToPaymentButtonClicked', label);
                     _this._view.bookListing(paymentData);
                 }
             });
 
             // Get Call Back
             this._view._getCallBack.attach(function(sender, element) {
-                _this._view.validateAndSendEmail("GetCallBack");
+                var emailData = _this._view.getValidatedEmailData("GetCallBack"),
+                    rootdata = _this._model.getRootdata(),
+                    data = _this._model.getData(),
+                    label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-' + data.unitIdentifier + '-getCallbackButton';
+                if (emailData != null) {
+                    utils.tracking(config.gaCategory, 'callbackButtonClicked', label);
+                    _this._view.sendEmail(emailData);
+                }
             });
 
         },

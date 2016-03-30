@@ -16,7 +16,6 @@ var BaseView = (function() {
         'bottomFormGroupContainer': '<div class="bottom-form-group" id="bottom-form-group"></div>',
         'compareUnitsContainer': '<div  class="compare-units-container" id="' + config.compareUnitscontainerId + '"></div>',
         'promptLeadFormContainer': '<div class="promptLeadFormBox" id="prompt-lead-form"></div>',
-        'questionBoxContainer': '<div class="questionBox" id="question-box"></div>',
         'smallScreenMessage': ' <div class="top-message '+ config.popupClass +'" id="small-screen" style="display:none;"></div>'
 
     };
@@ -26,7 +25,6 @@ var BaseView = (function() {
             'bottomFormGroupContainer': $('#bottom-form-group'),
             'compareUnitsContainer': $('#' + config.compareUnitscontainerId),
             'promptLeadFormContainer': $('#prompt-lead-form'),
-            'questionBoxContainer': $('#question-box'),
             'smallScreenMessage': $('#small-screen')
         };
         return elements;
@@ -67,18 +65,25 @@ var BaseView = (function() {
             for (var i in this._elements) {
                 if (this._elements.hasOwnProperty(i) && this[i]) {
                     this._elements[i].empty();
-                    this[i]();
+                    this[i](rootdata);
                 }
             }
 
             $('.' + config.notificationTooltipClass).off('click').on('click', '.icon-cross', function() {
-                utils.hideNotificationTooltip();
+                viewUtils.hideNotificationTooltip();
             });
         },
         init: function(rootdata) {
-            $('.project-title').html('<a href="https://www.proptiger.com/' + rootdata.projectUrl + '" target="_blank">' + rootdata.projectName + '</a>');
+            var content = config.builderSetUp ? rootdata.builderName + ' ' + rootdata.projectName : '<a href="https://www.proptiger.com/' + rootdata.projectUrl + '" target="_blank">' + rootdata.builderName + ' ' + rootdata.projectName + '</a>';
+            $('.project-title').html(content);
             $('.project-address').html(rootdata.address);
-            $('.project-desc').html(rootdata.description);
+            $('.loading-txt').html(config.loadingText);
+            $('.loading-txt').show();
+            if(rootdata.offer && rootdata.offer.length > 0){
+                var index = Math.floor(Math.random() * rootdata.offer.length);
+                $('.project-offer').html(rootdata.offer[index]);
+                $('.project-offer').addClass('border-lines');
+            }
             this.initEvents();
         },
         initEvents: function() {
@@ -97,7 +102,7 @@ var BaseView = (function() {
         },
         reinit: function() {
             $('.pro-contact-actions ul.conect-tab').css({
-                bottom: '-45px'
+                bottom: '60px'
             });
         },
         buildSkeleton: function(containerList) {
@@ -217,11 +222,22 @@ var BaseView = (function() {
                 imageUrl = item ? (isDuplex ? [item[unitTypeArr[0]].unitImageUrl, item[unitTypeArr[1]].unitImageUrl] : item[item.unitTypeIdentifier].unitImageUrl) : undefined,
                 link = rootdata.baseUrl + '/' + item.towerIdentifier + '/' + item.rotationAngle + '/' + item.unitIdentifier + '/booking',
                 htmlCode = '<div class="tower-unit-detail-container ' + config.unitDataContainer + '"></div>';
-            htmlCode += '<span class="icon fs14 icon-cross close-compare-box"></span><div class="compare-unit-box-detail top-right-component"><span>' + item.unitName + '</span> | <span>' + item.bedrooms + '</span> | <span>' + item.size + '</span> | <span>' + item.price + '</span> | <span>' + item.floor + '</span></div>';
+            htmlCode += '<span class="icon fs14 icon-cross close-compare-box"></span><div class="compare-unit-box-detail top-right-component"><span>' + item.unitName + '</span> | <span>' + item.bedrooms + '</span> | <span>' + item.size + '</span> | <span>' + (config.builderSetUp ? '' : item.price + '</span> | <span>') + item.floor + '</span></div>';
             htmlCode += '<div class="top-right-component">' +
-                '<div class="book-now" >' +
-                '<a data-url="' + link + '" data-identifier="' + item.unitUniqueIdentifier + '">Book now</a><span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(item.bookingAmount) + '/- <br>(No Cancellation Charges)</span>' +
-                '</div>';
+                '<div class="book-now" >';
+                if (item.bookingStatus == 'Available' && rootdata.fairEnabled && !config.builderSetUp) {
+                    htmlCode += '<a data-url="' + link + '" data-identifier="' + item.unitUniqueIdentifier + '">Book Now</a>' +
+                  '<span><span class="icon icon-rupee fs10"></span>' + utils.getReadablePrice(item.bookingAmount) + '/- <br>(No Cancellation Charges)</span>';
+
+                }
+                else if (item.bookingStatus == 'Available' && !rootdata.fairEnabled && !config.builderSetUp) {
+                    htmlCode += '<a data-url="' + link + '" data-identifier="' + item.unitUniqueIdentifier + '">Proceed</a>';
+                }
+                else if(!config.builderSetUp) {
+                    htmlCode += '<a>Sold out</a>';
+                }
+                htmlCode += '</div>';
+
 
             if (isDuplex) {
                 htmlCode += '<div id="slider" class="slider"><a class="control_next">></a> <a class="control_prev"><</a>' +
@@ -302,7 +318,7 @@ var BaseView = (function() {
             } else {
                 unitTypeData = compareList[uniqueIdentifier].unitTypeData;
             }
-            var svgElements = utils.getUnit3dSvgPolygonElements(unitTypeData);
+            var svgElements = viewUtils.getUnit3dSvgPolygonElements(unitTypeData);
             var id = idName || uniqueIdentifier;
             $('#unit-compare-svg-container' + id).empty();
             if (svgElements && svgElements.length) {
@@ -337,7 +353,7 @@ var BaseView = (function() {
             params.pointX = pointX;
             params.pointY = pointY;
             if (reference) {
-                utils.unitComponentMouseEnter(params, reference);
+                viewUtils.unitComponentMouseEnter(params, reference);
             }
         },
         unitComponentMouseLeave: function() {
@@ -346,88 +362,50 @@ var BaseView = (function() {
         compareBackButtonClicked: function() {
             $('#' + config.compareUnitscontainerId).fadeOut(800);
         },
-        bottomFormGroupContainer: function() {
+        bottomFormGroupContainer: function(rootdata) {
             var _this = this;
-            var chatdisabled = config.chatEnabled ? '' : 'disabled';
+            var chatdisabled = config.chatEnabled && rootdata.fairEnabled && !config.builderSetUp ? '' : 'disabled';
+            var iconEnabled = config.builderSetUp ? 'disabled' : '';
             var htmlCode = '<div class="pro-contact-actions">' +
+
+                '<ul class="conect-tab transition">' +
+                '<li class="shortlist">' +
+                '   <a href="javascript:void(0);" id="heart-added" data-name="compare-box">' +
+                '   <p>Compare among</br> shortlisted flats</p>' +
+                '   <span class="icon icon-heart-1 transition ' + config.blinkElementClass + '">' +
+                '   <label class="like-count br50" id="' + config.likeCountId + '">0</label>' +
+                '   </span>' +
+                '   </a>' +
+                '</li>' +
+                '<li class="get-call-back"><a href="javascript:void(0);"  data-name="call-box" class="' + iconEnabled + '">Get Call Back</a>' +
+                '</li>' +
+
+                '</ul>' +
                 '<div class="form-pop-up transition">' +
                 '   <span class="close-form icon icon-cross fs12"></span>' +
                 '   <div class="call-box">' +
-                '       <p>Get callback from our property advisor<br></p>' +
-                //'     <div class="chat-tab-box">' +
-                //'         <a href="/" class="transition">Start Chatting</a>' +
-                //'         <a href="/" class="transition active">We will Call</a>' +
-                //'     </div>' +
+                '       <p>Interested in  '+ rootdata.projectIdentifier+' ?<br></p>' +
                 '       <form id="call-box-form" name="call-box-form" novalidate onSubmit="return false;"  >' +
-                '           <div class="form-input-box"><input class="text" id="' + config.callBox.nameId + '" name="name" placeholder="Enter your name" type="text" required /><div class="error-box ' + config.errorMsgClass + '">This field is required</div></div> ' +
-                '           <div class="form-input-box"><input class="text" id="' + config.callBox.emailId + '" name="email" placeholder="Enter your email id" type="email" required /><div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
-                '           <div class="phone-no-holder"><div class="form-input-box fleft c-code">' +
-                '           <input id="' + config.callBox.countryCodeId + '" class="text" name="' + config.callBox.phoneId + '" type="text" value="+91" readonly/> ' +
+                '           <div class="form-input-box"><input class="text" id="' + config.callBox.emailId + '" name="email" placeholder="Email Address" type="email" required /><div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
+                '           <div class="country-holder"><div class="form-input-box c-code">' +
+                '           <input class="text" type="text" value="India" readonly/> ' +
                 '           <span class="icon icon-arrow_btm fs12 transition dropdown-arrow"></span><ul class="country-dropDown" style="display:none;"></ul></div> ' +
-                '           <div class="form-input-box fright mobile-number-field"><input class="text" id="' + config.callBox.phoneId + '" name="phone" placeholder="Enter your phone number" type="text" minlength="10" maxlength="15" required data-countryid="1" data-countrycode="+91"/>' +
+                '           </div>' +
+                '           <div class="phone-no-holder">'+
+                '           <div class="form-input-box fright mobile-number-field"><input class="text" id="' + config.callBox.phoneId + '" name="phone" placeholder="Mobile No" type="text" minlength="10" maxlength="15" required data-countryid="1" data-countrycode="+91"/><span>+91</span>' +
                 '           <div class="error-box ' + config.errorMsgClass + '">This field is required</div></div><div class="clear-fix"></div></div>' +
-                '           <div class="submit" id="' + config.callBox.submitButtonId + '">Get Instant Callback' +
+                '           <div class="submit" id="' + config.callBox.submitButtonId + '">Get Call back' +
                 '           <input type="submit" />' +
                 '           </div>' +
                 '       </form>' +
                 '   </div>' +
                 '   <div class="compare-box">' +
-                '       <p>Shortlisted Units are listed below</p>' +
+                '       <p id="shortlisted-head"></p>' +
                 '       <div class="unit-box fleft" id="' + config.shortListedUnitListId + '"></div>' +
                 '       <div class="clear-fix"></div>' +
                 '       <div id="' + config.unitCompareButtonId + '" class="submit"><input type="submit" />Compare Unit Plans</div>' +
                 '   </div>' +
-                '   <div class="share-box">' +
-                '       <p>Share details with family / friends</p>' +
-                '       <div class="share-social">' +
-                '           <a href="javascript:void(0);" onclick="utils.socialClicked(\'facebook\')" ><span class="icon icon-facebook"></span>Facebook</a>' +
-                //'         <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo" data-layout="button_count"></div>' +
-                '           <span class="social-or">or</span>' +
-                //'         <div class="g-plus" data-action="share"  data-annotation="bubble" data-href="https://www.youtube.com/watch?v=ajxyYf3PENo"></div>' +
-                '           <a href="javascript:void(0);" onclick="utils.socialClicked(\'googleplus\')" ><span class="icon icon-googleplus"></span>Google+</a>' +
-                '       </div>' +
-                '       <form id="share-box-form" novalidate name="share-box-form" onSubmit="return false;"  >' +
-                '           <div class="form-input-box"><input class="text" id="' + config.emailBox.nameId + '" placeholder="Enter your name" type="text" required />' +
-                '           <div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
-                '           <div class="form-input-box"><input class="text" id="' + config.emailBox.emailId + '" placeholder="Enter your friend\'s email id" type="email" required />' +
-                '           <div class="error-box ' + config.errorMsgClass + '">This field is required</div></div>' +
-                '           <div class="submit" id="' + config.emailBox.submitButtonId + '"><input type="submit" />Share</div>' +
-                '       </form>' +
-                '   </div>' +
-                '   <div class="live-chat">' +
-                '       <div id="' + config.tawkApiId + '"></div>' +
-                '   </div>' +
                 '</div>' +
-                '<ul class="conect-tab transition">' +
-                '<li><a href="javascript:void(0);"  data-name="call-box">' +
-                '   <p>Need Clarification?</br>Get in touch</p>' +
-                '   <span class="icon icon-phone"></span>' +
-                '   </a>' +
-                '</li>' +
-                '<li>' +
-                '   <a href="javascript:void(0);" id="heart-added" data-name="compare-box">' +
-                '   <p>Compare among</br> shortlisted flats</p>' +
-                '   <span class="icon icon-heart ' + config.blinkElementClass + '">' +
-                '   <label class="like-count br50" id="' + config.likeCountId + '">0</label>' +
-                '   </span>' +
-                '   </a>' +
-                '</li>' +
-                '<li>' +
-                '   <a href="javascript:void(0);" data-name="share-box">' +
-                '   <p>Share with</br> friends' +
-                //' <span>Sign In Now!</span>'+
-                '   </p>' +
-                '   <span class="icon icon-share"></span>' +
-                '   </a>' +
-                '</li>' +
-                '<li>' +
-                '   <a href="javascript:void(0);" data-name="live-chat" class="chat-widget ' + chatdisabled + '">' +
-                '   <p>Live support' +
-                '   </p>' +
-                '   <span class="icon icon-chat"></span>' +
-                '   </a>' +
-                '</li>' +
-                '</ul>' +
                 '</div>';
 
             this._elements.bottomFormGroupContainer.html(htmlCode);
@@ -601,11 +579,17 @@ var BaseView = (function() {
             $('#' + config.callBox.submitButtonId).removeClass(config.disabledClass);
             $('.callback-message').remove();
             $('.call-box').append('<div class="callback-message form-msg-success">You will get a call back shortly.</div>');
+            setTimeout(function(){
+                $('.call-box .callback-message').remove();
+            },5000);
         },
         submitLeadErrorCallback: function(response, params) {
             $('#' + config.callBox.submitButtonId).removeClass(config.disabledClass);
             $('.callback-message').remove();
             $('.call-box').append('<div class="callback-message form-msg-failure">' + config.errorMsg + '</div>');
+            setTimeout(function(){
+                $('.call-box .callback-message').remove();
+            },5000);
         },
         getValidatedShareData: function() {
             var form = $('#share-box-form');
@@ -682,7 +666,7 @@ var BaseView = (function() {
             if (!length) {
                 return;
             }
-            utils.removeNotificationTooltip();
+            viewUtils.removeNotificationTooltip();
             this.formPopupCloseClicked();
             this.prepareCompareUnitsContainer(true);
             $('#' + config.compareUnitscontainerId).fadeIn(900);
@@ -695,35 +679,6 @@ var BaseView = (function() {
                 $(d).find("input").attr("placeholder", label);
                 $(d).find("textarea").attr("placeholder", label);
             });
-        },
-        questionBoxContainer: function() {
-            var html = '<div class="question"><span>Questions?</span></div>' +
-                '   <div class="callInfo">' +
-                '   <p><span class="number">' + config.helpline + '</span>Our Advisors are here to help.</p>' +
-                '	</div>'+
-				'	<span class="close icon-cross"></span>';
-            this._elements.questionBoxContainer.html(html);
-            this.questionBoxContainerEvents();
-        },
-        questionBoxContainerEvents: function() {
-            var _this = this;
-            
-            _this._elements.questionBoxContainer.on('click', '.question', function(event) {
-                event.stopPropagation();
-                _this._elements.questionBoxContainer.toggleClass('open');
-            });
-			_this._elements.questionBoxContainer.on('click', '.close', function(event) {
-                event.stopPropagation();
-                _this._elements.questionBoxContainer.toggleClass('open');
-            });
-            _this._elements.questionBoxContainer.on('click','.callInfo', function() {
-                event.stopPropagation();
-            });
-
-            $(document).on('click', function(event) {
-                _this._elements.questionBoxContainer.removeClass('open');
-            });
-            
         },
         smallScreenMessage: function() {
             var message = '<div class="info">Please use desktop screen to view this website for best experience.'+

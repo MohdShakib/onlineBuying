@@ -34,6 +34,7 @@ self.addEventListener('install', function(event) {
         'js/utils/ajaxUtils.js',
         'js/utils/cookieUtils.js',
         'js/utils/utils.js',
+        'js/utils/viewUtils.js',
         'js/apiData.js',
         'js/dataEvent.js',
         'js/controllers/',
@@ -125,9 +126,10 @@ self.addEventListener('fetch', function(event) {
 
     caches.match(event.request).then(function(response) {
         if(response){
+          console.log('catched : ',event.request.url);
           return response
         }else{
-          console.log('not catched is: ',event.request.url);
+          console.log('not catched : ',event.request.url);
           return fetch(event.request).then(function(response) {
             return caches.open('v1').then(function(cache) {
               try{

@@ -15,7 +15,7 @@
     <link href="css/fs.css" rel="stylesheet" type="text/css">
     <link href="css/styleResponsive.css" rel="stylesheet" type="text/css">
     <!-- /build -->
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:title" content= "Your Home Festival - Limited period offers from Proptiger.com"/>
     <meta property="og:description" content="Get Great Offers on Residential Projects in Delhi & Gurgaon and Save upto Rs.24L . Hurry Offer valid till 23rd September 2015." />
@@ -90,28 +90,33 @@
 
         <!--project loading start here-->
     	<div class="show-loading" >
-            <div class="blur-bg"></div>
-            <div class="loading-view">
-                <div class="view-box">
-                <div class="view-photo"><img src="images/loader-project.jpg" alt="" /></div>
-                <h2><label class="project-title"></label>
-                    <span class="project-address"></span></h2>
-                <div class="loading-pro-details">
-                    <p class="project-desc"></p>
-                </div>
-                <div class="loading-bar-container" style="display:none;">
-                    <div class="four-d-icon">
-                        <p>Loading <span>'4D View'</span> Experience..</p>
+            <div class="top-view">
+                <div class="info">
+                    <h2>
+                        <label class="project-title"></label>
+                        <span class="project-address"></span>
+                    </h2>
+                    <div class="loading-txt hide">
                     </div>
-                    <div class="loading-bar">
-                        <span class="transition"></span>
+                </div>
+                <div class="building">
+                    <!-- <img src="images/building.png" alt=""> -->
+                    <div class="building-slider">
+                      <div class="building-slid1"><img  class="loading-image" src="images/building-slide-img1.png" alt=""></div>
+                      <div class="building-slid2 hide-slide"><img  class="loading-image" src="images/building-slide-img2.png" alt=""></div>
+                      <!--<div class="building-slid3 hide-slide"><img  class="loading-image details" src="images/building-slide-img3.png" alt=""></div>-->
                     </div>
-                    <div class="loading-persentage">0%</div>
                 </div>
-                <div class="loading-bar-container default-loading" >
-                    Loading, Please wait...
+                <div class="circleBlur"></div>
+            </div>
+            <div class="bot-view">
+                <div class="ldr">
+                    <canvas id="loading-circle"  class="loading-image-canvas" width="170" height="170"></canvas>
+                    <span>loading...</span>
                 </div>
-
+                <div class="txt">
+                    <strong>Interactive &amp; Immersive 4D VIEW Experience...<br></strong>
+                    <span class="project-offer hide"></span>
                 </div>
             </div>
         </div>
@@ -132,6 +137,8 @@
 
     	<header>
             <span id="project-title" class="project-title"></span>&nbsp;
+            <span id="project-tower" class="project-tower"></span>&nbsp;
+            <span id="project-unit" class="project-unit"></span>&nbsp;
             <span id="project-address"></span>&nbsp;
             <span id="project-count" class="project-count"></span>
         </header>
@@ -159,6 +166,7 @@
     <script src="js/utils/ajaxUtils.js"></script>
     <script src="js/utils/cookieUtils.js"></script>
     <script src="js/utils/utils.js"></script>
+	<script src="js/utils/viewUtils.js"></script>
     <script src="js/apiData.js"></script>
     <script src="js/dataEvent.js"></script>
     <script src="js/controllers/masterplanController.js"></script>
@@ -192,6 +200,9 @@
       });
     </script>
     <script src="swLogging.js"></script>
+
+    <!-- google maps api-->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,places"></script>
 
     <div id="fb-root"></div>
     <!-- Loaded fb and google sdk from init.js -->

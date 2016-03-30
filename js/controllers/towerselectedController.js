@@ -48,7 +48,7 @@ var TowerselectedController = (function() {
                     elementData = $(element).data(),
                     avalibility = elementData.url == "undefined" ? "-sold" : "-available",
                     label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-' + elementData.index + '-svg' + avalibility;
-                utils.tracking('towerUnitSvg', 'clicked', label);
+                utils.tracking(config.gaCategory, 'towerUnitSvgClicked', label);
 
                 var index = $(element).data('index');
                 _this._model.setSelectedListing(index);
@@ -61,7 +61,7 @@ var TowerselectedController = (function() {
                 var rootdata = _this._model.getRootdata(),
                     data = _this._model.getData(),
                     label = rootdata.projectIdentifier + '-' + rootdata.projectId + '-' + data.towerIdentifier + '-' + data.towerId + '-rotation';
-                utils.tracking('towerRotationButton', 'clicked', label);
+                utils.tracking(config.gaCategory, 'towerRotationButtonClicked', label);
 
                 var currentRotationAngle = _this._model.getCurrentRotationAngle();
                 var isAnticlockwise = $(element).data('anticlockwise');
@@ -83,7 +83,7 @@ var TowerselectedController = (function() {
                 var bhk = dataset.value;
                 var data = _this._model.getRootdata(),
                     label = data.projectIdentifier + '-' + data.projectId + '-bedroomFilter';
-                utils.tracking('filterPanel', 'clicked', label);
+                utils.tracking(config.gaCategory, 'filterPanelClicked', label);
                 _this.toggleFilterOption(_this._filters.bhk, bhk, element);
             });
             this._view._floorFilterOptionClick.attach(function(sender, element) {
@@ -91,7 +91,7 @@ var TowerselectedController = (function() {
                 var floorGroup = dataset.svalue + " " + dataset.evalue;
                 var data = _this._model.getRootdata(),
                     label = data.projectIdentifier + '-' + data.projectId + '-floorFilter';
-                utils.tracking('floorPanel', 'clicked', label);
+                utils.tracking(config.gaCategory, 'filterPanelClicked', label);
                 _this.toggleFilterOption(_this._filters.floor, floorGroup, element);
             });
 
@@ -101,7 +101,7 @@ var TowerselectedController = (function() {
                     var entrance = dataset.value;
                     var data = _this._model.getRootdata(),
                         label = data.projectIdentifier + '-' + data.projectId + '-entranceFilter';
-                    utils.tracking('filterPanel', 'clicked', label);
+                    utils.tracking(config.gaCategory, 'filterPanelClicked', label);
                     _this.toggleFilterOption(_this._filters.entrance, entrance, element);
                 });
             }
@@ -111,7 +111,7 @@ var TowerselectedController = (function() {
                 var priceGroup = dataset.svalue + " " + dataset.evalue;
                 var data = _this._model.getRootdata(),
                     label = data.projectIdentifier + '-' + data.projectId + '-priceFilter';
-                utils.tracking('filterPanel', 'clicked', label);
+                utils.tracking(config.gaCategory, 'filterPanelClicked', label);
                 _this.toggleFilterOption(_this._filters.price, priceGroup, element);
             });
             this._view._resetFiltersClick.attach(function(sender, element) {
@@ -129,6 +129,29 @@ var TowerselectedController = (function() {
                 };
                 _this._view.resetFilterOption(element);
                 _this.updateFilteredListings();
+            });
+
+            //minMapEvents
+            this._view._minMapClicked.attach(function(sender, element){
+                _this._view.minMapToggle(element);
+            });
+
+            this._view._filterApply.attach(function(sender, element){
+                _this._view.applyFilter(element);
+            });
+
+            this._view._backToFilter.attach(function(sender, element){
+                _this._view.backToFilter(element);
+            });
+
+            this._view._bottomFilterToggle.attach(function(sender, element){
+                _this._view.bottomFilterToggle(element);
+            });
+            // Go back Event
+            this._view._projectTitleClick.attach(function(sender, element) {
+                var rootData = _this._model.getRootdata();
+                router.setRoute(rootData.baseUrl);
+                return;
             });
         },
         toggleFilterOption: function(filterArray, filterOption, element) {
@@ -203,7 +226,7 @@ var TowerselectedController = (function() {
         generateTemplate: function(fromUnitInfoView) {
             this._view.buildView();
             if (this._model.isFirstLoad()) {
-                utils.showLoader(this._view, this._view.startAnimation);
+                viewUtils.showLoader(this._view, this._view.startAnimation);
                 this._model.toggleFirstLoad();
             } else {
                 this._view.displayWithoutAnimation(fromUnitInfoView);

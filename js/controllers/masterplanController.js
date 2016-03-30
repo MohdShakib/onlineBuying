@@ -28,7 +28,7 @@ var MasterplanController = (function() {
                 var data = _this._model.getData(),
                     elementData = element.dataset,
                     label = data.projectIdentifier + '-' + data.projectId + '-' + elementData.index + '-' + elementData.imageid + '-menu';
-                utils.tracking('masterPlanTowerMenu', 'clicked', label);
+                utils.tracking(config.gaCategory, 'masterPlanTowerMenuClicked', label);
             });
             this._view._menuUp.attach(function(sender, element) {
                 _this._view.menuUpHandler();
@@ -49,7 +49,7 @@ var MasterplanController = (function() {
                 var data = _this._model.getData(),
                     elementData = $(element).data(),
                     label = data.projectIdentifier + '-' + data.projectId + '-' + elementData.index + '-' + elementData.imageid + '-svg';
-                utils.tracking('masterPlanTowerSvg', 'clicked', label);
+                utils.tracking(config.gaCategory, 'masterPlanTowerSvgClicked', label);
             });
 
             // Amenity Events
@@ -57,11 +57,53 @@ var MasterplanController = (function() {
                 _this._view.amenityClickEvent(element);
                 var data = _this._model.getData(),
                     label = data.projectIdentifier + '-' + data.projectId + '-' + $(element).attr('id');
-                utils.tracking('masterPlanAmenities', 'clicked', label);
+                utils.tracking(config.gaCategory, 'masterPlanAmenitiesClicked', label);
             });
             this._view._amenityClose.attach(function(sender, element) {
                 _this._view.amenityCloseEvent();
             });
+
+            // Google Map Events
+            this._view._googleMapProjectClick.attach(function(sender, element){
+                _this._view._elements.buildingImgContainer.removeClass('zoomOutMasterPlan');
+                _this._view._elements.buildingImgContainer.addClass('zoomInMasterPlan');
+                _this._view.hideGoogleMap(element);
+            });
+            this._view._googleMapViewChanged.attach(function(sender, element){
+                _this._view.removeGoogleMapView(element);
+            });
+            this._view._openGoogleMapClicked.attach(function(sender, element){
+                _this._view._elements.buildingImgContainer.removeClass('zoomInMasterPlan');
+                _this._view._elements.buildingImgContainer.addClass('zoomOutMasterPlan');
+                _this._view._elements.amenitiesContainer.hide();
+                _this._view._elements.carAnimation.hide();
+                _this._view._elements.buildingMenuContainer.hide();
+                _this._view._elements.openGoogleMapView.hide();
+                _this._view._elements.cloudContainer.hide();
+                $('.bottom-filter-wrapper').removeClass('show-up');
+                $('.bottom-filter-wrapper').addClass('show-bottom');
+                element.map.setZoom(config.initialZoomLevel);
+                setTimeout(function(){
+                    _this._view.showGoogleMap(element);
+                },1500);
+            });
+            this._view._applyfilter.attach(function(sender, element){
+                _this._view.applyFilter(element);
+            });
+            this._view._removeFilter.attach(function(sender, element){
+                _this._view.removeFilter(element);
+            });
+            this._view._mouseenterFilter.attach(function(sender, element){
+                _this._view.mouseenterFilter(element );
+            });
+            this._view._mouseleaveFilter.attach(function(sender, element){
+                _this._view.mouseleaveFilter(element);
+            });
+
+            this._view._bottomFilterToggle.attach(function(sender, element){
+                _this._view.bottomFilterToggle(element);
+            });
+
         },
         generateTemplate: function() {
             this._view.buildView();
@@ -72,7 +114,7 @@ var MasterplanController = (function() {
                     clearTimeout(animationStart);
                 }
                 var animationStart = setTimeout(function() {
-                    utils.showLoader(_this._view, _this._view.startAnimation);
+                    viewUtils.showLoader(_this._view, _this._view.startAnimation);
                     _this._model.toggleFirstLoad();
                 }, 200);
             } else {

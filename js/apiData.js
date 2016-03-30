@@ -4,6 +4,18 @@ var getProjectData = (function() {
     var zipPath = './zip-file/';
     var zipImagePath = zipPath + 'img/';
 
+    var googleMapData = {
+        upperEnd:{
+            lat: 28.379743,
+            lng: 76.978000
+        },
+        lowerEnd:{
+            lat: 28.382616,
+            lng: 76.980592
+        },
+        imagePath: zipImagePath+'501660.png'
+    };
+
     function processCsvDataToArray(allText) {
         var allTextLines = allText.split(/\r\n|\n/);
         var headers = allTextLines[0].split(',');
@@ -92,7 +104,7 @@ var getProjectData = (function() {
                     var unitSvgOnTower = unitInfo.unitSvgOnTower ? unitInfo.unitSvgOnTower.split(' ') : null;
                     var validUnitFlag = false;
                     unitInfo.unitSvgOnTower = unitSvgOnTower;
-                    if (tower && tower.rotationAngle[unitInfo.rotationAngle] && unitInfo.rotationAngle) {
+                    if (tower && unitInfo.rotationAngle && tower.rotationAngle[unitInfo.rotationAngle]) {
                         tower.rotationAngle[unitInfo.rotationAngle].listing[unitIdentifier] = unitInfo;
                         validUnitFlag = true;
                     } else if (tower && tower.rotationAngle && unitInfo.rotationAngle) {
@@ -101,6 +113,9 @@ var getProjectData = (function() {
                         tower.rotationAngle[unitInfo.rotationAngle].listing = {};
                         tower.rotationAngle[unitInfo.rotationAngle].listing[unitIdentifier] = unitInfo;
                         validUnitFlag = true;
+                        if(unitInfo.towerMinimap){
+                            tower.rotationAngle[unitInfo.rotationAngle].towerMinimapUrl = zipImagePath + unitInfo.towerMinimap;
+                        }
                     }
 
                     if(tower.stableViewAngles && (tower.stableViewAngles.indexOf(unitInfo.rotationAngle) == -1) && unitInfo.rotationAngle){
@@ -130,6 +145,7 @@ var getProjectData = (function() {
                     projectData.towers[towerIdentifier].hoverImageUrl = zipImagePath + towers[towerName].hoverImageName;
                     projectData.towers[towerIdentifier].towerHoverSvg = towers[towerName].towerHoverSvg;
                     projectData.towers[towerIdentifier].towerTooltipSvg = towers[towerName].towerTooltipSvg;
+                    projectData.towers[towerIdentifier].displayImage =  (towers[towerName].displayImage && towers[towerName].displayImage !== '')?  zipImagePath + towers[towerName].displayImage : '';
                 }
             }
         }
@@ -291,7 +307,8 @@ var getProjectData = (function() {
                 projectData.amenities[utils.getIdentifier(amenityData.amenityName)] = {
                     amenityName: amenityData.amenityName,
                     imageUrl: zipImagePath + amenityData.imageName,
-                    amenitySvg: amenityData.amenitySvg
+                    amenitySvg: amenityData.amenitySvg,
+                    displayIcon:amenityData.displayIcon
 
                 };
             }
@@ -300,31 +317,31 @@ var getProjectData = (function() {
 
     function parseAllCSVData() {
         var csv = '.csv';
-        utils.getSvgData(zipPath + config.dataFiles.masterplanScreen + csv).success(function(data) {
+        ajaxUtils.getSvgData(zipPath + config.dataFiles.masterplanScreen + csv).success(function(data) {
             var towers = processCsvDataToObject(data, 'towerName');
             if (towers && projectData.towers && Object.keys(projectData.towers).length && Object.keys(towers).length) {
                 useTowersCSVData(towers);
             }
         });
 
-        utils.getSvgData(zipPath + config.dataFiles.amenitiesHotspots + csv).success(function(data) {
+        ajaxUtils.getSvgData(zipPath + config.dataFiles.amenitiesHotspots + csv).success(function(data) {
             var amenities = processCsvDataToObject(data, 'amenityName');
             if (amenities && Object.keys(amenities).length) {
                 useAmenitiesCSVData(amenities);
             }
         });
 
-        utils.getSvgData(zipPath + config.dataFiles.towerselectScreen + csv).success(function(data) {
+        ajaxUtils.getSvgData(zipPath + config.dataFiles.towerselectScreen + csv).success(function(data) {
             var listing = processCsvDataToArray(data);
             useTowerUnitsCSVData(listing);
         });
 
-        utils.getSvgData(zipPath + config.dataFiles.unitplanInfo + csv).success(function(data) {
+        ajaxUtils.getSvgData(zipPath + config.dataFiles.unitplanInfo + csv).success(function(data) {
             var data = processCsvDataToObject(data, 'unitName');
             useUnitplanInfoCSVData(data);
         });
 
-        utils.getSvgData(zipPath + config.dataFiles.towerRotation + csv).success(function(data) {
+        ajaxUtils.getSvgData(zipPath + config.dataFiles.towerRotation + csv).success(function(data) {
             var data = processCsvDataToObject(data, 'towerName');
             useTowerRotationData(data);
         });
@@ -333,15 +350,15 @@ var getProjectData = (function() {
     function parseAllJSONData() {
         var json = '.json';
 
-        var json1 = utils.getJsonData(zipPath + config.dataFiles.masterplanScreen + json, config.dataFiles.masterplanScreen);
+        var json1 = ajaxUtils.getJsonData(zipPath + config.dataFiles.masterplanScreen + json, config.dataFiles.masterplanScreen);
 
-        var json2 = utils.getJsonData(zipPath + config.dataFiles.amenitiesHotspots + json, config.dataFiles.amenitiesHotspots);
+        var json2 = ajaxUtils.getJsonData(zipPath + config.dataFiles.amenitiesHotspots + json, config.dataFiles.amenitiesHotspots);
 
-        var json3 = utils.getJsonData(zipPath + config.dataFiles.towerselectScreen + json, config.dataFiles.towerselectScreen);
+        var json3 = ajaxUtils.getJsonData(zipPath + config.dataFiles.towerselectScreen + json, config.dataFiles.towerselectScreen);
 
-        var json4 = utils.getJsonData(zipPath + config.dataFiles.unitplanInfo + json, config.dataFiles.unitplanInfo);
+        var json4 = ajaxUtils.getJsonData(zipPath + config.dataFiles.unitplanInfo + json, config.dataFiles.unitplanInfo);
 
-        var json5 = utils.getJsonData(zipPath + config.dataFiles.towerRotation + json, config.dataFiles.towerRotation);
+        var json5 = ajaxUtils.getJsonData(zipPath + config.dataFiles.towerRotation + json, config.dataFiles.towerRotation);
 
         return $.when(json1, json2, json3, json4, json5).done(function(data1, data2, data3, data4, data5){
 
@@ -365,6 +382,7 @@ var getProjectData = (function() {
             useTowerRotationData(data);
 
             utils.log(projectData);
+            projectData.googleMapData = googleMapData;
             return projectData;
 
         });
@@ -376,7 +394,6 @@ var getProjectData = (function() {
         projectData = {};
 
     var parseApiData = function(projectDetail) {
-
         if (!projectDetail) {
             return;
         }
@@ -444,6 +461,9 @@ var getProjectData = (function() {
         projectData.address = projectDetail.address;
         projectData.bgImage = zipImagePath + config.backgroundImage;
         projectData.description = projectDetail.description;
+        projectData.totalEastFacingAvailableCount = 0;         // this is use for track east facing filter, not in use in current filters
+        // projectData.fairEnabled = projectDetail.hasPrimaryExpandedListing ==  3 ? false : true;
+        projectData.fairEnabled = true;
 
         // Project Ameneties
         projectData.projectAmeneties = {};
@@ -464,6 +484,9 @@ var getProjectData = (function() {
                 property = {};
             property.propertyId = projectProperty.propertyId;
             property.bedrooms = projectProperty.bedrooms;
+            if (projectProperty.studyRoom) {
+                property.bedrooms += 0.5;
+            }
             property.bathrooms = projectProperty.bathrooms;
             property.size = projectProperty.size;
             property.measure = projectProperty.measure;
@@ -504,9 +527,9 @@ var getProjectData = (function() {
         }
 
         // Offer
-        projectData.offer = "attractive discounts";
+        projectData.offer = [];
         if (projectDetail.offers && projectDetail.offers[0]) {
-            projectData.offer = projectDetail.offers[0].offerDesc;
+            projectData.offer = utils.arrayOfObjectToArray(projectDetail.offers);
         }
 
         // City
@@ -519,9 +542,9 @@ var getProjectData = (function() {
 
         var allTowers = [];
         if(config.setJsonDataPriorityForTest){
-            utils.getJsonData(zipPath+config.dataFiles.masterplanScreen+ '.json', config.dataFiles.masterplanScreen).then(function(data){
+            ajaxUtils.getJsonData(zipPath+config.dataFiles.masterplanScreen+ '.json', config.dataFiles.masterplanScreen).then(function(data){
                 allTowers = data;
-                towers_length = data.length;      
+                towers_length = data.length;
             });
         }
 
@@ -534,16 +557,16 @@ var getProjectData = (function() {
             }else{
                 tower = projectDetail.towers[i];
             }
-            
+
             /** towername short and long name logic start **/
             var longName =  tower.towerName;
             var nameArray = tower.towerName.split(' ');
             var shortName = nameArray.reduce(function (a, b) { return a.length < b.length ? a : b; });
-            
+
             if(shortName && shortName.length > 2){
                 shortName = tower.towerName.substr(0,2);
                 longName = tower.towerName;
-            }   
+            }
 
             if(longName.length <= 2){
                 longName =  'Tower '+tower.towerName;
@@ -561,6 +584,7 @@ var getProjectData = (function() {
             towers[towerIdentifier].listings = {};
             towers[towerIdentifier].rotationAngle = {};
             towers[towerIdentifier].totalAvailableCount = 0; //contains count for total flats available in the tower
+            towers[towerIdentifier].totalEastFacingAvailableCount = 0; //contains count for total east facing flats available in the tower
             towers[towerIdentifier].stableViewAngles = [];
             towers[towerIdentifier].bookingStatus = bookingStatusMap['1'];
             towersUnitInfo[towerIdentifier] = {};
@@ -576,7 +600,7 @@ var getProjectData = (function() {
 
         var allUnits = [];
         if(config.setJsonDataPriorityForTest){
-            utils.getJsonData(zipPath+config.dataFiles.towerselectScreen+'.json', config.dataFiles.towerselectScreen).then(function(data){
+            ajaxUtils.getJsonData(zipPath+config.dataFiles.towerselectScreen+'.json', config.dataFiles.towerselectScreen).then(function(data){
                allUnits = data;
                listings_length = data.length;
             });
@@ -587,7 +611,7 @@ var getProjectData = (function() {
             if (!config.setJsonDataPriorityForTest && projectDetail.listings[i].isDeleted) {
                 continue;
             }
-            
+
 
             var towerName, listing, towerId;
             if(config.setJsonDataPriorityForTest){
@@ -600,14 +624,14 @@ var getProjectData = (function() {
                 towerName = towerMap[towerId];
                 listing = projectDetail.listings[i];
             }
-            
+
 
 
             var towerIdentifier = utils.getIdentifier(towerName);
             var unitIdentifier = utils.getIdentifier(listing.flatNumber),
                 flatUnit = {};
 
-            
+
 
             if (config.allUnitsAvailable) {
                 listing.bookingStatusId = 1;
@@ -626,6 +650,7 @@ var getProjectData = (function() {
             flatUnit.bookingAmount = listing.bookingAmount;
             flatUnit.discount = listing.discount ? listing.discount : undefined;
             flatUnit.discountDescription = listing.discountDescription;
+            flatUnit.viewDirections = utils.arrayOfObjectToArray(listing.viewDirections);
             flatUnit.rotationAnglesAvailable = [];
 
 
@@ -652,6 +677,10 @@ var getProjectData = (function() {
             // }
 
             flatUnit.bedrooms = propertyDetail.bedrooms;
+            if (propertyDetail.studyRoom) {
+                flatUnit.bedrooms += 0.5;
+            }
+            flatUnit.bathrooms = propertyDetail.bathrooms;
             flatUnit.size = propertyDetail.size ? propertyDetail.size : 0;
             flatUnit.measure = propertyDetail.measure;
 
@@ -735,19 +764,34 @@ var getProjectData = (function() {
             tower = projectData.towers[towerIdentifier];
             var isAvailable = false,
                 totalAvailableCount = 0,
+                totalEastFacingAvailableCount = 0,
+                viewDirections = [],
                 bookingStatus = 'SoldOut';
             for (var unitKey in tower.listings) {
                 if (hasOwnProperty.call(tower.listings, unitKey) && tower.listings[unitKey].bookingStatus == 'Available') {
                     isAvailable = true;
                     totalAvailableCount += 1;
                     bookingStatus = 'Available';
+                    if(tower.listings[unitKey].viewDirections.length>0){
+                        var viewDirectionArray = tower.listings[unitKey].viewDirections;
+                        for(var viewDirection in viewDirectionArray){
+                            if(viewDirections.indexOf(viewDirectionArray[viewDirection]) < 0 ){
+                                viewDirections.push(viewDirectionArray[viewDirection]);
+                            }
+                        }
+                    }
+                    if(tower.listings[unitKey].facing == 'East'){
+                        totalEastFacingAvailableCount +=1;
+                    }
                 } else if (bookingStatus == 'SoldOut' && tower.listings[unitKey].bookingStatus == 'OnHold') {
                     bookingStatus = 'OnHold';
                 }
             }
             tower.isAvailable = isAvailable;
             tower.totalAvailableCount = totalAvailableCount; // keeps count for flats available after applying fitler etc
+            tower.totalEastFacingAvailableCount = totalEastFacingAvailableCount; // keeps count for east facing flats available after applying fitler etc
             tower.bookingStatus = bookingStatus;
+            tower.viewDirections = viewDirections;
         }
 
     };
