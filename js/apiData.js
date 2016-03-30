@@ -808,13 +808,47 @@ var getProjectData = (function() {
             return callback(projectData);
         }
 
-        var apiData,
-            params = {
+        var apiData;
+            /*params = {
                 successCallback: function(response) {
                     apiData = response;
                 }
+            };*/
+
+        
+        return new Promise(function(resolve, reject){
+
+           var  params = {
+                successCallback: function(response) {
+                    apiData = response;
+                    parseApiData(apiData);
+
+                    if(isPropertyPaymentUrl){ // to skip json read for property buying
+                       return callback(projectData);
+                    }
+
+                    if (config.readDataFromJson) {
+                        return parseAllJSONData().done(function(){
+                            console.log(projectData);
+                            callback(projectData);
+                            return;
+                        });
+                    } else {
+                        parseAllCSVData();
+                        callback(projectData);
+                        console.log(projectData);
+                    }
+                    
+                    resolve(projectData);
+                }
             };
 
+            ajaxUtils.getProjectData(projectId, params);
+            
+            return projectData;
+        });
+
+        /*
         ajaxUtils.getProjectData(projectId, params);
         parseApiData(apiData);
 
@@ -835,6 +869,7 @@ var getProjectData = (function() {
         }
 
         return projectData;
+        */
     }
 
     return getProjectData;

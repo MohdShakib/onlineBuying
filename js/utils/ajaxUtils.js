@@ -62,7 +62,7 @@ var ajaxUtils = (function() {
                 apiUrl = "apis-json/project-detail.json";
             }
 
-            this.ajax(apiUrl, params, 'GET', false, null);
+            this.ajax(apiUrl, params, 'GET', true, null);
         },
 
         submitLead: function(data, params) {
